@@ -24,5 +24,6 @@ For full documentation visit [mkdocs.org](https://www.mkdocs.org).
 ``` py 
 This is a code block
     on multiple lines
+    yes
 ```
 
