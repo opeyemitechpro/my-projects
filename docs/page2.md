@@ -21,6 +21,15 @@ user_data = file("./userdata.sh")
 
 This is page 2 contents
 
+!!! note annotate "This is an annotation (1)"
+
+    Lorem ipsum dolor sit amet, (2) consectetur adipiscing elit. Nulla et
+    euismod nulla. Curabitur feugiat, tortor non consequat finibus, justo
+    purus auctor massa, nec semper lorem quam in massa.
+
+1.  :man_raising_hand: I'm an annotation!
+2.  :woman_raising_hand: I'm an annotation as well!
+
 
 ``` py
 import tensorflow as tf
@@ -77,7 +86,8 @@ This is annotated text (1) Click the annotation to see more details
 { .annotate}
 1.  ### This text has been annotated as you can see
 2.  This is line 2 of the annotation `def myfunction()`
-3.  ``` tf
+3.
+   ``` tf
 resource "aws_instance" "Server" {
   ami           = "ami-0b8b44ec9a8f90422"
   instance_type = var.instance_type
