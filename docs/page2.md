@@ -70,7 +70,31 @@ def bubble_sort(items):
         for j in range(len(items) - 1 - i):
             if items[j] > items[j + 1]:
                 items[j], items[j + 1] = items[j + 1], items[j]
+```  
+
+## Annotated Text
+This is annotated text (1) Click the annotation to see more details
+{ .annotate}
+1.  ### This text has been annotated as you can see
+2.  This is line 2 of the annotation `def myfunction()`
+3.  ``` tf
+resource "aws_instance" "Server" {
+  ami           = "ami-0b8b44ec9a8f90422"
+  instance_type = var.instance_type
+
+  # key_name = "OpeyemiTechPro-KeyPair.ppk"
+user_data = file("./userdata.sh")
+
+  key_name = var.key_pair_name
+
+  tags = {
+    Name = "Server"
+  }
+}
 ```
+
+
+
 
 #### Highlighting lines
 
