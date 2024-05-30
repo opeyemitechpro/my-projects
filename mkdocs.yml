@@ -1,5 +1,62 @@
+
 site_name: My Projects Portfolio
-# site_url: https://mydomain.org/mysite
-theme: 
+site_url: https://opeyemitechpro.github.io/my-projects/
+theme:
   name: material
-  
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - toc.integrate
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.tabs.link
+    - content.code.annotation
+    - content.code.copy
+  language: en
+  palette:
+    - scheme: default
+      toggle:
+        icon: material/toggle-switch-off-outline 
+        name: Switch to dark mode
+      primary: teal
+      accent: purple 
+    - scheme: slate 
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to light mode    
+      primary: teal
+      accent: lime
+
+plugins:
+  - social
+  - search
+
+extra:
+  social:
+    - icon: fontawesome/brands/github-alt
+      link: https://github.com/opeyemitechpro
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/opeyemitechpro
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/in/opeyemi-okuboyejo/
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - admonition
+  - pymdownx.arithmatex:
+      generic: true
+  - footnotes
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.mark
+  - attr_list
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+
+copyright: |
+  &copy; 2024 <a href="https://opeyemitechpro.github.io"  target="_blank" rel="noopener">Opeyemi Okuboyejo</a>
