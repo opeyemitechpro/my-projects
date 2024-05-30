@@ -25,19 +25,20 @@ theme:
   logo: images/favicon.png
   language: en
   palette:
-    - scheme: default
+    - scheme: slate
       toggle:
-        icon: material/toggle-switch-off-outline 
+        icon: material/brightness-4 
         name: Switch to dark mode
-      primary: teal
-      accent: purple 
-    - scheme: slate 
+      primary: deep orange
+      accent: red 
+    - scheme: default 
       toggle:
-        icon: material/toggle-switch
+        icon: material/brightness-7
         name: Switch to light mode    
-      primary: teal
-      accent: lime
+      primary: deep orange
+      accent: red
 
+  
 plugins:
   - social
   - search
