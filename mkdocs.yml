@@ -1,6 +1,14 @@
 
 site_name: My Projects Portfolio
 site_url: https://opeyemitechpro.github.io/my-projects/
+repo_url: https://github.com/opeyemitechpro/my-projects
+
+nav:
+  - Welcome: index.md
+  - 2nd Page: page2.md
+  
+  
+
 theme:
   name: material
   features:
@@ -29,7 +37,7 @@ theme:
       toggle:
         icon: material/brightness-4 
         name: Switch to dark mode
-      primary: deep orange
+      primary: blue
       accent: red 
     - scheme: default 
       toggle:
