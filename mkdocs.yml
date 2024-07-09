@@ -45,44 +45,23 @@ theme:
   logo: images/favicon.png
   language: en
 
-   palette:
-    - media: "(prefers-color-scheme)"
-      toggle:
-        icon: material/link
-        name: Switch to light mode
-    - media: "(prefers-color-scheme: light)"
-      scheme: default
-      primary: blue
-      accent: indigo
-      toggle:
-        icon: material/toggle-switch
-        name: Switch to dark mode
-    - media: "(prefers-color-scheme: dark)"
-      scheme: slate
-      primary: blue
-      accent: white
-      # toggle:
-        # icon: material/toggle-switch-off
-        # name: Switch to system preference
-
-
-
-  
-  # palette:
-    # - scheme: slate
-      # toggle:
-        # icon: material/brightness-4 
-        # name: Switch to dark mode
-      # primary: blue
-      # accent: white 
-    # - scheme: default 
-      # toggle:
-        # icon: material/brightness-7
-        # name: Switch to light mode    
-      # primary: blue
-      # accent: indigo
-
-  
+palette:
+  - media: "(prefers-color-scheme)"
+    toggle:
+      icon: material/link
+      name: Switch to light mode
+  - media: "(prefers-color-scheme: light)"
+    scheme: default
+    primary: blue
+    accent: indigo
+    toggle:
+      icon: material/toggle-switch
+      name: Switch to dark mode
+  - media: "(prefers-color-scheme: dark)"
+    scheme: slate
+    primary: blue
+    accent: white
+    
 plugins:
   - social
   - search
