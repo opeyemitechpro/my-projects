@@ -11,12 +11,12 @@ repo_name: opeyemitechpro/my-projects
 # Page Navigation
  nav:
    - Welcome: index.md
-   - AWS Projects:
-   - Terraform Projects:
+   - AWS Projects: openvpn_access_server.md
+   - Terraform Projects: openvpn_access_server.md
     - OpenVPN Access Server: openvpn_access_server.md
-   - DevOps Projects:
-     - CI/CD:
-   - Cloud Projects:
+   - DevOps Projects: openvpn_access_server.md
+     - CI/CD: openvpn_access_server.md
+   - Cloud Projects: openvpn_access_server.md
 
 theme:
   name: material
