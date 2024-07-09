@@ -1,11 +1,23 @@
 
+# Project Site Details
 site_name: My Projects Portfolio
 site_url: https://opeyemitechpro.github.io/my-projects/
-repo_url: https://github.com/opeyemitechpro/my-projects
+site_description: A collection of DevOps and Cloud related projects
 
+# Repo Details
+repo_url: https://github.com/opeyemitechpro/my-projects
+repo_name: opeyemitechpro/my-projects
+
+# Page Navigation
 nav:
   - Welcome: index.md
-  - 2nd Page: page2.md
+  - AWS Projects:
+  - Terraform Projects:
+    - OpenVPN Access Server: openvpn_access_server.md
+  - DevOps Projects:
+    - CI/CD:
+  - Cloud Projects:
+  
   
   
 
@@ -32,19 +44,43 @@ theme:
   favicon: images/favicon.png
   logo: images/favicon.png
   language: en
-  palette:
-    - scheme: slate
+
+   palette:
+    - media: "(prefers-color-scheme)"
       toggle:
-        icon: material/brightness-4 
-        name: Switch to dark mode
+        icon: material/link
+        name: Switch to light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
       primary: blue
-      accent: red 
-    - scheme: default 
+      accent: indigo
       toggle:
-        icon: material/brightness-7
-        name: Switch to light mode    
-      primary: deep orange
-      accent: red
+        icon: material/toggle-switch
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: blue
+      accent: white
+      # toggle:
+        # icon: material/toggle-switch-off
+        # name: Switch to system preference
+
+
+
+  
+  # palette:
+    # - scheme: slate
+      # toggle:
+        # icon: material/brightness-4 
+        # name: Switch to dark mode
+      # primary: blue
+      # accent: white 
+    # - scheme: default 
+      # toggle:
+        # icon: material/brightness-7
+        # name: Switch to light mode    
+      # primary: blue
+      # accent: indigo
 
   
 plugins:
