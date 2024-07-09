@@ -57,7 +57,7 @@ theme:
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
       primary: blue
-      accent: red
+      accent: yellow
     
 plugins:
   - social
