@@ -9,14 +9,14 @@ repo_url: https://github.com/opeyemitechpro/my-projects
 repo_name: opeyemitechpro/my-projects
 
 # Page Navigation
-# nav:
-  # - Welcome: index.md
-  # - AWS Projects:
-  # - Terraform Projects:
-  #  - OpenVPN Access Server: openvpn_access_server.md
-  # - DevOps Projects:
-  #   - CI/CD:
-  # - Cloud Projects:
+ nav:
+   - Welcome: index.md
+   - AWS Projects:
+   - Terraform Projects:
+    - OpenVPN Access Server: openvpn_access_server.md
+   - DevOps Projects:
+     - CI/CD:
+   - Cloud Projects:
 
 theme:
   name: material
