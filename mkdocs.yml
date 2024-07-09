@@ -55,9 +55,9 @@ theme:
         icon: material/toggle-switch
         name: Switch to dark mode
     - media: "(prefers-color-scheme: dark)"
-        scheme: slate
-        primary: blue
-        accent: white
+      scheme: slate
+      primary: blue
+      accent: white
     
 plugins:
   - social
