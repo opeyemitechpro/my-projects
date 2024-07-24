@@ -121,4 +121,4 @@ markdown_extensions:
   - pymdownx.superfences
 
 copyright: |
-  &copy; {{ now.year }} <a href="https://opeyemitechpro.github.io"  target="_blank" rel="noopener">Opeyemi Okuboyejo</a>
+  &copy; 2024 <a href="https://opeyemitechpro.github.io"  target="_blank" rel="noopener">Opeyemi Okuboyejo</a>
