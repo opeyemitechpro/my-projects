@@ -53,14 +53,14 @@ theme:
         name: Switch to light mode
     - media: "(prefers-color-scheme: light)"
       scheme: default
-      primary: darkgreen
+      primary: #006400
       accent: orange
       toggle:
         icon: material/brightness-4
         name: Switch to dark mode
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
-      primary: greenyellow
+      primary: #ADFF2F
       accent: yellow
     
 plugins:
