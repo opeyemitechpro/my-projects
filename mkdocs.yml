@@ -60,9 +60,12 @@ theme:
         name: Switch to dark mode
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
-      primary: dark-green
+      primary: black
       accent: yellow
-    
+      toggle:
+        icon: material/brightness-1
+        name: Switch to system preference
+
 plugins:
   - social
   - search
