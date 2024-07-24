@@ -31,6 +31,7 @@ theme:
     - navigation.tracking
     - navigation.top
     - navigation.path
+    - navigation.footer
     - toc.integrate
     - toc.follow
     - search.suggest
@@ -38,6 +39,9 @@ theme:
     - content.tabs.link
     - content.code.annotation
     - content.code.copy
+    - content.tooltips
+    - content.code.select
+    - content.code.annotate
   favicon: images/favicon.png
   logo: images/favicon.png
   language: en
@@ -79,6 +83,15 @@ markdown_extensions:
   - pymdownx.superfences
   - pymdownx.highlight:
       anchor_linenums: true
+  - pymdownx.tabbed:
+      alternate_style: true
+      slugify: !!python/object/apply:pymdownx.slugs.slugify
+        kwds:
+          case: lower
+  - def_list
+  - pymdownx.tasklist:
+      custom_checkbox: true
+      clickable_checkbox: true
   - pymdownx.inlinehilite
   - pymdownx.snippets
   - codehilite:
@@ -91,9 +104,21 @@ markdown_extensions:
   - pymdownx.superfences
   - pymdownx.mark
   - attr_list
+  - abbr
+  - admonition
+  - def_list
+  - toc:
+      permalink: true
+      permalink_title: Anchor link to this section for reference
+      title: On this page
+      toc_depth: 5
   - pymdownx.emoji:
       emoji_index: !!python/name:materialx.emoji.twemoji
       emoji_generator: !!python/name:materialx.emoji.to_svg
+  pymdownx.highlight:
+      anchor_linenums: true
+      linenums: true
+  - pymdownx.superfences
 
 copyright: |
   &copy; $year <a href="https://opeyemitechpro.github.io"  target="_blank" rel="noopener">Opeyemi Okuboyejo</a>
