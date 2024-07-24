@@ -2,7 +2,7 @@
 icon: material/format-list-bulleted
 ---
 
-# Lists
+- [x] # Lists
 
 Material for MkDocs supports several flavors of lists that cater to different
 use cases, including _unordered lists_ and _ordered lists_, which are supported
@@ -30,7 +30,7 @@ See additional configuration options:
   [Definition Lists]: ../setup/extensions/python-markdown.md#definition-lists
   [Tasklist]: ../setup/extensions/python-markdown-extensions.md#tasklist
 
-## Usage
+- [ ] ## Usage
 
 ### Using unordered lists
 
