@@ -53,14 +53,14 @@ theme:
         name: Switch to light mode
     - media: "(prefers-color-scheme: light)"
       scheme: default
-      primary: green
+      primary: bright-green
       accent: orange
       toggle:
         icon: material/brightness-4
         name: Switch to dark mode
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
-      primary: green
+      primary: bright-green
       accent: yellow
     
 plugins:
@@ -121,4 +121,4 @@ markdown_extensions:
   - pymdownx.superfences
 
 copyright: |
-  &copy; $year <a href="https://opeyemitechpro.github.io"  target="_blank" rel="noopener">Opeyemi Okuboyejo</a>
+  &copy; {{ now.year }} <a href="https://opeyemitechpro.github.io"  target="_blank" rel="noopener">Opeyemi Okuboyejo</a>
