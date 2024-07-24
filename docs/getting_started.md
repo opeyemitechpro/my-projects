@@ -122,6 +122,11 @@ The following plugins are bundled with the Docker image:
   [mkdocs-minify-plugin]: https://github.com/byrnereese/mkdocs-minify-plugin
   [mkdocs-redirects]: https://github.com/datarobot/mkdocs-redirects
 
+
+??? question "Green Bar colapsed"
+this is sample text
+
+
 ??? question "How to add plugins to the Docker image?"
 
     Material for MkDocs only bundles selected plugins in order to keep the size
