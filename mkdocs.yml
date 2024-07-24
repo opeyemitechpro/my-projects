@@ -62,7 +62,7 @@ theme:
 plugins:
   - social
   - search
-  - glightbox
+  # - glightbox
 
 extra:
   homepage: https://opeyemitechpro.github.io
