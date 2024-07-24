@@ -2,7 +2,7 @@
 icon: material/format-list-bulleted
 ---
 
-- [x] # Lists
+# Lists - [x] 
 
 Material for MkDocs supports several flavors of lists that cater to different
 use cases, including _unordered lists_ and _ordered lists_, which are supported
@@ -30,7 +30,8 @@ See additional configuration options:
   [Definition Lists]: ../setup/extensions/python-markdown.md#definition-lists
   [Tasklist]: ../setup/extensions/python-markdown-extensions.md#tasklist
 
-- [ ] ## Usage
+## Usage
+- [ ] 
 
 ### Using unordered lists
 
@@ -141,7 +142,9 @@ parameters of functions or modules, can be enumerated with a simple syntax:
 
 </div>
 
-### Using task lists
+[ ] ### Using task lists
+### Using task lists [ ]
+
 
 When [Tasklist] is enabled, unordered list items can be prefixed with `[ ]` to
 render an unchecked checkbox or `[x]` to render a checked checkbox, allowing
