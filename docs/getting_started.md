@@ -124,7 +124,8 @@ The following plugins are bundled with the Docker image:
 
 
 ??? question "Green Bar colapsed"
-this is sample text
+
+    this is sample text
 
 
 ??? question "How to add plugins to the Docker image?"
