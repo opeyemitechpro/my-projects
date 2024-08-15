@@ -13,8 +13,9 @@ nav:
   - Home Page: index.md
    # - AWS Projects: openvpn_access_server.md
   - Terraform Projects: 
-    - Terraform Projects1: 
-      - terraform_projects/openvpn_access_server.md
+    - terraform_projects/openvpn_access_server.md
+    - terraform_projects/terra1.md
+    - terraform_projects/Buttons.md
    #  - OpenVPN Access Server: openvpn_access_server.md
    # - DevOps Projects: openvpn_access_server.md
    # - CI/CD: openvpn_access_server.md
