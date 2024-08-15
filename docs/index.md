@@ -20,16 +20,20 @@ What you can expect from this website:
 
 Thank you for visiting, and I look forward to sharing my passion with you!
 
-Opeyemi Okuboyejo
-OpeyemiTechPro
+## Opeyemi Okuboyejo
+### OpeyemiTechPro
+> #### https://opeyemitech.pro
 
-![](https://media.licdn.com/dms/image/D5616AQHX5zdQDr1Nbw/profile-displaybackgroundimage-shrink_350_1400/0/1686151153700?e=1697068800&v=beta&t=AQ94fdzl8IIzI32CqpIzF7F9c-s9ALFeCFOEnDqKX08)
 
-# Opeyemi Okuboyejo
+![GitHub stars](https://img.shields.io/github/stars/opeyemitechpro/opeyemitechpro.github.io) 
+![GitHub forks](https://img.shields.io/github/forks/opeyemitechpro/opeyemitechpro.github.io)
+[![Maintenance](https://img.shields.io/badge/maintained-yes-green.svg)](https://github.com/opeyemitechpro/opeyemitechpro.github.io/commits/master)
+[![Website shields.io](https://img.shields.io/badge/website-up-yellow)](http://opeyemitechpro.github.io/)
+[![Ask Me Anything !](https://img.shields.io/badge/ask%20me-linkedin-1abc9c.svg)](https://www.linkedin.com/in/opeyemi-okuboyejo/)
+[![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)
 [![Linkedin Badge](https://img.shields.io/badge/-Opeyemi_On_LinkedIn-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/opeyemi-okuboyejo/)](https://www.linkedin.com/in/opeyemi-okuboyejo/)
 [![Gmail Badge](https://img.shields.io/badge/-okuboyejoopeyemi01@gmail.com-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:okuboyejoopeyemi01@gmail.com)](mailto:okuboyejoopeyemi01@gmail.com) 
 [![Portfolio Badge](https://img.shields.io/badge/-Opeyemi's_Portfolio-blue?style=flat-square&logo=folder&logoColor=white&link=https://opeyemitechpro.github.io)](https://opeyemitechpro.github.io)
-[![Portfolio Badge](https://img.shields.io/badge/-Opeyemi's_Project_Portfolio-blue?style=flat-square&logo=folder&logoColor=white&link=https://opeyemitechpro.github.io)](https://opeyemitechpro.github.io/my-projects)
 
 ### :zap: Github Stats
 <p>
