@@ -125,7 +125,7 @@ markdown_extensions:
       permalink_title: Copy this link to reference this section
       title: Topics on This Page
       toc_depth: 5
-   - pymdownx.emoji:
+  - pymdownx.emoji:
       emoji_index: !!python/name:materialx.emoji.twemoji
       emoji_generator: !!python/name:materialx.emoji.to_svg
   - pymdownx.highlight:
