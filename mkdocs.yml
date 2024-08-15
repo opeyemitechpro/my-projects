@@ -7,6 +7,7 @@ site_description: A collection of DevOps and Cloud related projects
 # Repo Details
 repo_url: https://github.com/opeyemitechpro/my-projects
 repo_name: opeyemitechpro/my-projects
+edit_uri: edit/main/docs/
 
 # Page Navigation
 nav:
@@ -46,6 +47,13 @@ theme:
     - content.tooltips
     - content.code.select
     - content.code.annotate
+    - content.action.view
+    - content.action.edit
+  icon:
+    edit: material/pencil 
+    view: material/eye
+
+    
   favicon: images/favicon.png
   logo: images/favicon.png
   language: en
@@ -73,7 +81,27 @@ theme:
 plugins:
   - social
   - search
-  # - glightbox
+  - glightbox:
+    touchNavigation: true
+    loop: true
+    effect: zoom
+    slide_effect: slide
+    width: 100%
+    height: auto
+    zoomable: true
+    draggable: true
+    # skip_classes:
+    #   - custom-skip-class-name
+    auto_caption: true
+    caption_position: bottom
+    background: white
+    shadow: true
+    manual: false
+  - git-authors
+  - git-revision-date-localized:
+      enable_creation_date: true
+      type: iso_datetime
+    
 
 extra:
   homepage: https://opeyemitechpro.github.io
@@ -117,9 +145,9 @@ markdown_extensions:
   - def_list
   - toc:
       permalink: true
-      # permalink_title: Anchor link to this section for reference
-      # title: On this page
-      # toc_depth: 5
+      permalink_title: Copy this link to reference this section
+      title: Topics on This Page
+      toc_depth: 5
   - pymdownx.emoji:
       emoji_index: !!python/name:materialx.emoji.twemoji
       emoji_generator: !!python/name:materialx.emoji.to_svg
