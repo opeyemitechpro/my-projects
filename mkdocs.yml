@@ -49,10 +49,7 @@ theme:
     - content.code.annotate
     - content.action.view
     - content.action.edit
-  icon:
-    edit: material/pencil 
-    view: material/eye
-
+  
     
   favicon: images/favicon.png
   logo: images/favicon.png
