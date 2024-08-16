@@ -78,26 +78,10 @@ theme:
 plugins:
   - social
   - search
-  - glightbox:
-    touchNavigation: true
-    loop: true
-    effect: zoom
-    slide_effect: slide
-    width: 100%
-    height: auto
-    zoomable: true
-    draggable: true
-    # skip_classes:
-    #   - custom-skip-class-name
-    auto_caption: true
-    caption_position: bottom
-    background: white
-    shadow: true
-    manual: false
-#  - git-authors
-#  - git-revision-date-localize:
-#      enable_creation_date: true
-#      type: iso_datetime
+  - git-authors
+  - git-revision-date-localize:
+      enable_creation_date: true
+      type: iso_datetime
     
 
 extra:
