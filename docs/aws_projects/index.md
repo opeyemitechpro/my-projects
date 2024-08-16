@@ -2,4 +2,4 @@
 icon: material-aws
 ---
 
-# :material-aws: AWS Projects
+# AWS Projects :material-aws:
