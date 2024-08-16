@@ -182,7 +182,7 @@ copyright: |
 
 # Page Navigation
 nav:
-  - Projects Home: index.md
+  - Start Here: index.md
    # - AWS Projects: openvpn_access_server.md
   - Terraform Projects: 
     - terraform_projects/index.md
@@ -191,3 +191,5 @@ nav:
     - devops_projects/index.md
   - AWS Projects:
     - aws_projects/index.md
+  - Knowledge Base:
+    - kb/index.md
