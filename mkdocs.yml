@@ -81,6 +81,9 @@ plugins:
      tags_slugify_separator: _
      tags_slugify_format: "tag:{slug}"
      tags_hierarchy: true
+  - git-committers:
+      repository: opeyemitechpro/my-projects
+      branch: main
   # - git-authors
   # - git-revision-date-localize:
   #    enable_creation_date: true
