@@ -11,7 +11,7 @@ edit_uri: edit/main/docs/
 
 # Page Navigation
 nav:
-  - Home Page: index.md
+  - Projects Home: index.md
    # - AWS Projects: openvpn_access_server.md
   - Terraform Projects: 
     - terraform_projects/index.md
@@ -20,6 +20,8 @@ nav:
     - terraform_projects/Buttons.md
   - DevOps Projects:
     - devops_projects/index.md
+  - AWS Projects:
+    - aws_projects/index.md
    #  - OpenVPN Access Server: openvpn_access_server.md
    # - DevOps Projects: openvpn_access_server.md
    # - CI/CD: openvpn_access_server.md
