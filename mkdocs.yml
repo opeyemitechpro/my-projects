@@ -45,23 +45,29 @@ theme:
   language: en
   
   palette:
+  
+    # Palette toggle for automatic mode
     - media: "(prefers-color-scheme)"
       toggle:
         icon: material/brightness-7
         name: Switch to light mode
+        
+    # Palette toggle for light mode
     - media: "(prefers-color-scheme: light)"
       scheme: default
-      primary: green
-      accent: orange
+      primary: teal
+      accent: lime
       toggle:
         icon: material/brightness-4
         name: Switch to dark mode
+        
+    # Palette toggle for dark mode
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
       primary: black
       accent: yellow
       toggle:
-        icon: material/brightness-1
+        icon: material/brightness-auto
         name: Switch to system preference
 
 plugins:
@@ -78,7 +84,7 @@ plugins:
   # - git-revision-date-localize:
   #    enable_creation_date: true
   #    type: iso_datetime
-    
+  - privacy  
 
 extra:
   homepage: https://opeyemitechpro.github.io
@@ -106,7 +112,17 @@ extra:
           note: >- 
             Thanks for your feedback! Help me to improve this page by
             using my <a href="..." target="_blank" rel="noopener">feedback form</a>.
-  
+  consent:
+    title: Cookie Consent
+    description: >-
+      We use cookies to recognize your repeated visits and preferences, as well
+      as to measure the effectiveness of our documentation and whether users
+      find what they're searching for. With your consent, you're helping us to
+      make our documentation better.
+    actions:
+      - accept
+      - reject
+      - manage
 
 # Extensions
 markdown_extensions:
@@ -157,7 +173,7 @@ markdown_extensions:
   
 
 copyright: |
-  &copy; 2023 - 2024 <a href="https://opeyemitechpro.github.io"  target="_blank" rel="noopener">Opeyemi Okuboyejo</a> | Hosted on GitHub
+  &copy; 2023 - 2024 <a href="https://opeyemitechpro.github.io"  target="_blank" rel="noopener">Opeyemi Okuboyejo</a> || Hosted on GitHub || <a href="#__consent">Change cookie settings</a>
 
 # Page Navigation
 nav:
