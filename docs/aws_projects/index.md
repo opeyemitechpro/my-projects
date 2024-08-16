@@ -1,5 +1,5 @@
 ---
-icon: fontawesome-brands-aws
+icon: material-aws
 ---
 
-# AWS Projects :fontawesome-brands-aws:
+# :material-aws: AWS Projects
