@@ -1,3 +1,7 @@
+---
+icon: simple/openvpn
+---
+
 # OpenVPN Access Server
 
 ## Setup OpenVPN Access Server on AWS Using Terraform
