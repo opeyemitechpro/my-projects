@@ -1,5 +1,5 @@
 ---
-icon: material/simple-terraform
+icon: material/button-cursor
 ---
 
 # Terraform Projects
