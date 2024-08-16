@@ -18,6 +18,16 @@ icon: simple/amazonwebservices
     This is an attention block
 
 
+!!! info
+
+    This is an attention block
+
+
+!!! console
+
+    This is an attention block
+
+
 !!! example "Integrate with site navigation"
 
     Add the following to your `mkdocs.yml` to see how the Blog plugin can
