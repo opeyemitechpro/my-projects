@@ -89,8 +89,8 @@ plugins:
      tags_hierarchy: true
    - git-authors
    - git-revision-date-localize:
-      enable_creation_date: true
-      type: iso_datetime
+     enable_creation_date: true
+     type: iso_datetime
     
 
 extra:
