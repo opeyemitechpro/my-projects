@@ -1,6 +1,6 @@
 
 # Project Site Details
-site_name: My Projects Portfolio
+site_name: OpeyemiTechPro Projects Portfolio
 site_url: https://opeyemitechpro.github.io/my-projects/
 site_description: A collection of DevOps and Cloud related projects
 
@@ -71,7 +71,8 @@ theme:
         name: Switch to system preference
 
 plugins:
-  - social
+  - social:
+      cards_layout: default/accent
   - search
   - tags:
      tags_slugify: !!python/object/apply:pymdownx.slugs.slugify
