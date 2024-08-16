@@ -2,4 +2,4 @@
 icon: fontawesome-brands-aws
 ---
 
-# :fontawesome-brands-aws: AWS Projects
+# AWS Projects :fontawesome-brands-aws:
