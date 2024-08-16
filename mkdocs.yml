@@ -152,7 +152,3 @@ nav:
     - devops_projects/index.md
   - AWS Projects:
     - aws_projects/index.md
-   #  - OpenVPN Access Server: openvpn_access_server.md
-   # - DevOps Projects: openvpn_access_server.md
-   # - CI/CD: openvpn_access_server.md
-   # - Cloud Projects: openvpn_access_server.md
