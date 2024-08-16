@@ -148,8 +148,6 @@ nav:
   - Terraform Projects: 
     - terraform_projects/index.md
     - terraform_projects/openvpn_access_server.md
-    - terraform_projects/terra1.md
-    - terraform_projects/Buttons.md
   - DevOps Projects:
     - devops_projects/index.md
   - AWS Projects:
