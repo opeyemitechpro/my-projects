@@ -73,6 +73,54 @@ icon: simple/amazonwebservices
     added to the navigation after these pages.
 
 
+??? question "How to visualize the collected feedback ratings?"
+
+    To visualize feedback ratings you'll need to create a custom report with
+    [Google Analytics] that will quickly show you the worst- and best-rated
+    pages of your project documentation.
+
+    1.  Go to your Google Analytics __dashboard__
+
+    2.  Go to the __configure__ page on the left hand menu, then select
+        __custom definitions__
+
+    3.  Click the __custom metrics__ tab and then __create custom metrics__,
+        enter the following values:
+
+        * Metric name: Page helpful
+        * Description: Was this page helpful?
+        * Event parameter: `data`
+        * Unit of measurement: Standard
+
+    4.  Go to the __explore__ page on the left hand menu, create a new
+        __blank exploration__
+
+    5.  Configure the report as follows:
+
+        * Dimensions: Add `Event name` and `Page location`
+        * Metrics: Add `Event count` and `Page helpful`
+          (the custom metric created in step 3)
+        * Rows: `Page location`
+        * Values: Drag in both `Event count` and `Page helpful`
+        * Filters: Add a new filter for
+          `Event name / exactly matches / feedback`
+
+    !!! warning "Delay in data availability"
+
+        The report may take 24 hours or longer to begin displaying data
+
+    Now, after you've saved the report and collected some feedback ratings,
+    you'll have a list of all pages with the total number of ratings, and an
+    average rating per page. This should help you identify pages that need to
+    be improved:
+
+    !!! danger "Google Analytics 4 does not support average values"
+
+        To our knowledge, Google Analytics 4 has currently no feature that
+        allows to define a custom calculated metric to compute the average
+        rating of a page. See #5740.
+
+    [![feedback report]][feedback report]
 
 
 # Getting started
