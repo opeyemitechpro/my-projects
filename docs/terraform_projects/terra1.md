@@ -1,3 +1,7 @@
+---
+icon: material/simple-terraform
+---
+
 # Terraform Page
 
 ## Terraform AWS
