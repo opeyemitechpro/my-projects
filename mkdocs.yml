@@ -124,6 +124,11 @@ extra:
       - reject
       - manage
 
+# Extra StyleSheets
+extra_css:
+  - stylesheets/extra.css
+
+  
 # Extensions
 markdown_extensions:
   - md_in_html
