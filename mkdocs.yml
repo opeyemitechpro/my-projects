@@ -87,7 +87,7 @@ plugins:
   # - git-authors
   - git-revision-date-localized:
       enable_creation_date: true
-      type: datetime
+      type: timeago
   - privacy  
 
 extra:
