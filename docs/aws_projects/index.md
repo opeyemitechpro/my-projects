@@ -1,5 +1,5 @@
 ---
-icon: material-aws
+icon: simple/amazonwebservices
 ---
 
 # AWS Projects
