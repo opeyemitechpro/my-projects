@@ -151,12 +151,12 @@ markdown_extensions:
       title: Topics on This Page
       toc_depth: 5
   - pymdownx.emoji:
-      emoji_index: !!python/name:materialx.emoji.twemoji
-      emoji_generator: !!python/name:materialx.emoji.to_svg
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
   - pymdownx.highlight:
       anchor_linenums: true
       linenums: true
-  - pymdownx.superfences
+  
 
 copyright: |
   &copy; 2023 - 2024 <a href="https://opeyemitechpro.github.io"  target="_blank" rel="noopener">Opeyemi Okuboyejo</a> | Hosted on GitHub
