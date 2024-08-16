@@ -1,5 +1,5 @@
 ---
-icon: material-home
+icon: material/home
 ---
 
 # Home Page
