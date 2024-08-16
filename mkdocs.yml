@@ -9,23 +9,6 @@ repo_url: https://github.com/opeyemitechpro/my-projects
 repo_name: opeyemitechpro/my-projects
 edit_uri: edit/main/docs/
 
-# Page Navigation
-nav:
-  - Projects Home: index.md
-   # - AWS Projects: openvpn_access_server.md
-  - Terraform Projects: 
-    - terraform_projects/index.md
-    - terraform_projects/openvpn_access_server.md
-    - terraform_projects/terra1.md
-    - terraform_projects/Buttons.md
-  - DevOps Projects:
-    - devops_projects/index.md
-  - AWS Projects:
-    - aws_projects/index.md
-   #  - OpenVPN Access Server: openvpn_access_server.md
-   # - DevOps Projects: openvpn_access_server.md
-   # - CI/CD: openvpn_access_server.md
-   # - Cloud Projects: openvpn_access_server.md
 
 theme:
   name: material
@@ -157,3 +140,21 @@ markdown_extensions:
 
 copyright: |
   &copy; 2023 - 2024 <a href="https://opeyemitechpro.github.io"  target="_blank" rel="noopener">Opeyemi Okuboyejo</a> | Hosted on GitHub
+
+# Page Navigation
+nav:
+  - Projects Home: index.md
+   # - AWS Projects: openvpn_access_server.md
+  - Terraform Projects: 
+    - terraform_projects/index.md
+    - terraform_projects/openvpn_access_server.md
+    - terraform_projects/terra1.md
+    - terraform_projects/Buttons.md
+  - DevOps Projects:
+    - devops_projects/index.md
+  - AWS Projects:
+    - aws_projects/index.md
+   #  - OpenVPN Access Server: openvpn_access_server.md
+   # - DevOps Projects: openvpn_access_server.md
+   # - CI/CD: openvpn_access_server.md
+   # - Cloud Projects: openvpn_access_server.md
