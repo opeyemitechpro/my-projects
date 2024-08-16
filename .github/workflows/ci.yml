@@ -24,6 +24,5 @@ jobs:
       - run: pip install mkdocs-git-revision-date-localized-plugin
       - run: pip install mkdocs-glightbox
       - run: pip install "mkdocs-material[imaging]"
-      - run: apt-get install libcairo2-dev libfreetype6-dev libffi-dev libjpeg-dev libpng-dev libz-dev
       - run: apt-get install pngquant
       - run: mkdocs gh-deploy --force
