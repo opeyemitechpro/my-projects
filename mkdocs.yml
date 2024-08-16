@@ -14,6 +14,7 @@ nav:
   - Home Page: index.md
    # - AWS Projects: openvpn_access_server.md
   - Terraform Projects: 
+    - terraform_projects/index.md
     - terraform_projects/openvpn_access_server.md
     - terraform_projects/terra1.md
     - terraform_projects/Buttons.md
@@ -37,6 +38,7 @@ theme:
     - navigation.top
     - navigation.path
     - navigation.footer
+    - navigation.indexes
     # - toc.integrate
     - toc.follow
     - search.suggest
@@ -78,6 +80,13 @@ theme:
 plugins:
   - social
   - search
+  - tags:
+     tags_slugify: !!python/object/apply:pymdownx.slugs.slugify
+        kwds:
+          case: lower
+     tags_slugify_separator: _
+     tags_slugify_format: "tag:{slug}"
+     tags_hierarchy: true
   - git-authors
   - git-revision-date-localize:
       enable_creation_date: true
