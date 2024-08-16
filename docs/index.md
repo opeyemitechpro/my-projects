@@ -1,3 +1,7 @@
+---
+icon: material-home
+---
+
 # Home Page
 
 ## Welcome to my projects portfolio.
