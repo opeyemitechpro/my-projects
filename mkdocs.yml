@@ -85,9 +85,9 @@ plugins:
       repository: opeyemitechpro/my-projects
       branch: main
   # - git-authors
-  # - git-revision-date-localize:
-  #    enable_creation_date: true
-  #    type: iso_datetime
+  - git-revision-date-localized:
+      enable_creation_date: true
+      type: iso_datetime
   - privacy  
 
 extra:
