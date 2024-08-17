@@ -48,7 +48,3 @@ Thank you for visiting, and I look forward to sharing my passion with you!
     </a>
 </p>
 
-
- <a href='http://www.freevisitorcounters.com'>Freevisitorcounters</a> <script type='text/javascript' src='https://www.freevisitorcounters.com/auth.php?id=055793f97399a383bf11b3e064637205aa0cc41c'></script>
-<script type="text/javascript" src="https://freevisitorcounters.com/en/home/counter/1222313/t/11"></script> &nbsp;  <a href='http://www.freevisitorcounters.com'>Freevisitorcounters</a> <script type='text/javascript' src='https://www.freevisitorcounters.com/auth.php?id=ff326c79677255c7fb50f481ec695ba7fd49f06b'></script>
-<script type="text/javascript" src="https://freevisitorcounters.com/en/home/counter/1222319/t/12"></script>
