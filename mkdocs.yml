@@ -12,6 +12,7 @@ edit_uri: edit/main/docs/
 
 theme:
   name: material
+  icon: images/favicon.png
   features:
     - navigation.tabs
     - navigation.tabs.sticky
@@ -73,6 +74,9 @@ theme:
 plugins:
   - social:
       cards_layout: default/accent
+      cards_layout_options:
+        background_color: pink
+        color: white
   - search
   - tags:
      tags_slugify: !!python/object/apply:pymdownx.slugs.slugify
