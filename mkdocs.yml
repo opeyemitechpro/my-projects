@@ -56,7 +56,7 @@ theme:
     # Palette toggle for light mode
     - media: "(prefers-color-scheme: light)"
       scheme: default
-      primary: teal
+      primary: indigo
       accent: lime
       toggle:
         icon: material/brightness-4
@@ -75,7 +75,7 @@ plugins:
   - social:
       cards_layout: default/accent
       cards_layout_options:
-        background_color: pink
+        background_color: indigo
         color: white
   - search
   - tags:
