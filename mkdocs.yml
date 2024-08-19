@@ -201,3 +201,4 @@ nav:
     - aws_projects/index.md
   - Knowledge Base:
     - kb/index.md
+    - draft.md
