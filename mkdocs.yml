@@ -118,11 +118,6 @@ extra:
           name: This page was helpful
           data: 1
           note: >-
-            Thanks for your feedback!
-        - icon: material/emoticon-sad-outline
-          name: This page could be improved
-          data: 0
-          note: >- 
             Thanks for your feedback! Help me to improve this page by
             using my <a href="https://forms.gle/Bb4gifiuyrE4enDX6" target="_blank" rel="noopener">feedback form</a>.
   consent:
