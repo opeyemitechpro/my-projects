@@ -50,9 +50,9 @@ subtitle: This is the sub-title of this page
 [![Opeyemi Picture](images/favicon.png "Opeyemi Okuboyejo")](https://opeyemitech.pro)
 
 
-  <figure markdown="span">
-  ![Image title](https://dummyimage.com/600x400/){ width="300" }
-  <figcaption>Image caption</figcaption>
+<figure markdown="span">
+![Image title](https://dummyimage.com/600x400/){ width="300" }
+<figcaption>Image caption</figcaption>
 </figure>
 
 <figure markdown="1">
@@ -68,8 +68,10 @@ subtitle: This is the sub-title of this page
 
     This is a warning block
 
+???+ warning
 
----
+    This is a warning block expanded by default
+
 
 
 !!! attention
