@@ -38,8 +38,15 @@ subtitle: This is the sub-title of this page
 ![image](https://dummyimage.com/600x400/)
 </figure>
 
+??? note "Centred image with caption and alt text"
 <figure markdown="1">
-![image](images/favicon.png)
+![image](images/favicon.png "Opeyemi Okuboyejo")
+<figcaption>Profile Image Caption</figcaption>
+</figure>
+
+??? youtube "Centred image with caption and alt text"
+<figure markdown="1">
+![image](images/favicon.png "Opeyemi Okuboyejo")
 <figcaption>Profile Image Caption</figcaption>
 </figure>
 
