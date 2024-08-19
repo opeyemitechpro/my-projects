@@ -39,7 +39,7 @@ subtitle: This is the sub-title of this page
 </figure>
 
 <figure markdown="1">
-![image](/images/favicon.png)
+![image](images/favicon.png)
 <figcaption>Profile Image Caption</figcaption>
 </figure>
 
