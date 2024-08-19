@@ -110,12 +110,12 @@ extra:
       title: Was this page helpful? Please give a feedback
       ratings:
         - icon: octicons/thumbsup-24
-          name: This page was not helpful
+          name: This page was helpful
           data: 0
           note: >-
             Thanks for your feedback!
         - icon: octicons/thumbsdown-24
-          name: This page was helpful
+          name: This page can be improved
           data: 1
           note: >-
             Thanks for your feedback! Help me to improve this page by
