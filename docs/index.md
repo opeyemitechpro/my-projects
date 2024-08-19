@@ -33,6 +33,7 @@ Thank you for visiting, and I look forward to sharing my passion with you!
 
 ![GitHub stars](https://img.shields.io/github/stars/opeyemitechpro/opeyemitechpro.github.io) 
 ![GitHub forks](https://img.shields.io/github/forks/opeyemitechpro/opeyemitechpro.github.io)
+![Followers](https://img.shields.io/github/followers/opeyemitechpro)
 [![Maintenance](https://img.shields.io/badge/maintained-yes-green.svg)](https://github.com/opeyemitechpro/opeyemitechpro.github.io/commits/master)
 [![Website shields.io](https://img.shields.io/badge/website-up-yellow)](http://opeyemitechpro.github.io/)
 [![Ask Me Anything !](https://img.shields.io/badge/ask%20me-linkedin-1abc9c.svg)](https://www.linkedin.com/in/opeyemi-okuboyejo/)
@@ -40,6 +41,7 @@ Thank you for visiting, and I look forward to sharing my passion with you!
 [![Linkedin Badge](https://img.shields.io/badge/-Opeyemi_On_LinkedIn-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/opeyemi-okuboyejo/)](https://www.linkedin.com/in/opeyemi-okuboyejo/)
 [![Gmail Badge](https://img.shields.io/badge/-okuboyejoopeyemi01@gmail.com-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:okuboyejoopeyemi01@gmail.com)](mailto:okuboyejoopeyemi01@gmail.com) 
 [![Portfolio Badge](https://img.shields.io/badge/-Opeyemi's_Portfolio-blue?style=flat-square&logo=folder&logoColor=white&link=https://opeyemitechpro.github.io)](https://opeyemitechpro.github.io)
+[![Page Views](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fopeyemitech.pro%2Fmy-projects&count_bg=%23008000&title_bg=%234B0082&icon=&icon_color=%234B0082&title=Page+Views&edge_flat=false)](https://opeyemitech.pro)
 
 ### :zap: Github Stats
 <p>
@@ -47,6 +49,3 @@ Thank you for visiting, and I look forward to sharing my passion with you!
         <img src="https://github-readme-stats.vercel.app/api?username=opeyemitechpro&&show_icons=true&hi&theme=dark&count_private=true&include_all_commits=true">
     </a>
 </p>
-
-
-[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fopeyemitech.pro%2Fmy-projects&count_bg=%23008000&title_bg=%234B0082&icon=&icon_color=%234B0082&title=Page+Views&edge_flat=false)](https://opeyemitech.pro)

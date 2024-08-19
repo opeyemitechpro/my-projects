@@ -70,9 +70,7 @@ subtitle: This is the sub-title of this page
 
 ???+ warning
 
-    This is a warning block expanded by default
-
-
+     This is a warning block expanded by default
 
 !!! attention
 
