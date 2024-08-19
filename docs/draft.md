@@ -26,22 +26,22 @@ subtitle: This is the sub-title of this page
 
 
 ??? note "Centred image with caption and alt text"
-  <figure markdown="1">
-  ![image](images/favicon.png "Opeyemi Okuboyejo")
-  <figcaption>Profile Image Caption</figcaption>
-  </figure>
+    <figure markdown="1">
+    ![image](images/favicon.png "Opeyemi Okuboyejo")
+    <figcaption>Profile Image Caption</figcaption>
+    </figure>
 
 ??? youtube "Centred image with caption and alt text"
-  <figure markdown="1">
-  ![image](images/favicon.png "Opeyemi Okuboyejo")
-  <figcaption>Profile Image Caption</figcaption>
-  </figure>
+    <figure markdown="1">
+    ![image](images/favicon.png "Opeyemi Okuboyejo")
+    <figcaption>Profile Image Caption</figcaption>
+    </figure>
 
 ??? youtube "Clickable Centred image with caption and alt text"
-  <figure markdown="1">
-  [![Opeyemi Picture](images/favicon.png "Opeyemi Okuboyejo")](https://opeyemitech.pro)
-  <figcaption>Profile Image Caption</figcaption>
-  </figure>
+    <figure markdown="1">
+    [![Opeyemi Picture](images/favicon.png "Opeyemi Okuboyejo")](https://opeyemitech.pro)
+    <figcaption>Profile Image Caption</figcaption>
+    </figure>
 
 <figure markdown="1">
 [![Opeyemi Picture](images/favicon.png "Opeyemi Okuboyejo")](https://opeyemitech.pro)
