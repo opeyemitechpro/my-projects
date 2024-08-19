@@ -13,6 +13,7 @@ edit_uri: edit/main/docs/
 theme:
   name: material
   icon: images/favicon.png
+  custom_dir: overrides
   features:
     - navigation.tabs
     - navigation.tabs.sticky
