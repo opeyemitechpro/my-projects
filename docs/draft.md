@@ -5,24 +5,26 @@ description: This is a description of this page
 subtitle: This is the sub-title of this page
 ---
 
+
 # MarkDown Basic Syntax
 
 [MarkDown Basic Syntax](https://www.markdownguide.org/basic-syntax "Markdown Basic Syntax")
 
 
 
+## Image Handling
 
 ??? youtube "Watch this YouTube Video"
     <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/NY7DHvo1XVM?si=KfN1qCMItT-M3QCE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
     Nice Video
 
-# Embed a YouTube Video on page
+## Embed a YouTube Video on page
 
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/NY7DHvo1XVM?si=KfN1qCMItT-M3QCE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 
-# This is image positioning
+## This is image positioning
 
 
 ??? note "Centred image with caption and alt text"
