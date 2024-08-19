@@ -109,12 +109,12 @@ extra:
     feedback:
       title: Was this page helpful? Please give a feedback
       ratings:
-        - icon: material/thumbsup
+        - icon: octicons/thumbsup-16
           name: This page was helpful
           data: 1
           note: >-
             Thanks for your feedback!
-        - icon: material/thunbsdown
+        - icon: octicons/thumbsdown-16
           name: This page could be improved
           data: 0
           note: >- 
