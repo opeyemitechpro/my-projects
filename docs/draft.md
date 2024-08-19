@@ -5,7 +5,11 @@ description: This is a description of this page
 subtitle: This is the sub-title of this page
 ---
 
-# AWS Projects
+# MarkDown Basic Syntax
+
+[MarkDown Basic Syntax](https://www.markdownguide.org/basic-syntax "Markdown Basic Syntax")
+
+
 
 
 ??? youtube "Watch this YouTube Video"
@@ -35,9 +39,12 @@ subtitle: This is the sub-title of this page
 </figure>
 
 <figure markdown="1">
-![image] images/favicon.png
-<figcaption>Profile image</figcaption>
+![image](/images/favicon.png)
+<figcaption>Profile Image Caption</figcaption>
 </figure>
+
+[![Opeyemi Picture](/images/favicon.png "Opeyemi Okuboyejo")](https://opeyemitech.pro)
+
     
 !!! warning
 
