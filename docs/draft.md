@@ -44,11 +44,11 @@ subtitle: This is the sub-title of this page
 </figure>
 
 <figure markdown="1">
-[![Opeyemi Picture](/images/favicon.png "Opeyemi Okuboyejo")](https://opeyemitech.pro)
+[![Opeyemi Picture](images/favicon.png "Opeyemi Okuboyejo")](https://opeyemitech.pro)
 </figure>
 
 
-[![Opeyemi Picture](/images/favicon.png "Opeyemi Okuboyejo")](https://opeyemitech.pro)
+[![Opeyemi Picture](images/favicon.png "Opeyemi Okuboyejo")](https://opeyemitech.pro)
 
     
 !!! warning
