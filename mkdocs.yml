@@ -12,7 +12,7 @@ edit_uri: edit/main/docs/
 
 theme:
   name: material
-  icon: images/favicon.png
+  icon: assets/images/favicon.png
   custom_dir: overrides
   features:
     - navigation.tabs
@@ -42,8 +42,8 @@ theme:
     - content.action.edit
   
     
-  favicon: images/favicon.png
-  logo: images/favicon.png
+  favicon: assets/images/favicon.png
+  logo: assets/images/favicon.png
   language: en
   
   palette:

@@ -30,27 +30,27 @@ comments: true
 
 ??? note "Centred image with caption and alt text"
     <figure markdown="1">
-    ![image](images/favicon.png "Opeyemi Okuboyejo")
+    ![image](assets/images/favicon.png "Opeyemi Okuboyejo")
     <figcaption>Profile Image Caption</figcaption>
     </figure>
 
 ??? youtube "Centred image with caption and alt text"
     <figure markdown="1">
-    ![image](images/favicon.png "Opeyemi Okuboyejo")
+    ![image](assets/images/favicon.png "Opeyemi Okuboyejo")
     <figcaption>Profile Image Caption</figcaption>
     </figure>
 
 ??? youtube "Clickable Centred image with caption and alt text"
     <figure markdown="1">
-    [![Opeyemi Picture](images/favicon.png "Opeyemi Okuboyejo")](https://opeyemitech.pro)
+    [![Opeyemi Picture](assets/images/favicon.png "Opeyemi Okuboyejo")](https://opeyemitech.pro)
     <figcaption>Profile Image Caption</figcaption>
     </figure>
 
 <figure markdown="1">
-[![Opeyemi Picture](images/favicon.png "Opeyemi Okuboyejo")](https://opeyemitech.pro)
+[![Opeyemi Picture](assets/images/favicon.png "Opeyemi Okuboyejo")](https://opeyemitech.pro)
 </figure>
 
-[![Opeyemi Picture](images/favicon.png "Opeyemi Okuboyejo")](https://opeyemitech.pro)
+[![Opeyemi Picture](assets/images/favicon.png "Opeyemi Okuboyejo")](https://opeyemitech.pro)
 
 
 <figure markdown="span">
