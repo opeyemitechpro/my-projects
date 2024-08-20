@@ -6,8 +6,11 @@ subtitle: This is the sub-title of this page
 comments: true 
 ---
 
-<figure markdown="1">
 ![image](assets/images/favicon.png "Opeyemi Okuboyejo")
+
+
+<figure markdown="1">
+![image](assets/images/favicon.png "Opeyemi Okuboyejo"){ width="300" }
 <figcaption><strong>Opeyemi Okuboyejo</strong></figcaption>
 </figure>
 
