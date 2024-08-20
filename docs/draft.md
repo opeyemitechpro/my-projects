@@ -6,8 +6,12 @@ subtitle: This is the sub-title of this page
 comments: true 
 ---
 
+<figure markdown="1">
+![image](assets/images/favicon.png "Opeyemi Okuboyejo")
+<figcaption><strong>Opeyemi Okuboyejo</strong></figcaption>
+</figure>
 
-# MarkDown Basic Syntax
+## MarkDown Basic Syntax
 
 [MarkDown Basic Syntax](https://www.markdownguide.org/basic-syntax "Markdown Basic Syntax")
 
@@ -31,7 +35,7 @@ comments: true
 ??? note "Centred image with caption and alt text"
     <figure markdown="1">
     ![image](assets/images/favicon.png "Opeyemi Okuboyejo")
-    <figcaption>Profile Image Caption</figcaption>
+    <figcaption><strong>Opeyemi Okuboyejo</strong></figcaption>
     </figure>
 
 ??? youtube "Centred image with caption and alt text"
@@ -185,7 +189,7 @@ comments: true
     [![feedback report]][feedback report]
 
 
-# Getting started
+## Getting started
 
 Material for MkDocs is a powerful documentation framework on top of [MkDocs],
 a static site generator for project documentation.[^1] If you're familiar with
@@ -376,9 +380,9 @@ pip install -e mkdocs-material
 icon: simple/terraform
 ---
 
-# Terraform Page
+## Terraform Page
 
-## Terraform AWS
+### Terraform AWS
 
 
 ``` tf
@@ -494,7 +498,7 @@ def bubble_sort(items):
                 items[j], items[j + 1] = items[j + 1], items[j]
 ```
 
-## Icons and Emojs
+## Icons and Emojis
 
 :smile: 
 
@@ -509,7 +513,7 @@ def bubble_sort(items):
 icon: material/button-cursor
 ---
 
-# Buttons
+## Buttons
 
 Material for MkDocs provides dedicated styles for primary and secondary buttons
 that can be added to any link, `label` or `button` element. This is especially
@@ -595,7 +599,7 @@ together with any valid icon shortcode, which can be easily found with a few key
 icon: simple/amazonwebservices
 ---
 
-# AWS Projects
+## AWS Projects
 
 
 !!! warning
@@ -656,7 +660,7 @@ icon: simple/amazonwebservices
     added to the navigation after these pages.  
 
 
-# Changing the colors
+## Changing the colors
 
 As any proper Material Design implementation, Material for MkDocs supports
 Google's original [color palette], which can be easily configured through
@@ -1064,7 +1068,7 @@ can tune the `slate` theme with:
 icon: material/alert-outline
 ---
 
-# Admonitions
+## Admonitions
 
 Admonitions, also known as _call-outs_, are an excellent choice for including
 side content without significantly interrupting the document flow. Material for

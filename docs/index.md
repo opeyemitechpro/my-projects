@@ -6,7 +6,10 @@ subtitle: Start your navigation from here
 comments: true
 ---
 
-
+<figure markdown="1">
+![image](assets/images/favicon.png "Opeyemi Okuboyejo")
+<figcaption><strong>Opeyemi Okuboyejo</strong></figcaption>
+</figure>
 
 # Home Page
 
