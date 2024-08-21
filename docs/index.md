@@ -6,8 +6,12 @@ subtitle: Start your navigation from here
 comments: false
 ---
 
-<figure markdown="1">
+![image](assets/images/favicon.png "Opeyemi Okuboyejo"){ align=right }
+
 ![image](assets/images/favicon.png "Opeyemi Okuboyejo"){ align=left }
+
+<figure markdown="1">
+![image](assets/images/favicon.png "Opeyemi Okuboyejo"){ align=right }
 <figcaption><strong>Opeyemi Okuboyejo</strong></figcaption>
 </figure>
 
