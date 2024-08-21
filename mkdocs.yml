@@ -197,7 +197,7 @@ copyright: |
 
 # Page Navigation
 nav:
-  - Profile: index2.md
+  - Profile: profile.md
   - Start Here: index.md
    # - AWS Projects: openvpn_access_server.md
   - Terraform Projects: 
