@@ -61,6 +61,6 @@ Thank you for visiting, and I look forward to sharing my passion with you!
     </a>
 </p>
 
-![Opeyemi Okuboyejo's GitHub stats](https://github-readme-stats.vercel.app/api?username=opeyemitechpro&icon_color=87ff87&hide_border=true&text_color=87ff87&title_color=87ff87&show_icons=true&theme=transparent)
+![Opeyemi Okuboyejo's GitHub stats](https://github-readme-stats.vercel.app/api?username=opeyemitechpro&icon_color=87ff87&hide_border=false&text_color=87ff87&title_color=87ff87&show_icons=true&theme=transparent)
 
 ![Opeyemi Okuboyejo's GitHub stats](https://github-readme-stats.vercel.app/api?username=opeyemitechpro&&show_icons=true&hi&theme=dark&count_private=true&include_all_commits=true&icon_color=87ff87&text_color=87ff87&title_color=87ff87)
