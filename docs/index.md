@@ -1,6 +1,6 @@
 ---
 icon: material/home
-title: Start Here Now
+title: Start Here
 description: This is the Home Page
 subtitle: Start your navigation from here
 comments: false
