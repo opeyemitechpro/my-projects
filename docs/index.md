@@ -55,7 +55,7 @@ Thank you for visiting, and I look forward to sharing my passion with you!
     </a>
 </p>
 
-<p>
+<!-- <p>
     <a href="https://gitstats.me/opeyemitechpro" target="_blank"> 
         <img src="https://github-readme-stats.vercel.app/api?username=opeyemitechpro&&show_icons=true&hi&theme=dark&count_private=true&include_all_commits=true&icon_color=87ff87&text_color=87ff87&title_color=87ff87">
     </a>
@@ -63,4 +63,5 @@ Thank you for visiting, and I look forward to sharing my passion with you!
 
 ![Opeyemi Okuboyejo's GitHub stats](https://github-readme-stats.vercel.app/api?username=opeyemitechpro&icon_color=87ff87&hide_border=false&text_color=87ff87&title_color=87ff87&show_icons=true&theme=transparent)
 
-![Opeyemi Okuboyejo's GitHub stats](https://github-readme-stats.vercel.app/api?username=opeyemitechpro&&show_icons=true&hi&theme=dark&count_private=true&include_all_commits=true&icon_color=87ff87&text_color=87ff87&title_color=87ff87)
+![Opeyemi Okuboyejo's GitHub stats](https://github-readme-stats.vercel.app/api?username=opeyemitechpro&&show_icons=true&hi&theme=dark&count_private=true&include_all_commits=true&icon_color=87ff87&text_color=87ff87&title_color=87ff87) -->
+
