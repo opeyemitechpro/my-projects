@@ -8,6 +8,8 @@ comments: true
 
 ![Opeyemi Okuboyejo Pix - image alt text](assets/images/favicon.png "Opeyemi Okuboyejo")
 
+Hello, I'm Opeyemi Okuboyejo
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=roboto&size=30&duration=2000&pause=500&width=435&lines=DevOps+Engineer;Cloud+Engineer;Certified+Cloud+Solutions+Architect)](https://git.io/typing-svg)
 
 <figure markdown="1">
 ![image](assets/images/favicon.png "Opeyemi Okuboyejo"){ width="30" }
