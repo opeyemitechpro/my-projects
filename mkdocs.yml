@@ -100,6 +100,7 @@ plugins:
         # 'old.md': 'new.md'
         # 'old/file.md': 'new/file.md'
         'profile.md': 'https://opeyemitech.pro'
+  - glightbox
 
 extra:
   homepage: https://opeyemitechpro.github.io

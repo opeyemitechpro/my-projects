@@ -7,7 +7,7 @@ comments: false
 ---
 
 <figure markdown="1">
-![image](assets/images/favicon.png "Opeyemi Okuboyejo")
+![image](assets/images/favicon.png "Opeyemi Okuboyejo"){ align=left }
 <figcaption><strong>Opeyemi Okuboyejo</strong></figcaption>
 </figure>
 
