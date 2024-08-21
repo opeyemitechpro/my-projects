@@ -61,7 +61,7 @@ Thank you for visiting, and I look forward to sharing my passion with you!
     </a>
 </p> -->
 
-![Opeyemi Okuboyejo's GitHub stats](https://github-readme-stats.vercel.app/api?username=opeyemitechpro)
+![Opeyemi Okuboyejo's GitHub stats](https://github-readme-stats.vercel.app/api?username=opeyemitechpro&show_icons=true&show=reviews,discussions_started,discussions_answered,prs_merged,prs_merged_percentage&theme=merko&include_all_commits=true&show_owner=true)
 
 <!--
 
