@@ -1,9 +1,9 @@
 ---
 icon: material/home
-title: Start Here
+title: Start Here Now
 description: This is the Home Page
 subtitle: Start your navigation from here
-comments: true
+comments: false
 ---
 
 <figure markdown="1">
@@ -11,9 +11,7 @@ comments: true
 <figcaption><strong>Opeyemi Okuboyejo</strong></figcaption>
 </figure>
 
-# Home Page
-
-## Welcome to my projects portfolio.
+## Welcome to OpeyemiTechPro Projects Portfolio.
 
 Welcome to My Cloud Engineering & DevOps Project Hub!
 
