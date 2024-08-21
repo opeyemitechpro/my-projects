@@ -14,5 +14,7 @@ comments: false
 # About Me
 
 Hello, I'm Opeyemi Okuboyejo
-A Cloud |
+A Certified Cloud Solutions Architect, Cloud Engineer and DevOps Engineer.
+
 Experienced AWS Certified Solutions Architect skilled in designing resilient distributed systems. Proficient in Microsoft technologies, with a track record of implementing solutions for medium to large-scale organizations. 15+ years in the industry, well-versed in cloud, systems, network administration, and more. Passionate for learning with good entrepreneurial and leadership skills.
+

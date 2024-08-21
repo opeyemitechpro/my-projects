@@ -7,7 +7,7 @@ comments: false
 ---
 
 <figure markdown="1">
-![image](assets/images/favicon.png "Opeyemi Okuboyejo")
+![Opeyemi Okuboyejo  |  Certified Cloud Solutions Architect | Cloud Engineer | DevOps Engineer](assets/images/favicon.png "Opeyemi Okuboyejo")
 <figcaption><strong>Opeyemi Okuboyejo</strong></figcaption>
 </figure>
 
@@ -54,3 +54,5 @@ Thank you for visiting, and I look forward to sharing my passion with you!
         <img src="https://github-readme-stats.vercel.app/api?username=opeyemitechpro&&show_icons=true&hi&theme=dark&count_private=true&include_all_commits=true">
     </a>
 </p>
+
+![Opeyemi Okuboyejo's GitHub stats](https://github-readme-stats.vercel.app/api?username=opeyemitechpro&icon_color=87ff87&hide_border=true&text_color=87ff87&title_color=87ff87&show_icons=true&theme=transparent)
