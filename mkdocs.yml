@@ -94,6 +94,12 @@ plugins:
       enable_creation_date: true
       type: timeago
   - privacy  
+  # Redirect Docs - https://github.com/mkdocs/mkdocs-redirects
+  - redirects:
+      redirect_maps:
+        # 'old.md': 'new.md'
+        # 'old/file.md': 'new/file.md'
+        'index2.md': 'https://opeyemitech.pro'
 
 extra:
   homepage: https://opeyemitechpro.github.io
@@ -191,7 +197,7 @@ copyright: |
 
 # Page Navigation
 nav:
-  # - Back To Profile: index.md
+  - Profile: index2.md
   - Start Here: index.md
    # - AWS Projects: openvpn_access_server.md
   - Terraform Projects: 
