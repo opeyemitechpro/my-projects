@@ -99,7 +99,7 @@ plugins:
       redirect_maps:
         # 'old.md': 'new.md'
         # 'old/file.md': 'new/file.md'
-        'index2.md': 'https://opeyemitech.pro'
+        'profile.md': 'https://opeyemitech.pro'
 
 extra:
   homepage: https://opeyemitechpro.github.io
