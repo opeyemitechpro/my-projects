@@ -6,6 +6,12 @@ subtitle: Welcome to my Profile Page
 comments: false
 ---
 
+![Opeyemi Okuboyejo Pix](assets/images/favicon.png "Opeyemi Okuboyejo")
+
+Hello, I'm Opeyemi Okuboyejo 
+ 
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=roboto&size=30&duration=2000&pause=500&width=435&lines=A+DevOps+Engineer;A+Cloud+Engineer;A+Certified+Solutions+Architect;A+Systems+Administrator)](https://opeyemitech.pro)
+
 <figure markdown="1">
 ![Opeyemi Okuboyejo](assets/images/favicon.png "Opeyemi Okuboyejo")
 <figcaption><strong>Opeyemi Okuboyejo</strong></figcaption>
