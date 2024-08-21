@@ -6,7 +6,7 @@ subtitle: This is the sub-title of this page
 comments: true 
 ---
 
-![image alt text](assets/images/favicon.png "Opeyemi Okuboyejo")
+![Opeyemi Okuboyejo Pix - image alt text](assets/images/favicon.png "Opeyemi Okuboyejo")
 
 
 <figure markdown="1">
