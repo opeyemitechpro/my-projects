@@ -48,24 +48,8 @@ Thank you for visiting, and I look forward to sharing my passion with you!
 [![Portfolio Badge](https://img.shields.io/badge/-Opeyemi's_Portfolio-blue?style=flat-square&logo=folder&logoColor=white&link=https://opeyemitechpro.github.io)](https://opeyemitechpro.github.io)
 [![Page Views](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fopeyemitech.pro%2Fmy-projects&count_bg=%23008000&title_bg=%234B0082&icon=&icon_color=%234B0082&title=Page+Views&edge_flat=false)](https://opeyemitech.pro)
 
-### :zap: Github Stats
-<p>
-    <a href="https://gitstats.me/opeyemitechpro" target="_blank"> 
-        <img src="https://github-readme-stats.vercel.app/api?username=opeyemitechpro&&show_icons=true&hi&theme=dark&count_private=true&include_all_commits=true">
-    </a>
-</p>
-
-<!-- <p>
-    <a href="https://gitstats.me/opeyemitechpro" target="_blank"> 
-        <img src="https://github-readme-stats.vercel.app/api?username=opeyemitechpro&&show_icons=true&hi&theme=dark&count_private=true&include_all_commits=true&icon_color=87ff87&text_color=87ff87&title_color=87ff87">
-    </a>
-</p> -->
+### :zap: GitHub Stats
 
 ![Opeyemi Okuboyejo's GitHub stats](https://github-readme-stats.vercel.app/api?username=opeyemitechpro&show_icons=true&show=reviews,discussions_started,discussions_answered,prs_merged,prs_merged_percentage&theme=merko&include_all_commits=true&show_owner=true)
 
-<!--
-
-![Opeyemi Okuboyejo's GitHub stats](https://github-readme-stats.vercel.app/api?username=opeyemitechpro&icon_color=87ff87&hide_border=false&text_color=87ff87&title_color=87ff87&show_icons=true&theme=transparent)
-
-![Opeyemi Okuboyejo's GitHub stats](https://github-readme-stats.vercel.app/api?username=opeyemitechpro&&show_icons=true&hi&theme=dark&count_private=true&include_all_commits=true&icon_color=87ff87&text_color=87ff87&title_color=87ff87) -->
-
+[![My Projects Repo](https://github-readme-stats.vercel.app/api/pin/?username=opeyemitechpro&repo=my-projects&show_owner=true)](https://github.com/opeyemitechpro/my-projects)
