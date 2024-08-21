@@ -10,7 +10,7 @@ comments: false
 
 Hello, I'm Opeyemi Okuboyejo 
  
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=roboto&size=30&duration=2000&pause=500&width=435&lines=A+DevOps+Engineer;A+Cloud+Engineer;A+Certified+Solutions+Architect;A+Systems+Administrator)](https://opeyemitech.pro)
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=roboto&size=20&duration=2000&pause=500&width=435&lines=A+DevOps+Engineer;A+Cloud+Engineer;A+Certified+Solutions+Architect;A+Systems+Administrator)](https://opeyemitech.pro)
 
 <figure markdown="1">
 ![Opeyemi Okuboyejo](assets/images/favicon.png "Opeyemi Okuboyejo")
