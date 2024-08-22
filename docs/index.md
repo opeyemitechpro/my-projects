@@ -52,7 +52,7 @@ Thank you for visiting, and I look forward to sharing my passion with you!
 
 ![Opeyemi Okuboyejo's GitHub stats](https://github-readme-stats.vercel.app/api?username=opeyemitechpro&show_icons=true&show=reviews,discussions_started,discussions_answered,prs_merged,prs_merged_percentage&theme=merko&include_all_commits=true&show_owner=true)
 
-[![My Projects Repo](https://github-readme-stats.vercel.app/api/pin/?username=opeyemitechpro&repo=my-projects&show_owner=true&theme=merko)](https://github.com/opeyemitechpro/my-projects)
+[![My Projects Repo](https://github-readme-stats.vercel.app/api/pin/?username=opeyemitechpro&repo=my-projects&show_owner=true&theme=merko&show_icons=true)](https://github.com/opeyemitechpro/my-projects)
 
 <!-- Copy-paste in your Readme.md file -->
 
