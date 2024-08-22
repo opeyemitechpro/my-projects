@@ -13,10 +13,10 @@ edit_uri: edit/main/docs/
 theme:
   name: material
   icon: assets/images/favicon.png
-    tag: 
-      terra: simple/terraform
-      aws: fontawesome/brands/aws
-      devops: material/infinity
+    # tag: 
+    #   terra: simple/terraform
+    #   aws: fontawesome/brands/aws
+    #   devops: material/infinity
   custom_dir: overrides
   features:
     - navigation.tabs
