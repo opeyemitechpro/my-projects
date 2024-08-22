@@ -83,13 +83,13 @@ plugins:
         background_color: indigo
         color: white
   - search
-  - tags:
-     tags_slugify: !!python/object/apply:pymdownx.slugs.slugify
-        kwds:
-          case: lower
-     tags_slugify_separator: _
-     tags_slugify_format: "tag:{slug}"
-     tags_hierarchy: true
+  # - tags:
+  #    tags_slugify: !!python/object/apply:pymdownx.slugs.slugify
+  #       kwds:
+  #         case: lower
+  #    tags_slugify_separator: _
+  #    tags_slugify_format: "tag:{slug}"
+  #    tags_hierarchy: true
   - git-committers:
       repository: opeyemitechpro/my-projects
       branch: main
