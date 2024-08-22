@@ -5,8 +5,10 @@ description: This is a description of this page
 subtitle: This is the sub-title of this page
 comments: false 
 tags:
-  - aws
+  - AWS
   - terra
+  - Terraform
+  - DevOps
   - devops
 ---
 
