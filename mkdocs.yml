@@ -118,12 +118,26 @@ plugins:
 extra:
   homepage: https://opeyemitechpro.github.io
   social:
-    - icon: fontawesome/brands/github-alt
-      link: https://github.com/opeyemitechpro
-    - icon: fontawesome/brands/twitter
-      link: https://twitter.com/opeyemitechpro
+    - icon: material/web
+      link: https://opeyemitech.pro
+      name: Opeyemi Okuboyejo's Profile
     - icon: fontawesome/brands/linkedin
       link: https://www.linkedin.com/in/opeyemi-okuboyejo/
+      name: Opeyemi on LinkedIn
+    - icon: fontawesome/brands/github
+      link: https://github.com/opeyemitechpro
+      name: Opeyemi on GitHub
+    - icon: fontawesome/brands/youtube
+      link: https://youtube.com/@opeyemitechpro
+      name: OpeyemiTechPro on YouTube
+    - icon: fontawesome/brands/dev
+      link: https://dev.to/opeyemitechpro
+      name: Opeyemi on Dev.to
+    - icon: fontawesome/brands/x-twitter
+      link: https://opeyemitech.pro
+      name: Opeyemi on Twitter
+    
+    
   analytics:
     provider: google
     property: G-451838625
