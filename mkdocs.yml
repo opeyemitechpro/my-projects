@@ -13,6 +13,10 @@ edit_uri: edit/main/docs/
 theme:
   name: material
   icon: assets/images/favicon.png
+    tag: 
+      terra: simple/terraform
+      aws: fontawesome/brands/aws
+      devops: material/infinity
   custom_dir: overrides
   features:
     - navigation.tabs
@@ -41,7 +45,7 @@ theme:
     - content.action.view
     - content.action.edit
     - announce.dismiss
-    
+   
   favicon: assets/images/favicon.png
   logo: assets/images/favicon.png
   language: en
@@ -130,13 +134,19 @@ extra:
     - icon: fontawesome/brands/youtube
       link: https://youtube.com/@opeyemitechpro
       name: OpeyemiTechPro on YouTube
+    - icon: octicons/mail-24
+      link: mailto:okuboyejoopeyemi01@gmail.com
+      name: Email Me
     - icon: fontawesome/brands/dev
       link: https://dev.to/opeyemitechpro
       name: Opeyemi on Dev.to
     - icon: fontawesome/brands/x-twitter
       link: https://opeyemitech.pro
       name: Opeyemi on Twitter
-    
+  tags:
+    Terraform: terra
+    AWS: aws
+    DevOps: devops
     
   analytics:
     provider: google
