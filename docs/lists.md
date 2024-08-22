@@ -14,6 +14,8 @@ tags:
 
 # Lists - [x] 
 
+:fontawesome-brands-youtube:{ style="color: #EE0F0F" }
+
 Material for MkDocs supports several flavors of lists that cater to different
 use cases, including _unordered lists_ and _ordered lists_, which are supported
 through standard Markdown, as well as _definition lists_ and _task lists_, which

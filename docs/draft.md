@@ -18,6 +18,8 @@ Hello, I'm Opeyemi Okuboyejo
 
 [![Typing SVG](https://readme-typing-svg.demolab.com?font=roboto&size=20&duration=2000&pause=500&width=435&lines=A+DevOps+Engineer;A+Cloud+Engineer;A+Certified+Solutions+Architect;A+Systems+Administrator)](https://opeyemitech.pro)
 
+:fontawesome-brands-youtube:{ style="color: #EE0F0F" }
+
 <figure markdown="1">
 ![image](assets/images/favicon.png "Opeyemi Okuboyejo"){ width="30" }
 <figcaption><strong>Opeyemi Okuboyejo</strong></figcaption>
