@@ -235,7 +235,7 @@ copyright: |
 
 # Page Navigation
 nav:
-  - :simple/amazonwebservices: My Profile: profile.md
+  - My Profile: profile.md
   - Start Here: index.md
   - Terraform Projects: 
     - terraform_projects/index.md
@@ -246,4 +246,3 @@ nav:
     - aws_projects/index.md
   - Knowledge Base:
     - kb/index.md
-    
