@@ -164,14 +164,14 @@ extra:
           data: 1
           note: >-
             Thanks for your feedback! Help me to improve this page by
-            using my <a href="https://forms.gle/Bb4gifiuyrE4enDX6" target="_blank" rel="noopener">feedback form</a>.
+            completing my <a href="https://forms.gle/Bb4gifiuyrE4enDX6" target="_blank" rel="noopener">feedback form</a>.
   consent:
     title: Cookie Consent
     description: >-
-      We use cookies to recognize your repeated visits and preferences, as well
-      as to measure the effectiveness of our documentation and whether users
-      find what they're searching for. With your consent, you're helping us to
-      make our documentation better.
+      I use cookies to recognize your repeated visits and preferences, as well
+      as to measure the effectiveness of my documentation and whether users
+      find what they're searching for. With your consent, you're helping me to
+      make my documentation better. Thanks
     actions:
       - accept
       - reject
@@ -235,9 +235,8 @@ copyright: |
 
 # Page Navigation
 nav:
-  - My Profile: profile.md
+  - :simple/amazonwebservices: My Profile: profile.md
   - Start Here: index.md
-   # - AWS Projects: openvpn_access_server.md
   - Terraform Projects: 
     - terraform_projects/index.md
     - terraform_projects/openvpn_access_server.md
