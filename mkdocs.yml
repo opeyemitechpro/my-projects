@@ -45,19 +45,17 @@ theme:
     - content.action.view
     - content.action.edit
     - announce.dismiss
-   
+   # site logo and favicon
   favicon: assets/images/favicon.png
   logo: assets/images/favicon.png
   language: en
   
-  palette:
-  
+  palette:  
     # Palette toggle for automatic mode
     - media: "(prefers-color-scheme)"
       toggle:
         icon: material/brightness-7
         name: Switch to light mode
-        
     # Palette toggle for light mode
     - media: "(prefers-color-scheme: light)"
       scheme: default
@@ -66,7 +64,6 @@ theme:
       toggle:
         icon: material/brightness-4
         name: Switch to dark mode
-        
     # Palette toggle for dark mode
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
@@ -75,6 +72,10 @@ theme:
       toggle:
         icon: material/brightness-auto
         name: Switch to system preference
+
+  font:
+    text: Merienda
+    code: Kode Mono
 
 plugins:
   - social:
