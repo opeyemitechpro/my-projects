@@ -76,8 +76,8 @@ theme:
   font:
    # text: Merienda
     text: Arima
-   # code: Kode Mono
-    code: Courier Prime
+    code: Kode Mono
+   # code: Courier Prime
 
 plugins:
   - social:
