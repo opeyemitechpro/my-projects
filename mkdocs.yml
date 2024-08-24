@@ -74,8 +74,10 @@ theme:
         name: Switch to system preference
 
   font:
-    text: Merienda
-    code: Kode Mono
+   # text: Merienda
+    text: Arima
+   # code: Kode Mono
+    code: Courier Prime
 
 plugins:
   - social:
