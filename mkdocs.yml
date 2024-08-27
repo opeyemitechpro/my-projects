@@ -72,12 +72,10 @@ theme:
       toggle:
         icon: material/brightness-auto
         name: Switch to system preference
-
+# font
   font:
-   # text: Merienda
     text: Arima
     code: Kode Mono
-   # code: Courier Prime
 
 plugins:
   - social:
@@ -121,6 +119,22 @@ plugins:
       background: none
       shadow: true
       manual: false
+  - blog
+      blog_dir: blog
+      blog_toc: true
+      post_date_format: long
+      post_url_format: "{slug}"
+      post_slugify: !!python/object/apply:pymdownx.slugs.slugify
+        kwds:
+          case: lower
+      categories: true
+      categories_name: Categories
+      categories_url_format: "category/{slug}"
+      categories_slugify: !!python/object/apply:pymdownx.slugs.slugify
+        kwds:
+          case: lower
+      categories_toc: true
+      authors: true
 
 extra:
   homepage: https://opeyemitechpro.github.io
