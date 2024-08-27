@@ -1,9 +1,9 @@
 ---
 date: 2024-08-31
 icon: simple/terraform
-title: My Blog
-description: My Blog HomePage 
-subtitle: My Blog HomePage Subtitle
+title: My Blog Page 2
+description: My Blog Page 2 description
+subtitle: My Blog Page 2 Subtitle
 comments: false
 authors:
   - opeyemitechpro

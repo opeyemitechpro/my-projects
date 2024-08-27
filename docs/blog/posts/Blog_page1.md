@@ -1,9 +1,9 @@
 ---
-date: 2024-08-31
+date: 2024-08-27
 icon: simple/terraform
-title: My Blog
-description: My Blog HomePage 
-subtitle: My Blog HomePage Subtitle
+title: My Blog Page 1
+description: My Blog Page 1 description 
+subtitle: My Blog Page 1 Subtitle
 comments: false
 authors:
   - opeyemitechpro
@@ -14,7 +14,7 @@ categories:
 
 ---
 
-## Welcome to My Blog
+## Welcome to My Blog page 1
 
 welcome to Opeyemi Tech Pro Blog for Cloud Engineering and DevOps Stuff
 
