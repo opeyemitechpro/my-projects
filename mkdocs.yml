@@ -83,7 +83,8 @@ plugins:
       cards_layout_options:
         background_color: indigo
         color: white
-  - search
+  - search:
+      separator: '[\s\u200b\-_,:!=\[\]()"`/]+|\.(?!\d)|&[lg]t;|(?!\b)(?=[A-Z][a-z])'
   # - tags:
   #    tags_slugify: !!python/object/apply:pymdownx.slugs.slugify
   #       kwds:
@@ -167,7 +168,7 @@ extra:
     
   analytics:
     provider: google
-    property: G-451838625
+    property: !ENV GOOGLE_ANALYTICS_KEY
     feedback:
       title: Was this page helpful? Please give a feedback
       ratings:

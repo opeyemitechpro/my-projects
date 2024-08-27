@@ -14,8 +14,5 @@ categories:
 
 ---
 
-## Welcome to My Blog
+# Welcome to My Blog Main Index Page
 
-welcome to Opeyemi Tech Pro Blog for Cloud Engineering and DevOps Stuff
-
-## Blog Index Page
