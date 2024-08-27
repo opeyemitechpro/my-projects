@@ -2,12 +2,8 @@
 icon: simple/terraform
 title: My Blog
 description: My Blog HomePage 
-subtitle: My Blog HomePage Subtitle
+subtitle: My Blog HomePage 
 comments: false
 ---
 
-# Welcome to My Blog (Wrong Index)
-
-welcome to Opeyemi Tech Pro Blog for Cloud Engineering and DevOps Stuff
-
-## wrong Index page
+# Welcome to My Blog Main Index Page

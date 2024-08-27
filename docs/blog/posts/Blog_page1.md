@@ -17,7 +17,7 @@ categories:
 
 welcome to Opeyemi Tech Pro Blog for Cloud Engineering and DevOps Stuff
 
-## Blog Page 1
+<!-- more -->
 
 ## Search: better, faster, smaller
 
@@ -34,8 +34,6 @@ there's still some room for improvement, which is why we rebuilt the search
 plugin and integration from the ground up. This article shines some light on the
 internals of the new search, why it's much more powerful than the previous
 version, and what's about to come.
-
-<!-- more -->
 
 _The next section discusses the architecture and issues of the current search
 implementation. If you immediately want to learn what's new, skip to the

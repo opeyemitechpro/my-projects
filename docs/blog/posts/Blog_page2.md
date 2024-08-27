@@ -16,11 +16,11 @@ categories:
 
 ## Welcome to My Blog page 2
 
-welcome to Opeyemi Tech Pro Blog for Cloud Engineering and DevOps Stuff
-
-## Blog Page 2
+__Welcome to Opeyemi Tech Pro Blog for Cloud Engineering and DevOps Stuff__
 
 OWASP (Open Web Application Security Project) is a non-profit organization dedicated to improving web application security. OWASP provides free and open resources, including:
+
+<!-- more -->
 
 1. Documentation: Guides, best practices, and standards for secure web development.
 2. Tools: Open-source software for security testing, vulnerability assessment, and penetration testing.
@@ -54,6 +54,5 @@ Here are some tips to convey your enthusiasm for internet services in a job inte
 - "In my previous role, I successfully implemented a network upgrade, increasing internet speeds by 50%."
 - "I'm excited about the latest advancements in 5G and its potential to revolutionize internet services."
 
-<!-- more -->
 
 Remember to be genuine, specific, and concise in your responses. Show the interviewer that your passion for internet services drives your motivation and dedication to delivering exceptional results!

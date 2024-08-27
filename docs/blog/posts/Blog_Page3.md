@@ -2,17 +2,19 @@
 date: 2024-08-31
 icon: simple/terraform
 title: My Blog
-description: My Blog HomePage 
-subtitle: My Blog HomePage Subtitle
+description: My Blog Page 3 
+subtitle: My Blog Page 3 Subtitle
 comments: false
 authors:
   - opeyemitechpro
 categories:
-  - Home
+  - End-to-End Projects
   - DevOps
   - CI/CD
 
 ---
 
-# Welcome to My Blog Main Index Page
+# Welcome to My Blog Page 3
 
+
+<!-- more -->
