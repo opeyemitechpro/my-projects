@@ -15,7 +15,12 @@ categories:
 
 # Welcome to My Blog page 1
 
-welcome to Opeyemi Tech Pro Blog for Cloud Engineering and DevOps Stuff
+<figure markdown="span">
+  ![Image title](https://dummyimage.com/600x400){ width="300" }
+  <figcaption>Image caption</figcaption>
+</figure>
+
+Welcome to Opeyemi Tech Pro Blog for Cloud Engineering and DevOps Stuff
 
 <!-- more -->
 

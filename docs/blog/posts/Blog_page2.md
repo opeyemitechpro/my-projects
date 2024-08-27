@@ -18,6 +18,8 @@ categories:
 
 __Welcome to Opeyemi Tech Pro Blog for Cloud Engineering and DevOps Stuff__
 
+![Image title](https://dummyimage.com/600x400)
+
 OWASP (Open Web Application Security Project) is a non-profit organization dedicated to improving web application security. OWASP provides free and open resources, including:
 
 <!-- more -->
