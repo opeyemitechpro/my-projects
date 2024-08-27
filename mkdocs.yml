@@ -119,7 +119,7 @@ plugins:
       background: none
       shadow: true
       manual: false
-  - blog
+  - blog:
       # blog_dir: blog
       blog_toc: true
       post_date_format: long
@@ -263,3 +263,5 @@ nav:
     - aws_projects/index.md
   - Knowledge Base:
     - kb/index.md
+  - Blog:
+    - blog/index.md
