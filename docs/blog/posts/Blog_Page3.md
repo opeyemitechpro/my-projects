@@ -16,6 +16,6 @@ categories:
 
 # Welcome to My Blog Page 3
 
-[![Opeyemi Picture](assets/images/favicon.png "Opeyemi Okuboyejo")](https://opeyemitech.pro)
+[![Opeyemi Picture](../assets/images/favicon.png "Opeyemi Okuboyejo")](https://opeyemitech.pro)
 
 <!-- more -->
