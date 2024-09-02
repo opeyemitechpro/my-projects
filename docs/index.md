@@ -54,6 +54,14 @@ Thank you for visiting, and I look forward to sharing my passion with you!
 
 [![My Projects Repo](https://github-readme-stats.vercel.app/api/pin/?username=opeyemitechpro&repo=my-projects&show_owner=true&theme=merko&show_icons=true)](https://github.com/opeyemitechpro/my-projects)
 
+![](http://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=opeyemitechpro&theme=vision_friendly_dark)
+
+![](http://github-profile-summary-cards.vercel.app/api/cards/stats?username=opeyemitechpro&theme=vision_friendly_dark)
+
+![](http://github-profile-summary-cards.vercel.app/api/cards/productive-time?username=opeyemitechpro&theme=vision_friendly_dark&utcOffset=8)
+
+
+
 <!-- Copy-paste in your Readme.md file -->
 
 <!-- <a href="https://next.ossinsight.io/widgets/official/compose-user-dashboard-stats?user_id=135651560" target="_blank" style="display: block" align="center">
