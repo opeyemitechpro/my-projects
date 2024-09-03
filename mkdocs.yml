@@ -74,7 +74,8 @@ theme:
         name: Switch to system preference
 # font
   font:
-    text: Arima
+    # text: Arima
+    text: Comic Neue
     code: Kode Mono
 
 plugins:
