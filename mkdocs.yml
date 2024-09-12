@@ -169,7 +169,7 @@ extra:
     
   analytics:
     provider: google
-    property: !ENV GOOGLE_ANALYTICS_KEY
+    property: G-MGNMY7NF92
     feedback:
       title: Was this page helpful? Please give a feedback
       ratings:
