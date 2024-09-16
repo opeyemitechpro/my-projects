@@ -1,6 +1,9 @@
 
 
-{% if page.meta.comments %}
+{% if config.extra.comments.enabled and page and page.meta and page.meta.comments == false %}
+    <!-- disbale comments -->
+{% else %}
+
   <h2 id="__comments">{{ lang.t("meta.comments") }}</h2>
   <!-- Insert generated snippet here -->
   <script src="https://giscus.app/client.js"
@@ -13,11 +16,65 @@
   data-reactions-enabled="1"
   data-emit-metadata="1"
   data-input-position="top"
-  data-theme="preferred_color_scheme"
+  data-theme="light"
   data-lang="en"
   crossorigin="anonymous"
   async>
   </script>
+
+{% else %}
+
+<script src="https://utteranc.es/client.js"
+        repo="opeyemitechpro/my-projects"
+        issue-term="pathname"
+        theme="preferred-color-scheme"
+        crossorigin="anonymous"
+        async>
+</script>
+
+{% endif %}
+
+<!-- Reload on palette change -->
+<script>
+	var palette = __md_get("__palette")
+	if (palette && typeof palette.color === "object")
+	  if (palette.color.scheme === "slate") {
+	  	{% if config.extra.comments.mode == "giscus" %}
+	    	var giscus = document.querySelector("script[src*=giscus]")
+	    	giscus.setAttribute("data-theme", "dark")
+	    {% else %}
+	    	var utterances = document.querySelector("script[src*=utteranc]")
+	    	utterances.setAttribute("theme", "github-dark")
+	    {% endif %}
+	  }
+
+	/* Register event handlers after documented loaded */
+	document.addEventListener("DOMContentLoaded", function() {
+	  var ref = document.querySelector("[data-md-component=palette]")
+	  ref.addEventListener("change", function() {
+	    var palette = __md_get("__palette")
+	    if (palette && typeof palette.color === "object") {
+	      var theme = palette.color.scheme === "slate" ? "dark" : "light"
+	    {% if config.extra.comments.mode == "giscus" %}
+	      /* Instruct Giscus to change theme */
+	      var frame = document.querySelector(".giscus-frame")
+	      frame.contentWindow.postMessage(
+	        { giscus: { setConfig: { theme } } },
+	        "https://giscus.app"
+	      )
+	    {% else %}
+	      /* Instruct Utterances to change theme */
+	      var frame = document.querySelector(".utterances-frame")
+	      frame.contentWindow.postMessage(
+	        { utterances: { setConfig: { theme } } },
+	        "https://utteranc.es"
+	      )
+	    {% endif %}
+	    }
+	  })
+	})
+	</script>
+  {% endif %}
 
   <!-- Synchronize Giscus theme with palette -->
   <script>
