@@ -86,7 +86,8 @@ plugins:
         color: white
   - search:
       separator: '[\s\u200b\-_,:!=\[\]()"`/]+|\.(?!\d)|&[lg]t;|(?!\b)(?=[A-Z][a-z])'
-  # - tags:
+  - tags:
+      tags_file: tags.md
   #    tags_slugify: !!python/object/apply:pymdownx.slugs.slugify
   #       kwds:
   #         case: lower
@@ -271,4 +272,6 @@ nav:
     - kb/index.md
   - Blog:
     - blog/index.md
+  - Tags:
+    - tags.md
 #
