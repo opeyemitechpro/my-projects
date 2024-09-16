@@ -11,7 +11,7 @@ tags:
 status: new
 ---
 
-This page was Created on: *{{ git_creation_date_localized }}*
+This page was Created: *{{ git_creation_date_localized }}*
 
 This page was last updated: *{{ git_revision_date_localized }}*
 
