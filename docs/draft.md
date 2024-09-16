@@ -10,6 +10,7 @@ tags:
   - devops
 ---
 
+This page was last updated: *{{ git_revision_date_localized }}*
 
 ![Opeyemi Okuboyejo Pix - image alt text](assets/images/favicon.png "Opeyemi Okuboyejo")
 
