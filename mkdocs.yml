@@ -255,7 +255,7 @@ markdown_extensions:
   
 
 copyright: |
-  Copyright &copy; 2023 - 2024 <a href="https://opeyemitechpro.github.io"  target="_blank" rel="noopener">Opeyemi Okuboyejo</a> <br><a href="https://opeyemitech.pro" target="_blank" rel="noopener">About Opeyemi</a><br><a href="https://forms.gle/Bb4gifiuyrE4enDX6" target="_blank" rel="noopener">Contact Opeyemi</a><br><br><br>Hosted on GitHub <br><a href="#__consent">Manage cookie settings</a><br><br>
+  Copyright &copy; 2023 - 2024 <a href="https://opeyemitechpro.github.io"  target="_blank" rel="noopener">Opeyemi Okuboyejo</a> <br><a href="https://opeyemitech.pro" target="_blank" rel="noopener">About Opeyemi</a><br><a href="https://forms.gle/Bb4gifiuyrE4enDX6" target="_blank" rel="noopener">Contact Opeyemi</a><br><br><br>Hosted on GitHub <br><p style="text-align: right;"><a href="#__consent">Manage cookie settings</a></p><br><br>
 
 # Page Navigation
 nav:
