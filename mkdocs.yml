@@ -13,7 +13,7 @@ edit_uri: edit/main/docs/
 theme:
   name: material
   icon: assets/images/favicon.png
-    tags: 
+    tag: 
       terra: simple/terraform
       aws: fontawesome/brands/aws
       devops: material/infinity
