@@ -5,9 +5,7 @@ description: This is a description of this page
 subtitle: This is the sub-title of this page
 comments: true 
 tags:
-  - AWS
-  - Terraform
-  - DevOps
+  - Draft
 status: new
 ---
 

@@ -5,9 +5,6 @@ description: This is a Draft for MkDocs List reference
 subtitle: This is the sub-title of this page
 comments: true 
 tags:
-  - AWS
-  - Terraform
-  - DevOps
 ---
 
 # Lists - [x] 
