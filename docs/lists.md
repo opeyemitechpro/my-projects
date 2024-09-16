@@ -6,10 +6,8 @@ subtitle: This is the sub-title of this page
 comments: true 
 tags:
   - AWS
-  - terra
   - Terraform
   - DevOps
-  - devops
 ---
 
 # Lists - [x] 

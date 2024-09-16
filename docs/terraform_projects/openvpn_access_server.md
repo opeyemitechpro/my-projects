@@ -5,8 +5,9 @@ description: How to setup OpenVPN Access Server using Terraform
 subtitle: How to setup OpenVPN Access Server using Terraform
 comments: true 
 tags:
-  - aws
-  - terra
+  - AWS
+  - Terraform
+  - OpenVPN
 status: new
 ---
 
