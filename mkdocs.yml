@@ -17,7 +17,7 @@ theme:
     #   terra: simple/terraform
     #   aws: fontawesome/brands/aws
     #   devops: material/infinity
-  # custom_dir: overrides
+  custom_dir: overrides
   features:
     - navigation.tabs
     - navigation.tabs.sticky
