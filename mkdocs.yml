@@ -168,6 +168,8 @@ extra:
     Terraform: terra
     AWS: aws
     DevOps: devops
+  status:
+    new: Recently Updated
     
   analytics:
     provider: google
