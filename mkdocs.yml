@@ -14,7 +14,7 @@ theme:
   name: material
   icon: assets/images/favicon.png
     tag:
-      - terra: simple/terraform
+      terra: simple/terraform
     #   aws: fontawesome/brands/aws
     #   devops: material/infinity
   custom_dir: overrides
