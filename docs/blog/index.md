@@ -1,5 +1,5 @@
 ---
-icon: simple/terraform
+icon: material/newspaper-variant-outline
 title: My Blog
 description: My Blog HomePage 
 subtitle: My Blog HomePage 
