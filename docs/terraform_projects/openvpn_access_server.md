@@ -1,5 +1,13 @@
 ---
 icon: simple/openvpn
+title: OpenVPN Acess Server Setup
+description: How to setup OpenVPN Access Server using Terraform
+subtitle: How to setup OpenVPN Access Server using Terraform
+comments: true 
+tags:
+  - aws
+  - terra
+status: new
 ---
 
 # OpenVPN Access Server
