@@ -272,6 +272,6 @@ nav:
     - kb/index.md
   - Blog:
     - blog/index.md
-  - Tags:
-    - tags.md
+  # - Tags:
+  #   - tags.md
 #
