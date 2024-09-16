@@ -261,13 +261,13 @@ copyright: |
 nav:
   - My Profile: profile.md
   - Start Here: index.md
+  - AWS Projects:
+    - aws_projects/index.md
+  - DevOps Projects:
+    - devops_projects/index.md
   - Terraform Projects: 
     - terraform_projects/index.md
     - terraform_projects/openvpn_access_server.md
-  - DevOps Projects:
-    - devops_projects/index.md
-  - AWS Projects:
-    - aws_projects/index.md
   - Knowledge Base:
     - kb/index.md
   - Blog:

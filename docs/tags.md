@@ -1,5 +1,5 @@
 ---
-icon: material/tag-text
+icon: material/tag
 title: Tags
 description: List of Tags
 subtitle: List of tags
