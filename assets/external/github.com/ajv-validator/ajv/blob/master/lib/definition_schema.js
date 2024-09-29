@@ -10,6 +10,7 @@
   
   data-color-mode="auto" data-light-theme="light" data-dark-theme="dark"
   data-a11y-animated-images="system" data-a11y-link-underlines="true"
+  
   >
 
 
@@ -28,95 +29,94 @@
 
   <link crossorigin="anonymous" media="all" rel="stylesheet" href="../../../../../../github.githubassets.com/assets/light-3e154969b9f9.css" /><link crossorigin="anonymous" media="all" rel="stylesheet" href="../../../../../../github.githubassets.com/assets/dark-9c5b7a476542.css" /><link data-color-theme="dark_dimmed" crossorigin="anonymous" media="all" rel="stylesheet" data-href="../../../../../../github.githubassets.com/assets/dark_dimmed-afda8eb0fb33.css" /><link data-color-theme="dark_high_contrast" crossorigin="anonymous" media="all" rel="stylesheet" data-href="../../../../../../github.githubassets.com/assets/dark_high_contrast-2494e44ccdc5.css" /><link data-color-theme="dark_colorblind" crossorigin="anonymous" media="all" rel="stylesheet" data-href="../../../../../../github.githubassets.com/assets/dark_colorblind-56fff47acadc.css" /><link data-color-theme="light_colorblind" crossorigin="anonymous" media="all" rel="stylesheet" data-href="../../../../../../github.githubassets.com/assets/light_colorblind-71cd4cc132ec.css" /><link data-color-theme="light_high_contrast" crossorigin="anonymous" media="all" rel="stylesheet" data-href="../../../../../../github.githubassets.com/assets/light_high_contrast-fd5499848985.css" /><link data-color-theme="light_tritanopia" crossorigin="anonymous" media="all" rel="stylesheet" data-href="../../../../../../github.githubassets.com/assets/light_tritanopia-31d17ba3e139.css" /><link data-color-theme="dark_tritanopia" crossorigin="anonymous" media="all" rel="stylesheet" data-href="../../../../../../github.githubassets.com/assets/dark_tritanopia-68d6b2c79663.css" />
     <link crossorigin="anonymous" media="all" rel="stylesheet" href="../../../../../../github.githubassets.com/assets/primer-primitives-4cf0d59ab51a.css" />
-    <link crossorigin="anonymous" media="all" rel="stylesheet" href="../../../../../../github.githubassets.com/assets/primer-b71798d38c29.css" />
-    <link crossorigin="anonymous" media="all" rel="stylesheet" href="../../../../../../github.githubassets.com/assets/global-d50796f51147.css" />
-    <link crossorigin="anonymous" media="all" rel="stylesheet" href="../../../../../../github.githubassets.com/assets/github-e4eed26e112b.css" />
+    <link crossorigin="anonymous" media="all" rel="stylesheet" href="../../../../../../github.githubassets.com/assets/primer-fefb1a332c28.css" />
+    <link crossorigin="anonymous" media="all" rel="stylesheet" href="../../../../../../github.githubassets.com/assets/global-103ebe55f9d9.css" />
+    <link crossorigin="anonymous" media="all" rel="stylesheet" href="../../../../../../github.githubassets.com/assets/github-6da540aa3f84.css" />
   <link crossorigin="anonymous" media="all" rel="stylesheet" href="../../../../../../github.githubassets.com/assets/repository-0f7cf89e325a.css" />
-<link crossorigin="anonymous" media="all" rel="stylesheet" href="../../../../../../github.githubassets.com/assets/code-84c85cb29e52.css" />
+<link crossorigin="anonymous" media="all" rel="stylesheet" href="../../../../../../github.githubassets.com/assets/code-5fa42525dfce.css" />
 
   
 
 
-  <script type="application/json" id="client-env">{"locale":"en","featureFlags":["code_vulnerability_scanning","copilot_at_mention_button","copilot_beta_features_opt_in","copilot_chat_conversation_intent_knowledge_search_skill","copilot_chat_static_thread_suggestions","copilot_completion_new_domain","copilot_conversational_ux_history_refs","copilot_copy_message","copilot_followup_to_agent","copilot_implicit_context","copilot_smell_icebreaker_ux","experimentation_azure_variant_endpoint","failbot_handle_non_errors","geojson_azure_maps","ghost_pilot_confidence_truncation","ghost_pilot_confidence_truncation_25","ghost_pilot_confidence_truncation_40","ghost_pilot_stream_handling","hovercard_accessibility","hovercard_longer_activate_timeout","marketing_pages_search_explore_provider","remove_child_patch","sample_network_conn_type","site_metered_billing_update","issues_react_first_time_contribution_banner","jk_navigation_in_list_view","ui_commands_respect_modals"]}</script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/wp-runtime-b4451781bcce.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/vendors-node_modules_dompurify_dist_purify_js-89a69c248502.js"></script>
+  <script type="application/json" id="client-env">{"locale":"en","featureFlags":["code_vulnerability_scanning","copilot_beta_features_opt_in","copilot_chat_conversation_intent_knowledge_search_skill","copilot_chat_static_thread_suggestions","copilot_conversational_ux_history_refs","copilot_copy_message","copilot_implicit_context","copilot_site_updates_sept17","copilot_site_updates_sept19","copilot_smell_icebreaker_ux","experimentation_azure_variant_endpoint","failbot_handle_non_errors","geojson_azure_maps","ghost_pilot_confidence_truncation_25","ghost_pilot_confidence_truncation_40","ghost_pilot_div","ghost_pilot_stream_handling","ghost_pilot_undo_fix","hovercard_accessibility","hovercard_longer_activate_timeout","marketing_pages_search_explore_provider","remove_child_patch","sample_network_conn_type","site_metered_billing_update","issues_react_first_time_contribution_banner","jk_navigation_in_list_view","ui_commands_respect_modals"]}</script>
+<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/wp-runtime-f0ab227d78a5.js"></script>
+<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/vendors-node_modules_dompurify_dist_purify_js-b73fdff77a4e.js"></script>
 <script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/vendors-node_modules_oddbird_popover-polyfill_dist_popover_js-56729c905fe2.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/vendors-node_modules_github_arianotify-polyfill_ariaNotify-polyfill_js-node_modules_github_mi-247092-627b030d3acc.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/environment-924e60bca7d2.js"></script>
+<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/vendors-node_modules_github_arianotify-polyfill_ariaNotify-polyfill_js-node_modules_github_mi-247092-b9c7cf3107b7.js"></script>
+<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/ui_packages_failbot_failbot_ts-aabfa4ec15fe.js"></script>
+<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/environment-2f240f7ed1b3.js"></script>
+<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/vendors-node_modules_primer_behaviors_dist_esm_index_mjs-4aa4b0e95669.js"></script>
 <script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/vendors-node_modules_github_selector-observer_dist_index_esm_js-f690fd9ae3d5.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/vendors-node_modules_primer_behaviors_dist_esm_focus-zone_js-c9086a4fb62b.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/vendors-node_modules_github_relative-time-element_dist_index_js-7b95699705bc.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/vendors-node_modules_primer_behaviors_dist_esm_anchored-position_js-node_modules_fzy_js_index-192fd2-a07608c791cf.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/vendors-node_modules_github_auto-complete-element_dist_index_js-node_modules_github_details-d-ed9a97-841122a1e9d4.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/vendors-node_modules_github_text-expander-element_dist_index_js-cd48220d74d5.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/vendors-node_modules_github_filter-input-element_dist_index_js-node_modules_github_remote-inp-6e2e8e-7102faafa90b.js"></script>
+<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/vendors-node_modules_github_relative-time-element_dist_index_js-6d3967acd51c.js"></script>
+<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/vendors-node_modules_github_auto-complete-element_dist_index_js-a164c5ea9f62.js"></script>
+<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/vendors-node_modules_github_text-expander-element_dist_index_js-e40ed7658a74.js"></script>
+<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/vendors-node_modules_github_filter-input-element_dist_index_js-node_modules_github_remote-inp-d1a841-8f251a0656e7.js"></script>
 <script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/vendors-node_modules_delegated-events_dist_index_js-node_modules_github_catalyst_lib_index_js-f4b251-f7c3b6081b19.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/vendors-node_modules_github_mini-throttle_dist_index_js-node_modules_stacktrace-parser_dist_s-d71043-6b38f49f5605.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/vendors-node_modules_github_file-attachment-element_dist_index_js-node_modules_primer_view-co-278f98-ad96fe342507.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/github-elements-21e3d119b5be.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/element-registry-7564a4e2ca6c.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/vendors-node_modules_github_catalyst_lib_index_js-node_modules_github_hydro-analytics-client_-7901e7-dc88587c14ed.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/vendors-node_modules_braintree_browser-detection_dist_browser-detection_js-node_modules_stack-68835d-a18220f1db8d.js"></script>
+<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/vendors-node_modules_github_mini-throttle_dist_index_js-node_modules_stacktrace-parser_dist_s-6b2a62-6fef0f2ad42a.js"></script>
+<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/vendors-node_modules_github_file-attachment-element_dist_index_js-node_modules_primer_view-co-eb9d54-74622d897749.js"></script>
+<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/github-elements-36d7dcef5a08.js"></script>
+<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/element-registry-3aadffc2cf8e.js"></script>
+<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/vendors-node_modules_github_catalyst_lib_index_js-node_modules_primer_live-region-element_dis-428401-bb66ac5d7472.js"></script>
+<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/vendors-node_modules_braintree_browser-detection_dist_browser-detection_js-node_modules_githu-bb80ec-634de60bacfa.js"></script>
 <script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/vendors-node_modules_lit-html_lit-html_js-ce7225a304c5.js"></script>
+<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/vendors-node_modules_github_hydro-analytics-client_dist_analytics-client_js-node_modules_gith-f3aee1-e6893db9c19e.js"></script>
 <script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/vendors-node_modules_github_mini-throttle_dist_index_js-node_modules_morphdom_dist_morphdom-e-7c534c-f8a5485c982a.js"></script>
 <script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/vendors-node_modules_github_turbo_dist_turbo_es2017-esm_js-858e043fcf76.js"></script>
 <script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/vendors-node_modules_github_remote-form_dist_index_js-node_modules_delegated-events_dist_inde-893f9f-6cf3320416b8.js"></script>
+<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/vendors-node_modules_scroll-anchoring_dist_scroll-anchoring_esm_js-node_modules_stacktrace-pa-a71630-67856ad29bae.js"></script>
 <script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/vendors-node_modules_color-convert_index_js-0e07cc183eed.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/vendors-node_modules_github_session-resume_dist_index_js-node_modules_primer_behaviors_dist_e-ac74c6-5e03381c44b5.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/vendors-node_modules_github_quote-selection_dist_index_js-node_modules_github_textarea-autosi-ded18a-1262bbe76ea3.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/ui_packages_updatable-content_updatable-content_ts-a2009221d154.js"></script>
+<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/vendors-node_modules_github_quote-selection_dist_index_js-node_modules_github_session-resume_-9a8cd2-373766bf71f1.js"></script>
+<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/ui_packages_updatable-content_updatable-content_ts-3f4401350bd7.js"></script>
 <script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/app_assets_modules_github_behaviors_task-list_ts-app_assets_modules_github_sso_ts-ui_packages-900dde-ab87c1d6c5c8.js"></script>
 <script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/app_assets_modules_github_sticky-scroll-into-view_ts-112600808cf9.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/app_assets_modules_github_behaviors_ajax-error_ts-app_assets_modules_github_behaviors_include-d0d0a6-e8165d062a74.js"></script>
+<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/app_assets_modules_github_behaviors_ajax-error_ts-app_assets_modules_github_behaviors_include-d0d0a6-6faacedf87fe.js"></script>
 <script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/app_assets_modules_github_behaviors_commenting_edit_ts-app_assets_modules_github_behaviors_ht-83c235-aeae6fcdf371.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/behaviors-6dbeefeab404.js"></script>
+<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/behaviors-b32b736e8b72.js"></script>
 <script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/vendors-node_modules_delegated-events_dist_index_js-node_modules_github_catalyst_lib_index_js-06ff531-bf7e5a3732fd.js"></script>
 <script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/notifications-global-54f34167118d.js"></script>
 <script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/vendors-node_modules_github_mini-throttle_dist_index_js-node_modules_github_catalyst_lib_inde-dbbea9-e73b311a14f1.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/app_assets_modules_github_repositories_get-repo-element_ts-78999cbaea69.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/code-menu-a8d08997ac4f.js"></script>
+<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/code-menu-ab2b8d126a2a.js"></script>
   
   <script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/react-lib-7b7b5264f6c1.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/vendors-node_modules_github_mini-throttle_dist_index_js-node_modules_primer_octicons-react_di-5313f5-a26a7ae9b364.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/vendors-node_modules_primer_react_lib-esm_Button_Button_js-efcf551d7ceb.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/vendors-node_modules_primer_react_lib-esm_TooltipV2_Tooltip_js-4d5019830e3c.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/vendors-node_modules_primer_react_node_modules_primer_octicons-react_dist_index_esm_mjs-a5155473fc69.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/vendors-node_modules_primer_react_lib-esm_ActionList_index_js-024af4771c08.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/vendors-node_modules_primer_react_lib-esm_Text_Text_js-node_modules_primer_react_lib-esm_Text-7845da-4bd585cba8cd.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/vendors-node_modules_primer_react_lib-esm_ActionMenu_ActionMenu_js-node_modules_primer_react_-5b2420-50d72766db7f.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/vendors-node_modules_primer_react_lib-esm_FormControl_FormControl_js-1f51ab2bdcca.js"></script>
+<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/vendors-node_modules_github_mini-throttle_dist_index_js-node_modules_primer_react_lib-esm_Fea-39267a-9ffd541aafbc.js"></script>
+<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/vendors-node_modules_primer_react_lib-esm_Button_Button_js-f36ad879d477.js"></script>
+<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/vendors-node_modules_primer_react_lib-esm_TooltipV2_Tooltip_js-e39b44f27fbb.js"></script>
+<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/vendors-node_modules_primer_react_lib-esm_ActionList_index_js-540a2acf621f.js"></script>
+<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/vendors-node_modules_primer_react_lib-esm_AnchoredOverlay_AnchoredOverlay_js-86d89e63ab43.js"></script>
+<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/vendors-node_modules_primer_react_lib-esm_Text_Text_js-node_modules_primer_react_lib-esm_Text-7845da-fcd32c85221a.js"></script>
+<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/vendors-node_modules_primer_react_lib-esm_FormControl_FormControl_js-88cc5f03ee87.js"></script>
+<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/vendors-node_modules_primer_react_lib-esm_ActionMenu_ActionMenu_js-1feceec002ca.js"></script>
 <script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/vendors-node_modules_react-router-dom_dist_index_js-c5568c29d405.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/vendors-node_modules_primer_react_lib-esm_ConfirmationDialog_ConfirmationDialog_js-node_modul-7bc97f-7f39c2b1e7b5.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/vendors-node_modules_primer_react_lib-esm_Link_Link_js-node_modules_primer_react_lib-esm_Page-7c6288-88bf2642dbaf.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/vendors-node_modules_primer_behaviors_dist_esm_anchored-position_js-node_modules_primer_react-b50cd1-64be83084b4d.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/vendors-node_modules_primer_behaviors_dist_esm_scroll-into-view_js-node_modules_primer_react_-5b7494-c46bc0fbbd59.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/ui_packages_react-core_create-browser-history_ts-ui_packages_safe-storage_safe-storage_ts-ui_-146db5-4ff26c6afe1c.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/ui_packages_react-core_register-app_ts-186d4b38d940.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/ui_packages_paths_index_ts-d1e89600e343.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/ui_packages_ref-selector_RefSelector_tsx-7b0796d1324c.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/ui_packages_code-view-shared_hooks_shortcuts_ts-ui_packages_code-view-shared_utilities_web-wo-e3361d-b2e98425b7b2.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/ui_packages_commit-checks-status_index_ts-ui_packages_react-core_use-feature-flag_ts-ui_packa-9dd6f2-583733a8feeb.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/ui_packages_copy-to-clipboard_index_ts-ui_packages_code-view-shared_components_SharedMarkdown-5ea86a-fe9d04fd99b0.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/ui_packages_code-view-shared_hooks_use-canonical-object_ts-ui_packages_code-view-shared_hooks-7c483a-5109503026f6.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/ui_packages_repos-file-tree-view_repos-file-tree-view_ts-ui_packages_feature-request_FeatureR-ec5225-9cf40ceee021.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/react-code-view-a2e63a321046.js"></script>
-<link crossorigin="anonymous" media="all" rel="stylesheet" href="../../../../../../github.githubassets.com/assets/primer-react-css.f1690139a6be14fb1874.module.css" />
-<link crossorigin="anonymous" media="all" rel="stylesheet" href="../../../../../../github.githubassets.com/assets/react-code-view.0c44c510c8fe603a5ebe.module.css" />
+<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/vendors-node_modules_primer_react_lib-esm_ConfirmationDialog_ConfirmationDialog_js-node_modul-c2760e-f5f937d74bc9.js"></script>
+<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/vendors-node_modules_primer_react_lib-esm_Link_Link_js-node_modules_primer_react_lib-esm_Page-7c6288-77cbb6f24761.js"></script>
+<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/vendors-node_modules_primer_react_lib-esm_Avatar_Avatar_js-node_modules_primer_react_lib-esm_-fb6c1e-00080761dedd.js"></script>
+<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/vendors-node_modules_primer_react_lib-esm_AvatarStack_AvatarStack_js-node_modules_primer_reac-17cfcf-497755fb1d11.js"></script>
+<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/ui_packages_react-core_create-browser-history_ts-ui_packages_react-core_AppContextProvider_ts-ffb979-d52ed27ec9e0.js"></script>
+<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/ui_packages_react-core_register-app_ts-ui_packages_react-core_JsonRoute_tsx-8206c4ec69d2.js"></script>
+<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/ui_packages_paths_index_ts-f182f2dad5f5.js"></script>
+<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/ui_packages_ref-selector_RefSelector_tsx-69cea3cdae62.js"></script>
+<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/ui_packages_code-view-shared_hooks_shortcuts_ts-ui_packages_code-view-shared_utilities_web-wo-e3361d-13b37feb76fe.js"></script>
+<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/ui_packages_commit-checks-status_index_ts-ui_packages_react-core_use-feature-flag_ts-ui_packa-9dd6f2-28ff797473af.js"></script>
+<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/ui_packages_copy-to-clipboard_index_ts-ui_packages_code-view-shared_components_SharedMarkdown-5ea86a-9984d10b58b2.js"></script>
+<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/ui_packages_code-view-shared_hooks_use-canonical-object_ts-ui_packages_code-view-shared_hooks-53e534-418b795573b7.js"></script>
+<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/ui_packages_repos-file-tree-view_repos-file-tree-view_ts-ui_packages_feature-request_FeatureR-648c3b-3c97f3fd2f80.js"></script>
+<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/react-code-view-065ec0dda581.js"></script>
+<link crossorigin="anonymous" media="all" rel="stylesheet" href="../../../../../../github.githubassets.com/assets/primer-react-css.8879c83c1311e6328466.module.css" />
+<link crossorigin="anonymous" media="all" rel="stylesheet" href="../../../../../../github.githubassets.com/assets/react-code-view.cbc84db7f6a2b0bd0a66.module.css" />
 
   <script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/react-lib-7b7b5264f6c1.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/vendors-node_modules_github_mini-throttle_dist_index_js-node_modules_primer_octicons-react_di-5313f5-a26a7ae9b364.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/vendors-node_modules_primer_react_lib-esm_Button_Button_js-efcf551d7ceb.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/vendors-node_modules_primer_react_lib-esm_TooltipV2_Tooltip_js-4d5019830e3c.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/vendors-node_modules_primer_react_node_modules_primer_octicons-react_dist_index_esm_mjs-a5155473fc69.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/vendors-node_modules_primer_react_lib-esm_ActionList_index_js-024af4771c08.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/vendors-node_modules_primer_react_lib-esm_Text_Text_js-node_modules_primer_react_lib-esm_Text-7845da-4bd585cba8cd.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/vendors-node_modules_primer_react_lib-esm_ActionMenu_ActionMenu_js-node_modules_primer_react_-5b2420-50d72766db7f.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/vendors-node_modules_primer_react_lib-esm_FormControl_FormControl_js-1f51ab2bdcca.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/vendors-node_modules_primer_react_lib-esm_FilteredActionList_FilteredActionList_js-5a52bf212e2b.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/vendors-node_modules_primer_react_lib-esm_Dialog_js-node_modules_primer_react_lib-esm_Feature-cdf735-f6da61d29c2f.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/ui_packages_react-core_create-browser-history_ts-ui_packages_safe-storage_safe-storage_ts-ui_-146db5-4ff26c6afe1c.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/notifications-subscriptions-menu-0d848806c097.js"></script>
-<link crossorigin="anonymous" media="all" rel="stylesheet" href="../../../../../../github.githubassets.com/assets/primer-react-css.f1690139a6be14fb1874.module.css" />
+<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/vendors-node_modules_github_mini-throttle_dist_index_js-node_modules_primer_react_lib-esm_Fea-39267a-9ffd541aafbc.js"></script>
+<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/vendors-node_modules_primer_react_lib-esm_Button_Button_js-f36ad879d477.js"></script>
+<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/vendors-node_modules_primer_react_lib-esm_TooltipV2_Tooltip_js-e39b44f27fbb.js"></script>
+<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/vendors-node_modules_primer_react_lib-esm_ActionList_index_js-540a2acf621f.js"></script>
+<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/vendors-node_modules_primer_react_lib-esm_AnchoredOverlay_AnchoredOverlay_js-86d89e63ab43.js"></script>
+<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/vendors-node_modules_primer_react_lib-esm_Text_Text_js-node_modules_primer_react_lib-esm_Text-7845da-fcd32c85221a.js"></script>
+<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/vendors-node_modules_primer_react_lib-esm_FormControl_FormControl_js-88cc5f03ee87.js"></script>
+<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/vendors-node_modules_primer_react_lib-esm_ActionMenu_ActionMenu_js-1feceec002ca.js"></script>
+<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/vendors-node_modules_primer_react_lib-esm_FilteredActionList_FilteredActionListEntry_js-a9743c14972c.js"></script>
+<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/ui_packages_react-core_create-browser-history_ts-ui_packages_react-core_AppContextProvider_ts-ffb979-d52ed27ec9e0.js"></script>
+<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/notifications-subscriptions-menu-9bbc77f99f9f.js"></script>
+<link crossorigin="anonymous" media="all" rel="stylesheet" href="../../../../../../github.githubassets.com/assets/primer-react-css.8879c83c1311e6328466.module.css" />
 <link crossorigin="anonymous" media="all" rel="stylesheet" href="../../../../../../github.githubassets.com/assets/notifications-subscriptions-menu.1bcff9205c241e99cff2.module.css" />
 
 
@@ -132,7 +132,7 @@
   <meta name="current-catalog-service-hash" content="f3abb0cc802f3d7b95fc8762b94bdcb13bf39634c40c357301c4aa1d67a256fb">
 
 
-  <meta name="request-id" content="5882:166595:23902B:3292EF:66E8489B" data-pjax-transient="true"/><meta name="html-safe-nonce" content="f7291422ff243b5b938b6aa05be50aeb6489de783e09592148c436147b8197ba" data-pjax-transient="true"/><meta name="visitor-payload" content="eyJyZWZlcnJlciI6IiIsInJlcXVlc3RfaWQiOiI1ODgyOjE2NjU5NToyMzkwMkI6MzI5MkVGOjY2RTg0ODlCIiwidmlzaXRvcl9pZCI6IjY0ODQwMDIxMDY5NzQwNjYxOSIsInJlZ2lvbl9lZGdlIjoiaWFkIiwicmVnaW9uX3JlbmRlciI6ImlhZCJ9" data-pjax-transient="true"/><meta name="visitor-hmac" content="eb1e42ea614da105fb6020044bf62f14a13f4060ac17b9dd404293c44e70b948" data-pjax-transient="true"/>
+  <meta name="request-id" content="8086:27ADD8:2726AD7:330F46A:66F8BD6D" data-pjax-transient="true"/><meta name="html-safe-nonce" content="1c78d3cbb1470af05a520bbbde3069a13d66534519a422b0986d0692ee8ce580" data-pjax-transient="true"/><meta name="visitor-payload" content="eyJyZWZlcnJlciI6IiIsInJlcXVlc3RfaWQiOiI4MDg2OjI3QUREODoyNzI2QUQ3OjMzMEY0NkE6NjZGOEJENkQiLCJ2aXNpdG9yX2lkIjoiMTE2MjI5OTA3MzUwNDAwMTM4OSIsInJlZ2lvbl9lZGdlIjoiaWFkIiwicmVnaW9uX3JlbmRlciI6ImlhZCJ9" data-pjax-transient="true"/><meta name="visitor-hmac" content="7744f12be759a9c737016595215356f2dd56cff5c78afee9eab34eb28580e600" data-pjax-transient="true"/>
 
 
     <meta name="hovercard-subject-tag" content="repository:35914020" data-turbo-transient>
@@ -171,8 +171,8 @@
     <meta property="fb:app_id" content="1401488693436528">
     <meta name="apple-itunes-app" content="app-id=1477376905, app-argument=https://github.com/ajv-validator/ajv/blob/master/lib/definition_schema.js" />
 
-      <meta name="twitter:image:src" content="https://opengraph.githubassets.com/2c976d1c789be018792d963485c25d6dae04b43ccc8deb41a585fcf3ad7296a0/ajv-validator/ajv" /><meta name="twitter:site" content="@github" /><meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content="File not found · ajv-validator/ajv" /><meta name="twitter:description" content="The fastest JSON schema Validator. Supports JSON Schema draft-04/06/07/2019-09/2020-12 and JSON Type Definition (RFC8927) - File not found · ajv-validator/ajv" />
-  <meta property="og:image" content="https://opengraph.githubassets.com/2c976d1c789be018792d963485c25d6dae04b43ccc8deb41a585fcf3ad7296a0/ajv-validator/ajv" /><meta property="og:image:alt" content="The fastest JSON schema Validator. Supports JSON Schema draft-04/06/07/2019-09/2020-12 and JSON Type Definition (RFC8927) - File not found · ajv-validator/ajv" /><meta property="og:image:width" content="1200" /><meta property="og:image:height" content="600" /><meta property="og:site_name" content="GitHub" /><meta property="og:type" content="object" /><meta property="og:title" content="File not found · ajv-validator/ajv" /><meta property="og:url" content="https://github.com/ajv-validator/ajv" /><meta property="og:description" content="The fastest JSON schema Validator. Supports JSON Schema draft-04/06/07/2019-09/2020-12 and JSON Type Definition (RFC8927) - File not found · ajv-validator/ajv" />
+      <meta name="twitter:image" content="https://opengraph.githubassets.com/82535b304f7026009356746edd4b3a97a55a07caa6fb4f2e330ae902fb7ea513/ajv-validator/ajv" /><meta name="twitter:site" content="@github" /><meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content="File not found · ajv-validator/ajv" /><meta name="twitter:description" content="The fastest JSON schema Validator. Supports JSON Schema draft-04/06/07/2019-09/2020-12 and JSON Type Definition (RFC8927) - File not found · ajv-validator/ajv" />
+  <meta property="og:image" content="https://opengraph.githubassets.com/82535b304f7026009356746edd4b3a97a55a07caa6fb4f2e330ae902fb7ea513/ajv-validator/ajv" /><meta property="og:image:alt" content="The fastest JSON schema Validator. Supports JSON Schema draft-04/06/07/2019-09/2020-12 and JSON Type Definition (RFC8927) - File not found · ajv-validator/ajv" /><meta property="og:image:width" content="1200" /><meta property="og:image:height" content="600" /><meta property="og:site_name" content="GitHub" /><meta property="og:type" content="object" /><meta property="og:title" content="File not found · ajv-validator/ajv" /><meta property="og:url" content="https://github.com/ajv-validator/ajv" /><meta property="og:description" content="The fastest JSON schema Validator. Supports JSON Schema draft-04/06/07/2019-09/2020-12 and JSON Type Definition (RFC8927) - File not found · ajv-validator/ajv" />
   
 
 
@@ -185,10 +185,10 @@
         <meta name="expected-hostname" content="github.com">
 
 
-  <meta http-equiv="x-pjax-version" content="18b6677a0c06018572856b4dcd7b9c03bc4a7e9a24799cf6e52e062340898c88" data-turbo-track="reload">
-  <meta http-equiv="x-pjax-csp-version" content="43bc2a0e2750a1219c17b5bf1ec22aae37041bbc018bc5e27bb7708f80e7ab88" data-turbo-track="reload">
-  <meta http-equiv="x-pjax-css-version" content="d899a446d5934f6bc7d9bf3f43c99703618d7a94ff9b24a140e021de63cf0ca6" data-turbo-track="reload">
-  <meta http-equiv="x-pjax-js-version" content="046666133459ff7ac1f81d50386f867737acb5009fdf8fcb63238fd1c9ce2338" data-turbo-track="reload">
+  <meta http-equiv="x-pjax-version" content="3c3ff2862fcd4a5aea3121022c74da2624be403f16e468ba98088ced5fdee74a" data-turbo-track="reload">
+  <meta http-equiv="x-pjax-csp-version" content="0dce51c2e7a33ec0a6fef31a50be00012f72c84aa83f30714a38ae191c3597fd" data-turbo-track="reload">
+  <meta http-equiv="x-pjax-css-version" content="091a7761541b52ebcac3c8d021e8cb5052f7988ef67beb57cd3e356780064bd8" data-turbo-track="reload">
+  <meta http-equiv="x-pjax-js-version" content="ce6c1aa2b164efc5156d73c8735a6e78b312563db6ca26fc8cf272fad7d26306" data-turbo-track="reload">
 
   <meta name="turbo-cache-control" content="no-preview" data-turbo-transient="">
 
@@ -233,9 +233,9 @@
     <span style="width: 0%;" data-view-component="true" class="Progress-item progress-pjax-loader-bar left-0 top-0 color-bg-accent-emphasis"></span>
 </span>      
       
-      <script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/vendors-node_modules_primer_react_lib-esm_KeybindingHint_KeybindingHint_js-node_modules_githu-3fe5e5-eb8be4bbb719.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/vendors-node_modules_primer_react_lib-esm_Dialog_Dialog_js-node_modules_primer_react_lib-esm_-cb29f3-457f74a2921f.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/keyboard-shortcuts-dialog-314f4fff0916.js"></script>
+      <script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/vendors-node_modules_primer_react_lib-esm_KeybindingHint_KeybindingHint_js-node_modules_githu-3fe5e5-779b0a7957e4.js"></script>
+<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/vendors-node_modules_primer_react_lib-esm_Dialog_Dialog_js-node_modules_primer_react_lib-esm_-34d71e-a36ca1cac968.js"></script>
+<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://opeyemitechpro.github.io/my-projects/assets/external/github.githubassets.com/assets/keyboard-shortcuts-dialog-3d3b90edc171.js"></script>
 
 <react-partial
   partial-name="keyboard-shortcuts-dialog"
@@ -791,7 +791,7 @@
                 
 
 
-<qbsearch-input class="search-input" data-scope="repo:ajv-validator/ajv" data-custom-scopes-path="/search/custom_scopes" data-delete-custom-scopes-csrf="p6elm5J8jqewAZxh0Utlo4PyEhjibHkQvQbh3gbxtSeA2Or3bbgDgx-jlhjnReHOyaWc3mjLxQwAaaPxLfGl3A" data-max-custom-scopes="10" data-header-redesign-enabled="false" data-initial-value="" data-blackbird-suggestions-path="/search/suggestions" data-jump-to-suggestions-path="/_graphql/GetSuggestedNavigationDestinations" data-current-repository="ajv-validator/ajv" data-current-org="ajv-validator" data-current-owner="" data-logged-in="false" data-copilot-chat-enabled="false" data-nl-search-enabled="false" data-retain-scroll-position="true">
+<qbsearch-input class="search-input" data-scope="repo:ajv-validator/ajv" data-custom-scopes-path="/search/custom_scopes" data-delete-custom-scopes-csrf="SolMghnfG5B18A-NB_L4UvsL_KZw0TKBk2mvqpAjPKbK7byKJjGDRAr8A4ez1DeTcKk_LHBWX3jBB8FVmjiqWA" data-max-custom-scopes="10" data-header-redesign-enabled="false" data-initial-value="" data-blackbird-suggestions-path="/search/suggestions" data-jump-to-suggestions-path="/_graphql/GetSuggestedNavigationDestinations" data-current-repository="ajv-validator/ajv" data-current-org="ajv-validator" data-current-owner="" data-logged-in="false" data-copilot-chat-enabled="false" data-nl-search-enabled="false" data-retain-scroll-position="true">
   <div
     class="search-input-container search-with-dialog position-relative d-flex flex-row flex-items-center mr-4 rounded"
     data-action="click:qbsearch-input#searchInputContainerClicked"
@@ -856,7 +856,7 @@
           ></div>
           <div class="QueryBuilder-InputWrapper">
             <div aria-hidden="true" class="QueryBuilder-Sizer" data-target="query-builder.sizer"></div>
-            <input id="query-builder-test" name="query-builder-test" value="" autocomplete="off" type="text" role="combobox" spellcheck="false" aria-expanded="false" aria-describedby="validation-dd89effa-64cb-42cd-85a2-0c4bcd6973fb" data-target="query-builder.input" data-action="
+            <input id="query-builder-test" name="query-builder-test" value="" autocomplete="off" type="text" role="combobox" spellcheck="false" aria-expanded="false" aria-describedby="validation-078215b4-b60b-4645-bd8d-89e7dca6e210" data-target="query-builder.input" data-action="
           input:query-builder#inputChange
           blur:query-builder#inputBlur
           keydown:query-builder#inputKeydown
@@ -1093,7 +1093,7 @@
                   id="query-builder-test-results"
                 ></ul>
         </div>
-      <div class="FormControl-inlineValidation" id="validation-dd89effa-64cb-42cd-85a2-0c4bcd6973fb" hidden="hidden">
+      <div class="FormControl-inlineValidation" id="validation-078215b4-b60b-4645-bd8d-89e7dca6e210" hidden="hidden">
         <span class="FormControl-inlineValidation--visual">
           <svg aria-hidden="true" height="12" viewBox="0 0 12 12" version="1.1" width="12" data-view-component="true" class="octicon octicon-alert-fill">
     <path d="M4.855.708c.5-.896 1.79-.896 2.29 0l4.675 8.351a1.312 1.312 0 0 1-1.146 1.954H1.33A1.313 1.313 0 0 1 .183 9.058ZM7 7V3H5v4Zm-1 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z"></path>
@@ -1136,7 +1136,7 @@
   
 </div>
       <scrollable-region data-labelled-by="feedback-dialog-title">
-        <div data-view-component="true" class="Overlay-body">        <!-- '"` --><!-- </textarea></xmp> --></option></form><form id="code-search-feedback-form" data-turbo="false" action="/search/feedback" accept-charset="UTF-8" method="post"><input type="hidden" data-csrf="true" name="authenticity_token" value="c5b+E+Zj8+XBZS0c8EUBPPJSeZcpCLSdSmpN6stxNU8VLNkWYq8OS1eS9D9ygX3j/zS6rSbKEr78J/FEeqD7Gg==" />
+        <div data-view-component="true" class="Overlay-body">        <!-- '"` --><!-- </textarea></xmp> --></option></form><form id="code-search-feedback-form" data-turbo="false" action="/search/feedback" accept-charset="UTF-8" method="post"><input type="hidden" data-csrf="true" name="authenticity_token" value="ThF1NKwQNEe8i2qYJLNXXb6S3ehBuJkvzXlfL+zghrxmeMCynFD0MXZNJ7SV1pvL4jWhvygVNRBx5ATGQglJDg==" />
           <p>We read every piece of feedback, and take your input very seriously.</p>
           <textarea name="feedback" class="form-control width-full mb-2" style="height: 120px" id="feedback"></textarea>
           <input name="include_email" id="include_email" aria-label="Include my email address so I can be contacted" class="form-control mr-2" type="checkbox">
@@ -1174,7 +1174,7 @@
         <div data-view-component="true" class="Overlay-body">        <div data-target="custom-scopes.customScopesModalDialogFlash"></div>
 
         <div hidden class="create-custom-scope-form" data-target="custom-scopes.createCustomScopeForm">
-        <!-- '"` --><!-- </textarea></xmp> --></option></form><form id="custom-scopes-dialog-form" data-turbo="false" action="/search/custom_scopes" accept-charset="UTF-8" method="post"><input type="hidden" data-csrf="true" name="authenticity_token" value="pjjuL7NnrANYmaaFBQEJtjHyv3QdW74GvUfhLXfXipO2MSnM7/N2jZ/xJ4C2NdPIjzOv8VwinptwCa1e56nKhw==" />
+        <!-- '"` --><!-- </textarea></xmp> --></option></form><form id="custom-scopes-dialog-form" data-turbo="false" action="/search/custom_scopes" accept-charset="UTF-8" method="post"><input type="hidden" data-csrf="true" name="authenticity_token" value="AoPfdYwjWNd7qAXVl/ujBzz2PYc/23AHnIMQuPwIc3dB0xavbDJ0qdHF1AVvS929lteTm7Dt7b3puYMoeaHkzw==" />
           <div data-target="custom-scopes.customScopesModalDialogFlash"></div>
 
           <input type="hidden" id="custom_scope_id" name="custom_scope_id" data-target="custom-scopes.customScopesIdField">
@@ -1192,7 +1192,7 @@
                 placeholder="github-ruby"
                 required
                 maxlength="50">
-              <input type="hidden" data-csrf="true" value="l0vXeM8nCE6IGGgH/z0nR7LalHSpJjfQUIxD8OxkLogHh1yc2yMZTUIaHtfGcsyAyWqAvvitk2/fPaejp56kQw==" />
+              <input type="hidden" data-csrf="true" value="H2evybH51n21rkaZawIxabLQ+AWLVfGNKW/GiMcII/PZ6PcgyDYlv+JuK/EuDSNPMZ1De4N7NRoS1Tgw5TPHUQ==" />
             </auto-check>
           </div>
 
@@ -1246,7 +1246,7 @@
     <h4 data-view-component="true" class="color-fg-default mb-2">                    Sign in to GitHub
 </h4>
                         
-<!-- '"` --><!-- </textarea></xmp> --></option></form><form data-turbo="false" action="/session" accept-charset="UTF-8" method="post"><input type="hidden" data-csrf="true" name="authenticity_token" value="IFXr9MwXCvxt41xXk9K82AM2PAFAvGteIkCtkUBzzLVExI6LeheaIaLtVDlG8J9365wByynxhHlzq0GAqq0Tiw==" />  <input type="hidden" name="add_account" id="add_account" autocomplete="off" class="form-control" />
+<!-- '"` --><!-- </textarea></xmp> --></option></form><form data-turbo="false" action="/session" accept-charset="UTF-8" method="post"><input type="hidden" data-csrf="true" name="authenticity_token" value="uQ7lolayzz3PDtL1H3Y4vvB11x0MHNNPklqM/P6BMlUWMBnV1bjMwtWNWyB2G9ZN624VU6frdd/Rd/S7qVvc4w==" />  <input type="hidden" name="add_account" id="add_account" autocomplete="off" class="form-control" />
 
     <label for="login_field">
       Username or email address
@@ -1268,9 +1268,9 @@
 <input type="hidden" name="allow_signup" id="allow_signup" autocomplete="off" class="form-control" />
 <input type="hidden" name="client_id" id="client_id" autocomplete="off" class="form-control" />
 <input type="hidden" name="integration" id="integration" autocomplete="off" class="form-control" />
-<input class="form-control" type="text" name="required_field_b06b" hidden="hidden" />
-<input class="form-control" type="hidden" name="timestamp" value="1726498971509" />
-<input class="form-control" type="hidden" name="timestamp_secret" value="807dd3de9eddafa0c8bec10a34df7e68a7a29b654a5b078c6b9baac99443b9e2" />
+<input class="form-control" type="text" name="required_field_5193" hidden="hidden" />
+<input class="form-control" type="hidden" name="timestamp" value="1727577453515" />
+<input class="form-control" type="hidden" name="timestamp_secret" value="fc0fecb6496f49d1bac88092506cdfcaec3be3903047336f54f5b97186592974" />
 
 
     <input type="submit" name="commit" value="Sign in" class="btn btn-primary btn-block js-sign-in-button" data-disable-with="Signing in…" data-signin-label="Sign in" data-sso-label="Sign in with your identity provider" development="false" disable-emu-sso="false" />
@@ -1310,10 +1310,10 @@
         <span class="js-stale-session-flash-signed-out" hidden>You signed out in another tab or window. <a class="Link--inTextBlock" href="">Reload</a> to refresh your session.</span>
         <span class="js-stale-session-flash-switched" hidden>You switched accounts on another tab or window. <a class="Link--inTextBlock" href="">Reload</a> to refresh your session.</span>
 
-    <button id="icon-button-4a3e505f-e40b-45a6-8626-f622fc7ccb59" aria-labelledby="tooltip-953097a5-a03d-4b29-b6e2-bddf4487d823" type="button" data-view-component="true" class="Button Button--iconOnly Button--invisible Button--medium flash-close js-flash-close">  <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-x Button-visual">
+    <button id="icon-button-621b237a-e5bc-4c13-9b5e-6dad351db629" aria-labelledby="tooltip-f1d0bea7-754f-4a43-af92-fcea8bcdfc0f" type="button" data-view-component="true" class="Button Button--iconOnly Button--invisible Button--medium flash-close js-flash-close">  <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-x Button-visual">
     <path d="M3.72 3.72a.75.75 0 0 1 1.06 0L8 6.94l3.22-3.22a.749.749 0 0 1 1.275.326.749.749 0 0 1-.215.734L9.06 8l3.22 3.22a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215L8 9.06l-3.22 3.22a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042L6.94 8 3.72 4.78a.75.75 0 0 1 0-1.06Z"></path>
 </svg>
-</button><tool-tip id="tooltip-953097a5-a03d-4b29-b6e2-bddf4487d823" for="icon-button-4a3e505f-e40b-45a6-8626-f622fc7ccb59" popover="manual" data-direction="s" data-type="label" data-view-component="true" class="sr-only position-absolute">Dismiss alert</tool-tip>
+</button><tool-tip id="tooltip-f1d0bea7-754f-4a43-af92-fcea8bcdfc0f" for="icon-button-621b237a-e5bc-4c13-9b5e-6dad351db629" popover="manual" data-direction="s" data-type="label" data-view-component="true" class="sr-only position-absolute">Dismiss alert</tool-tip>
 
 
   
@@ -1383,6 +1383,7 @@
   
   <div id="repository-container-header"  class="pt-3 hide-full-screen" style="background-color: var(--page-header-bgColor, var(--color-page-header-bg));" data-turbo-replace>
 
+
       <div class="d-flex flex-nowrap flex-justify-end mb-3  px-3 px-lg-5" style="gap: 1rem;">
 
         <div class="flex-auto min-width-0 width-fit">
@@ -1420,7 +1421,7 @@
             <a href="/login?return_to=%2Fajv-validator%2Fajv" rel="nofollow" id="repository-details-watch-button" data-hydro-click="{&quot;event_type&quot;:&quot;authentication.click&quot;,&quot;payload&quot;:{&quot;location_in_page&quot;:&quot;notification subscription menu watch&quot;,&quot;repository_id&quot;:null,&quot;auth_type&quot;:&quot;LOG_IN&quot;,&quot;originating_url&quot;:&quot;https://github.com/ajv-validator/ajv/blob/master/lib/definition_schema.js&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="f4f05ef361aae99c8434d8bc6338ccee8532f3324c7dd196635eaf9b12eb1c31" aria-label="You must be signed in to change notification settings" data-view-component="true" class="btn-sm btn">    <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-bell mr-2">
     <path d="M8 16a2 2 0 0 0 1.985-1.75c.017-.137-.097-.25-.235-.25h-3.5c-.138 0-.252.113-.235.25A2 2 0 0 0 8 16ZM3 5a5 5 0 0 1 10 0v2.947c0 .05.015.098.042.139l1.703 2.555A1.519 1.519 0 0 1 13.482 13H2.518a1.516 1.516 0 0 1-1.263-2.36l1.703-2.554A.255.255 0 0 0 3 7.947Zm5-3.5A3.5 3.5 0 0 0 4.5 5v2.947c0 .346-.102.683-.294.97l-1.703 2.556a.017.017 0 0 0-.003.01l.001.006c0 .002.002.004.004.006l.006.004.007.001h10.964l.007-.001.006-.004.004-.006.001-.007a.017.017 0 0 0-.003-.01l-1.703-2.554a1.745 1.745 0 0 1-.294-.97V5A3.5 3.5 0 0 0 8 1.5Z"></path>
 </svg>Notifications
-</a>    <tool-tip id="tooltip-4f0ae8ee-676d-4619-9101-e8be038e08a7" for="repository-details-watch-button" popover="manual" data-direction="s" data-type="description" data-view-component="true" class="sr-only position-absolute">You must be signed in to change notification settings</tool-tip>
+</a>    <tool-tip id="tooltip-4fedf8a8-5b0b-45a9-903b-58c6cbd07cbc" for="repository-details-watch-button" popover="manual" data-direction="s" data-type="description" data-view-component="true" class="sr-only position-absolute">You must be signed in to change notification settings</tool-tip>
 
   </li>
 
@@ -1428,7 +1429,7 @@
           <a icon="repo-forked" id="fork-button" href="/login?return_to=%2Fajv-validator%2Fajv" rel="nofollow" data-hydro-click="{&quot;event_type&quot;:&quot;authentication.click&quot;,&quot;payload&quot;:{&quot;location_in_page&quot;:&quot;repo details fork button&quot;,&quot;repository_id&quot;:35914020,&quot;auth_type&quot;:&quot;LOG_IN&quot;,&quot;originating_url&quot;:&quot;https://github.com/ajv-validator/ajv/blob/master/lib/definition_schema.js&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="9121342f8cdb39f363b0f1998e0b953694bbf28799e4efce6f87b93bb42dd260" data-view-component="true" class="btn-sm btn">    <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-repo-forked mr-2">
     <path d="M5 5.372v.878c0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75v-.878a2.25 2.25 0 1 1 1.5 0v.878a2.25 2.25 0 0 1-2.25 2.25h-1.5v2.128a2.251 2.251 0 1 1-1.5 0V8.5h-1.5A2.25 2.25 0 0 1 3.5 6.25v-.878a2.25 2.25 0 1 1 1.5 0ZM5 3.25a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Zm6.75.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm-3 8.75a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Z"></path>
 </svg>Fork
-    <span id="repo-network-counter" data-pjax-replace="true" data-turbo-replace="true" title="870" data-view-component="true" class="Counter">870</span>
+    <span id="repo-network-counter" data-pjax-replace="true" data-turbo-replace="true" title="872" data-view-component="true" class="Counter">872</span>
 </a>
   </li>
 
@@ -1438,7 +1439,7 @@
     <path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.751.751 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Zm0 2.445L6.615 5.5a.75.75 0 0 1-.564.41l-3.097.45 2.24 2.184a.75.75 0 0 1 .216.664l-.528 3.084 2.769-1.456a.75.75 0 0 1 .698 0l2.77 1.456-.53-3.084a.75.75 0 0 1 .216-.664l2.24-2.183-3.096-.45a.75.75 0 0 1-.564-.41L8 2.694Z"></path>
 </svg><span data-view-component="true" class="d-inline">
           Star
-</span>          <span id="repo-stars-counter-star" aria-label="13726 users starred this repository" data-singular-suffix="user starred this repository" data-plural-suffix="users starred this repository" data-turbo-replace="true" title="13,726" data-view-component="true" class="Counter js-social-count">13.7k</span>
+</span>          <span id="repo-stars-counter-star" aria-label="13751 users starred this repository" data-singular-suffix="user starred this repository" data-plural-suffix="users starred this repository" data-turbo-replace="true" title="13,751" data-view-component="true" class="Counter js-social-count">13.8k</span>
 </a></div>
   </li>
 
@@ -1467,7 +1468,7 @@
     
 </a></li>
       <li data-view-component="true" class="d-inline-flex">
-  <a id="issues-tab" href="/ajv-validator/ajv/issues" data-tab-item="i1issues-tab" data-selected-links="repo_issues repo_labels repo_milestones /ajv-validator/ajv/issues /_view_fragments/issues/index/ajv-validator/ajv/layout" data-pjax="#repo-content-pjax-container" data-turbo-frame="repo-content-turbo-frame" data-hotkey="g i" data-analytics-event="{&quot;category&quot;:&quot;Underline navbar&quot;,&quot;action&quot;:&quot;Click tab&quot;,&quot;label&quot;:&quot;Issues&quot;,&quot;target&quot;:&quot;UNDERLINE_NAV.TAB&quot;}" data-view-component="true" class="UnderlineNav-item no-wrap js-responsive-underlinenav-item js-selected-navigation-item">
+  <a id="issues-tab" href="/ajv-validator/ajv/issues" data-tab-item="i1issues-tab" data-selected-links="repo_issues repo_labels repo_milestones /ajv-validator/ajv/issues" data-pjax="#repo-content-pjax-container" data-turbo-frame="repo-content-turbo-frame" data-hotkey="g i" data-analytics-event="{&quot;category&quot;:&quot;Underline navbar&quot;,&quot;action&quot;:&quot;Click tab&quot;,&quot;label&quot;:&quot;Issues&quot;,&quot;target&quot;:&quot;UNDERLINE_NAV.TAB&quot;}" data-view-component="true" class="UnderlineNav-item no-wrap js-responsive-underlinenav-item js-selected-navigation-item">
     
               <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-issue-opened UnderlineNav-octicon d-none d-sm-inline">
     <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z"></path><path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0ZM1.5 8a6.5 6.5 0 1 0 13 0 6.5 6.5 0 0 0-13 0Z"></path>
@@ -1540,22 +1541,22 @@
 </ul>
     <div style="visibility:hidden;" data-view-component="true" class="UnderlineNav-actions js-responsive-underlinenav-overflow position-absolute pr-3 pr-md-4 pr-lg-5 right-0">      <action-menu data-select-variant="none" data-view-component="true">
   <focus-group direction="vertical" mnemonics retain>
-    <button id="action-menu-32303e79-64f1-44da-922a-3f2091b5d215-button" popovertarget="action-menu-32303e79-64f1-44da-922a-3f2091b5d215-overlay" aria-controls="action-menu-32303e79-64f1-44da-922a-3f2091b5d215-list" aria-haspopup="true" aria-labelledby="tooltip-dd77fcce-6684-4943-8efc-2e350838bce8" type="button" data-view-component="true" class="Button Button--iconOnly Button--secondary Button--medium UnderlineNav-item">  <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-kebab-horizontal Button-visual">
+    <button id="action-menu-78e0bdd0-2682-446e-985a-9e8cd168e153-button" popovertarget="action-menu-78e0bdd0-2682-446e-985a-9e8cd168e153-overlay" aria-controls="action-menu-78e0bdd0-2682-446e-985a-9e8cd168e153-list" aria-haspopup="true" aria-labelledby="tooltip-4fd579ad-39a8-4be3-bbe7-def0cd469044" type="button" data-view-component="true" class="Button Button--iconOnly Button--secondary Button--medium UnderlineNav-item">  <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-kebab-horizontal Button-visual">
     <path d="M8 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3ZM1.5 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Zm13 0a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z"></path>
 </svg>
-</button><tool-tip id="tooltip-dd77fcce-6684-4943-8efc-2e350838bce8" for="action-menu-32303e79-64f1-44da-922a-3f2091b5d215-button" popover="manual" data-direction="s" data-type="label" data-view-component="true" class="sr-only position-absolute">Additional navigation options</tool-tip>
+</button><tool-tip id="tooltip-4fd579ad-39a8-4be3-bbe7-def0cd469044" for="action-menu-78e0bdd0-2682-446e-985a-9e8cd168e153-button" popover="manual" data-direction="s" data-type="label" data-view-component="true" class="sr-only position-absolute">Additional navigation options</tool-tip>
 
 
-<anchored-position id="action-menu-32303e79-64f1-44da-922a-3f2091b5d215-overlay" anchor="action-menu-32303e79-64f1-44da-922a-3f2091b5d215-button" align="start" side="outside-bottom" anchor-offset="normal" popover="auto" data-view-component="true">
+<anchored-position id="action-menu-78e0bdd0-2682-446e-985a-9e8cd168e153-overlay" anchor="action-menu-78e0bdd0-2682-446e-985a-9e8cd168e153-button" align="start" side="outside-bottom" anchor-offset="normal" popover="auto" data-view-component="true">
   <div data-view-component="true" class="Overlay Overlay--size-auto">
     
       <div data-view-component="true" class="Overlay-body Overlay-body--paddingNone">          <action-list>
   <div data-view-component="true">
-    <ul aria-labelledby="action-menu-32303e79-64f1-44da-922a-3f2091b5d215-button" id="action-menu-32303e79-64f1-44da-922a-3f2091b5d215-list" role="menu" data-view-component="true" class="ActionListWrap--inset ActionListWrap">
+    <ul aria-labelledby="action-menu-78e0bdd0-2682-446e-985a-9e8cd168e153-button" id="action-menu-78e0bdd0-2682-446e-985a-9e8cd168e153-list" role="menu" data-view-component="true" class="ActionListWrap--inset ActionListWrap">
         <li hidden="hidden" data-menu-item="i0code-tab" data-targets="action-list.items" role="none" data-view-component="true" class="ActionListItem">
     
     
-    <a tabindex="-1" id="item-d719d782-2615-4ae8-970e-162f8682a151" href="/ajv-validator/ajv" role="menuitem" data-view-component="true" class="ActionListContent ActionListContent--visual16">
+    <a tabindex="-1" id="item-b5e055c4-9861-4211-85f1-0f2a68da2e95" href="/ajv-validator/ajv" role="menuitem" data-view-component="true" class="ActionListContent ActionListContent--visual16">
         <span class="ActionListItem-visual ActionListItem-visual--leading">
           <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-code">
     <path d="m11.28 3.22 4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.749.749 0 0 1-1.275-.326.749.749 0 0 1 .215-.734L13.94 8l-3.72-3.72a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215Zm-6.56 0a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042L2.06 8l3.72 3.72a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215L.47 8.53a.75.75 0 0 1 0-1.06Z"></path>
@@ -1571,7 +1572,7 @@
         <li hidden="hidden" data-menu-item="i1issues-tab" data-targets="action-list.items" role="none" data-view-component="true" class="ActionListItem">
     
     
-    <a tabindex="-1" id="item-32cf26ee-cf56-4e3c-8f1d-27e348423677" href="/ajv-validator/ajv/issues" role="menuitem" data-view-component="true" class="ActionListContent ActionListContent--visual16">
+    <a tabindex="-1" id="item-887e2746-7528-4cf1-a109-bcc05837e04b" href="/ajv-validator/ajv/issues" role="menuitem" data-view-component="true" class="ActionListContent ActionListContent--visual16">
         <span class="ActionListItem-visual ActionListItem-visual--leading">
           <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-issue-opened">
     <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z"></path><path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0ZM1.5 8a6.5 6.5 0 1 0 13 0 6.5 6.5 0 0 0-13 0Z"></path>
@@ -1587,7 +1588,7 @@
         <li hidden="hidden" data-menu-item="i2pull-requests-tab" data-targets="action-list.items" role="none" data-view-component="true" class="ActionListItem">
     
     
-    <a tabindex="-1" id="item-f873eff6-24dc-4867-b5c8-2df19d159590" href="/ajv-validator/ajv/pulls" role="menuitem" data-view-component="true" class="ActionListContent ActionListContent--visual16">
+    <a tabindex="-1" id="item-4819fbd0-7c24-422d-894f-f6ed59c9ce9c" href="/ajv-validator/ajv/pulls" role="menuitem" data-view-component="true" class="ActionListContent ActionListContent--visual16">
         <span class="ActionListItem-visual ActionListItem-visual--leading">
           <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-git-pull-request">
     <path d="M1.5 3.25a2.25 2.25 0 1 1 3 2.122v5.256a2.251 2.251 0 1 1-1.5 0V5.372A2.25 2.25 0 0 1 1.5 3.25Zm5.677-.177L9.573.677A.25.25 0 0 1 10 .854V2.5h1A2.5 2.5 0 0 1 13.5 5v5.628a2.251 2.251 0 1 1-1.5 0V5a1 1 0 0 0-1-1h-1v1.646a.25.25 0 0 1-.427.177L7.177 3.427a.25.25 0 0 1 0-.354ZM3.75 2.5a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5Zm0 9.5a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5Zm8.25.75a.75.75 0 1 0 1.5 0 .75.75 0 0 0-1.5 0Z"></path>
@@ -1603,7 +1604,7 @@
         <li hidden="hidden" data-menu-item="i3discussions-tab" data-targets="action-list.items" role="none" data-view-component="true" class="ActionListItem">
     
     
-    <a tabindex="-1" id="item-1766de0a-2f37-4f70-811f-694d03cf1e69" href="/ajv-validator/ajv/discussions" role="menuitem" data-view-component="true" class="ActionListContent ActionListContent--visual16">
+    <a tabindex="-1" id="item-5040d6d0-1e1b-4788-9ddf-31e8b2cd7f69" href="/ajv-validator/ajv/discussions" role="menuitem" data-view-component="true" class="ActionListContent ActionListContent--visual16">
         <span class="ActionListItem-visual ActionListItem-visual--leading">
           <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-comment-discussion">
     <path d="M1.75 1h8.5c.966 0 1.75.784 1.75 1.75v5.5A1.75 1.75 0 0 1 10.25 10H7.061l-2.574 2.573A1.458 1.458 0 0 1 2 11.543V10h-.25A1.75 1.75 0 0 1 0 8.25v-5.5C0 1.784.784 1 1.75 1ZM1.5 2.75v5.5c0 .138.112.25.25.25h1a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h3.5a.25.25 0 0 0 .25-.25v-5.5a.25.25 0 0 0-.25-.25h-8.5a.25.25 0 0 0-.25.25Zm13 2a.25.25 0 0 0-.25-.25h-.5a.75.75 0 0 1 0-1.5h.5c.966 0 1.75.784 1.75 1.75v5.5A1.75 1.75 0 0 1 14.25 12H14v1.543a1.458 1.458 0 0 1-2.487 1.03L9.22 12.28a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l2.22 2.22v-2.19a.75.75 0 0 1 .75-.75h1a.25.25 0 0 0 .25-.25Z"></path>
@@ -1619,7 +1620,7 @@
         <li hidden="hidden" data-menu-item="i4actions-tab" data-targets="action-list.items" role="none" data-view-component="true" class="ActionListItem">
     
     
-    <a tabindex="-1" id="item-e1867a7f-eec8-49ca-a2b8-c050f01dfd08" href="/ajv-validator/ajv/actions" role="menuitem" data-view-component="true" class="ActionListContent ActionListContent--visual16">
+    <a tabindex="-1" id="item-d6ea3fe1-80cc-441b-a5e5-82cfc957a4cf" href="/ajv-validator/ajv/actions" role="menuitem" data-view-component="true" class="ActionListContent ActionListContent--visual16">
         <span class="ActionListItem-visual ActionListItem-visual--leading">
           <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-play">
     <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0ZM1.5 8a6.5 6.5 0 1 0 13 0 6.5 6.5 0 0 0-13 0Zm4.879-2.773 4.264 2.559a.25.25 0 0 1 0 .428l-4.264 2.559A.25.25 0 0 1 6 10.559V5.442a.25.25 0 0 1 .379-.215Z"></path>
@@ -1635,7 +1636,7 @@
         <li hidden="hidden" data-menu-item="i5security-tab" data-targets="action-list.items" role="none" data-view-component="true" class="ActionListItem">
     
     
-    <a tabindex="-1" id="item-6c3ed040-5163-4f75-8656-f159ef0614dc" href="/ajv-validator/ajv/security" role="menuitem" data-view-component="true" class="ActionListContent ActionListContent--visual16">
+    <a tabindex="-1" id="item-94df0557-20b5-4748-8650-a1c5ab1990c7" href="/ajv-validator/ajv/security" role="menuitem" data-view-component="true" class="ActionListContent ActionListContent--visual16">
         <span class="ActionListItem-visual ActionListItem-visual--leading">
           <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-shield">
     <path d="M7.467.133a1.748 1.748 0 0 1 1.066 0l5.25 1.68A1.75 1.75 0 0 1 15 3.48V7c0 1.566-.32 3.182-1.303 4.682-.983 1.498-2.585 2.813-5.032 3.855a1.697 1.697 0 0 1-1.33 0c-2.447-1.042-4.049-2.357-5.032-3.855C1.32 10.182 1 8.566 1 7V3.48a1.75 1.75 0 0 1 1.217-1.667Zm.61 1.429a.25.25 0 0 0-.153 0l-5.25 1.68a.25.25 0 0 0-.174.238V7c0 1.358.275 2.666 1.057 3.86.784 1.194 2.121 2.34 4.366 3.297a.196.196 0 0 0 .154 0c2.245-.956 3.582-2.104 4.366-3.298C13.225 9.666 13.5 8.36 13.5 7V3.48a.251.251 0 0 0-.174-.237l-5.25-1.68ZM8.75 4.75v3a.75.75 0 0 1-1.5 0v-3a.75.75 0 0 1 1.5 0ZM9 10.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path>
@@ -1651,7 +1652,7 @@
         <li hidden="hidden" data-menu-item="i6insights-tab" data-targets="action-list.items" role="none" data-view-component="true" class="ActionListItem">
     
     
-    <a tabindex="-1" id="item-d3827fda-d7de-4ddf-945c-b5cd7effebc4" href="/ajv-validator/ajv/pulse" role="menuitem" data-view-component="true" class="ActionListContent ActionListContent--visual16">
+    <a tabindex="-1" id="item-37d5e08e-cb1d-4f16-92a0-04e40ed27a39" href="/ajv-validator/ajv/pulse" role="menuitem" data-view-component="true" class="ActionListContent ActionListContent--visual16">
         <span class="ActionListItem-visual ActionListItem-visual--leading">
           <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-graph">
     <path d="M1.5 1.75V13.5h13.75a.75.75 0 0 1 0 1.5H.75a.75.75 0 0 1-.75-.75V1.75a.75.75 0 0 1 1.5 0Zm14.28 2.53-5.25 5.25a.75.75 0 0 1-1.06 0L7 7.06 4.28 9.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.25-3.25a.75.75 0 0 1 1.06 0L10 7.94l4.72-4.72a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042Z"></path>
@@ -1707,7 +1708,7 @@
   data-alternate="false"
 >
   
-  <script type="application/json" data-target="react-app.embeddedData">{"payload":{"path":"lib/definition_schema.js","repo":{"id":35914020,"defaultBranch":"master","name":"ajv","ownerLogin":"ajv-validator","currentUserCanPush":false,"isFork":false,"isEmpty":false,"createdAt":"2015-05-19T23:23:32.000Z","ownerAvatar":"https://avatars.githubusercontent.com/u/46839968?v=4","public":true,"private":false,"isOrgOwned":true},"refInfo":{"name":"master","listCacheKey":"v0:1726387302.0","canEdit":false,"refType":"branch","currentOid":"69568d08564303e2c32a2de61feb833b41075f96"},"currentUser":null,"fileTree":{"":{"items":[{"name":".github","path":".github","contentType":"directory"},{"name":"benchmark","path":"benchmark","contentType":"directory"},{"name":"docs","path":"docs","contentType":"directory"},{"name":"lib","path":"lib","contentType":"directory"},{"name":"scripts","path":"scripts","contentType":"directory"},{"name":"spec","path":"spec","contentType":"directory"},{"name":".eslintrc.js","path":".eslintrc.js","contentType":"file"},{"name":".gitignore","path":".gitignore","contentType":"file"},{"name":".gitmodules","path":".gitmodules","contentType":"file"},{"name":".npmrc","path":".npmrc","contentType":"file"},{"name":".prettierignore","path":".prettierignore","contentType":"file"},{"name":".runkit_example.js","path":".runkit_example.js","contentType":"file"},{"name":"CODE_OF_CONDUCT.md","path":"CODE_OF_CONDUCT.md","contentType":"file"},{"name":"CONTRIBUTING.md","path":"CONTRIBUTING.md","contentType":"file"},{"name":"LICENSE","path":"LICENSE","contentType":"file"},{"name":"README.md","path":"README.md","contentType":"file"},{"name":"bower.json","path":"bower.json","contentType":"file"},{"name":"karma.conf.js","path":"karma.conf.js","contentType":"file"},{"name":"package.json","path":"package.json","contentType":"file"},{"name":"rollup.config.js","path":"rollup.config.js","contentType":"file"},{"name":"tsconfig.json","path":"tsconfig.json","contentType":"file"}],"totalCount":21}},"fileTreeProcessingTime":3.321432,"foldersToFetch":[],"allShortcutsEnabled":false,"error":{"httpStatus":404,"type":"httpError"}},"title":"File not found","appPayload":{"helpUrl":"https://docs.github.com","findFileWorkerPath":"/assets-cdn/worker/find-file-worker-1583894afd38.js","findInFileWorkerPath":"/assets-cdn/worker/find-in-file-worker-03b87d52cf57.js","githubDevUrl":null,"enabled_features":{"code_nav_ui_events":false,"overview_shared_code_dropdown_button":false,"react_blob_overlay":false,"copilot_conversational_ux_embedding_update":false,"copilot_smell_icebreaker_ux":true,"copilot_workspace":false}}}</script>
+  <script type="application/json" data-target="react-app.embeddedData">{"payload":{"path":"lib/definition_schema.js","repo":{"id":35914020,"defaultBranch":"master","name":"ajv","ownerLogin":"ajv-validator","currentUserCanPush":false,"isFork":false,"isEmpty":false,"createdAt":"2015-05-19T23:23:32.000Z","ownerAvatar":"https://avatars.githubusercontent.com/u/46839968?v=4","public":true,"private":false,"isOrgOwned":true},"refInfo":{"name":"master","listCacheKey":"v0:1726387302.0","canEdit":false,"refType":"branch","currentOid":"69568d08564303e2c32a2de61feb833b41075f96"},"currentUser":null,"fileTree":{"":{"items":[{"name":".github","path":".github","contentType":"directory"},{"name":"benchmark","path":"benchmark","contentType":"directory"},{"name":"docs","path":"docs","contentType":"directory"},{"name":"lib","path":"lib","contentType":"directory"},{"name":"scripts","path":"scripts","contentType":"directory"},{"name":"spec","path":"spec","contentType":"directory"},{"name":".eslintrc.js","path":".eslintrc.js","contentType":"file"},{"name":".gitignore","path":".gitignore","contentType":"file"},{"name":".gitmodules","path":".gitmodules","contentType":"file"},{"name":".npmrc","path":".npmrc","contentType":"file"},{"name":".prettierignore","path":".prettierignore","contentType":"file"},{"name":".runkit_example.js","path":".runkit_example.js","contentType":"file"},{"name":"CODE_OF_CONDUCT.md","path":"CODE_OF_CONDUCT.md","contentType":"file"},{"name":"CONTRIBUTING.md","path":"CONTRIBUTING.md","contentType":"file"},{"name":"LICENSE","path":"LICENSE","contentType":"file"},{"name":"README.md","path":"README.md","contentType":"file"},{"name":"bower.json","path":"bower.json","contentType":"file"},{"name":"karma.conf.js","path":"karma.conf.js","contentType":"file"},{"name":"package.json","path":"package.json","contentType":"file"},{"name":"rollup.config.js","path":"rollup.config.js","contentType":"file"},{"name":"tsconfig.json","path":"tsconfig.json","contentType":"file"}],"totalCount":21}},"fileTreeProcessingTime":16.264122999999998,"foldersToFetch":[],"allShortcutsEnabled":false,"error":{"httpStatus":404,"type":"httpError"}},"title":"File not found","appPayload":{"helpUrl":"https://docs.github.com","findFileWorkerPath":"/assets-cdn/worker/find-file-worker-1583894afd38.js","findInFileWorkerPath":"/assets-cdn/worker/find-in-file-worker-03b87d52cf57.js","githubDevUrl":null,"enabled_features":{"code_nav_ui_events":false,"overview_shared_code_dropdown_button":false,"react_blob_overlay":false,"copilot_conversational_ux_embedding_update":false,"copilot_smell_icebreaker_ux":true,"copilot_workspace":false,"accessible_code_button":false}}}</script>
   <div data-target="react-app.reactRoot"></div>
 </react-app>
 </turbo-frame>
