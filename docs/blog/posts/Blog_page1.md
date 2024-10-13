@@ -15,12 +15,14 @@ categories:
 
 # How I Got $300 FREE AWS Credits
 
-[![$300 AWS Credits](../assets/images/$300_AWS_Credit.png "$300 AWS Credits")](https://opeyemitech.pro/my-projects/blog)
+[![$300 AWS Credits](../../assets/images/$300_AWS_Credit.png "$300 AWS Credits")](https://opeyemitech.pro/my-projects/blog)
 
 <figure markdown="span">
-  ![How I Got $300 FREE AWS Credits1](../assets/images/$300_AWS_Credit.png "How I Got $300 FREE AWS Credits2"){ width="600" }
+  ![How I Got $300 FREE AWS Credits1](../../assets/images/$300_AWS_Credit.png "How I Got $300 FREE AWS Credits2"){ width="600" }
   <figcaption>How I Got $300 FREE AWS Credits3</figcaption>
 </figure>
+
+<!-- more -->
 
 
 ??? youtube "Video - Watch this YouTube Video Where I explained How I Got $300 FREE AWS Credits"
@@ -32,7 +34,6 @@ categories:
 
 Welcome to OpeyemiTechPro Blog for Cloud Engineering and DevOps Stuff
 
-<!-- more -->
 
 ## The Invitation by AWS
 
@@ -65,4 +66,3 @@ If you have questions about the process or how to make the most out of AWS credi
 
 ---
 
-This post introduces your journey, teases your upcoming video, and gives a sense of how the credits have empowered your projects. How does it look?
