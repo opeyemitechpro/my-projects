@@ -56,6 +56,7 @@ __To qualify for the $300 AWS Rapid Ramp Credit Program, you must have:__
 Applying for AWS credits is simple. Start by visiting the AWS Promotional Credits page (link below), where you’ll find the application form. You’ll need to provide basic details about your AWS account, your project description and intent explaining how you plan to use AWS services. Be clear about your goals and the value AWS will bring to your project. Once submitted, AWS typically reviews your request within a few days. If approved, you’ll receive an email notification saying te credits have been applied to your account and you can view your credits from your __AWS Billing and Cost Mangement Console.__
 
 [**Click Here to apply for the $300 AWS Rapid Ramp Credit Program**](https://pages.awscloud.com/GLOBAL_NCA_LN_ARRC-program-A300-2023.html)
+![AWS Rapid Ramp Credit Program](../../assets/images/300_AWS_Credit.png "AWS Rapid Ramp Credit Program")
 
 
 **What Services Does the AWS Credits Cover?**
