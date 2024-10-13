@@ -13,7 +13,7 @@ categories:
 
 ---
 
-# How I Got $300 FREE AWS Credits
+# **How I Got $300 FREE AWS Credits**
 
 <figure markdown="span">
   [![How I Got 300 FREE AWS Credits](../../assets/images/300_AWS_Credit.png "How I Got $300 AWS Credits")](https://opeyemitech.pro/my-projects/blog/how-i-got-300-free-aws-credits/)
@@ -31,7 +31,7 @@ __Six months ago, I applied for $300 in free AWS credits, and it’s been a game
 
 ---
 
-## The Invitation by AWS
+## **The Invitation by AWS**
 
 Earlier this year, I got an email from AWS inviting me to apply for __The AWS Rapid Ramp Credit Program__ which provides a $300 credit to small businesses to quickly get started testing AWS against their specific IT and business requirements by subsidizing a proof of concept.  The free AWS credits would be applied to my AWS account. 
 
@@ -45,13 +45,13 @@ The process was fairly straightforward. I followed the link in the email and I f
 
 I later discovered that though I was invited to apply for the credits, anyone could easily apply for the free $300 credits as long as you meet some basic requirements.
 
-__To qualify for the $300 AWS Rapid Ramp Credit Program, you must have:__
+**To qualify for the $300 AWS Rapid Ramp Credit Program, you must have:**
 1. A valid AWS account, with up-to-date billing information (reseller accounts do not qualify)
 2. Not previously received more than $300 of AWS promotional credit
 3. A sufficient business case and proof of concept to test using the credits
 4. No linked accounts
 
-## How To Apply For the AWS $300 Credits
+## **How To Apply For the AWS $300 Credits**
 
 Applying for AWS credits is simple. Start by visiting the AWS Promotional Credits page (link below), where you’ll find the application form. You’ll need to provide basic details about your AWS account, your project description and intent explaining how you plan to use AWS services. Be clear about your goals and the value AWS will bring to your project. Once submitted, AWS typically reviews your request within a few days. If approved, you’ll receive an email notification saying te credits have been applied to your account and you can view your credits from your __AWS Billing and Cost Mangement Console.__
 
@@ -59,7 +59,7 @@ Applying for AWS credits is simple. Start by visiting the AWS Promotional Credit
 ![AWS Rapid Ramp Credit Program](../../assets/images/300_AWS_Credit.png "AWS Rapid Ramp Credit Program")
 
 
-**What Services Does the AWS Credits Cover?**
+## **What Services Does the AWS Credits Cover?**
 
 The $300 credits cover more than 230 AWS services including compute, Lambda serverless, storage, Bedrock, Sagemaker, EKS, ECR, etc 
 
@@ -67,7 +67,7 @@ With these credits, I’ve been able to venture beyond the AWS Free Tier and try
 
 The credits have been a great opportunity to test and grow my projects without worrying about unexpected costs.
 
-**Additional Resources**
+## **Additional Resources**
 
 Below are some additional resources that talk more about AWS credits:
 
