@@ -69,7 +69,7 @@ Applying for AWS credits is simple. Start by visiting the AWS Promotional Credit
 
 The $300 credits cover **more than 230 AWS services** including Compute, Lambda serverless, storage, Bedrock, Sagemaker, EKS, ECR, and the list goes on :smile:. 
 
-??? info Click here to view the list of services covered by the AWS Credits
+??? info "Click here to view the list of services covered by the AWS Credits"
     
     *__Note:__* _This list may changed subject to AWS Terms and Conditions_
 
