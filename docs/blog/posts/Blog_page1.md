@@ -1,74 +1,68 @@
 ---
-date: 2024-08-27
+date: 2024-10-13
 icon: simple/terraform
-title: My Blog Page 1
-description: My Blog Page 1 description 
-subtitle: My Blog Page 1 Subtitle
+title: How I Got $300 FREE AWS Credits
+description: How I Got $300 FREE AWS Credits 
+subtitle: How I Got $300 FREE AWS Credits
 comments: false
 authors: [opeyemitechpro]
 categories:
-  - DevOps
-  - Terraform
-  - CI/CD
+  - AWS
+  - Blog
+  
 
 ---
 
-# Welcome to My Blog page 1
+# How I Got $300 FREE AWS Credits
 
-??? youtube "Watch this YouTube Video"
-    <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/NY7DHvo1XVM?si=KfN1qCMItT-M3QCE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
-    Nice Video
+[![$300 AWS Credits](../assets/images/$300_AWS_Credit.png "$300 AWS Credits")](https://opeyemitech.pro/my-projects/blog)
 
 <figure markdown="span">
-  ![Image title](https://dummyimage.com/600x400){ width="300" }
-  <figcaption>Image caption</figcaption>
+  ![How I Got $300 FREE AWS Credits1](../assets/images/$300_AWS_Credit.png "How I Got $300 FREE AWS Credits2"){ width="600" }
+  <figcaption>How I Got $300 FREE AWS Credits3</figcaption>
 </figure>
 
-Welcome to Opeyemi Tech Pro Blog for Cloud Engineering and DevOps Stuff
+
+??? youtube "Video - Watch this YouTube Video Where I explained How I Got $300 FREE AWS Credits"
+    <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/NY7DHvo1XVM?si=KfN1qCMItT-M3QCE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+    In this video I share how I got $300 FREE AWS Credits and how you can also apply for the credits.
+
+
+
+Welcome to OpeyemiTechPro Blog for Cloud Engineering and DevOps Stuff
 
 <!-- more -->
 
-## Search: better, faster, smaller
+## The Invitation by AWS
+
 
 __This is the story of how we managed to completely rebuild client-side search,
 delivering a significantly better user experience while making it faster and
 smaller at the same time.__
 
-The [search] of Material for MkDocs is by far one of its best and most-loved
-assets: [multilingual], [offline-capable], and most importantly: _all
-client-side_. It provides a solution to empower the users of your documentation
-to find what they're searching for instantly without the headache of managing
-additional servers. However, even though several iterations have been made,
-there's still some room for improvement, which is why we rebuilt the search
-plugin and integration from the ground up. This article shines some light on the
-internals of the new search, why it's much more powerful than the previous
-version, and what's about to come.
 
-_The next section discusses the architecture and issues of the current search
-implementation. If you immediately want to learn what's new, skip to the
-[section just after that][what's new]._
+---
 
-  [search]: ../../setup/setting-up-site-search.md
-  [multilingual]: ../../plugins/search.md#config.lang
-  [offline-capable]: ../../setup/building-for-offline-usage.md
-  [what's new]: #whats-new
+**How I Got $300 Free AWS Credits and How It has Boosted My Projects**
 
-  Here are some tips to convey your enthusiasm for internet services in a job interview:
+About six months ago, I applied for $300 in free AWS credits—and it’s been a game-changer for my projects. The process was fairly straightforward. After reading about AWS's promotional credits, I filled out an application on the AWS website, explaining how I planned to use their cloud services for personal projects and learning. A few days later, I received an approval email, and just like that, I had $300 to explore more of AWS.
 
-1. Share your story: Explain how you became interested in internet services and what drives your passion.
-2. Highlight relevant experiences: Showcase projects, volunteer work, or personal initiatives related to internet services.
-3. Stay updated: Demonstrate knowledge of the latest trends, technologies, and innovations in internet services.
-4. Showcase problem-solving skills: Share examples of how you've overcome challenges or improved internet services in previous roles.
-5. Emphasize user-centric approach: Highlight your focus on delivering high-quality internet services that meet user needs.
-6. Display energy and positivity: Show your excitement and enthusiasm through your tone, body language, and words.
-7. Ask insightful questions: Prepare thoughtful questions about the company's internet services and goals.
-8. Highlight soft skills: Emphasize communication, teamwork, and adaptability skills relevant to internet services roles.
+**What I've Built with AWS Credits**
 
-## Example answers:
+With these credits, I’ve been able to venture beyond the Free Tier and try out AWS services that would normally come with a cost. Some key ways I’ve used these credits include:
+- **Running larger EC2 instances** for high-performance compute tasks, which is something I couldn’t do with the free-tier instance types.
+- **Storing large datasets on S3**, giving me the flexibility to work with more data than the Free Tier allows.
+- **Exploring AWS Lambda and API Gateway**, where I built serverless applications with zero infrastructure management.
 
-- "I'm passionate about internet services because I believe they have the power to connect people and transform lives."
-- "In my previous role, I successfully implemented a network upgrade, increasing internet speeds by 50%."
-- "I'm excited about the latest advancements in 5G and its potential to revolutionize internet services."
+The credits have been a great opportunity to test and grow my projects without worrying about unexpected costs.
 
-Remember to be genuine, specific, and concise in your responses. Show the interviewer that your passion for internet services drives your motivation and dedication to delivering exceptional results!
+**Documenting My Journey**
+
+I’m also working on a video that walks through my entire process—from applying for the credits to showcasing the projects I’ve built. If you're curious about leveraging AWS credits yourself, stay tuned for my video where I’ll share tips and lessons learned along the way!
+
+If you have questions about the process or how to make the most out of AWS credits, feel free to reach out!
+
+---
+
+This post introduces your journey, teases your upcoming video, and gives a sense of how the credits have empowered your projects. How does it look?

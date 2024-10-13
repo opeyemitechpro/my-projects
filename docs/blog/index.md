@@ -1,7 +1,7 @@
 ---
 icon: material/newspaper-variant-outline
 title: My Blog
-description: My Blog HomePage 
+description: OpeyemiTechPro Blog 
 subtitle: My Blog HomePage 
 comments: false
 ---
