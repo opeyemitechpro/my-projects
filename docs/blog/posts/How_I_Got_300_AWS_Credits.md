@@ -23,9 +23,10 @@ categories:
 </figure> -->
 
 <figure markdown="1">
-![How I Got $300 FREE AWS Credits](../../assets/images/$300_AWS_Credit.png)
-<figcaption><strong>How I Got $300 FREE AWS Credits</strong></figcaption>
+!["How I Got $300 FREE AWS Credits"](../../assets/images/$300_AWS_Credit.png)
+<figcaption><strong>"How I Got $300 FREE AWS Credits"</strong></figcaption>
 </figure>
+
 
 <!-- more -->
 
