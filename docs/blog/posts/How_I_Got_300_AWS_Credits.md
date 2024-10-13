@@ -15,19 +15,17 @@ categories:
 
 # How I Got $300 FREE AWS Credits
 
-![300 AWS Credits](../../assets/images/300_AWS_Credit.png "$300 AWS Credits")
+![300 AWS Credits](../../assets/images/300_AWS_Credit.png "How I Got $300 AWS Credits")
 
 <figure markdown="span">
-  ![How I Got 300 FREE AWS Credits](../../assets/images/300_AWS_Credit.png)
-  <figcaption>How I Got $300 FREE AWS Credits3</figcaption>
+  ![How I Got 300 FREE AWS Credits](../../assets/images/300_AWS_Credit.png "How I Got $300 AWS Credits")
+  <figcaption>How I Got $300 FREE AWS Credits</figcaption>
 </figure>
 
 <figure markdown="1">
 ![How I Got $300 FREE AWS Credits](../../assets/images/300_AWS_Credit.png)
 <figcaption><strong>How I Got $300 FREE AWS Credits</strong></figcaption>
 </figure>
-
-
 <!-- more -->
 
 
@@ -35,10 +33,6 @@ categories:
     <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/NY7DHvo1XVM?si=KfN1qCMItT-M3QCE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
     In this video I share how I got $300 FREE AWS Credits and how you can also apply for the credits.
-
-
-
-Welcome to OpeyemiTechPro Blog for Cloud Engineering and DevOps Stuff
 
 
 __Six months ago, I applied for $300 in free AWS credits, and it’s been a game-changer for my cloud projects. With these credits, I’ve gone beyond the Free Tier, running multiple larger EC2 instances for days, experimenting with various kubernetes deployments, and trying out IaC configurations. It has opened up so many possibilities without worrying about costs. In this shot blog post, I share the process of approval and some other relevant resouces and give tips for getting and using AWS credits!__
