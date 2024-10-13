@@ -33,7 +33,7 @@ Thank you for visiting, and I look forward to sharing my passion with you!
 
 ## Opeyemi Okuboyejo
 ### OpeyemiTechPro
-> #### https://opeyemitech.pro
+#### https://opeyemitech.pro
 
 
 ![GitHub stars](https://img.shields.io/github/stars/opeyemitechpro/opeyemitechpro.github.io) 
@@ -47,6 +47,9 @@ Thank you for visiting, and I look forward to sharing my passion with you!
 [![Linkedin Badge](https://img.shields.io/badge/-Opeyemi_On_LinkedIn-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/opeyemi-okuboyejo/)](https://www.linkedin.com/in/opeyemi-okuboyejo/)
 [![Gmail Badge](https://img.shields.io/badge/-Gmail-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:okuboyejoopeyemi01@gmail.com)](mailto:okuboyejoopeyemi01@gmail.com) 
 [![Portfolio Badge](https://img.shields.io/badge/-Opeyemi's_Portfolio-blue?style=flat-square&logo=folder&logoColor=white&link=https://opeyemitechpro.github.io)](https://opeyemitechpro.github.io)
+[![YouTube Badge](https://img.shields.io/badge/-Subscribe_on_YouTube-red?style=flat-square&logo=YouTube&logoColor=white&link=https://www.youtube.com/channel/@opeyemitechpro)](https://www.youtube.com/channel/@opeyemitechpro)
+[![YouTube Badge](https://img.shields.io/youtube/channel/subscribers/UCaD6f_WgaHbBY_7-YPrJMlA?style=social)](https://www.youtube.com/channel/UCaD6f_WgaHbBY_7-YPrJMlA)
+<!-- https://www.youtube.com/channel/UCaD6f_WgaHbBY_7-YPrJMlA/ -->
 [![Page Views](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fopeyemitech.pro%2Fmy-projects&count_bg=%23008000&title_bg=%234B0082&icon=&icon_color=%234B0082&title=Page+Views&edge_flat=false)](https://opeyemitech.pro)
 
 ### :zap: GitHub Stats
