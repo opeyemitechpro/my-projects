@@ -55,8 +55,14 @@ I later discovered that though I was invited to apply for the credits, anyone co
 
 Applying for AWS credits is simple. Start by visiting the AWS Promotional Credits page (link below), where you’ll find the application form. You’ll need to provide basic details about your AWS account, your project description and intent explaining how you plan to use AWS services. Be clear about your goals and the value AWS will bring to your project. Once submitted, AWS typically reviews your request within a few days. If approved, you’ll receive an email notification saying te credits have been applied to your account and you can view your credits from your __AWS Billing and Cost Mangement Console.__
 
-[**Click Here to apply for the $300 AWS Rapid Ramp Credit Program**](https://pages.awscloud.com/GLOBAL_NCA_LN_ARRC-program-A300-2023.html)
-![AWS Rapid Ramp Credit Program](../../assets/images/300_AWS_Credit.png "AWS Rapid Ramp Credit Program")
+<!-- [**Click Here to apply for the $300 AWS Rapid Ramp Credit Program**](https://pages.awscloud.com/GLOBAL_NCA_LN_ARRC-program-A300-2023.html) -->
+<a href="https://pages.awscloud.com/GLOBAL_NCA_LN_ARRC-program-A300-2023.html" target="_blank"><strong>Click Here to apply for the $300 AWS Rapid Ramp Credit Program</strong></a>
+<!-- 
+![AWS Rapid Ramp Credit Program](../../assets/images/300_AWS_Credit.png "AWS Rapid Ramp Credit Program") -->
+
+<a href="https://pages.awscloud.com/GLOBAL_NCA_LN_ARRC-program-A300-2023.html" target="_blank">
+  ![AWS Rapid Ramp Credit Program](../../assets/images/300_AWS_Credit.png "AWS Rapid Ramp Credit Program")
+</a>
 
 
 ## **What Services Does the AWS Credits Cover?**
@@ -73,9 +79,5 @@ Below are some additional resources that talk more about AWS credits:
 
 1. <a href="https://community.aws/content/2aEQy4l7lCyRaFSO3jlThfw6Voi/unlocking-aws-credits-a-comprehensive-guide-to-maximize-cloud-savings-and-resources?lang=en" target="_blank">Unlocking AWS Credits: A Comprehensive Guide - AWS Community</a>
 2. <a href="https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/useconsolidatedbilling-credits.html#selecting-credits-to-apply" target="_blank">Applying AWS Credits- AWS Documentation Website</a>
-
-
-1. [Unlocking AWS Credits: A Comprehensive Guide - AWS Community](https://community.aws/content/2aEQy4l7lCyRaFSO3jlThfw6Voi/unlocking-aws-credits-a-comprehensive-guide-to-maximize-cloud-savings-and-resources?lang=en)
-2. [Applying AWS Credits- AWS Documentation Website](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/useconsolidatedbilling-credits.html#selecting-credits-to-apply)
 
 ---
