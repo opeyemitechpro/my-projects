@@ -15,19 +15,12 @@ categories:
 
 # How I Got $300 FREE AWS Credits
 
-<!-- ![300 AWS Credits](../../assets/images/300_AWS_Credit.png "How I Got $300 AWS Credits") -->
 <figure markdown="span">
   [![How I Got 300 FREE AWS Credits](../../assets/images/300_AWS_Credit.png "How I Got $300 AWS Credits")](https://opeyemitech.pro/my-projects/blog/how-i-got-300-free-aws-credits/)
   <figcaption>How I Got $300 FREE AWS Credits</figcaption>
 </figure>
-<!-- <figure markdown="1">
-    [![Opeyemi Picture](assets/images/favicon.png "Opeyemi Okuboyejo")](https://opeyemitech.pro)
-    <figcaption>Profile Image Caption</figcaption>
-    </figure> -->
-<!-- <figure markdown="1">
-![How I Got $300 FREE AWS Credits](../../assets/images/300_AWS_Credit.png)
-<figcaption><strong>How I Got $300 FREE AWS Credits</strong></figcaption>
-</figure> -->
+
+__Six months ago, I applied for $300 in free AWS credits, and it’s been a game-changer for my cloud projects. With these credits, I’ve gone beyond the Free Tier plan, provisioning multiple larger EC2 instances and leaving them running for days, experimenting with various kubernetes deployments, and trying out IaC configurations. It has opened up so many possibilities without worrying about costs. In this shot blog post, I share the process of approval and some other relevant resouces and give tips for getting and using AWS credits!__
 <!-- more -->
 
 
@@ -36,16 +29,31 @@ categories:
 
     In this video I share how I got $300 FREE AWS Credits and how you can also apply for the credits.
 
-
-__Six months ago, I applied for $300 in free AWS credits, and it’s been a game-changer for my cloud projects. With these credits, I’ve gone beyond the Free Tier plan, provisioning multiple larger EC2 instances and leaving them running for days, experimenting with various kubernetes deployments, and trying out IaC configurations. It has opened up so many possibilities without worrying about costs. In this shot blog post, I share the process of approval and some other relevant resouces and give tips for getting and using AWS credits!__
-
 ---
 
 ## The Invitation by AWS
 
-**How I Got $300 Free AWS Credits and How It has Boosted My Projects**
+Earlier this year, I got an email from AWS inviting me to apply for __The AWS Rapid Ramp Credit Program__ which provides a $300 credit to small businesses to quickly get started testing AWS against their specific IT and business requirements by subsidizing a proof of concept.  The free AWS credits would be applied to my AWS account. 
 
-About six months ago, I applied for $300 in free AWS credits—and it’s been a game-changer for my projects. The process was fairly straightforward. After reading about AWS's promotional credits, I filled out an application on the AWS website, explaining how I planned to use their cloud services for personal projects and learning. A few days later, I received an approval email, and just like that, I had $300 to explore more of AWS.
+![AWS Invitation Email](../../assets/images/AWS_300_invited.png "AWS Invitation Email")
+
+This was trillig as my AWS account was relatively new (barely 1-month old). 
+
+The process was fairly straightforward. I folowed the link and I filled out an application on the AWS website, explaining how I planned to use their cloud services for personal projects and learning. A week later, I received an approval email, and just like that, I had $300 to explore more of AWS.
+
+![AWS Congrats Email](../../assets/images/AWS_congrats.png "AWS Congrats Email")
+
+I later discovered that though I was invited to apply for the credits, anyone could easily apply for the free $300 credits as long as you meet some basic requirements listed below:
+
+1. A valid AWS account, with up-to-date billing information (reseller accounts do not qualify)
+2. Not previously received more than $300 of AWS promotional credit
+3. A sufficient business case and proof of concept to test using the credits
+4. No linked accounts
+
+## How To Apply For the AWS $300 Credits
+
+Applying for AWS credits is simple. Start by visiting the AWS Promotional Credits page, where you’ll find the application form. You’ll need to provide basic details about your project or business, explaining how you plan to use AWS services. Be clear about your goals and the value AWS will bring to your project. Once submitted, AWS typically reviews your request within a few days. If approved, you’ll receive an email notification with instructions on how to activate your credits and start using them.
+
 
 **What I've Built with AWS Credits**
 
