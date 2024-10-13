@@ -1,3 +1,5 @@
+*__Note:__* _This list may change subject to AWS Terms and Conditions_
+
 Complete list of services
 
 These services can be used with the associated credit:

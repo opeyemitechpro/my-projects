@@ -13,18 +13,18 @@ categories:
 
 ---
 
-# **How I Got $300 FREE AWS Credits**
-
 <figure markdown="span">
   [![How I Got 300 FREE AWS Credits](../../assets/images/300_AWS_Credit.png "How I Got $300 AWS Credits")](https://opeyemitech.pro/my-projects/blog/how-i-got-300-free-aws-credits/)
-  <figcaption>How I Got $300 FREE AWS Credits</figcaption>
+  <!-- <figcaption>How I Got $300 FREE AWS Credits</figcaption> -->
 </figure>
+
+# **How I Got $300 FREE AWS Credits**
 
 __Six months ago, I applied for $300 in free AWS credits, and it’s been a game-changer for my cloud projects. With these credits, I’ve gone beyond the Free Tier plan, provisioning multiple larger EC2 instances and leaving them running for days :smile:,  experimenting with various kubernetes deployments, and trying out IaC configurations. It has opened up so many possibilities without worrying about costs. In this shot blog post, I share the process of approval and some other relevant resouces and give tips for getting and using AWS credits!__
 <!-- more -->
 
 
-??? youtube "Video - Watch this YouTube Video Where I explained How I Got $300 FREE AWS Credits"
+??? youtube "Watch this Video Where I explained How I Got tte $300 FREE AWS Credits"
     <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/NY7DHvo1XVM?si=KfN1qCMItT-M3QCE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
     In this video I share how I got $300 FREE AWS Credits and how you can also apply for the credits.
@@ -71,7 +71,7 @@ The $300 credits cover **more than 230 AWS services** including Compute, Lambda 
 
 ??? info "Click here to view the list of services covered by the AWS Credits"
     
-    *__Note:__* _This list may changed subject to AWS Terms and Conditions_
+    *__Note:__* _This list may change subject to AWS Terms and Conditions_
 
     Complete list of services
 
