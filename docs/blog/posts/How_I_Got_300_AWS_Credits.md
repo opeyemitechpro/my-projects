@@ -71,6 +71,10 @@ The credits have been a great opportunity to test and grow my projects without w
 
 Below are some additional resources that talk more about AWS credits:
 
+1. <a href="https://community.aws/content/2aEQy4l7lCyRaFSO3jlThfw6Voi/unlocking-aws-credits-a-comprehensive-guide-to-maximize-cloud-savings-and-resources?lang=en" target="_blank">Unlocking AWS Credits: A Comprehensive Guide - AWS Community</a>
+2. <a href="https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/useconsolidatedbilling-credits.html#selecting-credits-to-apply" target="_blank">Applying AWS Credits- AWS Documentation Website</a>
+
+
 1. [Unlocking AWS Credits: A Comprehensive Guide - AWS Community](https://community.aws/content/2aEQy4l7lCyRaFSO3jlThfw6Voi/unlocking-aws-credits-a-comprehensive-guide-to-maximize-cloud-savings-and-resources?lang=en)
 2. [Applying AWS Credits- AWS Documentation Website](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/useconsolidatedbilling-credits.html#selecting-credits-to-apply)
 
