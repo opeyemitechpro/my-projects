@@ -23,7 +23,7 @@ categories:
 </figure> -->
 
 <figure markdown="1">
-![How I Got $300 FREE AWS Credits](../../assets/images/$300_AWS_Credit.png "Opeyemi Okuboyejo")
+![How I Got $300 FREE AWS Credits](../../assets/images/$300_AWS_Credit.png)
 <figcaption><strong>How I Got $300 FREE AWS Credits</strong></figcaption>
 </figure>
 
@@ -40,15 +40,11 @@ categories:
 Welcome to OpeyemiTechPro Blog for Cloud Engineering and DevOps Stuff
 
 
-## The Invitation by AWS
-
-
-__This is the story of how we managed to completely rebuild client-side search,
-delivering a significantly better user experience while making it faster and
-smaller at the same time.__
-
+__Six months ago, I applied for $300 in free AWS credits, and it’s been a game-changer for my cloud projects. With these credits, I’ve gone beyond the Free Tier, running multiple larger EC2 instances for days, experimenting with various kubernetes deployments, and trying out IaC configurations. It has opened up so many possibilities without worrying about costs. In this shot blog post, I share the process of approval and some other relevant resouces and give tips for getting and using AWS credits!__
 
 ---
+
+## The Invitation by AWS
 
 **How I Got $300 Free AWS Credits and How It has Boosted My Projects**
 
