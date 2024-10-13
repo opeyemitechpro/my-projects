@@ -13,12 +13,12 @@ categories:
 
 ---
 
+# **How I Got $300 FREE AWS Credits**
+
 <figure markdown="span">
   [![How I Got 300 FREE AWS Credits](../../assets/images/300_AWS_Credit.png "How I Got $300 AWS Credits")](https://opeyemitech.pro/my-projects/blog/how-i-got-300-free-aws-credits/)
-  <!-- <figcaption>How I Got $300 FREE AWS Credits</figcaption> -->
+  <figcaption>How I Got $300 FREE AWS Credits</figcaption>
 </figure>
-
-# **How I Got $300 FREE AWS Credits**
 
 __Six months ago, I applied for $300 in free AWS credits, and it’s been a game-changer for my cloud projects. With these credits, I’ve gone beyond the Free Tier plan, provisioning multiple larger EC2 instances and leaving them running for days :smile:,  experimenting with various kubernetes deployments, and trying out IaC configurations. It has opened up so many possibilities without worrying about costs. In this shot blog post, I share the process of approval and some other relevant resouces and give tips for getting and using AWS credits!__
 <!-- more -->
@@ -55,10 +55,11 @@ I later discovered that though I was invited to apply for the credits, anyone co
 
 Applying for AWS credits is simple. Start by visiting the AWS Promotional Credits page (link below), where you’ll find the application form. You’ll need to provide basic details about your AWS account, your project description and intent explaining how you plan to use AWS services. Be clear about your goals and the value AWS will bring to your project. Once submitted, AWS typically reviews your request within a few days. If approved, you’ll receive an email notification saying te credits have been applied to your account and you can view your credits from your __AWS Billing and Cost Mangement Console.__
 
-<!-- [**Click Here to apply for the $300 AWS Rapid Ramp Credit Program**](https://pages.awscloud.com/GLOBAL_NCA_LN_ARRC-program-A300-2023.html) -->
-<a href="https://pages.awscloud.com/GLOBAL_NCA_LN_ARRC-program-A300-2023.html" target="_blank"><strong>Click Here to apply for the $300 AWS Rapid Ramp Credit Program</strong></a>
-<!-- 
-![AWS Rapid Ramp Credit Program](../../assets/images/300_AWS_Credit.png "AWS Rapid Ramp Credit Program") -->
+<div style="text-align: center;">
+  <a href="https://pages.awscloud.com/GLOBAL_NCA_LN_ARRC-program-A300-2023.html" target="_blank">
+    <strong>Click Here to apply for the $300 AWS Rapid Ramp Credit Program</strong>
+  </a>
+</div>
 
 <a href="https://pages.awscloud.com/GLOBAL_NCA_LN_ARRC-program-A300-2023.html" target="_blank">
   ![AWS Rapid Ramp Credit Program](../../assets/images/300_AWS_Credit.png "AWS Rapid Ramp Credit Program")
