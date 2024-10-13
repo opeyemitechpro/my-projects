@@ -15,16 +15,16 @@ categories:
 
 # How I Got $300 FREE AWS Credits
 
-<!-- ![$300 AWS Credits](../../assets/images/$300_AWS_Credit.png "$300 AWS Credits")
+![`$300 AWS Credits](../../assets/images/$300_AWS_Credit.png "$300 AWS Credits")
 
 <figure markdown="span">
-  ![How I Got $300 FREE AWS Credits1](../../assets/images/$300_AWS_Credit.png "How I Got $300 FREE AWS Credits2")
+  ![How I Got '$300 FREE AWS Credits1](../../assets/images/$300_AWS_Credit.png "How I Got $300 FREE AWS Credits2")
   <figcaption>How I Got $300 FREE AWS Credits3</figcaption>
-</figure> -->
+</figure>
 
 <figure markdown="1">
-!["How I Got $300 FREE AWS Credits"](../../assets/images/$300_AWS_Credit.png)
-<figcaption><strong>"How I Got $300 FREE AWS Credits"</strong></figcaption>
+![How I Got 300$ FREE AWS Credits](../../assets/images/$300_AWS_Credit.png)
+<figcaption><strong>How I Got $300 FREE AWS Credits</strong></figcaption>
 </figure>
 
 
