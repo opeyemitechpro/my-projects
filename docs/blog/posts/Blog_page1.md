@@ -23,7 +23,7 @@ categories:
 </figure>
 
 <figure markdown="1">
-![image](assets/images/favicon.png "Opeyemi Okuboyejo"){ width="30" }
+![image](../../assets/images/$300_AWS_Credit.png "Opeyemi Okuboyejo"){ width="30" }
 <figcaption><strong>Opeyemi Okuboyejo</strong></figcaption>
 </figure>
 
