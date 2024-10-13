@@ -22,6 +22,11 @@ categories:
   <figcaption>How I Got $300 FREE AWS Credits3</figcaption>
 </figure>
 
+<figure markdown="1">
+![image](assets/images/favicon.png "Opeyemi Okuboyejo"){ width="30" }
+<figcaption><strong>Opeyemi Okuboyejo</strong></figcaption>
+</figure>
+
 <!-- more -->
 
 
