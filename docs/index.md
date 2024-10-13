@@ -8,10 +8,10 @@ comments: false
 
 <figure markdown="1">
 ![Opeyemi Okuboyejo  |  Certified Cloud Solutions Architect | Cloud Engineer | DevOps Engineer](assets/images/favicon.png "Opeyemi Okuboyejo")
-<figcaption><strong>Opeyemi Okuboyejo</strong></figcaption>
+<figcaption><strong>Opeyemi Okuboyejo<br> Certified Cloud Solutions Architect<br>Cloud Engineer | DevOps Engineer</strong></figcaption>
 </figure>
 
-## Welcome to OpeyemiTechPro Projects Portfolio.
+## **Welcome to OpeyemiTechPro Projects Portfolio.**
 
 Welcome to My Cloud Engineering & DevOps Project Hub!
 

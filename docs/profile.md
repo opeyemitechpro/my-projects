@@ -2,8 +2,10 @@
 icon: material/home
 title: My Profile
 description: This is My Profile Page
-subtitle: Check my profile here
+subtitle: View my profile here
 comments: false
 ---
 
-# Go To My Profile Page
+# **Go To My Profile Page**
+
+[OpeyemiTechPro Profile Page](https://opeyemitech.pro)
