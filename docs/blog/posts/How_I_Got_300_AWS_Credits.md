@@ -39,12 +39,13 @@ Earlier this year, I got an email from AWS inviting me to apply for __The AWS Ra
 
 This was trillig as my AWS account was relatively new (barely 1-month old). 
 
-The process was fairly straightforward. I folowed the link and I filled out an application on the AWS website, explaining how I planned to use their cloud services for personal projects and learning. A week later, I received an approval email, and just like that, I had $300 to explore more of AWS.
+The process was fairly straightforward. I followed the link in the email and I filled out an application on the AWS website, explaining how I planned to use their cloud services for personal projects and learning. A week later, I received an approval email, and just like that, I had $300 to explore more of AWS.
 
 ![AWS Congrats Email](../../assets/images/AWS_congrats.png "AWS Congrats Email")
 
-I later discovered that though I was invited to apply for the credits, anyone could easily apply for the free $300 credits as long as you meet some basic requirements listed below:
+I later discovered that though I was invited to apply for the credits, anyone could easily apply for the free $300 credits as long as you meet some basic requirements.
 
+__To qualify for the $300 AWS Rapid Ramp Credit Program, you must have:__
 1. A valid AWS account, with up-to-date billing information (reseller accounts do not qualify)
 2. Not previously received more than $300 of AWS promotional credit
 3. A sufficient business case and proof of concept to test using the credits
@@ -52,23 +53,24 @@ I later discovered that though I was invited to apply for the credits, anyone co
 
 ## How To Apply For the AWS $300 Credits
 
-Applying for AWS credits is simple. Start by visiting the AWS Promotional Credits page, where you’ll find the application form. You’ll need to provide basic details about your project or business, explaining how you plan to use AWS services. Be clear about your goals and the value AWS will bring to your project. Once submitted, AWS typically reviews your request within a few days. If approved, you’ll receive an email notification with instructions on how to activate your credits and start using them.
+Applying for AWS credits is simple. Start by visiting the AWS Promotional Credits page (link below), where you’ll find the application form. You’ll need to provide basic details about your AWS account, your project description and intent explaining how you plan to use AWS services. Be clear about your goals and the value AWS will bring to your project. Once submitted, AWS typically reviews your request within a few days. If approved, you’ll receive an email notification saying te credits have been applied to your account and you can view your credits from your __AWS Billing and Cost Mangement Console.__
+
+[**Click Here to apply for the $300 AWS Rapid Ramp Credit Program**](https://pages.awscloud.com/GLOBAL_NCA_LN_ARRC-program-A300-2023.html)
 
 
-**What I've Built with AWS Credits**
+**What Services Does the AWS Credits Cover?**
 
-With these credits, I’ve been able to venture beyond the Free Tier and try out AWS services that would normally come with a cost. Some key ways I’ve used these credits include:
-- **Running larger EC2 instances** for high-performance compute tasks, which is something I couldn’t do with the free-tier instance types.
-- **Storing large datasets on S3**, giving me the flexibility to work with more data than the Free Tier allows.
-- **Exploring AWS Lambda and API Gateway**, where I built serverless applications with zero infrastructure management.
+The $300 credits cover more than 230 AWS services including compute, Lambda serverless, storage, Bedrock, Sagemaker, EKS, ECR, etc 
+
+With these credits, I’ve been able to venture beyond the AWS Free Tier and try out AWS services that would normally come with a cost.
 
 The credits have been a great opportunity to test and grow my projects without worrying about unexpected costs.
 
-**Documenting My Journey**
+**Additional Resources**
 
-I’m also working on a video that walks through my entire process—from applying for the credits to showcasing the projects I’ve built. If you're curious about leveraging AWS credits yourself, stay tuned for my video where I’ll share tips and lessons learned along the way!
+Below are some additional resources that talk more about AWS credits:
 
-If you have questions about the process or how to make the most out of AWS credits, feel free to reach out!
+1. [Unlocking AWS Credits: A Comprehensive Guide - AWS Community](https://community.aws/content/2aEQy4l7lCyRaFSO3jlThfw6Voi/unlocking-aws-credits-a-comprehensive-guide-to-maximize-cloud-savings-and-resources?lang=en)
+2. [Applying AWS Credits- AWS Documentation Website](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/useconsolidatedbilling-credits.html#selecting-credits-to-apply)
 
 ---
-
