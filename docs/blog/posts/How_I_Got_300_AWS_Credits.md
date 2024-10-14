@@ -20,7 +20,7 @@ categories:
   <figcaption>How I Got $300 FREE AWS Credits</figcaption>
 </figure>
 
-__Six months ago, I applied for $300 in free AWS credits, and it’s been a game-changer for my cloud projects. With these credits, I’ve gone beyond the Free Tier plan, provisioning multiple larger EC2 instances and leaving them running for days :smile:,  experimenting with various kubernetes deployments, and trying out IaC configurations. It has opened up so many possibilities without worrying about costs. In this shot blog post, I share the process of approval and some other relevant resouces and give tips for getting and using AWS credits!__
+__Six months ago, I applied for $300 in free AWS credits, and it’s been a game-changer for my cloud projects. With these credits, I’ve gone beyond the Free Tier plan, provisioning multiple larger EC2 instances and leaving them running for days :smile:,  experimenting with various kubernetes deployments, and trying out IaC configurations. It has opened up so many possibilities without worrying about costs. In this shot blog post, I share the process of approval and some other relevant resouces along with tips for getting and using AWS credits for your projects!__
 <!-- more -->
 
 
@@ -315,7 +315,7 @@ The $300 credits cover **more than 230 AWS services** including Compute, Lambda 
 
 With these credits, I’ve been able to venture beyond the AWS Free Tier and try out AWS services that would normally come with a cost.
 
-The credits have been a great opportunity to test and grow my projects without worrying about unexpected costs.
+The credits have been a great opportunity to test and grow my cloud projects without worrying about unexpected costs.
 
 ## **Additional Resources**
 

@@ -47,7 +47,7 @@ Thank you for visiting, and I look forward to sharing my passion with you!
 [![Linkedin Badge](https://img.shields.io/badge/-Opeyemi_On_LinkedIn-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/opeyemi-okuboyejo/)](https://www.linkedin.com/in/opeyemi-okuboyejo/)
 [![Gmail Badge](https://img.shields.io/badge/-Gmail-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:okuboyejoopeyemi01@gmail.com)](mailto:okuboyejoopeyemi01@gmail.com) 
 [![Portfolio Badge](https://img.shields.io/badge/-Opeyemi's_Portfolio-blue?style=flat-square&logo=folder&logoColor=white&link=https://opeyemitech.pro)](https://opeyemitech.pro)
-[![Portfolio Badge](https://img.shields.io/badge/-Opeyemi's_Project_Portfolio-purple?style=flat-square&logo=folder&logoColor=white&link=https://opeyemitech.pro/m-projects)](https://opeyemitech.pro)
+[![Portfolio Badge](https://img.shields.io/badge/-Opeyemi's_Project_Portfolio-purple?style=flat-square&logo=folder&logoColor=white&link=https://opeyemitech.pro/my-projects)](https://opeyemitech.pro/my-projects)
 [![YouTube Badge](https://img.shields.io/badge/-Subscribe_on_YouTube-red?style=flat-square&logo=YouTube&logoColor=white&link=https://www.youtube.com/channel/@opeyemitechpro)](https://www.youtube.com/channel/@opeyemitechpro)
 [![YouTube Badge](https://img.shields.io/youtube/channel/subscribers/UCaD6f_WgaHbBY_7-YPrJMlA?style=social)](https://www.youtube.com/channel/UCaD6f_WgaHbBY_7-YPrJMlA)
 <!-- https://www.youtube.com/channel/UCaD6f_WgaHbBY_7-YPrJMlA/ -->
