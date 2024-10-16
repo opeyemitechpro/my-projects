@@ -24,12 +24,13 @@ __Six months ago, I applied for $300 in free AWS credits, and it’s been a game
 <!-- more -->
 
 
-??? youtube "Watch this Video Where I explained How I Got tte $300 FREE AWS Credits"
-    <iframe width="868" height="488" src="https://www.youtube.com/embed/W5PGlJM8hlQ" title="How I Got $300 Free AWS Credits for Cloud and DevOps Projects" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+???+ youtube "YouTube - Watch this Video Where I explained How I Got $300 FREE AWS Credits"
+    <figure markdown="1">
+        [![How I Got 300$ FREE AWS Credits](../../assets/images/300_Credit-YT-Thumbnail.png "How I Got 300$ FREE AWS Credits")](https://www.youtube.com/embed/W5PGlJM8hlQ)
+        <figcaption>How I Got $300 FREE AWS Credits</figcaption>
+        </figure>
 
     In this video I share how I got $300 FREE AWS Credits and how you can also apply for the credits.
-
-
 
 ---
 
