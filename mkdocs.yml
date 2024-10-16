@@ -44,7 +44,7 @@ theme:
     - content.code.annotate
     - content.action.view
     - content.action.edit
-    - announce.dismiss
+    # - announce.dismiss
    # site logo and favicon
   favicon: assets/images/favicon.png
   logo: assets/images/favicon.png

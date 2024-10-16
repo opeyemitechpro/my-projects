@@ -25,12 +25,11 @@ __Six months ago, I applied for $300 in free AWS credits, and it’s been a game
 
 
 ???+ youtube "YouTube - Watch this Video Where I explained How I Got $300 FREE AWS Credits"
-        <figure markdown="1">
         <a href="https://www.youtube.com/embed/W5PGlJM8hlQ" target="_blank">
          ![How I Got 300$ FREE AWS Credits](../../assets/images/300_Credit-YT-Thumbnail.png "How I Got 300$ FREE AWS Credits")
         </a>
         <figcaption>How I Got $300 FREE AWS Credits</figcaption>
-        </figure>
+        
 
     In this video I share how I got $300 FREE AWS Credits and how you can also apply for the credits.
 
