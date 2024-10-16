@@ -30,7 +30,6 @@ __Six months ago, I applied for $300 in free AWS credits, and it’s been a game
         </a>
         <figcaption>How I Got $300 FREE AWS Credits</figcaption>
         
-
     In this video I share how I got $300 FREE AWS Credits and how you can also apply for the credits.
 
 ---
