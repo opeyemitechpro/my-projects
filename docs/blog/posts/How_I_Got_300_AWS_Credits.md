@@ -40,9 +40,9 @@ Earlier this year, I got an email from AWS inviting me to apply for __The AWS Ra
 
 ![AWS Invitation Email](../../assets/images/AWS_300_invited.png "AWS Invitation Email")
 
-This was trillig as my AWS account was relatively new (barely 1-month old). 
+This was trilling as my AWS account was relatively new (barely 1-month old). 
 
-The process was fairly straightforward. I followed the link in the email and I filled out an application on the AWS website, explaining how I planned to use their cloud services for personal projects and learning. A week later, I received an approval email, and just like that, I had $300 to explore more of AWS.
+The process was fairly straightforward. I followed the link in the email and filled out an application on the AWS website, explaining how I planned to use their cloud services for personal projects and learning. A week later, I received an approval email, and just like that, I had $300 to explore more of AWS.
 
 ![AWS Congrats Email](../../assets/images/AWS_congrats.png "AWS Congrats Email")
 
@@ -56,7 +56,7 @@ I later discovered that though I was invited to apply for the credits, anyone co
 
 ## **How To Apply For the AWS $300 Credits**
 
-Applying for AWS credits is simple. Start by visiting the AWS Promotional Credits page (link below), where you’ll find the application form. You’ll need to provide basic details about your AWS account, your project description and intent explaining how you plan to use AWS services. Be clear about your goals and the value AWS will bring to your project. Once submitted, AWS typically reviews your request within a few days. If approved, you’ll receive an email notification saying te credits have been applied to your account and you can view your credits from your __AWS Billing and Cost Mangement Console.__
+Applying for AWS credits is simple. Start by visiting the AWS Promotional Credits page (link below), where you’ll find the application form. You’ll need to provide basic details about your AWS account, your project description and intent explaining how you plan to use AWS services. Be clear about your goals and the value AWS will bring to your project. Once submitted, AWS typically reviews your request within a few days. If approved, you’ll receive an email notification saying the credits have been applied to your account and you can view your credits from your __AWS Billing and Cost Mangement Console.__
 
 <div style="text-align: center;">
   <a href="https://pages.awscloud.com/GLOBAL_NCA_LN_ARRC-program-A300-2023.html" target="_blank">
