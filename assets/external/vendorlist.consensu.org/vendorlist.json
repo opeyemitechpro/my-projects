@@ -1,2 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Error><Code>AccessDenied</Code><Message>Access Denied</Message><RequestId>ANJCMNB2C5811RR5</RequestId><HostId>KqqHmd5oVPwOul/APk2LIDBTJsTsKd2ffaLpQ/Y3ZeG1eajxlr6XzsK5ETB43fsbzEJewhnR9oQ=</HostId></Error>
+{
+    "error": "Error: you are in the wrong location"
+}
