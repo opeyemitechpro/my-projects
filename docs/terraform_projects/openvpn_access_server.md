@@ -33,4 +33,6 @@ Step 1 - Clone the Repo
 git clone https://github.com/opeyemitechpro/OpenVPN-Terraform.git
 ```
 
-Step 2 - 
+Step 2 - Open the `terraform.tfvars` file and set the following parameters to suitable values:
+
+- `region_name`: Set this to match aws region where you want your VPN server to be located. e.g. the aws region
