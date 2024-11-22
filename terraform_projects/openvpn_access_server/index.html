@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="How to setup and host your own OpenVPN Access Server on AWS using Terraform">
+        <meta name="description" content="How to setup and host your own VPN Server for Free on AWS using Terraform & OpenVPN">
       
       
       
@@ -75,7 +75,7 @@
       
         <meta  property="og:title"  content="OpenVPN Access Server Setup - OpeyemiTechPro Projects Portfolio" >
       
-        <meta  property="og:description"  content="How to setup and host your own OpenVPN Access Server on AWS using Terraform" >
+        <meta  property="og:description"  content="How to setup and host your own VPN Server for Free on AWS using Terraform & OpenVPN" >
       
         <meta  property="og:image"  content="https://opeyemitechpro.github.io/my-projects/assets/images/social/terraform_projects/openvpn_access_server.png" >
       
@@ -91,7 +91,7 @@
       
         <meta  name="twitter:title"  content="OpenVPN Access Server Setup - OpeyemiTechPro Projects Portfolio" >
       
-        <meta  name="twitter:description"  content="How to setup and host your own OpenVPN Access Server on AWS using Terraform" >
+        <meta  name="twitter:description"  content="How to setup and host your own VPN Server for Free on AWS using Terraform & OpenVPN" >
       
         <meta  name="twitter:image"  content="https://opeyemitechpro.github.io/my-projects/assets/images/social/terraform_projects/openvpn_access_server.png" >
       
@@ -125,7 +125,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#openvpn-access-server" class="md-skip">
+        <a href="#openvpn-access-server-setup" class="md-skip">
           Skip to content
         </a>
       
@@ -826,9 +826,27 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#setup-and-host-your-own-vpn-server-on-aws-using-terraform-and-openvpn" class="md-nav__link">
+  <a href="#setup-and-host-your-own-vpn-server-on-aws-using-terraform-and-openvpn-for-free" class="md-nav__link">
     <span class="md-ellipsis">
-      Setup and Host Your Own VPN Server on AWS Using Terraform and OpenVPN
+      Setup and Host Your Own VPN Server on AWS Using Terraform and OpenVPN for Free
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pre-requisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pre-requisites
     </span>
   </a>
   
@@ -1191,9 +1209,27 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#setup-and-host-your-own-vpn-server-on-aws-using-terraform-and-openvpn" class="md-nav__link">
+  <a href="#setup-and-host-your-own-vpn-server-on-aws-using-terraform-and-openvpn-for-free" class="md-nav__link">
     <span class="md-ellipsis">
-      Setup and Host Your Own VPN Server on AWS Using Terraform and OpenVPN
+      Setup and Host Your Own VPN Server on AWS Using Terraform and OpenVPN for Free
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pre-requisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pre-requisites
     </span>
   </a>
   
@@ -1262,9 +1298,23 @@
   
 
 
-<h1 id="openvpn-access-server">OpenVPN Access Server<a class="headerlink" href="#openvpn-access-server" title="Copy this link to reference this section">&para;</a></h1>
-<h2 id="setup-and-host-your-own-vpn-server-on-aws-using-terraform-and-openvpn">Setup and Host Your Own VPN Server on AWS Using Terraform and OpenVPN<a class="headerlink" href="#setup-and-host-your-own-vpn-server-on-aws-using-terraform-and-openvpn" title="Copy this link to reference this section">&para;</a></h2>
-<p>This project demonstrates how to use Terraform to provision a VPN Server using OpenVPN Access server on AWS.</p>
+<h1 id="openvpn-access-server-setup"><strong>OpenVPN Access Server Setup</strong><a class="headerlink" href="#openvpn-access-server-setup" title="Copy this link to reference this section">&para;</a></h1>
+<h2 id="setup-and-host-your-own-vpn-server-on-aws-using-terraform-and-openvpn-for-free">Setup and Host Your Own VPN Server on AWS Using Terraform and OpenVPN for Free<a class="headerlink" href="#setup-and-host-your-own-vpn-server-on-aws-using-terraform-and-openvpn-for-free" title="Copy this link to reference this section">&para;</a></h2>
+<p>In this project, we will demonstrate how setup and self-host a VPN server on AWS using terraform and OpenVPN Access Server.</p>
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Copy this link to reference this section">&para;</a></h2>
+<h2 id="pre-requisites">Pre-requisites<a class="headerlink" href="#pre-requisites" title="Copy this link to reference this section">&para;</a></h2>
+<ul>
+<li>AWS account <em>(free tier will work)</em></li>
+<li>Terraform installed on local machine</li>
+<li></li>
+</ul>
+<div class="admonition attention">
+<p class="admonition-title">Integrate with site navigation</p>
+</div>
+<p>Step 1 - Clone the Repo </p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/opeyemitechpro/OpenVPN-Terraform.git
+</code></pre></div></td></tr></table></div>
+<p>Step 2 - </p>
 
 
 
@@ -1287,7 +1337,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-11-20T13:56:49+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-11-20</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-11-22T08:23:58+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-11-22</span>
   </span>
 
     
@@ -1378,47 +1428,6 @@
     </fieldset>
   </form>
 
-
-  <h2 id="__comments">Comments</h2>
-  <!-- Insert generated snippet here -->
-  <script src="../../assets/external/giscus.app/client.js" data-repo="opeyemitechpro/my-projects" data-repo-id="R_kgDOMCpsxg" data-category="Announcements" data-category-id="DIC_kwDOMCpsxs4ChyT3" data-mapping="title" data-strict="0" data-reactions-enabled="1" data-emit-metadata="1" data-input-position="top" data-theme="preferred_color_scheme" data-lang="en" crossorigin="anonymous" async>
-  </script>
-
-  <!-- Synchronize Giscus theme with palette -->
-  <script>
-    var giscus = document.querySelector("script[src*=giscus]")
-
-    // Set palette on initial load
-    var palette = __md_get("__palette")
-    if (palette && typeof palette.color === "object") {
-      var theme = palette.color.scheme === "slate"
-        ? "transparent_dark"
-        : "light"
-
-      // Instruct Giscus to set theme
-      giscus.setAttribute("data-theme", theme) 
-    }
-
-    // Register event handlers after documented loaded
-    document.addEventListener("DOMContentLoaded", function() {
-      var ref = document.querySelector("[data-md-component=palette]")
-      ref.addEventListener("change", function() {
-        var palette = __md_get("__palette")
-        if (palette && typeof palette.color === "object") {
-          var theme = palette.color.scheme === "slate"
-            ? "transparent_dark"
-            : "light"
-
-          // Instruct Giscus to change theme
-          var frame = document.querySelector(".giscus-frame")
-          frame.contentWindow.postMessage(
-            { giscus: { setConfig: { theme } } },
-            "https://giscus.app"
-          )
-        }
-      })
-    })
-  </script>
 
                 
               </article>
@@ -1537,6 +1546,14 @@
     
     <a href="mailto:okuboyejoopeyemi01@gmail.com" target="_blank" rel="noopener" title="Email Me" class="md-social__link">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M1.75 3h20.5c.966 0 1.75.784 1.75 1.75v14a1.75 1.75 0 0 1-1.75 1.75H1.75A1.75 1.75 0 0 1 0 18.75v-14C0 3.784.784 3 1.75 3M1.5 7.412V18.75c0 .138.112.25.25.25h20.5a.25.25 0 0 0 .25-.25V7.412l-9.52 6.433c-.592.4-1.368.4-1.96 0Zm0-2.662v.852l10.36 7a.25.25 0 0 0 .28 0l10.36-7V4.75a.25.25 0 0 0-.25-.25H1.75a.25.25 0 0 0-.25.25"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://community.aws/@opeyemitechpro" target="_blank" rel="noopener" title="Opeyemi on AWS Community" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.763 10.036q.002.446.088.71c.064.176.144.368.256.576.04.063.056.127.056.183q.002.12-.152.24l-.503.335a.4.4 0 0 1-.208.072q-.12-.002-.239-.112a2.5 2.5 0 0 1-.287-.375 6 6 0 0 1-.248-.471q-.934 1.101-2.347 1.101c-.67 0-1.205-.191-1.596-.574q-.588-.575-.59-1.533c0-.678.239-1.23.726-1.644.487-.415 1.133-.623 1.955-.623.272 0 .551.024.846.064.296.04.6.104.918.176v-.583q-.001-.909-.375-1.277c-.255-.248-.686-.367-1.3-.367-.28 0-.568.031-.863.103q-.443.106-.862.272a2 2 0 0 1-.28.104.5.5 0 0 1-.127.023q-.168.002-.168-.247v-.391c0-.128.016-.224.056-.28a.6.6 0 0 1 .224-.167 4.6 4.6 0 0 1 1.005-.36 4.8 4.8 0 0 1 1.246-.151c.95 0 1.644.216 2.091.647q.66.645.662 1.963v2.586zm-3.24 1.214c.263 0 .534-.048.822-.144a1.8 1.8 0 0 0 .758-.51 1.3 1.3 0 0 0 .272-.512c.047-.191.08-.423.08-.694v-.335a7 7 0 0 0-.735-.136 6 6 0 0 0-.75-.048c-.535 0-.926.104-1.19.32-.263.215-.39.518-.39.917 0 .375.095.655.295.846.191.2.47.296.838.296m6.41.862c-.144 0-.24-.024-.304-.08-.064-.048-.12-.16-.168-.311L7.586 5.55a1.4 1.4 0 0 1-.072-.32c0-.128.064-.2.191-.2h.783q.227-.001.31.08c.065.048.113.16.16.312l1.342 5.284 1.245-5.284q.058-.24.151-.312a.55.55 0 0 1 .32-.08h.638c.152 0 .256.025.32.08.063.048.12.16.151.312l1.261 5.348 1.381-5.348q.074-.24.16-.312a.52.52 0 0 1 .311-.08h.743c.127 0 .2.065.2.2 0 .04-.009.08-.017.128a1 1 0 0 1-.056.2l-1.923 6.17q-.072.24-.168.311a.5.5 0 0 1-.303.08h-.687c-.151 0-.255-.024-.32-.08-.063-.056-.119-.16-.15-.32l-1.238-5.148-1.23 5.14c-.04.16-.087.264-.15.32-.065.056-.177.08-.32.08zm10.256.215c-.415 0-.83-.048-1.229-.143-.399-.096-.71-.2-.918-.32-.128-.071-.215-.151-.247-.223a.6.6 0 0 1-.048-.224v-.407c0-.167.064-.247.183-.247q.072 0 .144.024c.048.016.12.048.2.08q.408.181.878.279c.319.064.63.096.95.096.502 0 .894-.088 1.165-.264a.86.86 0 0 0 .415-.758.78.78 0 0 0-.215-.559c-.144-.151-.416-.287-.807-.415l-1.157-.36c-.583-.183-1.014-.454-1.277-.813a1.9 1.9 0 0 1-.4-1.158q0-.502.216-.886c.144-.255.335-.479.575-.654.24-.184.51-.32.83-.415.32-.096.655-.136 1.006-.136.175 0 .359.008.535.032.183.024.35.056.518.088q.24.058.455.127.216.072.336.144a.7.7 0 0 1 .24.2.43.43 0 0 1 .071.263v.375q-.002.254-.184.256a.8.8 0 0 1-.303-.096 3.65 3.65 0 0 0-1.532-.311c-.455 0-.815.071-1.062.223s-.375.383-.375.71c0 .224.08.416.24.567.159.152.454.304.877.44l1.134.358c.574.184.99.44 1.237.767s.367.702.367 1.117c0 .343-.072.655-.207.926a2.2 2.2 0 0 1-.583.703c-.248.2-.543.343-.886.447-.36.111-.734.167-1.142.167m1.509 3.88c-2.626 1.94-6.442 2.969-9.722 2.969-4.598 0-8.74-1.7-11.87-4.526-.247-.223-.024-.527.272-.351 3.384 1.963 7.559 3.153 11.877 3.153 2.914 0 6.114-.607 9.06-1.852.439-.2.814.287.383.607m1.094-1.246c-.336-.43-2.22-.207-3.074-.103-.255.032-.295-.192-.063-.36 1.5-1.053 3.967-.75 4.254-.399.287.36-.08 2.826-1.485 4.007-.215.184-.423.088-.327-.151.32-.79 1.03-2.57.695-2.994"/></svg>
     </a>
   
     
