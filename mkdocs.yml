@@ -159,6 +159,9 @@ extra:
     - icon: octicons/mail-24
       link: mailto:okuboyejoopeyemi01@gmail.com
       name: Email Me
+    - icon: simple/amazonwebservices
+      link: https://community.aws/@opeyemitechpro
+      name: Opeyemi on AWS Community
     - icon: fontawesome/brands/dev
       link: https://dev.to/opeyemitechpro
       name: Opeyemi on Dev.to
