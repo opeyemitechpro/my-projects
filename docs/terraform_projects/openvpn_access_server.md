@@ -39,12 +39,12 @@ In this project, we will demonstrate how to setup and self-host a VPN server on 
     ## Initialize the terraform configuration
     From within the cloned directory, initialize the terraform configuration
 
-    ``` sh
+    ``` tf
     terraform init
     ```
 
     ## Apply the Terraform Configuration
-    ``` sh
+    ``` tf
     terraform apply
     ```
 
@@ -94,7 +94,7 @@ In this project, we will demonstrate how to setup and self-host a VPN server on 
     ## Cleanup
     The whole infrastructure can be destroyed by simply using the command:
 
-    ``` sh
+    ``` tf
     terraform destroy
     ```
 
