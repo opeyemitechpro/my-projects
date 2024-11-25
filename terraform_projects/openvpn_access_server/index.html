@@ -829,9 +829,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#setup-and-host-your-own-vpn-server-on-aws-using-terraform-and-openvpn-for-free" class="md-nav__link">
+  <a href="#setup-and-host-your-own-free-vpn-server-on-aws-using-terraform-and-openvpn" class="md-nav__link">
     <span class="md-ellipsis">
-      Setup and Host Your Own VPN Server on AWS Using Terraform and OpenVPN for Free
+      Setup and Host Your Own Free VPN Server on AWS Using Terraform and OpenVPN
     </span>
   </a>
   
@@ -841,6 +841,15 @@
   <a href="#quick-start-guide" class="md-nav__link">
     <span class="md-ellipsis">
       Quick Start Guide
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#clone-the-repository" class="md-nav__link">
+    <span class="md-ellipsis">
+      Clone the Repository
     </span>
   </a>
   
@@ -861,6 +870,21 @@
       Apply the Terraform Configuration
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Apply the Terraform Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#list-of-accepted-aws-regions" class="md-nav__link">
+    <span class="md-ellipsis">
+      List of accepted AWS regions
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1257,9 +1281,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#setup-and-host-your-own-vpn-server-on-aws-using-terraform-and-openvpn-for-free" class="md-nav__link">
+  <a href="#setup-and-host-your-own-free-vpn-server-on-aws-using-terraform-and-openvpn" class="md-nav__link">
     <span class="md-ellipsis">
-      Setup and Host Your Own VPN Server on AWS Using Terraform and OpenVPN for Free
+      Setup and Host Your Own Free VPN Server on AWS Using Terraform and OpenVPN
     </span>
   </a>
   
@@ -1269,6 +1293,15 @@
   <a href="#quick-start-guide" class="md-nav__link">
     <span class="md-ellipsis">
       Quick Start Guide
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#clone-the-repository" class="md-nav__link">
+    <span class="md-ellipsis">
+      Clone the Repository
     </span>
   </a>
   
@@ -1289,6 +1322,21 @@
       Apply the Terraform Configuration
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Apply the Terraform Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#list-of-accepted-aws-regions" class="md-nav__link">
+    <span class="md-ellipsis">
+      List of accepted AWS regions
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1392,7 +1440,7 @@
 
 
 <h1 id="openvpn-access-server-setup"><strong>OpenVPN Access Server Setup</strong><a class="headerlink" href="#openvpn-access-server-setup" title="Copy this link to reference this section">&para;</a></h1>
-<h2 id="setup-and-host-your-own-vpn-server-on-aws-using-terraform-and-openvpn-for-free">Setup and Host Your Own VPN Server on AWS Using Terraform and OpenVPN for Free<a class="headerlink" href="#setup-and-host-your-own-vpn-server-on-aws-using-terraform-and-openvpn-for-free" title="Copy this link to reference this section">&para;</a></h2>
+<h2 id="setup-and-host-your-own-free-vpn-server-on-aws-using-terraform-and-openvpn">Setup and Host Your Own Free VPN Server on AWS Using Terraform and OpenVPN<a class="headerlink" href="#setup-and-host-your-own-free-vpn-server-on-aws-using-terraform-and-openvpn" title="Copy this link to reference this section">&para;</a></h2>
 <p>In this project, we will demonstrate how to setup and self-host a VPN server on AWS using terraform and OpenVPN Access Server.</p>
 <details class="youtube">
 <summary>Create a Free Self-Hosted VPN Server on AWS using Terraform and OpenVPN</summary>
@@ -1405,8 +1453,8 @@
 <h2 id="quick-start-guide"><strong>Quick Start Guide</strong><a class="headerlink" href="#quick-start-guide" title="Copy this link to reference this section">&para;</a></h2>
 <details class="info">
 <summary>Click here for a quick start guide on setting up the OpenVPN Access Server</summary>
-<p><strong>Clone the Repository</strong> 
-Create a folder on your local machine and clone the repository in the folder</p>
+<h2 id="clone-the-repository">Clone the Repository<a class="headerlink" href="#clone-the-repository" title="Copy this link to reference this section">&para;</a></h2>
+<p>Create a folder on your local machine and clone the repository in the folder</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/opeyemitechpro/OpenVPN-Terraform.git
 </code></pre></div></td></tr></table></div>
 <h2 id="initialize-the-terraform-configuration">Initialize the terraform configuration<a class="headerlink" href="#initialize-the-terraform-configuration" title="Copy this link to reference this section">&para;</a></h2>
@@ -1420,48 +1468,52 @@ Create a folder on your local machine and clone the repository in the folder</p>
 <li>When prompted, enter an AWS region from the list below and respond <code>yes</code> to the prompt.  (e.g. <code>us-west-2</code>)</li>
 <li>This will be the AWS region where the VPN server and all resources will be hosted. </li>
 </ul>
-<p><strong>List of accepted AWS regions</strong></p>
+<h3 id="list-of-accepted-aws-regions">List of accepted AWS regions<a class="headerlink" href="#list-of-accepted-aws-regions" title="Copy this link to reference this section">&para;</a></h3>
 <ul>
-<li>"us-east-1"      = "N. Virginia"</li>
-<li>"us-east-2"      = "Ohio"</li>
-<li>"us-west-1"      = "N. California"</li>
-<li>"us-west-2"      = "Oregon"</li>
-<li>"af-south-1"     = "Cape Town"</li>
-<li>"ap-east-1"      = "Hong Kong"</li>
-<li>"ap-south-1"     = "Mumbai"</li>
-<li>"ap-southeast-1" = "Singapore"</li>
-<li>"ap-southeast-2" = "Sydney"</li>
-<li>"ap-southeast-3" = "Jakarta"</li>
-<li>"ap-northeast-1" = "Tokyo"</li>
-<li>"ap-northeast-2" = "Seoul"</li>
-<li>"ap-northeast-3" = "Osaka"</li>
-<li>"ca-central-1"   = "Canada Central"</li>
-<li>"eu-central-1"   = "Frankfurt"</li>
-<li>"eu-west-1"      = "Ireland"</li>
-<li>"eu-west-2"      = "London"</li>
-<li>"eu-west-3"      = "Paris"</li>
-<li>"eu-north-1"     = "Stockholm"</li>
-<li>"eu-south-1"     = "Milan"</li>
-<li>"eu-south-2"     = "Zurich"</li>
-<li>"me-south-1"     = "Bahrain"</li>
-<li>"me-central-1"   = "UAE"</li>
-<li>"sa-east-1"      = "São Paulo"</li>
+<li>us-east-1       =  N. Virginia </li>
+<li>us-east-2       =  Ohio </li>
+<li>us-west-1       =  N. California </li>
+<li>us-west-2       =  Oregon </li>
+<li>af-south-1      =  Cape Town </li>
+<li>ap-east-1       =  Hong Kong </li>
+<li>ap-south-1      =  Mumbai </li>
+<li>ap-southeast-1  =  Singapore </li>
+<li>ap-southeast-2  =  Sydney </li>
+<li>ap-southeast-3  =  Jakarta </li>
+<li>ap-northeast-1  =  Tokyo </li>
+<li>ap-northeast-2  =  Seoul </li>
+<li>ap-northeast-3  =  Osaka </li>
+<li>ca-central-1    =  Canada Central </li>
+<li>eu-central-1    =  Frankfurt </li>
+<li>eu-west-1       =  Ireland </li>
+<li>eu-west-2       =  London </li>
+<li>eu-west-3       =  Paris </li>
+<li>eu-north-1      =  Stockholm </li>
+<li>eu-south-1      =  Milan </li>
+<li>eu-south-2      =  Zurich </li>
+<li>me-south-1      =  Bahrain </li>
+<li>me-central-1    =  UAE </li>
+<li>sa-east-1       =  São Paulo </li>
 </ul>
 <h2 id="outputs">Outputs<a class="headerlink" href="#outputs" title="Copy this link to reference this section">&para;</a></h2>
-<p>At the end of the terraform apply command, the script outputs the following details on the screen:
-- The Public IP address of the VPN Server
-- The instance-ID
-- The name of the keypair created
-- The path where the private key file was saved on your local machine
-- SSH connection string that you can use to the VPN server
-- The OpenVPN profile file that you will use to connect to the VPN server
-- Further steps to launch your VPN connection</p>
+<p>At the end of the terraform apply command, the script outputs the following details on the screen:</p>
+<ul>
+<li>The Public IP address of the VPN Server</li>
+<li>The instance-ID</li>
+<li>The name of the keypair created</li>
+<li>The path where the private key file was saved on your local machine</li>
+<li>SSH connection string that you can use to the VPN server</li>
+<li>The OpenVPN profile file that you will use to connect to the VPN server</li>
+<li>Further steps to launch your VPN connection</li>
+</ul>
 <h2 id="cleanup">Cleanup<a class="headerlink" href="#cleanup" title="Copy this link to reference this section">&para;</a></h2>
 <p>The whole infrastructure can be destroyed by simply using the command:</p>
-<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a>terraform<span class="w"> </span>destroy
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a>terraform<span class="w"> </span>destroy
 </code></pre></div></td></tr></table></div>
-- Enter the AWS region that you entered above and respond <code>yes</code> to the prompt.
-- This will terminate the EC2 instance and all resources created and also delete the files that were locally created in the terraform working directory i.e. the *.ovpn user profile and the keypair file that was created earlier </p>
+<ul>
+<li>Enter the AWS region that you entered above and respond <code>yes</code> to the prompt.</li>
+<li>This will terminate the EC2 instance and all resources created and also delete the files that were locally created in the terraform working directory i.e. the *.ovpn user profile and the keypair file that was created earlier </li>
+</ul>
 </details>
 <h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Copy this link to reference this section">&para;</a></h2>
 <h2 id="pre-requisites">Pre-requisites<a class="headerlink" href="#pre-requisites" title="Copy this link to reference this section">&para;</a></h2>
@@ -1537,7 +1589,7 @@ Step 5: Apply the configuration</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-11-25T16:26:49+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-11-25</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-11-25T16:46:19+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-11-25</span>
   </span>
 
     
