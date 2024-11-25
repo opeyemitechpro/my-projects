@@ -13,7 +13,7 @@ status: new
 
 # **OpenVPN Access Server Setup**
 
-## Setup and Host Your Own VPN Server on AWS Using Terraform and OpenVPN for Free
+## Setup and Host Your Own Free VPN Server on AWS Using Terraform and OpenVPN
 
 In this project, we will demonstrate how to setup and self-host a VPN server on AWS using terraform and OpenVPN Access Server.
 
@@ -29,7 +29,7 @@ In this project, we will demonstrate how to setup and self-host a VPN server on 
 
 ??? info "Click here for a quick start guide on setting up the OpenVPN Access Server"
 
-    **Clone the Repository** 
+    ## Clone the Repository
     Create a folder on your local machine and clone the repository in the folder
 
     ``` sh
@@ -51,35 +51,36 @@ In this project, we will demonstrate how to setup and self-host a VPN server on 
     - When prompted, enter an AWS region from the list below and respond `yes` to the prompt.  (e.g. `us-west-2`)
     - This will be the AWS region where the VPN server and all resources will be hosted. 
 
-    **List of accepted AWS regions**
+    ### List of accepted AWS regions
 
-    - "us-east-1"      = "N. Virginia"
-    - "us-east-2"      = "Ohio"
-    - "us-west-1"      = "N. California"
-    - "us-west-2"      = "Oregon"
-    - "af-south-1"     = "Cape Town"
-    - "ap-east-1"      = "Hong Kong"
-    - "ap-south-1"     = "Mumbai"
-    - "ap-southeast-1" = "Singapore"
-    - "ap-southeast-2" = "Sydney"
-    - "ap-southeast-3" = "Jakarta"
-    - "ap-northeast-1" = "Tokyo"
-    - "ap-northeast-2" = "Seoul"
-    - "ap-northeast-3" = "Osaka"
-    - "ca-central-1"   = "Canada Central"
-    - "eu-central-1"   = "Frankfurt"
-    - "eu-west-1"      = "Ireland"
-    - "eu-west-2"      = "London"
-    - "eu-west-3"      = "Paris"
-    - "eu-north-1"     = "Stockholm"
-    - "eu-south-1"     = "Milan"
-    - "eu-south-2"     = "Zurich"
-    - "me-south-1"     = "Bahrain"
-    - "me-central-1"   = "UAE"
-    - "sa-east-1"      = "São Paulo"
+    -  us-east-1       =  N. Virginia 
+    -  us-east-2       =  Ohio 
+    -  us-west-1       =  N. California 
+    -  us-west-2       =  Oregon 
+    -  af-south-1      =  Cape Town 
+    -  ap-east-1       =  Hong Kong 
+    -  ap-south-1      =  Mumbai 
+    -  ap-southeast-1  =  Singapore 
+    -  ap-southeast-2  =  Sydney 
+    -  ap-southeast-3  =  Jakarta 
+    -  ap-northeast-1  =  Tokyo 
+    -  ap-northeast-2  =  Seoul 
+    -  ap-northeast-3  =  Osaka 
+    -  ca-central-1    =  Canada Central 
+    -  eu-central-1    =  Frankfurt 
+    -  eu-west-1       =  Ireland 
+    -  eu-west-2       =  London 
+    -  eu-west-3       =  Paris 
+    -  eu-north-1      =  Stockholm 
+    -  eu-south-1      =  Milan 
+    -  eu-south-2      =  Zurich 
+    -  me-south-1      =  Bahrain 
+    -  me-central-1    =  UAE 
+    -  sa-east-1       =  São Paulo 
 
     ## Outputs
     At the end of the terraform apply command, the script outputs the following details on the screen:
+
     - The Public IP address of the VPN Server
     - The instance-ID
     - The name of the keypair created
@@ -96,6 +97,7 @@ In this project, we will demonstrate how to setup and self-host a VPN server on 
     ``` sh
     terraform destroy
     ```
+
     - Enter the AWS region that you entered above and respond `yes` to the prompt.
     - This will terminate the EC2 instance and all resources created and also delete the files that were locally created in the terraform working directory i.e. the *.ovpn user profile and the keypair file that was created earlier 
 
