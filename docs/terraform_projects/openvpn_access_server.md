@@ -9,6 +9,7 @@ tags:
   - Terraform
   - OpenVPN
 status: new
+pin: true
 ---
 
 # **OpenVPN Access Server Setup Using Terraform**
@@ -22,6 +23,9 @@ In this project, we will demonstrate how to setup and self-host a VPN server on 
     [![Create a Free Self-Hosted VPN Server on AWS using Terraform and OpenVPN](../../assets/images/300_Credit-YT-Thumbnail.png "Create a Free Self-Hosted VPN Server on AWS using Terraform and OpenVPN")](https://www.youtube.com/@opeyemitechpro)
     <figcaption>Create a Free Self-Hosted VPN Server on AWS using Terraform and OpenVPN</figcaption>
     </figure>
+    /// caption
+    YouTube Video thumbnail
+    ///
 
     In this video I share How To Create a Free Self-Hosted VPN Server on AWS using Terraform and OpenVPN
 
@@ -42,9 +46,8 @@ Setting up a self-hosted VPN server can be a cost-effective and secure solution 
 
 ??? info "Click here to see details of how the OpenVPN Terraform config works under the hood"
 
-    <a href="https://github.com/opeyemitechpro/OpenVPN-Terraform-Setup" target="_blank">[OpenVPN-Terraform Source Code](https://github.com/opeyemitechpro/OpenVPN-Terraform-Setup)
-    </a>
-    
+    [OpenVPN-Terraform Source Code](https://github.com/opeyemitechpro/OpenVPN-Terraform-Setup){ .md-button, : target="_blank"}
+        
     Each of the files in  this terraform configuration module is explained below:
 
     ??? tip "The `ami.tf` file"
