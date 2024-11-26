@@ -41,17 +41,17 @@ Setting up a self-hosted VPN server can be a cost-effective and secure solution 
 - [x] OpenVPN Client installed on local machine
 - [x] Your AWS access key ID and secret access key
 - [x] AWS CLI installed and configured with your AWS access key ID and Secret access keys (_[learn more about AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-quickstart.html)_) 
-- [x] The OpenVPN-Terraform Setup Script [here](https://github.com/opeyemitechpro/OpenVPN-Terraform-Setup){: target="_blank" .md-button}
+- [x] The OpenVPN-Terraform Setup Script [here](https://github.com/opeyemitechpro/OpenVPN-Terraform-Setup){: target="_blank" }
 
 
-[OpenVPN-Terraform Source Code](https://github.com/opeyemitechpro/OpenVPN-Terraform-Setup){: target="_blank" .md-button .md-button--primary}
+[OpenVPN-Terraform Source Code](https://github.com/opeyemitechpro/OpenVPN-Terraform-Setup :simple-openvpn:){: target="_blank" .md-button .md-button--primary}
 
 
 ## **How the Terraform Config Script works**
 
 ??? info "Click here to see details of how the OpenVPN Terraform config works under the hood"
 
-    [OpenVPN-Terraform Source Code](https://github.com/opeyemitechpro/OpenVPN-Terraform-Setup){: target="_blank" .md-button}
+    [OpenVPN-Terraform Source Code](https://github.com/opeyemitechpro/OpenVPN-Terraform-Setup :simple-openvpn:){: target="_blank" .md-button}
         
     Each of the files in  this terraform configuration module is explained below:
 
