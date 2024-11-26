@@ -26,11 +26,11 @@ In this project, we will demonstrate how to setup and self-host a VPN server on 
     In this video I share How To Create a Free Self-Hosted VPN Server on AWS using Terraform and OpenVPN
 
 
-## Introduction
+## **Introduction**
 
 Setting up a self-hosted VPN server can be a cost-effective and secure solution for personal or organizational needs. This documentation provides a step-by-step guide on using a Terraform configuration script to deploy an OpenVPN server on AWS. With this guide, you'll learn how to configure the script, customize it for your requirements, and launch a fully functional VPN server that ensures your internet traffic remains private and encrypted.
 
-## Pre-requisites
+## **Pre-requisites**
 
 - [x] AWS account _(free tier account will work)_
 - [x] Terraform installed on local machine
@@ -38,7 +38,7 @@ Setting up a self-hosted VPN server can be a cost-effective and secure solution 
 - [x] Your AWS access key ID and secret access key
 - [x] AWS CLI installed and configured with your AWS access key ID and Secret access keys (_[learn more about AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-quickstart.html)_) 
 
-## How the Terraform Config Script works
+## **How the Terraform Config Script works**
 
 ??? info "Click here to see details of how the OpenVPN Terraform config works under the hood"
 
@@ -46,17 +46,17 @@ Setting up a self-hosted VPN server can be a cost-effective and secure solution 
 
     ??? tip "The `ami.tf` file"
         
-        This Terraform file (ami.tf) is used to find the latest Ubuntu 22.04 AMI (Amazon Machine Image) in AWS ami Catalog. 
+        This `ami.tf` is used to find the latest Ubuntu 22.04 AMI (Amazon Machine Image) in AWS ami Catalog. 
         
-        It creates a data source named "ubuntu" that searches for AMIs with these criteria:
+        - It creates a data source named "ubuntu" that searches for AMIs with these criteria:
         
-        Uses most_recent = true to get the latest version
+        - Uses most_recent = true to get the latest version
 
-        Filters for Ubuntu 22.04 (Jammy Jellyfish) images using the name pattern
+        - Filters for Ubuntu 22.04 (Jammy Jellyfish) images using the name pattern
 
-        Ensures it's using HVM (Hardware Virtual Machine) virtualization
+        - Ensures it's using HVM (Hardware Virtual Machine) virtualization
 
-        Only looks for images owned by Canonical (Ubuntu's publisher) using their AWS account ID (099720109477)
+        - Only looks for images owned by Canonical (Ubuntu's publisher) using their AWS account ID (099720109477)
 
         This prevents hardcoding a specific AMI ID into the script, which could become outdated. The AMI ID is then referenced elsewhere in the Terraform code using `data.aws_ami.ubuntu.id`
 
@@ -160,21 +160,21 @@ Setting up a self-hosted VPN server can be a cost-effective and secure solution 
         The `variables.tf` file is used to define variables that make the configuration more dynamic and reusable. By abstracting values into variables, I can easily customize the infrastructure without directly modifying the configuration files.
 
 
-## Setting the script options
+## **Setting the script options**
 
 The script allows you to set some options based on your use case. These are the available options you can set:
 
 - [x] `project_name` - This is used for labelling purposes only. It is appended to the resource tags
 - [x]  `OpenVPN_instance_type` - This has been set to `t2-micro` so the setup remains within the AWS free-tier plan.  You can change this to any suitable instance type but a t2-micro will server in most situations
-- [x] `openvpn_user` - This is the username used to create the `*.ovpn` profile file on the VPN server. The profile name is displayed when you connect through the OpenVPn client. It is currently set to append the selected AWS region so you can easily know which region you are connected to.
+- [x] `openvpn_user` - This is the username used to create the `*.ovpn` profile file on the VPN server. The profile name is displayed when you connect through the OpenVPN client. It is currently set to append the selected AWS region so you can easily know which region you are connected to.
 - [x] `selected_region` - this option is set at runtime and it is required for the script to run. Here you select the AWS region where you want your server to be hosted.  The region you select will determine where your VPN traffic is routed through. For example, if you select `ca-central-1`, your VPN traffic will be routed through the AWS Canada Central IP address and as such your public IP address will read "Quebec, Montreal, Canada" 
 
 ![Public IP address showing Canada](../../assets/images/ovpn-canada-ip.png "Public IP address showing Canada")
 
 The list of acceptable AWS regions are shown [here](https://opeyemitech.pro/my-projects/terraform_projects/openvpn_access_server/#list-of-accepted-aws-regions)
 
-## Running the script
-Follow the "Quick Start Guide below to provision and configure your OpenVPN server and to connect to your new VPN network.
+## **Running the script**
+Follow the **"Quick Start Guide"** below to provision and configure your OpenVPN server and to connect to your new VPN network.
 
 ## **Quick Start Guide**
 
@@ -194,15 +194,20 @@ Follow the "Quick Start Guide below to provision and configure your OpenVPN serv
     terraform init
     ```
 
+    ![Terraform Initialiaztion Command](../../assets/images/ovpn-terraform-init.png "Terraform Initialiaztion Command")
+
     ## Apply the Terraform Configuration
 
     ``` sh
     terraform apply
     ```
-
+    
     - When prompted, enter an AWS region from the list below and respond `yes` to the prompt.  (e.g. `us-west-2`)
     - This will be the AWS region where the VPN server and all resources will be hosted. 
 
+    ![Terraform apply command](../../assets/images/ovpn-terraform-apply.png "Terraform apply command")
+    
+    
     ### List of accepted AWS regions
 
     -  us-east-1       =  N. Virginia 
@@ -241,13 +246,19 @@ Follow the "Quick Start Guide below to provision and configure your OpenVPN serv
     - The OpenVPN profile file that you will use to ssh into the VPN server
     - Further steps to launch your VPN connection
 
+    ![Terraform Output](../../assets/images/ovpn-terraform-output.png "Terraform Output Screen")
+
     ## Connect to your VPN
-    - Downlaod and install [OpenVPN Connect client](https://openvpn.net/client/) on your local machine
-    - Import the `*.ovpn` file into the OpenVPN lcient appllication
+    - Download and install [OpenVPN Connect client](https://openvpn.net/client/) on your local machine
+    - Import the `*.ovpn` file into the OpenVPN cient appllication
     - Connect to your VPN network
+
+    ![OpenVPN Client Connected to the VPN](../../assets/images/ovpn-terraform-connect.png "OpenVPN Client Connected to the VPN")
 
     ## Testing your VPN Connection
     One very simple way to check if you are actually connected to your new VPN network is to open your browser and check your public IP address. You can use websites like [whatsmyip.com](hhtps://whatsmyip.com) or simply search "what is my ip address" on Google to check your public IP address.  
+
+    ![Public IP address showing Canada](../../assets/images/ovpn-canada-ip.png "Public IP address showing Canada")
     
     When you are connected to your VPN server, your internet traffic will be routed through your VPN server and as such, only your VPN server IP address will be seen publicly, your local ISP assigned ip address will be hidden from the internet. 
 
@@ -261,7 +272,9 @@ Follow the "Quick Start Guide below to provision and configure your OpenVPN serv
     - Enter the AWS region that you entered above and respond `yes` to the prompt.
     - This will terminate the EC2 instance and all resources created and also delete the files that were locally created in the terraform working directory i.e. the *.ovpn user profile and the keypair file that was created earlier 
 
+    ![Terraform Destroy Command](../../assets/images/ovpn-terraform-destroy.png "Terraform Destroy Command")
 
-## Conclusion
 
-This 
+## **Conclusion**
+
+Setting up a self-hosted VPN server using this Terraform configuration script is a straightforward and efficient way to enhance your network security and maintain control over your data. By following this documentation, you can deploy a robust OpenVPN server on AWS, customize it to your needs, and ensure private and secure internet access. This guide aims to empower you with the knowledge and tools to manage your own VPN server effectively. For any troubleshooting or further customization, explore the Terraform and OpenVPN documentation for advanced insights and solutions. 
