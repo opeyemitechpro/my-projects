@@ -11,7 +11,7 @@ tags:
 status: new
 ---
 
-# **OpenVPN Access Server Setup**
+# **OpenVPN Access Server Setup Using Terraform**
 
 ## Setup and Host Your Own Free VPN Server on AWS Using Terraform and OpenVPN
 
