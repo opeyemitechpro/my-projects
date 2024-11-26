@@ -46,7 +46,7 @@ Setting up a self-hosted VPN server can be a cost-effective and secure solution 
 
 ??? info "Click here to see details of how the OpenVPN Terraform config works under the hood"
 
-    [OpenVPN-Terraform Source Code](https://github.com/opeyemitechpro/OpenVPN-Terraform-Setup){ .md-button, target="_blank"}
+    [OpenVPN-Terraform Source Code](https://github.com/opeyemitechpro/OpenVPN-Terraform-Setup){: target="_blank" .md-button}
         
     Each of the files in  this terraform configuration module is explained below:
 
