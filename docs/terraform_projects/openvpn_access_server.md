@@ -46,23 +46,23 @@ Setting up a self-hosted VPN server can be a cost-effective and secure solution 
 
 ??? info "Click here to see details of how the OpenVPN Terraform config works under the hood"
 
-    [OpenVPN-Terraform Source Code](https://github.com/opeyemitechpro/OpenVPN-Terraform-Setup){ .md-button}
+    [OpenVPN-Terraform Source Code](https://github.com/opeyemitechpro/OpenVPN-Terraform-Setup){ .md-button, target="_blank"}
         
     Each of the files in  this terraform configuration module is explained below:
 
     ??? tip "The `ami.tf` file"
         
-        This `ami.tf` is used to find the latest Ubuntu 22.04 AMI (Amazon Machine Image) in AWS ami Catalog. 
+        This `ami.tf` is used to find the latest Ubuntu 22.04 AMI (Amazon Machine Image) from the AWS ami Catalog. 
         
         - It creates a data source named "ubuntu" that searches for AMIs with these criteria:
         
-        - Uses most_recent = true to get the latest version
+            - Uses most_recent = true to get the latest version
 
-        - Filters for Ubuntu 22.04 (Jammy Jellyfish) images using the name pattern
+            - Filters for Ubuntu 22.04 (Jammy Jellyfish) images using the name pattern
 
-        - Ensures it's using HVM (Hardware Virtual Machine) virtualization
+            - Ensures it's using HVM (Hardware Virtual Machine) virtualization
 
-        - Only looks for images owned by Canonical (Ubuntu's publisher) using their AWS account ID (099720109477)
+            - Only looks for images owned by Canonical (Ubuntu's publisher) using their AWS account ID (099720109477)
 
         This prevents hardcoding a specific AMI ID into the script, which could become outdated. The AMI ID is then referenced elsewhere in the Terraform code using `data.aws_ami.ubuntu.id`
 
