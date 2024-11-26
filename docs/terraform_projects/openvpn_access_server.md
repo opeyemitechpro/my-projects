@@ -170,8 +170,8 @@ Setting up a self-hosted VPN server can be a cost-effective and secure solution 
 
 The script allows you to set some options based on your use case. These are the available options you can set:
 
-- [x] `project_name` - This is used for labelling purposes only. It is appended to the resource tags
-- [x]  `OpenVPN_instance_type` - This has been set to `t2-micro` so the setup remains within the AWS free-tier plan.  You can change this to any suitable instance type but a t2-micro will server in most situations
+- [x] ==`project_name`== - This is used for labelling purposes only. It is appended to the resource tags
+- [x]  {==`OpenVPN_instance_type`==} - This has been set to `t2-micro` so the setup remains within the AWS free-tier plan.  You can change this to any suitable instance type but a t2-micro will server in most situations
 - [x] `openvpn_user` - This is the username used to create the `*.ovpn` profile file on the VPN server. The profile name is displayed when you connect through the OpenVPN client. It is currently set to append the selected AWS region so you can easily know which region you are connected to.
 - [x] `selected_region` - this option is set at runtime and it is required for the script to run. Here you select the AWS region where you want your server to be hosted.  The region you select will determine where your VPN traffic is routed through. For example, if you select `ca-central-1`, your VPN traffic will be routed through the AWS Canada Central IP address and as such your public IP address will read "Quebec, Montreal, Canada" 
 
