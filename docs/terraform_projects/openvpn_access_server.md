@@ -44,14 +44,14 @@ Setting up a self-hosted VPN server can be a cost-effective and secure solution 
 - [x] The OpenVPN-Terraform Setup Script [here](https://github.com/opeyemitechpro/OpenVPN-Terraform-Setup){: target="_blank" }
 
 
-[OpenVPN-Terraform Source Code](https://github.com/opeyemitechpro/OpenVPN-Terraform-Setup :simple-openvpn:){: target="_blank" .md-button .md-button--primary}
+[OpenVPN-Terraform Source Code](https://github.com/opeyemitechpro/OpenVPN-Terraform-Setup){: target="_blank" .md-button .md-button--primary}
 
 
 ## **How the Terraform Config Script works**
 
 ??? info "Click here to see details of how the OpenVPN Terraform config works under the hood"
 
-    [OpenVPN-Terraform Source Code](https://github.com/opeyemitechpro/OpenVPN-Terraform-Setup :simple-openvpn:){: target="_blank" .md-button}
+    [OpenVPN-Terraform Source Code](https://github.com/opeyemitechpro/OpenVPN-Terraform-Setup){: target="_blank" .md-button}
         
     Each of the files in  this terraform configuration module is explained below:
 
