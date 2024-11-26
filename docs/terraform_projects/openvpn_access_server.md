@@ -248,6 +248,9 @@ Follow the **"Quick Start Guide"** below to provision and configure your OpenVPN
 
     ![Terraform Output](../../assets/images/ovpn-terraform-output.png "Terraform Output Screen")
 
+    **Showing the OpenVPN server on the AWS EC2 Console**
+    ![AWS Console Showing the OpenVPN Server details](../../assets/images/ovpn-terraform-console.png "AWS Console Showing the OpenVPN Server details")
+
     ## Connect to your VPN
     - Download and install [OpenVPN Connect client](https://openvpn.net/client/) on your local machine
     - Import the `*.ovpn` file into the OpenVPN cient appllication
