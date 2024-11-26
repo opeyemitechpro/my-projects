@@ -1558,9 +1558,9 @@
 </figure></p>
 <p>In this video I share How To Create a Free Self-Hosted VPN Server on AWS using Terraform and OpenVPN</p>
 </details>
-<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Copy this link to reference this section">&para;</a></h2>
+<h2 id="introduction"><strong>Introduction</strong><a class="headerlink" href="#introduction" title="Copy this link to reference this section">&para;</a></h2>
 <p>Setting up a self-hosted VPN server can be a cost-effective and secure solution for personal or organizational needs. This documentation provides a step-by-step guide on using a Terraform configuration script to deploy an OpenVPN server on AWS. With this guide, you'll learn how to configure the script, customize it for your requirements, and launch a fully functional VPN server that ensures your internet traffic remains private and encrypted.</p>
-<h2 id="pre-requisites">Pre-requisites<a class="headerlink" href="#pre-requisites" title="Copy this link to reference this section">&para;</a></h2>
+<h2 id="pre-requisites"><strong>Pre-requisites</strong><a class="headerlink" href="#pre-requisites" title="Copy this link to reference this section">&para;</a></h2>
 <ul class="task-list">
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" checked/><span class="task-list-indicator"></span></label> AWS account <em>(free tier account will work)</em></li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" checked/><span class="task-list-indicator"></span></label> Terraform installed on local machine</li>
@@ -1568,18 +1568,30 @@
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" checked/><span class="task-list-indicator"></span></label> Your AWS access key ID and secret access key</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" checked/><span class="task-list-indicator"></span></label> AWS CLI installed and configured with your AWS access key ID and Secret access keys (<em><a href="https://docs.aws.amazon.com/cli/latest/userguide/getting-started-quickstart.html">learn more about AWS CLI</a></em>) </li>
 </ul>
-<h2 id="how-the-terraform-config-script-works">How the Terraform Config Script works<a class="headerlink" href="#how-the-terraform-config-script-works" title="Copy this link to reference this section">&para;</a></h2>
+<h2 id="how-the-terraform-config-script-works"><strong>How the Terraform Config Script works</strong><a class="headerlink" href="#how-the-terraform-config-script-works" title="Copy this link to reference this section">&para;</a></h2>
 <details class="info">
 <summary>Click here to see details of how the OpenVPN Terraform config works under the hood</summary>
 <p>Each of the files in  this terraform configuration module is explained below:</p>
 <details class="tip">
 <summary>The <code>ami.tf</code> file</summary>
-<p>This Terraform file (ami.tf) is used to find the latest Ubuntu 22.04 AMI (Amazon Machine Image) in AWS ami Catalog. </p>
+<p>This <code>ami.tf</code> is used to find the latest Ubuntu 22.04 AMI (Amazon Machine Image) in AWS ami Catalog. </p>
+<ul>
+<li>
 <p>It creates a data source named "ubuntu" that searches for AMIs with these criteria:</p>
+</li>
+<li>
 <p>Uses most_recent = true to get the latest version</p>
+</li>
+<li>
 <p>Filters for Ubuntu 22.04 (Jammy Jellyfish) images using the name pattern</p>
+</li>
+<li>
 <p>Ensures it's using HVM (Hardware Virtual Machine) virtualization</p>
+</li>
+<li>
 <p>Only looks for images owned by Canonical (Ubuntu's publisher) using their AWS account ID (099720109477)</p>
+</li>
+</ul>
 <p>This prevents hardcoding a specific AMI ID into the script, which could become outdated. The AMI ID is then referenced elsewhere in the Terraform code using <code>data.aws_ami.ubuntu.id</code></p>
 </details>
 <details class="tip">
@@ -1712,18 +1724,18 @@
 <p>The <code>variables.tf</code> file is used to define variables that make the configuration more dynamic and reusable. By abstracting values into variables, I can easily customize the infrastructure without directly modifying the configuration files.</p>
 </details>
 </details>
-<h2 id="setting-the-script-options">Setting the script options<a class="headerlink" href="#setting-the-script-options" title="Copy this link to reference this section">&para;</a></h2>
+<h2 id="setting-the-script-options"><strong>Setting the script options</strong><a class="headerlink" href="#setting-the-script-options" title="Copy this link to reference this section">&para;</a></h2>
 <p>The script allows you to set some options based on your use case. These are the available options you can set:</p>
 <ul class="task-list">
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" checked/><span class="task-list-indicator"></span></label> <code>project_name</code> - This is used for labelling purposes only. It is appended to the resource tags</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" checked/><span class="task-list-indicator"></span></label> <code>OpenVPN_instance_type</code> - This has been set to <code>t2-micro</code> so the setup remains within the AWS free-tier plan.  You can change this to any suitable instance type but a t2-micro will server in most situations</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" checked/><span class="task-list-indicator"></span></label> <code>openvpn_user</code> - This is the username used to create the <code>*.ovpn</code> profile file on the VPN server. The profile name is displayed when you connect through the OpenVPn client. It is currently set to append the selected AWS region so you can easily know which region you are connected to.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" checked/><span class="task-list-indicator"></span></label> <code>openvpn_user</code> - This is the username used to create the <code>*.ovpn</code> profile file on the VPN server. The profile name is displayed when you connect through the OpenVPN client. It is currently set to append the selected AWS region so you can easily know which region you are connected to.</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" checked/><span class="task-list-indicator"></span></label> <code>selected_region</code> - this option is set at runtime and it is required for the script to run. Here you select the AWS region where you want your server to be hosted.  The region you select will determine where your VPN traffic is routed through. For example, if you select <code>ca-central-1</code>, your VPN traffic will be routed through the AWS Canada Central IP address and as such your public IP address will read "Quebec, Montreal, Canada" </li>
 </ul>
 <p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" data-title="Public IP address showing Canada" data-desc-position="bottom"><img alt="Public IP address showing Canada" src="../../assets/images/ovpn-canada-ip.png" title="Public IP address showing Canada" /></a></p>
 <p>The list of acceptable AWS regions are shown <a href="https://opeyemitech.pro/my-projects/terraform_projects/openvpn_access_server/#list-of-accepted-aws-regions">here</a></p>
-<h2 id="running-the-script">Running the script<a class="headerlink" href="#running-the-script" title="Copy this link to reference this section">&para;</a></h2>
-<p>Follow the "Quick Start Guide below to provision and configure your OpenVPN server and to connect to your new VPN network.</p>
+<h2 id="running-the-script"><strong>Running the script</strong><a class="headerlink" href="#running-the-script" title="Copy this link to reference this section">&para;</a></h2>
+<p>Follow the <strong>"Quick Start Guide"</strong> below to provision and configure your OpenVPN server and to connect to your new VPN network.</p>
 <h2 id="quick-start-guide"><strong>Quick Start Guide</strong><a class="headerlink" href="#quick-start-guide" title="Copy this link to reference this section">&para;</a></h2>
 <details class="info">
 <summary>Click here for a quick start guide on setting up the OpenVPN Access Server</summary>
@@ -1735,6 +1747,7 @@
 <p>From within the cloned directory, initialize the terraform configuration</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a>terraform<span class="w"> </span>init
 </code></pre></div></td></tr></table></div>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" data-title="Terraform Initialiaztion Command" data-desc-position="bottom"><img alt="Terraform Initialiaztion Command" src="../../assets/images/ovpn-terraform-init.png" title="Terraform Initialiaztion Command" /></a></p>
 <h2 id="apply-the-terraform-configuration">Apply the Terraform Configuration<a class="headerlink" href="#apply-the-terraform-configuration" title="Copy this link to reference this section">&para;</a></h2>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a>terraform<span class="w"> </span>apply
 </code></pre></div></td></tr></table></div>
@@ -1742,6 +1755,7 @@
 <li>When prompted, enter an AWS region from the list below and respond <code>yes</code> to the prompt.  (e.g. <code>us-west-2</code>)</li>
 <li>This will be the AWS region where the VPN server and all resources will be hosted. </li>
 </ul>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" data-title="Terraform apply command" data-desc-position="bottom"><img alt="Terraform apply command" src="../../assets/images/ovpn-terraform-apply.png" title="Terraform apply command" /></a></p>
 <h3 id="list-of-accepted-aws-regions">List of accepted AWS regions<a class="headerlink" href="#list-of-accepted-aws-regions" title="Copy this link to reference this section">&para;</a></h3>
 <ul>
 <li>us-east-1       =  N. Virginia </li>
@@ -1780,14 +1794,17 @@
 <li>The OpenVPN profile file that you will use to ssh into the VPN server</li>
 <li>Further steps to launch your VPN connection</li>
 </ul>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" data-title="Terraform Output" data-desc-position="bottom"><img alt="Terraform Output" src="../../assets/images/ovpn-terraform-output.png" title="Terraform Output Screen" /></a></p>
 <h2 id="connect-to-your-vpn">Connect to your VPN<a class="headerlink" href="#connect-to-your-vpn" title="Copy this link to reference this section">&para;</a></h2>
 <ul>
-<li>Downlaod and install <a href="https://openvpn.net/client/">OpenVPN Connect client</a> on your local machine</li>
-<li>Import the <code>*.ovpn</code> file into the OpenVPN lcient appllication</li>
+<li>Download and install <a href="https://openvpn.net/client/">OpenVPN Connect client</a> on your local machine</li>
+<li>Import the <code>*.ovpn</code> file into the OpenVPN cient appllication</li>
 <li>Connect to your VPN network</li>
 </ul>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" data-title="OpenVPN Client Connected to the VPN" data-desc-position="bottom"><img alt="OpenVPN Client Connected to the VPN" src="../../assets/images/ovpn-terraform-connect.png" title="OpenVPN Client Connected to the VPN" /></a></p>
 <h2 id="testing-your-vpn-connection">Testing your VPN Connection<a class="headerlink" href="#testing-your-vpn-connection" title="Copy this link to reference this section">&para;</a></h2>
 <p>One very simple way to check if you are actually connected to your new VPN network is to open your browser and check your public IP address. You can use websites like <a href="hhtps://whatsmyip.com">whatsmyip.com</a> or simply search "what is my ip address" on Google to check your public IP address.  </p>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" data-title="Public IP address showing Canada" data-desc-position="bottom"><img alt="Public IP address showing Canada" src="../../assets/images/ovpn-canada-ip.png" title="Public IP address showing Canada" /></a></p>
 <p>When you are connected to your VPN server, your internet traffic will be routed through your VPN server and as such, only your VPN server IP address will be seen publicly, your local ISP assigned ip address will be hidden from the internet. </p>
 <h2 id="cleanup">Cleanup<a class="headerlink" href="#cleanup" title="Copy this link to reference this section">&para;</a></h2>
 <p>The whole infrastructure can be destroyed by simply using the command:</p>
@@ -1797,9 +1814,10 @@
 <li>Enter the AWS region that you entered above and respond <code>yes</code> to the prompt.</li>
 <li>This will terminate the EC2 instance and all resources created and also delete the files that were locally created in the terraform working directory i.e. the *.ovpn user profile and the keypair file that was created earlier </li>
 </ul>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" data-title="Terraform Destroy Command" data-desc-position="bottom"><img alt="Terraform Destroy Command" src="../../assets/images/ovpn-terraform-destroy.png" title="Terraform Destroy Command" /></a></p>
 </details>
-<h2 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Copy this link to reference this section">&para;</a></h2>
-<p>This </p>
+<h2 id="conclusion"><strong>Conclusion</strong><a class="headerlink" href="#conclusion" title="Copy this link to reference this section">&para;</a></h2>
+<p>Setting up a self-hosted VPN server using this Terraform configuration script is a straightforward and efficient way to enhance your network security and maintain control over your data. By following this documentation, you can deploy a robust OpenVPN server on AWS, customize it to your needs, and ensure private and secure internet access. This guide aims to empower you with the knowledge and tools to manage your own VPN server effectively. For any troubleshooting or further customization, explore the Terraform and OpenVPN documentation for advanced insights and solutions. </p>
 
 
 
@@ -1822,7 +1840,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-11-26T13:33:38+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-11-26</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-11-26T14:17:04+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-11-26</span>
   </span>
 
     
