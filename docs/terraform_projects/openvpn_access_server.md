@@ -56,8 +56,8 @@ Setting up a self-hosted VPN server can be a cost-effective and secure solution 
     Each of the files in  this terraform configuration module is explained below:
 
     ??? tip "The `ami.tf` file"
-        
-            ``` tf title="ami.tf"
+                    
+            ``` py title="bubble_sort.py"
             # Select latest Ubuntu 22.04 ami 
 
             data "aws_ami" "ubuntu" {
