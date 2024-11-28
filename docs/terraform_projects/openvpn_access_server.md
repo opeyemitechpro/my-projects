@@ -217,14 +217,14 @@ Follow the ==**"Quick Start Guide"**== below to provision and configure your Ope
 
 ??? info "Click here for a quick start guide on setting up the OpenVPN Access Server"
 
-    ## Clone the Repository
+    ### Clone the Repository
     Create a folder on your local machine and clone the repository in the folder
 
     ``` sh
     git clone https://github.com/opeyemitechpro/OpenVPN-Terraform.git
     ```
     
-    ## Initialize the terraform configuration
+    ### Initialize the terraform configuration
     From within the cloned directory, initialize the terraform configuration
 
     ``` sh
@@ -233,7 +233,7 @@ Follow the ==**"Quick Start Guide"**== below to provision and configure your Ope
 
     ![Terraform Initialiaztion Command](../../assets/images/ovpn-terraform-init.png "Terraform Initialiaztion Command")
 
-    ## Apply the Terraform Configuration
+    ### Apply the Terraform Configuration
 
     ``` sh
     terraform apply
@@ -245,7 +245,7 @@ Follow the ==**"Quick Start Guide"**== below to provision and configure your Ope
     ![Terraform apply command](../../assets/images/ovpn-terraform-apply.png "Terraform apply command")
     
     
-    ### ==List of accepted AWS regions==
+    #### ==List of accepted AWS regions==
 
     -  us-east-1       =  N. Virginia 
     -  us-east-2       =  Ohio 
@@ -272,7 +272,7 @@ Follow the ==**"Quick Start Guide"**== below to provision and configure your Ope
     -  me-central-1    =  UAE 
     -  sa-east-1       =  São Paulo 
 
-    ## Outputs
+    ### Outputs
     At the end of the terraform apply command, the script outputs the following details on the screen:
 
     - The Public IP address of the VPN Server
@@ -288,21 +288,21 @@ Follow the ==**"Quick Start Guide"**== below to provision and configure your Ope
     **Showing the OpenVPN server on the AWS EC2 Console**
     ![AWS Console Showing the OpenVPN Server details](../../assets/images/ovpn-terraform-console.png "AWS Console Showing the OpenVPN Server details")
 
-    ## Connect to your VPN
+    ### Connect to your VPN
     - Download and install [OpenVPN Connect client](https://openvpn.net/client/) on your local machine
     - Import the `*.ovpn` file into the OpenVPN cient appllication
     - Connect to your VPN network
 
     ![OpenVPN Client Connected to the VPN](../../assets/images/ovpn-terraform-connect.png "OpenVPN Client Connected to the VPN")
 
-    ## Testing your VPN Connection
+    ### Testing your VPN Connection
     One very simple way to check if you are actually connected to your new VPN network is to open your browser and check your public IP address. You can use websites like [whatsmyip.com](hhtps://whatsmyip.com) or simply search "what is my ip address" on Google to check your public IP address.  
 
     ![Public IP address showing Canada](../../assets/images/ovpn-canada-ip.png "Public IP address showing Canada")
     
     When you are connected to your VPN server, your internet traffic will be routed through your VPN server and as such, only your VPN server IP address will be seen publicly, your local ISP assigned ip address will be hidden from the internet. 
 
-    ## Cleanup
+    ### Cleanup
     The whole infrastructure can be destroyed by simply using the command:
 
     ``` sh
