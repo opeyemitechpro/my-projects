@@ -58,7 +58,8 @@ Setting up a self-hosted VPN server can be a cost-effective and secure solution 
     ??? tip "The `ami.tf` file"
         
         ??? abstract "ami.tf"
-            ``` tf title="ami.tf"
+            
+            ``` tf title="ami.tf" hl_lines="6-9"
             # Select latest Ubuntu 22.04 ami 
 
             data "aws_ami" "ubuntu" {
