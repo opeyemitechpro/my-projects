@@ -57,25 +57,26 @@ Setting up a self-hosted VPN server can be a cost-effective and secure solution 
 
     ??? tip "The `ami.tf` file"
         
-        ``` tf title="ami.tf"
-        # Select latest Ubuntu 22.04 ami 
+        ??? abstract "ami.tf"
+            ``` tf title="ami.tf"
+            # Select latest Ubuntu 22.04 ami 
 
-        data "aws_ami" "ubuntu" {
-        most_recent = true
+            data "aws_ami" "ubuntu" {
+            most_recent = true
 
-        filter {
-            name   = "name"
-            values = ["ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server-*"]
-        }
+            filter {
+                name   = "name"
+                values = ["ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server-*"]
+            }
 
-        filter {
-            name   = "virtualization-type"
-            values = ["hvm"]
-        }
+            filter {
+                name   = "virtualization-type"
+                values = ["hvm"]
+            }
 
-        owners = ["099720109477"]  # Canonical's AWS account ID
-        }
-        ```
+            owners = ["099720109477"]  # Canonical's AWS account ID
+            }
+            ```
         
         This `ami.tf` is used to find the latest Ubuntu 22.04 AMI (Amazon Machine Image) from the AWS ami Catalog. 
         
