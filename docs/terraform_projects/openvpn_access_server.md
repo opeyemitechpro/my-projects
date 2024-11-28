@@ -57,9 +57,7 @@ Setting up a self-hosted VPN server can be a cost-effective and secure solution 
 
     ??? tip "The `ami.tf` file"
         
-        ???+ console "`ami.tf`"
-
-            ``` tf
+            ``` tf title="ami.tf"
             # Select latest Ubuntu 22.04 ami 
 
             data "aws_ami" "ubuntu" {
@@ -78,7 +76,6 @@ Setting up a self-hosted VPN server can be a cost-effective and secure solution 
             owners = ["099720109477"]  # Canonical's AWS account ID
             }
             ```
-
         
         This `ami.tf` is used to find the latest Ubuntu 22.04 AMI (Amazon Machine Image) from the AWS ami Catalog. 
         
