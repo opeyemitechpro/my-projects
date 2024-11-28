@@ -369,6 +369,49 @@ Setting up a self-hosted VPN server can be a cost-effective and secure solution 
 
     ??? tip "The `ovpn.tf` file"
 
+        ???+ code-file "ovpn.tf"
+
+            ``` tf title="ovpn.tf"
+            
+            # Wait for OpenVPN installation and download the profile config file
+            resource "null_resource" "get_ovpn_config" {
+            depends_on = [aws_instance.OpenVPN_Server]
+
+            # Trigger this resource when instance IP changes
+            triggers = {
+                instance_ip = aws_instance.OpenVPN_Server.public_ip
+                ovpn_file  = "${local.openvpn_user}.ovpn"  # Store filename in triggers
+            }
+
+            # Wait for OpenVPN installation to complete and file to be created
+            provisioner "remote-exec" {
+                inline = [
+                "while [ ! -f /home/ubuntu/${local.openvpn_user}.ovpn ]; do sleep 20; echo 'Waiting for OpenVPN config file...'; done",
+                "echo 'OpenVPN config file is ready!'"
+                ]
+
+                connection {
+                type        = "ssh"
+                user        = "ubuntu"
+                private_key = tls_private_key.key_pair.private_key_pem
+                host        = aws_instance.OpenVPN_Server.public_ip
+                }
+            }
+
+            # Download the OpenVPN profile config file
+            provisioner "local-exec" {
+                command = "scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i ${local_file.private_key.filename} ubuntu@${aws_instance.OpenVPN_Server.public_ip}:/home/ubuntu/${local.openvpn_user}.ovpn ./${local.openvpn_user}.ovpn"
+            }
+
+            # Clean up the .ovpn file after destroy
+            provisioner "local-exec" {
+                when    = destroy
+                command = "rm -f ./${self.triggers.ovpn_file}"
+            }
+            }
+            ```
+
+
         The `ovpn.tf` file manages the retrieval of the OpenVPN configuration file from the remote VPN server and donwloads it in the terraform working directory. The main purpose of this file is to ensure you get the OpenVPN client configuration file automatically downloaded to your local machine once it's ready on the server.
 
 
@@ -386,17 +429,180 @@ Setting up a self-hosted VPN server can be a cost-effective and secure solution 
 
     ??? tip "The `provider.tf` file"
 
+        ???+ code-file "provider.tf"
+
+            ``` tf title="provider.tf"
+            # 
+            terraform {
+            required_providers {
+                aws = {
+                source  = "hashicorp/aws"
+                version = "~> 5.0"
+                }
+                local = {
+                source  = "hashicorp/local"
+                version = "~> 2.0"
+                }
+                tls = {
+                source  = "hashicorp/tls"
+                version = "~> 4.0"
+                }
+                null = {
+                source  = "hashicorp/null"
+                version = "~> 3.0"
+                }
+            }
+            required_version = ">= 1.2.0"
+            }
+
+            # Configure the AWS Provider
+            provider "aws" {
+            region = "${var.selected_region}"
+            }
+            ```
+
+
         The file essentially sets up the foundational configuration sources and versions needed for Terraform to interact with AWS and to use other necessary providers for the OpenVPN deployment. 
 
     ??? tip "The `securityGrp.tf` file"
+
+        ???+ code-file "securityGrp.tf"
+
+            ``` tf title="securityGrp.tf"
+            # OpenVPN Server Security Group
+            resource "aws_security_group" "openvpn_SG" {
+            name_prefix = "${var.project_name}_openvpn_SG_"
+            description = "OpeyemiTechPro OpenVPN Security Group"
+
+            dynamic "ingress" {
+                for_each = var.openvpn_tcp_ports
+                content {
+                from_port   = ingress.key
+                to_port     = ingress.key
+                protocol    = "tcp"
+                cidr_blocks = ["0.0.0.0/0"]
+                description = ingress.value
+                }
+            }
+
+            dynamic "ingress" {
+                for_each = var.openvpn_udp_ports
+                content {
+                from_port   = ingress.key
+                to_port     = ingress.key
+                protocol    = "udp"
+                cidr_blocks = ["0.0.0.0/0"]
+                description = ingress.value
+                }
+            }  
+
+            egress {
+                from_port   = 0
+                to_port     = 0
+                protocol    = "-1"
+                cidr_blocks = ["0.0.0.0/0"]
+            }
+            }
+            ```
+
+
 
         This configures the required security group profile for the OpenVPN server. It opens the required ports for ingress and egress and the neccesary port protocols (tcp and udp).
 
     ??? tip "The `terraform.tfvars` file"
 
+        ???+ code-file "terraform.tfvars"
+
+            ``` tf title="terraform.tfvars"
+            # Project Details
+            project_name = "Opeyemi_OpenVPN_YT"
+
+
+            # Variables for OpenVPN Server
+            OpenVPN_instance_type = "t2.micro"
+
+            # OpenVPN Server port Details
+            openvpn_tcp_ports = {
+            "22" = "SSH Access"
+            "80"  = "HTTP Access"
+            "443" = "HTTPS Access" 
+            "943" = "OpenVPN Management Port"
+            }
+
+            openvpn_udp_ports = {
+            "1194" = "OpenVPN udp Port"
+            }
+            ```
+
+
+
         Here, values are assigned to all the declared variables in the config script.  You can freely change any values here to customize the script for your own purpose
 
     ??? tip "The `variables.tf` file"
+
+        ???+ code-file "variables.tf"
+
+            ``` tf title="variables.tf"
+            
+            variable "project_name" {
+            description = "Title of the Project"
+            type        = string
+            }
+
+            variable "OpenVPN_instance_type" {
+            description = "The type of EC2 instance to launch for the OpenVPN Server"
+            type        = string
+            }
+            variable "openvpn_tcp_ports" {
+            type = map(string)
+            description = "Map of OpenVPN ports to their descriptions"
+            }
+
+            variable "openvpn_udp_ports" {
+            type = map(string)
+            description = "Map of OpenVPN UDP ports to their descriptions"
+            }
+
+            variable "aws_regions" {
+            type = map(string)
+            default = {
+                "us-east-1"      = "N. Virginia"
+                "us-east-2"      = "Ohio"
+                "us-west-1"      = "N. California"
+                "us-west-2"      = "Oregon"
+                "af-south-1"     = "Cape Town"
+                "ap-east-1"      = "Hong Kong"
+                "ap-south-1"     = "Mumbai"
+                "ap-southeast-1" = "Singapore"
+                "ap-southeast-2" = "Sydney"
+                "ap-southeast-3" = "Jakarta"
+                "ap-northeast-1" = "Tokyo"
+                "ap-northeast-2" = "Seoul"
+                "ap-northeast-3" = "Osaka"
+                "ca-central-1"   = "Canada Central"
+                "eu-central-1"   = "Frankfurt"
+                "eu-west-1"      = "Ireland"
+                "eu-west-2"      = "London"
+                "eu-west-3"      = "Paris"
+                "eu-north-1"     = "Stockholm"
+                "eu-south-1"     = "Milan"
+                "eu-south-2"     = "Zurich"
+                "me-south-1"     = "Bahrain"
+                "me-central-1"   = "UAE"
+                "sa-east-1"      = "São Paulo"
+            }
+            }
+
+            variable "selected_region" {
+            type        = string
+            description = "Enter the AWS region where you want to deploy your OpenVPN Server and press Enter:"
+
+            validation {
+                condition     = can(regex("^(eu|us|ap|ca|sa|me|af|il|cn)-(central|west|east|north|south|southeast|northeast)-[1-3]$", var.selected_region))
+                error_message = "Please select a valid AWS region from the provided list."
+            }
+            }
+            ```
 
         The `variables.tf` file is used to define variables that make the configuration more dynamic and reusable. By abstracting values into variables, I can easily customize the infrastructure without directly modifying the configuration files.
 
