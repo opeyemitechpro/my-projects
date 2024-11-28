@@ -99,7 +99,7 @@ Setting up a self-hosted VPN server can be a cost-effective and secure solution 
 
     ??? tip "The `OpenVPN_ec2.tf` file"
 
-        ???+ code-file "OpenVPN_ec2.tf"
+        ???+ code-file "OpenVPN_ec2.tf" hl_lines="
             
             ``` tf title="OpenVPN_ec2.tf"
             resource "aws_instance" "OpenVPN_Server" {
