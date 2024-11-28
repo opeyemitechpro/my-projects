@@ -99,6 +99,95 @@ Setting up a self-hosted VPN server can be a cost-effective and secure solution 
 
     ??? tip "The `OpenVPN_ec2.tf` file"
 
+        ???+ code-file "OpenVPN_ec2.tf"
+            
+            ``` tf title="OpenVPN_ec2.tf"
+            resource "aws_instance" "OpenVPN_Server" {
+            ami                     = data.aws_ami.ubuntu.id
+            instance_type           = var.OpenVPN_instance_type
+            vpc_security_group_ids  = [ aws_security_group.openvpn_SG.id ]
+            user_data               = templatefile("./openvpn_userdata.tpl", {openvpn_user = local.openvpn_user})
+            key_name                = aws_key_pair.key_pair.key_name
+
+            root_block_device {
+                volume_size           = 8
+            }
+
+            # Set the metadata service to allow IMDSv2
+            metadata_options {
+                http_tokens                 = "optional"    # Allows IMDSv1 and IMDSv2
+                http_put_response_hop_limit = 1      # Default hop limit for the PUT request
+                http_endpoint               = "enabled"     # Enable metadata service
+            }
+
+            tags = {
+                Name = "${var.project_name}_Server"
+                Region    = var.selected_region
+                KeyPair   = local.key_pair_name
+                Project   = var.project_name
+            }
+
+            }
+
+            locals {
+            # Create key name with OpenVPN-Keypair prefix and region
+            key_pair_name = "OpenVPN-Keypair-${var.selected_region}"
+
+            # Create Profile name for the OpenVPN User
+            openvpn_user = "OpeyemiTechPro-${var.selected_region}"
+
+            # Display formatted region information
+            region_display = join("\n", [for region, location in var.aws_regions : format("%s = %s", region, location)])
+
+            }
+
+
+            # Generate a private key
+            resource "tls_private_key" "key_pair" {
+            algorithm = "RSA"
+            rsa_bits  = 2048
+            }
+
+            # Create key pair in AWS
+            resource "aws_key_pair" "key_pair" {
+            key_name   = local.key_pair_name
+            public_key = tls_private_key.key_pair.public_key_openssh
+
+            # tag the key pair
+            tags = {
+                Name        = local.key_pair_name
+                Region      = var.selected_region
+                Project     = var.project_name
+                CreatedBy   = "Terraform"
+            }
+            }
+
+            # Save private key locally
+            resource "local_file" "private_key" {
+            content         = tls_private_key.key_pair.private_key_pem
+            filename        = "${local.key_pair_name}.pem"
+            file_permission = "0400"
+            }
+
+
+            # Create a null resource to display available regions
+            resource "null_resource" "region_display" {
+            triggers = {
+                always_run = timestamp()
+            }
+
+            provisioner "local-exec" {
+                command = <<-EOT
+                echo "Available AWS Regions:"
+                echo "${local.region_display}"
+                echo "\nSelected Region: ${var.selected_region} (${var.aws_regions[var.selected_region]})"
+                EOT
+            }
+            }
+            ```
+
+
+
         This is the main config file that sets up the OpenVPN server infrastructure.
 
         - It reates an EC2 instance for the OpenVPN server with the specified configurations (using Ubuntu AMI selected above)
@@ -116,6 +205,63 @@ Setting up a self-hosted VPN server can be a cost-effective and secure solution 
         - Displays available AWS regions through a null resource and determines the selected region during execution
 
     ??? tip "The `openvpn_userdata.tpl` file"
+        
+        ???+ code-file "openvpn_userdata.tpl"
+            
+            ``` sh title="openvpn_userdata.tpl"
+            #!/bin/bash
+
+            # Bash script to intialize OpenVPN Server
+
+            # Set error trap to exit the script immediately on first error.
+            set -e 
+
+            # Log all output to a file for reference 
+            exec >> /var/log/setup_script.log 2>&1
+
+            echo "Initializing script..."
+            echo
+            echo "Updating packages..."
+            sudo apt update -y
+            echo
+            echo "Setting FQDN  & Public IP"
+            echo
+            FQDN=$(curl -sS http://169.254.169.254/latest/meta-data/public-hostname)
+            PUB_IP=$(curl -sS http://169.254.169.254/latest/meta-data/public-ipv4)
+
+
+            echo "$FQDN"
+            echo
+            echo "$PUB_IP"
+            echo 
+            echo "Download installation script"
+            echo
+            # Check Agristan's repo for full details on installation script options- https://github.com/angristan/openvpn-install
+
+            wget https://raw.githubusercontent.com/angristan/openvpn-install/master/openvpn-install.sh -O openvpn-install.sh
+            chmod +x openvpn-install.sh 
+
+            echo "Installing OpenVPN Access Server..."
+            echo
+            sudo AUTO_INSTALL=y \
+                APPROVE_IP=$PUB_IP \
+                ENDPOINT=$FQDN \
+                CLIENT=${openvpn_user} \
+                ./openvpn-install.sh
+
+
+            echo "Moving User Profile ${openvpn_user}.ovpn to the Ubuntu user home directory..."
+            echo
+            mv /root/${openvpn_user}.ovpn /home/ubuntu/${openvpn_user}.ovpn
+
+            echo
+            echo "Hurray! OpenVPN Installed succesfully"
+
+            # Rename Hostname
+            echo "Set hostname as OpenVPN-Server..."
+            sudo hostnamectl set-hostname OpenVPN-Server 
+            ```
+
 
         This is the userdata script that is used to bootstrap the server immediately after it is provisioned by Terraform. It is configured as a template file so that terraform can interpolate the value of `openvpn_user` variable from the variables declared in the config file into the user_data script.
 
@@ -140,6 +286,64 @@ Setting up a self-hosted VPN server can be a cost-effective and secure solution 
 
         
     ??? tip "The `outputs.tf` file"
+        
+        ???+ code-file "outputs.tf"
+
+            ``` tf title="outputs.tf"
+            # Output values for OpenVPN Server
+            output "OpenVPN-Public-ip-address" {
+            description = "Public ip address of the OpenVPN server"
+            value = aws_instance.OpenVPN_Server.public_ip
+            }
+
+            # Display the instance-ID of the OpenVPN Server
+            output "OpenVPN-instance-id" {
+            description = "Instance id of the OpenVPN Server"
+            value = aws_instance.OpenVPN_Server.id
+            }
+
+            # Display the instance-ID of the OpenVPN Server
+            output "key_pair_name" {
+            description = "Name of the created key pair"
+            value       = local.key_pair_name
+            }
+
+            # Display the path of the private key file
+            output "private_key_path" {
+            description = "Path to the private key file"
+            value       = local_file.private_key.filename
+            }
+
+            # Dispaly the ssh connection string
+            output "ssh_connection_string" {
+            description = "SSH connection string"
+            value       = "ssh -i ${local_file.private_key.filename} ubuntu@${aws_instance.OpenVPN_Server.public_ip}"
+            }
+
+            # Display the path of the downloaded ovpn profile config file
+            output "ovpn_config_path" {
+            value       = "./${local.openvpn_user}.ovpn"
+            description = "Path to the downloaded OpenVPN config file"
+            }
+
+            # Display the path of the downloaded ovpn profile config fil
+            output "ovpn_download_complete" {
+            value = "OpenVPN Profile config file has been downloaded to: ${local.openvpn_user}.ovpn"
+            }
+
+            # Display the next step to access the VPN server
+            output "Next_Steps" {
+            value = <<-EOT
+                To use your OpenVPN configuration:
+                1. Download and Install the OpenVPN Connect client software on your device from here: https://openvpn.net/client/
+                2. Import the configuration file: ${local.openvpn_user}.ovpn
+                3. Connect to your VPN server
+                
+                The configuration file is located at: ./${local.openvpn_user}.ovpn
+            EOT
+            }
+            ```
+
 
         The `outputs.tf` file defines values that will be displayed after Terraform completes its execution. In this specific file, it outputs: [1]
 
