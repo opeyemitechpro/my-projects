@@ -101,7 +101,7 @@ Setting up a self-hosted VPN server can be a cost-effective and secure solution 
 
         ???+ code-file "OpenVPN_ec2.tf" hl_lines="
             
-            ``` tf title="OpenVPN_ec2.tf"
+            ``` tf 
             resource "aws_instance" "OpenVPN_Server" {
             ami                     = data.aws_ami.ubuntu.id
             instance_type           = var.OpenVPN_instance_type
@@ -208,7 +208,7 @@ Setting up a self-hosted VPN server can be a cost-effective and secure solution 
         
         ???+ code-file "openvpn_userdata.tpl"
             
-            ``` sh title="openvpn_userdata.tpl"
+            ``` sh 
             #!/bin/bash
 
             # Bash script to intialize OpenVPN Server
@@ -289,7 +289,7 @@ Setting up a self-hosted VPN server can be a cost-effective and secure solution 
         
         ???+ code-file "outputs.tf"
 
-            ``` tf title="outputs.tf"
+            ``` tf 
             # Output values for OpenVPN Server
             output "OpenVPN-Public-ip-address" {
             description = "Public ip address of the OpenVPN server"
@@ -371,7 +371,7 @@ Setting up a self-hosted VPN server can be a cost-effective and secure solution 
 
         ???+ code-file "ovpn.tf"
 
-            ``` tf title="ovpn.tf"
+            ``` tf 
             
             # Wait for OpenVPN installation and download the profile config file
             resource "null_resource" "get_ovpn_config" {
@@ -431,7 +431,7 @@ Setting up a self-hosted VPN server can be a cost-effective and secure solution 
 
         ???+ code-file "provider.tf"
 
-            ``` tf title="provider.tf"
+            ``` tf 
             # 
             terraform {
             required_providers {
@@ -468,7 +468,7 @@ Setting up a self-hosted VPN server can be a cost-effective and secure solution 
 
         ???+ code-file "securityGrp.tf"
 
-            ``` tf title="securityGrp.tf"
+            ``` tf 
             # OpenVPN Server Security Group
             resource "aws_security_group" "openvpn_SG" {
             name_prefix = "${var.project_name}_openvpn_SG_"
@@ -513,7 +513,7 @@ Setting up a self-hosted VPN server can be a cost-effective and secure solution 
 
         ???+ code-file "terraform.tfvars"
 
-            ``` tf title="terraform.tfvars"
+            ``` tf 
             # Project Details
             project_name = "Opeyemi_OpenVPN_YT"
 
@@ -542,7 +542,7 @@ Setting up a self-hosted VPN server can be a cost-effective and secure solution 
 
         ???+ code-file "variables.tf"
 
-            ``` tf title="variables.tf"
+            ``` tf 
             
             variable "project_name" {
             description = "Title of the Project"
