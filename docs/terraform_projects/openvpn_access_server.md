@@ -57,7 +57,7 @@ Setting up a self-hosted VPN server can be a cost-effective and secure solution 
 
     ??? tip "The `ami.tf` file"
         
-        ???+ code-block "ami.tf"
+        ???+ code-file "ami.tf"
             
             ``` tf title="ami.tf" hl_lines="6-9 11-14 16"
             # Select latest Ubuntu 22.04 ami 
@@ -310,7 +310,7 @@ Follow the ==**"Quick Start Guide"**== below to provision and configure your Ope
     ```
 
     - Enter the AWS region that you entered above and respond `yes` to the prompt.
-    - This will terminate the EC2 instance and all resources created and also delete the files that were locally created in the terraform working directory i.e. the *.ovpn user profile and the keypair file that was created earlier 
+    - This will terminate the EC2 instance and delete all resources created and also delete the files that were locally created in the terraform working directory i.e. the *.ovpn user profile and the keypair file that was created earlier 
 
     ![Terraform Destroy Command](../../assets/images/ovpn-terraform-destroy.png "Terraform Destroy Command")
 
