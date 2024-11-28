@@ -889,9 +889,10 @@
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
+    <nav class="md-nav" aria-label="Quick Start Guide">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#clone-the-repository" class="md-nav__link">
     <span class="md-ellipsis">
       Clone the Repository
@@ -899,8 +900,8 @@
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#initialize-the-terraform-configuration" class="md-nav__link">
     <span class="md-ellipsis">
       Initialize the terraform configuration
@@ -908,8 +909,8 @@
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#apply-the-terraform-configuration" class="md-nav__link">
     <span class="md-ellipsis">
       Apply the Terraform Configuration
@@ -932,8 +933,8 @@
     </nav>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#outputs" class="md-nav__link">
     <span class="md-ellipsis">
       Outputs
@@ -941,8 +942,8 @@
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#connect-to-your-vpn" class="md-nav__link">
     <span class="md-ellipsis">
       Connect to your VPN
@@ -950,8 +951,8 @@
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#testing-your-vpn-connection" class="md-nav__link">
     <span class="md-ellipsis">
       Testing your VPN Connection
@@ -959,13 +960,18 @@
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#cleanup" class="md-nav__link">
     <span class="md-ellipsis">
       Cleanup
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1395,9 +1401,10 @@
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
+    <nav class="md-nav" aria-label="Quick Start Guide">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#clone-the-repository" class="md-nav__link">
     <span class="md-ellipsis">
       Clone the Repository
@@ -1405,8 +1412,8 @@
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#initialize-the-terraform-configuration" class="md-nav__link">
     <span class="md-ellipsis">
       Initialize the terraform configuration
@@ -1414,8 +1421,8 @@
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#apply-the-terraform-configuration" class="md-nav__link">
     <span class="md-ellipsis">
       Apply the Terraform Configuration
@@ -1438,8 +1445,8 @@
     </nav>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#outputs" class="md-nav__link">
     <span class="md-ellipsis">
       Outputs
@@ -1447,8 +1454,8 @@
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#connect-to-your-vpn" class="md-nav__link">
     <span class="md-ellipsis">
       Connect to your VPN
@@ -1456,8 +1463,8 @@
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#testing-your-vpn-connection" class="md-nav__link">
     <span class="md-ellipsis">
       Testing your VPN Connection
@@ -1465,13 +1472,18 @@
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#cleanup" class="md-nav__link">
     <span class="md-ellipsis">
       Cleanup
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1791,16 +1803,16 @@
 <h2 id="quick-start-guide"><strong>Quick Start Guide</strong><a class="headerlink" href="#quick-start-guide" title="Copy this link to reference this section">&para;</a></h2>
 <details class="info">
 <summary>Click here for a quick start guide on setting up the OpenVPN Access Server</summary>
-<h2 id="clone-the-repository">Clone the Repository<a class="headerlink" href="#clone-the-repository" title="Copy this link to reference this section">&para;</a></h2>
+<h3 id="clone-the-repository">Clone the Repository<a class="headerlink" href="#clone-the-repository" title="Copy this link to reference this section">&para;</a></h3>
 <p>Create a folder on your local machine and clone the repository in the folder</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/opeyemitechpro/OpenVPN-Terraform.git
 </code></pre></div></td></tr></table></div>
-<h2 id="initialize-the-terraform-configuration">Initialize the terraform configuration<a class="headerlink" href="#initialize-the-terraform-configuration" title="Copy this link to reference this section">&para;</a></h2>
+<h3 id="initialize-the-terraform-configuration">Initialize the terraform configuration<a class="headerlink" href="#initialize-the-terraform-configuration" title="Copy this link to reference this section">&para;</a></h3>
 <p>From within the cloned directory, initialize the terraform configuration</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a>terraform<span class="w"> </span>init
 </code></pre></div></td></tr></table></div>
 <p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" data-title="Terraform Initialiaztion Command" data-desc-position="bottom"><img alt="Terraform Initialiaztion Command" src="../../assets/images/ovpn-terraform-init.png" title="Terraform Initialiaztion Command" /></a></p>
-<h2 id="apply-the-terraform-configuration">Apply the Terraform Configuration<a class="headerlink" href="#apply-the-terraform-configuration" title="Copy this link to reference this section">&para;</a></h2>
+<h3 id="apply-the-terraform-configuration">Apply the Terraform Configuration<a class="headerlink" href="#apply-the-terraform-configuration" title="Copy this link to reference this section">&para;</a></h3>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a>terraform<span class="w"> </span>apply
 </code></pre></div></td></tr></table></div>
 <ul>
@@ -1808,7 +1820,7 @@
 <li>This will be the AWS region where the VPN server and all resources will be hosted. </li>
 </ul>
 <p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" data-title="Terraform apply command" data-desc-position="bottom"><img alt="Terraform apply command" src="../../assets/images/ovpn-terraform-apply.png" title="Terraform apply command" /></a></p>
-<h3 id="list-of-accepted-aws-regions"><mark>List of accepted AWS regions</mark><a class="headerlink" href="#list-of-accepted-aws-regions" title="Copy this link to reference this section">&para;</a></h3>
+<h4 id="list-of-accepted-aws-regions"><mark>List of accepted AWS regions</mark><a class="headerlink" href="#list-of-accepted-aws-regions" title="Copy this link to reference this section">&para;</a></h4>
 <ul>
 <li>us-east-1       =  N. Virginia </li>
 <li>us-east-2       =  Ohio </li>
@@ -1835,7 +1847,7 @@
 <li>me-central-1    =  UAE </li>
 <li>sa-east-1       =  São Paulo </li>
 </ul>
-<h2 id="outputs">Outputs<a class="headerlink" href="#outputs" title="Copy this link to reference this section">&para;</a></h2>
+<h3 id="outputs">Outputs<a class="headerlink" href="#outputs" title="Copy this link to reference this section">&para;</a></h3>
 <p>At the end of the terraform apply command, the script outputs the following details on the screen:</p>
 <ul>
 <li>The Public IP address of the VPN Server</li>
@@ -1849,18 +1861,18 @@
 <p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" data-title="Terraform Output" data-desc-position="bottom"><img alt="Terraform Output" src="../../assets/images/ovpn-terraform-output.png" title="Terraform Output Screen" /></a></p>
 <p><strong>Showing the OpenVPN server on the AWS EC2 Console</strong>
 <a class="glightbox" data-type="image" data-width="100%" data-height="auto" data-title="AWS Console Showing the OpenVPN Server details" data-desc-position="bottom"><img alt="AWS Console Showing the OpenVPN Server details" src="../../assets/images/ovpn-terraform-console.png" title="AWS Console Showing the OpenVPN Server details" /></a></p>
-<h2 id="connect-to-your-vpn">Connect to your VPN<a class="headerlink" href="#connect-to-your-vpn" title="Copy this link to reference this section">&para;</a></h2>
+<h3 id="connect-to-your-vpn">Connect to your VPN<a class="headerlink" href="#connect-to-your-vpn" title="Copy this link to reference this section">&para;</a></h3>
 <ul>
 <li>Download and install <a href="https://openvpn.net/client/">OpenVPN Connect client</a> on your local machine</li>
 <li>Import the <code>*.ovpn</code> file into the OpenVPN cient appllication</li>
 <li>Connect to your VPN network</li>
 </ul>
 <p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" data-title="OpenVPN Client Connected to the VPN" data-desc-position="bottom"><img alt="OpenVPN Client Connected to the VPN" src="../../assets/images/ovpn-terraform-connect.png" title="OpenVPN Client Connected to the VPN" /></a></p>
-<h2 id="testing-your-vpn-connection">Testing your VPN Connection<a class="headerlink" href="#testing-your-vpn-connection" title="Copy this link to reference this section">&para;</a></h2>
+<h3 id="testing-your-vpn-connection">Testing your VPN Connection<a class="headerlink" href="#testing-your-vpn-connection" title="Copy this link to reference this section">&para;</a></h3>
 <p>One very simple way to check if you are actually connected to your new VPN network is to open your browser and check your public IP address. You can use websites like <a href="hhtps://whatsmyip.com">whatsmyip.com</a> or simply search "what is my ip address" on Google to check your public IP address.  </p>
 <p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" data-title="Public IP address showing Canada" data-desc-position="bottom"><img alt="Public IP address showing Canada" src="../../assets/images/ovpn-canada-ip.png" title="Public IP address showing Canada" /></a></p>
 <p>When you are connected to your VPN server, your internet traffic will be routed through your VPN server and as such, only your VPN server IP address will be seen publicly, your local ISP assigned ip address will be hidden from the internet. </p>
-<h2 id="cleanup">Cleanup<a class="headerlink" href="#cleanup" title="Copy this link to reference this section">&para;</a></h2>
+<h3 id="cleanup">Cleanup<a class="headerlink" href="#cleanup" title="Copy this link to reference this section">&para;</a></h3>
 <p>The whole infrastructure can be destroyed by simply using the command:</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a>terraform<span class="w"> </span>destroy
 </code></pre></div></td></tr></table></div>
@@ -1894,7 +1906,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-11-28T09:27:40+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-11-28</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-11-28T10:38:15+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-11-28</span>
   </span>
 
     
