@@ -1660,6 +1660,173 @@
 </details>
 <details class="tip">
 <summary>The <code>OpenVPN_ec2.tf</code> file</summary>
+<details class="code-file" open="open">
+<summary>OpenVPN_ec2.tf</summary>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">OpenVPN_ec2.tf</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-1-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-1-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-1-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-1-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-1-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-1-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-1-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-1-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-1-10">10</a></span>
+<span class="normal"><a href="#__codelineno-1-11">11</a></span>
+<span class="normal"><a href="#__codelineno-1-12">12</a></span>
+<span class="normal"><a href="#__codelineno-1-13">13</a></span>
+<span class="normal"><a href="#__codelineno-1-14">14</a></span>
+<span class="normal"><a href="#__codelineno-1-15">15</a></span>
+<span class="normal"><a href="#__codelineno-1-16">16</a></span>
+<span class="normal"><a href="#__codelineno-1-17">17</a></span>
+<span class="normal"><a href="#__codelineno-1-18">18</a></span>
+<span class="normal"><a href="#__codelineno-1-19">19</a></span>
+<span class="normal"><a href="#__codelineno-1-20">20</a></span>
+<span class="normal"><a href="#__codelineno-1-21">21</a></span>
+<span class="normal"><a href="#__codelineno-1-22">22</a></span>
+<span class="normal"><a href="#__codelineno-1-23">23</a></span>
+<span class="normal"><a href="#__codelineno-1-24">24</a></span>
+<span class="normal"><a href="#__codelineno-1-25">25</a></span>
+<span class="normal"><a href="#__codelineno-1-26">26</a></span>
+<span class="normal"><a href="#__codelineno-1-27">27</a></span>
+<span class="normal"><a href="#__codelineno-1-28">28</a></span>
+<span class="normal"><a href="#__codelineno-1-29">29</a></span>
+<span class="normal"><a href="#__codelineno-1-30">30</a></span>
+<span class="normal"><a href="#__codelineno-1-31">31</a></span>
+<span class="normal"><a href="#__codelineno-1-32">32</a></span>
+<span class="normal"><a href="#__codelineno-1-33">33</a></span>
+<span class="normal"><a href="#__codelineno-1-34">34</a></span>
+<span class="normal"><a href="#__codelineno-1-35">35</a></span>
+<span class="normal"><a href="#__codelineno-1-36">36</a></span>
+<span class="normal"><a href="#__codelineno-1-37">37</a></span>
+<span class="normal"><a href="#__codelineno-1-38">38</a></span>
+<span class="normal"><a href="#__codelineno-1-39">39</a></span>
+<span class="normal"><a href="#__codelineno-1-40">40</a></span>
+<span class="normal"><a href="#__codelineno-1-41">41</a></span>
+<span class="normal"><a href="#__codelineno-1-42">42</a></span>
+<span class="normal"><a href="#__codelineno-1-43">43</a></span>
+<span class="normal"><a href="#__codelineno-1-44">44</a></span>
+<span class="normal"><a href="#__codelineno-1-45">45</a></span>
+<span class="normal"><a href="#__codelineno-1-46">46</a></span>
+<span class="normal"><a href="#__codelineno-1-47">47</a></span>
+<span class="normal"><a href="#__codelineno-1-48">48</a></span>
+<span class="normal"><a href="#__codelineno-1-49">49</a></span>
+<span class="normal"><a href="#__codelineno-1-50">50</a></span>
+<span class="normal"><a href="#__codelineno-1-51">51</a></span>
+<span class="normal"><a href="#__codelineno-1-52">52</a></span>
+<span class="normal"><a href="#__codelineno-1-53">53</a></span>
+<span class="normal"><a href="#__codelineno-1-54">54</a></span>
+<span class="normal"><a href="#__codelineno-1-55">55</a></span>
+<span class="normal"><a href="#__codelineno-1-56">56</a></span>
+<span class="normal"><a href="#__codelineno-1-57">57</a></span>
+<span class="normal"><a href="#__codelineno-1-58">58</a></span>
+<span class="normal"><a href="#__codelineno-1-59">59</a></span>
+<span class="normal"><a href="#__codelineno-1-60">60</a></span>
+<span class="normal"><a href="#__codelineno-1-61">61</a></span>
+<span class="normal"><a href="#__codelineno-1-62">62</a></span>
+<span class="normal"><a href="#__codelineno-1-63">63</a></span>
+<span class="normal"><a href="#__codelineno-1-64">64</a></span>
+<span class="normal"><a href="#__codelineno-1-65">65</a></span>
+<span class="normal"><a href="#__codelineno-1-66">66</a></span>
+<span class="normal"><a href="#__codelineno-1-67">67</a></span>
+<span class="normal"><a href="#__codelineno-1-68">68</a></span>
+<span class="normal"><a href="#__codelineno-1-69">69</a></span>
+<span class="normal"><a href="#__codelineno-1-70">70</a></span>
+<span class="normal"><a href="#__codelineno-1-71">71</a></span>
+<span class="normal"><a href="#__codelineno-1-72">72</a></span>
+<span class="normal"><a href="#__codelineno-1-73">73</a></span>
+<span class="normal"><a href="#__codelineno-1-74">74</a></span>
+<span class="normal"><a href="#__codelineno-1-75">75</a></span>
+<span class="normal"><a href="#__codelineno-1-76">76</a></span>
+<span class="normal"><a href="#__codelineno-1-77">77</a></span>
+<span class="normal"><a href="#__codelineno-1-78">78</a></span>
+<span class="normal"><a href="#__codelineno-1-79">79</a></span>
+<span class="normal"><a href="#__codelineno-1-80">80</a></span>
+<span class="normal"><a href="#__codelineno-1-81">81</a></span>
+<span class="normal"><a href="#__codelineno-1-82">82</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_instance&quot;</span><span class="w"> </span><span class="nv">&quot;OpenVPN_Server&quot;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="na">ami</span><span class="w">                     </span><span class="o">=</span><span class="w"> </span><span class="nv">data.aws_ami.ubuntu.id</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="na">instance_type</span><span class="w">           </span><span class="o">=</span><span class="w"> </span><span class="nv">var.OpenVPN_instance_type</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="na">vpc_security_group_ids</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="nv">aws_security_group.openvpn_SG.id</span><span class="w"> </span><span class="p">]</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="na">user_data</span><span class="w">               </span><span class="o">=</span><span class="w"> </span><span class="nf">templatefile</span><span class="p">(</span><span class="s2">&quot;./openvpn_userdata.tpl&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="na">openvpn_user</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">local.openvpn_user</span><span class="p">})</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6"></a><span class="na">key_name</span><span class="w">                </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_key_pair.key_pair.key_name</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7"></a>
+<a id="__codelineno-1-8" name="__codelineno-1-8"></a><span class="nb">root_block_device</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9"></a><span class="w">    </span><span class="na">volume_size</span><span class="w">           </span><span class="o">=</span><span class="w"> </span><span class="m">8</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10"></a><span class="p">}</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11"></a>
+<a id="__codelineno-1-12" name="__codelineno-1-12"></a><span class="c1"># Set the metadata service to allow IMDSv2</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13"></a><span class="nb">metadata_options</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14"></a><span class="w">    </span><span class="na">http_tokens</span><span class="w">                 </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;optional&quot;</span><span class="c1">    # Allows IMDSv1 and IMDSv2</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15"></a><span class="w">    </span><span class="na">http_put_response_hop_limit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="c1">      # Default hop limit for the PUT request</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16"></a><span class="w">    </span><span class="na">http_endpoint</span><span class="w">               </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;enabled&quot;</span><span class="c1">     # Enable metadata service</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17"></a><span class="p">}</span>
+<a id="__codelineno-1-18" name="__codelineno-1-18"></a>
+<a id="__codelineno-1-19" name="__codelineno-1-19"></a><span class="nb">tags</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-20" name="__codelineno-1-20"></a><span class="w">    </span><span class="na">Name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;${var.project_name}_Server&quot;</span>
+<a id="__codelineno-1-21" name="__codelineno-1-21"></a><span class="w">    </span><span class="na">Region</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="nv">var.selected_region</span>
+<a id="__codelineno-1-22" name="__codelineno-1-22"></a><span class="w">    </span><span class="na">KeyPair</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="nv">local.key_pair_name</span>
+<a id="__codelineno-1-23" name="__codelineno-1-23"></a><span class="w">    </span><span class="na">Project</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="nv">var.project_name</span>
+<a id="__codelineno-1-24" name="__codelineno-1-24"></a><span class="p">}</span>
+<a id="__codelineno-1-25" name="__codelineno-1-25"></a>
+<a id="__codelineno-1-26" name="__codelineno-1-26"></a><span class="p">}</span>
+<a id="__codelineno-1-27" name="__codelineno-1-27"></a>
+<a id="__codelineno-1-28" name="__codelineno-1-28"></a><span class="nb">locals</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-29" name="__codelineno-1-29"></a><span class="c1"># Create key name with OpenVPN-Keypair prefix and region</span>
+<a id="__codelineno-1-30" name="__codelineno-1-30"></a><span class="na">key_pair_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;OpenVPN-Keypair-${var.selected_region}&quot;</span>
+<a id="__codelineno-1-31" name="__codelineno-1-31"></a>
+<a id="__codelineno-1-32" name="__codelineno-1-32"></a><span class="c1"># Create Profile name for the OpenVPN User</span>
+<a id="__codelineno-1-33" name="__codelineno-1-33"></a><span class="na">openvpn_user</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;OpeyemiTechPro-${var.selected_region}&quot;</span>
+<a id="__codelineno-1-34" name="__codelineno-1-34"></a>
+<a id="__codelineno-1-35" name="__codelineno-1-35"></a><span class="c1"># Display formatted region information</span>
+<a id="__codelineno-1-36" name="__codelineno-1-36"></a><span class="na">region_display</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">join</span><span class="p">(</span><span class="s2">&quot;\n&quot;, [for region, location in var.aws_regions : format(&quot;%s = %s&quot;</span><span class="p">,</span><span class="w"> </span><span class="err">region</span><span class="p">,</span><span class="w"> </span><span class="err">location</span><span class="p">)])</span>
+<a id="__codelineno-1-37" name="__codelineno-1-37"></a>
+<a id="__codelineno-1-38" name="__codelineno-1-38"></a><span class="p">}</span>
+<a id="__codelineno-1-39" name="__codelineno-1-39"></a>
+<a id="__codelineno-1-40" name="__codelineno-1-40"></a>
+<a id="__codelineno-1-41" name="__codelineno-1-41"></a><span class="c1"># Generate a private key</span>
+<a id="__codelineno-1-42" name="__codelineno-1-42"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;tls_private_key&quot;</span><span class="w"> </span><span class="nv">&quot;key_pair&quot;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-43" name="__codelineno-1-43"></a><span class="na">algorithm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;RSA&quot;</span>
+<a id="__codelineno-1-44" name="__codelineno-1-44"></a><span class="na">rsa_bits</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="m">2048</span>
+<a id="__codelineno-1-45" name="__codelineno-1-45"></a><span class="p">}</span>
+<a id="__codelineno-1-46" name="__codelineno-1-46"></a>
+<a id="__codelineno-1-47" name="__codelineno-1-47"></a><span class="c1"># Create key pair in AWS</span>
+<a id="__codelineno-1-48" name="__codelineno-1-48"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_key_pair&quot;</span><span class="w"> </span><span class="nv">&quot;key_pair&quot;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-49" name="__codelineno-1-49"></a><span class="na">key_name</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="nv">local.key_pair_name</span>
+<a id="__codelineno-1-50" name="__codelineno-1-50"></a><span class="na">public_key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">tls_private_key.key_pair.public_key_openssh</span>
+<a id="__codelineno-1-51" name="__codelineno-1-51"></a>
+<a id="__codelineno-1-52" name="__codelineno-1-52"></a><span class="c1"># tag the key pair</span>
+<a id="__codelineno-1-53" name="__codelineno-1-53"></a><span class="nb">tags</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-54" name="__codelineno-1-54"></a><span class="w">    </span><span class="na">Name</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="nv">local.key_pair_name</span>
+<a id="__codelineno-1-55" name="__codelineno-1-55"></a><span class="w">    </span><span class="na">Region</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="nv">var.selected_region</span>
+<a id="__codelineno-1-56" name="__codelineno-1-56"></a><span class="w">    </span><span class="na">Project</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="nv">var.project_name</span>
+<a id="__codelineno-1-57" name="__codelineno-1-57"></a><span class="w">    </span><span class="na">CreatedBy</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Terraform&quot;</span>
+<a id="__codelineno-1-58" name="__codelineno-1-58"></a><span class="p">}</span>
+<a id="__codelineno-1-59" name="__codelineno-1-59"></a><span class="p">}</span>
+<a id="__codelineno-1-60" name="__codelineno-1-60"></a>
+<a id="__codelineno-1-61" name="__codelineno-1-61"></a><span class="c1"># Save private key locally</span>
+<a id="__codelineno-1-62" name="__codelineno-1-62"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;local_file&quot;</span><span class="w"> </span><span class="nv">&quot;private_key&quot;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-63" name="__codelineno-1-63"></a><span class="na">content</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="nv">tls_private_key.key_pair.private_key_pem</span>
+<a id="__codelineno-1-64" name="__codelineno-1-64"></a><span class="na">filename</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;${local.key_pair_name}.pem&quot;</span>
+<a id="__codelineno-1-65" name="__codelineno-1-65"></a><span class="na">file_permission</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;0400&quot;</span>
+<a id="__codelineno-1-66" name="__codelineno-1-66"></a><span class="p">}</span>
+<a id="__codelineno-1-67" name="__codelineno-1-67"></a>
+<a id="__codelineno-1-68" name="__codelineno-1-68"></a>
+<a id="__codelineno-1-69" name="__codelineno-1-69"></a><span class="c1"># Create a null resource to display available regions</span>
+<a id="__codelineno-1-70" name="__codelineno-1-70"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;null_resource&quot;</span><span class="w"> </span><span class="nv">&quot;region_display&quot;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-71" name="__codelineno-1-71"></a><span class="nb">triggers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-72" name="__codelineno-1-72"></a><span class="w">    </span><span class="na">always_run</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">timestamp</span><span class="p">()</span>
+<a id="__codelineno-1-73" name="__codelineno-1-73"></a><span class="p">}</span>
+<a id="__codelineno-1-74" name="__codelineno-1-74"></a>
+<a id="__codelineno-1-75" name="__codelineno-1-75"></a><span class="kr">provisioner</span><span class="w"> </span><span class="nv">&quot;local-exec&quot;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-76" name="__codelineno-1-76"></a><span class="w">    </span><span class="na">command</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&lt;&lt;-</span><span class="dl">EOT</span>
+<a id="__codelineno-1-77" name="__codelineno-1-77"></a><span class="sh">    echo &quot;Available AWS Regions:&quot;</span>
+<a id="__codelineno-1-78" name="__codelineno-1-78"></a><span class="sh">    echo &quot;${local.region_display}&quot;</span>
+<a id="__codelineno-1-79" name="__codelineno-1-79"></a><span class="sh">    echo &quot;\nSelected Region: ${var.selected_region} (${var.aws_regions[var.selected_region]})&quot;</span>
+<a id="__codelineno-1-80" name="__codelineno-1-80"></a><span class="dl">    EOT</span>
+<a id="__codelineno-1-81" name="__codelineno-1-81"></a><span class="p">}</span>
+<a id="__codelineno-1-82" name="__codelineno-1-82"></a><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+</details>
 <p>This is the main config file that sets up the OpenVPN server infrastructure.</p>
 <ul>
 <li>
@@ -1687,6 +1854,111 @@
 </details>
 <details class="tip">
 <summary>The <code>openvpn_userdata.tpl</code> file</summary>
+<details class="code-file" open="open">
+<summary>openvpn_userdata.tpl</summary>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">openvpn_userdata.tpl</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-2-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-2-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-2-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-2-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-2-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-2-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-2-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-2-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-2-10">10</a></span>
+<span class="normal"><a href="#__codelineno-2-11">11</a></span>
+<span class="normal"><a href="#__codelineno-2-12">12</a></span>
+<span class="normal"><a href="#__codelineno-2-13">13</a></span>
+<span class="normal"><a href="#__codelineno-2-14">14</a></span>
+<span class="normal"><a href="#__codelineno-2-15">15</a></span>
+<span class="normal"><a href="#__codelineno-2-16">16</a></span>
+<span class="normal"><a href="#__codelineno-2-17">17</a></span>
+<span class="normal"><a href="#__codelineno-2-18">18</a></span>
+<span class="normal"><a href="#__codelineno-2-19">19</a></span>
+<span class="normal"><a href="#__codelineno-2-20">20</a></span>
+<span class="normal"><a href="#__codelineno-2-21">21</a></span>
+<span class="normal"><a href="#__codelineno-2-22">22</a></span>
+<span class="normal"><a href="#__codelineno-2-23">23</a></span>
+<span class="normal"><a href="#__codelineno-2-24">24</a></span>
+<span class="normal"><a href="#__codelineno-2-25">25</a></span>
+<span class="normal"><a href="#__codelineno-2-26">26</a></span>
+<span class="normal"><a href="#__codelineno-2-27">27</a></span>
+<span class="normal"><a href="#__codelineno-2-28">28</a></span>
+<span class="normal"><a href="#__codelineno-2-29">29</a></span>
+<span class="normal"><a href="#__codelineno-2-30">30</a></span>
+<span class="normal"><a href="#__codelineno-2-31">31</a></span>
+<span class="normal"><a href="#__codelineno-2-32">32</a></span>
+<span class="normal"><a href="#__codelineno-2-33">33</a></span>
+<span class="normal"><a href="#__codelineno-2-34">34</a></span>
+<span class="normal"><a href="#__codelineno-2-35">35</a></span>
+<span class="normal"><a href="#__codelineno-2-36">36</a></span>
+<span class="normal"><a href="#__codelineno-2-37">37</a></span>
+<span class="normal"><a href="#__codelineno-2-38">38</a></span>
+<span class="normal"><a href="#__codelineno-2-39">39</a></span>
+<span class="normal"><a href="#__codelineno-2-40">40</a></span>
+<span class="normal"><a href="#__codelineno-2-41">41</a></span>
+<span class="normal"><a href="#__codelineno-2-42">42</a></span>
+<span class="normal"><a href="#__codelineno-2-43">43</a></span>
+<span class="normal"><a href="#__codelineno-2-44">44</a></span>
+<span class="normal"><a href="#__codelineno-2-45">45</a></span>
+<span class="normal"><a href="#__codelineno-2-46">46</a></span>
+<span class="normal"><a href="#__codelineno-2-47">47</a></span>
+<span class="normal"><a href="#__codelineno-2-48">48</a></span>
+<span class="normal"><a href="#__codelineno-2-49">49</a></span>
+<span class="normal"><a href="#__codelineno-2-50">50</a></span>
+<span class="normal"><a href="#__codelineno-2-51">51</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="ch">#!/bin/bash</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2"></a>
+<a id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="c1"># Bash script to intialize OpenVPN Server</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4"></a>
+<a id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="c1"># Set error trap to exit the script immediately on first error.</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6"></a><span class="nb">set</span><span class="w"> </span>-e<span class="w"> </span>
+<a id="__codelineno-2-7" name="__codelineno-2-7"></a>
+<a id="__codelineno-2-8" name="__codelineno-2-8"></a><span class="c1"># Log all output to a file for reference </span>
+<a id="__codelineno-2-9" name="__codelineno-2-9"></a><span class="nb">exec</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>/var/log/setup_script.log<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10"></a>
+<a id="__codelineno-2-11" name="__codelineno-2-11"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Initializing script...&quot;</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12"></a><span class="nb">echo</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Updating packages...&quot;</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14"></a>sudo<span class="w"> </span>apt<span class="w"> </span>update<span class="w"> </span>-y
+<a id="__codelineno-2-15" name="__codelineno-2-15"></a><span class="nb">echo</span>
+<a id="__codelineno-2-16" name="__codelineno-2-16"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Setting FQDN  &amp; Public IP&quot;</span>
+<a id="__codelineno-2-17" name="__codelineno-2-17"></a><span class="nb">echo</span>
+<a id="__codelineno-2-18" name="__codelineno-2-18"></a><span class="nv">FQDN</span><span class="o">=</span><span class="k">$(</span>curl<span class="w"> </span>-sS<span class="w"> </span>http://169.254.169.254/latest/meta-data/public-hostname<span class="k">)</span>
+<a id="__codelineno-2-19" name="__codelineno-2-19"></a><span class="nv">PUB_IP</span><span class="o">=</span><span class="k">$(</span>curl<span class="w"> </span>-sS<span class="w"> </span>http://169.254.169.254/latest/meta-data/public-ipv4<span class="k">)</span>
+<a id="__codelineno-2-20" name="__codelineno-2-20"></a>
+<a id="__codelineno-2-21" name="__codelineno-2-21"></a>
+<a id="__codelineno-2-22" name="__codelineno-2-22"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$FQDN</span><span class="s2">&quot;</span>
+<a id="__codelineno-2-23" name="__codelineno-2-23"></a><span class="nb">echo</span>
+<a id="__codelineno-2-24" name="__codelineno-2-24"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$PUB_IP</span><span class="s2">&quot;</span>
+<a id="__codelineno-2-25" name="__codelineno-2-25"></a><span class="nb">echo</span><span class="w"> </span>
+<a id="__codelineno-2-26" name="__codelineno-2-26"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Download installation script&quot;</span>
+<a id="__codelineno-2-27" name="__codelineno-2-27"></a><span class="nb">echo</span>
+<a id="__codelineno-2-28" name="__codelineno-2-28"></a><span class="c1"># Check Agristan&#39;s repo for full details on installation script options- https://github.com/angristan/openvpn-install</span>
+<a id="__codelineno-2-29" name="__codelineno-2-29"></a>
+<a id="__codelineno-2-30" name="__codelineno-2-30"></a>wget<span class="w"> </span>https://raw.githubusercontent.com/angristan/openvpn-install/master/openvpn-install.sh<span class="w"> </span>-O<span class="w"> </span>openvpn-install.sh
+<a id="__codelineno-2-31" name="__codelineno-2-31"></a>chmod<span class="w"> </span>+x<span class="w"> </span>openvpn-install.sh<span class="w"> </span>
+<a id="__codelineno-2-32" name="__codelineno-2-32"></a>
+<a id="__codelineno-2-33" name="__codelineno-2-33"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Installing OpenVPN Access Server...&quot;</span>
+<a id="__codelineno-2-34" name="__codelineno-2-34"></a><span class="nb">echo</span>
+<a id="__codelineno-2-35" name="__codelineno-2-35"></a>sudo<span class="w"> </span><span class="nv">AUTO_INSTALL</span><span class="o">=</span>y<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-2-36" name="__codelineno-2-36"></a><span class="w">    </span><span class="nv">APPROVE_IP</span><span class="o">=</span><span class="nv">$PUB_IP</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-2-37" name="__codelineno-2-37"></a><span class="w">    </span><span class="nv">ENDPOINT</span><span class="o">=</span><span class="nv">$FQDN</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-2-38" name="__codelineno-2-38"></a><span class="w">    </span><span class="nv">CLIENT</span><span class="o">=</span><span class="si">${</span><span class="nv">openvpn_user</span><span class="si">}</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-2-39" name="__codelineno-2-39"></a><span class="w">    </span>./openvpn-install.sh
+<a id="__codelineno-2-40" name="__codelineno-2-40"></a>
+<a id="__codelineno-2-41" name="__codelineno-2-41"></a>
+<a id="__codelineno-2-42" name="__codelineno-2-42"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Moving User Profile </span><span class="si">${</span><span class="nv">openvpn_user</span><span class="si">}</span><span class="s2">.ovpn to the Ubuntu user home directory...&quot;</span>
+<a id="__codelineno-2-43" name="__codelineno-2-43"></a><span class="nb">echo</span>
+<a id="__codelineno-2-44" name="__codelineno-2-44"></a>mv<span class="w"> </span>/root/<span class="si">${</span><span class="nv">openvpn_user</span><span class="si">}</span>.ovpn<span class="w"> </span>/home/ubuntu/<span class="si">${</span><span class="nv">openvpn_user</span><span class="si">}</span>.ovpn
+<a id="__codelineno-2-45" name="__codelineno-2-45"></a>
+<a id="__codelineno-2-46" name="__codelineno-2-46"></a><span class="nb">echo</span>
+<a id="__codelineno-2-47" name="__codelineno-2-47"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Hurray! OpenVPN Installed succesfully&quot;</span>
+<a id="__codelineno-2-48" name="__codelineno-2-48"></a>
+<a id="__codelineno-2-49" name="__codelineno-2-49"></a><span class="c1"># Rename Hostname</span>
+<a id="__codelineno-2-50" name="__codelineno-2-50"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Set hostname as OpenVPN-Server...&quot;</span>
+<a id="__codelineno-2-51" name="__codelineno-2-51"></a>sudo<span class="w"> </span>hostnamectl<span class="w"> </span>set-hostname<span class="w"> </span>OpenVPN-Server<span class="w"> </span>
+</code></pre></div></td></tr></table></div>
+</details>
 <p>This is the userdata script that is used to bootstrap the server immediately after it is provisioned by Terraform. It is configured as a template file so that terraform can interpolate the value of <code>openvpn_user</code> variable from the variables declared in the config file into the user_data script.</p>
 <p>How it works:
 - Sets bash environment and error handling</p>
@@ -1719,6 +1991,113 @@
 </details>
 <details class="tip">
 <summary>The <code>outputs.tf</code> file</summary>
+<details class="code-file" open="open">
+<summary>outputs.tf</summary>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">outputs.tf</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-3-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-3-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-3-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-3-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-3-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-3-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-3-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-3-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-3-10">10</a></span>
+<span class="normal"><a href="#__codelineno-3-11">11</a></span>
+<span class="normal"><a href="#__codelineno-3-12">12</a></span>
+<span class="normal"><a href="#__codelineno-3-13">13</a></span>
+<span class="normal"><a href="#__codelineno-3-14">14</a></span>
+<span class="normal"><a href="#__codelineno-3-15">15</a></span>
+<span class="normal"><a href="#__codelineno-3-16">16</a></span>
+<span class="normal"><a href="#__codelineno-3-17">17</a></span>
+<span class="normal"><a href="#__codelineno-3-18">18</a></span>
+<span class="normal"><a href="#__codelineno-3-19">19</a></span>
+<span class="normal"><a href="#__codelineno-3-20">20</a></span>
+<span class="normal"><a href="#__codelineno-3-21">21</a></span>
+<span class="normal"><a href="#__codelineno-3-22">22</a></span>
+<span class="normal"><a href="#__codelineno-3-23">23</a></span>
+<span class="normal"><a href="#__codelineno-3-24">24</a></span>
+<span class="normal"><a href="#__codelineno-3-25">25</a></span>
+<span class="normal"><a href="#__codelineno-3-26">26</a></span>
+<span class="normal"><a href="#__codelineno-3-27">27</a></span>
+<span class="normal"><a href="#__codelineno-3-28">28</a></span>
+<span class="normal"><a href="#__codelineno-3-29">29</a></span>
+<span class="normal"><a href="#__codelineno-3-30">30</a></span>
+<span class="normal"><a href="#__codelineno-3-31">31</a></span>
+<span class="normal"><a href="#__codelineno-3-32">32</a></span>
+<span class="normal"><a href="#__codelineno-3-33">33</a></span>
+<span class="normal"><a href="#__codelineno-3-34">34</a></span>
+<span class="normal"><a href="#__codelineno-3-35">35</a></span>
+<span class="normal"><a href="#__codelineno-3-36">36</a></span>
+<span class="normal"><a href="#__codelineno-3-37">37</a></span>
+<span class="normal"><a href="#__codelineno-3-38">38</a></span>
+<span class="normal"><a href="#__codelineno-3-39">39</a></span>
+<span class="normal"><a href="#__codelineno-3-40">40</a></span>
+<span class="normal"><a href="#__codelineno-3-41">41</a></span>
+<span class="normal"><a href="#__codelineno-3-42">42</a></span>
+<span class="normal"><a href="#__codelineno-3-43">43</a></span>
+<span class="normal"><a href="#__codelineno-3-44">44</a></span>
+<span class="normal"><a href="#__codelineno-3-45">45</a></span>
+<span class="normal"><a href="#__codelineno-3-46">46</a></span>
+<span class="normal"><a href="#__codelineno-3-47">47</a></span>
+<span class="normal"><a href="#__codelineno-3-48">48</a></span>
+<span class="normal"><a href="#__codelineno-3-49">49</a></span>
+<span class="normal"><a href="#__codelineno-3-50">50</a></span>
+<span class="normal"><a href="#__codelineno-3-51">51</a></span>
+<span class="normal"><a href="#__codelineno-3-52">52</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="c1"># Output values for OpenVPN Server</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="kr">output</span><span class="w"> </span><span class="nv">&quot;OpenVPN-Public-ip-address&quot;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="na">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Public ip address of the OpenVPN server&quot;</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4"></a><span class="na">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_instance.OpenVPN_Server.public_ip</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5"></a><span class="p">}</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6"></a>
+<a id="__codelineno-3-7" name="__codelineno-3-7"></a><span class="c1"># Display the instance-ID of the OpenVPN Server</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8"></a><span class="kr">output</span><span class="w"> </span><span class="nv">&quot;OpenVPN-instance-id&quot;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9"></a><span class="na">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Instance id of the OpenVPN Server&quot;</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10"></a><span class="na">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_instance.OpenVPN_Server.id</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11"></a><span class="p">}</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12"></a>
+<a id="__codelineno-3-13" name="__codelineno-3-13"></a><span class="c1"># Display the instance-ID of the OpenVPN Server</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14"></a><span class="kr">output</span><span class="w"> </span><span class="nv">&quot;key_pair_name&quot;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15"></a><span class="na">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Name of the created key pair&quot;</span>
+<a id="__codelineno-3-16" name="__codelineno-3-16"></a><span class="na">value</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="nv">local.key_pair_name</span>
+<a id="__codelineno-3-17" name="__codelineno-3-17"></a><span class="p">}</span>
+<a id="__codelineno-3-18" name="__codelineno-3-18"></a>
+<a id="__codelineno-3-19" name="__codelineno-3-19"></a><span class="c1"># Display the path of the private key file</span>
+<a id="__codelineno-3-20" name="__codelineno-3-20"></a><span class="kr">output</span><span class="w"> </span><span class="nv">&quot;private_key_path&quot;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-3-21" name="__codelineno-3-21"></a><span class="na">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Path to the private key file&quot;</span>
+<a id="__codelineno-3-22" name="__codelineno-3-22"></a><span class="na">value</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="nv">local_file.private_key.filename</span>
+<a id="__codelineno-3-23" name="__codelineno-3-23"></a><span class="p">}</span>
+<a id="__codelineno-3-24" name="__codelineno-3-24"></a>
+<a id="__codelineno-3-25" name="__codelineno-3-25"></a><span class="c1"># Dispaly the ssh connection string</span>
+<a id="__codelineno-3-26" name="__codelineno-3-26"></a><span class="kr">output</span><span class="w"> </span><span class="nv">&quot;ssh_connection_string&quot;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-3-27" name="__codelineno-3-27"></a><span class="na">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;SSH connection string&quot;</span>
+<a id="__codelineno-3-28" name="__codelineno-3-28"></a><span class="na">value</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;ssh -i ${local_file.private_key.filename} ubuntu@${aws_instance.OpenVPN_Server.public_ip}&quot;</span>
+<a id="__codelineno-3-29" name="__codelineno-3-29"></a><span class="p">}</span>
+<a id="__codelineno-3-30" name="__codelineno-3-30"></a>
+<a id="__codelineno-3-31" name="__codelineno-3-31"></a><span class="c1"># Display the path of the downloaded ovpn profile config file</span>
+<a id="__codelineno-3-32" name="__codelineno-3-32"></a><span class="kr">output</span><span class="w"> </span><span class="nv">&quot;ovpn_config_path&quot;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-3-33" name="__codelineno-3-33"></a><span class="na">value</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;./${local.openvpn_user}.ovpn&quot;</span>
+<a id="__codelineno-3-34" name="__codelineno-3-34"></a><span class="na">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Path to the downloaded OpenVPN config file&quot;</span>
+<a id="__codelineno-3-35" name="__codelineno-3-35"></a><span class="p">}</span>
+<a id="__codelineno-3-36" name="__codelineno-3-36"></a>
+<a id="__codelineno-3-37" name="__codelineno-3-37"></a><span class="c1"># Display the path of the downloaded ovpn profile config fil</span>
+<a id="__codelineno-3-38" name="__codelineno-3-38"></a><span class="kr">output</span><span class="w"> </span><span class="nv">&quot;ovpn_download_complete&quot;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-3-39" name="__codelineno-3-39"></a><span class="na">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;OpenVPN Profile config file has been downloaded to: ${local.openvpn_user}.ovpn&quot;</span>
+<a id="__codelineno-3-40" name="__codelineno-3-40"></a><span class="p">}</span>
+<a id="__codelineno-3-41" name="__codelineno-3-41"></a>
+<a id="__codelineno-3-42" name="__codelineno-3-42"></a><span class="c1"># Display the next step to access the VPN server</span>
+<a id="__codelineno-3-43" name="__codelineno-3-43"></a><span class="kr">output</span><span class="w"> </span><span class="nv">&quot;Next_Steps&quot;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-3-44" name="__codelineno-3-44"></a><span class="na">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&lt;&lt;-</span><span class="dl">EOT</span>
+<a id="__codelineno-3-45" name="__codelineno-3-45"></a><span class="sh">    To use your OpenVPN configuration:</span>
+<a id="__codelineno-3-46" name="__codelineno-3-46"></a><span class="sh">    1. Download and Install the OpenVPN Connect client software on your device from here: https://openvpn.net/client/</span>
+<a id="__codelineno-3-47" name="__codelineno-3-47"></a><span class="sh">    2. Import the configuration file: ${local.openvpn_user}.ovpn</span>
+<a id="__codelineno-3-48" name="__codelineno-3-48"></a><span class="sh">    3. Connect to your VPN server</span>
+<a id="__codelineno-3-49" name="__codelineno-3-49"></a>
+<a id="__codelineno-3-50" name="__codelineno-3-50"></a><span class="sh">    The configuration file is located at: ./${local.openvpn_user}.ovpn</span>
+<a id="__codelineno-3-51" name="__codelineno-3-51"></a><span class="dl">EOT</span>
+<a id="__codelineno-3-52" name="__codelineno-3-52"></a><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+</details>
 <p>The <code>outputs.tf</code> file defines values that will be displayed after Terraform completes its execution. In this specific file, it outputs: [1]</p>
 <p>The following values will be displayed:
 - Public IP address of the OpenVPN server</p>
@@ -1805,15 +2184,15 @@
 <summary>Click here for a quick start guide on setting up the OpenVPN Access Server</summary>
 <h3 id="clone-the-repository">Clone the Repository<a class="headerlink" href="#clone-the-repository" title="Copy this link to reference this section">&para;</a></h3>
 <p>Create a folder on your local machine and clone the repository in the folder</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/opeyemitechpro/OpenVPN-Terraform.git
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/opeyemitechpro/OpenVPN-Terraform.git
 </code></pre></div></td></tr></table></div>
 <h3 id="initialize-the-terraform-configuration">Initialize the terraform configuration<a class="headerlink" href="#initialize-the-terraform-configuration" title="Copy this link to reference this section">&para;</a></h3>
 <p>From within the cloned directory, initialize the terraform configuration</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a>terraform<span class="w"> </span>init
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a>terraform<span class="w"> </span>init
 </code></pre></div></td></tr></table></div>
 <p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" data-title="Terraform Initialiaztion Command" data-desc-position="bottom"><img alt="Terraform Initialiaztion Command" src="../../assets/images/ovpn-terraform-init.png" title="Terraform Initialiaztion Command" /></a></p>
 <h3 id="apply-the-terraform-configuration">Apply the Terraform Configuration<a class="headerlink" href="#apply-the-terraform-configuration" title="Copy this link to reference this section">&para;</a></h3>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a>terraform<span class="w"> </span>apply
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a>terraform<span class="w"> </span>apply
 </code></pre></div></td></tr></table></div>
 <ul>
 <li>When prompted, enter an AWS region from the list below and respond <code>yes</code> to the prompt.  (e.g. <code>us-west-2</code>)</li>
@@ -1874,7 +2253,7 @@
 <p>When you are connected to your VPN server, your internet traffic will be routed through your VPN server and as such, only your VPN server IP address will be seen publicly, your local ISP assigned ip address will be hidden from the internet. </p>
 <h3 id="cleanup">Cleanup<a class="headerlink" href="#cleanup" title="Copy this link to reference this section">&para;</a></h3>
 <p>The whole infrastructure can be destroyed by simply using the command:</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a>terraform<span class="w"> </span>destroy
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a>terraform<span class="w"> </span>destroy
 </code></pre></div></td></tr></table></div>
 <ul>
 <li>Enter the AWS region that you entered above and respond <code>yes</code> to the prompt.</li>
@@ -1906,7 +2285,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-11-28T16:23:02+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-11-28</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-11-28T18:44:08+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-11-28</span>
   </span>
 
     
