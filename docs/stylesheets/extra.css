@@ -22,11 +22,11 @@
 }
 .md-typeset .admonition.code-block,
 .md-typeset details.code-block {
-  border-color: rgb(217, 255, 0);
+  border-color: rgb(255, 0, 0);
 }
 .md-typeset .code-block > .admonition-title,
 .md-typeset .code-block > summary {
-  background-color: rgba(255, 0, 0, 0.863);
+  background-color: rgba(255, 0, 0, 0.1);
 }
 .md-typeset .code-block > .admonition-title::before,
 .md-typeset .code-block > summary::before {
