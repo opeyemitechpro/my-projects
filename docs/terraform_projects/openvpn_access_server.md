@@ -580,16 +580,21 @@ Setting up a self-hosted VPN server can be a cost-effective and secure solution 
                 "ap-northeast-2" = "Seoul"
                 "ap-northeast-3" = "Osaka"
                 "ca-central-1"   = "Canada Central"
+                "ca-west-1"      = "Calgary"
+                "cn-north-1"     = "Beijing"
+                "cn-northwest-1" = "Ningxia"
                 "eu-central-1"   = "Frankfurt"
+                "eu-central-2"   = "Zurich"
                 "eu-west-1"      = "Ireland"
                 "eu-west-2"      = "London"
                 "eu-west-3"      = "Paris"
                 "eu-north-1"     = "Stockholm"
                 "eu-south-1"     = "Milan"
-                "eu-south-2"     = "Zurich"
+                "eu-south-2"     = "Spain"
                 "me-south-1"     = "Bahrain"
                 "me-central-1"   = "UAE"
                 "sa-east-1"      = "São Paulo"
+                "il-central-1"   = "Tel Aviv"
             }
             }
 
@@ -598,7 +603,7 @@ Setting up a self-hosted VPN server can be a cost-effective and secure solution 
             description = "Enter the AWS region where you want to deploy your OpenVPN Server and press Enter:"
 
             validation {
-                condition     = can(regex("^(eu|us|ap|ca|sa|me|af|il|cn)-(central|west|east|north|south|southeast|northeast)-[1-3]$", var.selected_region))
+                condition     = can(regex("^(eu|us|ap|ca|sa|me|af|il|cn)-(central|west|east|north|south|southeast|northeast|northwest)-[1-3]$", var.selected_region))
                 error_message = "Please select a valid AWS region from the provided list."
             }
             }
