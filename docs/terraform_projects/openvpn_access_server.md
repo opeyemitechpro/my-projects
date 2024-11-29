@@ -38,10 +38,10 @@ Setting up a self-hosted VPN server can be a cost-effective and secure solution 
 
 - [x] AWS account _(free tier account will work)_
 - [x] Terraform installed on local machine
-- [x] OpenVPN Client installed on local machine _(download from [here](https://openvpn.net/client/){: target="_blank" .md-button })_
-- [x] Your AWS access key ID and secret access key
-- [x] AWS CLI installed and configured with your AWS access key ID and Secret access keys _([learn more about AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-quickstart.html){: target="_blank" .md-button })_ 
-- [x] The OpenVPN-Terraform Setup Script [here](https://github.com/opeyemitechpro/OpenVPN-Terraform-Setup){: target="_blank" }
+- [x] OpenVPN Client installed on local machine _(download from [here](https://openvpn.net/client/){: target="_blank" })_
+- [x] Your AWS access key ID and secret access key _(learn how to get your AWS access keys [here](https://docs.aws.amazon.com/cli/latest/userguide/cli-authentication-user.html){: target="_blank" })_
+- [x] AWS CLI installed and configured with your AWS access key ID and Secret access keys _(learn more about AWS CLI [here](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-quickstart.html){: target="_blank" })_ 
+- [x] The OpenVPN-Terraform Setup Script _(click the button below)_
 
 
 [OpenVPN-Terraform Source Code](https://github.com/opeyemitechpro/OpenVPN-Terraform-Setup){: target="_blank" .md-button .md-button--primary}
