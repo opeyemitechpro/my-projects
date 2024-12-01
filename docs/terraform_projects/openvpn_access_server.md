@@ -18,7 +18,8 @@ pin: true
 
 In this project, we will demonstrate how to setup and self-host a VPN server on AWS using terraform and OpenVPN Access Server.
 
-???+ youtube "Watch the Video - How To Create a Free Self-Hosted VPN Server on AWS using Terraform and OpenVPN" <figure markdown="1">
+???+ youtube "Watch the Video - How To Create a Free Self-Hosted VPN Server on AWS using Terraform and OpenVPN" 
+    <figure markdown="1">
     [![Create a Free Self-Hosted VPN Server on AWS using Terraform and OpenVPN](../../assets/images/OpenVPN-on-AWS-Using-Terraform.png "Create a Free Self-Hosted VPN Server on AWS using Terraform and OpenVPN")](https://www.youtube.com/@opeyemitechpro){: target="_blank" }
     <!-- <figcaption>Create a Free Self-Hosted VPN Server on AWS using Terraform and OpenVPN</figcaption>  -->
     </figure>
