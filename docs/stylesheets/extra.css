@@ -52,3 +52,7 @@
   -webkit-mask-image: var(--md-admonition-icon--code-file);
           mask-image: var(--md-admonition-icon--code-file);
 }
+
+html {
+  font-size: calc(125% * 1.1); /* <- 1.1 equals + 10% – adjust to taste */
+}
