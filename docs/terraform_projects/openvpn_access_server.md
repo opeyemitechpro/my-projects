@@ -891,7 +891,7 @@ Follow the ==**"Quick Start Guide"**== below to provision and configure your Ope
     ![AWS Console Showing the OpenVPN Server details](../../assets/images/ovpn-terraform-console.png "AWS Console Showing the OpenVPN Server details")
 
     ### Connect to your VPN
-    - Download and install [OpenVPN Connect client](https://openvpn.net/client/) on your local machine
+    - Download and install [OpenVPN Connect client](https://openvpn.net/client/){: target="_blank" } on your local machine
     - Import the `*.ovpn` file into the OpenVPN cient appllication
     - Connect to your VPN network
 
