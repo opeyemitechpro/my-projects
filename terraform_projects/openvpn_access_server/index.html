@@ -2231,7 +2231,7 @@ A helper resource to print available AWS regions to the console.  </p>
 <p>Retrieves instance metadata (FQDN and Public IP) from AWS metadata service which will be needed by the OpenVPN installatin script</p>
 </li>
 <li>
-<p>Downloads the installation script from <a href="https://github.com/angristan/openvpn-install">Angristan's GitHub repository</a>  and sets the executable permissions on the file</p>
+<p>Downloads the installation script from <a href="https://github.com/angristan/openvpn-install" target="_blank">Angristan's GitHub repository</a>  and sets the executable permissions on the file</p>
 </li>
 <li>
 <p>Runs the installation script configuration automatically without prompts using the "Public IP" and "FQDN" values queried from the instance metadata</p>
@@ -2514,6 +2514,43 @@ A helper resource to print available AWS regions to the console.  </p>
 <p>Using Cleanup local-exec provisioner, sets a trigger to destroy the locally saved *.ovpn file when the infrastructure is destroyed</p>
 </li>
 </ul>
+<p>Here’s a breakdown of each section of this file:</p>
+<p><mark><strong>Resource Definition</strong></mark>
+- <strong><code>null_resource "get_ovpn_config"</code></strong>: A helper resource used to wait for the OpenVPN configuration file to be generated, then download it locally. This resource doesn't create infrastructure directly but adds automation to the deployment process.</p>
+<hr />
+<p><mark><strong>Dependency and Trigger Configuration</strong></mark>
+- <strong><code>depends_on = [aws_instance.OpenVPN_Server]</code></strong>: Ensures this resource executes only after the OpenVPN server instance is successfully created.
+- <strong><code>triggers</code></strong>:<br />
+- <strong><code>instance_ip</code></strong>: Ensures the resource is re-applied if the public IP of the OpenVPN server changes.<br />
+- <strong><code>ovpn_file</code></strong>: Tracks the expected <code>.ovpn</code> configuration filename as a trigger, ensuring changes to this filename will trigger re-execution.</p>
+<hr />
+<p><mark><strong>Remote Execution Provisioner</strong></mark>
+- <strong><code>provisioner "remote-exec"</code></strong>: Executes commands on the OpenVPN server to ensure the <code>.ovpn</code> configuration file is ready.<br />
+- <strong><code>inline</code></strong>: Contains the commands to:
+    - <strong><code>while [ ! -f /home/ubuntu/... ]; do</code></strong>: Polls the server every 20 seconds, checking if the <code>.ovpn</code> file exists.<br />
+    - <strong><code>echo 'Waiting for OpenVPN config file...'</code></strong>: Prints a message during the wait loop.<br />
+    - <strong><code>echo 'OpenVPN config file is ready!'</code></strong>: Signals the file is available.<br />
+- <strong><code>connection</code></strong>: Defines SSH connection details:
+    - <strong><code>type</code></strong>: Specifies SSH as the connection type.<br />
+    - <strong><code>user</code></strong>: Specifies the user (<code>ubuntu</code>) to connect with.<br />
+    - <strong><code>private_key</code></strong>: Uses the private key generated earlier for authentication.<br />
+    - <strong><code>host</code></strong>: Specifies the public IP of the OpenVPN server instance.</p>
+<hr />
+<p><mark><strong>Local Execution Provisioner</strong></mark>
+- <strong>First <code>local-exec</code> block</strong>: Downloads the <code>.ovpn</code> file to the local machine.<br />
+- <strong><code>scp</code></strong>: Securely copies the file from the OpenVPN server to the local directory.<br />
+- <strong>Options</strong>:
+    - <strong><code>-o StrictHostKeyChecking=no</code></strong>: Disables host key checking to avoid interactive prompts.<br />
+    - <strong><code>-o UserKnownHostsFile=/dev/null</code></strong>: Prevents updates to the local known hosts file.<br />
+    - <strong><code>-i</code></strong>: Specifies the SSH private key for authentication.  </p>
+<hr />
+<p><mark><strong>Cleanup on Resource Destruction</strong></mark>
+- <strong>Second <code>local-exec</code> block</strong>: Deletes the downloaded <code>.ovpn</code> file when the resource is destroyed.<br />
+- <strong><code>when = destroy</code></strong>: Ensures the command is only executed during the resource destruction phase.<br />
+- <strong><code>rm -f ./${self.triggers.ovpn_file}</code></strong>: Removes the file using the name stored in the triggers.</p>
+<hr />
+<p><mark><strong>Overall Function</strong></mark>
+This resource ensures that the OpenVPN profile configuration file is created on the server, securely downloads it to the local system, and removes it when no longer needed. It integrates waiting, remote command execution, and local file operations seamlessly within the Terraform workflow.</p>
 </details>
 <details class="tip">
 <summary>The <code>provider.tf</code> file</summary>
@@ -2999,7 +3036,7 @@ A helper resource to print available AWS regions to the console.  </p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-12-02T10:36:29+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-12-02</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-12-02T10:45:54+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-12-02</span>
   </span>
 
     
