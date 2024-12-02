@@ -204,11 +204,8 @@ Setting up a self-hosted VPN server can be a cost-effective and secure solution 
 
         - Displays available AWS regions through a null resource and determines the selected region during execution
 
-        Each code sectiom is explained breifly below:
 
-        Here’s a breakdown of each section of your Terraform code:
-
-        ---
+        ==Each code section is explained breifly below:==
 
         ==**`aws_instance` Resource**==  
         This resource defines the EC2 instance for the OpenVPN server.  
@@ -346,6 +343,53 @@ Setting up a self-hosted VPN server can be a cost-effective and secure solution 
 
         - Sets the system hostname to "OpenVPN-Server"
 
+        ==**Each section of the file is explained below:**==
+
+        ==**Shebang and Setup**==  
+        - **`#!/bin/bash`**: Specifies the script should run using the Bash shell.  
+        - **`set -e`**: Ensures the script exits immediately if any command fails, preventing incomplete setups.  
+        - **`exec >> /var/log/setup_script.log 2>&1`**: Redirects all script output (standard and error) to a log file for debugging and reference.
+
+        ---
+
+        ==**Logging Initialization and Updates**==  
+        - **`echo "Initializing script..."`**: Provides a visual indicator that the script has started.  
+        - **`sudo apt update -y`**: Updates package lists to ensure the system has the latest available versions.
+
+        ---
+
+        ==**Retrieve and Display Instance Metadata**==  
+        - **`FQDN=$(curl -sS http://169.254.169.254/latest/meta-data/public-hostname)`**: Retrieves the Fully Qualified Domain Name (FQDN) of the instance from AWS metadata.  
+        - **`PUB_IP=$(curl -sS http://169.254.169.254/latest/meta-data/public-ipv4)`**: Retrieves the public IPv4 address of the instance from AWS metadata.  
+        - **`echo "$FQDN"` & `echo "$PUB_IP"`**: Prints the FQDN and public IP to the console for verification.
+
+        ---
+
+        ==**Download and Prepare OpenVPN Installation Script**==  
+        - **`wget https://raw.githubusercontent.com/angristan/openvpn-install/master/openvpn-install.sh -O openvpn-install.sh`**: Downloads the OpenVPN installation script from Angristan’s GitHub repository.  
+        - **`chmod +x openvpn-install.sh`**: Makes the script executable.
+
+        ---
+
+        ==**Install OpenVPN**==  
+        - **`sudo AUTO_INSTALL=y \`**: Enables automatic installation with predefined options.  
+        - **`APPROVE_IP=$PUB_IP \`**: Uses the retrieved public IP for OpenVPN configuration.  
+        - **`ENDPOINT=$FQDN \`**: Sets the FQDN as the server endpoint.  
+        - **`CLIENT=${openvpn_user} \`**: Configures the OpenVPN client with a specified username.  
+        - **`./openvpn-install.sh`**: Executes the installation script.
+
+        ---
+
+        ==**Move User Configuration File**==  
+        - **`mv /root/${openvpn_user}.ovpn /home/ubuntu/${openvpn_user}.ovpn`**: Moves the generated client profile (`.ovpn` file) to the default user’s home directory for easier access.
+
+        ---
+
+        ==**Post-Installation Messages and Cleanup**==  
+        - **`echo "Hurray! OpenVPN Installed successfully"`**: Prints a success message to indicate completion.  
+        - **`sudo hostnamectl set-hostname OpenVPN-Server`**: Changes the system’s hostname to "OpenVPN-Server" for easy identification.
+
+        
         
     ??? tip "The `outputs.tf` file"
         
@@ -488,6 +532,8 @@ Setting up a self-hosted VPN server can be a cost-effective and secure solution 
         - It disables strict host checking for simplicity
 
         - Using Cleanup local-exec provisioner, sets a trigger to destroy the locally saved *.ovpn file when the infrastructure is destroyed
+
+        
 
     ??? tip "The `provider.tf` file"
 
