@@ -204,6 +204,68 @@ Setting up a self-hosted VPN server can be a cost-effective and secure solution 
 
         - Displays available AWS regions through a null resource and determines the selected region during execution
 
+        Each code sectiom is explained breifly below:
+
+        Here’s a breakdown of each section of your Terraform code:
+
+        ---
+
+        ==**`aws_instance` Resource**==  
+        This resource defines the EC2 instance for the OpenVPN server.  
+
+        - **`ami`**: Uses the ID of a specific Ubuntu AMI fetched via a data source.  
+        - **`instance_type`**: Sets the EC2 instance type, determined by a variable (`var.OpenVPN_instance_type`).  
+        - **`vpc_security_group_ids`**: Attaches the instance to a specific security group (`aws_security_group.openvpn_SG`).  
+        - **`user_data`**: Provides initialization commands for the instance via a template file. Custom variables, such as `openvpn_user`, are passed to the template.  
+        - **`key_name`**: Associates the instance with an SSH key pair created earlier.  
+        - **`root_block_device`**: Defines the root storage for the instance, setting its size to 8 GB.  
+        - **`metadata_options`**: Configures the EC2 metadata service to support both IMDSv1 and IMDSv2 for instance metadata retrieval.  
+        - **`tags`**: Adds custom tags to the instance for identification, including project and region details.
+
+        ---
+
+        ==**`locals` Block**==  
+        Defines reusable local variables and values for the configuration.  
+
+        - **`key_pair_name`**: Constructs a unique key name with a prefix and region.  
+        - **`openvpn_user`**: Creates a unique username for OpenVPN based on the region.  
+        - **`region_display`**: Formats a list of available AWS regions for display purposes.  
+
+        ---
+
+        ==**`tls_private_key` Resource**==  
+        Generates a 2048-bit RSA private key used to create an AWS key pair.  
+
+        ---
+
+        ==**`aws_key_pair` Resource**==  
+        Creates an SSH key pair in AWS.  
+
+        - **`key_name`**: Uses the locally defined key pair name.  
+        - **`public_key`**: Sets the public key from the generated private key.  
+        - **`tags`**: Adds metadata for the key pair, such as the project name and creation method.  
+
+        ---
+
+        ==**`local_file` Resource**==  
+        Stores the generated private key securely on the local machine.  
+
+        - **`content`**: Saves the private key in PEM format.  
+        - **`filename`**: Names the file using the key pair name and `.pem` extension.  
+        - **`file_permission`**: Sets restrictive permissions (`0400`) for security.  
+
+        ---
+
+        ==**`null_resource` for Region Display**==  
+        A helper resource to print available AWS regions to the console.  
+
+        - **`triggers`**: Ensures the resource runs every time by using the current timestamp.  
+        - **`provisioner "local-exec"`**: Executes a script that prints available AWS regions and the selected region's details.  
+
+        --- 
+
+        
+
     ??? tip "The `openvpn_userdata.tpl` file"
         
         ???+ code-file "openvpn_userdata.tpl"
