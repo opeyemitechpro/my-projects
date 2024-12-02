@@ -333,7 +333,7 @@ Setting up a self-hosted VPN server can be a cost-effective and secure solution 
 
         - Retrieves instance metadata (FQDN and Public IP) from AWS metadata service which will be needed by the OpenVPN installatin script
 
-        - Downloads the installation script from [Angristan's GitHub repository](https://github.com/angristan/openvpn-install)  and sets the executable permissions on the file
+        - Downloads the installation script from [Angristan's GitHub repository](https://github.com/angristan/openvpn-install){: target="_blank" }  and sets the executable permissions on the file
 
         - Runs the installation script configuration automatically without prompts using the "Public IP" and "FQDN" values queried from the instance metadata
 
@@ -533,7 +533,55 @@ Setting up a self-hosted VPN server can be a cost-effective and secure solution 
 
         - Using Cleanup local-exec provisioner, sets a trigger to destroy the locally saved *.ovpn file when the infrastructure is destroyed
 
+        Here’s a breakdown of each section of this file:
+
         
+        ==**Resource Definition**==
+        - **`null_resource "get_ovpn_config"`**: A helper resource used to wait for the OpenVPN configuration file to be generated, then download it locally. This resource doesn't create infrastructure directly but adds automation to the deployment process.
+
+        ---
+
+        ==**Dependency and Trigger Configuration**==
+        - **`depends_on = [aws_instance.OpenVPN_Server]`**: Ensures this resource executes only after the OpenVPN server instance is successfully created.
+        - **`triggers`**:  
+        - **`instance_ip`**: Ensures the resource is re-applied if the public IP of the OpenVPN server changes.  
+        - **`ovpn_file`**: Tracks the expected `.ovpn` configuration filename as a trigger, ensuring changes to this filename will trigger re-execution.
+
+        ---
+
+        ==**Remote Execution Provisioner**==
+        - **`provisioner "remote-exec"`**: Executes commands on the OpenVPN server to ensure the `.ovpn` configuration file is ready.  
+        - **`inline`**: Contains the commands to:
+            - **`while [ ! -f /home/ubuntu/... ]; do`**: Polls the server every 20 seconds, checking if the `.ovpn` file exists.  
+            - **`echo 'Waiting for OpenVPN config file...'`**: Prints a message during the wait loop.  
+            - **`echo 'OpenVPN config file is ready!'`**: Signals the file is available.  
+        - **`connection`**: Defines SSH connection details:
+            - **`type`**: Specifies SSH as the connection type.  
+            - **`user`**: Specifies the user (`ubuntu`) to connect with.  
+            - **`private_key`**: Uses the private key generated earlier for authentication.  
+            - **`host`**: Specifies the public IP of the OpenVPN server instance.
+
+        ---
+
+        ==**Local Execution Provisioner**==
+        - **First `local-exec` block**: Downloads the `.ovpn` file to the local machine.  
+        - **`scp`**: Securely copies the file from the OpenVPN server to the local directory.  
+        - **Options**:
+            - **`-o StrictHostKeyChecking=no`**: Disables host key checking to avoid interactive prompts.  
+            - **`-o UserKnownHostsFile=/dev/null`**: Prevents updates to the local known hosts file.  
+            - **`-i`**: Specifies the SSH private key for authentication.  
+
+        ---
+
+        ==**Cleanup on Resource Destruction**==
+        - **Second `local-exec` block**: Deletes the downloaded `.ovpn` file when the resource is destroyed.  
+        - **`when = destroy`**: Ensures the command is only executed during the resource destruction phase.  
+        - **`rm -f ./${self.triggers.ovpn_file}`**: Removes the file using the name stored in the triggers.
+
+        ---
+
+        ==**Overall Function**==
+        This resource ensures that the OpenVPN profile configuration file is created on the server, securely downloads it to the local system, and removes it when no longer needed. It integrates waiting, remote command execution, and local file operations seamlessly within the Terraform workflow.
 
     ??? tip "The `provider.tf` file"
 
