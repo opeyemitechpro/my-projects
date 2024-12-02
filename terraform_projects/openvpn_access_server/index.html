@@ -2061,6 +2061,56 @@
 <p>Displays available AWS regions through a null resource and determines the selected region during execution</p>
 </li>
 </ul>
+<p>Each code sectiom is explained breifly below:</p>
+<p>Here’s a breakdown of each section of your Terraform code:</p>
+<hr />
+<p><mark><strong><code>aws_instance</code> Resource</strong></mark><br />
+This resource defines the EC2 instance for the OpenVPN server.  </p>
+<ul>
+<li><strong><code>ami</code></strong>: Uses the ID of a specific Ubuntu AMI fetched via a data source.  </li>
+<li><strong><code>instance_type</code></strong>: Sets the EC2 instance type, determined by a variable (<code>var.OpenVPN_instance_type</code>).  </li>
+<li><strong><code>vpc_security_group_ids</code></strong>: Attaches the instance to a specific security group (<code>aws_security_group.openvpn_SG</code>).  </li>
+<li><strong><code>user_data</code></strong>: Provides initialization commands for the instance via a template file. Custom variables, such as <code>openvpn_user</code>, are passed to the template.  </li>
+<li><strong><code>key_name</code></strong>: Associates the instance with an SSH key pair created earlier.  </li>
+<li><strong><code>root_block_device</code></strong>: Defines the root storage for the instance, setting its size to 8 GB.  </li>
+<li><strong><code>metadata_options</code></strong>: Configures the EC2 metadata service to support both IMDSv1 and IMDSv2 for instance metadata retrieval.  </li>
+<li><strong><code>tags</code></strong>: Adds custom tags to the instance for identification, including project and region details.</li>
+</ul>
+<hr />
+<p><mark><strong><code>locals</code> Block</strong></mark><br />
+Defines reusable local variables and values for the configuration.  </p>
+<ul>
+<li><strong><code>key_pair_name</code></strong>: Constructs a unique key name with a prefix and region.  </li>
+<li><strong><code>openvpn_user</code></strong>: Creates a unique username for OpenVPN based on the region.  </li>
+<li><strong><code>region_display</code></strong>: Formats a list of available AWS regions for display purposes.  </li>
+</ul>
+<hr />
+<p><mark><strong><code>tls_private_key</code> Resource</strong></mark><br />
+Generates a 2048-bit RSA private key used to create an AWS key pair.  </p>
+<hr />
+<p><mark><strong><code>aws_key_pair</code> Resource</strong></mark><br />
+Creates an SSH key pair in AWS.  </p>
+<ul>
+<li><strong><code>key_name</code></strong>: Uses the locally defined key pair name.  </li>
+<li><strong><code>public_key</code></strong>: Sets the public key from the generated private key.  </li>
+<li><strong><code>tags</code></strong>: Adds metadata for the key pair, such as the project name and creation method.  </li>
+</ul>
+<hr />
+<p><mark><strong><code>local_file</code> Resource</strong></mark><br />
+Stores the generated private key securely on the local machine.  </p>
+<ul>
+<li><strong><code>content</code></strong>: Saves the private key in PEM format.  </li>
+<li><strong><code>filename</code></strong>: Names the file using the key pair name and <code>.pem</code> extension.  </li>
+<li><strong><code>file_permission</code></strong>: Sets restrictive permissions (<code>0400</code>) for security.  </li>
+</ul>
+<hr />
+<p><mark><strong><code>null_resource</code> for Region Display</strong></mark><br />
+A helper resource to print available AWS regions to the console.  </p>
+<ul>
+<li><strong><code>triggers</code></strong>: Ensures the resource runs every time by using the current timestamp.  </li>
+<li><strong><code>provisioner "local-exec"</code></strong>: Executes a script that prints available AWS regions and the selected region's details.  </li>
+</ul>
+<hr />
 </details>
 <details class="tip">
 <summary>The <code>openvpn_userdata.tpl</code> file</summary>
@@ -2919,7 +2969,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-12-01T20:29:33+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-12-01</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-12-02T10:19:37+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-12-02</span>
   </span>
 
     
