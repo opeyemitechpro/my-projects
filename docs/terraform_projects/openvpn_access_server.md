@@ -520,19 +520,6 @@ Setting up a self-hosted VPN server can be a cost-effective and secure solution 
 
         The `ovpn.tf` file manages the retrieval of the OpenVPN configuration file from the remote VPN server and donwloads it in the terraform working directory. The main purpose of this file is to ensure you get the OpenVPN client configuration file automatically downloaded to your local machine once it's ready on the server.
 
-
-        - It creates a null_resource that checks if the OpenVPN server instance has being created
-
-        - Sets a trigger that determines when the ip address of the instance changes. At that point, terraform can ssh into the machine using the generate private key to access the OVPN profile config file
-
-        - Using the remote-exec block, it waits until the OpenVPN config file is created on the server by polling every 20 seconds until the file exists
-
-        - Using the local-exec block, terrafom doownloads the *.ovpn config file from the server to your local machine using SCP and stores it in the terraform working directory
-
-        - It disables strict host checking for simplicity
-
-        - Using Cleanup local-exec provisioner, sets a trigger to destroy the locally saved *.ovpn file when the infrastructure is destroyed
-
         Here’s a breakdown of each section of this file:
 
         
@@ -581,7 +568,7 @@ Setting up a self-hosted VPN server can be a cost-effective and secure solution 
         ---
 
         ==**Overall Function**==
-        This resource ensures that the OpenVPN profile configuration file is created on the server, securely downloads it to the local system, and removes it when no longer needed. It integrates waiting, remote command execution, and local file operations seamlessly within the Terraform workflow.
+        This file ensures that the OpenVPN profile configuration file is created on the server, securely downloads it to the local system, and removes it when no longer needed (when the `terraform destroy` command is run). It integrates waiting, remote command execution, and local file operations seamlessly within the Terraform workflow.
 
     ??? tip "The `provider.tf` file"
 
@@ -662,8 +649,54 @@ Setting up a self-hosted VPN server can be a cost-effective and secure solution 
             ```
 
 
-
         This configures the required security group profile for the OpenVPN server. It opens the required ports for ingress and egress and the neccesary port protocols (tcp and udp).
+
+        ==The sections of the `securityGrp.tf` file are explained breigly below:==
+        
+        
+        ==**Resource Definition**==
+        - **`resource "aws_security_group" "openvpn_SG"`**: Creates a security group in AWS to define network access rules for the OpenVPN server.
+
+        ---
+
+        ==**Security Group Naming and Description**==
+        - **`name_prefix`**: Sets a prefix for the security group name, combining the project name (`var.project_name`) with `_openvpn_SG_`. AWS appends a unique identifier to the prefix.
+        - **`description`**: Provides a description for the security group, indicating its purpose (OpenVPN security).
+
+        ---
+
+        ==**Dynamic Ingress Rules for TCP Ports**==
+        - **`dynamic "ingress"` (first block)**:
+        - **`for_each = var.openvpn_tcp_ports`**: Iterates over a map of TCP ports and descriptions provided in the variable `var.openvpn_tcp_ports`.
+        - **`content {}`**: Defines the content of each rule:
+            - **`from_port` and `to_port`**: Sets the port range for the rule, using the key from the iteration (`ingress.key`).
+            - **`protocol = "tcp"`**: Specifies that the rule applies to TCP traffic.
+            - **`cidr_blocks = ["0.0.0.0/0"]`**: Allows traffic from all IP addresses.
+            - **`description = ingress.value`**: Provides a description for the rule, using the value from the iteration.
+
+        ---
+
+        ==**Dynamic Ingress Rules for UDP Ports**==
+        - **`dynamic "ingress"` (second block)**:
+        - Similar to the first block, but applies to **UDP traffic**.
+        - Iterates over the variable `var.openvpn_udp_ports`, which contains a map of UDP ports and their descriptions.
+
+        ---
+
+        ==**Egress Rules**==
+        - **`egress` block**:
+        - **`from_port = 0` and `to_port = 0`**: Allows all outbound traffic across all port ranges.
+        - **`protocol = "-1"`**: Applies the rule to all protocols.
+        - **`cidr_blocks = ["0.0.0.0/0"]`**: Allows traffic to all IP addresses.
+
+        ---
+
+        ==**Overall Function**==
+        This security group:
+        1. Dynamically creates ingress (inbound) rules for both TCP and UDP traffic based on user-defined ports and descriptions (`var.openvpn_tcp_ports` and `var.openvpn_udp_ports`).
+        2. Configures unrestricted egress (outbound) traffic to allow the OpenVPN server to communicate with any destination.
+        3. Ensures that all rules are flexible and easy to manage via Terraform variables, making it adaptable for different use cases.
+
 
     ??? tip "The `terraform.tfvars` file"
 
