@@ -2061,9 +2061,7 @@
 <p>Displays available AWS regions through a null resource and determines the selected region during execution</p>
 </li>
 </ul>
-<p>Each code sectiom is explained breifly below:</p>
-<p>Here’s a breakdown of each section of your Terraform code:</p>
-<hr />
+<p><mark>Each code section is explained breifly below:</mark></p>
 <p><mark><strong><code>aws_instance</code> Resource</strong></mark><br />
 This resource defines the EC2 instance for the OpenVPN server.  </p>
 <ul>
@@ -2248,6 +2246,38 @@ A helper resource to print available AWS regions to the console.  </p>
 <p>Sets the system hostname to "OpenVPN-Server"</p>
 </li>
 </ul>
+<p><mark><strong>Each section of the file is explained below:</strong></mark></p>
+<p><mark><strong>Shebang and Setup</strong></mark><br />
+- <strong><code>#!/bin/bash</code></strong>: Specifies the script should run using the Bash shell.<br />
+- <strong><code>set -e</code></strong>: Ensures the script exits immediately if any command fails, preventing incomplete setups.<br />
+- <strong><code>exec &gt;&gt; /var/log/setup_script.log 2&gt;&amp;1</code></strong>: Redirects all script output (standard and error) to a log file for debugging and reference.</p>
+<hr />
+<p><mark><strong>Logging Initialization and Updates</strong></mark><br />
+- <strong><code>echo "Initializing script..."</code></strong>: Provides a visual indicator that the script has started.<br />
+- <strong><code>sudo apt update -y</code></strong>: Updates package lists to ensure the system has the latest available versions.</p>
+<hr />
+<p><mark><strong>Retrieve and Display Instance Metadata</strong></mark><br />
+- <strong><code>FQDN=$(curl -sS http://169.254.169.254/latest/meta-data/public-hostname)</code></strong>: Retrieves the Fully Qualified Domain Name (FQDN) of the instance from AWS metadata.<br />
+- <strong><code>PUB_IP=$(curl -sS http://169.254.169.254/latest/meta-data/public-ipv4)</code></strong>: Retrieves the public IPv4 address of the instance from AWS metadata.<br />
+- <strong><code>echo "$FQDN"</code> &amp; <code>echo "$PUB_IP"</code></strong>: Prints the FQDN and public IP to the console for verification.</p>
+<hr />
+<p><mark><strong>Download and Prepare OpenVPN Installation Script</strong></mark><br />
+- <strong><code>wget https://raw.githubusercontent.com/angristan/openvpn-install/master/openvpn-install.sh -O openvpn-install.sh</code></strong>: Downloads the OpenVPN installation script from Angristan’s GitHub repository.<br />
+- <strong><code>chmod +x openvpn-install.sh</code></strong>: Makes the script executable.</p>
+<hr />
+<p><mark><strong>Install OpenVPN</strong></mark><br />
+- <strong><code>sudo AUTO_INSTALL=y \</code></strong>: Enables automatic installation with predefined options.<br />
+- <strong><code>APPROVE_IP=$PUB_IP \</code></strong>: Uses the retrieved public IP for OpenVPN configuration.<br />
+- <strong><code>ENDPOINT=$FQDN \</code></strong>: Sets the FQDN as the server endpoint.<br />
+- <strong><code>CLIENT=${openvpn_user} \</code></strong>: Configures the OpenVPN client with a specified username.<br />
+- <strong><code>./openvpn-install.sh</code></strong>: Executes the installation script.</p>
+<hr />
+<p><mark><strong>Move User Configuration File</strong></mark><br />
+- <strong><code>mv /root/${openvpn_user}.ovpn /home/ubuntu/${openvpn_user}.ovpn</code></strong>: Moves the generated client profile (<code>.ovpn</code> file) to the default user’s home directory for easier access.</p>
+<hr />
+<p><mark><strong>Post-Installation Messages and Cleanup</strong></mark><br />
+- <strong><code>echo "Hurray! OpenVPN Installed successfully"</code></strong>: Prints a success message to indicate completion.<br />
+- <strong><code>sudo hostnamectl set-hostname OpenVPN-Server</code></strong>: Changes the system’s hostname to "OpenVPN-Server" for easy identification.</p>
 </details>
 <details class="tip">
 <summary>The <code>outputs.tf</code> file</summary>
@@ -2969,7 +2999,7 @@ A helper resource to print available AWS regions to the console.  </p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-12-02T10:19:37+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-12-02</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-12-02T10:36:29+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-12-02</span>
   </span>
 
     
