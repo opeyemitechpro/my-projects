@@ -2494,26 +2494,6 @@ A helper resource to print available AWS regions to the console.  </p>
 </code></pre></div></td></tr></table></div>
 </details>
 <p>The <code>ovpn.tf</code> file manages the retrieval of the OpenVPN configuration file from the remote VPN server and donwloads it in the terraform working directory. The main purpose of this file is to ensure you get the OpenVPN client configuration file automatically downloaded to your local machine once it's ready on the server.</p>
-<ul>
-<li>
-<p>It creates a null_resource that checks if the OpenVPN server instance has being created</p>
-</li>
-<li>
-<p>Sets a trigger that determines when the ip address of the instance changes. At that point, terraform can ssh into the machine using the generate private key to access the OVPN profile config file</p>
-</li>
-<li>
-<p>Using the remote-exec block, it waits until the OpenVPN config file is created on the server by polling every 20 seconds until the file exists</p>
-</li>
-<li>
-<p>Using the local-exec block, terrafom doownloads the *.ovpn config file from the server to your local machine using SCP and stores it in the terraform working directory</p>
-</li>
-<li>
-<p>It disables strict host checking for simplicity</p>
-</li>
-<li>
-<p>Using Cleanup local-exec provisioner, sets a trigger to destroy the locally saved *.ovpn file when the infrastructure is destroyed</p>
-</li>
-</ul>
 <p>Here’s a breakdown of each section of this file:</p>
 <p><mark><strong>Resource Definition</strong></mark>
 - <strong><code>null_resource "get_ovpn_config"</code></strong>: A helper resource used to wait for the OpenVPN configuration file to be generated, then download it locally. This resource doesn't create infrastructure directly but adds automation to the deployment process.</p>
@@ -2550,7 +2530,7 @@ A helper resource to print available AWS regions to the console.  </p>
 - <strong><code>rm -f ./${self.triggers.ovpn_file}</code></strong>: Removes the file using the name stored in the triggers.</p>
 <hr />
 <p><mark><strong>Overall Function</strong></mark>
-This resource ensures that the OpenVPN profile configuration file is created on the server, securely downloads it to the local system, and removes it when no longer needed. It integrates waiting, remote command execution, and local file operations seamlessly within the Terraform workflow.</p>
+This file ensures that the OpenVPN profile configuration file is created on the server, securely downloads it to the local system, and removes it when no longer needed (when the <code>terraform destroy</code> command is run). It integrates waiting, remote command execution, and local file operations seamlessly within the Terraform workflow.</p>
 </details>
 <details class="tip">
 <summary>The <code>provider.tf</code> file</summary>
@@ -2687,6 +2667,39 @@ This resource ensures that the OpenVPN profile configuration file is created on 
 </code></pre></div></td></tr></table></div>
 </details>
 <p>This configures the required security group profile for the OpenVPN server. It opens the required ports for ingress and egress and the neccesary port protocols (tcp and udp).</p>
+<p><mark>The sections of the <code>securityGrp.tf</code> file are explained breigly below:</mark></p>
+<p><mark><strong>Resource Definition</strong></mark>
+- <strong><code>resource "aws_security_group" "openvpn_SG"</code></strong>: Creates a security group in AWS to define network access rules for the OpenVPN server.</p>
+<hr />
+<p><mark><strong>Security Group Naming and Description</strong></mark>
+- <strong><code>name_prefix</code></strong>: Sets a prefix for the security group name, combining the project name (<code>var.project_name</code>) with <code>_openvpn_SG_</code>. AWS appends a unique identifier to the prefix.
+- <strong><code>description</code></strong>: Provides a description for the security group, indicating its purpose (OpenVPN security).</p>
+<hr />
+<p><mark><strong>Dynamic Ingress Rules for TCP Ports</strong></mark>
+- <strong><code>dynamic "ingress"</code> (first block)</strong>:
+- <strong><code>for_each = var.openvpn_tcp_ports</code></strong>: Iterates over a map of TCP ports and descriptions provided in the variable <code>var.openvpn_tcp_ports</code>.
+- <strong><code>content {}</code></strong>: Defines the content of each rule:
+    - <strong><code>from_port</code> and <code>to_port</code></strong>: Sets the port range for the rule, using the key from the iteration (<code>ingress.key</code>).
+    - <strong><code>protocol = "tcp"</code></strong>: Specifies that the rule applies to TCP traffic.
+    - <strong><code>cidr_blocks = ["0.0.0.0/0"]</code></strong>: Allows traffic from all IP addresses.
+    - <strong><code>description = ingress.value</code></strong>: Provides a description for the rule, using the value from the iteration.</p>
+<hr />
+<p><mark><strong>Dynamic Ingress Rules for UDP Ports</strong></mark>
+- <strong><code>dynamic "ingress"</code> (second block)</strong>:
+- Similar to the first block, but applies to <strong>UDP traffic</strong>.
+- Iterates over the variable <code>var.openvpn_udp_ports</code>, which contains a map of UDP ports and their descriptions.</p>
+<hr />
+<p><mark><strong>Egress Rules</strong></mark>
+- <strong><code>egress</code> block</strong>:
+- <strong><code>from_port = 0</code> and <code>to_port = 0</code></strong>: Allows all outbound traffic across all port ranges.
+- <strong><code>protocol = "-1"</code></strong>: Applies the rule to all protocols.
+- <strong><code>cidr_blocks = ["0.0.0.0/0"]</code></strong>: Allows traffic to all IP addresses.</p>
+<hr />
+<p><mark><strong>Overall Function</strong></mark>
+This security group:
+1. Dynamically creates ingress (inbound) rules for both TCP and UDP traffic based on user-defined ports and descriptions (<code>var.openvpn_tcp_ports</code> and <code>var.openvpn_udp_ports</code>).
+2. Configures unrestricted egress (outbound) traffic to allow the OpenVPN server to communicate with any destination.
+3. Ensures that all rules are flexible and easy to manage via Terraform variables, making it adaptable for different use cases.</p>
 </details>
 <details class="tip">
 <summary>The <code>terraform.tfvars</code> file</summary>
@@ -3036,7 +3049,7 @@ This resource ensures that the OpenVPN profile configuration file is created on 
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-12-02T10:45:54+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-12-02</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-12-02T11:08:17+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-12-02</span>
   </span>
 
     
