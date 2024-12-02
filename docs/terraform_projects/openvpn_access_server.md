@@ -97,9 +97,9 @@ Setting up a self-hosted VPN server can be a cost-effective and secure solution 
 
     ??? tip "The `OpenVPN_ec2.tf` file"
 
-        ???+ code-file "OpenVPN_ec2.tf" hl_lines="1-24"
+        ???+ code-file "OpenVPN_ec2.tf" 
             
-            ``` tf 
+            ``` tf hl_lines="1-24"
             resource "aws_instance" "OpenVPN_Server" {
             ami                     = data.aws_ami.ubuntu.id
             instance_type           = var.OpenVPN_instance_type
