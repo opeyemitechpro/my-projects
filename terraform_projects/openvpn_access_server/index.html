@@ -2693,7 +2693,12 @@ This security group:
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" checked/><span class="task-list-indicator"></span></label> <mark>openvpn_user</mark> - This is the username used to create the <code>*.ovpn</code> profile file on the VPN server. The profile name is displayed when you connect through the OpenVPN client. It is currently set to append the selected AWS region so you can easily know which region you are connected to.</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" checked/><span class="task-list-indicator"></span></label> <mark>selected_region</mark> - this option is set at runtime and it is required for the script to run. Here you select the AWS region where you want your server to be hosted.  The region you select will determine where your VPN traffic is routed through. For example, if you select <code>ca-central-1</code>, your VPN traffic will be routed through the AWS Canada Central IP address and as such your public IP address will read "Quebec, Montreal, Canada" </li>
 </ul>
+<figure>
 <p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" data-title="Public IP address showing Canada" data-desc-position="bottom"><img alt="Public IP address showing Canada" src="../../assets/images/ovpn-canada-ip.png" title="Public IP address showing Canada" /></a></p>
+<figcaption>
+<p>Public IP address showing Canada</p>
+</figcaption>
+</figure>
 <p>The list of acceptable AWS regions are shown <a href="https://opeyemitech.pro/my-projects/terraform_projects/openvpn_access_server/#list-of-accepted-aws-regions">here</a></p>
 <h2 id="running-the-script"><strong>Running the script</strong><a class="headerlink" href="#running-the-script" title="Copy this link to reference this section">&para;</a></h2>
 <p>Follow the <mark><strong>"Quick Start Guide"</strong></mark> below to provision and configure your OpenVPN server and to connect to your new VPN network.</p>
@@ -2708,7 +2713,12 @@ This security group:
 <p>From within the cloned directory, initialize the terraform configuration</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1"></a>terraform<span class="w"> </span>init
 </code></pre></div></td></tr></table></div>
+<figure>
 <p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" data-title="Terraform Initialiaztion Command" data-desc-position="bottom"><img alt="Terraform Initialiaztion Command" src="../../assets/images/ovpn-terraform-init.png" title="Terraform Initialiaztion Command" /></a></p>
+<figcaption>
+<p>Terraform Initialiaztion Command</p>
+</figcaption>
+</figure>
 <h3 id="apply-the-terraform-configuration">Apply the Terraform Configuration<a class="headerlink" href="#apply-the-terraform-configuration" title="Copy this link to reference this section">&para;</a></h3>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1"></a>terraform<span class="w"> </span>apply
 </code></pre></div></td></tr></table></div>
@@ -2716,7 +2726,12 @@ This security group:
 <li>When prompted, enter an AWS region from the list below and respond <code>yes</code> to the prompt.  (e.g. <code>us-west-2</code>)</li>
 <li>This will be the AWS region where the VPN server and all resources will be hosted. </li>
 </ul>
+<figure>
 <p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" data-title="Terraform apply command" data-desc-position="bottom"><img alt="Terraform apply command" src="../../assets/images/ovpn-terraform-apply.png" title="Terraform apply command" /></a></p>
+<figcaption>
+<p>Terraform apply command</p>
+</figcaption>
+</figure>
 <h4 id="list-of-accepted-aws-regions"><mark>List of accepted AWS regions</mark><a class="headerlink" href="#list-of-accepted-aws-regions" title="Copy this link to reference this section">&para;</a></h4>
 <ul>
 <li>us-east-1       =  N. Virginia </li>
@@ -2755,19 +2770,39 @@ This security group:
 <li>The OpenVPN profile file that you will use to ssh into the VPN server</li>
 <li>Further steps to launch your VPN connection</li>
 </ul>
+<figure>
 <p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" data-title="Terraform Output" data-desc-position="bottom"><img alt="Terraform Output" src="../../assets/images/ovpn-terraform-output.png" title="Terraform Output Screen" /></a></p>
+<figcaption>
+<p>Terraform Output Screen</p>
+</figcaption>
+</figure>
+<figure>
 <p><strong>Showing the OpenVPN server on the AWS EC2 Console</strong>
 <a class="glightbox" data-type="image" data-width="100%" data-height="auto" data-title="AWS Console Showing the OpenVPN Server details" data-desc-position="bottom"><img alt="AWS Console Showing the OpenVPN Server details" src="../../assets/images/ovpn-terraform-console.png" title="AWS Console Showing the OpenVPN Server details" /></a></p>
+<figcaption>
+<p>AWS Console Showing the OpenVPN Server details</p>
+</figcaption>
+</figure>
 <h3 id="connect-to-your-vpn">Connect to your VPN<a class="headerlink" href="#connect-to-your-vpn" title="Copy this link to reference this section">&para;</a></h3>
 <ul>
 <li>Download and install <a href="https://openvpn.net/client/" target="_blank">OpenVPN Connect client</a> on your local machine</li>
 <li>Import the <code>*.ovpn</code> file into the OpenVPN cient appllication</li>
 <li>Connect to your VPN network</li>
 </ul>
+<figure>
 <p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" data-title="OpenVPN Client Connected to the VPN" data-desc-position="bottom"><img alt="OpenVPN Client Connected to the VPN" src="../../assets/images/ovpn-terraform-connect.png" title="OpenVPN Client Connected to the VPN" /></a></p>
+<figcaption>
+<p>OpenVPN Client Connected to the VPN</p>
+</figcaption>
+</figure>
 <h3 id="testing-your-vpn-connection">Testing your VPN Connection<a class="headerlink" href="#testing-your-vpn-connection" title="Copy this link to reference this section">&para;</a></h3>
 <p>One very simple way to check if you are actually connected to your new VPN network is to open your browser and check your public IP address. You can use websites like <a href="hhtps://whatsmyip.com">whatsmyip.com</a> or simply search "what is my ip address" on Google to check your public IP address.  </p>
+<figure>
 <p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" data-title="Public IP address showing Canada" data-desc-position="bottom"><img alt="Public IP address showing Canada" src="../../assets/images/ovpn-canada-ip.png" title="Public IP address showing Canada" /></a></p>
+<figcaption>
+<p>Public IP address showing Canada</p>
+</figcaption>
+</figure>
 <p>When you are connected to your VPN server, your internet traffic will be routed through your VPN server and as such, only your VPN server IP address will be seen publicly, your local ISP assigned ip address will be hidden from the internet. </p>
 <h3 id="cleanup">Cleanup<a class="headerlink" href="#cleanup" title="Copy this link to reference this section">&para;</a></h3>
 <p>The whole infrastructure can be destroyed by simply using the command:</p>
@@ -2777,7 +2812,12 @@ This security group:
 <li>Enter the AWS region that you entered above and respond <code>yes</code> to the prompt.</li>
 <li>This will terminate the EC2 instance and delete all resources created and also delete the files that were locally created in the terraform working directory i.e. the *.ovpn user profile and the keypair file that was created earlier </li>
 </ul>
+<figure>
 <p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" data-title="Terraform Destroy Command" data-desc-position="bottom"><img alt="Terraform Destroy Command" src="../../assets/images/ovpn-terraform-destroy.png" title="Terraform Destroy Command" /></a></p>
+<figcaption>
+<p>Terraform Destroy Command</p>
+</figcaption>
+</figure>
 </details>
 <h2 id="use-cases"><strong>Use Cases</strong><a class="headerlink" href="#use-cases" title="Copy this link to reference this section">&para;</a></h2>
 <p>This self-hosted OpenVPN solution offers flexibility, control, and enhanced security compared to commercial VPN services. Here are some possible use cases:  </p>
@@ -2836,7 +2876,7 @@ This security group:
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-12-02T23:54:26+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-12-02</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-12-03T00:09:02+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-12-03</span>
   </span>
 
     
