@@ -56,6 +56,6 @@
 
 
 /* Increase global font size by 10% */
-/* html {
+html {
   font-size: calc(125% * 1.1); /* <- 1.1 equals + 10% – adjust to taste */
-} */
+}

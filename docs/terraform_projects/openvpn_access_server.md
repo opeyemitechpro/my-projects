@@ -809,6 +809,9 @@ The script allows you to set some options based on your use case. These are the 
 - [x] ==selected_region== - this option is set at runtime and it is required for the script to run. Here you select the AWS region where you want your server to be hosted.  The region you select will determine where your VPN traffic is routed through. For example, if you select `ca-central-1`, your VPN traffic will be routed through the AWS Canada Central IP address and as such your public IP address will read "Quebec, Montreal, Canada" 
 
 ![Public IP address showing Canada](../../assets/images/ovpn-canada-ip.png "Public IP address showing Canada")
+/// caption
+Public IP address showing Canada
+///
 
 The list of acceptable AWS regions are shown [here](https://opeyemitech.pro/my-projects/terraform_projects/openvpn_access_server/#list-of-accepted-aws-regions)
 
@@ -834,6 +837,9 @@ Follow the ==**"Quick Start Guide"**== below to provision and configure your Ope
     ```
 
     ![Terraform Initialiaztion Command](../../assets/images/ovpn-terraform-init.png "Terraform Initialiaztion Command")
+    /// caption
+    Terraform Initialiaztion Command
+    ///
 
     ### Apply the Terraform Configuration
 
@@ -845,6 +851,9 @@ Follow the ==**"Quick Start Guide"**== below to provision and configure your Ope
     - This will be the AWS region where the VPN server and all resources will be hosted. 
 
     ![Terraform apply command](../../assets/images/ovpn-terraform-apply.png "Terraform apply command")
+    /// caption
+    Terraform apply command
+    ///
     
     
     #### ==List of accepted AWS regions==
@@ -886,9 +895,15 @@ Follow the ==**"Quick Start Guide"**== below to provision and configure your Ope
     - Further steps to launch your VPN connection
 
     ![Terraform Output](../../assets/images/ovpn-terraform-output.png "Terraform Output Screen")
+    /// caption
+    Terraform Output Screen
+    ///
 
     **Showing the OpenVPN server on the AWS EC2 Console**
     ![AWS Console Showing the OpenVPN Server details](../../assets/images/ovpn-terraform-console.png "AWS Console Showing the OpenVPN Server details")
+    /// caption
+    AWS Console Showing the OpenVPN Server details
+    ///
 
     ### Connect to your VPN
     - Download and install [OpenVPN Connect client](https://openvpn.net/client/){: target="_blank" } on your local machine
@@ -896,11 +911,17 @@ Follow the ==**"Quick Start Guide"**== below to provision and configure your Ope
     - Connect to your VPN network
 
     ![OpenVPN Client Connected to the VPN](../../assets/images/ovpn-terraform-connect.png "OpenVPN Client Connected to the VPN")
+    /// caption
+    OpenVPN Client Connected to the VPN
+    ///
 
     ### Testing your VPN Connection
     One very simple way to check if you are actually connected to your new VPN network is to open your browser and check your public IP address. You can use websites like [whatsmyip.com](hhtps://whatsmyip.com) or simply search "what is my ip address" on Google to check your public IP address.  
 
     ![Public IP address showing Canada](../../assets/images/ovpn-canada-ip.png "Public IP address showing Canada")
+    /// caption
+    Public IP address showing Canada
+    ///
     
     When you are connected to your VPN server, your internet traffic will be routed through your VPN server and as such, only your VPN server IP address will be seen publicly, your local ISP assigned ip address will be hidden from the internet. 
 
@@ -915,6 +936,9 @@ Follow the ==**"Quick Start Guide"**== below to provision and configure your Ope
     - This will terminate the EC2 instance and delete all resources created and also delete the files that were locally created in the terraform working directory i.e. the *.ovpn user profile and the keypair file that was created earlier 
 
     ![Terraform Destroy Command](../../assets/images/ovpn-terraform-destroy.png "Terraform Destroy Command")
+    /// caption
+    Terraform Destroy Command
+    ///
 
 
 ## **Use Cases**
