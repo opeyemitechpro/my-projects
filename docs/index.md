@@ -8,7 +8,7 @@ comments: false
 
 <figure markdown="1">
 ![Opeyemi Okuboyejo  |  Certified Cloud Solutions Architect | Cloud Engineer | DevOps Engineer](assets/images/favicon.png "Opeyemi Okuboyejo")
-<figcaption><strong>Opeyemi Okuboyejo<br> Certified Cloud Solutions Architect<br>Cloud Engineer | DevOps Engineer</strong></figcaption>
+<figcaption><strong><h2>Opeyemi Okuboyejo</h2><br> DevOps & Cloud Engineer<br>Certified Cloud Solutions Architect<br>Systems Administrator || IT Support Engineer</strong></figcaption>
 </figure>
 
 
