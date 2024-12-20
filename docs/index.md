@@ -1,8 +1,8 @@
 ---
 icon: material/home
 title: Start Here
-description: This is the Home Page
-subtitle: Start your navigation from here
+description: This is the Documentation Home Page
+subtitle: Start your navigation of my Project Documentation from here
 comments: false
 ---
 
@@ -37,7 +37,17 @@ Thank you for visiting, and I look forward to sharing my passion with you!
 #### [https://opeyemitech.pro](https://opeyemitech.pro)
 
 
-![GitHub stars](https://img.shields.io/github/stars/opeyemitechpro/opeyemitechpro.github.io) 
+!!! location-search "Follow Me"
+
+    [![Website](https://img.shields.io/badge/Opeyemi's-Profile-0A66C2?labelColor=yellow&style=flat&logo=aws&logoColor=white)](https://opeyemitech.pro){: target="_blank" }&nbsp;&nbsp;[![Website](https://img.shields.io/badge/Opeyemi's-Project_Portfolio-purple?labelColor=yellow&style=flat&logoColor=white)](https://opeyemitech.pro/my-projects){: target="_blank" }&nbsp;&nbsp;[![Gmail Badge](https://img.shields.io/badge/Opeyemi's-Email-c14438?style=flat&logo=gmail&logoColor=white&link=mailto:okuboyejoopeyemi01@gmail.com)](mailto:okuboyejoopeyemi01@gmail.com){: target="_blank" }
+    
+    ---
+    
+    [![Opeyemi On LinkedIn](https://img.shields.io/badge/Opeyemi-On_LinkedIn-0077B5?labelColor=black&style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/opeyemi-okuboyejo/){: target="_blank" } &nbsp;&nbsp; [![OpeyemiOn GitHub](https://img.shields.io/badge/Opeyemi-On_GitHub-181717?labelColor=grey&style=flat&logo=github&logoColor=white)](https://github.com/opeyemitechpro){: target="_blank" } &nbsp;&nbsp;[![Opeyemi On AWS Community](https://img.shields.io/badge/Opeyemi-On_AWS_Community-232F3E?style=flat&logo=amazonwebservices&logoColor=white)](https://community.aws/@opeyemitechpro){: target="_blank" } &nbsp;&nbsp;[![Opeyemi On YouTube](https://img.shields.io/badge/OpeyemiTechPro-On_YouTube-FF0000?style=flat&logo=youtube&logoColor=white)](https://www.youtube.com/@opeyemitechpro){: target="_blank" } &nbsp;&nbsp;[![Opeyemi On Dev.to](https://img.shields.io/badge/OpeyemiTechPro-On_Dev.to-0A0A0A?style=flat&logo=dev.to&logoColor=white)](https://dev.to/opeyemitechpro){: target="_blank" } &nbsp;&nbsp;[![Opeyemi On Telegram](https://img.shields.io/badge/OpeyemiTechPro-On_Telegram-26A5E4?style=flat&logo=telegram&logoColor=white)](https://t.me/opeyemitechpro_cloud/1){: target="_blank" }  &nbsp;&nbsp;[![Opeyemi On X.com](https://img.shields.io/badge/Opeyemi-On_X-blue?style=flat&logo=x&logoColor=white)](https://x.com/opeyemitechpro){: target="_blank" }&nbsp;&nbsp;
+    
+    ---
+
+<!-- ![GitHub stars](https://img.shields.io/github/stars/opeyemitechpro/opeyemitechpro.github.io) 
 ![GitHub forks](https://img.shields.io/github/forks/opeyemitechpro/opeyemitechpro.github.io)
 ![Followers](https://img.shields.io/github/followers/opeyemitechpro)
 
@@ -50,9 +60,9 @@ Thank you for visiting, and I look forward to sharing my passion with you!
 [![Portfolio Badge](https://img.shields.io/badge/-Opeyemi's_Portfolio-blue?style=flat-square&logo=folder&logoColor=white&link=https://opeyemitech.pro)](https://opeyemitech.pro)
 [![Portfolio Badge](https://img.shields.io/badge/-Opeyemi's_Project_Portfolio-purple?style=flat-square&logo=folder&logoColor=white&link=https://opeyemitech.pro/my-projects)](https://opeyemitech.pro/my-projects)
 [![YouTube Badge](https://img.shields.io/badge/-Subscribe_on_YouTube-red?style=flat-square&logo=YouTube&logoColor=white&link=https://www.youtube.com/channel/@opeyemitechpro)](https://www.youtube.com/channel/@opeyemitechpro)
-[![YouTube Badge](https://img.shields.io/youtube/channel/subscribers/UCaD6f_WgaHbBY_7-YPrJMlA?style=social)](https://www.youtube.com/channel/UCaD6f_WgaHbBY_7-YPrJMlA)
+[![YouTube Badge](https://img.shields.io/youtube/channel/subscribers/UCaD6f_WgaHbBY_7-YPrJMlA?style=social)](https://www.youtube.com/channel/UCaD6f_WgaHbBY_7-YPrJMlA) -->
 <!-- https://www.youtube.com/channel/UCaD6f_WgaHbBY_7-YPrJMlA/ -->
-[![Page Views](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fopeyemitech.pro%2Fmy-projects&count_bg=%23008000&title_bg=%234B0082&icon=&icon_color=%234B0082&title=Page+Views&edge_flat=false)](https://opeyemitech.pro)
+<!-- [![Page Views](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fopeyemitech.pro%2Fmy-projects&count_bg=%23008000&title_bg=%234B0082&icon=&icon_color=%234B0082&title=Page+Views&edge_flat=false)](https://opeyemitech.pro) -->
 
 ### :zap: GitHub Stats
 
