@@ -103,7 +103,7 @@ plugins:
       type: timeago
       locale: en
       fallback_to_build_date: true
-  - privacy
+  - privacy:
       assets: false
   # Redirect Docs - https://github.com/mkdocs/mkdocs-redirects
   - redirects:
