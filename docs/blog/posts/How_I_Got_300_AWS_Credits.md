@@ -1,6 +1,6 @@
 ---
 date: 2024-10-13
-icon: simple/terraform
+icon: simple/amazonwebservices
 title: How I Got $300 FREE AWS Credits
 description: How I Got $300 FREE AWS Credits 
 subtitle: How I Got $300 FREE AWS Credits

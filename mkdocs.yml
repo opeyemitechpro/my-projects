@@ -133,6 +133,9 @@ plugins:
       post_slugify: !!python/object/apply:pymdownx.slugs.slugify
         kwds:
           case: lower
+      archive: true
+      archive_toc: true
+      archive_name: Archive
       categories: true
       categories_name: Categories
       categories_url_format: "category/{slug}"
@@ -270,15 +273,15 @@ copyright: |
 nav:
   - About Me: profile.md
   - Start Here: index.md
-  - AWS Projects:
-    - aws_projects/index.md
-  - DevOps Projects:
-    - devops_projects/index.md
+  # - AWS Projects:
+  #   - aws_projects/index.md
+  # - DevOps Projects:
+  #   - devops_projects/index.md
   - Terraform Projects: 
     - terraform_projects/index.md
     - terraform_projects/openvpn_access_server.md
-  - Knowledge Base:
-    - kb/index.md
+  # - Knowledge Base:
+  #   - kb/index.md
   - Blog:
     - blog/index.md
 #   - Tags:
