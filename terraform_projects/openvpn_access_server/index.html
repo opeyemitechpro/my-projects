@@ -1630,7 +1630,7 @@
 </li>
 </ul>
 <p><mark>Each code section is explained breifly below:</mark></p>
-<p><mark><strong><code>aws_instance</code> Resource</strong></mark><br />
+<p><mark><strong>aws_instance Resource</strong></mark><br />
 This resource defines the EC2 instance for the OpenVPN server.  </p>
 <ul>
 <li><strong><code>ami</code></strong>: Uses the ID of a specific Ubuntu AMI fetched via a data source.  </li>
@@ -1643,7 +1643,7 @@ This resource defines the EC2 instance for the OpenVPN server.  </p>
 <li><strong><code>tags</code></strong>: Adds custom tags to the instance for identification, including project and region details.</li>
 </ul>
 <hr />
-<p><mark><strong><code>locals</code> Block</strong></mark><br />
+<p><mark><strong>locals Block</strong></mark><br />
 Defines reusable local variables and values for the configuration.  </p>
 <ul>
 <li><strong><code>key_pair_name</code></strong>: Constructs a unique key name with a prefix and region.  </li>
@@ -1651,10 +1651,10 @@ Defines reusable local variables and values for the configuration.  </p>
 <li><strong><code>region_display</code></strong>: Formats a list of available AWS regions for display purposes.  </li>
 </ul>
 <hr />
-<p><mark><strong><code>tls_private_key</code> Resource</strong></mark><br />
+<p><mark><strong>tls_private_key Resource</strong></mark><br />
 Generates a 2048-bit RSA private key used to create an AWS key pair.  </p>
 <hr />
-<p><mark><strong><code>aws_key_pair</code> Resource</strong></mark><br />
+<p><mark><strong>aws_key_pair Resource</strong></mark><br />
 Creates an SSH key pair in AWS.  </p>
 <ul>
 <li><strong><code>key_name</code></strong>: Uses the locally defined key pair name.  </li>
@@ -1662,7 +1662,7 @@ Creates an SSH key pair in AWS.  </p>
 <li><strong><code>tags</code></strong>: Adds metadata for the key pair, such as the project name and creation method.  </li>
 </ul>
 <hr />
-<p><mark><strong><code>local_file</code> Resource</strong></mark><br />
+<p><mark><strong>local_file Resource</strong></mark><br />
 Stores the generated private key securely on the local machine.  </p>
 <ul>
 <li><strong><code>content</code></strong>: Saves the private key in PEM format.  </li>
@@ -1670,7 +1670,7 @@ Stores the generated private key securely on the local machine.  </p>
 <li><strong><code>file_permission</code></strong>: Sets restrictive permissions (<code>0400</code>) for security.  </li>
 </ul>
 <hr />
-<p><mark><strong><code>null_resource</code> for Region Display</strong></mark><br />
+<p><mark><strong>null_resource for Region Display</strong></mark><br />
 A helper resource to print available AWS regions to the console.  </p>
 <ul>
 <li><strong><code>triggers</code></strong>: Ensures the resource runs every time by using the current timestamp.  </li>
@@ -2235,7 +2235,7 @@ This file ensures that the OpenVPN profile configuration file is created on the 
 </code></pre></div></td></tr></table></div>
 </details>
 <p>This configures the required security group profile for the OpenVPN server. It opens the required ports for ingress and egress and the neccesary port protocols (tcp and udp).</p>
-<p><mark>The sections of the <code>securityGrp.tf</code> file are explained breigly below:</mark></p>
+<p><mark>The sections of the securityGrp.tf file are explained breifly below:</mark></p>
 <p><mark><strong>Resource Definition</strong></mark>
 - <strong><code>resource "aws_security_group" "openvpn_SG"</code></strong>: Creates a security group in AWS to define network access rules for the OpenVPN server.</p>
 <hr />
@@ -2637,7 +2637,7 @@ This security group:
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-12-21T13:24:36+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-12-21</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-12-21T13:45:04+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-12-21</span>
   </span>
 
     
