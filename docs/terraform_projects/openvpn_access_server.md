@@ -205,7 +205,7 @@ Setting up a self-hosted VPN server can be a cost-effective and secure solution 
 
         ==Each code section is explained breifly below:==
 
-        ==**`aws_instance` Resource**==  
+        ==**aws_instance Resource**==  
         This resource defines the EC2 instance for the OpenVPN server.  
 
         - **`ami`**: Uses the ID of a specific Ubuntu AMI fetched via a data source.  
@@ -219,7 +219,7 @@ Setting up a self-hosted VPN server can be a cost-effective and secure solution 
 
         ---
 
-        ==**`locals` Block**==  
+        ==**locals Block**==  
         Defines reusable local variables and values for the configuration.  
 
         - **`key_pair_name`**: Constructs a unique key name with a prefix and region.  
@@ -228,12 +228,12 @@ Setting up a self-hosted VPN server can be a cost-effective and secure solution 
 
         ---
 
-        ==**`tls_private_key` Resource**==  
+        ==**tls_private_key Resource**==  
         Generates a 2048-bit RSA private key used to create an AWS key pair.  
 
         ---
 
-        ==**`aws_key_pair` Resource**==  
+        ==**aws_key_pair Resource**==  
         Creates an SSH key pair in AWS.  
 
         - **`key_name`**: Uses the locally defined key pair name.  
@@ -242,7 +242,7 @@ Setting up a self-hosted VPN server can be a cost-effective and secure solution 
 
         ---
 
-        ==**`local_file` Resource**==  
+        ==**local_file Resource**==  
         Stores the generated private key securely on the local machine.  
 
         - **`content`**: Saves the private key in PEM format.  
@@ -251,7 +251,7 @@ Setting up a self-hosted VPN server can be a cost-effective and secure solution 
 
         ---
 
-        ==**`null_resource` for Region Display**==  
+        ==**null_resource for Region Display**==  
         A helper resource to print available AWS regions to the console.  
 
         - **`triggers`**: Ensures the resource runs every time by using the current timestamp.  
@@ -649,7 +649,7 @@ Setting up a self-hosted VPN server can be a cost-effective and secure solution 
 
         This configures the required security group profile for the OpenVPN server. It opens the required ports for ingress and egress and the neccesary port protocols (tcp and udp).
 
-        ==The sections of the `securityGrp.tf` file are explained breigly below:==
+        ==The sections of the securityGrp.tf file are explained breifly below:==
         
         
         ==**Resource Definition**==
