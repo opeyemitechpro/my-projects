@@ -66,15 +66,15 @@ Setting up a self-hosted VPN server can be a cost-effective and secure solution 
             filter {
                 name   = "name"
                 values = ["ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server-*"]
-            } # (1)
+            } # (1)!
 
             filter {
                 name   = "virtualization-type"
                 values = ["hvm"]
-            } # (2)
+            } # (2)!
 
             owners = ["099720109477"]  # Canonical's AWS account ID
-            } # (3)
+            } # (3)!
             ```
 
             1.  Lines 6-9 filters the name of the ami "ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server-*"
