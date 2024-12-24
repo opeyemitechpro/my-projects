@@ -61,7 +61,6 @@ This terraform configuration creates a fully functional, free and ready-to-use s
 
 
 ## **How the Terraform Configuration Script works**
-
 Technical details about how the terraform script works is described below:
 
 ??? info "Click here to see details of how the OpenVPN Terraform config works under the hood"
