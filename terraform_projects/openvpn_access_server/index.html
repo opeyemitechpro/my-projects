@@ -2273,41 +2273,52 @@ This file ensures that the OpenVPN profile configuration file is created on the 
 </details>
 <p>This configures the required security group profile for the OpenVPN server. It opens the required ports for ingress and egress and the neccesary port protocols (tcp and udp).</p>
 <p><mark>The sections of the securityGrp.tf file are explained breifly below:</mark></p>
-<p><mark><strong>Resource Definition</strong></mark>
-- <strong><code>resource "aws_security_group" "openvpn_SG"</code></strong>: Creates a security group in AWS to define network access rules for the OpenVPN server.</p>
+<p><mark><strong>Resource Definition</strong></mark></p>
+<ul>
+<li><strong><code>resource "aws_security_group" "openvpn_SG"</code></strong>: Creates a security group in AWS to define network access rules for the OpenVPN server.</li>
+</ul>
 <hr />
-<p><mark><strong>Security Group Naming and Description</strong></mark>
-- <strong><code>name_prefix</code></strong>: Sets a prefix for the security group name, combining the project name (<code>var.project_name</code>) with <code>_openvpn_SG_</code>. AWS appends a unique identifier to the prefix.
-- <strong><code>description</code></strong>: Provides a description for the security group, indicating its purpose (OpenVPN security).</p>
+<p><mark><strong>Security Group Naming and Description</strong></mark></p>
+<ul>
+<li><strong><code>name_prefix</code></strong>: Sets a prefix for the security group name, combining the project name (<code>var.project_name</code>) with <code>_openvpn_SG_</code>. AWS appends a unique identifier to the prefix.</li>
+<li><strong><code>description</code></strong>: Provides a description for the security group, indicating its purpose (OpenVPN security).</li>
+</ul>
 <hr />
-<p><mark><strong>Dynamic Ingress Rules for TCP Ports</strong></mark>
-- <strong><code>dynamic "ingress"</code> (first block)</strong>:
-- <strong><code>for_each = var.openvpn_tcp_ports</code></strong>: Iterates over a map of TCP ports and descriptions provided in the variable <code>var.openvpn_tcp_ports</code>.
-- <strong><code>content {}</code></strong>: Defines the content of each rule:
-    - <strong><code>from_port</code> and <code>to_port</code></strong>: Sets the port range for the rule, using the key from the iteration (<code>ingress.key</code>).
-    - <strong><code>protocol = "tcp"</code></strong>: Specifies that the rule applies to TCP traffic.
-    - <strong><code>cidr_blocks = ["0.0.0.0/0"]</code></strong>: Allows traffic from all IP addresses.
-    - <strong><code>description = ingress.value</code></strong>: Provides a description for the rule, using the value from the iteration.</p>
+<p><mark><strong>Dynamic Ingress Rules for TCP Ports</strong></mark></p>
+<p><strong><code>dynamic "ingress"</code> (first block)</strong>:</p>
+<ul>
+<li><strong><code>for_each = var.openvpn_tcp_ports</code></strong>: Iterates over a map of TCP ports and descriptions provided in the variable <code>var.openvpn_tcp_ports</code>.</li>
+</ul>
+<p><strong><code>content {}</code></strong>: Defines the content of each rule:</p>
+<ul>
+<li><strong><code>from_port</code> and <code>to_port</code></strong>: Sets the port range for the rule, using the key from the iteration (<code>ingress.key</code>).</li>
+<li><strong><code>protocol = "tcp"</code></strong>: Specifies that the rule applies to TCP traffic.</li>
+<li><strong><code>cidr_blocks = ["0.0.0.0/0"]</code></strong>: Allows traffic from all IP addresses.</li>
+<li><strong><code>description = ingress.value</code></strong>: Provides a description for the rule, using the value from the iteration.</li>
+</ul>
 <hr />
-<p><mark><strong>Dynamic Ingress Rules for UDP Ports</strong></mark>
-- <strong><code>dynamic "ingress"</code> (second block)</strong>:
-- Similar to the first block, but applies to <strong>UDP traffic</strong>.
-- Iterates over the variable <code>var.openvpn_udp_ports</code>, which contains a map of UDP ports and their descriptions.</p>
+<p><mark><strong>Dynamic Ingress Rules for UDP Ports</strong></mark></p>
+<p><strong><code>dynamic "ingress"</code> (second block)</strong>:</p>
+<ul>
+<li>Similar to the first block, but applies to <strong>UDP traffic</strong>.</li>
+<li>Iterates over the variable <code>var.openvpn_udp_ports</code>, which contains a map of UDP ports and their descriptions.</li>
+</ul>
 <hr />
-<p><mark><strong>Egress Rules</strong></mark>
-- <strong><code>egress</code> block</strong>:
-- <strong><code>from_port = 0</code> and <code>to_port = 0</code></strong>: Allows all outbound traffic across all port ranges.
-- <strong><code>protocol = "-1"</code></strong>: Applies the rule to all protocols.
-- <strong><code>cidr_blocks = ["0.0.0.0/0"]</code></strong>: Allows traffic to all IP addresses.</p>
+<p><mark><strong>Egress Rules</strong></mark></p>
+<p><strong><code>egress</code> block</strong>:</p>
+<ul>
+<li><strong><code>from_port = 0</code> and <code>to_port = 0</code></strong>: Allows all outbound traffic across all port ranges.</li>
+<li><strong><code>protocol = "-1"</code></strong>: Applies the rule to all protocols.</li>
+<li><strong><code>cidr_blocks = ["0.0.0.0/0"]</code></strong>: Allows traffic to all IP addresses.</li>
+</ul>
 <hr />
-<p><mark><strong>Overall Function</strong></mark>
-This security group:</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>1. Dynamically creates ingress (inbound) rules for both TCP and UDP traffic based on user-defined ports and descriptions (`var.openvpn_tcp_ports` and `var.openvpn_udp_ports`).
-2. Configures unrestricted egress (outbound) traffic to allow the OpenVPN server to communicate with any destination.
-3. Ensures that all rules are flexible and easy to manage via Terraform variables, making it adaptable for different use cases.
-</code></pre></div></td></tr></table></div>
+<p><mark><strong>Overall Function</strong></mark></p>
+<p>This security group:</p>
+<ol>
+<li>Dynamically creates ingress (inbound) rules for both TCP and UDP traffic based on user-defined ports and descriptions (<code>var.openvpn_tcp_ports</code> and <code>var.openvpn_udp_ports</code>).</li>
+<li>Configures unrestricted egress (outbound) traffic to allow the OpenVPN server to communicate with any destination.</li>
+<li>Ensures that all rules are flexible and easy to manage via Terraform variables, making it adaptable for different use cases.</li>
+</ol>
 </details>
 <details class="tip">
 <summary>The <code>terraform.tfvars</code> file</summary>
@@ -2677,7 +2688,7 @@ This security group:</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-12-24T16:29:27+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-12-24</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-12-24T17:33:35+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-12-24</span>
   </span>
 
     
