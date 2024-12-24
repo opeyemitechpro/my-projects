@@ -2133,23 +2133,19 @@ A helper resource to print available AWS regions to the console.  </p>
 <ul>
 <li><strong><code>provisioner "remote-exec"</code></strong>: Executes commands on the OpenVPN server to ensure the <code>.ovpn</code> configuration file is ready.  </li>
 </ul>
-<p><strong><code>inline</code></strong>: Contains the commands to:</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>- **`while [ ! -f /home/ubuntu/... ]; do`**: Polls the server every 20 seconds, checking if the `.ovpn` file exists.  
-- **`echo &#39;Waiting for OpenVPN config file...&#39;`**: Prints a message during the wait loop.  
-- **`echo &#39;OpenVPN config file is ready!&#39;`**: Signals the file is available.
-</code></pre></div></td></tr></table></div>
+<p><strong><code>inline</code></strong>: </p>
+<p>Contains the commands to:</p>
 <ul>
-<li>
+<li><strong><code>while [ ! -f /home/ubuntu/... ]; do</code></strong>: Polls the server every 20 seconds, checking if the <code>.ovpn</code> file exists.  </li>
+<li><strong><code>echo 'Waiting for OpenVPN config file...'</code></strong>: Prints a message during the wait loop.  </li>
+<li><strong><code>echo 'OpenVPN config file is ready!'</code></strong>: Signals the file is available.  </li>
+</ul>
 <p><strong><code>connection</code></strong>: Defines SSH connection details:</p>
 <ul>
 <li><strong><code>type</code></strong>: Specifies SSH as the connection type.  </li>
 <li><strong><code>user</code></strong>: Specifies the user (<code>ubuntu</code>) to connect with.  </li>
 <li><strong><code>private_key</code></strong>: Uses the private key generated earlier for authentication.  </li>
 <li><strong><code>host</code></strong>: Specifies the public IP of the OpenVPN server instance.</li>
-</ul>
-</li>
 </ul>
 <hr />
 <p><mark><strong>Local Execution Provisioner</strong></mark></p>
@@ -2158,12 +2154,11 @@ A helper resource to print available AWS regions to the console.  </p>
 <li><strong><code>scp</code></strong>: Securely copies the file from the OpenVPN server to the local directory.  </li>
 </ul>
 <p><strong>Options</strong>:</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>- **`-o StrictHostKeyChecking=no`**: Disables host key checking to avoid interactive prompts.  
-- **`-o UserKnownHostsFile=/dev/null`**: Prevents updates to the local known hosts file.  
-- **`-i`**: Specifies the SSH private key for authentication.
-</code></pre></div></td></tr></table></div>
+<ul>
+<li><strong><code>-o StrictHostKeyChecking=no</code></strong>: Disables host key checking to avoid interactive prompts.  </li>
+<li><strong><code>-o UserKnownHostsFile=/dev/null</code></strong>: Prevents updates to the local known hosts file.  </li>
+<li><strong><code>-i</code></strong>: Specifies the SSH private key for authentication.  </li>
+</ul>
 <hr />
 <p><mark><strong>Cleanup on Resource Destruction</strong></mark></p>
 <ul>
@@ -2726,7 +2721,7 @@ A helper resource to print available AWS regions to the console.  </p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-12-24T17:42:54+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-12-24</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-12-24T18:04:36+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-12-24</span>
   </span>
 
     
