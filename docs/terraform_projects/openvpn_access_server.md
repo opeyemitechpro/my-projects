@@ -12,7 +12,7 @@ status: new
 pin: true
 ---
 
-# **OpenVPN Access Server Setup Using Terraform**
+# **DIY Project - OpenVPN Access Server Setup Using Terraform**
 
 ## **Setup and Host Your Own Free VPN Server on AWS Using Terraform and OpenVPN**
 
@@ -20,7 +20,7 @@ In this mini-project, I will demonstrate how to setup and self-host a VPN server
 
 ??? youtube "Watch the Video - How To Create a Free Self-Hosted VPN Server on AWS using Terraform and OpenVPN" 
     <figure markdown="1">
-    [![Create a Free Self-Hosted VPN Server on AWS using Terraform and OpenVPN](../../assets/images/Video-Coming-Soon-PlaceHolder.png "Create a Free Self-Hosted VPN Server on AWS using Terraform and OpenVPN")](https://www.youtube.com/@opeyemitechpro){: target="_blank" }
+    [![Create a Free Self-Hosted VPN Server on AWS using Terraform and OpenVPN](../../assets/images/OpenVPN-on-AWS-Using-Terraform.png "Create a Free Self-Hosted VPN Server on AWS using Terraform and OpenVPN")](https://www.youtube.com/@opeyemitechpro){: target="_blank" }
     <!-- <figcaption>Create a Free Self-Hosted VPN Server on AWS using Terraform and OpenVPN</figcaption>  -->
     </figure>
     /// caption
@@ -30,7 +30,9 @@ In this mini-project, I will demonstrate how to setup and self-host a VPN server
 
 ## **Introduction**
 
-Setting up a self-hosted VPN server can be a cost-effective and secure solution for personal or organizational needs. This documentation provides a step-by-step guide on using a Terraform configuration script to deploy an OpenVPN server on AWS. With this guide, you'll learn how to configure the script, customize it for your requirements, and launch a fully functional VPN server that ensures your internet traffic remains private and encrypted.
+Setting up a self-hosted VPN server can be a cost-effective and secure solution for personal or organizational needs. This documentation provides a step-by-step guide on using a Terraform configuration script to deploy an OpenVPN Access server on AWS. 
+With this guide, you'll learn how to configure the script, customize it for your requirements, and launch a fully functional VPN server in less than 5-minutes and ensures your internet traffic remains private and encrypted without been locked in a vpn subscription plan.
+This VPN server is also "disposable", meaning, you can create and delete it anytime after use with just one command :smile: 
 
 ## **Pre-requisites**
 
@@ -41,16 +43,32 @@ Setting up a self-hosted VPN server can be a cost-effective and secure solution 
 - [x] AWS CLI installed and configured with your AWS access key ID and Secret access keys _(learn more about AWS CLI [here](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-quickstart.html){: target="_blank" })_ 
 - [x] The OpenVPN-Terraform Setup Script _(click the button below)_
 
-
+<div style="text-align: center;">
 [OpenVPN-Terraform Source Code :simple-github:](https://github.com/opeyemitechpro/OpenVPN-Terraform-Setup){: target="_blank" .md-button .md-button--primary}
+</div>
 
 
-## **How the Terraform Config Script works**
+## **What this Terraform Configuration Script Does**
+
+This terraform configuration creates a fully functional, free and ready-to-use self-hosted OpenVPN Server in any chosen AWS region. The script perfomes the following operations:
+
+- Creates a Ubuntu 22.04 EC2 instance and configures a fully functional OpenVPN Access Server on it
+- Configures the server as a type t2-micro instance so that it can run within the AWS Free-tier plan (Learn more about the AWS free-tier plan [here](https://aws.amazon.com/free){: target="_blank" })
+- Set up and configure the VPN server with an IP address in the speicified AWS region.
+- Generates an AWS keypair file for optional SSH connection to the EC2 instance, downloads the file and saves it in the terraform working directory on your local machine. The chosen AWS region is appended to the name of the keypair file.
+- Generates an OpenVPN User Profile file (*.ovpn) that will be used to authenticate and establish an encrypted VPN connection from your local machine to the VPN server. The OpenPVN User Profile file is also donwloaded and saved to the terraform working directory on your local machine.
+- One command tear down that destroys and cleans up the whole infrastructure along with the locally created files (the keypair file and the *.ovpn user profile file)
+
+
+## **How the Terraform Configuration Script works**
+
+Technical details about how the terraform script works is described below:
 
 ??? info "Click here to see details of how the OpenVPN Terraform config works under the hood"
 
+    <div style="text-align: center;">
     [OpenVPN-Terraform Source Code :simple-github:](https://github.com/opeyemitechpro/OpenVPN-Terraform-Setup){: target="_blank" .md-button}
-        
+    </div>    
     Each of the files in  this terraform configuration module is explained below:
 
     ??? tip "The `ami.tf` file"
