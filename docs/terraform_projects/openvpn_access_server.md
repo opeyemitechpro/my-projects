@@ -672,35 +672,46 @@ Technical details about how the terraform script works is described below:
         
         
         ==**Resource Definition**==
+
         - **`resource "aws_security_group" "openvpn_SG"`**: Creates a security group in AWS to define network access rules for the OpenVPN server.
 
         ---
 
         ==**Security Group Naming and Description**==
+
         - **`name_prefix`**: Sets a prefix for the security group name, combining the project name (`var.project_name`) with `_openvpn_SG_`. AWS appends a unique identifier to the prefix.
         - **`description`**: Provides a description for the security group, indicating its purpose (OpenVPN security).
 
         ---
 
         ==**Dynamic Ingress Rules for TCP Ports**==
-        - **`dynamic "ingress"` (first block)**:
+
+        **`dynamic "ingress"` (first block)**:
+        
         - **`for_each = var.openvpn_tcp_ports`**: Iterates over a map of TCP ports and descriptions provided in the variable `var.openvpn_tcp_ports`.
-        - **`content {}`**: Defines the content of each rule:
-            - **`from_port` and `to_port`**: Sets the port range for the rule, using the key from the iteration (`ingress.key`).
-            - **`protocol = "tcp"`**: Specifies that the rule applies to TCP traffic.
-            - **`cidr_blocks = ["0.0.0.0/0"]`**: Allows traffic from all IP addresses.
-            - **`description = ingress.value`**: Provides a description for the rule, using the value from the iteration.
+        
+        **`content {}`**: Defines the content of each rule:
+        
+        - **`from_port` and `to_port`**: Sets the port range for the rule, using the key from the iteration (`ingress.key`).
+        - **`protocol = "tcp"`**: Specifies that the rule applies to TCP traffic.
+        - **`cidr_blocks = ["0.0.0.0/0"]`**: Allows traffic from all IP addresses.
+        - **`description = ingress.value`**: Provides a description for the rule, using the value from the iteration.
 
         ---
 
         ==**Dynamic Ingress Rules for UDP Ports**==
-        - **`dynamic "ingress"` (second block)**:
+
+        **`dynamic "ingress"` (second block)**:
+        
         - Similar to the first block, but applies to **UDP traffic**.
         - Iterates over the variable `var.openvpn_udp_ports`, which contains a map of UDP ports and their descriptions.
 
         ---
+        
         ==**Egress Rules**==
-        - **`egress` block**:
+        
+        **`egress` block**:
+        
         - **`from_port = 0` and `to_port = 0`**: Allows all outbound traffic across all port ranges.
         - **`protocol = "-1"`**: Applies the rule to all protocols.
         - **`cidr_blocks = ["0.0.0.0/0"]`**: Allows traffic to all IP addresses.
@@ -708,11 +719,12 @@ Technical details about how the terraform script works is described below:
         ---
 
         ==**Overall Function**==
+
         This security group:
 
-            1. Dynamically creates ingress (inbound) rules for both TCP and UDP traffic based on user-defined ports and descriptions (`var.openvpn_tcp_ports` and `var.openvpn_udp_ports`).
-            2. Configures unrestricted egress (outbound) traffic to allow the OpenVPN server to communicate with any destination.
-            3. Ensures that all rules are flexible and easy to manage via Terraform variables, making it adaptable for different use cases.
+        1. Dynamically creates ingress (inbound) rules for both TCP and UDP traffic based on user-defined ports and descriptions (`var.openvpn_tcp_ports` and `var.openvpn_udp_ports`).
+        2. Configures unrestricted egress (outbound) traffic to allow the OpenVPN server to communicate with any destination.
+        3. Ensures that all rules are flexible and easy to manage via Terraform variables, making it adaptable for different use cases.
 
 
     ??? tip "The `terraform.tfvars` file"
