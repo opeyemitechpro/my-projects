@@ -224,7 +224,8 @@ Technical details about how the terraform script works is described below:
 
         ==Each code section is explained breifly below:==
 
-        ==**aws_instance Resource**==  
+        ==**aws_instance Resource**== 
+         
         This resource defines the EC2 instance for the OpenVPN server.  
 
         - **`ami`**: Uses the ID of a specific Ubuntu AMI fetched via a data source.  
@@ -239,6 +240,7 @@ Technical details about how the terraform script works is described below:
         ---
 
         ==**locals Block**==  
+
         Defines reusable local variables and values for the configuration.  
 
         - **`key_pair_name`**: Constructs a unique key name with a prefix and region.  
@@ -248,11 +250,13 @@ Technical details about how the terraform script works is described below:
         ---
 
         ==**tls_private_key Resource**==  
+
         Generates a 2048-bit RSA private key used to create an AWS key pair.  
 
         ---
 
         ==**aws_key_pair Resource**==  
+
         Creates an SSH key pair in AWS.  
 
         - **`key_name`**: Uses the locally defined key pair name.  
@@ -262,6 +266,7 @@ Technical details about how the terraform script works is described below:
         ---
 
         ==**local_file Resource**==  
+
         Stores the generated private key securely on the local machine.  
 
         - **`content`**: Saves the private key in PEM format.  
@@ -271,6 +276,7 @@ Technical details about how the terraform script works is described below:
         ---
 
         ==**null_resource for Region Display**==  
+
         A helper resource to print available AWS regions to the console.  
 
         - **`triggers`**: Ensures the resource runs every time by using the current timestamp.  
@@ -477,9 +483,10 @@ Technical details about how the terraform script works is described below:
             ```
 
 
-        The `outputs.tf` file defines values that will be displayed after Terraform completes its execution. In this specific file, it outputs: [1]
+        The `outputs.tf` file defines values that will be displayed after Terraform completes its execution. In this specific file, it outputs:
 
         The following values will be displayed:
+
         - Public IP address of the OpenVPN server
 
         - Instance ID of the server
