@@ -1823,9 +1823,11 @@ A helper resource to print available AWS regions to the console.  </p>
 </code></pre></div></td></tr></table></div>
 </details>
 <p>This is the userdata script that is used to bootstrap the server immediately after it is provisioned by Terraform. It is configured as a template file so that terraform can interpolate the value of <code>openvpn_user</code> variable from the variables declared in the config file into the user_data script.</p>
-<p>How it works:
-- Sets bash environment and error handling</p>
+<p>How it works:</p>
 <ul>
+<li>
+<p>Sets bash environment and error handling</p>
+</li>
 <li>
 <p>Captures all the setup process in the log file <code>/var/log/setup_script.log</code> so it can be referenced if there are errors </p>
 </li>
@@ -1852,37 +1854,51 @@ A helper resource to print available AWS regions to the console.  </p>
 </li>
 </ul>
 <p><mark><strong>Each section of the file is explained below:</strong></mark></p>
-<p><mark><strong>Shebang and Setup</strong></mark><br />
-- <strong><code>#!/bin/bash</code></strong>: Specifies the script should run using the Bash shell.<br />
-- <strong><code>set -e</code></strong>: Ensures the script exits immediately if any command fails, preventing incomplete setups.<br />
-- <strong><code>exec &gt;&gt; /var/log/setup_script.log 2&gt;&amp;1</code></strong>: Redirects all script output (standard and error) to a log file for debugging and reference.</p>
+<p><mark><strong>Shebang and Setup</strong></mark>  </p>
+<ul>
+<li><strong><code>#!/bin/bash</code></strong>: Specifies the script should run using the Bash shell.  </li>
+<li><strong><code>set -e</code></strong>: Ensures the script exits immediately if any command fails, preventing incomplete setups.  </li>
+<li><strong><code>exec &gt;&gt; /var/log/setup_script.log 2&gt;&amp;1</code></strong>: Redirects all script output (standard and error) to a log file for debugging and reference.</li>
+</ul>
 <hr />
-<p><mark><strong>Logging Initialization and Updates</strong></mark><br />
-- <strong><code>echo "Initializing script..."</code></strong>: Provides a visual indicator that the script has started.<br />
-- <strong><code>sudo apt update -y</code></strong>: Updates package lists to ensure the system has the latest available versions.</p>
+<p><mark><strong>Logging Initialization and Updates</strong></mark>  </p>
+<ul>
+<li><strong><code>echo "Initializing script..."</code></strong>: Provides a visual indicator that the script has started.  </li>
+<li><strong><code>sudo apt update -y</code></strong>: Updates package lists to ensure the system has the latest available versions.</li>
+</ul>
 <hr />
-<p><mark><strong>Retrieve and Display Instance Metadata</strong></mark><br />
-- <strong><code>FQDN=$(curl -sS http://169.254.169.254/latest/meta-data/public-hostname)</code></strong>: Retrieves the Fully Qualified Domain Name (FQDN) of the instance from AWS metadata.<br />
-- <strong><code>PUB_IP=$(curl -sS http://169.254.169.254/latest/meta-data/public-ipv4)</code></strong>: Retrieves the public IPv4 address of the instance from AWS metadata.<br />
-- <strong><code>echo "$FQDN"</code> &amp; <code>echo "$PUB_IP"</code></strong>: Prints the FQDN and public IP to the console for verification.</p>
+<p><mark><strong>Retrieve and Display Instance Metadata</strong></mark>  </p>
+<ul>
+<li><strong><code>FQDN=$(curl -sS http://169.254.169.254/latest/meta-data/public-hostname)</code></strong>: Retrieves the Fully Qualified Domain Name (FQDN) of the instance from AWS metadata.  </li>
+<li><strong><code>PUB_IP=$(curl -sS http://169.254.169.254/latest/meta-data/public-ipv4)</code></strong>: Retrieves the public IPv4 address of the instance from AWS metadata.  </li>
+<li><strong><code>echo "$FQDN"</code> &amp; <code>echo "$PUB_IP"</code></strong>: Prints the FQDN and public IP to the console for verification.</li>
+</ul>
 <hr />
-<p><mark><strong>Download and Prepare OpenVPN Installation Script</strong></mark><br />
-- <strong><code>wget https://raw.githubusercontent.com/angristan/openvpn-install/master/openvpn-install.sh -O openvpn-install.sh</code></strong>: Downloads the OpenVPN installation script from Angristan’s GitHub repository.<br />
-- <strong><code>chmod +x openvpn-install.sh</code></strong>: Makes the script executable.</p>
+<p><mark><strong>Download and Prepare OpenVPN Installation Script</strong></mark>  </p>
+<ul>
+<li><strong><code>wget https://raw.githubusercontent.com/angristan/openvpn-install/master/openvpn-install.sh -O openvpn-install.sh</code></strong>: Downloads the OpenVPN installation script from Angristan’s GitHub repository.  </li>
+<li><strong><code>chmod +x openvpn-install.sh</code></strong>: Makes the script executable.</li>
+</ul>
 <hr />
-<p><mark><strong>Install OpenVPN</strong></mark><br />
-- <strong><code>sudo AUTO_INSTALL=y \</code></strong>: Enables automatic installation with predefined options.<br />
-- <strong><code>APPROVE_IP=$PUB_IP \</code></strong>: Uses the retrieved public IP for OpenVPN configuration.<br />
-- <strong><code>ENDPOINT=$FQDN \</code></strong>: Sets the FQDN as the server endpoint.<br />
-- <strong><code>CLIENT=${openvpn_user} \</code></strong>: Configures the OpenVPN client with a specified username.<br />
-- <strong><code>./openvpn-install.sh</code></strong>: Executes the installation script.</p>
+<p><mark><strong>Install OpenVPN</strong></mark>  </p>
+<ul>
+<li><strong><code>sudo AUTO_INSTALL=y \</code></strong>: Enables automatic installation with predefined options.  </li>
+<li><strong><code>APPROVE_IP=$PUB_IP \</code></strong>: Uses the retrieved public IP for OpenVPN configuration.  </li>
+<li><strong><code>ENDPOINT=$FQDN \</code></strong>: Sets the FQDN as the server endpoint.  </li>
+<li><strong><code>CLIENT=${openvpn_user} \</code></strong>: Configures the OpenVPN client with a specified username.  </li>
+<li><strong><code>./openvpn-install.sh</code></strong>: Executes the installation script.</li>
+</ul>
 <hr />
-<p><mark><strong>Move User Configuration File</strong></mark><br />
-- <strong><code>mv /root/${openvpn_user}.ovpn /home/ubuntu/${openvpn_user}.ovpn</code></strong>: Moves the generated client profile (<code>.ovpn</code> file) to the default user’s home directory for easier access.</p>
+<p><mark><strong>Move User Configuration File</strong></mark>  </p>
+<ul>
+<li><strong><code>mv /root/${openvpn_user}.ovpn /home/ubuntu/${openvpn_user}.ovpn</code></strong>: Moves the generated client profile (<code>.ovpn</code> file) to the default user’s home directory for easier access.</li>
+</ul>
 <hr />
-<p><mark><strong>Post-Installation Messages and Cleanup</strong></mark><br />
-- <strong><code>echo "Hurray! OpenVPN Installed successfully"</code></strong>: Prints a success message to indicate completion.<br />
-- <strong><code>sudo hostnamectl set-hostname OpenVPN-Server</code></strong>: Changes the system’s hostname to "OpenVPN-Server" for easy identification.</p>
+<p><mark><strong>Post-Installation Messages and Cleanup</strong></mark> </p>
+<ul>
+<li><strong><code>echo "Hurray! OpenVPN Installed successfully"</code></strong>: Prints a success message to indicate completion.  </li>
+<li><strong><code>sudo hostnamectl set-hostname OpenVPN-Server</code></strong>: Changes the system’s hostname to "OpenVPN-Server" for easy identification.</li>
+</ul>
 </details>
 <details class="tip">
 <summary>The <code>outputs.tf</code> file</summary>
@@ -2100,42 +2116,64 @@ A helper resource to print available AWS regions to the console.  </p>
 </details>
 <p>The <code>ovpn.tf</code> file manages the retrieval of the OpenVPN configuration file from the remote VPN server and donwloads it in the terraform working directory. The main purpose of this file is to ensure you get the OpenVPN client configuration file automatically downloaded to your local machine once it's ready on the server.</p>
 <p>Here’s a breakdown of each section of this file:</p>
-<p><mark><strong>Resource Definition</strong></mark>
-- <strong><code>null_resource "get_ovpn_config"</code></strong>: A helper resource used to wait for the OpenVPN configuration file to be generated, then download it locally. This resource doesn't create infrastructure directly but adds automation to the deployment process.</p>
+<p><mark><strong>Resource Definition</strong></mark></p>
+<ul>
+<li><strong><code>null_resource "get_ovpn_config"</code></strong>: A helper resource used to wait for the OpenVPN configuration file to be generated, then download it locally. This resource doesn't create infrastructure directly but adds automation to the deployment process.</li>
+</ul>
 <hr />
-<p><mark><strong>Dependency and Trigger Configuration</strong></mark>
-- <strong><code>depends_on = [aws_instance.OpenVPN_Server]</code></strong>: Ensures this resource executes only after the OpenVPN server instance is successfully created.
-- <strong><code>triggers</code></strong>:<br />
-- <strong><code>instance_ip</code></strong>: Ensures the resource is re-applied if the public IP of the OpenVPN server changes.<br />
-- <strong><code>ovpn_file</code></strong>: Tracks the expected <code>.ovpn</code> configuration filename as a trigger, ensuring changes to this filename will trigger re-execution.</p>
+<p><mark><strong>Dependency and Trigger Configuration</strong></mark></p>
+<ul>
+<li><strong><code>depends_on = [aws_instance.OpenVPN_Server]</code></strong>: Ensures this resource executes only after the OpenVPN server instance is successfully created.</li>
+<li><strong><code>triggers</code></strong>:  </li>
+<li><strong><code>instance_ip</code></strong>: Ensures the resource is re-applied if the public IP of the OpenVPN server changes.  </li>
+<li><strong><code>ovpn_file</code></strong>: Tracks the expected <code>.ovpn</code> configuration filename as a trigger, ensuring changes to this filename will trigger re-execution.</li>
+</ul>
 <hr />
-<p><mark><strong>Remote Execution Provisioner</strong></mark>
-- <strong><code>provisioner "remote-exec"</code></strong>: Executes commands on the OpenVPN server to ensure the <code>.ovpn</code> configuration file is ready.<br />
-- <strong><code>inline</code></strong>: Contains the commands to:
-    - <strong><code>while [ ! -f /home/ubuntu/... ]; do</code></strong>: Polls the server every 20 seconds, checking if the <code>.ovpn</code> file exists.<br />
-    - <strong><code>echo 'Waiting for OpenVPN config file...'</code></strong>: Prints a message during the wait loop.<br />
-    - <strong><code>echo 'OpenVPN config file is ready!'</code></strong>: Signals the file is available.<br />
-- <strong><code>connection</code></strong>: Defines SSH connection details:
-    - <strong><code>type</code></strong>: Specifies SSH as the connection type.<br />
-    - <strong><code>user</code></strong>: Specifies the user (<code>ubuntu</code>) to connect with.<br />
-    - <strong><code>private_key</code></strong>: Uses the private key generated earlier for authentication.<br />
-    - <strong><code>host</code></strong>: Specifies the public IP of the OpenVPN server instance.</p>
+<p><mark><strong>Remote Execution Provisioner</strong></mark></p>
+<ul>
+<li><strong><code>provisioner "remote-exec"</code></strong>: Executes commands on the OpenVPN server to ensure the <code>.ovpn</code> configuration file is ready.  </li>
+</ul>
+<p><strong><code>inline</code></strong>: Contains the commands to:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>- **`while [ ! -f /home/ubuntu/... ]; do`**: Polls the server every 20 seconds, checking if the `.ovpn` file exists.  
+- **`echo &#39;Waiting for OpenVPN config file...&#39;`**: Prints a message during the wait loop.  
+- **`echo &#39;OpenVPN config file is ready!&#39;`**: Signals the file is available.
+</code></pre></div></td></tr></table></div>
+<ul>
+<li>
+<p><strong><code>connection</code></strong>: Defines SSH connection details:</p>
+<ul>
+<li><strong><code>type</code></strong>: Specifies SSH as the connection type.  </li>
+<li><strong><code>user</code></strong>: Specifies the user (<code>ubuntu</code>) to connect with.  </li>
+<li><strong><code>private_key</code></strong>: Uses the private key generated earlier for authentication.  </li>
+<li><strong><code>host</code></strong>: Specifies the public IP of the OpenVPN server instance.</li>
+</ul>
+</li>
+</ul>
 <hr />
-<p><mark><strong>Local Execution Provisioner</strong></mark>
-- <strong>First <code>local-exec</code> block</strong>: Downloads the <code>.ovpn</code> file to the local machine.<br />
-- <strong><code>scp</code></strong>: Securely copies the file from the OpenVPN server to the local directory.<br />
-- <strong>Options</strong>:
-    - <strong><code>-o StrictHostKeyChecking=no</code></strong>: Disables host key checking to avoid interactive prompts.<br />
-    - <strong><code>-o UserKnownHostsFile=/dev/null</code></strong>: Prevents updates to the local known hosts file.<br />
-    - <strong><code>-i</code></strong>: Specifies the SSH private key for authentication.  </p>
+<p><mark><strong>Local Execution Provisioner</strong></mark></p>
+<ul>
+<li><strong>First <code>local-exec</code> block</strong>: Downloads the <code>.ovpn</code> file to the local machine.  </li>
+<li><strong><code>scp</code></strong>: Securely copies the file from the OpenVPN server to the local directory.  </li>
+</ul>
+<p><strong>Options</strong>:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>- **`-o StrictHostKeyChecking=no`**: Disables host key checking to avoid interactive prompts.  
+- **`-o UserKnownHostsFile=/dev/null`**: Prevents updates to the local known hosts file.  
+- **`-i`**: Specifies the SSH private key for authentication.
+</code></pre></div></td></tr></table></div>
 <hr />
-<p><mark><strong>Cleanup on Resource Destruction</strong></mark>
-- <strong>Second <code>local-exec</code> block</strong>: Deletes the downloaded <code>.ovpn</code> file when the resource is destroyed.<br />
-- <strong><code>when = destroy</code></strong>: Ensures the command is only executed during the resource destruction phase.<br />
-- <strong><code>rm -f ./${self.triggers.ovpn_file}</code></strong>: Removes the file using the name stored in the triggers.</p>
+<p><mark><strong>Cleanup on Resource Destruction</strong></mark></p>
+<ul>
+<li><strong>Second <code>local-exec</code> block</strong>: Deletes the downloaded <code>*.ovpn</code> file when the resource is destroyed during the terraform cleanup phase.  </li>
+<li><strong><code>when = destroy</code></strong>: Ensures the command is only executed during the resource destruction phase.  </li>
+<li><strong><code>rm -f ./${self.triggers.ovpn_file}</code></strong>: Removes the file using the name stored in the triggers.</li>
+</ul>
 <hr />
-<p><mark><strong>Overall Function</strong></mark>
-This file ensures that the OpenVPN profile configuration file is created on the server, securely downloads it to the local system, and removes it when no longer needed (when the <code>terraform destroy</code> command is run). It integrates waiting, remote command execution, and local file operations seamlessly within the Terraform workflow.</p>
+<p><mark><strong>Overall Function</strong></mark></p>
+<p>This file ensures that the OpenVPN profile configuration file is created on the server, securely downloads it to the local system, and removes it when no longer needed (when the <code>terraform destroy</code> command is run). It integrates waiting, remote command execution, and local file operations seamlessly within the Terraform workflow.</p>
 </details>
 <details class="tip">
 <summary>The <code>provider.tf</code> file</summary>
@@ -2688,7 +2726,7 @@ This file ensures that the OpenVPN profile configuration file is created on the 
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-12-24T17:33:35+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-12-24</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-12-24T17:42:54+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-12-24</span>
   </span>
 
     
