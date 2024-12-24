@@ -178,23 +178,74 @@ for the definition of task lists:
 
 </div>
 
-??? youtube "1"
-    kjdfgkdfjg jhfdkgf
-    g fidjg fkgjf jk
-    `sdsfsd`
+??? tip "1"
+    * kjdfgkdfjg jhfdkgf
+    * g fidjg fkgjf jk
+    * `sdsfsd`
 
     ??? youtube "2"
-        dflgkjfdkgjdfkg 
-        f gifdhgl hdfg 
-        f goifjgl jfg
+        ==**Overall Function**==
+        This security group:
+        1. Dynamically creates ingress (inbound) rules for both TCP and UDP traffic based on user-defined ports and descriptions (`var.openvpn_tcp_ports` and `var.openvpn_udp_ports`).
+        2. Configures unrestricted egress (outbound) traffic to allow the OpenVPN server to communicate with any destination.
+        3. Ensures that all rules are flexible and easy to manage via Terraform variables, making it adaptable for different use cases.
 
-        ??? youtube "3"
-            kjhfkjsdhk jhdsg
-            d ;ihdfih d
-            `dfi hdkf h`
+        ??? tip "3"
+            ==**Overall Function**==
+            This security group:
+            1. Dynamically creates ingress (inbound) rules for both TCP and UDP traffic based on user-defined ports and descriptions (`var.openvpn_tcp_ports` and `var.openvpn_udp_ports`).
+            2. Configures unrestricted egress (outbound) traffic to allow the OpenVPN server to communicate with any destination.
+            3. Ensures that all rules are flexible and easy to manage via Terraform variables, making it adaptable for different use cases
 
-            ??? youtube "4"
-                kjhfkjh sdkfs
-                d uhdsk;fhksjdf
-                kjhs fkjhd
-                
+    ??? youtube "4"
+        ==**Overall Function**==
+        This security group:
+        1. Dynamically creates ingress (inbound) rules for both TCP and UDP traffic based on user-defined ports and descriptions (`var.openvpn_tcp_ports` and `var.openvpn_udp_ports`).
+        2. Configures unrestricted egress (outbound) traffic to allow the OpenVPN server to communicate with any destination.
+        3. Ensures that all rules are flexible and easy to manage via Terraform variables, making it adaptable for different use cases
+        ---
+
+    ??? note "5"
+
+        ==**Overall Function**==
+        
+        This security group:
+        
+        1. Dynamically creates ingress (inbound) rules for both TCP and UDP traffic based on user-defined ports and descriptions (`var.openvpn_tcp_ports` and `var.openvpn_udp_ports`).
+        2. Configures unrestricted egress (outbound) traffic to allow the OpenVPN server to communicate with any destination.
+        3. Ensures that all rules are flexible and easy to manage via Terraform variables, making it adaptable for different use cases
+        ---
+
+    ??? youtube "6"
+        ==**Overall Function**==
+        This security group:
+        1. Dynamically creates ingress (inbound) rules for both TCP and UDP traffic based on user-defined ports and descriptions (`var.openvpn_tcp_ports` and `var.openvpn_udp_ports`).
+        2. Configures unrestricted egress (outbound) traffic to allow the OpenVPN server to communicate with any destination.
+        3. Ensures that all rules are flexible and easy to manage via Terraform variables, making it adaptable for different use cases
+        ---
+
+            ??? youtube "7"
+                    
+                    ==**Overall Function**==
+
+                    This security group:
+                    
+                    * Dynamically creates ingress (inbound) rules for both TCP and UDP traffic based on user-defined ports and descriptions (`var.openvpn_tcp_ports` and `var.openvpn_udp_ports`).
+                    * Configures unrestricted egress (outbound) traffic to allow the OpenVPN server to communicate with any destination.
+                    * Ensures that all rules are flexible and easy to manage via Terraform variables, making it adaptable for different use cases
+        
+        ??? code-file "8"
+        ==**Overall Function**==
+        This security group:
+        * Dynamically creates ingress (inbound) rules for both TCP and UDP traffic based on user-defined ports and descriptions (`var.openvpn_tcp_ports` and `var.openvpn_udp_ports`).
+        * Configures unrestricted egress (outbound) traffic to allow the OpenVPN server to communicate with any destination.
+        * Ensures that all rules are flexible and easy to manage via Terraform variables, making it adaptable for different use cases
+
+        ??? code-file "9"
+            ==**Overall Function**==
+            
+            This security group:
+
+            - Dynamically creates ingress (inbound) rules for both TCP and UDP traffic based on user-defined ports and descriptions (`var.openvpn_tcp_ports` and `var.openvpn_udp_ports`).
+            - Configures unrestricted egress (outbound) traffic to allow the OpenVPN server to communicate with any destination.
+            - Ensures that all rules are flexible and easy to manage via Terraform variables, making it adaptable for different use cases
