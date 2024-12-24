@@ -61,6 +61,7 @@ This terraform configuration creates a fully functional, free and ready-to-use s
 
 
 ## **How the Terraform Configuration Script works**
+
 Technical details about how the terraform script works is described below:
 
 ??? info "Click here to see details of how the OpenVPN Terraform config works under the hood"
@@ -709,9 +710,9 @@ Technical details about how the terraform script works is described below:
 
         ==**Overall Function**==
         This security group:
-        1. Dynamically creates ingress (inbound) rules for both TCP and UDP traffic based on user-defined ports and descriptions (`var.openvpn_tcp_ports` and `var.openvpn_udp_ports`).
-        2. Configures unrestricted egress (outbound) traffic to allow the OpenVPN server to communicate with any destination.
-        3. Ensures that all rules are flexible and easy to manage via Terraform variables, making it adaptable for different use cases.
+            1. Dynamically creates ingress (inbound) rules for both TCP and UDP traffic based on user-defined ports and descriptions (`var.openvpn_tcp_ports` and `var.openvpn_udp_ports`).
+            2. Configures unrestricted egress (outbound) traffic to allow the OpenVPN server to communicate with any destination.
+            3. Ensures that all rules are flexible and easy to manage via Terraform variables, making it adaptable for different use cases.
 
 
     ??? tip "The `terraform.tfvars` file"
