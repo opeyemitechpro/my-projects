@@ -43,9 +43,10 @@ This VPN server is also "disposable", meaning, you can create and delete it anyt
 - [x] AWS CLI installed and configured with your AWS access key ID and Secret access keys _(learn more about AWS CLI [here](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-quickstart.html){: target="_blank" })_ 
 - [x] The OpenVPN-Terraform Setup Script _(click the button below)_
 
-    <div style="text-align: center;">
-    [OpenVPN-Terraform Source Code :simple-github:](https://github.com/opeyemitechpro/OpenVPN-Terraform-Setup){: target="_blank" .md-button .md-button--primary}
-    </div>
+
+<div style="text-align: center;">
+[OpenVPN-Terraform Source Code :simple-github:](https://github.com/opeyemitechpro/OpenVPN-Terraform-Setup){: target="_blank" .md-button .md-button--primary}
+</div>
 
 
 ## **What this Terraform Configuration Script Does**
