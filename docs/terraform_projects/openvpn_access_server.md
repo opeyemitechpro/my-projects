@@ -360,7 +360,7 @@ Technical details about how the terraform script works is described below:
         - Moves the generated client profile (.ovpn file) to Ubuntu user's home directory
 
         - Sets the system hostname to "OpenVPN-Server"
-        
+
 
         ==**Each section of the file is explained below:**==
 
@@ -568,18 +568,20 @@ Technical details about how the terraform script works is described below:
 
         - **`provisioner "remote-exec"`**: Executes commands on the OpenVPN server to ensure the `.ovpn` configuration file is ready.  
         
-        **`inline`**: Contains the commands to:
+        **`inline`**: 
         
-            - **`while [ ! -f /home/ubuntu/... ]; do`**: Polls the server every 20 seconds, checking if the `.ovpn` file exists.  
-            - **`echo 'Waiting for OpenVPN config file...'`**: Prints a message during the wait loop.  
-            - **`echo 'OpenVPN config file is ready!'`**: Signals the file is available.  
+        Contains the commands to:
         
-        - **`connection`**: Defines SSH connection details:
+        - **`while [ ! -f /home/ubuntu/... ]; do`**: Polls the server every 20 seconds, checking if the `.ovpn` file exists.  
+        - **`echo 'Waiting for OpenVPN config file...'`**: Prints a message during the wait loop.  
+        - **`echo 'OpenVPN config file is ready!'`**: Signals the file is available.  
         
-            - **`type`**: Specifies SSH as the connection type.  
-            - **`user`**: Specifies the user (`ubuntu`) to connect with.  
-            - **`private_key`**: Uses the private key generated earlier for authentication.  
-            - **`host`**: Specifies the public IP of the OpenVPN server instance.
+        **`connection`**: Defines SSH connection details:
+        
+        - **`type`**: Specifies SSH as the connection type.  
+        - **`user`**: Specifies the user (`ubuntu`) to connect with.  
+        - **`private_key`**: Uses the private key generated earlier for authentication.  
+        - **`host`**: Specifies the public IP of the OpenVPN server instance.
 
         ---
 
@@ -590,9 +592,9 @@ Technical details about how the terraform script works is described below:
         
         **Options**:
         
-            - **`-o StrictHostKeyChecking=no`**: Disables host key checking to avoid interactive prompts.  
-            - **`-o UserKnownHostsFile=/dev/null`**: Prevents updates to the local known hosts file.  
-            - **`-i`**: Specifies the SSH private key for authentication.  
+        - **`-o StrictHostKeyChecking=no`**: Disables host key checking to avoid interactive prompts.  
+        - **`-o UserKnownHostsFile=/dev/null`**: Prevents updates to the local known hosts file.  
+        - **`-i`**: Specifies the SSH private key for authentication.  
 
         ---
 
