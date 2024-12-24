@@ -342,6 +342,7 @@ Technical details about how the terraform script works is described below:
         This is the userdata script that is used to bootstrap the server immediately after it is provisioned by Terraform. It is configured as a template file so that terraform can interpolate the value of `openvpn_user` variable from the variables declared in the config file into the user_data script.
 
         How it works:
+
         - Sets bash environment and error handling
 
         - Captures all the setup process in the log file `/var/log/setup_script.log` so it can be referenced if there are errors 
@@ -359,10 +360,12 @@ Technical details about how the terraform script works is described below:
         - Moves the generated client profile (.ovpn file) to Ubuntu user's home directory
 
         - Sets the system hostname to "OpenVPN-Server"
+        
 
         ==**Each section of the file is explained below:**==
 
         ==**Shebang and Setup**==  
+
         - **`#!/bin/bash`**: Specifies the script should run using the Bash shell.  
         - **`set -e`**: Ensures the script exits immediately if any command fails, preventing incomplete setups.  
         - **`exec >> /var/log/setup_script.log 2>&1`**: Redirects all script output (standard and error) to a log file for debugging and reference.
@@ -370,12 +373,14 @@ Technical details about how the terraform script works is described below:
         ---
 
         ==**Logging Initialization and Updates**==  
+
         - **`echo "Initializing script..."`**: Provides a visual indicator that the script has started.  
         - **`sudo apt update -y`**: Updates package lists to ensure the system has the latest available versions.
 
         ---
 
         ==**Retrieve and Display Instance Metadata**==  
+
         - **`FQDN=$(curl -sS http://169.254.169.254/latest/meta-data/public-hostname)`**: Retrieves the Fully Qualified Domain Name (FQDN) of the instance from AWS metadata.  
         - **`PUB_IP=$(curl -sS http://169.254.169.254/latest/meta-data/public-ipv4)`**: Retrieves the public IPv4 address of the instance from AWS metadata.  
         - **`echo "$FQDN"` & `echo "$PUB_IP"`**: Prints the FQDN and public IP to the console for verification.
@@ -383,12 +388,14 @@ Technical details about how the terraform script works is described below:
         ---
 
         ==**Download and Prepare OpenVPN Installation Script**==  
+
         - **`wget https://raw.githubusercontent.com/angristan/openvpn-install/master/openvpn-install.sh -O openvpn-install.sh`**: Downloads the OpenVPN installation script from Angristan’s GitHub repository.  
         - **`chmod +x openvpn-install.sh`**: Makes the script executable.
 
         ---
 
         ==**Install OpenVPN**==  
+
         - **`sudo AUTO_INSTALL=y \`**: Enables automatic installation with predefined options.  
         - **`APPROVE_IP=$PUB_IP \`**: Uses the retrieved public IP for OpenVPN configuration.  
         - **`ENDPOINT=$FQDN \`**: Sets the FQDN as the server endpoint.  
@@ -398,11 +405,13 @@ Technical details about how the terraform script works is described below:
         ---
 
         ==**Move User Configuration File**==  
+
         - **`mv /root/${openvpn_user}.ovpn /home/ubuntu/${openvpn_user}.ovpn`**: Moves the generated client profile (`.ovpn` file) to the default user’s home directory for easier access.
 
         ---
 
-        ==**Post-Installation Messages and Cleanup**==  
+        ==**Post-Installation Messages and Cleanup**== 
+
         - **`echo "Hurray! OpenVPN Installed successfully"`**: Prints a success message to indicate completion.  
         - **`sudo hostnamectl set-hostname OpenVPN-Server`**: Changes the system’s hostname to "OpenVPN-Server" for easy identification.
 
@@ -541,11 +550,13 @@ Technical details about how the terraform script works is described below:
 
         
         ==**Resource Definition**==
+
         - **`null_resource "get_ovpn_config"`**: A helper resource used to wait for the OpenVPN configuration file to be generated, then download it locally. This resource doesn't create infrastructure directly but adds automation to the deployment process.
 
         ---
 
         ==**Dependency and Trigger Configuration**==
+
         - **`depends_on = [aws_instance.OpenVPN_Server]`**: Ensures this resource executes only after the OpenVPN server instance is successfully created.
         - **`triggers`**:  
         - **`instance_ip`**: Ensures the resource is re-applied if the public IP of the OpenVPN server changes.  
@@ -554,12 +565,17 @@ Technical details about how the terraform script works is described below:
         ---
 
         ==**Remote Execution Provisioner**==
+
         - **`provisioner "remote-exec"`**: Executes commands on the OpenVPN server to ensure the `.ovpn` configuration file is ready.  
-        - **`inline`**: Contains the commands to:
+        
+        **`inline`**: Contains the commands to:
+        
             - **`while [ ! -f /home/ubuntu/... ]; do`**: Polls the server every 20 seconds, checking if the `.ovpn` file exists.  
             - **`echo 'Waiting for OpenVPN config file...'`**: Prints a message during the wait loop.  
             - **`echo 'OpenVPN config file is ready!'`**: Signals the file is available.  
+        
         - **`connection`**: Defines SSH connection details:
+        
             - **`type`**: Specifies SSH as the connection type.  
             - **`user`**: Specifies the user (`ubuntu`) to connect with.  
             - **`private_key`**: Uses the private key generated earlier for authentication.  
@@ -568,9 +584,12 @@ Technical details about how the terraform script works is described below:
         ---
 
         ==**Local Execution Provisioner**==
+
         - **First `local-exec` block**: Downloads the `.ovpn` file to the local machine.  
         - **`scp`**: Securely copies the file from the OpenVPN server to the local directory.  
-        - **Options**:
+        
+        **Options**:
+        
             - **`-o StrictHostKeyChecking=no`**: Disables host key checking to avoid interactive prompts.  
             - **`-o UserKnownHostsFile=/dev/null`**: Prevents updates to the local known hosts file.  
             - **`-i`**: Specifies the SSH private key for authentication.  
@@ -578,13 +597,15 @@ Technical details about how the terraform script works is described below:
         ---
 
         ==**Cleanup on Resource Destruction**==
-        - **Second `local-exec` block**: Deletes the downloaded `.ovpn` file when the resource is destroyed.  
+
+        - **Second `local-exec` block**: Deletes the downloaded `*.ovpn` file when the resource is destroyed during the terraform cleanup phase.  
         - **`when = destroy`**: Ensures the command is only executed during the resource destruction phase.  
         - **`rm -f ./${self.triggers.ovpn_file}`**: Removes the file using the name stored in the triggers.
 
         ---
 
         ==**Overall Function**==
+
         This file ensures that the OpenVPN profile configuration file is created on the server, securely downloads it to the local system, and removes it when no longer needed (when the `terraform destroy` command is run). It integrates waiting, remote command execution, and local file operations seamlessly within the Terraform workflow.
 
     ??? tip "The `provider.tf` file"
