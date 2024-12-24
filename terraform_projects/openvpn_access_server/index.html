@@ -1384,16 +1384,14 @@ This VPN server is also "disposable", meaning, you can create and delete it anyt
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" checked/><span class="task-list-indicator"></span></label> AWS CLI installed and configured with your AWS access key ID and Secret access keys <em>(learn more about AWS CLI <a href="https://docs.aws.amazon.com/cli/latest/userguide/getting-started-quickstart.html" target="_blank">here</a>)</em> </li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" checked/><span class="task-list-indicator"></span></label> The OpenVPN-Terraform Setup Script <em>(click the button below)</em></li>
 </ul>
-<div style="text-align: center;">
-[OpenVPN-Terraform Source Code :simple-github:](https://github.com/opeyemitechpro/OpenVPN-Terraform-Setup){: target="_blank" .md-button .md-button--primary}
-</div>
+<div style="text-align: center;">[OpenVPN-Terraform Source Code :simple-github:](https://github.com/opeyemitechpro/OpenVPN-Terraform-Setup){: target="_blank" .md-button .md-button--primary}</div>
 
 <h2 id="what-this-terraform-configuration-script-does"><strong>What this Terraform Configuration Script Does</strong><a class="headerlink" href="#what-this-terraform-configuration-script-does" title="Copy this link to reference this section">&para;</a></h2>
 <p>This terraform configuration creates a fully functional, free and ready-to-use self-hosted OpenVPN Server in any chosen AWS region. The script perfomes the following operations:</p>
 <ul>
 <li>Creates a Ubuntu 22.04 EC2 instance and configures a fully functional OpenVPN Access Server on it</li>
 <li>Configures the server as a type t2-micro instance so that it can run within the AWS Free-tier plan (Learn more about the AWS free-tier plan <a href="https://aws.amazon.com/free" target="_blank">here</a>)</li>
-<li>Set up and configure the VPN server with an IP address in the speicified AWS region.</li>
+<li>Sets up and configures the VPN server with an IP address in the speicified AWS region.</li>
 <li>Generates an AWS keypair file for optional SSH connection to the EC2 instance, downloads the file and saves it in the terraform working directory on your local machine. The chosen AWS region is appended to the name of the keypair file.</li>
 <li>Generates an OpenVPN User Profile file (*.ovpn) that will be used to authenticate and establish an encrypted VPN connection from your local machine to the VPN server. The OpenPVN User Profile file is also donwloaded and saved to the terraform working directory on your local machine.</li>
 <li>One command tear down that destroys and cleans up the whole infrastructure along with the locally created files (the keypair file and the *.ovpn user profile file)</li>
@@ -1404,8 +1402,8 @@ This VPN server is also "disposable", meaning, you can create and delete it anyt
 <summary>Click here to see details of how the OpenVPN Terraform config works under the hood</summary>
 <p><div style="text-align: center;">
 <a class="md-button" href="https://github.com/opeyemitechpro/OpenVPN-Terraform-Setup" target="_blank">OpenVPN-Terraform Source Code <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></span></a>
-</div>  <br />
-Each of the files in  this terraform configuration module is explained below:</p>
+</div>    </p>
+<p>Each of the files in  this terraform configuration module is explained below:</p>
 <details class="tip">
 <summary>The <code>ami.tf</code> file</summary>
 <details class="code-file" open="open">
@@ -2673,7 +2671,7 @@ This security group:
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-12-24T13:52:30+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-12-24</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-12-24T13:59:53+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-12-24</span>
   </span>
 
     
