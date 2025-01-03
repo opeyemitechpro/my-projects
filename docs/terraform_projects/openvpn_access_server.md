@@ -37,7 +37,7 @@ This VPN server is also "disposable", meaning, you can create and delete it anyt
 ## **Pre-requisites**
 
 - [x] AWS account _([free tier account will work](https://aws.amazon.com/free/){: target="_blank" })_
-- [x] Terraform installed on local machine _([How to Install Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli){: target="_blank" })_
+- [x] Terraform installed on local machine _([How to Install Terraform](https://developer.hashicorp.com/terraform/install){: target="_blank" })_
 - [x] OpenVPN Connect Client software installed on local machine _(download from [here](https://openvpn.net/client/){: target="_blank" })_
 - [x] Your AWS access key ID and secret access key _(learn how to get your AWS access keys [here](https://docs.aws.amazon.com/cli/latest/userguide/cli-authentication-user.html){: target="_blank" })_
 - [x] AWS CLI installed and configured with your AWS access key ID and Secret access keys _(learn more about AWS CLI [here](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-quickstart.html){: target="_blank" })_ 
@@ -905,10 +905,10 @@ Follow the ==**"Quick Start Guide"**== below to provision and configure your Ope
     ### Apply the Terraform Configuration
 
     ``` sh
-    terraform apply
+    terraform apply -auto-approve
     ```
     
-    - When prompted, enter an AWS region from the list below and respond `yes` to the prompt.  (e.g. `us-west-2`)
+    - When prompted, enter an AWS region from the list below and press enter.  (e.g. `us-west-2`)
     - This will be the AWS region where the VPN server and all resources will be hosted. 
 
     ![Terraform apply command](../../assets/images/ovpn-terraform-apply.png "Terraform apply command")
@@ -987,13 +987,17 @@ Follow the ==**"Quick Start Guide"**== below to provision and configure your Ope
     When you are connected to your VPN server, your internet traffic will be routed through your VPN server and as such, only your VPN server IP address will be seen publicly, your local ISP assigned ip address will be hidden from the internet. 
 
     ### Cleanup
-    The whole infrastructure can be destroyed by simply using the command:
 
+    To delete the server and cleanup all resources that were created.
+
+    1. First disconnect the OpenVPN Connect Client
+
+    2. Then enter the command below to delete all locally created files and also delete the server and all other resources from your AWS account.  
+    
     ``` sh
-    terraform destroy
+    terraform destroy -auto-approve 
     ```
 
-    - Enter the AWS region that you entered above and respond `yes` to the prompt.
     - This will terminate the EC2 instance and delete all resources created and also delete the files that were locally created in the terraform working directory i.e. the *.ovpn user profile and the keypair file that was created earlier 
 
     ![Terraform Destroy Command](../../assets/images/ovpn-terraform-destroy.png "Terraform Destroy Command")
