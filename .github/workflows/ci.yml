@@ -15,7 +15,7 @@ jobs:
 
       # Set the current year as an environment variable
       - name: Get current year
-        run: echo "$(date +%Y)" >> $GITHUB_ENV
+        run: echo "CURRENT_YEAR=$(date +%Y)" >> $GITHUB_ENV
 
       # Replace the placeholder in mkdocs.yaml
       - name: Update mkdocs.yaml with current year
