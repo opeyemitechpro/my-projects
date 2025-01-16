@@ -111,6 +111,7 @@ plugins:
         # 'old.md': 'new.md'
         # 'old/file.md': 'new/file.md'
         'profile.md': 'https://opeyemitech.pro'
+        'yt.md': 'https://youtube.com/@opeyemitechpro'
   - glightbox:
       touchNavigation: true
       loop: true
@@ -286,4 +287,5 @@ nav:
     - blog/index.md
 #   - Tags:
 #     - tags.md
+  - YouTube: yt.md
 # #
