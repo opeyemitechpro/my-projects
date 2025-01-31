@@ -4,7 +4,7 @@ icon: simple/amazonwebservices
 title: How I Got $300 FREE AWS Credits
 description: How I Got $300 FREE AWS Credits 
 subtitle: How I Got $300 FREE AWS Credits
-comments: false
+comments: true
 authors: [opeyemitechpro]
 categories:
   - AWS

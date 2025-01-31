@@ -4,7 +4,7 @@ icon: simple/amazonwebservices
 title: AWS Introduces Multi-Session Support in the AWS Management Console
 description: Exciting News - AWS Introduces Multi-Session Support in the AWS Management Console 
 subtitle: Exciting News - AWS Introduces Multi-Session Support in the AWS Management Console
-comments: false
+comments: true
 authors: [opeyemitechpro]
 categories:
   - AWS
