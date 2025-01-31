@@ -1,10 +1,10 @@
 ---
-date: 2024-10-13
+date: 2025-01-31
 icon: simple/amazonwebservices
 title: AWS Introduces Multi-Session Support in the AWS Management Console
-description: Exciting News: AWS Introduces Multi-Session Support in the AWS Management Console! 
-subtitle: Exciting News: AWS Introduces Multi-Session Support in the AWS Management Console!
-comments: true
+description: Exciting News - AWS Introduces Multi-Session Support in the AWS Management Console 
+subtitle: Exciting News - AWS Introduces Multi-Session Support in the AWS Management Console
+comments: false
 authors: [opeyemitechpro]
 categories:
   - AWS
