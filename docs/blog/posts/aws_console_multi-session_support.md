@@ -16,7 +16,7 @@ categories:
 # **Exciting News: AWS Introduces Multi-Session Support in the AWS Management Console!**
 
 <figure markdown="span">
-  [![AWS Introduces Multi-Session Support in the AWS Management Console](../../assets/images/aws_multi-session_support_1.png "Enable Multi-Session Support in the AWS Management Console")](https://opeyemitech.pro/my-projects/blog/aws_console_multi-session_support/)
+  [![AWS Introduces Multi-Session Support in the AWS Management Console](../../assets/images/aws_multi-session_support_1.png "Enable Multi-Session Support in the AWS Management Console")](https://opeyemitech.pro/my-projects/blog/aws-introduces-multi-session-support-in-the-aws-management-console/)
   <figcaption>AWS Introduces Multi-Session Support in the AWS Management Console</figcaption>
 </figure>
 
@@ -32,8 +32,11 @@ __I am thrilled to share that AWS has rolled out a fantastic new feature in the 
 3. **Easy Opt-In**: To enable multi-session support, simply choose "Turn on multi-session" in the account menu or enable it on the AWS Management Console. Remember, this opt-in is browser-specific, so you'll need to enable it separately for each browser you use.
 4. **Seamless Transition**: Once enabled, the console URL will include a subdomain, so be sure to update your bookmarks and console links accordingly.
 
-![Multi-session Support](../../assets/images/aws_multi-session_support_2.png "Multi-Session Support in the AWS Management Console")](https://opeyemitech.pro/my-projects/blog/aws_console_multi-session_support/)
 
+<figure markdown="span">
+  [![Multi-session Support](../../assets/images/aws_multi-session_support_2.png "Multi-Session Support in the AWS Management Console")](https://opeyemitech.pro/my-projects/blog/aws-introduces-multi-session-support-in-the-aws-management-console/)
+  <figcaption>Multi-Session Support in the AWS Management Console</figcaption>
+</figure>
 
 This feature is a game-changer for AWS users who need to manage multiple accounts or roles efficiently. By allowing simultaneous sign-ins, AWS is making it easier than ever to navigate and manage your cloud resources.
 
