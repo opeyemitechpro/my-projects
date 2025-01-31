@@ -21,9 +21,9 @@ jobs:
       - name: Update mkdocs.yml with current year
         run: sed -i "s/{{ current_year }}/${{ env.CURRENT_YEAR }}/g" mkdocs.yml
                        
-      # - uses: actions/checkout@v4
-      #   with:
-      #     fetch-depth: 0
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       #     sparse-checkout: |
       #       docs
       #       overrides
