@@ -112,6 +112,7 @@ plugins:
         # 'old/file.md': 'new/file.md'
         'profile.md': 'https://opeyemitech.pro'
         'yt.md': 'https://youtube.com/@opeyemitechpro'
+        'rs.md': 'https://docs.google.com/document/d/1NwoCfcx8Sm8jcpWjWo3TE26Kqm_gEsXriL8ZI70BPsM/edit?tab=t.0#heading=h.oxpdod2bvhg0'
   - glightbox:
       touchNavigation: true
       loop: true
