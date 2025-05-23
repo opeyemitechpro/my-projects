@@ -3,39 +3,38 @@ on:
   push:
     branches:
       - main
-
 permissions:
   contents: write
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
+      # Checkout the repository
+      - name: Checkout code
         uses: actions/checkout@v4
+
+      # Set the current year as an environment variable
+      - name: Get current year
+        run: echo "CURRENT_YEAR=$(date +%Y)" >> $GITHUB_ENV
+
+      # Replace the placeholder in mkdocs.yaml
+      - name: Update mkdocs.yml with current year
+        run: sed -i "s/{{ current_year }}/${{ env.CURRENT_YEAR }}/g" mkdocs.yml
+                       
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
           sparse-checkout: |
             docs
             overrides
             blog
-            mkdocs.yml  # Also pull mkdocs.yml
-
-      - name: Get current year
-        run: echo "CURRENT_YEAR=$(date +%Y)" >> $GITHUB_ENV
-
-      - name: Replace {{ current_year }} in mkdocs.yml
-        run: sed -i "s/{{ current_year }}/${{ env.CURRENT_YEAR }}/g" mkdocs.yml
-
       - uses: actions/setup-python@v4
         with:
           python-version: 3.x
-
       - uses: actions/cache@v4
         with:
           key: ${{ github.ref }}
           path: .cache
-
       - run: pip install mkdocs-material
       - run: pip install pillow cairosvg
       - run: pip install mkdocs-git-authors-plugin
@@ -44,5 +43,4 @@ jobs:
       - run: pip install "mkdocs-material[imaging]"
       - run: pip install mkdocs-git-committers-plugin-2
       - run: pip install mkdocs-redirects
-
       - run: mkdocs gh-deploy --force
