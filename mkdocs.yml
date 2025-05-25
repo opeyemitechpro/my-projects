@@ -98,7 +98,7 @@ plugins:
       repository: opeyemitechpro/my-projects
       branch: main
       exclude:
-        - draft.md
+        # - draft.md
       exclude_committers:
         - web-flow
   # - git-authors
