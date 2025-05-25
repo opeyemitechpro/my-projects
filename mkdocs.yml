@@ -97,6 +97,8 @@ plugins:
   - git-committers:
       repository: opeyemitechpro/my-projects
       branch: main
+      exclude:
+        - web-flow
   # - git-authors
   - git-revision-date-localized:
       enable_creation_date: true
