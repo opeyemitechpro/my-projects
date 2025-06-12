@@ -16,7 +16,7 @@ categories:
 # **How I Got $300 FREE AWS Credits**
 
 <figure markdown="span">
-  [![How I Got 300 FREE AWS Credits](../../assets/images/300_AWS_Credit.png "How I Got $300 AWS Credits")](https://opeyemitech.pro/my-projects/blog/how-i-got-300-free-aws-credits/)
+  [![How I Got 300 FREE AWS Credits](../../assets/images/300_AWS_Credit.png "How I Got $300 AWS Credits")](https://opeyemitechpro.github.io/my-projects/blog/how-i-got-300-free-aws-credits/)
   <figcaption>How I Got $300 FREE AWS Credits</figcaption>
 </figure>
 

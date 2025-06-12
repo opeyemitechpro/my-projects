@@ -32,14 +32,14 @@ What you can expect from this website:
 
 Thank you for visiting, and I look forward to sharing my passion with you!
 
-## [Opeyemi Okuboyejo](https://opeyemitech.pro)
-### [OpeyemiTechPro](https://opeyemitech.pro)
-#### [https://opeyemitech.pro](https://opeyemitech.pro)
+## [Opeyemi Okuboyejo](https://opeyemitechpro.github.io)
+### [OpeyemiTechPro](https://opeyemitechpro.github.io)
+#### [https://opeyemitechpro.github.io](https://opeyemitechpro.github.io)
 
 
 !!! location-search "Follow Me"
 
-    [![Website](https://img.shields.io/badge/Opeyemi's-Profile-0A66C2?labelColor=yellow&style=flat&logo=aws&logoColor=white)](https://opeyemitech.pro){: target="_blank" }&nbsp;&nbsp;[![Website](https://img.shields.io/badge/Opeyemi's-Project_Portfolio-purple?labelColor=yellow&style=flat&logoColor=white)](https://opeyemitech.pro/my-projects){: target="_blank" }&nbsp;&nbsp;[![Gmail Badge](https://img.shields.io/badge/Opeyemi's-Email-c14438?style=flat&logo=gmail&logoColor=white&link=mailto:okuboyejoopeyemi01@gmail.com)](mailto:okuboyejoopeyemi01@gmail.com){: target="_blank" }
+    [![Website](https://img.shields.io/badge/Opeyemi's-Profile-0A66C2?labelColor=yellow&style=flat&logo=aws&logoColor=white)](https://opeyemitechpro.github.io){: target="_blank" }&nbsp;&nbsp;[![Website](https://img.shields.io/badge/Opeyemi's-Project_Portfolio-purple?labelColor=yellow&style=flat&logoColor=white)](https://opeyemitechpro.github.io/my-projects){: target="_blank" }&nbsp;&nbsp;[![Gmail Badge](https://img.shields.io/badge/Opeyemi's-Email-c14438?style=flat&logo=gmail&logoColor=white&link=mailto:okuboyejoopeyemi01@gmail.com)](mailto:okuboyejoopeyemi01@gmail.com){: target="_blank" }
     
     ---
     
@@ -57,12 +57,12 @@ Thank you for visiting, and I look forward to sharing my passion with you!
 [![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)
 [![Linkedin Badge](https://img.shields.io/badge/-Opeyemi_On_LinkedIn-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/opeyemi-okuboyejo/)](https://www.linkedin.com/in/opeyemi-okuboyejo/)
 [![Gmail Badge](https://img.shields.io/badge/-Gmail-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:okuboyejoopeyemi01@gmail.com)](mailto:okuboyejoopeyemi01@gmail.com) 
-[![Portfolio Badge](https://img.shields.io/badge/-Opeyemi's_Portfolio-blue?style=flat-square&logo=folder&logoColor=white&link=https://opeyemitech.pro)](https://opeyemitech.pro)
-[![Portfolio Badge](https://img.shields.io/badge/-Opeyemi's_Project_Portfolio-purple?style=flat-square&logo=folder&logoColor=white&link=https://opeyemitech.pro/my-projects)](https://opeyemitech.pro/my-projects)
+[![Portfolio Badge](https://img.shields.io/badge/-Opeyemi's_Portfolio-blue?style=flat-square&logo=folder&logoColor=white&link=https://opeyemitechpro.github.io)](https://opeyemitechpro.github.io)
+[![Portfolio Badge](https://img.shields.io/badge/-Opeyemi's_Project_Portfolio-purple?style=flat-square&logo=folder&logoColor=white&link=https://opeyemitechpro.github.io/my-projects)](https://opeyemitechpro.github.io/my-projects)
 [![YouTube Badge](https://img.shields.io/badge/-Subscribe_on_YouTube-red?style=flat-square&logo=YouTube&logoColor=white&link=https://www.youtube.com/channel/@opeyemitechpro)](https://www.youtube.com/channel/@opeyemitechpro)
 [![YouTube Badge](https://img.shields.io/youtube/channel/subscribers/UCaD6f_WgaHbBY_7-YPrJMlA?style=social)](https://www.youtube.com/channel/UCaD6f_WgaHbBY_7-YPrJMlA) -->
 <!-- https://www.youtube.com/channel/UCaD6f_WgaHbBY_7-YPrJMlA/ -->
-<!-- [![Page Views](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fopeyemitech.pro%2Fmy-projects&count_bg=%23008000&title_bg=%234B0082&icon=&icon_color=%234B0082&title=Page+Views&edge_flat=false)](https://opeyemitech.pro) -->
+<!-- [![Page Views](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fopeyemitechpro.github.io%2Fmy-projects&count_bg=%23008000&title_bg=%234B0082&icon=&icon_color=%234B0082&title=Page+Views&edge_flat=false)](https://opeyemitechpro.github.io) -->
 
 ### :zap: GitHub Stats
 

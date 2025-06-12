@@ -8,4 +8,4 @@ comments: false
 
 # **Go To My Profile Page**
 
-[OpeyemiTechPro Profile Page](https://opeyemitech.pro)
+[OpeyemiTechPro Profile Page](https://opeyemitechpro.github.io)

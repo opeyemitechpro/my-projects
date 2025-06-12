@@ -874,7 +874,7 @@ The script allows you to set some options based on your use case. These are the 
 Public IP address showing Canada
 ///
 
-The list of acceptable AWS regions are shown [here](https://opeyemitech.pro/my-projects/terraform_projects/openvpn_access_server/#list-of-accepted-aws-regions)
+The list of acceptable AWS regions are shown [here](https://opeyemitechpro.github.io/my-projects/terraform_projects/openvpn_access_server/#list-of-accepted-aws-regions)
 
 ## **Running the script**
 Follow the ==**"Quick Start Guide"**== below to provision and configure your OpenVPN server and to connect to your new VPN network.
