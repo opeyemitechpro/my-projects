@@ -54,7 +54,7 @@ This terraform configuration creates a fully functional, free and ready-to-use s
 
 - Creates a Ubuntu 22.04 EC2 instance and configures a fully functional OpenVPN Access Server on it
 - Configures the server as a type t2-micro instance so that it can run within the AWS Free-tier plan (Learn more about the AWS free-tier plan [here](https://aws.amazon.com/free){: target="_blank" })
-- Sets up and configures the VPN server with an IP address in the speicified AWS region.
+- Sets up and configures the VPN server with an IP address in the specified AWS region.
 - Generates an AWS keypair file for optional SSH connection to the EC2 instance, downloads the file and saves it in the terraform working directory on your local machine. The chosen AWS region is appended to the name of the keypair file.
 - Generates an OpenVPN User Profile file (*.ovpn) that will be used to authenticate and establish an encrypted VPN connection from your local machine to the VPN server. The OpenPVN User Profile file is also donwloaded and saved to the terraform working directory on your local machine.
 - One command tear down that destroys and cleans up the whole infrastructure along with the locally created files (the keypair file and the *.ovpn user profile file)

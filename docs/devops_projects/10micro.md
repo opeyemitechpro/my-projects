@@ -7,7 +7,7 @@ comments: true
 tags:
   - AWS
   - DevOps
-  - OpenVPN
+  - Kubernetes
 status: new
 pin: true
 ---
