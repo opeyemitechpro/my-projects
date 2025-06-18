@@ -1234,6 +1234,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#to-uninstall-prometheus-stack-and-delete-namespace" class="md-nav__link">
+    <span class="md-ellipsis">
+      To Uninstall Prometheus-Stack and delete namespace
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2793,90 +2802,100 @@ This VPN server is also "disposable", meaning, you can create and delete it anyt
 <h3 id="steps-to-add-standalone-server-to-prometheus-scrape-targets">🚀 Steps to Add Standalone Server to Prometheus Scrape Targets:<a class="headerlink" href="#steps-to-add-standalone-server-to-prometheus-scrape-targets" title="Copy this link to reference this section">&para;</a></h3>
 <ol>
 <li>Create Additional Scrape Config via Secret</li>
-<li>Create a file named <code>additional-scrape-configs.yaml</code> with the following:</li>
+<li>Create a file named <code>additional-scrape-configs.yaml</code> with the following content:</li>
 </ol>
-<p>```</p>
-<ul>
-<li>
-<p>job_name: 'jenkins-node-exporter'
-  static_configs:</p>
-<ul>
-<li>targets: ['<server_ip>:9100']
-  labels:
-    instance: '<instance_name>'
-    role: 'node-exporter'
-    environment: 'dev'</li>
-</ul>
-</li>
-<li>
-<p>job_name: 'jenkins-prom-plugin'
-  metrics_path: /prometheus
-  static_configs:</p>
-<ul>
-<li>targets: ['<server_ip>:8080']
-  labels:
-    instance: 'instance_name'
-    role: 'jenkins-master'
-    environment: 'dev'</li>
-</ul>
-</li>
-</ul>
-<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-25-1">1</a></span>
-<span class="normal"><a href="#__codelineno-25-2">2</a></span>
-<span class="normal"><a href="#__codelineno-25-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1"></a>&gt; Replace `&lt;server-ip&gt;` with the IP address or DNS name of your standalone Linux server.
-<a id="__codelineno-25-2" name="__codelineno-25-2"></a>
-<a id="__codelineno-25-3" name="__codelineno-25-3"></a>## Now create a Kubernetes secret:
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-25-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-25-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-25-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-25-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-25-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-25-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-25-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-25-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-25-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-25-10">10</a></span>
+<span class="normal"><a href="#__codelineno-25-11">11</a></span>
+<span class="normal"><a href="#__codelineno-25-12">12</a></span>
+<span class="normal"><a href="#__codelineno-25-13">13</a></span>
+<span class="normal"><a href="#__codelineno-25-14">14</a></span>
+<span class="normal"><a href="#__codelineno-25-15">15</a></span>
+<span class="normal"><a href="#__codelineno-25-16">16</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1"></a>- job_name: &#39;jenkins-node-exporter&#39;
+<a id="__codelineno-25-2" name="__codelineno-25-2"></a>  static_configs:
+<a id="__codelineno-25-3" name="__codelineno-25-3"></a>    - targets: [&#39;&lt;server_ip&gt;:9100&#39;]
+<a id="__codelineno-25-4" name="__codelineno-25-4"></a>      labels:
+<a id="__codelineno-25-5" name="__codelineno-25-5"></a>        instance: &#39;&lt;instance_name&gt;&#39;
+<a id="__codelineno-25-6" name="__codelineno-25-6"></a>        role: &#39;node-exporter&#39;
+<a id="__codelineno-25-7" name="__codelineno-25-7"></a>        environment: &#39;dev&#39;
+<a id="__codelineno-25-8" name="__codelineno-25-8"></a>
+<a id="__codelineno-25-9" name="__codelineno-25-9"></a>- job_name: &#39;jenkins-prom-plugin&#39;
+<a id="__codelineno-25-10" name="__codelineno-25-10"></a>  metrics_path: /prometheus
+<a id="__codelineno-25-11" name="__codelineno-25-11"></a>  static_configs:
+<a id="__codelineno-25-12" name="__codelineno-25-12"></a>    - targets: [&#39;&lt;server_ip&gt;:8080&#39;]
+<a id="__codelineno-25-13" name="__codelineno-25-13"></a>      labels:
+<a id="__codelineno-25-14" name="__codelineno-25-14"></a>        instance: &#39;instance_name&#39;
+<a id="__codelineno-25-15" name="__codelineno-25-15"></a>        role: &#39;jenkins-master&#39;
+<a id="__codelineno-25-16" name="__codelineno-25-16"></a>        environment: &#39;dev&#39;
 </code></pre></div></td></tr></table></div>
-kubectl create secret generic additional-scrape-configs \
-  --from-file=additional-scrape-configs.yaml \
-  -n monitoring</p>
-<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-26-1">1</a></span>
+<div class="admonition note">
+<p>Replace <code>&lt;server-ip&gt;</code> with the IP address or DNS name of your standalone Linux server.</p>
+</div>
+<ol>
+<li>Now create a Kubernetes secret:</li>
+</ol>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-26-1">1</a></span>
 <span class="normal"><a href="#__codelineno-26-2">2</a></span>
-<span class="normal"><a href="#__codelineno-26-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1"></a>2. Edit Prometheus Custom Resource
-<a id="__codelineno-26-2" name="__codelineno-26-2"></a>
-<a id="__codelineno-26-3" name="__codelineno-26-3"></a>* First get the prometheus resource name
+<span class="normal"><a href="#__codelineno-26-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1"></a>kubectl create secret generic additional-scrape-configs \
+<a id="__codelineno-26-2" name="__codelineno-26-2"></a>  --from-file=additional-scrape-configs.yaml \
+<a id="__codelineno-26-3" name="__codelineno-26-3"></a>  -n monitoring
 </code></pre></div></td></tr></table></div>
-kubectl get prometheus -n monitoring
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-27-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1"></a>* Then edit the prometheus custom resource
+<ol>
+<li>
+<p>Edit Prometheus Custom Resource</p>
+</li>
+<li>
+<p>First get the prometheus resource name</p>
+</li>
+</ol>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-27-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1"></a>kubectl get prometheus -n monitoring
 </code></pre></div></td></tr></table></div>
-kubectl edit prometheus prometheus-kube-prometheus-prometheus -n monitoring
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-28-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1"></a>Under `spec` add:
+<ul>
+<li>Then edit the prometheus custom resource</li>
+</ul>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-28-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1"></a>kubectl edit prometheus prometheus-kube-prometheus-prometheus -n monitoring
 </code></pre></div></td></tr></table></div>
-  additionalScrapeConfigs:
-    name: additional-scrape-configs
-    key: additional-scrape-configs.yaml
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-29-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1"></a>* So the result should look like this:
+<p>Under <code>spec</code> add:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-29-1">1</a></span>
+<span class="normal"><a href="#__codelineno-29-2">2</a></span>
+<span class="normal"><a href="#__codelineno-29-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1"></a>  additionalScrapeConfigs:
+<a id="__codelineno-29-2" name="__codelineno-29-2"></a>    name: additional-scrape-configs
+<a id="__codelineno-29-3" name="__codelineno-29-3"></a>    key: additional-scrape-configs.yaml
 </code></pre></div></td></tr></table></div>
-spec:
-  ...
-  additionalScrapeConfigs:
-    name: additional-scrape-configs
-    key: additional-scrape-configs.yaml
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-30-1"> 1</a></span>
-<span class="normal"><a href="#__codelineno-30-2"> 2</a></span>
-<span class="normal"><a href="#__codelineno-30-3"> 3</a></span>
-<span class="normal"><a href="#__codelineno-30-4"> 4</a></span>
-<span class="normal"><a href="#__codelineno-30-5"> 5</a></span>
-<span class="normal"><a href="#__codelineno-30-6"> 6</a></span>
-<span class="normal"><a href="#__codelineno-30-7"> 7</a></span>
-<span class="normal"><a href="#__codelineno-30-8"> 8</a></span>
-<span class="normal"><a href="#__codelineno-30-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-30-10">10</a></span>
-<span class="normal"><a href="#__codelineno-30-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1"></a>3. Apply and Verify
-<a id="__codelineno-30-2" name="__codelineno-30-2"></a>Prometheus will reload its config automatically by deafult. Wait a minute, then:
-<a id="__codelineno-30-3" name="__codelineno-30-3"></a>
-<a id="__codelineno-30-4" name="__codelineno-30-4"></a>* Go to the Prometheus UI (`/targets` page).
-<a id="__codelineno-30-5" name="__codelineno-30-5"></a>* Look for the job `node-exporter-standalone`.
-<a id="__codelineno-30-6" name="__codelineno-30-6"></a>* Ensure it’s marked as UP.
-<a id="__codelineno-30-7" name="__codelineno-30-7"></a>
-<a id="__codelineno-30-8" name="__codelineno-30-8"></a>&lt;br&gt;&lt;br&gt;&lt;br&gt;
-<a id="__codelineno-30-9" name="__codelineno-30-9"></a>
-<a id="__codelineno-30-10" name="__codelineno-30-10"></a>
-<a id="__codelineno-30-11" name="__codelineno-30-11"></a>### To Uninstall Prometheus-Stack and delete namespace
+<p>So the result should look like this:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-30-1">1</a></span>
+<span class="normal"><a href="#__codelineno-30-2">2</a></span>
+<span class="normal"><a href="#__codelineno-30-3">3</a></span>
+<span class="normal"><a href="#__codelineno-30-4">4</a></span>
+<span class="normal"><a href="#__codelineno-30-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1"></a>spec:
+<a id="__codelineno-30-2" name="__codelineno-30-2"></a>  ...
+<a id="__codelineno-30-3" name="__codelineno-30-3"></a>  additionalScrapeConfigs:
+<a id="__codelineno-30-4" name="__codelineno-30-4"></a>    name: additional-scrape-configs
+<a id="__codelineno-30-5" name="__codelineno-30-5"></a>    key: additional-scrape-configs.yaml
 </code></pre></div></td></tr></table></div>
-helm uninstall prometheus -n monitoring
-kubectl delete namespace monitoring
-```</p>
+<ol>
+<li>Apply and Verify</li>
+</ol>
+<p>Prometheus will reload its config automatically by deafult. Wait a minute, then:</p>
+<ul>
+<li>Go to the Prometheus UI (<code>/targets</code> page).</li>
+<li>Look for the job <code>node-exporter-standalone</code>.</li>
+<li>Ensure it’s marked as UP.</li>
+</ul>
+<p><br><br><br></p>
+<h3 id="to-uninstall-prometheus-stack-and-delete-namespace">To Uninstall Prometheus-Stack and delete namespace<a class="headerlink" href="#to-uninstall-prometheus-stack-and-delete-namespace" title="Copy this link to reference this section">&para;</a></h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-31-1">1</a></span>
+<span class="normal"><a href="#__codelineno-31-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1"></a>helm uninstall prometheus -n monitoring
+<a id="__codelineno-31-2" name="__codelineno-31-2"></a>kubectl delete namespace monitoring
+</code></pre></div></td></tr></table></div>
 <h6 id="_2"><a class="headerlink" href="#_2" title="Copy this link to reference this section">&para;</a></h6>
 <h2 id="running-the-script"><strong>Running the script</strong><a class="headerlink" href="#running-the-script" title="Copy this link to reference this section">&para;</a></h2>
 <p>Follow the <mark><strong>"Quick Start Guide"</strong></mark> below to provision and configure your OpenVPN server and to connect to your new VPN network.</p>
@@ -2885,12 +2904,12 @@ kubectl delete namespace monitoring
 <summary>Click here for a quick start guide on setting up the OpenVPN Access Server</summary>
 <h3 id="clone-the-repository">Clone the Repository<a class="headerlink" href="#clone-the-repository" title="Copy this link to reference this section">&para;</a></h3>
 <p>Create a folder on your local machine and clone the repository in the folder</p>
-<p><code>sh
-git clone https://github.com/opeyemitechpro/OpenVPN-Terraform.git</code></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-32-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/opeyemitechpro/OpenVPN-Terraform.git
+</code></pre></div></td></tr></table></div>
 <h3 id="initialize-the-terraform-configuration">Initialize the terraform configuration<a class="headerlink" href="#initialize-the-terraform-configuration" title="Copy this link to reference this section">&para;</a></h3>
 <p>From within the cloned directory, initialize the terraform configuration</p>
-<p><code>sh
-terraform init</code></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-33-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1"></a>terraform<span class="w"> </span>init
+</code></pre></div></td></tr></table></div>
 <figure>
 <p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" data-title="Terraform Initialiaztion Command" data-desc-position="bottom"><img alt="Terraform Initialiaztion Command" src="../../assets/images/ovpn-terraform-init.png" title="Terraform Initialiaztion Command" /></a></p>
 <figcaption>
@@ -2898,8 +2917,8 @@ terraform init</code></p>
 </figcaption>
 </figure>
 <h3 id="apply-the-terraform-configuration">Apply the Terraform Configuration<a class="headerlink" href="#apply-the-terraform-configuration" title="Copy this link to reference this section">&para;</a></h3>
-<p><code>sh
-terraform apply -auto-approve</code></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-34-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1"></a>terraform<span class="w"> </span>apply<span class="w"> </span>-auto-approve
+</code></pre></div></td></tr></table></div>
 <ul>
 <li>When prompted, enter an AWS region from the list below and press enter.  (e.g. <code>us-west-2</code>)</li>
 <li>This will be the AWS region where the VPN server and all resources will be hosted. </li>
@@ -2992,8 +3011,8 @@ terraform apply -auto-approve</code></p>
 <p>Then enter the command below to delete all locally created files and also delete the server and all other resources from your AWS account.  </p>
 </li>
 </ol>
-<p><code>sh
-terraform destroy -auto-approve</code></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-35-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1"></a>terraform<span class="w"> </span>destroy<span class="w"> </span>-auto-approve<span class="w"> </span>
+</code></pre></div></td></tr></table></div>
 <ul>
 <li>This will terminate the EC2 instance and delete all resources created and also delete the files that were locally created in the terraform working directory i.e. the *.ovpn user profile and the keypair file that was created earlier </li>
 </ul>
@@ -3061,7 +3080,7 @@ terraform destroy -auto-approve</code></p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="June 18, 2025 22:00:35 UTC"><span class="timeago" datetime="2025-06-18T22:00:35+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="June 18, 2025 22:00:35 UTC">2025-06-18</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="June 18, 2025 22:07:57 UTC"><span class="timeago" datetime="2025-06-18T22:07:57+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="June 18, 2025 22:07:57 UTC">2025-06-18</span>
   </span>
 
     
