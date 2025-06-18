@@ -981,12 +981,15 @@ kubectl get svc -n monitoring
 ```
 kubectl --namespace monitoring get secrets prometheus-grafana -o jsonpath="{.data.admin-password}" | base64 -d ; echo
 ```
-> Username is admin
+
+??? info
+    - Username is `admin`
 
 
 ---
 <br><br><br>
-# To get the VPC ID of an EC2 instance using the Instance Metadata Service (IMDS)
+
+## To get the VPC ID of an EC2 instance using the Instance Metadata Service (IMDS)
 
 1. Get the MAC address of the primary network interface:
 ```
@@ -1004,7 +1007,7 @@ curl -s http://169.254.169.254/latest/meta-data/network/interfaces/macs/$(curl -
 ---
 <br><br><br>
 
-# Install & Configure Node-Exporter on linux
+## Install & Configure Node-Exporter on linux
 ```
 
 #!/bin/bash
@@ -1056,9 +1059,9 @@ curl -s http://localhost:9100/metrics | head -n 5
 ---
 <br><br><br>
 
-# To Scrape metrics from a standalone Linux server running node_exporter using a Prometheus instance running inside EKS
+## To Scrape metrics from a standalone Linux server running node_exporter using a Prometheus instance running inside EKS
 
-✅ Prerequisites:
+### ✅ Prerequisites:
 * Prometheus is installed via Helm chart (likely the kube-prometheus-stack).
 * node_exporter is running and accessible on the Linux server (default port: 9100).
 * The Linux server's IP address is publicly accessible or reachable from within the EKS cluster (e.g., via VPC Peering, VPN, or internal networking).
@@ -1092,7 +1095,7 @@ curl -s http://localhost:9100/metrics | head -n 5
 
 > Replace `<server-ip>` with the IP address or DNS name of your standalone Linux server.
 
-* Now create a Kubernetes secret:
+## Now create a Kubernetes secret:
 
 ```
 kubectl create secret generic additional-scrape-configs \
@@ -1139,7 +1142,8 @@ Prometheus will reload its config automatically by deafult. Wait a minute, then:
 
 <br><br><br>
 
-# To Uninstall Prometheus-Stack and delete namespace
+
+### To Uninstall Prometheus-Stack and delete namespace
 
 ```
 helm uninstall prometheus -n monitoring
