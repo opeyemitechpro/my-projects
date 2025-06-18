@@ -1198,30 +1198,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#to-get-the-vpc-id-of-an-ec2-instance-using-the-instance-metadata-service-imds" class="md-nav__link">
-    <span class="md-ellipsis">
-      To get the VPC ID of an EC2 instance using the Instance Metadata Service (IMDS)
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="To get the VPC ID of an EC2 instance using the Instance Metadata Service (IMDS)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#or-simply" class="md-nav__link">
-    <span class="md-ellipsis">
-      OR Simply
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#install-configure-node-exporter-on-linux" class="md-nav__link">
     <span class="md-ellipsis">
       Install &amp; Configure Node-Exporter on linux
@@ -2710,114 +2686,100 @@ This VPN server is also "disposable", meaning, you can create and delete it anyt
 <h4 id="get-grafana-password-by-running">Get Grafana password by running:<a class="headerlink" href="#get-grafana-password-by-running" title="Copy this link to reference this section">&para;</a></h4>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-23-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1"></a>kubectl --namespace monitoring get secrets prometheus-grafana -o jsonpath=&quot;{.data.admin-password}&quot; | base64 -d ; echo
 </code></pre></div></td></tr></table></div>
-<details class="info">
-<summary>Info</summary>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
 <ul>
 <li>Username is <code>admin</code></li>
 </ul>
-</details>
-<hr />
-<p><br><br><br></p>
-<h2 id="to-get-the-vpc-id-of-an-ec2-instance-using-the-instance-metadata-service-imds">To get the VPC ID of an EC2 instance using the Instance Metadata Service (IMDS)<a class="headerlink" href="#to-get-the-vpc-id-of-an-ec2-instance-using-the-instance-metadata-service-imds" title="Copy this link to reference this section">&para;</a></h2>
-<ol>
-<li>Get the MAC address of the primary network interface:
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-24-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1"></a>curl -s http://169.254.169.254/latest/meta-data/network/interfaces/macs/
-</code></pre></div></td></tr></table></div></li>
-<li>Use the MAC address to get the VPC ID:
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-25-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1"></a>curl -s http://169.254.169.254/latest/meta-data/network/interfaces/macs/0a:1b:2c:3d:4e:5f/vpc-id
-</code></pre></div></td></tr></table></div></li>
-</ol>
-<h4 id="or-simply">OR Simply<a class="headerlink" href="#or-simply" title="Copy this link to reference this section">&para;</a></h4>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-26-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1"></a>curl -s http://169.254.169.254/latest/meta-data/network/interfaces/macs/$(curl -s http://169.254.169.254/latest/meta-data/network/interfaces/macs/)/vpc-id
-</code></pre></div></td></tr></table></div>
+</div>
 <hr />
 <p><br><br><br></p>
 <h2 id="install-configure-node-exporter-on-linux">Install &amp; Configure Node-Exporter on linux<a class="headerlink" href="#install-configure-node-exporter-on-linux" title="Copy this link to reference this section">&para;</a></h2>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-27-1"> 1</a></span>
-<span class="normal"><a href="#__codelineno-27-2"> 2</a></span>
-<span class="normal"><a href="#__codelineno-27-3"> 3</a></span>
-<span class="normal"><a href="#__codelineno-27-4"> 4</a></span>
-<span class="normal"><a href="#__codelineno-27-5"> 5</a></span>
-<span class="normal"><a href="#__codelineno-27-6"> 6</a></span>
-<span class="normal"><a href="#__codelineno-27-7"> 7</a></span>
-<span class="normal"><a href="#__codelineno-27-8"> 8</a></span>
-<span class="normal"><a href="#__codelineno-27-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-27-10">10</a></span>
-<span class="normal"><a href="#__codelineno-27-11">11</a></span>
-<span class="normal"><a href="#__codelineno-27-12">12</a></span>
-<span class="normal"><a href="#__codelineno-27-13">13</a></span>
-<span class="normal"><a href="#__codelineno-27-14">14</a></span>
-<span class="normal"><a href="#__codelineno-27-15">15</a></span>
-<span class="normal"><a href="#__codelineno-27-16">16</a></span>
-<span class="normal"><a href="#__codelineno-27-17">17</a></span>
-<span class="normal"><a href="#__codelineno-27-18">18</a></span>
-<span class="normal"><a href="#__codelineno-27-19">19</a></span>
-<span class="normal"><a href="#__codelineno-27-20">20</a></span>
-<span class="normal"><a href="#__codelineno-27-21">21</a></span>
-<span class="normal"><a href="#__codelineno-27-22">22</a></span>
-<span class="normal"><a href="#__codelineno-27-23">23</a></span>
-<span class="normal"><a href="#__codelineno-27-24">24</a></span>
-<span class="normal"><a href="#__codelineno-27-25">25</a></span>
-<span class="normal"><a href="#__codelineno-27-26">26</a></span>
-<span class="normal"><a href="#__codelineno-27-27">27</a></span>
-<span class="normal"><a href="#__codelineno-27-28">28</a></span>
-<span class="normal"><a href="#__codelineno-27-29">29</a></span>
-<span class="normal"><a href="#__codelineno-27-30">30</a></span>
-<span class="normal"><a href="#__codelineno-27-31">31</a></span>
-<span class="normal"><a href="#__codelineno-27-32">32</a></span>
-<span class="normal"><a href="#__codelineno-27-33">33</a></span>
-<span class="normal"><a href="#__codelineno-27-34">34</a></span>
-<span class="normal"><a href="#__codelineno-27-35">35</a></span>
-<span class="normal"><a href="#__codelineno-27-36">36</a></span>
-<span class="normal"><a href="#__codelineno-27-37">37</a></span>
-<span class="normal"><a href="#__codelineno-27-38">38</a></span>
-<span class="normal"><a href="#__codelineno-27-39">39</a></span>
-<span class="normal"><a href="#__codelineno-27-40">40</a></span>
-<span class="normal"><a href="#__codelineno-27-41">41</a></span>
-<span class="normal"><a href="#__codelineno-27-42">42</a></span>
-<span class="normal"><a href="#__codelineno-27-43">43</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1"></a>#!/bin/bash
-<a id="__codelineno-27-2" name="__codelineno-27-2"></a>
-<a id="__codelineno-27-3" name="__codelineno-27-3"></a>set -e
-<a id="__codelineno-27-4" name="__codelineno-27-4"></a>
-<a id="__codelineno-27-5" name="__codelineno-27-5"></a>NODE_EXPORTER_VERSION=&quot;1.8.1&quot;
-<a id="__codelineno-27-6" name="__codelineno-27-6"></a>DOWNLOAD_URL=&quot;https://github.com/prometheus/node_exporter/releases/download/v${NODE_EXPORTER_VERSION}/node_exporter-${NODE_EXPORTER_VERSION}.linux-amd64.tar.gz&quot;
-<a id="__codelineno-27-7" name="__codelineno-27-7"></a>
-<a id="__codelineno-27-8" name="__codelineno-27-8"></a>echo &quot;🚀 Installing Node Exporter v${NODE_EXPORTER_VERSION}...&quot;
-<a id="__codelineno-27-9" name="__codelineno-27-9"></a>
-<a id="__codelineno-27-10" name="__codelineno-27-10"></a># Download and extract
-<a id="__codelineno-27-11" name="__codelineno-27-11"></a>curl -LO ${DOWNLOAD_URL}
-<a id="__codelineno-27-12" name="__codelineno-27-12"></a>tar -xzf node_exporter-${NODE_EXPORTER_VERSION}.linux-amd64.tar.gz
-<a id="__codelineno-27-13" name="__codelineno-27-13"></a>sudo mv node_exporter-${NODE_EXPORTER_VERSION}.linux-amd64/node_exporter /usr/local/bin/
-<a id="__codelineno-27-14" name="__codelineno-27-14"></a>rm -rf node_exporter-${NODE_EXPORTER_VERSION}.linux-amd64*
-<a id="__codelineno-27-15" name="__codelineno-27-15"></a>
-<a id="__codelineno-27-16" name="__codelineno-27-16"></a># Create user
-<a id="__codelineno-27-17" name="__codelineno-27-17"></a>sudo useradd -rs /bin/false node_exporter || true
-<a id="__codelineno-27-18" name="__codelineno-27-18"></a>
-<a id="__codelineno-27-19" name="__codelineno-27-19"></a># Create systemd service
-<a id="__codelineno-27-20" name="__codelineno-27-20"></a>cat &lt;&lt;EOF | sudo tee /etc/systemd/system/node_exporter.service
-<a id="__codelineno-27-21" name="__codelineno-27-21"></a>[Unit]
-<a id="__codelineno-27-22" name="__codelineno-27-22"></a>Description=Node Exporter
-<a id="__codelineno-27-23" name="__codelineno-27-23"></a>Wants=network-online.target
-<a id="__codelineno-27-24" name="__codelineno-27-24"></a>After=network-online.target
-<a id="__codelineno-27-25" name="__codelineno-27-25"></a>
-<a id="__codelineno-27-26" name="__codelineno-27-26"></a>[Service]
-<a id="__codelineno-27-27" name="__codelineno-27-27"></a>User=node_exporter
-<a id="__codelineno-27-28" name="__codelineno-27-28"></a>Group=node_exporter
-<a id="__codelineno-27-29" name="__codelineno-27-29"></a>Type=simple
-<a id="__codelineno-27-30" name="__codelineno-27-30"></a>ExecStart=/usr/local/bin/node_exporter
-<a id="__codelineno-27-31" name="__codelineno-27-31"></a>
-<a id="__codelineno-27-32" name="__codelineno-27-32"></a>[Install]
-<a id="__codelineno-27-33" name="__codelineno-27-33"></a>WantedBy=default.target
-<a id="__codelineno-27-34" name="__codelineno-27-34"></a>EOF
-<a id="__codelineno-27-35" name="__codelineno-27-35"></a>
-<a id="__codelineno-27-36" name="__codelineno-27-36"></a># Reload and start
-<a id="__codelineno-27-37" name="__codelineno-27-37"></a>sudo systemctl daemon-reload
-<a id="__codelineno-27-38" name="__codelineno-27-38"></a>sudo systemctl enable --now node_exporter
-<a id="__codelineno-27-39" name="__codelineno-27-39"></a>
-<a id="__codelineno-27-40" name="__codelineno-27-40"></a>
-<a id="__codelineno-27-41" name="__codelineno-27-41"></a># Verify
-<a id="__codelineno-27-42" name="__codelineno-27-42"></a>echo &quot;✅ Node Exporter is running!&quot;
-<a id="__codelineno-27-43" name="__codelineno-27-43"></a>curl -s http://localhost:9100/metrics | head -n 5
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-24-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-24-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-24-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-24-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-24-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-24-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-24-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-24-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-24-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-24-10">10</a></span>
+<span class="normal"><a href="#__codelineno-24-11">11</a></span>
+<span class="normal"><a href="#__codelineno-24-12">12</a></span>
+<span class="normal"><a href="#__codelineno-24-13">13</a></span>
+<span class="normal"><a href="#__codelineno-24-14">14</a></span>
+<span class="normal"><a href="#__codelineno-24-15">15</a></span>
+<span class="normal"><a href="#__codelineno-24-16">16</a></span>
+<span class="normal"><a href="#__codelineno-24-17">17</a></span>
+<span class="normal"><a href="#__codelineno-24-18">18</a></span>
+<span class="normal"><a href="#__codelineno-24-19">19</a></span>
+<span class="normal"><a href="#__codelineno-24-20">20</a></span>
+<span class="normal"><a href="#__codelineno-24-21">21</a></span>
+<span class="normal"><a href="#__codelineno-24-22">22</a></span>
+<span class="normal"><a href="#__codelineno-24-23">23</a></span>
+<span class="normal"><a href="#__codelineno-24-24">24</a></span>
+<span class="normal"><a href="#__codelineno-24-25">25</a></span>
+<span class="normal"><a href="#__codelineno-24-26">26</a></span>
+<span class="normal"><a href="#__codelineno-24-27">27</a></span>
+<span class="normal"><a href="#__codelineno-24-28">28</a></span>
+<span class="normal"><a href="#__codelineno-24-29">29</a></span>
+<span class="normal"><a href="#__codelineno-24-30">30</a></span>
+<span class="normal"><a href="#__codelineno-24-31">31</a></span>
+<span class="normal"><a href="#__codelineno-24-32">32</a></span>
+<span class="normal"><a href="#__codelineno-24-33">33</a></span>
+<span class="normal"><a href="#__codelineno-24-34">34</a></span>
+<span class="normal"><a href="#__codelineno-24-35">35</a></span>
+<span class="normal"><a href="#__codelineno-24-36">36</a></span>
+<span class="normal"><a href="#__codelineno-24-37">37</a></span>
+<span class="normal"><a href="#__codelineno-24-38">38</a></span>
+<span class="normal"><a href="#__codelineno-24-39">39</a></span>
+<span class="normal"><a href="#__codelineno-24-40">40</a></span>
+<span class="normal"><a href="#__codelineno-24-41">41</a></span>
+<span class="normal"><a href="#__codelineno-24-42">42</a></span>
+<span class="normal"><a href="#__codelineno-24-43">43</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1"></a>#!/bin/bash
+<a id="__codelineno-24-2" name="__codelineno-24-2"></a>
+<a id="__codelineno-24-3" name="__codelineno-24-3"></a>set -e
+<a id="__codelineno-24-4" name="__codelineno-24-4"></a>
+<a id="__codelineno-24-5" name="__codelineno-24-5"></a>NODE_EXPORTER_VERSION=&quot;1.8.1&quot;
+<a id="__codelineno-24-6" name="__codelineno-24-6"></a>DOWNLOAD_URL=&quot;https://github.com/prometheus/node_exporter/releases/download/v${NODE_EXPORTER_VERSION}/node_exporter-${NODE_EXPORTER_VERSION}.linux-amd64.tar.gz&quot;
+<a id="__codelineno-24-7" name="__codelineno-24-7"></a>
+<a id="__codelineno-24-8" name="__codelineno-24-8"></a>echo &quot;🚀 Installing Node Exporter v${NODE_EXPORTER_VERSION}...&quot;
+<a id="__codelineno-24-9" name="__codelineno-24-9"></a>
+<a id="__codelineno-24-10" name="__codelineno-24-10"></a># Download and extract
+<a id="__codelineno-24-11" name="__codelineno-24-11"></a>curl -LO ${DOWNLOAD_URL}
+<a id="__codelineno-24-12" name="__codelineno-24-12"></a>tar -xzf node_exporter-${NODE_EXPORTER_VERSION}.linux-amd64.tar.gz
+<a id="__codelineno-24-13" name="__codelineno-24-13"></a>sudo mv node_exporter-${NODE_EXPORTER_VERSION}.linux-amd64/node_exporter /usr/local/bin/
+<a id="__codelineno-24-14" name="__codelineno-24-14"></a>rm -rf node_exporter-${NODE_EXPORTER_VERSION}.linux-amd64*
+<a id="__codelineno-24-15" name="__codelineno-24-15"></a>
+<a id="__codelineno-24-16" name="__codelineno-24-16"></a># Create user
+<a id="__codelineno-24-17" name="__codelineno-24-17"></a>sudo useradd -rs /bin/false node_exporter || true
+<a id="__codelineno-24-18" name="__codelineno-24-18"></a>
+<a id="__codelineno-24-19" name="__codelineno-24-19"></a># Create systemd service
+<a id="__codelineno-24-20" name="__codelineno-24-20"></a>cat &lt;&lt;EOF | sudo tee /etc/systemd/system/node_exporter.service
+<a id="__codelineno-24-21" name="__codelineno-24-21"></a>[Unit]
+<a id="__codelineno-24-22" name="__codelineno-24-22"></a>Description=Node Exporter
+<a id="__codelineno-24-23" name="__codelineno-24-23"></a>Wants=network-online.target
+<a id="__codelineno-24-24" name="__codelineno-24-24"></a>After=network-online.target
+<a id="__codelineno-24-25" name="__codelineno-24-25"></a>
+<a id="__codelineno-24-26" name="__codelineno-24-26"></a>[Service]
+<a id="__codelineno-24-27" name="__codelineno-24-27"></a>User=node_exporter
+<a id="__codelineno-24-28" name="__codelineno-24-28"></a>Group=node_exporter
+<a id="__codelineno-24-29" name="__codelineno-24-29"></a>Type=simple
+<a id="__codelineno-24-30" name="__codelineno-24-30"></a>ExecStart=/usr/local/bin/node_exporter
+<a id="__codelineno-24-31" name="__codelineno-24-31"></a>
+<a id="__codelineno-24-32" name="__codelineno-24-32"></a>[Install]
+<a id="__codelineno-24-33" name="__codelineno-24-33"></a>WantedBy=default.target
+<a id="__codelineno-24-34" name="__codelineno-24-34"></a>EOF
+<a id="__codelineno-24-35" name="__codelineno-24-35"></a>
+<a id="__codelineno-24-36" name="__codelineno-24-36"></a># Reload and start
+<a id="__codelineno-24-37" name="__codelineno-24-37"></a>sudo systemctl daemon-reload
+<a id="__codelineno-24-38" name="__codelineno-24-38"></a>sudo systemctl enable --now node_exporter
+<a id="__codelineno-24-39" name="__codelineno-24-39"></a>
+<a id="__codelineno-24-40" name="__codelineno-24-40"></a>
+<a id="__codelineno-24-41" name="__codelineno-24-41"></a># Verify
+<a id="__codelineno-24-42" name="__codelineno-24-42"></a>echo &quot;✅ Node Exporter is running!&quot;
+<a id="__codelineno-24-43" name="__codelineno-24-43"></a>curl -s http://localhost:9100/metrics | head -n 5
 </code></pre></div></td></tr></table></div>
 <hr />
 <p><br><br><br></p>
@@ -2860,58 +2822,58 @@ This VPN server is also "disposable", meaning, you can create and delete it anyt
 </ul>
 </li>
 </ul>
-<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-28-1">1</a></span>
-<span class="normal"><a href="#__codelineno-28-2">2</a></span>
-<span class="normal"><a href="#__codelineno-28-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1"></a>&gt; Replace `&lt;server-ip&gt;` with the IP address or DNS name of your standalone Linux server.
-<a id="__codelineno-28-2" name="__codelineno-28-2"></a>
-<a id="__codelineno-28-3" name="__codelineno-28-3"></a>## Now create a Kubernetes secret:
+<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-25-1">1</a></span>
+<span class="normal"><a href="#__codelineno-25-2">2</a></span>
+<span class="normal"><a href="#__codelineno-25-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1"></a>&gt; Replace `&lt;server-ip&gt;` with the IP address or DNS name of your standalone Linux server.
+<a id="__codelineno-25-2" name="__codelineno-25-2"></a>
+<a id="__codelineno-25-3" name="__codelineno-25-3"></a>## Now create a Kubernetes secret:
 </code></pre></div></td></tr></table></div>
 kubectl create secret generic additional-scrape-configs \
   --from-file=additional-scrape-configs.yaml \
   -n monitoring</p>
-<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-29-1">1</a></span>
-<span class="normal"><a href="#__codelineno-29-2">2</a></span>
-<span class="normal"><a href="#__codelineno-29-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1"></a>2. Edit Prometheus Custom Resource
-<a id="__codelineno-29-2" name="__codelineno-29-2"></a>
-<a id="__codelineno-29-3" name="__codelineno-29-3"></a>* First get the prometheus resource name
+<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-26-1">1</a></span>
+<span class="normal"><a href="#__codelineno-26-2">2</a></span>
+<span class="normal"><a href="#__codelineno-26-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1"></a>2. Edit Prometheus Custom Resource
+<a id="__codelineno-26-2" name="__codelineno-26-2"></a>
+<a id="__codelineno-26-3" name="__codelineno-26-3"></a>* First get the prometheus resource name
 </code></pre></div></td></tr></table></div>
 kubectl get prometheus -n monitoring
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-30-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1"></a>* Then edit the prometheus custom resource
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-27-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1"></a>* Then edit the prometheus custom resource
 </code></pre></div></td></tr></table></div>
 kubectl edit prometheus prometheus-kube-prometheus-prometheus -n monitoring
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-31-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1"></a>Under `spec` add:
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-28-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1"></a>Under `spec` add:
 </code></pre></div></td></tr></table></div>
   additionalScrapeConfigs:
     name: additional-scrape-configs
     key: additional-scrape-configs.yaml
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-32-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1"></a>* So the result should look like this:
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-29-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1"></a>* So the result should look like this:
 </code></pre></div></td></tr></table></div>
 spec:
   ...
   additionalScrapeConfigs:
     name: additional-scrape-configs
     key: additional-scrape-configs.yaml
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-33-1"> 1</a></span>
-<span class="normal"><a href="#__codelineno-33-2"> 2</a></span>
-<span class="normal"><a href="#__codelineno-33-3"> 3</a></span>
-<span class="normal"><a href="#__codelineno-33-4"> 4</a></span>
-<span class="normal"><a href="#__codelineno-33-5"> 5</a></span>
-<span class="normal"><a href="#__codelineno-33-6"> 6</a></span>
-<span class="normal"><a href="#__codelineno-33-7"> 7</a></span>
-<span class="normal"><a href="#__codelineno-33-8"> 8</a></span>
-<span class="normal"><a href="#__codelineno-33-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-33-10">10</a></span>
-<span class="normal"><a href="#__codelineno-33-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1"></a>3. Apply and Verify
-<a id="__codelineno-33-2" name="__codelineno-33-2"></a>Prometheus will reload its config automatically by deafult. Wait a minute, then:
-<a id="__codelineno-33-3" name="__codelineno-33-3"></a>
-<a id="__codelineno-33-4" name="__codelineno-33-4"></a>* Go to the Prometheus UI (`/targets` page).
-<a id="__codelineno-33-5" name="__codelineno-33-5"></a>* Look for the job `node-exporter-standalone`.
-<a id="__codelineno-33-6" name="__codelineno-33-6"></a>* Ensure it’s marked as UP.
-<a id="__codelineno-33-7" name="__codelineno-33-7"></a>
-<a id="__codelineno-33-8" name="__codelineno-33-8"></a>&lt;br&gt;&lt;br&gt;&lt;br&gt;
-<a id="__codelineno-33-9" name="__codelineno-33-9"></a>
-<a id="__codelineno-33-10" name="__codelineno-33-10"></a>
-<a id="__codelineno-33-11" name="__codelineno-33-11"></a>### To Uninstall Prometheus-Stack and delete namespace
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-30-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-30-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-30-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-30-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-30-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-30-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-30-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-30-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-30-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-30-10">10</a></span>
+<span class="normal"><a href="#__codelineno-30-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1"></a>3. Apply and Verify
+<a id="__codelineno-30-2" name="__codelineno-30-2"></a>Prometheus will reload its config automatically by deafult. Wait a minute, then:
+<a id="__codelineno-30-3" name="__codelineno-30-3"></a>
+<a id="__codelineno-30-4" name="__codelineno-30-4"></a>* Go to the Prometheus UI (`/targets` page).
+<a id="__codelineno-30-5" name="__codelineno-30-5"></a>* Look for the job `node-exporter-standalone`.
+<a id="__codelineno-30-6" name="__codelineno-30-6"></a>* Ensure it’s marked as UP.
+<a id="__codelineno-30-7" name="__codelineno-30-7"></a>
+<a id="__codelineno-30-8" name="__codelineno-30-8"></a>&lt;br&gt;&lt;br&gt;&lt;br&gt;
+<a id="__codelineno-30-9" name="__codelineno-30-9"></a>
+<a id="__codelineno-30-10" name="__codelineno-30-10"></a>
+<a id="__codelineno-30-11" name="__codelineno-30-11"></a>### To Uninstall Prometheus-Stack and delete namespace
 </code></pre></div></td></tr></table></div>
 helm uninstall prometheus -n monitoring
 kubectl delete namespace monitoring
@@ -3100,7 +3062,7 @@ terraform destroy -auto-approve</code></p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="June 18, 2025 21:52:39 UTC"><span class="timeago" datetime="2025-06-18T21:52:39+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="June 18, 2025 21:52:39 UTC">2025-06-18</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="June 18, 2025 21:54:57 UTC"><span class="timeago" datetime="2025-06-18T21:54:57+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="June 18, 2025 21:54:57 UTC">2025-06-18</span>
   </span>
 
     
