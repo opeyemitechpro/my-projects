@@ -982,30 +982,13 @@ kubectl get svc -n monitoring
 kubectl --namespace monitoring get secrets prometheus-grafana -o jsonpath="{.data.admin-password}" | base64 -d ; echo
 ```
 
-??? info
+!!! info
     - Username is `admin`
 
 
 ---
 <br><br><br>
 
-## To get the VPC ID of an EC2 instance using the Instance Metadata Service (IMDS)
-
-1. Get the MAC address of the primary network interface:
-```
-curl -s http://169.254.169.254/latest/meta-data/network/interfaces/macs/
-```
-2. Use the MAC address to get the VPC ID:
-```
-curl -s http://169.254.169.254/latest/meta-data/network/interfaces/macs/0a:1b:2c:3d:4e:5f/vpc-id
-```
-#### OR Simply
-```
-curl -s http://169.254.169.254/latest/meta-data/network/interfaces/macs/$(curl -s http://169.254.169.254/latest/meta-data/network/interfaces/macs/)/vpc-id
-```
-
----
-<br><br><br>
 
 ## Install & Configure Node-Exporter on linux
 ```
