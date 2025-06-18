@@ -876,6 +876,279 @@ Public IP address showing Canada
 
 The list of acceptable AWS regions are shown [here](https://opeyemitechpro.github.io/my-projects/terraform_projects/openvpn_access_server/#list-of-accepted-aws-regions)
 
+
+
+
+
+
+######################################################
+
+
+## Install and setup Prometheus Stack on EKS using Helm
+
+
+### Install Helm
+```
+curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
+```
+
+### Check Helm version
+```
+helm version
+```
+
+
+
+### Add Helm repo
+```
+
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+
+helm repo update
+
+```
+
+> ***(Optionally) Search Available Hem Charts***
+```
+helm search repo prometheus-community
+```
+
+### create namespace
+```
+kubectl create namespace monitoring
+```
+
+### Install Prometheus Stack into monitoring namespace 
+```
+helm install prometheus prometheus-community/kube-prometheus-stack \
+  -n monitoring \
+  --set prometheus.prometheusSpec.maximumStartupDurationSeconds=300 \
+  --set alertmanager.persistence.storageClass="gp2" \
+  --set server.persistentVolume.storageClass="gp2"
+```
+
+### Check running status of pods to verify deployment
+
+```
+kubectl --namespace monitoring get pods -l "release=prometheus"
+```
+
+OR
+```
+kubectl get pods -n monitoring
+```
+
+
+### List all svc in the monitoring namespace
+```
+kubectl get svc -n monitoring
+```
+
+
+### Display Grafana URL (optional)
+```
+kubectl get svc -n monitoring prometheus-grafana
+```
+
+### Display Prometheus URL (optional)
+```
+kubectl get svc -n monitoring prometheus-kube-prometheus-prometheus
+```
+
+### Change Grafana Service Type from ClusterIP to LoadBalancer to expose for external access
+```
+kubectl patch svc prometheus-grafana \
+  -n monitoring \
+  -p '{"spec": {"type": "LoadBalancer"}}'
+```
+
+### Change Prometheus Service Type from ClusterIP to LoadBalancer to expose for external access
+```
+kubectl patch svc prometheus-kube-prometheus-prometheus \
+  -n monitoring \
+  -p '{"spec": {"type": "LoadBalancer"}}'
+```
+
+
+#### Display LoadBalancer URL for Grafana and Prometheus. Wait for the EXTERNAL-IP field to be populated, then open that IP in your browser (Grafana on port 80, Prometheus on port 9090)
+```
+kubectl get svc -n monitoring
+```
+
+
+#### Get Grafana password by running:
+
+```
+kubectl --namespace monitoring get secrets prometheus-grafana -o jsonpath="{.data.admin-password}" | base64 -d ; echo
+```
+> Username is admin
+
+
+---
+<br><br><br>
+# To get the VPC ID of an EC2 instance using the Instance Metadata Service (IMDS)
+
+1. Get the MAC address of the primary network interface:
+```
+curl -s http://169.254.169.254/latest/meta-data/network/interfaces/macs/
+```
+2. Use the MAC address to get the VPC ID:
+```
+curl -s http://169.254.169.254/latest/meta-data/network/interfaces/macs/0a:1b:2c:3d:4e:5f/vpc-id
+```
+#### OR Simply
+```
+curl -s http://169.254.169.254/latest/meta-data/network/interfaces/macs/$(curl -s http://169.254.169.254/latest/meta-data/network/interfaces/macs/)/vpc-id
+```
+
+---
+<br><br><br>
+
+# Install & Configure Node-Exporter on linux
+```
+
+#!/bin/bash
+
+set -e
+
+NODE_EXPORTER_VERSION="1.8.1"
+DOWNLOAD_URL="https://github.com/prometheus/node_exporter/releases/download/v${NODE_EXPORTER_VERSION}/node_exporter-${NODE_EXPORTER_VERSION}.linux-amd64.tar.gz"
+
+echo "🚀 Installing Node Exporter v${NODE_EXPORTER_VERSION}..."
+
+# Download and extract
+curl -LO ${DOWNLOAD_URL}
+tar -xzf node_exporter-${NODE_EXPORTER_VERSION}.linux-amd64.tar.gz
+sudo mv node_exporter-${NODE_EXPORTER_VERSION}.linux-amd64/node_exporter /usr/local/bin/
+rm -rf node_exporter-${NODE_EXPORTER_VERSION}.linux-amd64*
+
+# Create user
+sudo useradd -rs /bin/false node_exporter || true
+
+# Create systemd service
+cat <<EOF | sudo tee /etc/systemd/system/node_exporter.service
+[Unit]
+Description=Node Exporter
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+User=node_exporter
+Group=node_exporter
+Type=simple
+ExecStart=/usr/local/bin/node_exporter
+
+[Install]
+WantedBy=default.target
+EOF
+
+# Reload and start
+sudo systemctl daemon-reload
+sudo systemctl enable --now node_exporter
+
+
+# Verify
+echo "✅ Node Exporter is running!"
+curl -s http://localhost:9100/metrics | head -n 5
+
+```
+
+---
+<br><br><br>
+
+# To Scrape metrics from a standalone Linux server running node_exporter using a Prometheus instance running inside EKS
+
+✅ Prerequisites:
+* Prometheus is installed via Helm chart (likely the kube-prometheus-stack).
+* node_exporter is running and accessible on the Linux server (default port: 9100).
+* The Linux server's IP address is publicly accessible or reachable from within the EKS cluster (e.g., via VPC Peering, VPN, or internal networking).
+* Security Groups and firewall rules allow traffic from EKS nodes to port `9100` on the standalone server.
+
+### 🚀 Steps to Add Standalone Server to Prometheus Scrape Targets:
+
+1. Create Additional Scrape Config via Secret
+  * Create a file named `additional-scrape-configs.yaml` with the following:
+
+  ```
+
+- job_name: 'jenkins-node-exporter'
+  static_configs:
+    - targets: ['<server_ip>:9100']
+      labels:
+        instance: '<instance_name>'
+        role: 'node-exporter'
+        environment: 'dev'
+
+- job_name: 'jenkins-prom-plugin'
+  metrics_path: /prometheus
+  static_configs:
+    - targets: ['<server_ip>:8080']
+      labels:
+        instance: 'instance_name'
+        role: 'jenkins-master'
+        environment: 'dev'
+
+```
+
+> Replace `<server-ip>` with the IP address or DNS name of your standalone Linux server.
+
+* Now create a Kubernetes secret:
+
+```
+kubectl create secret generic additional-scrape-configs \
+  --from-file=additional-scrape-configs.yaml \
+  -n monitoring
+
+```
+
+2. Edit Prometheus Custom Resource
+
+* First get the prometheus resource name
+
+```
+kubectl get prometheus -n monitoring
+```
+* Then edit the prometheus custom resource
+
+```
+kubectl edit prometheus prometheus-kube-prometheus-prometheus -n monitoring
+```
+
+Under `spec` add:
+
+```
+  additionalScrapeConfigs:
+    name: additional-scrape-configs
+    key: additional-scrape-configs.yaml
+```
+* So the result should look like this:
+
+```
+spec:
+  ...
+  additionalScrapeConfigs:
+    name: additional-scrape-configs
+    key: additional-scrape-configs.yaml
+```
+3. Apply and Verify
+Prometheus will reload its config automatically by deafult. Wait a minute, then:
+
+* Go to the Prometheus UI (`/targets` page).
+* Look for the job `node-exporter-standalone`.
+* Ensure it’s marked as UP.
+
+<br><br><br>
+
+# To Uninstall Prometheus-Stack and delete namespace
+
+```
+helm uninstall prometheus -n monitoring
+kubectl delete namespace monitoring
+```
+
+
+########################################################
+
 ## **Running the script**
 Follow the ==**"Quick Start Guide"**== below to provision and configure your OpenVPN server and to connect to your new VPN network.
 
