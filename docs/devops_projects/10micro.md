@@ -1054,10 +1054,9 @@ curl -s http://localhost:9100/metrics | head -n 5
 ### 🚀 Steps to Add Standalone Server to Prometheus Scrape Targets:
 
 1. Create Additional Scrape Config via Secret
-  * Create a file named `additional-scrape-configs.yaml` with the following:
+  * Create a file named `additional-scrape-configs.yaml` with the following content:
 
-  ```
-
+```
 - job_name: 'jenkins-node-exporter'
   static_configs:
     - targets: ['<server_ip>:9100']
@@ -1077,9 +1076,12 @@ curl -s http://localhost:9100/metrics | head -n 5
 
 ```
 
-> Replace `<server-ip>` with the IP address or DNS name of your standalone Linux server.
+!!! note ""
 
-## Now create a Kubernetes secret:
+    Replace `<server-ip>` with the IP address or DNS name of your standalone Linux server.
+
+
+2. Now create a Kubernetes secret:
 
 ```
 kubectl create secret generic additional-scrape-configs \
@@ -1088,13 +1090,14 @@ kubectl create secret generic additional-scrape-configs \
 
 ```
 
-2. Edit Prometheus Custom Resource
+3. Edit Prometheus Custom Resource
 
 * First get the prometheus resource name
 
 ```
 kubectl get prometheus -n monitoring
 ```
+
 * Then edit the prometheus custom resource
 
 ```
@@ -1108,7 +1111,8 @@ Under `spec` add:
     name: additional-scrape-configs
     key: additional-scrape-configs.yaml
 ```
-* So the result should look like this:
+
+So the result should look like this:
 
 ```
 spec:
@@ -1117,7 +1121,9 @@ spec:
     name: additional-scrape-configs
     key: additional-scrape-configs.yaml
 ```
+
 3. Apply and Verify
+
 Prometheus will reload its config automatically by deafult. Wait a minute, then:
 
 * Go to the Prometheus UI (`/targets` page).
