@@ -1060,56 +1060,128 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#running-the-script" class="md-nav__link">
+  <a href="#install-and-setup-prometheus-stack-on-eks-using-helm" class="md-nav__link">
     <span class="md-ellipsis">
-      Running the script
+      Install and setup Prometheus Stack on EKS using Helm
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#quick-start-guide" class="md-nav__link">
-    <span class="md-ellipsis">
-      Quick Start Guide
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Quick Start Guide">
+    <nav class="md-nav" aria-label="Install and setup Prometheus Stack on EKS using Helm">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#clone-the-repository" class="md-nav__link">
+  <a href="#install-helm" class="md-nav__link">
     <span class="md-ellipsis">
-      Clone the Repository
+      Install Helm
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#initialize-the-terraform-configuration" class="md-nav__link">
+  <a href="#check-helm-version" class="md-nav__link">
     <span class="md-ellipsis">
-      Initialize the terraform configuration
+      Check Helm version
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#apply-the-terraform-configuration" class="md-nav__link">
+  <a href="#add-helm-repo" class="md-nav__link">
     <span class="md-ellipsis">
-      Apply the Terraform Configuration
+      Add Helm repo
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Apply the Terraform Configuration">
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-namespace" class="md-nav__link">
+    <span class="md-ellipsis">
+      create namespace
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#install-prometheus-stack-into-monitoring-namespace" class="md-nav__link">
+    <span class="md-ellipsis">
+      Install Prometheus Stack into monitoring namespace
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check-running-status-of-pods-to-verify-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Check running status of pods to verify deployment
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#list-all-svc-in-the-monitoring-namespace" class="md-nav__link">
+    <span class="md-ellipsis">
+      List all svc in the monitoring namespace
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#display-grafana-url-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      Display Grafana URL (optional)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#display-prometheus-url-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      Display Prometheus URL (optional)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#change-grafana-service-type-from-clusterip-to-loadbalancer-to-expose-for-external-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      Change Grafana Service Type from ClusterIP to LoadBalancer to expose for external access
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#change-prometheus-service-type-from-clusterip-to-loadbalancer-to-expose-for-external-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      Change Prometheus Service Type from ClusterIP to LoadBalancer to expose for external access
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Change Prometheus Service Type from ClusterIP to LoadBalancer to expose for external access">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#list-of-accepted-aws-regions" class="md-nav__link">
+  <a href="#display-loadbalancer-url-for-grafana-and-prometheus-wait-for-the-external-ip-field-to-be-populated-then-open-that-ip-in-your-browser-grafana-on-port-80-prometheus-on-port-9090" class="md-nav__link">
     <span class="md-ellipsis">
-      List of accepted AWS regions
+      Display LoadBalancer URL for Grafana and Prometheus. Wait for the EXTERNAL-IP field to be populated, then open that IP in your browser (Grafana on port 80, Prometheus on port 9090)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-grafana-password-by-running" class="md-nav__link">
+    <span class="md-ellipsis">
+      Get Grafana password by running:
     </span>
   </a>
   
@@ -1120,62 +1192,8 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#outputs" class="md-nav__link">
-    <span class="md-ellipsis">
-      Outputs
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#connect-to-your-vpn" class="md-nav__link">
-    <span class="md-ellipsis">
-      Connect to your VPN
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#testing-your-vpn-connection" class="md-nav__link">
-    <span class="md-ellipsis">
-      Testing your VPN Connection
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#cleanup" class="md-nav__link">
-    <span class="md-ellipsis">
-      Cleanup
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#use-cases" class="md-nav__link">
-    <span class="md-ellipsis">
-      Use Cases
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#conclusion" class="md-nav__link">
-    <span class="md-ellipsis">
-      Conclusion
-    </span>
-  </a>
   
 </li>
       
@@ -2437,6 +2455,275 @@ This VPN server is also "disposable", meaning, you can create and delete it anyt
 </figcaption>
 </figure>
 <p>The list of acceptable AWS regions are shown <a href="https://opeyemitechpro.github.io/my-projects/terraform_projects/openvpn_access_server/#list-of-accepted-aws-regions">here</a></p>
+<h6 id="_1"><a class="headerlink" href="#_1" title="Copy this link to reference this section">&para;</a></h6>
+<h2 id="install-and-setup-prometheus-stack-on-eks-using-helm">Install and setup Prometheus Stack on EKS using Helm<a class="headerlink" href="#install-and-setup-prometheus-stack-on-eks-using-helm" title="Copy this link to reference this section">&para;</a></h2>
+<h3 id="install-helm">Install Helm<a class="headerlink" href="#install-helm" title="Copy this link to reference this section">&para;</a></h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1"></a>curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
+</code></pre></div></td></tr></table></div>
+<h3 id="check-helm-version">Check Helm version<a class="headerlink" href="#check-helm-version" title="Copy this link to reference this section">&para;</a></h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1"></a>helm version
+</code></pre></div></td></tr></table></div>
+<h3 id="add-helm-repo">Add Helm repo<a class="headerlink" href="#add-helm-repo" title="Copy this link to reference this section">&para;</a></h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1">1</a></span>
+<span class="normal"><a href="#__codelineno-11-2">2</a></span>
+<span class="normal"><a href="#__codelineno-11-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1"></a>helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+<a id="__codelineno-11-2" name="__codelineno-11-2"></a>
+<a id="__codelineno-11-3" name="__codelineno-11-3"></a>helm repo update
+</code></pre></div></td></tr></table></div>
+<blockquote>
+<p><strong><em>(Optionally) Search Available Hem Charts</em></strong>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1"></a>helm search repo prometheus-community
+</code></pre></div></td></tr></table></div></p>
+</blockquote>
+<h3 id="create-namespace">create namespace<a class="headerlink" href="#create-namespace" title="Copy this link to reference this section">&para;</a></h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-13-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1"></a>kubectl create namespace monitoring
+</code></pre></div></td></tr></table></div>
+<h3 id="install-prometheus-stack-into-monitoring-namespace">Install Prometheus Stack into monitoring namespace<a class="headerlink" href="#install-prometheus-stack-into-monitoring-namespace" title="Copy this link to reference this section">&para;</a></h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-14-1">1</a></span>
+<span class="normal"><a href="#__codelineno-14-2">2</a></span>
+<span class="normal"><a href="#__codelineno-14-3">3</a></span>
+<span class="normal"><a href="#__codelineno-14-4">4</a></span>
+<span class="normal"><a href="#__codelineno-14-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1"></a>helm install prometheus prometheus-community/kube-prometheus-stack \
+<a id="__codelineno-14-2" name="__codelineno-14-2"></a>  -n monitoring \
+<a id="__codelineno-14-3" name="__codelineno-14-3"></a>  --set prometheus.prometheusSpec.maximumStartupDurationSeconds=300 \
+<a id="__codelineno-14-4" name="__codelineno-14-4"></a>  --set alertmanager.persistence.storageClass=&quot;gp2&quot; \
+<a id="__codelineno-14-5" name="__codelineno-14-5"></a>  --set server.persistentVolume.storageClass=&quot;gp2&quot;
+</code></pre></div></td></tr></table></div>
+<h3 id="check-running-status-of-pods-to-verify-deployment">Check running status of pods to verify deployment<a class="headerlink" href="#check-running-status-of-pods-to-verify-deployment" title="Copy this link to reference this section">&para;</a></h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-15-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1"></a>kubectl --namespace monitoring get pods -l &quot;release=prometheus&quot;
+</code></pre></div></td></tr></table></div>
+<p>OR
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-16-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1"></a>kubectl get pods -n monitoring
+</code></pre></div></td></tr></table></div></p>
+<h3 id="list-all-svc-in-the-monitoring-namespace">List all svc in the monitoring namespace<a class="headerlink" href="#list-all-svc-in-the-monitoring-namespace" title="Copy this link to reference this section">&para;</a></h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-17-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1"></a>kubectl get svc -n monitoring
+</code></pre></div></td></tr></table></div>
+<h3 id="display-grafana-url-optional">Display Grafana URL (optional)<a class="headerlink" href="#display-grafana-url-optional" title="Copy this link to reference this section">&para;</a></h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-18-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1"></a>kubectl get svc -n monitoring prometheus-grafana
+</code></pre></div></td></tr></table></div>
+<h3 id="display-prometheus-url-optional">Display Prometheus URL (optional)<a class="headerlink" href="#display-prometheus-url-optional" title="Copy this link to reference this section">&para;</a></h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-19-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1"></a>kubectl get svc -n monitoring prometheus-kube-prometheus-prometheus
+</code></pre></div></td></tr></table></div>
+<h3 id="change-grafana-service-type-from-clusterip-to-loadbalancer-to-expose-for-external-access">Change Grafana Service Type from ClusterIP to LoadBalancer to expose for external access<a class="headerlink" href="#change-grafana-service-type-from-clusterip-to-loadbalancer-to-expose-for-external-access" title="Copy this link to reference this section">&para;</a></h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-20-1">1</a></span>
+<span class="normal"><a href="#__codelineno-20-2">2</a></span>
+<span class="normal"><a href="#__codelineno-20-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1"></a>kubectl patch svc prometheus-grafana \
+<a id="__codelineno-20-2" name="__codelineno-20-2"></a>  -n monitoring \
+<a id="__codelineno-20-3" name="__codelineno-20-3"></a>  -p &#39;{&quot;spec&quot;: {&quot;type&quot;: &quot;LoadBalancer&quot;}}&#39;
+</code></pre></div></td></tr></table></div>
+<h3 id="change-prometheus-service-type-from-clusterip-to-loadbalancer-to-expose-for-external-access">Change Prometheus Service Type from ClusterIP to LoadBalancer to expose for external access<a class="headerlink" href="#change-prometheus-service-type-from-clusterip-to-loadbalancer-to-expose-for-external-access" title="Copy this link to reference this section">&para;</a></h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-21-1">1</a></span>
+<span class="normal"><a href="#__codelineno-21-2">2</a></span>
+<span class="normal"><a href="#__codelineno-21-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1"></a>kubectl patch svc prometheus-kube-prometheus-prometheus \
+<a id="__codelineno-21-2" name="__codelineno-21-2"></a>  -n monitoring \
+<a id="__codelineno-21-3" name="__codelineno-21-3"></a>  -p &#39;{&quot;spec&quot;: {&quot;type&quot;: &quot;LoadBalancer&quot;}}&#39;
+</code></pre></div></td></tr></table></div>
+<h4 id="display-loadbalancer-url-for-grafana-and-prometheus-wait-for-the-external-ip-field-to-be-populated-then-open-that-ip-in-your-browser-grafana-on-port-80-prometheus-on-port-9090">Display LoadBalancer URL for Grafana and Prometheus. Wait for the EXTERNAL-IP field to be populated, then open that IP in your browser (Grafana on port 80, Prometheus on port 9090)<a class="headerlink" href="#display-loadbalancer-url-for-grafana-and-prometheus-wait-for-the-external-ip-field-to-be-populated-then-open-that-ip-in-your-browser-grafana-on-port-80-prometheus-on-port-9090" title="Copy this link to reference this section">&para;</a></h4>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-22-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1"></a>kubectl get svc -n monitoring
+</code></pre></div></td></tr></table></div>
+<h4 id="get-grafana-password-by-running">Get Grafana password by running:<a class="headerlink" href="#get-grafana-password-by-running" title="Copy this link to reference this section">&para;</a></h4>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-23-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1"></a>kubectl --namespace monitoring get secrets prometheus-grafana -o jsonpath=&quot;{.data.admin-password}&quot; | base64 -d ; echo
+</code></pre></div></td></tr></table></div>
+<blockquote>
+<p>Username is admin</p>
+</blockquote>
+<hr />
+<p><br><br><br></p>
+<h1 id="to-get-the-vpc-id-of-an-ec2-instance-using-the-instance-metadata-service-imds">To get the VPC ID of an EC2 instance using the Instance Metadata Service (IMDS)<a class="headerlink" href="#to-get-the-vpc-id-of-an-ec2-instance-using-the-instance-metadata-service-imds" title="Copy this link to reference this section">&para;</a></h1>
+<ol>
+<li>Get the MAC address of the primary network interface:
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-24-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1"></a>curl -s http://169.254.169.254/latest/meta-data/network/interfaces/macs/
+</code></pre></div></td></tr></table></div></li>
+<li>Use the MAC address to get the VPC ID:
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-25-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1"></a>curl -s http://169.254.169.254/latest/meta-data/network/interfaces/macs/0a:1b:2c:3d:4e:5f/vpc-id
+</code></pre></div></td></tr></table></div></li>
+</ol>
+<h4 id="or-simply">OR Simply<a class="headerlink" href="#or-simply" title="Copy this link to reference this section">&para;</a></h4>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-26-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1"></a>curl -s http://169.254.169.254/latest/meta-data/network/interfaces/macs/$(curl -s http://169.254.169.254/latest/meta-data/network/interfaces/macs/)/vpc-id
+</code></pre></div></td></tr></table></div>
+<hr />
+<p><br><br><br></p>
+<h1 id="install-configure-node-exporter-on-linux">Install &amp; Configure Node-Exporter on linux<a class="headerlink" href="#install-configure-node-exporter-on-linux" title="Copy this link to reference this section">&para;</a></h1>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-27-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-27-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-27-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-27-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-27-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-27-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-27-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-27-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-27-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-27-10">10</a></span>
+<span class="normal"><a href="#__codelineno-27-11">11</a></span>
+<span class="normal"><a href="#__codelineno-27-12">12</a></span>
+<span class="normal"><a href="#__codelineno-27-13">13</a></span>
+<span class="normal"><a href="#__codelineno-27-14">14</a></span>
+<span class="normal"><a href="#__codelineno-27-15">15</a></span>
+<span class="normal"><a href="#__codelineno-27-16">16</a></span>
+<span class="normal"><a href="#__codelineno-27-17">17</a></span>
+<span class="normal"><a href="#__codelineno-27-18">18</a></span>
+<span class="normal"><a href="#__codelineno-27-19">19</a></span>
+<span class="normal"><a href="#__codelineno-27-20">20</a></span>
+<span class="normal"><a href="#__codelineno-27-21">21</a></span>
+<span class="normal"><a href="#__codelineno-27-22">22</a></span>
+<span class="normal"><a href="#__codelineno-27-23">23</a></span>
+<span class="normal"><a href="#__codelineno-27-24">24</a></span>
+<span class="normal"><a href="#__codelineno-27-25">25</a></span>
+<span class="normal"><a href="#__codelineno-27-26">26</a></span>
+<span class="normal"><a href="#__codelineno-27-27">27</a></span>
+<span class="normal"><a href="#__codelineno-27-28">28</a></span>
+<span class="normal"><a href="#__codelineno-27-29">29</a></span>
+<span class="normal"><a href="#__codelineno-27-30">30</a></span>
+<span class="normal"><a href="#__codelineno-27-31">31</a></span>
+<span class="normal"><a href="#__codelineno-27-32">32</a></span>
+<span class="normal"><a href="#__codelineno-27-33">33</a></span>
+<span class="normal"><a href="#__codelineno-27-34">34</a></span>
+<span class="normal"><a href="#__codelineno-27-35">35</a></span>
+<span class="normal"><a href="#__codelineno-27-36">36</a></span>
+<span class="normal"><a href="#__codelineno-27-37">37</a></span>
+<span class="normal"><a href="#__codelineno-27-38">38</a></span>
+<span class="normal"><a href="#__codelineno-27-39">39</a></span>
+<span class="normal"><a href="#__codelineno-27-40">40</a></span>
+<span class="normal"><a href="#__codelineno-27-41">41</a></span>
+<span class="normal"><a href="#__codelineno-27-42">42</a></span>
+<span class="normal"><a href="#__codelineno-27-43">43</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1"></a>#!/bin/bash
+<a id="__codelineno-27-2" name="__codelineno-27-2"></a>
+<a id="__codelineno-27-3" name="__codelineno-27-3"></a>set -e
+<a id="__codelineno-27-4" name="__codelineno-27-4"></a>
+<a id="__codelineno-27-5" name="__codelineno-27-5"></a>NODE_EXPORTER_VERSION=&quot;1.8.1&quot;
+<a id="__codelineno-27-6" name="__codelineno-27-6"></a>DOWNLOAD_URL=&quot;https://github.com/prometheus/node_exporter/releases/download/v${NODE_EXPORTER_VERSION}/node_exporter-${NODE_EXPORTER_VERSION}.linux-amd64.tar.gz&quot;
+<a id="__codelineno-27-7" name="__codelineno-27-7"></a>
+<a id="__codelineno-27-8" name="__codelineno-27-8"></a>echo &quot;🚀 Installing Node Exporter v${NODE_EXPORTER_VERSION}...&quot;
+<a id="__codelineno-27-9" name="__codelineno-27-9"></a>
+<a id="__codelineno-27-10" name="__codelineno-27-10"></a># Download and extract
+<a id="__codelineno-27-11" name="__codelineno-27-11"></a>curl -LO ${DOWNLOAD_URL}
+<a id="__codelineno-27-12" name="__codelineno-27-12"></a>tar -xzf node_exporter-${NODE_EXPORTER_VERSION}.linux-amd64.tar.gz
+<a id="__codelineno-27-13" name="__codelineno-27-13"></a>sudo mv node_exporter-${NODE_EXPORTER_VERSION}.linux-amd64/node_exporter /usr/local/bin/
+<a id="__codelineno-27-14" name="__codelineno-27-14"></a>rm -rf node_exporter-${NODE_EXPORTER_VERSION}.linux-amd64*
+<a id="__codelineno-27-15" name="__codelineno-27-15"></a>
+<a id="__codelineno-27-16" name="__codelineno-27-16"></a># Create user
+<a id="__codelineno-27-17" name="__codelineno-27-17"></a>sudo useradd -rs /bin/false node_exporter || true
+<a id="__codelineno-27-18" name="__codelineno-27-18"></a>
+<a id="__codelineno-27-19" name="__codelineno-27-19"></a># Create systemd service
+<a id="__codelineno-27-20" name="__codelineno-27-20"></a>cat &lt;&lt;EOF | sudo tee /etc/systemd/system/node_exporter.service
+<a id="__codelineno-27-21" name="__codelineno-27-21"></a>[Unit]
+<a id="__codelineno-27-22" name="__codelineno-27-22"></a>Description=Node Exporter
+<a id="__codelineno-27-23" name="__codelineno-27-23"></a>Wants=network-online.target
+<a id="__codelineno-27-24" name="__codelineno-27-24"></a>After=network-online.target
+<a id="__codelineno-27-25" name="__codelineno-27-25"></a>
+<a id="__codelineno-27-26" name="__codelineno-27-26"></a>[Service]
+<a id="__codelineno-27-27" name="__codelineno-27-27"></a>User=node_exporter
+<a id="__codelineno-27-28" name="__codelineno-27-28"></a>Group=node_exporter
+<a id="__codelineno-27-29" name="__codelineno-27-29"></a>Type=simple
+<a id="__codelineno-27-30" name="__codelineno-27-30"></a>ExecStart=/usr/local/bin/node_exporter
+<a id="__codelineno-27-31" name="__codelineno-27-31"></a>
+<a id="__codelineno-27-32" name="__codelineno-27-32"></a>[Install]
+<a id="__codelineno-27-33" name="__codelineno-27-33"></a>WantedBy=default.target
+<a id="__codelineno-27-34" name="__codelineno-27-34"></a>EOF
+<a id="__codelineno-27-35" name="__codelineno-27-35"></a>
+<a id="__codelineno-27-36" name="__codelineno-27-36"></a># Reload and start
+<a id="__codelineno-27-37" name="__codelineno-27-37"></a>sudo systemctl daemon-reload
+<a id="__codelineno-27-38" name="__codelineno-27-38"></a>sudo systemctl enable --now node_exporter
+<a id="__codelineno-27-39" name="__codelineno-27-39"></a>
+<a id="__codelineno-27-40" name="__codelineno-27-40"></a>
+<a id="__codelineno-27-41" name="__codelineno-27-41"></a># Verify
+<a id="__codelineno-27-42" name="__codelineno-27-42"></a>echo &quot;✅ Node Exporter is running!&quot;
+<a id="__codelineno-27-43" name="__codelineno-27-43"></a>curl -s http://localhost:9100/metrics | head -n 5
+</code></pre></div></td></tr></table></div>
+<hr />
+<p><br><br><br></p>
+<h1 id="to-scrape-metrics-from-a-standalone-linux-server-running-node_exporter-using-a-prometheus-instance-running-inside-eks">To Scrape metrics from a standalone Linux server running node_exporter using a Prometheus instance running inside EKS<a class="headerlink" href="#to-scrape-metrics-from-a-standalone-linux-server-running-node_exporter-using-a-prometheus-instance-running-inside-eks" title="Copy this link to reference this section">&para;</a></h1>
+<p>✅ Prerequisites:
+* Prometheus is installed via Helm chart (likely the kube-prometheus-stack).
+* node_exporter is running and accessible on the Linux server (default port: 9100).
+* The Linux server's IP address is publicly accessible or reachable from within the EKS cluster (e.g., via VPC Peering, VPN, or internal networking).
+* Security Groups and firewall rules allow traffic from EKS nodes to port <code>9100</code> on the standalone server.</p>
+<h3 id="steps-to-add-standalone-server-to-prometheus-scrape-targets">🚀 Steps to Add Standalone Server to Prometheus Scrape Targets:<a class="headerlink" href="#steps-to-add-standalone-server-to-prometheus-scrape-targets" title="Copy this link to reference this section">&para;</a></h3>
+<ol>
+<li>Create Additional Scrape Config via Secret</li>
+<li>Create a file named <code>additional-scrape-configs.yaml</code> with the following:</li>
+</ol>
+<p>```</p>
+<ul>
+<li>
+<p>job_name: 'jenkins-node-exporter'
+  static_configs:</p>
+<ul>
+<li>targets: ['<server_ip>:9100']
+  labels:
+    instance: '<instance_name>'
+    role: 'node-exporter'
+    environment: 'dev'</li>
+</ul>
+</li>
+<li>
+<p>job_name: 'jenkins-prom-plugin'
+  metrics_path: /prometheus
+  static_configs:</p>
+<ul>
+<li>targets: ['<server_ip>:8080']
+  labels:
+    instance: 'instance_name'
+    role: 'jenkins-master'
+    environment: 'dev'</li>
+</ul>
+</li>
+</ul>
+<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-28-1">1</a></span>
+<span class="normal"><a href="#__codelineno-28-2">2</a></span>
+<span class="normal"><a href="#__codelineno-28-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1"></a>&gt; Replace `&lt;server-ip&gt;` with the IP address or DNS name of your standalone Linux server.
+<a id="__codelineno-28-2" name="__codelineno-28-2"></a>
+<a id="__codelineno-28-3" name="__codelineno-28-3"></a>* Now create a Kubernetes secret:
+</code></pre></div></td></tr></table></div>
+kubectl create secret generic additional-scrape-configs \
+  --from-file=additional-scrape-configs.yaml \
+  -n monitoring</p>
+<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-29-1">1</a></span>
+<span class="normal"><a href="#__codelineno-29-2">2</a></span>
+<span class="normal"><a href="#__codelineno-29-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1"></a>2. Edit Prometheus Custom Resource
+<a id="__codelineno-29-2" name="__codelineno-29-2"></a>
+<a id="__codelineno-29-3" name="__codelineno-29-3"></a>* First get the prometheus resource name
+</code></pre></div></td></tr></table></div>
+kubectl get prometheus -n monitoring
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-30-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1"></a>* Then edit the prometheus custom resource
+</code></pre></div></td></tr></table></div>
+kubectl edit prometheus prometheus-kube-prometheus-prometheus -n monitoring
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-31-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1"></a>Under `spec` add:
+</code></pre></div></td></tr></table></div>
+  additionalScrapeConfigs:
+    name: additional-scrape-configs
+    key: additional-scrape-configs.yaml
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-32-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1"></a>* So the result should look like this:
+</code></pre></div></td></tr></table></div>
+spec:
+  ...
+  additionalScrapeConfigs:
+    name: additional-scrape-configs
+    key: additional-scrape-configs.yaml
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-33-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-33-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-33-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-33-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-33-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-33-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-33-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-33-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-33-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-33-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1"></a>3. Apply and Verify
+<a id="__codelineno-33-2" name="__codelineno-33-2"></a>Prometheus will reload its config automatically by deafult. Wait a minute, then:
+<a id="__codelineno-33-3" name="__codelineno-33-3"></a>
+<a id="__codelineno-33-4" name="__codelineno-33-4"></a>* Go to the Prometheus UI (`/targets` page).
+<a id="__codelineno-33-5" name="__codelineno-33-5"></a>* Look for the job `node-exporter-standalone`.
+<a id="__codelineno-33-6" name="__codelineno-33-6"></a>* Ensure it’s marked as UP.
+<a id="__codelineno-33-7" name="__codelineno-33-7"></a>
+<a id="__codelineno-33-8" name="__codelineno-33-8"></a>&lt;br&gt;&lt;br&gt;&lt;br&gt;
+<a id="__codelineno-33-9" name="__codelineno-33-9"></a>
+<a id="__codelineno-33-10" name="__codelineno-33-10"></a># To Uninstall Prometheus-Stack and delete namespace
+</code></pre></div></td></tr></table></div>
+helm uninstall prometheus -n monitoring
+kubectl delete namespace monitoring
+```</p>
+<h6 id="_2"><a class="headerlink" href="#_2" title="Copy this link to reference this section">&para;</a></h6>
 <h2 id="running-the-script"><strong>Running the script</strong><a class="headerlink" href="#running-the-script" title="Copy this link to reference this section">&para;</a></h2>
 <p>Follow the <mark><strong>"Quick Start Guide"</strong></mark> below to provision and configure your OpenVPN server and to connect to your new VPN network.</p>
 <h2 id="quick-start-guide"><strong>Quick Start Guide</strong><a class="headerlink" href="#quick-start-guide" title="Copy this link to reference this section">&para;</a></h2>
@@ -2444,12 +2731,12 @@ This VPN server is also "disposable", meaning, you can create and delete it anyt
 <summary>Click here for a quick start guide on setting up the OpenVPN Access Server</summary>
 <h3 id="clone-the-repository">Clone the Repository<a class="headerlink" href="#clone-the-repository" title="Copy this link to reference this section">&para;</a></h3>
 <p>Create a folder on your local machine and clone the repository in the folder</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/opeyemitechpro/OpenVPN-Terraform.git
-</code></pre></div></td></tr></table></div>
+<p><code>sh
+git clone https://github.com/opeyemitechpro/OpenVPN-Terraform.git</code></p>
 <h3 id="initialize-the-terraform-configuration">Initialize the terraform configuration<a class="headerlink" href="#initialize-the-terraform-configuration" title="Copy this link to reference this section">&para;</a></h3>
 <p>From within the cloned directory, initialize the terraform configuration</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1"></a>terraform<span class="w"> </span>init
-</code></pre></div></td></tr></table></div>
+<p><code>sh
+terraform init</code></p>
 <figure>
 <p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" data-title="Terraform Initialiaztion Command" data-desc-position="bottom"><img alt="Terraform Initialiaztion Command" src="../../assets/images/ovpn-terraform-init.png" title="Terraform Initialiaztion Command" /></a></p>
 <figcaption>
@@ -2457,8 +2744,8 @@ This VPN server is also "disposable", meaning, you can create and delete it anyt
 </figcaption>
 </figure>
 <h3 id="apply-the-terraform-configuration">Apply the Terraform Configuration<a class="headerlink" href="#apply-the-terraform-configuration" title="Copy this link to reference this section">&para;</a></h3>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1"></a>terraform<span class="w"> </span>apply<span class="w"> </span>-auto-approve
-</code></pre></div></td></tr></table></div>
+<p><code>sh
+terraform apply -auto-approve</code></p>
 <ul>
 <li>When prompted, enter an AWS region from the list below and press enter.  (e.g. <code>us-west-2</code>)</li>
 <li>This will be the AWS region where the VPN server and all resources will be hosted. </li>
@@ -2551,8 +2838,8 @@ This VPN server is also "disposable", meaning, you can create and delete it anyt
 <p>Then enter the command below to delete all locally created files and also delete the server and all other resources from your AWS account.  </p>
 </li>
 </ol>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1"></a>terraform<span class="w"> </span>destroy<span class="w"> </span>-auto-approve<span class="w"> </span>
-</code></pre></div></td></tr></table></div>
+<p><code>sh
+terraform destroy -auto-approve</code></p>
 <ul>
 <li>This will terminate the EC2 instance and delete all resources created and also delete the files that were locally created in the terraform working directory i.e. the *.ovpn user profile and the keypair file that was created earlier </li>
 </ul>
@@ -2620,7 +2907,7 @@ This VPN server is also "disposable", meaning, you can create and delete it anyt
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="June 18, 2025 13:38:06 UTC"><span class="timeago" datetime="2025-06-18T13:38:06+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="June 18, 2025 13:38:06 UTC">2025-06-18</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="June 18, 2025 21:36:13 UTC"><span class="timeago" datetime="2025-06-18T21:36:13+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="June 18, 2025 21:36:13 UTC">2025-06-18</span>
   </span>
 
     
