@@ -1197,6 +1197,192 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#to-get-the-vpc-id-of-an-ec2-instance-using-the-instance-metadata-service-imds" class="md-nav__link">
+    <span class="md-ellipsis">
+      To get the VPC ID of an EC2 instance using the Instance Metadata Service (IMDS)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="To get the VPC ID of an EC2 instance using the Instance Metadata Service (IMDS)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#or-simply" class="md-nav__link">
+    <span class="md-ellipsis">
+      OR Simply
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#install-configure-node-exporter-on-linux" class="md-nav__link">
+    <span class="md-ellipsis">
+      Install &amp; Configure Node-Exporter on linux
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#to-scrape-metrics-from-a-standalone-linux-server-running-node_exporter-using-a-prometheus-instance-running-inside-eks" class="md-nav__link">
+    <span class="md-ellipsis">
+      To Scrape metrics from a standalone Linux server running node_exporter using a Prometheus instance running inside EKS
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="To Scrape metrics from a standalone Linux server running node_exporter using a Prometheus instance running inside EKS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ Prerequisites:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#steps-to-add-standalone-server-to-prometheus-scrape-targets" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚀 Steps to Add Standalone Server to Prometheus Scrape Targets:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-the-script" class="md-nav__link">
+    <span class="md-ellipsis">
+      Running the script
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-start-guide" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quick Start Guide
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Quick Start Guide">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#clone-the-repository" class="md-nav__link">
+    <span class="md-ellipsis">
+      Clone the Repository
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#initialize-the-terraform-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Initialize the terraform configuration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#apply-the-terraform-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Apply the Terraform Configuration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Apply the Terraform Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#list-of-accepted-aws-regions" class="md-nav__link">
+    <span class="md-ellipsis">
+      List of accepted AWS regions
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#outputs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Outputs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connect-to-your-vpn" class="md-nav__link">
+    <span class="md-ellipsis">
+      Connect to your VPN
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testing-your-vpn-connection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testing your VPN Connection
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cleanup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cleanup
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#use-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use Cases
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conclusion
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2524,12 +2710,15 @@ This VPN server is also "disposable", meaning, you can create and delete it anyt
 <h4 id="get-grafana-password-by-running">Get Grafana password by running:<a class="headerlink" href="#get-grafana-password-by-running" title="Copy this link to reference this section">&para;</a></h4>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-23-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1"></a>kubectl --namespace monitoring get secrets prometheus-grafana -o jsonpath=&quot;{.data.admin-password}&quot; | base64 -d ; echo
 </code></pre></div></td></tr></table></div>
-<blockquote>
-<p>Username is admin</p>
-</blockquote>
+<details class="info">
+<summary>Info</summary>
+<ul>
+<li>Username is <code>admin</code></li>
+</ul>
+</details>
 <hr />
 <p><br><br><br></p>
-<h1 id="to-get-the-vpc-id-of-an-ec2-instance-using-the-instance-metadata-service-imds">To get the VPC ID of an EC2 instance using the Instance Metadata Service (IMDS)<a class="headerlink" href="#to-get-the-vpc-id-of-an-ec2-instance-using-the-instance-metadata-service-imds" title="Copy this link to reference this section">&para;</a></h1>
+<h2 id="to-get-the-vpc-id-of-an-ec2-instance-using-the-instance-metadata-service-imds">To get the VPC ID of an EC2 instance using the Instance Metadata Service (IMDS)<a class="headerlink" href="#to-get-the-vpc-id-of-an-ec2-instance-using-the-instance-metadata-service-imds" title="Copy this link to reference this section">&para;</a></h2>
 <ol>
 <li>Get the MAC address of the primary network interface:
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-24-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1"></a>curl -s http://169.254.169.254/latest/meta-data/network/interfaces/macs/
@@ -2543,7 +2732,7 @@ This VPN server is also "disposable", meaning, you can create and delete it anyt
 </code></pre></div></td></tr></table></div>
 <hr />
 <p><br><br><br></p>
-<h1 id="install-configure-node-exporter-on-linux">Install &amp; Configure Node-Exporter on linux<a class="headerlink" href="#install-configure-node-exporter-on-linux" title="Copy this link to reference this section">&para;</a></h1>
+<h2 id="install-configure-node-exporter-on-linux">Install &amp; Configure Node-Exporter on linux<a class="headerlink" href="#install-configure-node-exporter-on-linux" title="Copy this link to reference this section">&para;</a></h2>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-27-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-27-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-27-3"> 3</a></span>
@@ -2632,12 +2821,14 @@ This VPN server is also "disposable", meaning, you can create and delete it anyt
 </code></pre></div></td></tr></table></div>
 <hr />
 <p><br><br><br></p>
-<h1 id="to-scrape-metrics-from-a-standalone-linux-server-running-node_exporter-using-a-prometheus-instance-running-inside-eks">To Scrape metrics from a standalone Linux server running node_exporter using a Prometheus instance running inside EKS<a class="headerlink" href="#to-scrape-metrics-from-a-standalone-linux-server-running-node_exporter-using-a-prometheus-instance-running-inside-eks" title="Copy this link to reference this section">&para;</a></h1>
-<p>✅ Prerequisites:
-* Prometheus is installed via Helm chart (likely the kube-prometheus-stack).
-* node_exporter is running and accessible on the Linux server (default port: 9100).
-* The Linux server's IP address is publicly accessible or reachable from within the EKS cluster (e.g., via VPC Peering, VPN, or internal networking).
-* Security Groups and firewall rules allow traffic from EKS nodes to port <code>9100</code> on the standalone server.</p>
+<h2 id="to-scrape-metrics-from-a-standalone-linux-server-running-node_exporter-using-a-prometheus-instance-running-inside-eks">To Scrape metrics from a standalone Linux server running node_exporter using a Prometheus instance running inside EKS<a class="headerlink" href="#to-scrape-metrics-from-a-standalone-linux-server-running-node_exporter-using-a-prometheus-instance-running-inside-eks" title="Copy this link to reference this section">&para;</a></h2>
+<h3 id="prerequisites">✅ Prerequisites:<a class="headerlink" href="#prerequisites" title="Copy this link to reference this section">&para;</a></h3>
+<ul>
+<li>Prometheus is installed via Helm chart (likely the kube-prometheus-stack).</li>
+<li>node_exporter is running and accessible on the Linux server (default port: 9100).</li>
+<li>The Linux server's IP address is publicly accessible or reachable from within the EKS cluster (e.g., via VPC Peering, VPN, or internal networking).</li>
+<li>Security Groups and firewall rules allow traffic from EKS nodes to port <code>9100</code> on the standalone server.</li>
+</ul>
 <h3 id="steps-to-add-standalone-server-to-prometheus-scrape-targets">🚀 Steps to Add Standalone Server to Prometheus Scrape Targets:<a class="headerlink" href="#steps-to-add-standalone-server-to-prometheus-scrape-targets" title="Copy this link to reference this section">&para;</a></h3>
 <ol>
 <li>Create Additional Scrape Config via Secret</li>
@@ -2673,7 +2864,7 @@ This VPN server is also "disposable", meaning, you can create and delete it anyt
 <span class="normal"><a href="#__codelineno-28-2">2</a></span>
 <span class="normal"><a href="#__codelineno-28-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1"></a>&gt; Replace `&lt;server-ip&gt;` with the IP address or DNS name of your standalone Linux server.
 <a id="__codelineno-28-2" name="__codelineno-28-2"></a>
-<a id="__codelineno-28-3" name="__codelineno-28-3"></a>* Now create a Kubernetes secret:
+<a id="__codelineno-28-3" name="__codelineno-28-3"></a>## Now create a Kubernetes secret:
 </code></pre></div></td></tr></table></div>
 kubectl create secret generic additional-scrape-configs \
   --from-file=additional-scrape-configs.yaml \
@@ -2709,7 +2900,8 @@ spec:
 <span class="normal"><a href="#__codelineno-33-7"> 7</a></span>
 <span class="normal"><a href="#__codelineno-33-8"> 8</a></span>
 <span class="normal"><a href="#__codelineno-33-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-33-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1"></a>3. Apply and Verify
+<span class="normal"><a href="#__codelineno-33-10">10</a></span>
+<span class="normal"><a href="#__codelineno-33-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1"></a>3. Apply and Verify
 <a id="__codelineno-33-2" name="__codelineno-33-2"></a>Prometheus will reload its config automatically by deafult. Wait a minute, then:
 <a id="__codelineno-33-3" name="__codelineno-33-3"></a>
 <a id="__codelineno-33-4" name="__codelineno-33-4"></a>* Go to the Prometheus UI (`/targets` page).
@@ -2718,7 +2910,8 @@ spec:
 <a id="__codelineno-33-7" name="__codelineno-33-7"></a>
 <a id="__codelineno-33-8" name="__codelineno-33-8"></a>&lt;br&gt;&lt;br&gt;&lt;br&gt;
 <a id="__codelineno-33-9" name="__codelineno-33-9"></a>
-<a id="__codelineno-33-10" name="__codelineno-33-10"></a># To Uninstall Prometheus-Stack and delete namespace
+<a id="__codelineno-33-10" name="__codelineno-33-10"></a>
+<a id="__codelineno-33-11" name="__codelineno-33-11"></a>### To Uninstall Prometheus-Stack and delete namespace
 </code></pre></div></td></tr></table></div>
 helm uninstall prometheus -n monitoring
 kubectl delete namespace monitoring
@@ -2907,7 +3100,7 @@ terraform destroy -auto-approve</code></p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="June 18, 2025 21:36:13 UTC"><span class="timeago" datetime="2025-06-18T21:36:13+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="June 18, 2025 21:36:13 UTC">2025-06-18</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="June 18, 2025 21:52:39 UTC"><span class="timeago" datetime="2025-06-18T21:52:39+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="June 18, 2025 21:52:39 UTC">2025-06-18</span>
   </span>
 
     
