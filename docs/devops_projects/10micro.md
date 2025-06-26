@@ -77,23 +77,222 @@ Technical details about how the terraform script works is described below:
         ???+ code-file "ami.tf"
             
             ``` tf hl_lines="6-9 11-14 16"
-            # Select latest Ubuntu 22.04 ami 
+            10-Microservice CI/CD Jenkins Pipeline 
 
-            data "aws_ami" "ubuntu" {
-            most_recent = true
+            pipeline {
+                agent any
+                
 
-            filter {
-                name   = "name"
-                values = ["ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server-*"]
-            } # (1)!
+                stages {
+                    stage('Clean Workspace'){
+                        steps{
+                            sh 'date'
+                            cleanWs()
+                        }
+                    }
+                    stage('Git Checkout') {
+                        steps {
+                            git branch: 'OpeyemiTechPro-v1', url: 'https://github.com/opeyemitechpro/11-Microservices-k8s-App.git'
+                        }
+                    }
+                
+                    stage('SonarQube Analysis') {
+                        environment {
+                        SCANNER_HOME = tool 'sonar-scanner'
+                        }
+                        steps {
+                            withSonarQubeEnv('sonar') {
+                                    sh ''' $SCANNER_HOME/bin/sonar-scanner \
+                                            -Dsonar.projectKey=v0.7.0 \
+                                            -Dsonar.projectName=v0.7.0 \
+                                            -Dsonar.java.binaries=. 
+                                        '''
+                                    }
+                        }
+                    }
+                    stage('TRIVY FS SCAN') {
+                        steps {
+                            sh 'trivy fs -o trivy-fs-report_$BUILD_NUMBER.txt . '
+                        }
+                    }
+                    stage('OWASP FS SCAN') {
+                        steps {
+                            dependencyCheck additionalArguments: '--format HTML', odcInstallation: 'Owasp'
+                        }
+                    }
+                    stage('adservice DockerImage') {
+                        steps { 
+                            script {
+                                withDockerRegistry(credentialsId: 'my-docker-cred', toolName: 'docker') {
+                                dir("${env.WORKSPACE}/src/adservice") {
+                                sh "docker build -t opeyemitechpro/adservice:latest ."
+                                sh "docker push opeyemitechpro/adservice:latest"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    stage('cartservice DockerImage') {
+                        steps { 
+                            script {
+                                withDockerRegistry(credentialsId: 'my-docker-cred', toolName: 'docker') {
+                                dir("${env.WORKSPACE}/src/cartservice/src") {
+                                sh "docker build -t opeyemitechpro/cartservice:latest ."
+                                sh "docker push opeyemitechpro/cartservice:latest"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    stage('checkoutservice DockerImage') {
+                        steps { 
+                            script {
+                                withDockerRegistry(credentialsId: 'my-docker-cred', toolName: 'docker') {
+                                dir("${env.WORKSPACE}/src/checkoutservice") {
+                                sh "docker build -t opeyemitechpro/checkoutservice:latest ."
+                                sh "docker push opeyemitechpro/checkoutservice:latest"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    stage('currencyservice DockerImage') {
+                        steps { 
+                            script {
+                                withDockerRegistry(credentialsId: 'my-docker-cred', toolName: 'docker') {
+                                dir("${env.WORKSPACE}/src/currencyservice") {
+                                sh "docker build -t opeyemitechpro/currencyservice:latest ."
+                                sh "docker push opeyemitechpro/currencyservice:latest"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    stage('emailservice DockerImage') {
+                        steps { 
+                            script {
+                                withDockerRegistry(credentialsId: 'my-docker-cred', toolName: 'docker') {
+                                dir("${env.WORKSPACE}/src/emailservice") {
+                                sh "docker build -t opeyemitechpro/emailservice:latest ."
+                                sh "docker push opeyemitechpro/emailservice:latest"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    stage('frontend DockerImage') {
+                        steps { 
+                            script {
+                                withDockerRegistry(credentialsId: 'my-docker-cred', toolName: 'docker') {
+                                dir("${env.WORKSPACE}/src/frontend") {
+                                sh "docker build -t opeyemitechpro/frontend:latest ."
+                                sh "docker push opeyemitechpro/frontend:latest"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    stage('loadgenerator DockerImage') {
+                        steps { 
+                            script {
+                                withDockerRegistry(credentialsId: 'my-docker-cred', toolName: 'docker') {
+                                dir("${env.WORKSPACE}/src/loadgenerator") {
+                                sh "docker build -t opeyemitechpro/loadgenerator:latest ."
+                                sh "docker push opeyemitechpro/loadgenerator:latest"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    stage('paymentservice DockerImage') {
+                        steps { 
+                            script {
+                                withDockerRegistry(credentialsId: 'my-docker-cred', toolName: 'docker') {
+                                dir("${env.WORKSPACE}/src/paymentservice") {
+                                sh "docker build -t opeyemitechpro/paymentservice:latest ."
+                                sh "docker push opeyemitechpro/paymentservice:latest"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    stage('productcatalogservice DockerImage') {
+                        steps { 
+                            script {
+                                withDockerRegistry(credentialsId: 'my-docker-cred', toolName: 'docker') {
+                                dir("${env.WORKSPACE}/src/productcatalogservice") {
+                                sh "docker build -t opeyemitechpro/productcatalogservice:latest ."
+                                sh "docker push opeyemitechpro/productcatalogservice:latest"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    stage('recommendationservice DockerImage') {
+                        steps { 
+                            script {
+                                withDockerRegistry(credentialsId: 'my-docker-cred', toolName: 'docker') {
+                                dir("${env.WORKSPACE}/src/recommendationservice") {
+                                sh "docker build -t opeyemitechpro/recommendationservice:latest ."
+                                sh "docker push opeyemitechpro/recommendationservice:latest"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    stage('shippingservice DockerImage') {
+                        steps { 
+                            script {
+                                withDockerRegistry(credentialsId: 'my-docker-cred', toolName: 'docker') {
+                                dir("${env.WORKSPACE}/src/shippingservice") {
+                                sh "docker build -t opeyemitechpro/shippingservice:latest ."
+                                sh "docker push opeyemitechpro/shippingservice:latest"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    
+                    stage('DockerImage CleanUp') {
+                        steps { 
+                                sh "docker rmi opeyemitechpro/adservice:latest"
+                                sh "docker rmi opeyemitechpro/cartservice:latest"
+                                sh "docker rmi opeyemitechpro/checkoutservice:latest"
+                                sh "docker rmi opeyemitechpro/currencyservice:latest"
+                                sh "docker rmi opeyemitechpro/emailservice:latest"
+                                sh "docker rmi opeyemitechpro/frontend:latest"
+                                sh "docker rmi opeyemitechpro/loadgenerator:latest"
+                                sh "docker rmi opeyemitechpro/paymentservice:latest"
+                                sh "docker rmi opeyemitechpro/productcatalogservice:latest"
+                                sh "docker rmi opeyemitechpro/recommendationservice:latest"
+                                sh "docker rmi opeyemitechpro/shippingservice:latest"
+                        }
+                    }
+                    stage("Kubernetes deploy"){
+                    steps {
+                            withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'cluster-ID', namespace: 'opeyemi-apps', restrictKubeConfigAccess: false, serverUrl: 'https://FDC152307BF6A5337A2C02C976A8D19F.gr7.us-east-2.eks.amazonaws.com')
+                            {
+                                sh ' kubectl apply -f buildnow.yml -n opeyemi-apps'
+                                sh ' kubectl get pods -n opeyemi-apps '
+                                sh ' kubectl get svc -n opeyemi-apps '
+                            //  sh " kubectl get service -n opeyemi-apps frontend-external | awk '{print \$4}' "
+                            }
+                                sh ' date'
+                        }
+                    }
+                }
+                
+                post {
+                    always {
+                            emailext attachLog: true,
+                            attachmentsPattern: 'trivy-fs-report_$BUILD_NUMBER.txt, dependency-check-report.html', 
+                            body: 'Project <strong>"$PROJECT_NAME"</strong> has completed. <br>Build Number: $BUILD_NUMBER <br>Build Tag: $BUILD_TAG<br>Job Url: $JOB_URL<br>Build Status: <strong>$BUILD_STATUS.</strong><br><br>Check console output at $BUILD_URL to view the results. ', 
+                            subject: 'Project: $PROJECT_NAME, Build #: $BUILD_NUMBER - $BUILD_STATUS', 
+                            to: 'opeyemitechpro@gmail.com'
+                    }
+                }
+            }
 
-            filter {
-                name   = "virtualization-type"
-                values = ["hvm"]
-            } # (2)!
-
-            owners = ["099720109477"]  # Canonical's AWS account ID
-            } # (3)!
             ```
 
             1.  Lines 6-9 filters the name of the ami "ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server-*"
@@ -283,581 +482,6 @@ Technical details about how the terraform script works is described below:
         - **`provisioner "local-exec"`**: Executes a script that prints available AWS regions and the selected region's details.  
 
         --- 
-
-        
-
-    ??? tip "The `openvpn_userdata.tpl` file"
-        
-        ???+ code-file "openvpn_userdata.tpl"
-            
-            ``` sh 
-            #!/bin/bash
-
-            # Bash script to intialize OpenVPN Server
-
-            # Set error trap to exit the script immediately on first error.
-            set -e 
-
-            # Log all output to a file for reference 
-            exec >> /var/log/setup_script.log 2>&1
-
-            echo "Initializing script..."
-            echo
-            echo "Updating packages..."
-            sudo apt update -y
-            echo
-            echo "Setting FQDN  & Public IP"
-            echo
-            FQDN=$(curl -sS http://169.254.169.254/latest/meta-data/public-hostname)
-            PUB_IP=$(curl -sS http://169.254.169.254/latest/meta-data/public-ipv4)
-
-
-            echo "$FQDN"
-            echo
-            echo "$PUB_IP"
-            echo 
-            echo "Download installation script"
-            echo
-            # Check Agristan's repo for full details on installation script options- https://github.com/angristan/openvpn-install
-
-            wget https://raw.githubusercontent.com/angristan/openvpn-install/master/openvpn-install.sh -O openvpn-install.sh
-            chmod +x openvpn-install.sh 
-
-            echo "Installing OpenVPN Access Server..."
-            echo
-            sudo AUTO_INSTALL=y \
-                APPROVE_IP=$PUB_IP \
-                ENDPOINT=$FQDN \
-                CLIENT=${openvpn_user} \
-                ./openvpn-install.sh
-
-
-            echo "Moving User Profile ${openvpn_user}.ovpn to the Ubuntu user home directory..."
-            echo
-            mv /root/${openvpn_user}.ovpn /home/ubuntu/${openvpn_user}.ovpn
-
-            echo
-            echo "Hurray! OpenVPN Installed succesfully"
-
-            # Rename Hostname
-            echo "Set hostname as OpenVPN-Server..."
-            sudo hostnamectl set-hostname OpenVPN-Server 
-            ```
-
-
-        This is the userdata script that is used to bootstrap the server immediately after it is provisioned by Terraform. It is configured as a template file so that terraform can interpolate the value of `openvpn_user` variable from the variables declared in the config file into the user_data script.
-
-        How it works:
-
-        - Sets bash environment and error handling
-
-        - Captures all the setup process in the log file `/var/log/setup_script.log` so it can be referenced if there are errors 
-
-        - Updates system packages
-
-        - Retrieves instance metadata (FQDN and Public IP) from AWS metadata service which will be needed by the OpenVPN installatin script
-
-        - Downloads the installation script from [Angristan's GitHub repository](https://github.com/angristan/openvpn-install){: target="_blank" }  and sets the executable permissions on the file
-
-        - Runs the installation script configuration automatically without prompts using the "Public IP" and "FQDN" values queried from the instance metadata
-
-        - Sets the Custom client name (from variable ${openvpn_user})
-
-        - Moves the generated client profile (.ovpn file) to Ubuntu user's home directory
-
-        - Sets the system hostname to "OpenVPN-Server"
-
-
-        ==**Each section of the file is explained below:**==
-
-        ==**Shebang and Setup**==  
-
-        - **`#!/bin/bash`**: Specifies the script should run using the Bash shell.  
-        - **`set -e`**: Ensures the script exits immediately if any command fails, preventing incomplete setups.  
-        - **`exec >> /var/log/setup_script.log 2>&1`**: Redirects all script output (standard and error) to a log file for debugging and reference.
-
-        ---
-
-        ==**Logging Initialization and Updates**==  
-
-        - **`echo "Initializing script..."`**: Provides a visual indicator that the script has started.  
-        - **`sudo apt update -y`**: Updates package lists to ensure the system has the latest available versions.
-
-        ---
-
-        ==**Retrieve and Display Instance Metadata**==  
-
-        - **`FQDN=$(curl -sS http://169.254.169.254/latest/meta-data/public-hostname)`**: Retrieves the Fully Qualified Domain Name (FQDN) of the instance from AWS metadata.  
-        - **`PUB_IP=$(curl -sS http://169.254.169.254/latest/meta-data/public-ipv4)`**: Retrieves the public IPv4 address of the instance from AWS metadata.  
-        - **`echo "$FQDN"` & `echo "$PUB_IP"`**: Prints the FQDN and public IP to the console for verification.
-
-        ---
-
-        ==**Download and Prepare OpenVPN Installation Script**==  
-
-        - **`wget https://raw.githubusercontent.com/angristan/openvpn-install/master/openvpn-install.sh -O openvpn-install.sh`**: Downloads the OpenVPN installation script from Angristan’s GitHub repository.  
-        - **`chmod +x openvpn-install.sh`**: Makes the script executable.
-
-        ---
-
-        ==**Install OpenVPN**==  
-
-        - **`sudo AUTO_INSTALL=y \`**: Enables automatic installation with predefined options.  
-        - **`APPROVE_IP=$PUB_IP \`**: Uses the retrieved public IP for OpenVPN configuration.  
-        - **`ENDPOINT=$FQDN \`**: Sets the FQDN as the server endpoint.  
-        - **`CLIENT=${openvpn_user} \`**: Configures the OpenVPN client with a specified username.  
-        - **`./openvpn-install.sh`**: Executes the installation script.
-
-        ---
-
-        ==**Move User Configuration File**==  
-
-        - **`mv /root/${openvpn_user}.ovpn /home/ubuntu/${openvpn_user}.ovpn`**: Moves the generated client profile (`.ovpn` file) to the default user’s home directory for easier access.
-
-        ---
-
-        ==**Post-Installation Messages and Cleanup**== 
-
-        - **`echo "Hurray! OpenVPN Installed successfully"`**: Prints a success message to indicate completion.  
-        - **`sudo hostnamectl set-hostname OpenVPN-Server`**: Changes the system’s hostname to "OpenVPN-Server" for easy identification.
-
-        
-        
-    ??? tip "The `outputs.tf` file"
-        
-        ???+ code-file "outputs.tf"
-
-            ``` tf 
-            # Output values for OpenVPN Server
-            output "OpenVPN-Public-ip-address" {
-            description = "Public ip address of the OpenVPN server"
-            value = aws_instance.OpenVPN_Server.public_ip
-            }
-
-            # Display the instance-ID of the OpenVPN Server
-            output "OpenVPN-instance-id" {
-            description = "Instance id of the OpenVPN Server"
-            value = aws_instance.OpenVPN_Server.id
-            }
-
-            # Display the instance-ID of the OpenVPN Server
-            output "key_pair_name" {
-            description = "Name of the created key pair"
-            value       = local.key_pair_name
-            }
-
-            # Display the path of the private key file
-            output "private_key_path" {
-            description = "Path to the private key file"
-            value       = local_file.private_key.filename
-            }
-
-            # Dispaly the ssh connection string
-            output "ssh_connection_string" {
-            description = "SSH connection string"
-            value       = "ssh -i ${local_file.private_key.filename} ubuntu@${aws_instance.OpenVPN_Server.public_ip}"
-            }
-
-            # Display the path of the downloaded ovpn profile config file
-            output "ovpn_config_path" {
-            value       = "./${local.openvpn_user}.ovpn"
-            description = "Path to the downloaded OpenVPN config file"
-            }
-
-            # Display the path of the downloaded ovpn profile config fil
-            output "ovpn_download_complete" {
-            value = "OpenVPN Profile config file has been downloaded to: ${local.openvpn_user}.ovpn"
-            }
-
-            # Display the next step to access the VPN server
-            output "Next_Steps" {
-            value = <<-EOT
-                To use your OpenVPN configuration:
-                1. Download and Install the OpenVPN Connect client software on your device from here: https://openvpn.net/client/
-                2. Import the configuration file: ${local.openvpn_user}.ovpn
-                3. Connect to your VPN server
-                
-                The configuration file is located at: ./${local.openvpn_user}.ovpn
-            EOT
-            }
-            ```
-
-
-        The `outputs.tf` file defines values that will be displayed after Terraform completes its execution. In this specific file, it outputs:
-
-        The following values will be displayed:
-
-        - Public IP address of the OpenVPN server
-
-        - Instance ID of the server
-
-        - Key pair name used for SSH access
-
-        - Details on how to access the VPN server 
-
-        - Path to the private key file that was created
-
-        - SSH connection string (ready to use command for connecting to the server)
-
-        - Location of the downloaded OpenVPN profile (.ovpn file)
-
-        - Next Steps Instructions
-
-        These outputs help users understand where important files are located and what steps to take next after the infrastructure is deployed.
-
-
-    ??? tip "The `ovpn.tf` file"
-
-        ???+ code-file "ovpn.tf"
-
-            ``` tf 
-            
-            # Wait for OpenVPN installation and download the profile config file
-            resource "null_resource" "get_ovpn_config" {
-            depends_on = [aws_instance.OpenVPN_Server]
-
-            # Trigger this resource when instance IP changes
-            triggers = {
-                instance_ip = aws_instance.OpenVPN_Server.public_ip
-                ovpn_file  = "${local.openvpn_user}.ovpn"  # Store filename in triggers
-            }
-
-            # Wait for OpenVPN installation to complete and file to be created
-            provisioner "remote-exec" {
-                inline = [
-                "while [ ! -f /home/ubuntu/${local.openvpn_user}.ovpn ]; do sleep 20; echo 'Waiting for OpenVPN config file...'; done",
-                "echo 'OpenVPN config file is ready!'"
-                ]
-
-                connection {
-                type        = "ssh"
-                user        = "ubuntu"
-                private_key = tls_private_key.key_pair.private_key_pem
-                host        = aws_instance.OpenVPN_Server.public_ip
-                }
-            }
-
-            # Download the OpenVPN profile config file
-            provisioner "local-exec" {
-                command = "scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i ${local_file.private_key.filename} ubuntu@${aws_instance.OpenVPN_Server.public_ip}:/home/ubuntu/${local.openvpn_user}.ovpn ./${local.openvpn_user}.ovpn"
-            }
-
-            # Clean up the .ovpn file after destroy
-            provisioner "local-exec" {
-                when    = destroy
-                command = "rm -f ./${self.triggers.ovpn_file}"
-            }
-            }
-            ```
-
-
-        The `ovpn.tf` file manages the retrieval of the OpenVPN configuration file from the remote VPN server and donwloads it in the terraform working directory. The main purpose of this file is to ensure you get the OpenVPN client configuration file automatically downloaded to your local machine once it's ready on the server.
-
-        Here’s a breakdown of each section of this file:
-
-        
-        ==**Resource Definition**==
-
-        - **`null_resource "get_ovpn_config"`**: A helper resource used to wait for the OpenVPN configuration file to be generated, then download it locally. This resource doesn't create infrastructure directly but adds automation to the deployment process.
-
-        ---
-
-        ==**Dependency and Trigger Configuration**==
-
-        - **`depends_on = [aws_instance.OpenVPN_Server]`**: Ensures this resource executes only after the OpenVPN server instance is successfully created.
-        - **`triggers`**:  
-        - **`instance_ip`**: Ensures the resource is re-applied if the public IP of the OpenVPN server changes.  
-        - **`ovpn_file`**: Tracks the expected `.ovpn` configuration filename as a trigger, ensuring changes to this filename will trigger re-execution.
-
-        ---
-
-        ==**Remote Execution Provisioner**==
-
-        - **`provisioner "remote-exec"`**: Executes commands on the OpenVPN server to ensure the `.ovpn` configuration file is ready.  
-        
-        **`inline`**: 
-        
-        Contains the commands to:
-        
-        - **`while [ ! -f /home/ubuntu/... ]; do`**: Polls the server every 20 seconds, checking if the `.ovpn` file exists.  
-        - **`echo 'Waiting for OpenVPN config file...'`**: Prints a message during the wait loop.  
-        - **`echo 'OpenVPN config file is ready!'`**: Signals the file is available.  
-        
-        **`connection`**: Defines SSH connection details:
-        
-        - **`type`**: Specifies SSH as the connection type.  
-        - **`user`**: Specifies the user (`ubuntu`) to connect with.  
-        - **`private_key`**: Uses the private key generated earlier for authentication.  
-        - **`host`**: Specifies the public IP of the OpenVPN server instance.
-
-        ---
-
-        ==**Local Execution Provisioner**==
-
-        - **First `local-exec` block**: Downloads the `.ovpn` file to the local machine.  
-        - **`scp`**: Securely copies the file from the OpenVPN server to the local directory.  
-        
-        **Options**:
-        
-        - **`-o StrictHostKeyChecking=no`**: Disables host key checking to avoid interactive prompts.  
-        - **`-o UserKnownHostsFile=/dev/null`**: Prevents updates to the local known hosts file.  
-        - **`-i`**: Specifies the SSH private key for authentication.  
-
-        ---
-
-        ==**Cleanup on Resource Destruction**==
-
-        - **Second `local-exec` block**: Deletes the downloaded `*.ovpn` file when the resource is destroyed during the terraform cleanup phase.  
-        - **`when = destroy`**: Ensures the command is only executed during the resource destruction phase.  
-        - **`rm -f ./${self.triggers.ovpn_file}`**: Removes the file using the name stored in the triggers.
-
-        ---
-
-        ==**Overall Function**==
-
-        This file ensures that the OpenVPN profile configuration file is created on the server, securely downloads it to the local system, and removes it when no longer needed (when the `terraform destroy` command is run). It integrates waiting, remote command execution, and local file operations seamlessly within the Terraform workflow.
-
-    ??? tip "The `provider.tf` file"
-
-        ???+ code-file "provider.tf"
-
-            ``` tf 
-            # 
-            terraform {
-            required_providers {
-                aws = {
-                source  = "hashicorp/aws"
-                version = "~> 5.0"
-                }
-                local = {
-                source  = "hashicorp/local"
-                version = "~> 2.0"
-                }
-                tls = {
-                source  = "hashicorp/tls"
-                version = "~> 4.0"
-                }
-                null = {
-                source  = "hashicorp/null"
-                version = "~> 3.0"
-                }
-            }
-            required_version = ">= 1.2.0"
-            }
-
-            # Configure the AWS Provider
-            provider "aws" {
-            region = "${var.selected_region}"
-            }
-            ```
-
-
-        The file essentially sets up the foundational configuration sources and versions needed for Terraform to interact with AWS and to use other necessary providers for the OpenVPN deployment. 
-
-    ??? tip "The `securityGrp.tf` file"
-
-        ???+ code-file "securityGrp.tf"
-
-            ``` tf 
-            # OpenVPN Server Security Group
-            resource "aws_security_group" "openvpn_SG" {
-            name_prefix = "${var.project_name}_openvpn_SG_"
-            description = "OpeyemiTechPro OpenVPN Security Group"
-
-            dynamic "ingress" {
-                for_each = var.openvpn_tcp_ports
-                content {
-                from_port   = ingress.key
-                to_port     = ingress.key
-                protocol    = "tcp"
-                cidr_blocks = ["0.0.0.0/0"]
-                description = ingress.value
-                }
-            }
-
-            dynamic "ingress" {
-                for_each = var.openvpn_udp_ports
-                content {
-                from_port   = ingress.key
-                to_port     = ingress.key
-                protocol    = "udp"
-                cidr_blocks = ["0.0.0.0/0"]
-                description = ingress.value
-                }
-            }  
-
-            egress {
-                from_port   = 0
-                to_port     = 0
-                protocol    = "-1"
-                cidr_blocks = ["0.0.0.0/0"]
-            }
-            }
-            ```
-
-
-        This configures the required security group profile for the OpenVPN server. It opens the required ports for ingress and egress and the neccesary port protocols (tcp and udp).
-
-        ==The sections of the securityGrp.tf file are explained breifly below:==
-        
-        
-        ==**Resource Definition**==
-
-        - **`resource "aws_security_group" "openvpn_SG"`**: Creates a security group in AWS to define network access rules for the OpenVPN server.
-
-        ---
-
-        ==**Security Group Naming and Description**==
-
-        - **`name_prefix`**: Sets a prefix for the security group name, combining the project name (`var.project_name`) with `_openvpn_SG_`. AWS appends a unique identifier to the prefix.
-        - **`description`**: Provides a description for the security group, indicating its purpose (OpenVPN security).
-
-        ---
-
-        ==**Dynamic Ingress Rules for TCP Ports**==
-
-        **`dynamic "ingress"` (first block)**:
-        
-        - **`for_each = var.openvpn_tcp_ports`**: Iterates over a map of TCP ports and descriptions provided in the variable `var.openvpn_tcp_ports`.
-        
-        **`content {}`**: Defines the content of each rule:
-        
-        - **`from_port` and `to_port`**: Sets the port range for the rule, using the key from the iteration (`ingress.key`).
-        - **`protocol = "tcp"`**: Specifies that the rule applies to TCP traffic.
-        - **`cidr_blocks = ["0.0.0.0/0"]`**: Allows traffic from all IP addresses.
-        - **`description = ingress.value`**: Provides a description for the rule, using the value from the iteration.
-
-        ---
-
-        ==**Dynamic Ingress Rules for UDP Ports**==
-
-        **`dynamic "ingress"` (second block)**:
-        
-        - Similar to the first block, but applies to **UDP traffic**.
-        - Iterates over the variable `var.openvpn_udp_ports`, which contains a map of UDP ports and their descriptions.
-
-        ---
-        
-        ==**Egress Rules**==
-        
-        **`egress` block**:
-        
-        - **`from_port = 0` and `to_port = 0`**: Allows all outbound traffic across all port ranges.
-        - **`protocol = "-1"`**: Applies the rule to all protocols.
-        - **`cidr_blocks = ["0.0.0.0/0"]`**: Allows traffic to all IP addresses.
-
-        ---
-
-        ==**Overall Function**==
-
-        This security group:
-
-        1. Dynamically creates ingress (inbound) rules for both TCP and UDP traffic based on user-defined ports and descriptions (`var.openvpn_tcp_ports` and `var.openvpn_udp_ports`).
-        2. Configures unrestricted egress (outbound) traffic to allow the OpenVPN server to communicate with any destination.
-        3. Ensures that all rules are flexible and easy to manage via Terraform variables, making it adaptable for different use cases.
-
-
-    ??? tip "The `terraform.tfvars` file"
-
-        ???+ code-file "terraform.tfvars"
-
-            ``` tf 
-            # Project Details
-            project_name = "Opeyemi_OpenVPN_YT"
-
-
-            # Variables for OpenVPN Server
-            OpenVPN_instance_type = "t2.micro"
-
-            # OpenVPN Server port Details
-            openvpn_tcp_ports = {
-            "22" = "SSH Access"
-            "80"  = "HTTP Access"
-            "443" = "HTTPS Access" 
-            "943" = "OpenVPN Management Port"
-            }
-
-            openvpn_udp_ports = {
-            "1194" = "OpenVPN udp Port"
-            }
-            ```
-
-
-
-        Here, values are assigned to all the declared variables in the config script.  You can freely change any values here to customize the script for your own purpose
-
-    ??? tip "The `variables.tf` file"
-
-        ???+ code-file "variables.tf"
-
-            ``` tf 
-            
-            variable "project_name" {
-            description = "Title of the Project"
-            type        = string
-            }
-
-            variable "OpenVPN_instance_type" {
-            description = "The type of EC2 instance to launch for the OpenVPN Server"
-            type        = string
-            }
-            variable "openvpn_tcp_ports" {
-            type = map(string)
-            description = "Map of OpenVPN ports to their descriptions"
-            }
-
-            variable "openvpn_udp_ports" {
-            type = map(string)
-            description = "Map of OpenVPN UDP ports to their descriptions"
-            }
-
-            variable "aws_regions" {
-            type = map(string)
-            default = {
-                "us-east-1"      = "N. Virginia"
-                "us-east-2"      = "Ohio"
-                "us-west-1"      = "N. California"
-                "us-west-2"      = "Oregon"
-                "af-south-1"     = "Cape Town"
-                "ap-east-1"      = "Hong Kong"
-                "ap-south-1"     = "Mumbai"
-                "ap-southeast-1" = "Singapore"
-                "ap-southeast-2" = "Sydney"
-                "ap-southeast-3" = "Jakarta"
-                "ap-northeast-1" = "Tokyo"
-                "ap-northeast-2" = "Seoul"
-                "ap-northeast-3" = "Osaka"
-                "ca-central-1"   = "Canada Central"
-                "ca-west-1"      = "Calgary"
-                "cn-north-1"     = "Beijing"
-                "cn-northwest-1" = "Ningxia"
-                "eu-central-1"   = "Frankfurt"
-                "eu-central-2"   = "Zurich"
-                "eu-west-1"      = "Ireland"
-                "eu-west-2"      = "London"
-                "eu-west-3"      = "Paris"
-                "eu-north-1"     = "Stockholm"
-                "eu-south-1"     = "Milan"
-                "eu-south-2"     = "Spain"
-                "me-south-1"     = "Bahrain"
-                "me-central-1"   = "UAE"
-                "sa-east-1"      = "São Paulo"
-                "il-central-1"   = "Tel Aviv"
-            }
-            }
-
-            variable "selected_region" {
-            type        = string
-            description = "Enter the AWS region where you want to deploy your OpenVPN Server and press Enter:"
-
-            validation {
-                condition     = can(regex("^(eu|us|ap|ca|sa|me|af|il|cn)-(central|west|east|north|south|southeast|northeast|northwest)-[1-3]$", var.selected_region))
-                error_message = "Please select a valid AWS region from the provided list."
-            }
-            }
-            ```
-
-        The `variables.tf` file is used to define variables that make the configuration more dynamic and reusable. By abstracting values into variables, I can easily customize the infrastructure without directly modifying the configuration files.
 
 
 ## **Setting the script options**
