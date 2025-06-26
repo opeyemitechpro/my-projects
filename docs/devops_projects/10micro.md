@@ -72,9 +72,9 @@ Technical details about how the terraform script works is described below:
     
     Each of the files in  this terraform configuration module is explained below:
 
-    ??? tip "The `ami.tf` file"
+    ??? tip "The `Jenkins Pipeline Script` file"
         
-        ???+ code-file "ami.tf"
+        ???+ code-file "Jenkins Pipeline Script"
             
             ``` tf hl_lines="6-9 11-14 16"
             10-Microservice CI/CD Jenkins Pipeline 
