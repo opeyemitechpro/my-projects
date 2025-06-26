@@ -282,18 +282,22 @@ Technical details about how the terraform script works is described below:
                     }
                 }
                 
-                post {
-                    always {
-                        emailext attachLog: true,
-                        attachmentsPattern: 'trivy-fs-report_$BUILD_NUMBER.txt, dependency-check-report.html', 
-                        body: '''
-                        Project <strong>"$PROJECT_NAME"</strong> has completed. <br> 
-                        Build Number: $BUILD_NUMBER <br> Build Tag: $BUILD_TAG <br> 
-                        Job Url: $JOB_URL <br> Build Status: <strong> $BUILD_STATUS.</strong><br><br> 
-                        Check console output at $BUILD_URL to view the results.
-                        ''', 
-                        subject: 'Project: $PROJECT_NAME, Build #: $BUILD_NUMBER - $BUILD_STATUS', 
-                        to: 'opeyemitechpro@gmail.com'
+                    post {
+                        always {
+                                emailext (
+                                attachLog: true,
+                                attachmentsPattern: 'trivy-fs-report_$BUILD_NUMBER.txt, dependency-check-report.html', 
+                                body: '''
+                                Project <strong>"$PROJECT_NAME"</strong> has completed. <br> 
+                                Build Number: $BUILD_NUMBER <br> Build Tag: $BUILD_TAG <br> 
+                                Job Url: <a href="$JOB_URL">Job URL</a> <br> Build Status: <strong> $BUILD_STATUS.</strong><br><br> 
+                                Check console output at <a href="${BUILD_URL}console">Console URL</a> to view the results.
+                                ''', 
+                                subject: 'Project: $PROJECT_NAME, Build #: $BUILD_NUMBER - $BUILD_STATUS', 
+                                to: 'your_email@gmail.com',
+                                from: 'your_email@gmail.com',
+                                replyTo: 'your_email@gmail.com'
+                                )
                         }
                     }
             }
