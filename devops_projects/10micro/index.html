@@ -1051,6 +1051,24 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#jenkins-plugins-to-install" class="md-nav__link">
+    <span class="md-ellipsis">
+      Jenkins Plugins to install
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jenkins-email-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Jenkins Email Configuration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#setting-the-script-options" class="md-nav__link">
     <span class="md-ellipsis">
       Setting the script options
@@ -1704,7 +1722,12 @@ This VPN server is also "disposable", meaning, you can create and delete it anyt
 <span class="normal"><a href="#__codelineno-0-212">212</a></span>
 <span class="normal"><a href="#__codelineno-0-213">213</a></span>
 <span class="normal"><a href="#__codelineno-0-214">214</a></span>
-<span class="normal"><a href="#__codelineno-0-215">215</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="m">10</span><span class="err">-Microservice</span><span class="w"> </span><span class="err">CI/CD</span><span class="w"> </span><span class="err">Jenkins</span><span class="w"> </span><span class="err">Pipeline</span><span class="w"> </span>
+<span class="normal"><a href="#__codelineno-0-215">215</a></span>
+<span class="normal"><a href="#__codelineno-0-216">216</a></span>
+<span class="normal"><a href="#__codelineno-0-217">217</a></span>
+<span class="normal"><a href="#__codelineno-0-218">218</a></span>
+<span class="normal"><a href="#__codelineno-0-219">219</a></span>
+<span class="normal"><a href="#__codelineno-0-220">220</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="m">10</span><span class="err">-Microservice</span><span class="w"> </span><span class="err">CI/CD</span><span class="w"> </span><span class="err">Jenkins</span><span class="w"> </span><span class="err">Pipeline</span><span class="w"> </span>
 <a id="__codelineno-0-2" name="__codelineno-0-2"></a>
 <a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="nb">pipeline</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="w">    </span><span class="err">agent</span><span class="w"> </span><span class="err">any</span>
@@ -1911,14 +1934,19 @@ This VPN server is also "disposable", meaning, you can create and delete it anyt
 <a id="__codelineno-0-205" name="__codelineno-0-205"></a>
 <a id="__codelineno-0-206" name="__codelineno-0-206"></a><span class="w">    </span><span class="nb">post</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-0-207" name="__codelineno-0-207"></a><span class="w">        </span><span class="nb">always</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-0-208" name="__codelineno-0-208"></a><span class="w">                </span><span class="err">emailext</span><span class="w"> </span><span class="err">attachLog</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="p">,</span>
-<a id="__codelineno-0-209" name="__codelineno-0-209"></a><span class="w">                </span><span class="err">attachmentsPattern</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;trivy-fs-report_$</span><span class="nv">BUILD_NUMBER.txt</span><span class="p">,</span><span class="w"> </span><span class="nv">dependency-check-report.html</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span>
-<a id="__codelineno-0-210" name="__codelineno-0-210"></a><span class="w">                </span><span class="err">body</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;Project</span><span class="w"> </span><span class="err">&lt;strong&gt;</span><span class="s2">&quot;$PROJECT_NAME&quot;</span><span class="err">&lt;/strong&gt;</span><span class="w"> </span><span class="err">has</span><span class="w"> </span><span class="err">completed</span><span class="p">.</span><span class="w"> </span><span class="err">&lt;br&gt;Build</span><span class="w"> </span><span class="err">Number</span><span class="p">:</span><span class="w"> </span><span class="err">$BUILD_NUMBER</span><span class="w"> </span><span class="err">&lt;br&gt;Build</span><span class="w"> </span><span class="err">Tag</span><span class="p">:</span><span class="w"> </span><span class="err">$BUILD_TAG&lt;br&gt;Job</span><span class="w"> </span><span class="err">Url</span><span class="p">:</span><span class="w"> </span><span class="err">$JOB_URL&lt;br&gt;Build</span><span class="w"> </span><span class="err">Status</span><span class="p">:</span><span class="w"> </span><span class="err">&lt;strong&gt;$BUILD_STATUS</span><span class="p">.</span><span class="err">&lt;/strong&gt;&lt;br&gt;&lt;br&gt;Check</span><span class="w"> </span><span class="err">console</span><span class="w"> </span><span class="err">output</span><span class="w"> </span><span class="err">at</span><span class="w"> </span><span class="err">$BUILD_URL</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">view</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">results</span><span class="p">.</span><span class="w"> </span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span>
-<a id="__codelineno-0-211" name="__codelineno-0-211"></a><span class="w">                </span><span class="err">subject</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;Project</span><span class="p">:</span><span class="w"> </span><span class="err">$PROJECT_NAME</span><span class="p">,</span><span class="w"> </span><span class="err">Build</span><span class="c1"> #: $BUILD_NUMBER - $BUILD_STATUS&#39;, </span>
-<a id="__codelineno-0-212" name="__codelineno-0-212"></a><span class="w">                </span><span class="err">to</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;opeyemitechpro@</span><span class="nv">gmail.com</span><span class="err">&#39;</span>
-<a id="__codelineno-0-213" name="__codelineno-0-213"></a><span class="w">        </span><span class="p">}</span>
-<a id="__codelineno-0-214" name="__codelineno-0-214"></a><span class="w">    </span><span class="p">}</span>
-<a id="__codelineno-0-215" name="__codelineno-0-215"></a><span class="p">}</span>
+<a id="__codelineno-0-208" name="__codelineno-0-208"></a><span class="w">            </span><span class="err">emailext</span><span class="w"> </span><span class="err">attachLog</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="p">,</span>
+<a id="__codelineno-0-209" name="__codelineno-0-209"></a><span class="w">            </span><span class="err">attachmentsPattern</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;trivy-fs-report_$</span><span class="nv">BUILD_NUMBER.txt</span><span class="p">,</span><span class="w"> </span><span class="nv">dependency-check-report.html</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span>
+<a id="__codelineno-0-210" name="__codelineno-0-210"></a><span class="w">            </span><span class="err">body</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;&#39;&#39;</span>
+<a id="__codelineno-0-211" name="__codelineno-0-211"></a><span class="w">            </span><span class="err">Project</span><span class="w"> </span><span class="err">&lt;strong&gt;</span><span class="s2">&quot;$PROJECT_NAME&quot;</span><span class="err">&lt;/strong&gt;</span><span class="w"> </span><span class="err">has</span><span class="w"> </span><span class="err">completed</span><span class="p">.</span><span class="w"> </span><span class="err">&lt;br&gt;</span><span class="w"> </span>
+<a id="__codelineno-0-212" name="__codelineno-0-212"></a><span class="w">            </span><span class="err">Build</span><span class="w"> </span><span class="err">Number</span><span class="p">:</span><span class="w"> </span><span class="err">$BUILD_NUMBER</span><span class="w"> </span><span class="err">&lt;br&gt;</span><span class="w"> </span><span class="err">Build</span><span class="w"> </span><span class="err">Tag</span><span class="p">:</span><span class="w"> </span><span class="err">$BUILD_TAG</span><span class="w"> </span><span class="err">&lt;br&gt;</span><span class="w"> </span>
+<a id="__codelineno-0-213" name="__codelineno-0-213"></a><span class="w">            </span><span class="err">Job</span><span class="w"> </span><span class="err">Url</span><span class="p">:</span><span class="w"> </span><span class="err">$JOB_URL</span><span class="w"> </span><span class="err">&lt;br&gt;</span><span class="w"> </span><span class="err">Build</span><span class="w"> </span><span class="err">Status</span><span class="p">:</span><span class="w"> </span><span class="err">&lt;strong&gt;</span><span class="w"> </span><span class="err">$BUILD_STATUS</span><span class="p">.</span><span class="err">&lt;/strong&gt;&lt;br&gt;&lt;br&gt;</span><span class="w"> </span>
+<a id="__codelineno-0-214" name="__codelineno-0-214"></a><span class="w">            </span><span class="err">Check</span><span class="w"> </span><span class="err">console</span><span class="w"> </span><span class="err">output</span><span class="w"> </span><span class="err">at</span><span class="w"> </span><span class="err">$BUILD_URL</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">view</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">results</span><span class="p">.</span>
+<a id="__codelineno-0-215" name="__codelineno-0-215"></a><span class="w">            </span><span class="err">&#39;&#39;&#39;</span><span class="p">,</span><span class="w"> </span>
+<a id="__codelineno-0-216" name="__codelineno-0-216"></a><span class="w">            </span><span class="err">subject</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;Project</span><span class="p">:</span><span class="w"> </span><span class="err">$PROJECT_NAME</span><span class="p">,</span><span class="w"> </span><span class="err">Build</span><span class="c1"> #: $BUILD_NUMBER - $BUILD_STATUS&#39;, </span>
+<a id="__codelineno-0-217" name="__codelineno-0-217"></a><span class="w">            </span><span class="err">to</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;opeyemitechpro@</span><span class="nv">gmail.com</span><span class="err">&#39;</span>
+<a id="__codelineno-0-218" name="__codelineno-0-218"></a><span class="w">            </span><span class="p">}</span>
+<a id="__codelineno-0-219" name="__codelineno-0-219"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-0-220" name="__codelineno-0-220"></a><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <ol>
 <li>Lines 6-9 filters the name of the ami "ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server-*"</li>
@@ -2117,80 +2145,31 @@ This VPN server is also "disposable", meaning, you can create and delete it anyt
 <a id="__codelineno-1-82" name="__codelineno-1-82"></a><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 </details>
-<p>This is the main config file that sets up the OpenVPN server infrastructure.</p>
-<ul>
-<li>
-<p>It reates an EC2 instance for the OpenVPN server with the specified configurations (using Ubuntu AMI selected above)</p>
-</li>
-<li>
-<p>Sets up a key pair for SSH access</p>
-</li>
-<li>
-<p>Configures the instance metadata options so it can be queried by the user_data script</p>
-</li>
-<li>
-<p>Creates and saves an RSA private key locally</p>
-</li>
-<li>
-<p>Includes tags for resource management</p>
-</li>
-<li>
-<p>Sets the connection profile name for the VPN server</p>
-</li>
-<li>
-<p>Displays available AWS regions through a null resource and determines the selected region during execution</p>
-</li>
-</ul>
-<p><mark>Each code section is explained breifly below:</mark></p>
-<p><mark><strong>aws_instance Resource</strong></mark> </p>
-<p>This resource defines the EC2 instance for the OpenVPN server.  </p>
-<ul>
-<li><strong><code>ami</code></strong>: Uses the ID of a specific Ubuntu AMI fetched via a data source.  </li>
-<li><strong><code>instance_type</code></strong>: Sets the EC2 instance type, determined by a variable (<code>var.OpenVPN_instance_type</code>).  </li>
-<li><strong><code>vpc_security_group_ids</code></strong>: Attaches the instance to a specific security group (<code>aws_security_group.openvpn_SG</code>).  </li>
-<li><strong><code>user_data</code></strong>: Provides initialization commands for the instance via a template file. Custom variables, such as <code>openvpn_user</code>, are passed to the template.  </li>
-<li><strong><code>key_name</code></strong>: Associates the instance with an SSH key pair created earlier.  </li>
-<li><strong><code>root_block_device</code></strong>: Defines the root storage for the instance, setting its size to 8 GB.  </li>
-<li><strong><code>metadata_options</code></strong>: Configures the EC2 metadata service to support both IMDSv1 and IMDSv2 for instance metadata retrieval.  </li>
-<li><strong><code>tags</code></strong>: Adds custom tags to the instance for identification, including project and region details.</li>
-</ul>
-<hr />
-<p><mark><strong>locals Block</strong></mark>  </p>
-<p>Defines reusable local variables and values for the configuration.  </p>
-<ul>
-<li><strong><code>key_pair_name</code></strong>: Constructs a unique key name with a prefix and region.  </li>
-<li><strong><code>openvpn_user</code></strong>: Creates a unique username for OpenVPN based on the region.  </li>
-<li><strong><code>region_display</code></strong>: Formats a list of available AWS regions for display purposes.  </li>
-</ul>
-<hr />
-<p><mark><strong>tls_private_key Resource</strong></mark>  </p>
-<p>Generates a 2048-bit RSA private key used to create an AWS key pair.  </p>
-<hr />
-<p><mark><strong>aws_key_pair Resource</strong></mark>  </p>
-<p>Creates an SSH key pair in AWS.  </p>
-<ul>
-<li><strong><code>key_name</code></strong>: Uses the locally defined key pair name.  </li>
-<li><strong><code>public_key</code></strong>: Sets the public key from the generated private key.  </li>
-<li><strong><code>tags</code></strong>: Adds metadata for the key pair, such as the project name and creation method.  </li>
-</ul>
-<hr />
-<p><mark><strong>local_file Resource</strong></mark>  </p>
-<p>Stores the generated private key securely on the local machine.  </p>
-<ul>
-<li><strong><code>content</code></strong>: Saves the private key in PEM format.  </li>
-<li><strong><code>filename</code></strong>: Names the file using the key pair name and <code>.pem</code> extension.  </li>
-<li><strong><code>file_permission</code></strong>: Sets restrictive permissions (<code>0400</code>) for security.  </li>
-</ul>
-<hr />
-<p><mark><strong>null_resource for Region Display</strong></mark>  </p>
-<p>A helper resource to print available AWS regions to the console.  </p>
-<ul>
-<li><strong><code>triggers</code></strong>: Ensures the resource runs every time by using the current timestamp.  </li>
-<li><strong><code>provisioner "local-exec"</code></strong>: Executes a script that prints available AWS regions and the selected region's details.  </li>
-</ul>
-<hr />
 </details>
 </details>
+<h2 id="jenkins-plugins-to-install">Jenkins Plugins to install<a class="headerlink" href="#jenkins-plugins-to-install" title="Copy this link to reference this section">&para;</a></h2>
+<ul>
+<li>sonar</li>
+<li>SonarQube Scanner</li>
+<li>docker</li>
+<li>docker pipeline</li>
+<li>docker build step</li>
+<li>cloudbees docker build and publish</li>
+<li>kubernetes</li>
+<li>kubernetes CLI</li>
+<li>Email Notifications</li>
+<li>Extended Email Notifications</li>
+<li>Prometheus Metrics</li>
+<li></li>
+</ul>
+<h2 id="jenkins-email-configuration">Jenkins Email Configuration<a class="headerlink" href="#jenkins-email-configuration" title="Copy this link to reference this section">&para;</a></h2>
+<ul>
+<li>SMTP Server Name: smtp.gmail.com</li>
+<li>Username:    user_email_id@gmail.com</li>
+<li>Password: app_password</li>
+<li>Use SSL: checked</li>
+<li>SMTP Port:  465</li>
+</ul>
 <h2 id="setting-the-script-options"><strong>Setting the script options</strong><a class="headerlink" href="#setting-the-script-options" title="Copy this link to reference this section">&para;</a></h2>
 <p>The script allows you to set some options based on your use case. These are the available options you can set:</p>
 <ul class="task-list">
@@ -2660,7 +2639,7 @@ This VPN server is also "disposable", meaning, you can create and delete it anyt
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="June 26, 2025 13:45:14 UTC"><span class="timeago" datetime="2025-06-26T13:45:14+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="June 26, 2025 13:45:14 UTC">2025-06-26</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="June 26, 2025 15:10:50 UTC"><span class="timeago" datetime="2025-06-26T15:10:50+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="June 26, 2025 15:10:50 UTC">2025-06-26</span>
   </span>
 
     
