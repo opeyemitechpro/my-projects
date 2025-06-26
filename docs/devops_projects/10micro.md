@@ -284,13 +284,18 @@ Technical details about how the terraform script works is described below:
                 
                 post {
                     always {
-                            emailext attachLog: true,
-                            attachmentsPattern: 'trivy-fs-report_$BUILD_NUMBER.txt, dependency-check-report.html', 
-                            body: 'Project <strong>"$PROJECT_NAME"</strong> has completed. <br>Build Number: $BUILD_NUMBER <br>Build Tag: $BUILD_TAG<br>Job Url: $JOB_URL<br>Build Status: <strong>$BUILD_STATUS.</strong><br><br>Check console output at $BUILD_URL to view the results. ', 
-                            subject: 'Project: $PROJECT_NAME, Build #: $BUILD_NUMBER - $BUILD_STATUS', 
-                            to: 'opeyemitechpro@gmail.com'
+                        emailext attachLog: true,
+                        attachmentsPattern: 'trivy-fs-report_$BUILD_NUMBER.txt, dependency-check-report.html', 
+                        body: '''
+                        Project <strong>"$PROJECT_NAME"</strong> has completed. <br> 
+                        Build Number: $BUILD_NUMBER <br> Build Tag: $BUILD_TAG <br> 
+                        Job Url: $JOB_URL <br> Build Status: <strong> $BUILD_STATUS.</strong><br><br> 
+                        Check console output at $BUILD_URL to view the results.
+                        ''', 
+                        subject: 'Project: $PROJECT_NAME, Build #: $BUILD_NUMBER - $BUILD_STATUS', 
+                        to: 'opeyemitechpro@gmail.com'
+                        }
                     }
-                }
             }
 
             ```
@@ -404,84 +409,30 @@ Technical details about how the terraform script works is described below:
 
 
 
-        This is the main config file that sets up the OpenVPN server infrastructure.
+## Jenkins Plugins to install
 
-        - It reates an EC2 instance for the OpenVPN server with the specified configurations (using Ubuntu AMI selected above)
+- sonar
+- SonarQube Scanner
+- docker
+- docker pipeline
+- docker build step
+- cloudbees docker build and publish
+- kubernetes
+- kubernetes CLI
+- Email Notifications
+- Extended Email Notifications
+- Prometheus Metrics
+- 
 
-        - Sets up a key pair for SSH access
+## Jenkins Email Configuration
 
-        - Configures the instance metadata options so it can be queried by the user_data script
-
-        - Creates and saves an RSA private key locally
-
-        - Includes tags for resource management
-
-        - Sets the connection profile name for the VPN server
-
-        - Displays available AWS regions through a null resource and determines the selected region during execution
+- SMTP Server Name: smtp.gmail.com
+- Username:    user_email_id@gmail.com
+- Password: app_password
+- Use SSL: checked
+- SMTP Port:  465
 
 
-        ==Each code section is explained breifly below:==
-
-        ==**aws_instance Resource**== 
-         
-        This resource defines the EC2 instance for the OpenVPN server.  
-
-        - **`ami`**: Uses the ID of a specific Ubuntu AMI fetched via a data source.  
-        - **`instance_type`**: Sets the EC2 instance type, determined by a variable (`var.OpenVPN_instance_type`).  
-        - **`vpc_security_group_ids`**: Attaches the instance to a specific security group (`aws_security_group.openvpn_SG`).  
-        - **`user_data`**: Provides initialization commands for the instance via a template file. Custom variables, such as `openvpn_user`, are passed to the template.  
-        - **`key_name`**: Associates the instance with an SSH key pair created earlier.  
-        - **`root_block_device`**: Defines the root storage for the instance, setting its size to 8 GB.  
-        - **`metadata_options`**: Configures the EC2 metadata service to support both IMDSv1 and IMDSv2 for instance metadata retrieval.  
-        - **`tags`**: Adds custom tags to the instance for identification, including project and region details.
-
-        ---
-
-        ==**locals Block**==  
-
-        Defines reusable local variables and values for the configuration.  
-
-        - **`key_pair_name`**: Constructs a unique key name with a prefix and region.  
-        - **`openvpn_user`**: Creates a unique username for OpenVPN based on the region.  
-        - **`region_display`**: Formats a list of available AWS regions for display purposes.  
-
-        ---
-
-        ==**tls_private_key Resource**==  
-
-        Generates a 2048-bit RSA private key used to create an AWS key pair.  
-
-        ---
-
-        ==**aws_key_pair Resource**==  
-
-        Creates an SSH key pair in AWS.  
-
-        - **`key_name`**: Uses the locally defined key pair name.  
-        - **`public_key`**: Sets the public key from the generated private key.  
-        - **`tags`**: Adds metadata for the key pair, such as the project name and creation method.  
-
-        ---
-
-        ==**local_file Resource**==  
-
-        Stores the generated private key securely on the local machine.  
-
-        - **`content`**: Saves the private key in PEM format.  
-        - **`filename`**: Names the file using the key pair name and `.pem` extension.  
-        - **`file_permission`**: Sets restrictive permissions (`0400`) for security.  
-
-        ---
-
-        ==**null_resource for Region Display**==  
-
-        A helper resource to print available AWS regions to the console.  
-
-        - **`triggers`**: Ensures the resource runs every time by using the current timestamp.  
-        - **`provisioner "local-exec"`**: Executes a script that prints available AWS regions and the selected region's details.  
-
-        --- 
 
 
 ## **Setting the script options**
