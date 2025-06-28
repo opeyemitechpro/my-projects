@@ -48,6 +48,9 @@ This VPN server is also "disposable", meaning, you can create and delete it anyt
     </div>
 
 :fontawesome-solid-arrow-up-right-from-square:
+:fontawesome-solid-up-right-from-square:
+:fontawesome-solid-square-arrow-up-right:
+:fontawesome-solid-arrow-up-right-from-square:
 
 
 ## **What this Terraform Configuration Script Does**
