@@ -44,7 +44,7 @@ This VPN server is also "disposable", meaning, you can create and delete it anyt
 - [x] The OpenVPN-Terraform Setup Script _(click the button below)_
 
     <div style="text-align: center;">
-    [OpenVPN-Terraform Source Code :simple-github:](https://github.com/opeyemitechpro/OpenVPN-Terraform-Setup){: target="_blank" .md-button .md-button--primary}
+    [OpenVPN-Terraform Source Code :simple-github: :fontawesome-solid-arrow-up-right-from-square:](https://github.com/opeyemitechpro/OpenVPN-Terraform-Setup){: target="_blank" .md-button .md-button--primary}
     </div>
 
 
