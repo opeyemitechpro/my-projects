@@ -36,11 +36,11 @@ This VPN server is also "disposable", meaning, you can create and delete it anyt
 
 ## **Pre-requisites**
 
-- [x] AWS account _([free tier account will work](https://aws.amazon.com/free/){: target="_blank" })_
-- [x] Terraform installed on local machine _([How to Install Terraform](https://developer.hashicorp.com/terraform/install){: target="_blank" })_
-- [x] OpenVPN Connect Client software installed on local machine _(download from [here](https://openvpn.net/client/){: target="_blank" })_
-- [x] Your AWS access key ID and secret access key _(learn how to get your AWS access keys [here](https://docs.aws.amazon.com/cli/latest/userguide/cli-authentication-user.html){: target="_blank" })_
-- [x] AWS CLI installed and configured with your AWS access key ID and Secret access keys _(learn more about AWS CLI [here](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-quickstart.html){: target="_blank" })_ 
+- [x] AWS account _([free tier account will work :fontawesome-solid-arrow-up-right-from-square:](https://aws.amazon.com/free/){: target="_blank" })_
+- [x] Terraform installed on local machine _([How to Install Terraform :fontawesome-solid-arrow-up-right-from-square:](https://developer.hashicorp.com/terraform/install){: target="_blank" })_
+- [x] OpenVPN Connect Client software installed on local machine _(download from [here:fontawesome-solid-arrow-up-right-from-square:](https://openvpn.net/client/){: target="_blank" })_
+- [x] Your AWS access key ID and secret access key _(learn how to get your AWS access keys [here :fontawesome-solid-arrow-up-right-from-square:](https://docs.aws.amazon.com/cli/latest/userguide/cli-authentication-user.html){: target="_blank" })_
+- [x] AWS CLI installed and configured with your AWS access key ID and Secret access keys _(learn more about AWS CLI [here :fontawesome-solid-arrow-up-right-from-square:](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-quickstart.html){: target="_blank" })_ 
 - [x] The OpenVPN-Terraform Setup Script _(click the button below)_
 
     <div style="text-align: center;">
