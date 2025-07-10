@@ -109,7 +109,7 @@ This VPN server is also "disposable", meaning, you can create and delete it anyt
 
 ??? note ""
 
-    The settings above apply to Gmail addresses. Confirm settings for your email provider.
+    The settings above apply to Gmail address configuration. Confirm SMTP settings from your email service provider.
 
 
 
