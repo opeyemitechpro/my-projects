@@ -81,7 +81,7 @@ This VPN server is also "disposable", meaning, you can create and delete it anyt
 
 - [x] Server URL: <sonar_server_ip:9000>
 
-!!! tip ""
+??? tip ""
     
     Since our SonarQube server is running as a docker container on port `9000` on the same machine as the Jenkins server, use http://<server_ip_address:9000> 
 
@@ -107,7 +107,7 @@ This VPN server is also "disposable", meaning, you can create and delete it anyt
 - [x] Test email delivery
 
 
-!!! note ""
+??? note ""
 
     The settings above apply to Gmail addresses. Confirm settings for your email provider.
 
