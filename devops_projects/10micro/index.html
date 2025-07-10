@@ -1042,11 +1042,53 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#jenkins-email-configuration" class="md-nav__link">
+  <a href="#configure-plugins" class="md-nav__link">
     <span class="md-ellipsis">
-      Jenkins Email Configuration
+      Configure Plugins
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Configure Plugins">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sonarqube" class="md-nav__link">
+    <span class="md-ellipsis">
+      SonarQube
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prometheus" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prometheus
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker-hub-credentials" class="md-nav__link">
+    <span class="md-ellipsis">
+      Docker Hub Credentials
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jenkins-email-notifications" class="md-nav__link">
+    <span class="md-ellipsis">
+      Jenkins Email Notifications
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1078,7 +1120,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#jenkins-email-configuration_1" class="md-nav__link">
+  <a href="#jenkins-email-configuration" class="md-nav__link">
     <span class="md-ellipsis">
       Jenkins Email Configuration
     </span>
@@ -1529,29 +1571,38 @@ This VPN server is also "disposable", meaning, you can create and delete it anyt
 <li></li>
 </ul>
 </li>
-<li>Configure Plugins<ul>
-<li>SonarQube</li>
-<li>Prometheus</li>
-<li>Email Notifications</li>
-<li>Docker Hub Credentials</li>
-<li>Email<ul>
-<li>Test Email Delivery</li>
-</ul>
-</li>
-<li>Test Pipeline</li>
 </ul>
 </li>
 </ul>
-</li>
+<h2 id="configure-plugins">Configure Plugins<a class="headerlink" href="#configure-plugins" title="Copy this link to reference this section">&para;</a></h2>
+<h3 id="sonarqube">SonarQube<a class="headerlink" href="#sonarqube" title="Copy this link to reference this section">&para;</a></h3>
+<p>Server Name: sonar
+(Or use a suitable name)</p>
+<p>Server URL: <sonar_server_ip:9000></p>
+<div class="admonition tip">
+<p>Since our SonarQube server is running as a docker container on port <code>9000</code> on the same machine as the Jenkins server, use http://<server_ip_address:9000> </p>
+</div>
+<h3 id="prometheus">Prometheus<a class="headerlink" href="#prometheus" title="Copy this link to reference this section">&para;</a></h3>
+<ul>
+<li>No further configuration needed</li>
+<li>By default, the Prometheus metrics will be scrapped from <code>http://&lt;jenkins_server_ip:8080&gt;/prometheus</code></li>
 </ul>
-<h2 id="jenkins-email-configuration">Jenkins Email Configuration<a class="headerlink" href="#jenkins-email-configuration" title="Copy this link to reference this section">&para;</a></h2>
+<h3 id="docker-hub-credentials">Docker Hub Credentials<a class="headerlink" href="#docker-hub-credentials" title="Copy this link to reference this section">&para;</a></h3>
+<p>Configure Docker Credentials to enable pushing docker images to Docker Hub</p>
+<h3 id="jenkins-email-notifications">Jenkins Email Notifications<a class="headerlink" href="#jenkins-email-notifications" title="Copy this link to reference this section">&para;</a></h3>
 <ul>
 <li>SMTP Server Name: smtp.gmail.com</li>
 <li>Username:    user_email_id@gmail.com</li>
 <li>Password: app_password</li>
 <li>Use SSL: checked</li>
 <li>SMTP Port:  465</li>
+<li>System Admin e-mail address: <Admin_Name> <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#117;&#115;&#101;&#114;&#95;&#101;&#109;&#97;&#105;&#108;&#95;&#105;&#100;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;">&#117;&#115;&#101;&#114;&#95;&#101;&#109;&#97;&#105;&#108;&#95;&#105;&#100;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;</a></li>
+<li>Copy App password from gmail account security settings and use as password in the above configuration.</li>
+<li>Test email delivery</li>
 </ul>
+<div class="admonition note">
+<p>Above settings apply to Gmail addresses. Confirm settings for your email provider.</p>
+</div>
 <h2 id="what-this-terraform-configuration-script-does"><strong>What this Terraform Configuration Script Does</strong><a class="headerlink" href="#what-this-terraform-configuration-script-does" title="Copy this link to reference this section">&para;</a></h2>
 <p>This terraform configuration creates a fully functional, free and ready-to-use self-hosted OpenVPN Server in any chosen AWS region. The script perfomes the following operations:</p>
 <ul>
@@ -2236,7 +2287,7 @@ This VPN server is also "disposable", meaning, you can create and delete it anyt
 <li>Prometheus Metrics</li>
 <li></li>
 </ul>
-<h2 id="jenkins-email-configuration_1">Jenkins Email Configuration<a class="headerlink" href="#jenkins-email-configuration_1" title="Copy this link to reference this section">&para;</a></h2>
+<h2 id="jenkins-email-configuration">Jenkins Email Configuration<a class="headerlink" href="#jenkins-email-configuration" title="Copy this link to reference this section">&para;</a></h2>
 <ul>
 <li>SMTP Server Name: smtp.gmail.com</li>
 <li>Username:    user_email_id@gmail.com</li>
@@ -2713,7 +2764,7 @@ This VPN server is also "disposable", meaning, you can create and delete it anyt
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="July 10, 2025 13:14:30 UTC"><span class="timeago" datetime="2025-07-10T13:14:30+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="July 10, 2025 13:14:30 UTC">2025-07-10</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="July 10, 2025 13:31:38 UTC"><span class="timeago" datetime="2025-07-10T13:31:38+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="July 10, 2025 13:31:38 UTC">2025-07-10</span>
   </span>
 
     
