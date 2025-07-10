@@ -79,7 +79,7 @@ This VPN server is also "disposable", meaning, you can create and delete it anyt
 - [x] Server Name: sonar
 (Or use a suitable name)
 
-- [x] Server URL: <sonar_server_ip:9000>
+- [x] Server URL: `<sonar_server_ip:9000>`
 
 !!! tip ""
     
