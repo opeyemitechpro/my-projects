@@ -55,6 +55,34 @@ This VPN server is also "disposable", meaning, you can create and delete it anyt
 <i class="fa-solid fa-arrow-up-right-from-square"></i>
 
 
+
+## *Install Gitleaks**
+
+```
+# Download and install the latest release of Gitleaks
+curl -sSfL https://raw.githubusercontent.com/gitleaks/gitleaks/master/scripts/install.sh | sudo sh -s -- -b /usr/local/bin
+```
+
+```
+curl -s https://api.github.com/repos/gitleaks/gitleaks/releases/latest \
+| grep "browser_download_url.*linux.*amd64" \
+| cut -d '"' -f 4 \
+| wget -qi -
+
+tar -xvf gitleaks_*.tar.gz
+sudo mv gitleaks /usr/local/bin/
+gitleaks version
+```
+
+
+```
+GITLEAKS_VERSION=$(curl -s "https://api.github.com/repos/gitleaks/gitleaks/releases/latest" | grep -Po '"tag_name": "v\K[0-9.]+')
+wget -qO gitleaks.tar.gz https://github.com/gitleaks/gitleaks/releases/latest/download/gitleaks_${GITLEAKS_VERSION}_linux_x64.tar.gz
+sudo tar xf gitleaks.tar.gz -C /usr/local/bin gitleaks
+# gitleaks version
+rm -rf gitleaks.tar.gz
+```
+
 ## **Worklflow**
 
 - [x] Run Terraform to setup Jenkins
@@ -128,7 +156,7 @@ This terraform configuration creates a fully functional, free and ready-to-use s
 - One command tear down that destroys and cleans up the whole infrastructure along with the locally created files (the keypair file and the *.ovpn user profile file)
 
 
-## **How the Terraform Configuration Script works**
+## **Jenkins Pipeline Script**
 
 Technical details about how the terraform script works is described below:
 
@@ -145,7 +173,7 @@ Technical details about how the terraform script works is described below:
         ???+ code-file "Jenkins Pipeline Script"
             
             ``` tf hl_lines="6-9 11-14 16"
-            10-Microservice CI/CD Jenkins Pipeline 
+            // 10-Microservice CI/CD Jenkins Pipeline 
 
             pipeline {
                 agent any
