@@ -71,23 +71,45 @@ This VPN server is also "disposable", meaning, you can create and delete it anyt
         - Extended Email Notifications
         - Prometheus Metrics
         - 
-    - Configure Plugins
-        - SonarQube
-        - Prometheus
-        - Email Notifications
-        - Docker Hub Credentials
-        - Email
-            - Test Email Delivery
-        - Test Pipeline
 
-## Jenkins Email Configuration
+## Configure Plugins
+
+### SonarQube
+
+Server Name: sonar
+(Or use a suitable name)
+
+Server URL: <sonar_server_ip:9000>
+
+!!! tip ""
+    
+    Since our SonarQube server is running as a docker container on port `9000` on the same machine as the Jenkins server, use http://<server_ip_address:9000> 
+
+
+
+### Prometheus
+- No further configuration needed
+- By default, the Prometheus metrics will be scrapped from `http://<jenkins_server_ip:8080>/prometheus`
+
+### Docker Hub Credentials
+
+Configure Docker Credentials to enable pushing docker images to Docker Hub
+
+### Jenkins Email Notifications
 
 - SMTP Server Name: smtp.gmail.com
 - Username:    user_email_id@gmail.com
 - Password: app_password
 - Use SSL: checked
 - SMTP Port:  465
+- System Admin e-mail address: <Admin_Name> <user_email_id@gmail.com>
+- Copy App password from gmail account security settings and use as password in the above configuration.
+- Test email delivery
 
+
+!!! note ""
+
+    Above settings apply to Gmail addresses. Confirm settings for your email provider.
 
 
 
