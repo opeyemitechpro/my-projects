@@ -81,9 +81,9 @@ This VPN server is also "disposable", meaning, you can create and delete it anyt
 
 - [x] Server URL: `<sonar_server_ip:9000>`
 
-???+ tip "Tip"
+!!! tip "Tip"
     
-    Since our SonarQube server is running as a docker container on port `9000` on the same machine as the Jenkins server, use `http://<server_ip_address:9000>` 
+    Since our SonarQube server is running as a docker container on port `9000` on the same machine as the Jenkins server, use `http://<server_ip_address:9000>` as the Server URL
 
 
 
