@@ -47,12 +47,48 @@ This VPN server is also "disposable", meaning, you can create and delete it anyt
     [OpenVPN-Terraform Source Code :simple-github: :fontawesome-solid-arrow-up-right-from-square:](https://github.com/opeyemitechpro/OpenVPN-Terraform-Setup){: target="_blank" .md-button .md-button--primary}
     </div>
 
-:fontawesome-solid-arrow-up-right-from-square:
+<!-- :fontawesome-solid-arrow-up-right-from-square:
 :fontawesome-solid-up-right-from-square:
 :fontawesome-solid-square-arrow-up-right:
 :fontawesome-solid-arrow-up-right-from-square:
 :fontawesome-solid-arrow-up-right-from-square:
-<i class="fa-solid fa-arrow-up-right-from-square"></i>
+<i class="fa-solid fa-arrow-up-right-from-square"></i> -->
+
+
+## Worklflow
+
+- Run Terraform to setup Jenkins
+- confiure Jenkins
+    - install plugins
+        - SonarQube Scanner
+        - docker
+        - docker pipeline
+        - docker build step
+        - cloudbees docker build and publish
+        - kubernetes
+        - kubernetes CLI
+        - Email Notifications
+        - Extended Email Notifications
+        - Prometheus Metrics
+        - 
+    - Configure Plugins
+        - SonarQube
+        - Prometheus
+        - Email Notifications
+        - Docker Hub Credentials
+        - Email
+            - Test Email Delivery
+        - Test Pipeline
+
+## Jenkins Email Configuration
+
+- SMTP Server Name: smtp.gmail.com
+- Username:    user_email_id@gmail.com
+- Password: app_password
+- Use SSL: checked
+- SMTP Port:  465
+
+
 
 
 ## **What this Terraform Configuration Script Does**
