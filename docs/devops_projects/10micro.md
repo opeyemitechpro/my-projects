@@ -97,7 +97,7 @@ This VPN server is also "disposable", meaning, you can create and delete it anyt
 
 ### **Jenkins Email Notifications**
 
-Goto `Dashboard` > `Manage Jenkins` > `System` and configure both the __"Extended E-mail Notification"__ and the __"E-mail Notification"__ sections as below:
+Goto `Dashboard > Manage Jenkins > System` and configure both the __"Extended E-mail Notification"__ and the __"E-mail Notification"__ sections as below:
 
 - [x] SMTP Server Name: smtp.gmail.com
 - [x] SMTP Port:  465
