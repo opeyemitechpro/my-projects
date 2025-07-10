@@ -97,19 +97,22 @@ This VPN server is also "disposable", meaning, you can create and delete it anyt
 
 ### **Jenkins Email Notifications**
 
+Goto `Dashboard` > `Manage Jenkins` > `System` and configure both the __"Extended E-mail Notification"__ and the __"E-mail Notification"__ sections as below:
+
 - [x] SMTP Server Name: smtp.gmail.com
-- [x] Username:    user_email_id@gmail.com
-- [x] Password: app_password
-- [x] Use SSL: checked
 - [x] SMTP Port:  465
+- [x] Username:    `user_email_id@gmail.com`
+- [x] Password: `app_password`
+- [x] Use SSL: checked
 - [x] System Admin e-mail address: `<Admin_Name> <user_email_id@gmail.com>`
-- [x] Copy App password from gmail account security settings and use as password in the above configuration.
+- [x] Default Content Type: `HTML`
 - [x] Test email delivery
 
 
 !!! note "Note"
 
-    The settings above apply to Gmail address configuration. Confirm SMTP settings from your email service provider.
+    - The settings above apply to Gmail address configuration. Confirm SMTP settings from your email service provider.
+    - Copy `App password` from your gmail account security settings and use that as the password in the above configuration.
 
 
 
