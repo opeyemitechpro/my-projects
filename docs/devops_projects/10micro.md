@@ -98,7 +98,7 @@ rm -rf gitleaks.tar.gz
         - Email Notifications
         - Extended Email Notifications
         - Prometheus Metrics
-        - 
+        - OWASP Dependency Check Plugin
 
 ## **Configure Plugins**
 
@@ -158,26 +158,26 @@ This terraform configuration creates a fully functional, free and ready-to-use s
 
 ## **Jenkins Pipeline Script**
 
-Technical details about how the terraform script works is described below:
+Copy the script below and paste into the job pipeline section:
 
-??? info "Click here to see details of how the OpenVPN Terraform config works under the hood"
+??? info "Jenkins Pipeline script for the Jenkins job"
 
     <div style="text-align: center;">
-    [OpenVPN-Terraform Source Code :simple-github:](https://github.com/opeyemitechpro/OpenVPN-Terraform-Setup){: target="_blank" .md-button}
+    [11-Microservices-k8s-App Source Code :simple-github: :fontawesome-solid-arrow-up-right-from-square:](https://github.com/opeyemitechpro/11-Microservices-k8s-App){: target="_blank" .md-button}
     </div>    
     
-    Each of the files in  this terraform configuration module is explained below:
+    The Jenkins CI/CD pipeline is below:
 
-    ??? tip "The `Jenkins Pipeline Script` file"
+    ??? tip "The Jenkins Pipeline Script"
         
         ???+ code-file "Jenkins Pipeline Script"
             
-            ``` tf hl_lines="6-9 11-14 16"
-            // 10-Microservice CI/CD Jenkins Pipeline 
+            ``` groovy hl_lines="6-9 11-14 16"
+            // 10-Microservices-k8s-App Jenkins Pipeline - New
 
             pipeline {
                 agent any
-                
+
 
                 stages {
                     stage('Clean Workspace'){
@@ -191,7 +191,13 @@ Technical details about how the terraform script works is described below:
                             git branch: 'OpeyemiTechPro-v1', url: 'https://github.com/opeyemitechpro/11-Microservices-k8s-App.git'
                         }
                     }
-                
+                    
+                    stage('Gitleaks Scan') {
+                        steps {
+                            sh 'gitleaks detect --source . -r gitleaks_report-$BUILD_NUMBER.json'
+                        }
+                    }
+
                     stage('SonarQube Analysis') {
                         environment {
                         SCANNER_HOME = tool 'sonar-scanner'
@@ -348,7 +354,7 @@ Technical details about how the terraform script works is described below:
                             }
                         }
                     }
-                    
+
                     stage('DockerImage CleanUp') {
                         steps { 
                                 sh "docker rmi opeyemitechpro/adservice:latest"
@@ -364,25 +370,25 @@ Technical details about how the terraform script works is described below:
                                 sh "docker rmi opeyemitechpro/shippingservice:latest"
                         }
                     }
-                    stage("Kubernetes deploy"){
-                    steps {
-                            withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'cluster-ID', namespace: 'opeyemi-apps', restrictKubeConfigAccess: false, serverUrl: 'https://FDC152307BF6A5337A2C02C976A8D19F.gr7.us-east-2.eks.amazonaws.com')
-                            {
-                                sh ' kubectl apply -f buildnow.yml -n opeyemi-apps'
-                                sh ' kubectl get pods -n opeyemi-apps '
-                                sh ' kubectl get svc -n opeyemi-apps '
+                // stage("Kubernetes deploy"){
+                    // steps {
+                    //     withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'cluster-ID', namespace: 'opeyemi-apps', restrictKubeConfigAccess: false, serverUrl: 'https://FDC152307BF6A5337A2C02C976A8D19F.gr7.us-east-2.eks.amazonaws.com')
+                        //   {
+                        //       sh ' kubectl apply -f buildnow.yml -n opeyemi-apps'
+                        //       sh ' kubectl get pods -n opeyemi-apps '
+                        //       sh ' kubectl get svc -n opeyemi-apps '
                             //  sh " kubectl get service -n opeyemi-apps frontend-external | awk '{print \$4}' "
-                            }
-                                sh ' date'
-                        }
-                    }
+                        //   }
+                        //       sh ' date'
+                    //    }
+                //    }
                 }
-                
+
                     post {
                         always {
                                 emailext (
                                 attachLog: true,
-                                attachmentsPattern: 'trivy-fs-report_$BUILD_NUMBER.txt, dependency-check-report.html', 
+                                attachmentsPattern: 'trivy-fs-report_$BUILD_NUMBER.txt, dependency-check-report.html, gitleaks_report-$BUILD_NUMBER.json', 
                                 body: '''
                                 Project <strong>"$PROJECT_NAME"</strong> has completed. <br> 
                                 Build Number: $BUILD_NUMBER <br> Build Tag: $BUILD_TAG <br> 
@@ -390,9 +396,9 @@ Technical details about how the terraform script works is described below:
                                 Check console output at <a href="${BUILD_URL}console">Console URL</a> to view the results.
                                 ''', 
                                 subject: 'Project: $PROJECT_NAME, Build #: $BUILD_NUMBER - $BUILD_STATUS', 
-                                to: 'your_email@gmail.com',
-                                from: 'your_email@gmail.com',
-                                replyTo: 'your_email@gmail.com'
+                                to: 'opeyemitechpro@gmail.com',
+                                // from: 'opeyemitechpro@gmail.com',
+                                replyTo: 'opeyemitechpro@gmail.com'
                                 )
                         }
                     }
