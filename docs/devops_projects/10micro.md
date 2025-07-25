@@ -95,8 +95,7 @@ rm -rf gitleaks.tar.gz
         - cloudbees docker build and publish
         - kubernetes
         - kubernetes CLI
-        - Email Notifications
-        - Extended Email Notifications
+        - Email Extension Template
         - Prometheus Metrics
         - OWASP Dependency Check Plugin
 
