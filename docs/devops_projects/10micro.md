@@ -83,11 +83,11 @@ sudo tar xf gitleaks.tar.gz -C /usr/local/bin gitleaks
 rm -rf gitleaks.tar.gz
 ```
 
-## **Worklflow**
+## **Workflow**
 
 - [x] Run Terraform to setup Jenkins
 - [x] Confiure Jenkins
-    - [x]  install plugins
+    - [x]  install plugins: Go to `Dashboard > Manage Jenkins > Manage Plugins` and install the following plugins:
         - SonarQube Scanner
         - docker
         - docker pipeline
@@ -190,7 +190,7 @@ Copy the script below and paste into the job pipeline section:
                             git branch: 'OpeyemiTechPro-v1', url: 'https://github.com/opeyemitechpro/11-Microservices-k8s-App.git'
                         }
                     }
-                    
+
                     stage('Gitleaks Scan') {
                         steps {
                             sh 'gitleaks detect --source . -r gitleaks_report-$BUILD_NUMBER.json'
@@ -216,11 +216,7 @@ Copy the script below and paste into the job pipeline section:
                             sh 'trivy fs -o trivy-fs-report_$BUILD_NUMBER.txt . '
                         }
                     }
-                    stage('OWASP FS SCAN') {
-                        steps {
-                            dependencyCheck additionalArguments: '--format HTML', odcInstallation: 'Owasp'
-                        }
-                    }
+                    
                     stage('adservice DockerImage') {
                         steps { 
                             script {
