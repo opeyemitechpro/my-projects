@@ -861,9 +861,9 @@ kubectl delete namespace monitoring
     from GitHub or within AWS via Amazon S3 and ECR for a common source of 
     releases and updates.
 
-## Is this a fork of Kubernetes-2?
+### Is this a fork of Kubernetes-2?
 
-???+ question "Question"
+!!! question "Question"
     Why do you call EKS Distro a Kubernetes distribution?
 
 ??? quote "Answer"
@@ -876,7 +876,20 @@ kubectl delete namespace monitoring
     from GitHub or within AWS via Amazon S3 and ECR for a common source of 
     releases and updates.
 
-## Is this a fork of Kubernetes?
+### Is this a fork of Kubernetes?
+
+!!! question "Question"
+    ## Why do you call EKS Distro a Kubernetes distribution?
+
+??? quote "Answer"
+    EKS Distro is a distro of the same open source Kubernetes and dependencies
+    deployed by Amazon EKS. We include binaries and containers of open source 
+    Kubernetes, `etcd`, networking, and storage plugins, all of which are tested
+    for compatibility. We provide extended support for Kubernetes versions after
+    community support expires by updating builds of previous versions with the 
+    latest critical security patches. You can securely access EKS Distro releases
+    from GitHub or within AWS via Amazon S3 and ECR for a common source of 
+    releases and updates.
 
 
 
