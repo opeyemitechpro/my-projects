@@ -559,6 +559,17 @@ The list of acceptable AWS regions are shown [here](https://opeyemitechpro.githu
 
 ######################################################
 
+## AWS IAM Policies required for EKS Cluster Creation
+
+- [x] AmazonEC2FullAccess
+- [x] AmazonEKS_CNI_Policy
+- [x] AmazonEKSClusterPolicy
+- [x] AmazonEKSWorkerNodePolicy
+- [x] AmazonPCIFullAccess
+- [x] AWSCloudFormationFullAccess
+- [x] IAMFullAccess
+- [x] IAMUserChangePolicy
+
 
 ## Install and setup Prometheus Stack on EKS using Helm
 
@@ -818,6 +829,38 @@ kubectl delete namespace monitoring
 
 
 ########################################################
+
+
+
+
+!!! question "Question"
+    Why do you call EKS Distro a Kubernetes distribution?
+
+!!! quote "Answer"
+    EKS Distro is a distro of the same open source Kubernetes and dependencies
+    deployed by Amazon EKS. We include binaries and containers of open source 
+    Kubernetes, `etcd`, networking, and storage plugins, all of which are tested
+    for compatibility. We provide extended support for Kubernetes versions after
+    community support expires by updating builds of previous versions with the 
+    latest critical security patches. You can securely access EKS Distro releases
+    from GitHub or within AWS via Amazon S3 and ECR for a common source of 
+    releases and updates.
+
+## Is this a fork of Kubernetes?
+
+
+
+
+
+
+
+
+##################################################
+
+
+
+
+
 
 ## **Running the script**
 Follow the ==**"Quick Start Guide"**== below to provision and configure your OpenVPN server and to connect to your new VPN network.
