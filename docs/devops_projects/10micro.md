@@ -866,7 +866,7 @@ kubectl delete namespace monitoring
 ???+ question "Question"
     Why do you call EKS Distro a Kubernetes distribution?
 
-???+ quote "Answer"
+??? quote "Answer"
     EKS Distro is a distro of the same open source Kubernetes and dependencies
     deployed by Amazon EKS. We include binaries and containers of open source 
     Kubernetes, `etcd`, networking, and storage plugins, all of which are tested
