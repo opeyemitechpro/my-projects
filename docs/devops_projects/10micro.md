@@ -891,11 +891,11 @@ kubectl delete namespace monitoring
     from GitHub or within AWS via Amazon S3 and ECR for a common source of 
     releases and updates.
 
-!!! code-file "Question-Main"
-    ## Why do you call EKS Distro a Kubernetes distribution?
+!!! question "## Question-Main"
+    Why do you call EKS Distro a Kubernetes distribution-1?
 
     !!! code-file "Question"
-        ## Why do you call EKS Distro a Kubernetes distribution?
+        ## Why do you call EKS Distro a Kubernetes distribution-2?
 
     ??? code-file "Answer"
         EKS Distro is a distro of the same open source Kubernetes and dependencies
