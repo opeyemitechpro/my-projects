@@ -4,7 +4,10 @@ title: OpenVPN Access Server Setup
 description: How to setup and host your own VPN Server for Free on AWS using Terraform & OpenVPN
 subtitle: Setup & Host Your Own VPN Access Server on AWS using Terraform
 comments: true 
-tags: tags: [AWS, Terraform, OpenVPN]
+tags:
+  - AWS
+  - Terraform
+  - OpenVPN
 status: new
 pin: true
 ---
