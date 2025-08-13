@@ -110,7 +110,7 @@ rm -rf gitleaks.tar.gz
 
 !!! tip "Tip"
     
-    Since our SonarQube server is running as a docker container on port `9000` on the same machine as the Jenkins server, use `http://<server_ip_address:9000>` as the Server URL
+    Since our SonarQube server is running as a docker container on port `9000` on the same machine as the Jenkins server, use `http://<server_ip_address>:9000` as the Server URL
 
 
 
@@ -892,7 +892,7 @@ kubectl delete namespace monitoring
     releases and updates.
 
 !!! question "## Question-Main"
-    Why do you call EKS Distro a Kubernetes distribution-1?
+    ## Why do you call EKS Distro a Kubernetes distribution-1?
 
     !!! code-file "Question"
         ## Why do you call EKS Distro a Kubernetes distribution-2?
