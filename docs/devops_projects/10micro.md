@@ -417,7 +417,7 @@ Copy the script below and paste into the job pipeline section:
                         }
                     }
                 }
-
+                //
             ```
 
             1.  Lines 6-9 filters the name of the ami "ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server-*"
