@@ -685,12 +685,26 @@ kubectl get svc -n monitoring
 #### Get Grafana password by running:
 
 ```
+kubectl --namespace monitoring get secrets prometheus-grafana -o json 
+```
+
+Copy the admin password from the jsonoutput and decode it base 64 using the command below
+
+```
+echo "<admin-password>" | base64 --decode
+
+```
+
+OR use this command
+
+```
 kubectl --namespace monitoring get secrets prometheus-grafana -o jsonpath="{.data.admin-password}" | base64 -d ; echo
 ```
 
 !!! tip ""
 
-    - Username is `admin`
+    - Default Username is `admin`
+    - The decoded password should translate to `prom-operator` which is the default gradana password.
 
 
 ---
