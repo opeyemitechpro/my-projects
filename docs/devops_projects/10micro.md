@@ -717,7 +717,8 @@ kubectl --namespace monitoring get secrets prometheus-grafana -o jsonpath="{.dat
 <br><br><br>
 
 
-???+ alert ""
+??? code-file "Install & Configure Node-Exporter on linux"
+
         ## Install & Configure Node-Exporter on linux
         ```
 
