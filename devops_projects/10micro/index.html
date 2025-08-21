@@ -2063,19 +2063,19 @@ This VPN server is also "disposable", meaning, you can create and delete it anyt
 <a id="__codelineno-3-211" name="__codelineno-3-211"></a><span class="w">                        </span><span class="n">sh</span><span class="w"> </span><span class="s2">&quot;docker rmi ${DOCKER_HUB_USER}/shippingservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER&quot;</span>
 <a id="__codelineno-3-212" name="__codelineno-3-212"></a><span class="w">                </span><span class="o">}</span>
 <a id="__codelineno-3-213" name="__codelineno-3-213"></a><span class="w">            </span><span class="o">}</span>
-<a id="__codelineno-3-214" name="__codelineno-3-214"></a><span class="w">        </span><span class="c1">// stage(&quot;Kubernetes deploy&quot;){</span>
-<a id="__codelineno-3-215" name="__codelineno-3-215"></a><span class="w">            </span><span class="c1">// steps {</span>
-<a id="__codelineno-3-216" name="__codelineno-3-216"></a><span class="w">            </span><span class="c1">//     withKubeConfig(caCertificate: &#39;&#39;, clusterName: &#39;&#39;, contextName: &#39;&#39;, credentialsId: &#39;cluster-ID&#39;, namespace: &#39;opeyemi-apps&#39;, restrictKubeConfigAccess: false, serverUrl: &#39;https://FDC152307BF6A5337A2C02C976A8D19F.gr7.us-east-2.eks.amazonaws.com&#39;)</span>
-<a id="__codelineno-3-217" name="__codelineno-3-217"></a><span class="w">                </span><span class="c1">//   {</span>
-<a id="__codelineno-3-218" name="__codelineno-3-218"></a><span class="w">                </span><span class="c1">//       sh &#39; kubectl apply -f buildnow.yml -n opeyemi-apps&#39;</span>
-<a id="__codelineno-3-219" name="__codelineno-3-219"></a><span class="w">                </span><span class="c1">//       sh &#39; kubectl get pods -n opeyemi-apps &#39;</span>
-<a id="__codelineno-3-220" name="__codelineno-3-220"></a><span class="w">                </span><span class="c1">//       sh &#39; kubectl get svc -n opeyemi-apps &#39;</span>
-<a id="__codelineno-3-221" name="__codelineno-3-221"></a><span class="w">                    </span><span class="c1">//  sh &quot; kubectl get service -n opeyemi-apps frontend-external | awk &#39;{print \$4}&#39; &quot;</span>
-<a id="__codelineno-3-222" name="__codelineno-3-222"></a><span class="w">                </span><span class="c1">//   }</span>
-<a id="__codelineno-3-223" name="__codelineno-3-223"></a><span class="w">                </span><span class="c1">//       sh &#39; date&#39;</span>
-<a id="__codelineno-3-224" name="__codelineno-3-224"></a><span class="w">            </span><span class="c1">//    }</span>
-<a id="__codelineno-3-225" name="__codelineno-3-225"></a><span class="w">        </span><span class="c1">//    }</span>
-<a id="__codelineno-3-226" name="__codelineno-3-226"></a><span class="w">        </span><span class="o">}</span>
+<a id="__codelineno-3-214" name="__codelineno-3-214"></a><span class="hll"><span class="w">        </span><span class="c1">// stage(&quot;Kubernetes deploy&quot;){</span>
+</span><a id="__codelineno-3-215" name="__codelineno-3-215"></a><span class="hll"><span class="w">            </span><span class="c1">// steps {</span>
+</span><a id="__codelineno-3-216" name="__codelineno-3-216"></a><span class="hll"><span class="w">            </span><span class="c1">//     withKubeConfig(caCertificate: &#39;&#39;, clusterName: &#39;&#39;, contextName: &#39;&#39;, credentialsId: &#39;cluster-ID&#39;, namespace: &#39;opeyemi-apps&#39;, restrictKubeConfigAccess: false, serverUrl: &#39;https://FDC152307BF6A5337A2C02C976A8D19F.gr7.us-east-2.eks.amazonaws.com&#39;)</span>
+</span><a id="__codelineno-3-217" name="__codelineno-3-217"></a><span class="hll"><span class="w">                </span><span class="c1">//   {</span>
+</span><a id="__codelineno-3-218" name="__codelineno-3-218"></a><span class="hll"><span class="w">                </span><span class="c1">//       sh &#39; kubectl apply -f buildnow.yml -n opeyemi-apps&#39;</span>
+</span><a id="__codelineno-3-219" name="__codelineno-3-219"></a><span class="hll"><span class="w">                </span><span class="c1">//       sh &#39; kubectl get pods -n opeyemi-apps &#39;</span>
+</span><a id="__codelineno-3-220" name="__codelineno-3-220"></a><span class="hll"><span class="w">                </span><span class="c1">//       sh &#39; kubectl get svc -n opeyemi-apps &#39;</span>
+</span><a id="__codelineno-3-221" name="__codelineno-3-221"></a><span class="hll"><span class="w">                    </span><span class="c1">//  sh &quot; kubectl get service -n opeyemi-apps frontend-external | awk &#39;{print \$4}&#39; &quot;</span>
+</span><a id="__codelineno-3-222" name="__codelineno-3-222"></a><span class="hll"><span class="w">                </span><span class="c1">//   }</span>
+</span><a id="__codelineno-3-223" name="__codelineno-3-223"></a><span class="hll"><span class="w">                </span><span class="c1">//       sh &#39; date&#39;</span>
+</span><a id="__codelineno-3-224" name="__codelineno-3-224"></a><span class="hll"><span class="w">            </span><span class="c1">//    }</span>
+</span><a id="__codelineno-3-225" name="__codelineno-3-225"></a><span class="hll"><span class="w">        </span><span class="c1">//    }</span>
+</span><a id="__codelineno-3-226" name="__codelineno-3-226"></a><span class="w">        </span><span class="o">}</span>
 <a id="__codelineno-3-227" name="__codelineno-3-227"></a>
 <a id="__codelineno-3-228" name="__codelineno-3-228"></a><span class="w">        </span><span class="n">post</span><span class="w"> </span><span class="o">{</span>
 <a id="__codelineno-3-229" name="__codelineno-3-229"></a><span class="w">            </span><span class="n">always</span><span class="w"> </span><span class="o">{</span>
@@ -2450,7 +2450,7 @@ This VPN server is also "disposable", meaning, you can create and delete it anyt
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="August 21, 2025 21:40:57 UTC"><span class="timeago" datetime="2025-08-21T21:40:57+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="August 21, 2025 21:40:57 UTC">2025-08-21</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="August 21, 2025 21:43:20 UTC"><span class="timeago" datetime="2025-08-21T21:43:20+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="August 21, 2025 21:43:20 UTC">2025-08-21</span>
   </span>
 
     
