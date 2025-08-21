@@ -20,11 +20,11 @@ In this mini-project, I will demonstrate how to setup and self-host a VPN server
 
 ??? youtube "Watch the Video - DevSecOps Project - 11-Microservices End-to-End CI/CD & Monitoring Using Kubernetes, Terraform, Jenkins, Grafana & Prometheus" 
     <figure markdown="1">
-    [![Create a Free Self-Hosted VPN Server on AWS using Terraform and OpenVPN](../../assets/images/OpenVPN-on-AWS-Using-Terraform.png "Create a Free Self-Hosted VPN Server on AWS using Terraform and OpenVPN")](https://youtu.be/sWBeZ_bx2Ps){: target="_blank" }
+    [![DevSecOps Project - 11-Microservices End-to-End CI/CD & Monitoring Using Kubernetes, Terraform, Jenkins, Grafana & Prometheus](../../assets/images/OpenVPN-on-AWS-Using-Terraform.png "DevSecOps Project - 11-Microservices End-to-End CI/CD & Monitoring Using Kubernetes, Terraform, Jenkins, Grafana & Prometheus")](https://youtu.be/sWBeZ_bx2Ps){: target="_blank" }
     <!-- <figcaption>Create a Free Self-Hosted VPN Server on AWS using Terraform and OpenVPN</figcaption>  -->
     </figure>
     /// caption
-    How to Create a Free Self-Hosted VPN Server on AWS using Terraform and OpenVPN
+    DevSecOps Project - 11-Microservices End-to-End CI/CD & Monitoring Using Kubernetes, Terraform, Jenkins, Grafana & Prometheus
     ///
 
 
