@@ -171,8 +171,8 @@ Copy the script below and paste into the job pipeline section:
         
         ???+ code-file "Jenkins Pipeline Script"
             
-            ``` groovy hl_lines="6-9 11-14 16"
-            // 11-Microservices-k8s-App Jenkins Pipeline - NO-DRY
+            ``` groovy hl_lines="9-21"
+            // 11-Microservices-k8s-App Jenkins Pipeline Script
 
                 pipeline {
                     agent any
@@ -420,9 +420,8 @@ Copy the script below and paste into the job pipeline section:
                 //
             ```
 
-            1.  Lines 6-9 filters the name of the ami "ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server-*"
-            2.  Lines 11-14 filters the virtualization type of the ami
-            3.  Line 16 filters the AWS account ID of the ami publisher - Canonical
+            1.  Lines 9-21 contain environment variables. Replace the values according to your Jenkins server configuration
+            2.  Uncomment lines 214 to 225 when you have configured your EKS cluster and set the parameters accordingly in your Jenkins server 
         
         
 
@@ -765,7 +764,7 @@ Prometheus will reload its config automatically by deafult. Wait a minute, then:
 
 ### To Uninstall Prometheus-Stack and delete namespace
 
-``` bash
+``` sh
 helm uninstall prometheus -n monitoring
 kubectl delete namespace monitoring
 ```
