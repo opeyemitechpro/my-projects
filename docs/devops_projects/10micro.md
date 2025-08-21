@@ -719,59 +719,61 @@ kubectl --namespace monitoring get secrets prometheus-grafana -o jsonpath="{.dat
 
 ??? code-file "Install & Configure Node-Exporter on linux"
 
-        ## Install & Configure Node-Exporter on linux
-        ```
+    ## Install & Configure Node-Exporter on linux
 
-        #!/bin/bash
+    ```
+    #!/bin/bash
 
-        set -e
+    set -e
 
-        NODE_EXPORTER_VERSION="1.8.1"
-        DOWNLOAD_URL="https://github.com/prometheus/node_exporter/releases/download/v${NODE_EXPORTER_VERSION}/node_exporter-${NODE_EXPORTER_VERSION}.linux-amd64.tar.gz"
+    NODE_EXPORTER_VERSION="1.8.1"
+    DOWNLOAD_URL="https://github.com/prometheus/node_exporter/releases/download/v${NODE_EXPORTER_VERSION}/node_exporter-${NODE_EXPORTER_VERSION}.linux-amd64.tar.gz"
 
-        echo "🚀 Installing Node Exporter v${NODE_EXPORTER_VERSION}..."
+    echo "🚀 Installing Node Exporter v${NODE_EXPORTER_VERSION}..."
 
-        # Download and extract
-        curl -LO ${DOWNLOAD_URL}
-        tar -xzf node_exporter-${NODE_EXPORTER_VERSION}.linux-amd64.tar.gz
-        sudo mv node_exporter-${NODE_EXPORTER_VERSION}.linux-amd64/node_exporter /usr/local/bin/
-        rm -rf node_exporter-${NODE_EXPORTER_VERSION}.linux-amd64*
+    # Download and extract
+    curl -LO ${DOWNLOAD_URL}
+    tar -xzf node_exporter-${NODE_EXPORTER_VERSION}.linux-amd64.tar.gz
+    sudo mv node_exporter-${NODE_EXPORTER_VERSION}.linux-amd64/node_exporter /usr/local/bin/
+    rm -rf node_exporter-${NODE_EXPORTER_VERSION}.linux-amd64*
 
-        # Create user
-        sudo useradd -rs /bin/false node_exporter || true
+    # Create user
+    sudo useradd -rs /bin/false node_exporter || true
 
-        # Create systemd service
-        cat <<EOF | sudo tee /etc/systemd/system/node_exporter.service
-        [Unit]
-        Description=Node Exporter
-        Wants=network-online.target
-        After=network-online.target
+    # Create systemd service
+    cat <<EOF | sudo tee /etc/systemd/system/node_exporter.service
+    [Unit]
+    Description=Node Exporter
+    Wants=network-online.target
+    After=network-online.target
 
-        [Service]
-        User=node_exporter
-        Group=node_exporter
-        Type=simple
-        ExecStart=/usr/local/bin/node_exporter
+    [Service]
+    User=node_exporter
+    Group=node_exporter
+    Type=simple
+    ExecStart=/usr/local/bin/node_exporter
 
-        [Install]
-        WantedBy=default.target
-        EOF
+    [Install]
+    WantedBy=default.target
+    EOF
 
-        # Reload and start
-        sudo systemctl daemon-reload
-        sudo systemctl enable --now node_exporter
+    # Reload and start
+    sudo systemctl daemon-reload
+    sudo systemctl enable --now node_exporter
 
 
-        # Verify
-        echo "✅ Node Exporter is running!"
-        curl -s http://localhost:9100/metrics | head -n 5
+    # Verify
+    echo "✅ Node Exporter is running!"
+    curl -s http://localhost:9100/metrics | head -n 5
 
-        ```
+    ```
 
 ---
-<br><br><br>
+<br>
 
-## To Scrape metrics from a standalone Linux server running node_exporter using a Prometheus instance running inside EKS
+## Scrapping Metrics
+
+To Scrape metrics from a standalone Linux server running node_exporter using a Prometheus instance running inside EKS
 
 ### ✅ Prerequisites:
 * Prometheus is installed via Helm chart (likely the kube-prometheus-stack).
