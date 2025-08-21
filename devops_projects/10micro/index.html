@@ -1318,9 +1318,51 @@
           <li class="md-nav__item">
   <a href="#steps-to-add-standalone-server-to-prometheus-scrape-targets" class="md-nav__link">
     <span class="md-ellipsis">
-      🚀 Steps to Add Standalone Server to Prometheus Scrape Targets:
+      🚀 Steps to Add Standalone Server to Prometheus Scrape Targets
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="🚀 Steps to Add Standalone Server to Prometheus Scrape Targets">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-create-additional-scrape-config-via-secret" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Create Additional Scrape Config via Secret
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-now-create-a-kubernetes-secret" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Now create a Kubernetes secret
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-edit-prometheus-custom-resource" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Edit Prometheus Custom Resource
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-apply-and-verify" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Apply and Verify
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -2660,19 +2702,17 @@ This VPN server is also "disposable", meaning, you can create and delete it anyt
 <hr />
 <p><br></p>
 <h2 id="scrapping-metrics">Scrapping Metrics<a class="headerlink" href="#scrapping-metrics" title="Copy this link to reference this section">&para;</a></h2>
-<p>To Scrape metrics from a standalone Linux server running node_exporter using a Prometheus instance running inside EKS</p>
+<p>To Scrape metrics from a standalone Linux server (our Jenkins server) running node_exporter using a Prometheus instance running inside EKS</p>
 <h3 id="prerequisites">✅ Prerequisites:<a class="headerlink" href="#prerequisites" title="Copy this link to reference this section">&para;</a></h3>
+<p>[ ] Prometheus is installed via Helm chart.
+[ ] Node_exporter is running and accessible on our Jenkins server (default port: <code>9100</code>).
+[ ] The Jenkins server's IP address is publicly accessible or reachable from within the EKS cluster (e.g., via VPC Peering, VPN, or internal networking).
+[ ] Security Groups and firewall rules allow traffic from EKS nodes to port <code>9100</code> on the Jenkins server.</p>
+<h3 id="steps-to-add-standalone-server-to-prometheus-scrape-targets">🚀 Steps to Add Standalone Server to Prometheus Scrape Targets<a class="headerlink" href="#steps-to-add-standalone-server-to-prometheus-scrape-targets" title="Copy this link to reference this section">&para;</a></h3>
+<h4 id="1-create-additional-scrape-config-via-secret">1. Create Additional Scrape Config via Secret<a class="headerlink" href="#1-create-additional-scrape-config-via-secret" title="Copy this link to reference this section">&para;</a></h4>
 <ul>
-<li>Prometheus is installed via Helm chart (likely the kube-prometheus-stack).</li>
-<li>node_exporter is running and accessible on the Linux server (default port: 9100).</li>
-<li>The Linux server's IP address is publicly accessible or reachable from within the EKS cluster (e.g., via VPC Peering, VPN, or internal networking).</li>
-<li>Security Groups and firewall rules allow traffic from EKS nodes to port <code>9100</code> on the standalone server.</li>
-</ul>
-<h3 id="steps-to-add-standalone-server-to-prometheus-scrape-targets">🚀 Steps to Add Standalone Server to Prometheus Scrape Targets:<a class="headerlink" href="#steps-to-add-standalone-server-to-prometheus-scrape-targets" title="Copy this link to reference this section">&para;</a></h3>
-<ol>
-<li>Create Additional Scrape Config via Secret</li>
 <li>Create a file named <code>additional-scrape-configs.yaml</code> with the following content:</li>
-</ol>
+</ul>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-23-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-23-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-23-3"> 3</a></span>
@@ -2688,43 +2728,38 @@ This VPN server is also "disposable", meaning, you can create and delete it anyt
 <span class="normal"><a href="#__codelineno-23-13">13</a></span>
 <span class="normal"><a href="#__codelineno-23-14">14</a></span>
 <span class="normal"><a href="#__codelineno-23-15">15</a></span>
-<span class="normal"><a href="#__codelineno-23-16">16</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1"></a>- job_name: &#39;jenkins-node-exporter&#39;
-<a id="__codelineno-23-2" name="__codelineno-23-2"></a>  static_configs:
-<a id="__codelineno-23-3" name="__codelineno-23-3"></a>    - targets: [&#39;&lt;server_ip&gt;:9100&#39;]
-<a id="__codelineno-23-4" name="__codelineno-23-4"></a>      labels:
-<a id="__codelineno-23-5" name="__codelineno-23-5"></a>        instance: &#39;&lt;instance_name&gt;&#39;
-<a id="__codelineno-23-6" name="__codelineno-23-6"></a>        role: &#39;node-exporter&#39;
-<a id="__codelineno-23-7" name="__codelineno-23-7"></a>        environment: &#39;dev&#39;
+<span class="normal"><a href="#__codelineno-23-16">16</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">job_name</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;jenkins-node-exporter&#39;</span>
+<a id="__codelineno-23-2" name="__codelineno-23-2"></a><span class="w">  </span><span class="nt">static_configs</span><span class="p">:</span>
+<a id="__codelineno-23-3" name="__codelineno-23-3"></a><span class="hll"><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">targets</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&#39;&lt;server_ip&gt;:9100&#39;</span><span class="p p-Indicator">]</span>
+</span><a id="__codelineno-23-4" name="__codelineno-23-4"></a><span class="w">      </span><span class="nt">labels</span><span class="p">:</span>
+<a id="__codelineno-23-5" name="__codelineno-23-5"></a><span class="w">        </span><span class="nt">instance</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;&lt;instance_name&gt;&#39;</span>
+<a id="__codelineno-23-6" name="__codelineno-23-6"></a><span class="w">        </span><span class="nt">role</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;node-exporter&#39;</span>
+<a id="__codelineno-23-7" name="__codelineno-23-7"></a><span class="w">        </span><span class="nt">environment</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;dev&#39;</span>
 <a id="__codelineno-23-8" name="__codelineno-23-8"></a>
-<a id="__codelineno-23-9" name="__codelineno-23-9"></a>- job_name: &#39;jenkins-prom-plugin&#39;
-<a id="__codelineno-23-10" name="__codelineno-23-10"></a>  metrics_path: /prometheus
-<a id="__codelineno-23-11" name="__codelineno-23-11"></a>  static_configs:
-<a id="__codelineno-23-12" name="__codelineno-23-12"></a>    - targets: [&#39;&lt;server_ip&gt;:8080&#39;]
-<a id="__codelineno-23-13" name="__codelineno-23-13"></a>      labels:
-<a id="__codelineno-23-14" name="__codelineno-23-14"></a>        instance: &#39;instance_name&#39;
-<a id="__codelineno-23-15" name="__codelineno-23-15"></a>        role: &#39;jenkins-master&#39;
-<a id="__codelineno-23-16" name="__codelineno-23-16"></a>        environment: &#39;dev&#39;
+<a id="__codelineno-23-9" name="__codelineno-23-9"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">job_name</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;jenkins-prom-plugin&#39;</span>
+<a id="__codelineno-23-10" name="__codelineno-23-10"></a><span class="w">  </span><span class="nt">metrics_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/prometheus</span>
+<a id="__codelineno-23-11" name="__codelineno-23-11"></a><span class="w">  </span><span class="nt">static_configs</span><span class="p">:</span>
+<a id="__codelineno-23-12" name="__codelineno-23-12"></a><span class="hll"><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">targets</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&#39;&lt;server_ip&gt;:8080&#39;</span><span class="p p-Indicator">]</span>
+</span><a id="__codelineno-23-13" name="__codelineno-23-13"></a><span class="w">      </span><span class="nt">labels</span><span class="p">:</span>
+<a id="__codelineno-23-14" name="__codelineno-23-14"></a><span class="w">        </span><span class="nt">instance</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;instance_name&#39;</span>
+<a id="__codelineno-23-15" name="__codelineno-23-15"></a><span class="w">        </span><span class="nt">role</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;jenkins-master&#39;</span>
+<a id="__codelineno-23-16" name="__codelineno-23-16"></a><span class="w">        </span><span class="nt">environment</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;dev&#39;</span>
 </code></pre></div></td></tr></table></div>
-<div class="admonition note">
-<p>Replace <code>&lt;server-ip&gt;</code> with the IP address or DNS name of your standalone Linux server.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Edit the higlighted lines and replace <code>&lt;server-ip&gt;</code> with the IP address or DNS name of your standalone Linux server. In this case, your jenkins server.</p>
 </div>
-<ol>
-<li>Now create a Kubernetes secret:</li>
-</ol>
+<h4 id="2-now-create-a-kubernetes-secret">2. Now create a Kubernetes secret<a class="headerlink" href="#2-now-create-a-kubernetes-secret" title="Copy this link to reference this section">&para;</a></h4>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-24-1">1</a></span>
 <span class="normal"><a href="#__codelineno-24-2">2</a></span>
 <span class="normal"><a href="#__codelineno-24-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1"></a>kubectl create secret generic additional-scrape-configs \
 <a id="__codelineno-24-2" name="__codelineno-24-2"></a>  --from-file=additional-scrape-configs.yaml \
 <a id="__codelineno-24-3" name="__codelineno-24-3"></a>  -n monitoring
 </code></pre></div></td></tr></table></div>
-<ol>
-<li>
-<p>Edit Prometheus Custom Resource</p>
-</li>
-<li>
-<p>First get the prometheus resource name</p>
-</li>
-</ol>
+<h4 id="3-edit-prometheus-custom-resource">3. Edit Prometheus Custom Resource<a class="headerlink" href="#3-edit-prometheus-custom-resource" title="Copy this link to reference this section">&para;</a></h4>
+<ul>
+<li>First get the prometheus resource name</li>
+</ul>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-25-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1"></a>kubectl get prometheus -n monitoring
 </code></pre></div></td></tr></table></div>
 <ul>
@@ -2750,9 +2785,7 @@ This VPN server is also "disposable", meaning, you can create and delete it anyt
 <a id="__codelineno-28-4" name="__codelineno-28-4"></a>    name: additional-scrape-configs
 <a id="__codelineno-28-5" name="__codelineno-28-5"></a>    key: additional-scrape-configs.yaml
 </code></pre></div></td></tr></table></div>
-<ol>
-<li>Apply and Verify</li>
-</ol>
+<h4 id="4-apply-and-verify">4. Apply and Verify<a class="headerlink" href="#4-apply-and-verify" title="Copy this link to reference this section">&para;</a></h4>
 <p>Prometheus will reload its config automatically by deafult. Wait a minute, then:</p>
 <ul>
 <li>Go to the Prometheus UI (<code>/targets</code> page).</li>
@@ -3032,7 +3065,7 @@ releases and updates.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="August 21, 2025 20:25:23 UTC"><span class="timeago" datetime="2025-08-21T20:25:23+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="August 21, 2025 20:25:23 UTC">2025-08-21</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="August 21, 2025 20:37:21 UTC"><span class="timeago" datetime="2025-08-21T20:37:21+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="August 21, 2025 20:37:21 UTC">2025-08-21</span>
   </span>
 
     
