@@ -130,7 +130,7 @@ Goto `Dashboard > Manage Jenkins > System` and configure both the __"Extended E-
 - [x] Test email delivery
 
 
-!!! note "Note"
+!!! tip "Tip"
 
     - The settings above apply to Gmail address configuration. Confirm SMTP settings from your email service provider.
     - Copy `App password` from your gmail account security settings and use that as the password in the above configuration.
