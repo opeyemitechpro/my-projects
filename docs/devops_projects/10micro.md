@@ -165,7 +165,7 @@ Copy the script below and paste into the job pipeline section:
         
         ???+ code-file "Jenkins Pipeline Script"
             
-            ``` groovy hl_lines="9-21"
+            ``` groovy hl_lines="9-21 214-225"
             // 11-Microservices-k8s-App Jenkins Pipeline Script
 
                 pipeline {
