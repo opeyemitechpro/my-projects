@@ -645,7 +645,7 @@ kubectl get pods -n monitoring
 ```
 
 
-### List all svc in the monitoring namespace
+### List all services in the monitoring namespace
 ```
 kubectl get svc -n monitoring
 ```
@@ -661,14 +661,16 @@ kubectl get svc -n monitoring prometheus-grafana
 kubectl get svc -n monitoring prometheus-kube-prometheus-prometheus
 ```
 
-### Change Grafana Service Type from ClusterIP to LoadBalancer to expose for external access
+### Expose Grafana on a LoadBalancer
+Change Grafana Service Type from ClusterIP to LoadBalancer to expose for external access
 ```
 kubectl patch svc prometheus-grafana \
   -n monitoring \
   -p '{"spec": {"type": "LoadBalancer"}}'
 ```
 
-### Change Prometheus Service Type from ClusterIP to LoadBalancer to expose for external access
+### Expose Prometheus on a LoadBalancer
+Change Prometheus Service Type from ClusterIP to LoadBalancer to expose for external access
 ```
 kubectl patch svc prometheus-kube-prometheus-prometheus \
   -n monitoring \
@@ -676,10 +678,13 @@ kubectl patch svc prometheus-kube-prometheus-prometheus \
 ```
 
 
-#### Display LoadBalancer URL for Grafana and Prometheus. Wait for the EXTERNAL-IP field to be populated, then open that IP in your browser (Grafana on port 80, Prometheus on port 9090)
+#### Display LoadBalancer URL for Grafana and Prometheus. 
+
 ```
 kubectl get svc -n monitoring
 ```
+
+You may need to wait a while for the `EXTERNAL-IP` field to be populated, then open that URL for both Grafana and Prometheus in your browser (Grafana on port 80, Prometheus on port 9090)
 
 
 #### Get Grafana password by running:
@@ -702,7 +707,7 @@ OR use this command
 kubectl --namespace monitoring get secrets prometheus-grafana -o jsonpath="{.data.admin-password}" | base64 -d ; echo
 ```
 
-??? tip "Tip"
+!!! tip "Tip"
 
     - Default Username is `admin`
     - The decoded password should translate to `prom-operator` which is the default grafana password.
