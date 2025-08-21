@@ -765,7 +765,7 @@ Prometheus will reload its config automatically by deafult. Wait a minute, then:
 
 ### To Uninstall Prometheus-Stack and delete namespace
 
-``` sh
+``` bash
 helm uninstall prometheus -n monitoring
 kubectl delete namespace monitoring
 ```
