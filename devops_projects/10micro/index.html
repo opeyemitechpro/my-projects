@@ -1381,177 +1381,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#is-this-a-fork-of-kubernetes-1" class="md-nav__link">
-    <span class="md-ellipsis">
-      Is this a fork of Kubernetes-1?
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Is this a fork of Kubernetes-1?">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#is-this-a-fork-of-kubernetes-2" class="md-nav__link">
-    <span class="md-ellipsis">
-      Is this a fork of Kubernetes-2?
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#is-this-a-fork-of-kubernetes" class="md-nav__link">
-    <span class="md-ellipsis">
-      Is this a fork of Kubernetes?
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#why-do-you-call-eks-distro-a-kubernetes-distribution" class="md-nav__link">
-    <span class="md-ellipsis">
-      Why do you call EKS Distro a Kubernetes distribution?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#why-do-you-call-eks-distro-a-kubernetes-distribution-1" class="md-nav__link">
-    <span class="md-ellipsis">
-      Why do you call EKS Distro a Kubernetes distribution-1?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#why-do-you-call-eks-distro-a-kubernetes-distribution-2" class="md-nav__link">
-    <span class="md-ellipsis">
-      Why do you call EKS Distro a Kubernetes distribution-2?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#running-the-script" class="md-nav__link">
-    <span class="md-ellipsis">
-      Running the script
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#quick-start-guide" class="md-nav__link">
-    <span class="md-ellipsis">
-      Quick Start Guide
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Quick Start Guide">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#clone-the-repository" class="md-nav__link">
-    <span class="md-ellipsis">
-      Clone the Repository
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#initialize-the-terraform-configuration" class="md-nav__link">
-    <span class="md-ellipsis">
-      Initialize the terraform configuration
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#apply-the-terraform-configuration" class="md-nav__link">
-    <span class="md-ellipsis">
-      Apply the Terraform Configuration
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Apply the Terraform Configuration">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#list-of-accepted-aws-regions" class="md-nav__link">
-    <span class="md-ellipsis">
-      List of accepted AWS regions
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#outputs" class="md-nav__link">
-    <span class="md-ellipsis">
-      Outputs
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#connect-to-your-vpn" class="md-nav__link">
-    <span class="md-ellipsis">
-      Connect to your VPN
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#testing-your-vpn-connection" class="md-nav__link">
-    <span class="md-ellipsis">
-      Testing your VPN Connection
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#cleanup" class="md-nav__link">
-    <span class="md-ellipsis">
-      Cleanup
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#use-cases" class="md-nav__link">
-    <span class="md-ellipsis">
-      Use Cases
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#conclusion" class="md-nav__link">
     <span class="md-ellipsis">
       Conclusion
@@ -2280,197 +2109,6 @@ This VPN server is also "disposable", meaning, you can create and delete it anyt
 <li>Line 16 filters the AWS account ID of the ami publisher - Canonical</li>
 </ol>
 </details>
-<p>This <code>ami.tf</code> is used to find the latest Ubuntu 22.04 AMI (Amazon Machine Image) from the AWS ami Catalog. </p>
-<ul>
-<li>
-<p>It creates a data source named "ubuntu" that searches for AMIs with these criteria:</p>
-<ul>
-<li>
-<p>Uses most_recent = true to get the latest version</p>
-</li>
-<li>
-<p>Filters for Ubuntu 22.04 (Jammy Jellyfish) images using the name pattern</p>
-</li>
-<li>
-<p>Ensures it's using HVM (Hardware Virtual Machine) virtualization</p>
-</li>
-<li>
-<p>Only looks for images owned by Canonical (Ubuntu's publisher) using their AWS account ID (099720109477)</p>
-</li>
-</ul>
-</li>
-</ul>
-<p>This prevents hardcoding a specific AMI ID into the script, which could become outdated. The AMI ID is then referenced elsewhere in the Terraform code using <code>data.aws_ami.ubuntu.id</code></p>
-</details>
-<details class="tip">
-<summary>The <code>OpenVPN_ec2.tf</code> file</summary>
-<details class="code-file" open="open">
-<summary>OpenVPN_ec2.tf</summary>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1"> 1</a></span>
-<span class="normal"><a href="#__codelineno-4-2"> 2</a></span>
-<span class="normal"><a href="#__codelineno-4-3"> 3</a></span>
-<span class="normal"><a href="#__codelineno-4-4"> 4</a></span>
-<span class="normal"><a href="#__codelineno-4-5"> 5</a></span>
-<span class="normal"><a href="#__codelineno-4-6"> 6</a></span>
-<span class="normal"><a href="#__codelineno-4-7"> 7</a></span>
-<span class="normal"><a href="#__codelineno-4-8"> 8</a></span>
-<span class="normal"><a href="#__codelineno-4-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-4-10">10</a></span>
-<span class="normal"><a href="#__codelineno-4-11">11</a></span>
-<span class="normal"><a href="#__codelineno-4-12">12</a></span>
-<span class="normal"><a href="#__codelineno-4-13">13</a></span>
-<span class="normal"><a href="#__codelineno-4-14">14</a></span>
-<span class="normal"><a href="#__codelineno-4-15">15</a></span>
-<span class="normal"><a href="#__codelineno-4-16">16</a></span>
-<span class="normal"><a href="#__codelineno-4-17">17</a></span>
-<span class="normal"><a href="#__codelineno-4-18">18</a></span>
-<span class="normal"><a href="#__codelineno-4-19">19</a></span>
-<span class="normal"><a href="#__codelineno-4-20">20</a></span>
-<span class="normal"><a href="#__codelineno-4-21">21</a></span>
-<span class="normal"><a href="#__codelineno-4-22">22</a></span>
-<span class="normal"><a href="#__codelineno-4-23">23</a></span>
-<span class="normal"><a href="#__codelineno-4-24">24</a></span>
-<span class="normal"><a href="#__codelineno-4-25">25</a></span>
-<span class="normal"><a href="#__codelineno-4-26">26</a></span>
-<span class="normal"><a href="#__codelineno-4-27">27</a></span>
-<span class="normal"><a href="#__codelineno-4-28">28</a></span>
-<span class="normal"><a href="#__codelineno-4-29">29</a></span>
-<span class="normal"><a href="#__codelineno-4-30">30</a></span>
-<span class="normal"><a href="#__codelineno-4-31">31</a></span>
-<span class="normal"><a href="#__codelineno-4-32">32</a></span>
-<span class="normal"><a href="#__codelineno-4-33">33</a></span>
-<span class="normal"><a href="#__codelineno-4-34">34</a></span>
-<span class="normal"><a href="#__codelineno-4-35">35</a></span>
-<span class="normal"><a href="#__codelineno-4-36">36</a></span>
-<span class="normal"><a href="#__codelineno-4-37">37</a></span>
-<span class="normal"><a href="#__codelineno-4-38">38</a></span>
-<span class="normal"><a href="#__codelineno-4-39">39</a></span>
-<span class="normal"><a href="#__codelineno-4-40">40</a></span>
-<span class="normal"><a href="#__codelineno-4-41">41</a></span>
-<span class="normal"><a href="#__codelineno-4-42">42</a></span>
-<span class="normal"><a href="#__codelineno-4-43">43</a></span>
-<span class="normal"><a href="#__codelineno-4-44">44</a></span>
-<span class="normal"><a href="#__codelineno-4-45">45</a></span>
-<span class="normal"><a href="#__codelineno-4-46">46</a></span>
-<span class="normal"><a href="#__codelineno-4-47">47</a></span>
-<span class="normal"><a href="#__codelineno-4-48">48</a></span>
-<span class="normal"><a href="#__codelineno-4-49">49</a></span>
-<span class="normal"><a href="#__codelineno-4-50">50</a></span>
-<span class="normal"><a href="#__codelineno-4-51">51</a></span>
-<span class="normal"><a href="#__codelineno-4-52">52</a></span>
-<span class="normal"><a href="#__codelineno-4-53">53</a></span>
-<span class="normal"><a href="#__codelineno-4-54">54</a></span>
-<span class="normal"><a href="#__codelineno-4-55">55</a></span>
-<span class="normal"><a href="#__codelineno-4-56">56</a></span>
-<span class="normal"><a href="#__codelineno-4-57">57</a></span>
-<span class="normal"><a href="#__codelineno-4-58">58</a></span>
-<span class="normal"><a href="#__codelineno-4-59">59</a></span>
-<span class="normal"><a href="#__codelineno-4-60">60</a></span>
-<span class="normal"><a href="#__codelineno-4-61">61</a></span>
-<span class="normal"><a href="#__codelineno-4-62">62</a></span>
-<span class="normal"><a href="#__codelineno-4-63">63</a></span>
-<span class="normal"><a href="#__codelineno-4-64">64</a></span>
-<span class="normal"><a href="#__codelineno-4-65">65</a></span>
-<span class="normal"><a href="#__codelineno-4-66">66</a></span>
-<span class="normal"><a href="#__codelineno-4-67">67</a></span>
-<span class="normal"><a href="#__codelineno-4-68">68</a></span>
-<span class="normal"><a href="#__codelineno-4-69">69</a></span>
-<span class="normal"><a href="#__codelineno-4-70">70</a></span>
-<span class="normal"><a href="#__codelineno-4-71">71</a></span>
-<span class="normal"><a href="#__codelineno-4-72">72</a></span>
-<span class="normal"><a href="#__codelineno-4-73">73</a></span>
-<span class="normal"><a href="#__codelineno-4-74">74</a></span>
-<span class="normal"><a href="#__codelineno-4-75">75</a></span>
-<span class="normal"><a href="#__codelineno-4-76">76</a></span>
-<span class="normal"><a href="#__codelineno-4-77">77</a></span>
-<span class="normal"><a href="#__codelineno-4-78">78</a></span>
-<span class="normal"><a href="#__codelineno-4-79">79</a></span>
-<span class="normal"><a href="#__codelineno-4-80">80</a></span>
-<span class="normal"><a href="#__codelineno-4-81">81</a></span>
-<span class="normal"><a href="#__codelineno-4-82">82</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="hll"><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_instance&quot;</span><span class="w"> </span><span class="nv">&quot;OpenVPN_Server&quot;</span><span class="w"> </span><span class="p">{</span>
-</span><a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="hll"><span class="na">ami</span><span class="w">                     </span><span class="o">=</span><span class="w"> </span><span class="nv">data.aws_ami.ubuntu.id</span>
-</span><a id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="hll"><span class="na">instance_type</span><span class="w">           </span><span class="o">=</span><span class="w"> </span><span class="nv">var.OpenVPN_instance_type</span>
-</span><a id="__codelineno-4-4" name="__codelineno-4-4"></a><span class="hll"><span class="na">vpc_security_group_ids</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="nv">aws_security_group.openvpn_SG.id</span><span class="w"> </span><span class="p">]</span>
-</span><a id="__codelineno-4-5" name="__codelineno-4-5"></a><span class="hll"><span class="na">user_data</span><span class="w">               </span><span class="o">=</span><span class="w"> </span><span class="nf">templatefile</span><span class="p">(</span><span class="s2">&quot;./openvpn_userdata.tpl&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="na">openvpn_user</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">local.openvpn_user</span><span class="p">})</span>
-</span><a id="__codelineno-4-6" name="__codelineno-4-6"></a><span class="hll"><span class="na">key_name</span><span class="w">                </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_key_pair.key_pair.key_name</span>
-</span><a id="__codelineno-4-7" name="__codelineno-4-7"></a><span class="hll">
-</span><a id="__codelineno-4-8" name="__codelineno-4-8"></a><span class="hll"><span class="nb">root_block_device</span><span class="w"> </span><span class="p">{</span>
-</span><a id="__codelineno-4-9" name="__codelineno-4-9"></a><span class="hll"><span class="w">    </span><span class="na">volume_size</span><span class="w">           </span><span class="o">=</span><span class="w"> </span><span class="m">8</span>
-</span><a id="__codelineno-4-10" name="__codelineno-4-10"></a><span class="hll"><span class="p">}</span>
-</span><a id="__codelineno-4-11" name="__codelineno-4-11"></a><span class="hll">
-</span><a id="__codelineno-4-12" name="__codelineno-4-12"></a><span class="hll"><span class="c1"># Set the metadata service to allow IMDSv2</span>
-</span><a id="__codelineno-4-13" name="__codelineno-4-13"></a><span class="hll"><span class="nb">metadata_options</span><span class="w"> </span><span class="p">{</span>
-</span><a id="__codelineno-4-14" name="__codelineno-4-14"></a><span class="hll"><span class="w">    </span><span class="na">http_tokens</span><span class="w">                 </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;optional&quot;</span><span class="c1">    # Allows IMDSv1 and IMDSv2</span>
-</span><a id="__codelineno-4-15" name="__codelineno-4-15"></a><span class="hll"><span class="w">    </span><span class="na">http_put_response_hop_limit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="c1">      # Default hop limit for the PUT request</span>
-</span><a id="__codelineno-4-16" name="__codelineno-4-16"></a><span class="hll"><span class="w">    </span><span class="na">http_endpoint</span><span class="w">               </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;enabled&quot;</span><span class="c1">     # Enable metadata service</span>
-</span><a id="__codelineno-4-17" name="__codelineno-4-17"></a><span class="hll"><span class="p">}</span>
-</span><a id="__codelineno-4-18" name="__codelineno-4-18"></a><span class="hll">
-</span><a id="__codelineno-4-19" name="__codelineno-4-19"></a><span class="hll"><span class="nb">tags</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-</span><a id="__codelineno-4-20" name="__codelineno-4-20"></a><span class="hll"><span class="w">    </span><span class="na">Name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;${var.project_name}_Server&quot;</span>
-</span><a id="__codelineno-4-21" name="__codelineno-4-21"></a><span class="hll"><span class="w">    </span><span class="na">Region</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="nv">var.selected_region</span>
-</span><a id="__codelineno-4-22" name="__codelineno-4-22"></a><span class="hll"><span class="w">    </span><span class="na">KeyPair</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="nv">local.key_pair_name</span>
-</span><a id="__codelineno-4-23" name="__codelineno-4-23"></a><span class="hll"><span class="w">    </span><span class="na">Project</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="nv">var.project_name</span>
-</span><a id="__codelineno-4-24" name="__codelineno-4-24"></a><span class="hll"><span class="p">}</span>
-</span><a id="__codelineno-4-25" name="__codelineno-4-25"></a>
-<a id="__codelineno-4-26" name="__codelineno-4-26"></a><span class="p">}</span>
-<a id="__codelineno-4-27" name="__codelineno-4-27"></a>
-<a id="__codelineno-4-28" name="__codelineno-4-28"></a><span class="nb">locals</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-4-29" name="__codelineno-4-29"></a><span class="c1"># Create key name with OpenVPN-Keypair prefix and region</span>
-<a id="__codelineno-4-30" name="__codelineno-4-30"></a><span class="na">key_pair_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;OpenVPN-Keypair-${var.selected_region}&quot;</span>
-<a id="__codelineno-4-31" name="__codelineno-4-31"></a>
-<a id="__codelineno-4-32" name="__codelineno-4-32"></a><span class="c1"># Create Profile name for the OpenVPN User</span>
-<a id="__codelineno-4-33" name="__codelineno-4-33"></a><span class="na">openvpn_user</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;OpeyemiTechPro-${var.selected_region}&quot;</span>
-<a id="__codelineno-4-34" name="__codelineno-4-34"></a>
-<a id="__codelineno-4-35" name="__codelineno-4-35"></a><span class="c1"># Display formatted region information</span>
-<a id="__codelineno-4-36" name="__codelineno-4-36"></a><span class="na">region_display</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">join</span><span class="p">(</span><span class="s2">&quot;\n&quot;, [for region, location in var.aws_regions : format(&quot;%s = %s&quot;</span><span class="p">,</span><span class="w"> </span><span class="err">region</span><span class="p">,</span><span class="w"> </span><span class="err">location</span><span class="p">)])</span>
-<a id="__codelineno-4-37" name="__codelineno-4-37"></a>
-<a id="__codelineno-4-38" name="__codelineno-4-38"></a><span class="p">}</span>
-<a id="__codelineno-4-39" name="__codelineno-4-39"></a>
-<a id="__codelineno-4-40" name="__codelineno-4-40"></a>
-<a id="__codelineno-4-41" name="__codelineno-4-41"></a><span class="c1"># Generate a private key</span>
-<a id="__codelineno-4-42" name="__codelineno-4-42"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;tls_private_key&quot;</span><span class="w"> </span><span class="nv">&quot;key_pair&quot;</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-4-43" name="__codelineno-4-43"></a><span class="na">algorithm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;RSA&quot;</span>
-<a id="__codelineno-4-44" name="__codelineno-4-44"></a><span class="na">rsa_bits</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="m">2048</span>
-<a id="__codelineno-4-45" name="__codelineno-4-45"></a><span class="p">}</span>
-<a id="__codelineno-4-46" name="__codelineno-4-46"></a>
-<a id="__codelineno-4-47" name="__codelineno-4-47"></a><span class="c1"># Create key pair in AWS</span>
-<a id="__codelineno-4-48" name="__codelineno-4-48"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_key_pair&quot;</span><span class="w"> </span><span class="nv">&quot;key_pair&quot;</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-4-49" name="__codelineno-4-49"></a><span class="na">key_name</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="nv">local.key_pair_name</span>
-<a id="__codelineno-4-50" name="__codelineno-4-50"></a><span class="na">public_key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">tls_private_key.key_pair.public_key_openssh</span>
-<a id="__codelineno-4-51" name="__codelineno-4-51"></a>
-<a id="__codelineno-4-52" name="__codelineno-4-52"></a><span class="c1"># tag the key pair</span>
-<a id="__codelineno-4-53" name="__codelineno-4-53"></a><span class="nb">tags</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-4-54" name="__codelineno-4-54"></a><span class="w">    </span><span class="na">Name</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="nv">local.key_pair_name</span>
-<a id="__codelineno-4-55" name="__codelineno-4-55"></a><span class="w">    </span><span class="na">Region</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="nv">var.selected_region</span>
-<a id="__codelineno-4-56" name="__codelineno-4-56"></a><span class="w">    </span><span class="na">Project</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="nv">var.project_name</span>
-<a id="__codelineno-4-57" name="__codelineno-4-57"></a><span class="w">    </span><span class="na">CreatedBy</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Terraform&quot;</span>
-<a id="__codelineno-4-58" name="__codelineno-4-58"></a><span class="p">}</span>
-<a id="__codelineno-4-59" name="__codelineno-4-59"></a><span class="p">}</span>
-<a id="__codelineno-4-60" name="__codelineno-4-60"></a>
-<a id="__codelineno-4-61" name="__codelineno-4-61"></a><span class="c1"># Save private key locally</span>
-<a id="__codelineno-4-62" name="__codelineno-4-62"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;local_file&quot;</span><span class="w"> </span><span class="nv">&quot;private_key&quot;</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-4-63" name="__codelineno-4-63"></a><span class="na">content</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="nv">tls_private_key.key_pair.private_key_pem</span>
-<a id="__codelineno-4-64" name="__codelineno-4-64"></a><span class="na">filename</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;${local.key_pair_name}.pem&quot;</span>
-<a id="__codelineno-4-65" name="__codelineno-4-65"></a><span class="na">file_permission</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;0400&quot;</span>
-<a id="__codelineno-4-66" name="__codelineno-4-66"></a><span class="p">}</span>
-<a id="__codelineno-4-67" name="__codelineno-4-67"></a>
-<a id="__codelineno-4-68" name="__codelineno-4-68"></a>
-<a id="__codelineno-4-69" name="__codelineno-4-69"></a><span class="c1"># Create a null resource to display available regions</span>
-<a id="__codelineno-4-70" name="__codelineno-4-70"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;null_resource&quot;</span><span class="w"> </span><span class="nv">&quot;region_display&quot;</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-4-71" name="__codelineno-4-71"></a><span class="nb">triggers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-4-72" name="__codelineno-4-72"></a><span class="w">    </span><span class="na">always_run</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">timestamp</span><span class="p">()</span>
-<a id="__codelineno-4-73" name="__codelineno-4-73"></a><span class="p">}</span>
-<a id="__codelineno-4-74" name="__codelineno-4-74"></a>
-<a id="__codelineno-4-75" name="__codelineno-4-75"></a><span class="kr">provisioner</span><span class="w"> </span><span class="nv">&quot;local-exec&quot;</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-4-76" name="__codelineno-4-76"></a><span class="w">    </span><span class="na">command</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&lt;&lt;-</span><span class="dl">EOT</span>
-<a id="__codelineno-4-77" name="__codelineno-4-77"></a><span class="sh">    echo &quot;Available AWS Regions:&quot;</span>
-<a id="__codelineno-4-78" name="__codelineno-4-78"></a><span class="sh">    echo &quot;${local.region_display}&quot;</span>
-<a id="__codelineno-4-79" name="__codelineno-4-79"></a><span class="sh">    echo &quot;\nSelected Region: ${var.selected_region} (${var.aws_regions[var.selected_region]})&quot;</span>
-<a id="__codelineno-4-80" name="__codelineno-4-80"></a><span class="dl">    EOT</span>
-<a id="__codelineno-4-81" name="__codelineno-4-81"></a><span class="p">}</span>
-<a id="__codelineno-4-82" name="__codelineno-4-82"></a><span class="p">}</span>
-</code></pre></div></td></tr></table></div>
-</details>
 </details>
 </details>
 <h2 id="jenkins-plugins-to-install">Jenkins Plugins to install<a class="headerlink" href="#jenkins-plugins-to-install" title="Copy this link to reference this section">&para;</a></h2>
@@ -2525,80 +2163,80 @@ This VPN server is also "disposable", meaning, you can create and delete it anyt
 </ul>
 <h2 id="install-and-setup-prometheus-stack-on-eks-using-helm">Install and setup Prometheus Stack on EKS using Helm<a class="headerlink" href="#install-and-setup-prometheus-stack-on-eks-using-helm" title="Copy this link to reference this section">&para;</a></h2>
 <h3 id="install-helm">Install Helm<a class="headerlink" href="#install-helm" title="Copy this link to reference this section">&para;</a></h3>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a>curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a>curl<span class="w"> </span>https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3<span class="w"> </span><span class="p">|</span><span class="w"> </span>bash
 </code></pre></div></td></tr></table></div>
 <h3 id="check-helm-version">Check Helm version<a class="headerlink" href="#check-helm-version" title="Copy this link to reference this section">&para;</a></h3>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a>helm version
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a>helm<span class="w"> </span>version
 </code></pre></div></td></tr></table></div>
 <h3 id="add-helm-repo">Add Helm repo<a class="headerlink" href="#add-helm-repo" title="Copy this link to reference this section">&para;</a></h3>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1">1</a></span>
-<span class="normal"><a href="#__codelineno-7-2">2</a></span>
-<span class="normal"><a href="#__codelineno-7-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a>helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
-<a id="__codelineno-7-2" name="__codelineno-7-2"></a>
-<a id="__codelineno-7-3" name="__codelineno-7-3"></a>helm repo update
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span>
+<span class="normal"><a href="#__codelineno-6-2">2</a></span>
+<span class="normal"><a href="#__codelineno-6-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a>helm<span class="w"> </span>repo<span class="w"> </span>add<span class="w"> </span>prometheus-community<span class="w"> </span>https://prometheus-community.github.io/helm-charts
+<a id="__codelineno-6-2" name="__codelineno-6-2"></a>
+<a id="__codelineno-6-3" name="__codelineno-6-3"></a>helm<span class="w"> </span>repo<span class="w"> </span>update
 </code></pre></div></td></tr></table></div>
 <blockquote>
 <p><strong><em>(Optionally) Search Available Hem Charts</em></strong>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a>helm search repo prometheus-community
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a>helm<span class="w"> </span>search<span class="w"> </span>repo<span class="w"> </span>prometheus-community
 </code></pre></div></td></tr></table></div></p>
 </blockquote>
 <h3 id="create-namespace">create namespace<a class="headerlink" href="#create-namespace" title="Copy this link to reference this section">&para;</a></h3>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1"></a>kubectl create namespace monitoring
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a>kubectl<span class="w"> </span>create<span class="w"> </span>namespace<span class="w"> </span>monitoring
 </code></pre></div></td></tr></table></div>
 <h3 id="install-prometheus-stack-into-monitoring-namespace">Install Prometheus Stack into monitoring namespace<a class="headerlink" href="#install-prometheus-stack-into-monitoring-namespace" title="Copy this link to reference this section">&para;</a></h3>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1">1</a></span>
-<span class="normal"><a href="#__codelineno-10-2">2</a></span>
-<span class="normal"><a href="#__codelineno-10-3">3</a></span>
-<span class="normal"><a href="#__codelineno-10-4">4</a></span>
-<span class="normal"><a href="#__codelineno-10-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1"></a>helm install prometheus prometheus-community/kube-prometheus-stack \
-<a id="__codelineno-10-2" name="__codelineno-10-2"></a>  -n monitoring \
-<a id="__codelineno-10-3" name="__codelineno-10-3"></a>  --set prometheus.prometheusSpec.maximumStartupDurationSeconds=300 \
-<a id="__codelineno-10-4" name="__codelineno-10-4"></a>  --set alertmanager.persistence.storageClass=&quot;gp2&quot; \
-<a id="__codelineno-10-5" name="__codelineno-10-5"></a>  --set server.persistentVolume.storageClass=&quot;gp2&quot;
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span>
+<span class="normal"><a href="#__codelineno-9-2">2</a></span>
+<span class="normal"><a href="#__codelineno-9-3">3</a></span>
+<span class="normal"><a href="#__codelineno-9-4">4</a></span>
+<span class="normal"><a href="#__codelineno-9-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1"></a>helm<span class="w"> </span>install<span class="w"> </span>prometheus<span class="w"> </span>prometheus-community/kube-prometheus-stack<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2"></a><span class="w">  </span>-n<span class="w"> </span>monitoring<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3"></a><span class="w">  </span>--set<span class="w"> </span>prometheus.prometheusSpec.maximumStartupDurationSeconds<span class="o">=</span><span class="m">300</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4"></a><span class="w">  </span>--set<span class="w"> </span>alertmanager.persistence.storageClass<span class="o">=</span><span class="s2">&quot;gp2&quot;</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5"></a><span class="w">  </span>--set<span class="w"> </span>server.persistentVolume.storageClass<span class="o">=</span><span class="s2">&quot;gp2&quot;</span>
 </code></pre></div></td></tr></table></div>
 <h3 id="check-running-status-of-pods-to-verify-deployment">Check running status of pods to verify deployment<a class="headerlink" href="#check-running-status-of-pods-to-verify-deployment" title="Copy this link to reference this section">&para;</a></h3>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1"></a>kubectl --namespace monitoring get pods -l &quot;release=prometheus&quot;
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1"></a>kubectl<span class="w"> </span>--namespace<span class="w"> </span>monitoring<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-l<span class="w"> </span><span class="s2">&quot;release=prometheus&quot;</span>
 </code></pre></div></td></tr></table></div>
 <p>OR
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1"></a>kubectl get pods -n monitoring
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>monitoring
 </code></pre></div></td></tr></table></div></p>
 <h3 id="list-all-services-in-the-monitoring-namespace">List all services in the monitoring namespace<a class="headerlink" href="#list-all-services-in-the-monitoring-namespace" title="Copy this link to reference this section">&para;</a></h3>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-13-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1"></a>kubectl get svc -n monitoring
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>svc<span class="w"> </span>-n<span class="w"> </span>monitoring
 </code></pre></div></td></tr></table></div>
 <h3 id="display-grafana-url-optional">Display Grafana URL (optional)<a class="headerlink" href="#display-grafana-url-optional" title="Copy this link to reference this section">&para;</a></h3>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-14-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1"></a>kubectl get svc -n monitoring prometheus-grafana
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-13-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>svc<span class="w"> </span>-n<span class="w"> </span>monitoring<span class="w"> </span>prometheus-grafana
 </code></pre></div></td></tr></table></div>
 <h3 id="display-prometheus-url-optional">Display Prometheus URL (optional)<a class="headerlink" href="#display-prometheus-url-optional" title="Copy this link to reference this section">&para;</a></h3>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-15-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1"></a>kubectl get svc -n monitoring prometheus-kube-prometheus-prometheus
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-14-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>svc<span class="w"> </span>-n<span class="w"> </span>monitoring<span class="w"> </span>prometheus-kube-prometheus-prometheus
 </code></pre></div></td></tr></table></div>
 <h3 id="expose-grafana-on-a-loadbalancer">Expose Grafana on a LoadBalancer<a class="headerlink" href="#expose-grafana-on-a-loadbalancer" title="Copy this link to reference this section">&para;</a></h3>
-<p>Change Grafana Service Type from ClusterIP to LoadBalancer to expose for external access
+<p>Change Grafana Service Type from ClusterIP to LoadBalancer to expose for external access</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-15-1">1</a></span>
+<span class="normal"><a href="#__codelineno-15-2">2</a></span>
+<span class="normal"><a href="#__codelineno-15-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1"></a>kubectl<span class="w"> </span>patch<span class="w"> </span>svc<span class="w"> </span>prometheus-grafana<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2"></a><span class="w">  </span>-n<span class="w"> </span>monitoring<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-15-3" name="__codelineno-15-3"></a><span class="w">  </span>-p<span class="w"> </span><span class="s1">&#39;{&quot;spec&quot;: {&quot;type&quot;: &quot;LoadBalancer&quot;}}&#39;</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="expose-prometheus-on-a-loadbalancer">Expose Prometheus on a LoadBalancer<a class="headerlink" href="#expose-prometheus-on-a-loadbalancer" title="Copy this link to reference this section">&para;</a></h3>
+<p>Change Prometheus Service Type from ClusterIP to LoadBalancer to expose for external access</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-16-1">1</a></span>
 <span class="normal"><a href="#__codelineno-16-2">2</a></span>
-<span class="normal"><a href="#__codelineno-16-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1"></a>kubectl patch svc prometheus-grafana \
-<a id="__codelineno-16-2" name="__codelineno-16-2"></a>  -n monitoring \
-<a id="__codelineno-16-3" name="__codelineno-16-3"></a>  -p &#39;{&quot;spec&quot;: {&quot;type&quot;: &quot;LoadBalancer&quot;}}&#39;
-</code></pre></div></td></tr></table></div></p>
-<h3 id="expose-prometheus-on-a-loadbalancer">Expose Prometheus on a LoadBalancer<a class="headerlink" href="#expose-prometheus-on-a-loadbalancer" title="Copy this link to reference this section">&para;</a></h3>
-<p>Change Prometheus Service Type from ClusterIP to LoadBalancer to expose for external access
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-17-1">1</a></span>
-<span class="normal"><a href="#__codelineno-17-2">2</a></span>
-<span class="normal"><a href="#__codelineno-17-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1"></a>kubectl patch svc prometheus-kube-prometheus-prometheus \
-<a id="__codelineno-17-2" name="__codelineno-17-2"></a>  -n monitoring \
-<a id="__codelineno-17-3" name="__codelineno-17-3"></a>  -p &#39;{&quot;spec&quot;: {&quot;type&quot;: &quot;LoadBalancer&quot;}}&#39;
-</code></pre></div></td></tr></table></div></p>
+<span class="normal"><a href="#__codelineno-16-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1"></a>kubectl<span class="w"> </span>patch<span class="w"> </span>svc<span class="w"> </span>prometheus-kube-prometheus-prometheus<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2"></a><span class="w">  </span>-n<span class="w"> </span>monitoring<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-16-3" name="__codelineno-16-3"></a><span class="w">  </span>-p<span class="w"> </span><span class="s1">&#39;{&quot;spec&quot;: {&quot;type&quot;: &quot;LoadBalancer&quot;}}&#39;</span>
+</code></pre></div></td></tr></table></div>
 <h3 id="display-loadbalancer-url-for-grafana-and-prometheus">Display LoadBalancer URL for Grafana and Prometheus<a class="headerlink" href="#display-loadbalancer-url-for-grafana-and-prometheus" title="Copy this link to reference this section">&para;</a></h3>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-18-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1"></a>kubectl get svc -n monitoring
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-17-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>svc<span class="w"> </span>-n<span class="w"> </span>monitoring
 </code></pre></div></td></tr></table></div>
 <p>You may need to wait a while for the <code>EXTERNAL-IP</code> field to be populated, then open each URL for both Grafana and Prometheus in your browser (Grafana on port 80, Prometheus on port 9090)</p>
 <h3 id="get-grafana-password">Get Grafana password<a class="headerlink" href="#get-grafana-password" title="Copy this link to reference this section">&para;</a></h3>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-19-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1"></a>kubectl --namespace monitoring get secrets prometheus-grafana -o json 
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-18-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1"></a>kubectl<span class="w"> </span>--namespace<span class="w"> </span>monitoring<span class="w"> </span>get<span class="w"> </span>secrets<span class="w"> </span>prometheus-grafana<span class="w"> </span>-o<span class="w"> </span>json<span class="w"> </span>
 </code></pre></div></td></tr></table></div>
 <p>Copy the admin-password from the json output and decode it in base-64 using the command below</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-20-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1"></a>echo &quot;&lt;admin-password&gt;&quot; | base64 --decode
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-19-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;&lt;admin-password&gt;&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>base64<span class="w"> </span>--decode
 </code></pre></div></td></tr></table></div>
 <p>OR use this command</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-21-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1"></a>kubectl --namespace monitoring get secrets prometheus-grafana -o jsonpath=&quot;{.data.admin-password}&quot; | base64 -d ; echo
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-20-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1"></a>kubectl<span class="w"> </span>--namespace<span class="w"> </span>monitoring<span class="w"> </span>get<span class="w"> </span>secrets<span class="w"> </span>prometheus-grafana<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s2">&quot;{.data.admin-password}&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>base64<span class="w"> </span>-d<span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="nb">echo</span>
 </code></pre></div></td></tr></table></div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
@@ -2612,6 +2250,107 @@ This VPN server is also "disposable", meaning, you can create and delete it anyt
 <details class="code-file">
 <summary>Install &amp; Configure Node-Exporter on linux</summary>
 <h2 id="install-configure-node-exporter-on-linux">Install &amp; Configure Node-Exporter on linux<a class="headerlink" href="#install-configure-node-exporter-on-linux" title="Copy this link to reference this section">&para;</a></h2>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-21-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-21-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-21-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-21-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-21-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-21-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-21-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-21-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-21-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-21-10">10</a></span>
+<span class="normal"><a href="#__codelineno-21-11">11</a></span>
+<span class="normal"><a href="#__codelineno-21-12">12</a></span>
+<span class="normal"><a href="#__codelineno-21-13">13</a></span>
+<span class="normal"><a href="#__codelineno-21-14">14</a></span>
+<span class="normal"><a href="#__codelineno-21-15">15</a></span>
+<span class="normal"><a href="#__codelineno-21-16">16</a></span>
+<span class="normal"><a href="#__codelineno-21-17">17</a></span>
+<span class="normal"><a href="#__codelineno-21-18">18</a></span>
+<span class="normal"><a href="#__codelineno-21-19">19</a></span>
+<span class="normal"><a href="#__codelineno-21-20">20</a></span>
+<span class="normal"><a href="#__codelineno-21-21">21</a></span>
+<span class="normal"><a href="#__codelineno-21-22">22</a></span>
+<span class="normal"><a href="#__codelineno-21-23">23</a></span>
+<span class="normal"><a href="#__codelineno-21-24">24</a></span>
+<span class="normal"><a href="#__codelineno-21-25">25</a></span>
+<span class="normal"><a href="#__codelineno-21-26">26</a></span>
+<span class="normal"><a href="#__codelineno-21-27">27</a></span>
+<span class="normal"><a href="#__codelineno-21-28">28</a></span>
+<span class="normal"><a href="#__codelineno-21-29">29</a></span>
+<span class="normal"><a href="#__codelineno-21-30">30</a></span>
+<span class="normal"><a href="#__codelineno-21-31">31</a></span>
+<span class="normal"><a href="#__codelineno-21-32">32</a></span>
+<span class="normal"><a href="#__codelineno-21-33">33</a></span>
+<span class="normal"><a href="#__codelineno-21-34">34</a></span>
+<span class="normal"><a href="#__codelineno-21-35">35</a></span>
+<span class="normal"><a href="#__codelineno-21-36">36</a></span>
+<span class="normal"><a href="#__codelineno-21-37">37</a></span>
+<span class="normal"><a href="#__codelineno-21-38">38</a></span>
+<span class="normal"><a href="#__codelineno-21-39">39</a></span>
+<span class="normal"><a href="#__codelineno-21-40">40</a></span>
+<span class="normal"><a href="#__codelineno-21-41">41</a></span>
+<span class="normal"><a href="#__codelineno-21-42">42</a></span>
+<span class="normal"><a href="#__codelineno-21-43">43</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1"></a><span class="ch">#!/bin/bash</span>
+<a id="__codelineno-21-2" name="__codelineno-21-2"></a>
+<a id="__codelineno-21-3" name="__codelineno-21-3"></a><span class="nb">set</span><span class="w"> </span>-e
+<a id="__codelineno-21-4" name="__codelineno-21-4"></a>
+<a id="__codelineno-21-5" name="__codelineno-21-5"></a><span class="nv">NODE_EXPORTER_VERSION</span><span class="o">=</span><span class="s2">&quot;1.8.1&quot;</span>
+<a id="__codelineno-21-6" name="__codelineno-21-6"></a><span class="nv">DOWNLOAD_URL</span><span class="o">=</span><span class="s2">&quot;https://github.com/prometheus/node_exporter/releases/download/v</span><span class="si">${</span><span class="nv">NODE_EXPORTER_VERSION</span><span class="si">}</span><span class="s2">/node_exporter-</span><span class="si">${</span><span class="nv">NODE_EXPORTER_VERSION</span><span class="si">}</span><span class="s2">.linux-amd64.tar.gz&quot;</span>
+<a id="__codelineno-21-7" name="__codelineno-21-7"></a>
+<a id="__codelineno-21-8" name="__codelineno-21-8"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;🚀 Installing Node Exporter v</span><span class="si">${</span><span class="nv">NODE_EXPORTER_VERSION</span><span class="si">}</span><span class="s2">...&quot;</span>
+<a id="__codelineno-21-9" name="__codelineno-21-9"></a>
+<a id="__codelineno-21-10" name="__codelineno-21-10"></a><span class="c1"># Download and extract</span>
+<a id="__codelineno-21-11" name="__codelineno-21-11"></a>curl<span class="w"> </span>-LO<span class="w"> </span><span class="si">${</span><span class="nv">DOWNLOAD_URL</span><span class="si">}</span>
+<a id="__codelineno-21-12" name="__codelineno-21-12"></a>tar<span class="w"> </span>-xzf<span class="w"> </span>node_exporter-<span class="si">${</span><span class="nv">NODE_EXPORTER_VERSION</span><span class="si">}</span>.linux-amd64.tar.gz
+<a id="__codelineno-21-13" name="__codelineno-21-13"></a>sudo<span class="w"> </span>mv<span class="w"> </span>node_exporter-<span class="si">${</span><span class="nv">NODE_EXPORTER_VERSION</span><span class="si">}</span>.linux-amd64/node_exporter<span class="w"> </span>/usr/local/bin/
+<a id="__codelineno-21-14" name="__codelineno-21-14"></a>rm<span class="w"> </span>-rf<span class="w"> </span>node_exporter-<span class="si">${</span><span class="nv">NODE_EXPORTER_VERSION</span><span class="si">}</span>.linux-amd64*
+<a id="__codelineno-21-15" name="__codelineno-21-15"></a>
+<a id="__codelineno-21-16" name="__codelineno-21-16"></a><span class="c1"># Create user</span>
+<a id="__codelineno-21-17" name="__codelineno-21-17"></a>sudo<span class="w"> </span>useradd<span class="w"> </span>-rs<span class="w"> </span>/bin/false<span class="w"> </span>node_exporter<span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nb">true</span>
+<a id="__codelineno-21-18" name="__codelineno-21-18"></a>
+<a id="__codelineno-21-19" name="__codelineno-21-19"></a><span class="c1"># Create systemd service</span>
+<a id="__codelineno-21-20" name="__codelineno-21-20"></a>cat<span class="w"> </span><span class="s">&lt;&lt;EOF | sudo tee /etc/systemd/system/node_exporter.service</span>
+<a id="__codelineno-21-21" name="__codelineno-21-21"></a><span class="s">[Unit]</span>
+<a id="__codelineno-21-22" name="__codelineno-21-22"></a><span class="s">Description=Node Exporter</span>
+<a id="__codelineno-21-23" name="__codelineno-21-23"></a><span class="s">Wants=network-online.target</span>
+<a id="__codelineno-21-24" name="__codelineno-21-24"></a><span class="s">After=network-online.target</span>
+<a id="__codelineno-21-25" name="__codelineno-21-25"></a>
+<a id="__codelineno-21-26" name="__codelineno-21-26"></a><span class="s">[Service]</span>
+<a id="__codelineno-21-27" name="__codelineno-21-27"></a><span class="s">User=node_exporter</span>
+<a id="__codelineno-21-28" name="__codelineno-21-28"></a><span class="s">Group=node_exporter</span>
+<a id="__codelineno-21-29" name="__codelineno-21-29"></a><span class="s">Type=simple</span>
+<a id="__codelineno-21-30" name="__codelineno-21-30"></a><span class="s">ExecStart=/usr/local/bin/node_exporter</span>
+<a id="__codelineno-21-31" name="__codelineno-21-31"></a>
+<a id="__codelineno-21-32" name="__codelineno-21-32"></a><span class="s">[Install]</span>
+<a id="__codelineno-21-33" name="__codelineno-21-33"></a><span class="s">WantedBy=default.target</span>
+<a id="__codelineno-21-34" name="__codelineno-21-34"></a><span class="s">EOF</span>
+<a id="__codelineno-21-35" name="__codelineno-21-35"></a>
+<a id="__codelineno-21-36" name="__codelineno-21-36"></a><span class="c1"># Reload and start</span>
+<a id="__codelineno-21-37" name="__codelineno-21-37"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>daemon-reload
+<a id="__codelineno-21-38" name="__codelineno-21-38"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>--now<span class="w"> </span>node_exporter
+<a id="__codelineno-21-39" name="__codelineno-21-39"></a>
+<a id="__codelineno-21-40" name="__codelineno-21-40"></a>
+<a id="__codelineno-21-41" name="__codelineno-21-41"></a><span class="c1"># Verify</span>
+<a id="__codelineno-21-42" name="__codelineno-21-42"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;✅ Node Exporter is running!&quot;</span>
+<a id="__codelineno-21-43" name="__codelineno-21-43"></a>curl<span class="w"> </span>-s<span class="w"> </span>http://localhost:9100/metrics<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-n<span class="w"> </span><span class="m">5</span>
+</code></pre></div></td></tr></table></div>
+</details>
+<hr />
+<p><br></p>
+<h2 id="scrapping-metrics">Scrapping Metrics<a class="headerlink" href="#scrapping-metrics" title="Copy this link to reference this section">&para;</a></h2>
+<p>To Scrape metrics from a standalone Linux server (our Jenkins server) running node_exporter using a Prometheus instance running inside EKS</p>
+<h3 id="prerequisites">✅ Prerequisites:<a class="headerlink" href="#prerequisites" title="Copy this link to reference this section">&para;</a></h3>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" checked/><span class="task-list-indicator"></span></label> Prometheus is installed via Helm chart.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" checked/><span class="task-list-indicator"></span></label> Node_exporter is running and accessible on our Jenkins server (default port: <code>9100</code>).</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" checked/><span class="task-list-indicator"></span></label> The Jenkins server's IP address is publicly accessible or reachable from within the EKS cluster (e.g., via VPC Peering, VPN, or internal networking).</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" checked/><span class="task-list-indicator"></span></label> Security Groups and firewall rules allow traffic from EKS nodes to port <code>9100</code> on the Jenkins server.</li>
+</ul>
+<h3 id="steps-to-add-standalone-server-to-prometheus-scrape-targets">🚀 Steps to Add Standalone Server to Prometheus Scrape Targets<a class="headerlink" href="#steps-to-add-standalone-server-to-prometheus-scrape-targets" title="Copy this link to reference this section">&para;</a></h3>
+<h4 id="1-create-additional-scrape-config-via-secret">1. Create Additional Scrape Config via Secret<a class="headerlink" href="#1-create-additional-scrape-config-via-secret" title="Copy this link to reference this section">&para;</a></h4>
+<p>Create a file named <code>additional-scrape-configs.yaml</code> with the following content:</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-22-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-22-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-22-3"> 3</a></span>
@@ -2627,163 +2366,58 @@ This VPN server is also "disposable", meaning, you can create and delete it anyt
 <span class="normal"><a href="#__codelineno-22-13">13</a></span>
 <span class="normal"><a href="#__codelineno-22-14">14</a></span>
 <span class="normal"><a href="#__codelineno-22-15">15</a></span>
-<span class="normal"><a href="#__codelineno-22-16">16</a></span>
-<span class="normal"><a href="#__codelineno-22-17">17</a></span>
-<span class="normal"><a href="#__codelineno-22-18">18</a></span>
-<span class="normal"><a href="#__codelineno-22-19">19</a></span>
-<span class="normal"><a href="#__codelineno-22-20">20</a></span>
-<span class="normal"><a href="#__codelineno-22-21">21</a></span>
-<span class="normal"><a href="#__codelineno-22-22">22</a></span>
-<span class="normal"><a href="#__codelineno-22-23">23</a></span>
-<span class="normal"><a href="#__codelineno-22-24">24</a></span>
-<span class="normal"><a href="#__codelineno-22-25">25</a></span>
-<span class="normal"><a href="#__codelineno-22-26">26</a></span>
-<span class="normal"><a href="#__codelineno-22-27">27</a></span>
-<span class="normal"><a href="#__codelineno-22-28">28</a></span>
-<span class="normal"><a href="#__codelineno-22-29">29</a></span>
-<span class="normal"><a href="#__codelineno-22-30">30</a></span>
-<span class="normal"><a href="#__codelineno-22-31">31</a></span>
-<span class="normal"><a href="#__codelineno-22-32">32</a></span>
-<span class="normal"><a href="#__codelineno-22-33">33</a></span>
-<span class="normal"><a href="#__codelineno-22-34">34</a></span>
-<span class="normal"><a href="#__codelineno-22-35">35</a></span>
-<span class="normal"><a href="#__codelineno-22-36">36</a></span>
-<span class="normal"><a href="#__codelineno-22-37">37</a></span>
-<span class="normal"><a href="#__codelineno-22-38">38</a></span>
-<span class="normal"><a href="#__codelineno-22-39">39</a></span>
-<span class="normal"><a href="#__codelineno-22-40">40</a></span>
-<span class="normal"><a href="#__codelineno-22-41">41</a></span>
-<span class="normal"><a href="#__codelineno-22-42">42</a></span>
-<span class="normal"><a href="#__codelineno-22-43">43</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1"></a>#!/bin/bash
-<a id="__codelineno-22-2" name="__codelineno-22-2"></a>
-<a id="__codelineno-22-3" name="__codelineno-22-3"></a>set -e
-<a id="__codelineno-22-4" name="__codelineno-22-4"></a>
-<a id="__codelineno-22-5" name="__codelineno-22-5"></a>NODE_EXPORTER_VERSION=&quot;1.8.1&quot;
-<a id="__codelineno-22-6" name="__codelineno-22-6"></a>DOWNLOAD_URL=&quot;https://github.com/prometheus/node_exporter/releases/download/v${NODE_EXPORTER_VERSION}/node_exporter-${NODE_EXPORTER_VERSION}.linux-amd64.tar.gz&quot;
-<a id="__codelineno-22-7" name="__codelineno-22-7"></a>
-<a id="__codelineno-22-8" name="__codelineno-22-8"></a>echo &quot;🚀 Installing Node Exporter v${NODE_EXPORTER_VERSION}...&quot;
-<a id="__codelineno-22-9" name="__codelineno-22-9"></a>
-<a id="__codelineno-22-10" name="__codelineno-22-10"></a># Download and extract
-<a id="__codelineno-22-11" name="__codelineno-22-11"></a>curl -LO ${DOWNLOAD_URL}
-<a id="__codelineno-22-12" name="__codelineno-22-12"></a>tar -xzf node_exporter-${NODE_EXPORTER_VERSION}.linux-amd64.tar.gz
-<a id="__codelineno-22-13" name="__codelineno-22-13"></a>sudo mv node_exporter-${NODE_EXPORTER_VERSION}.linux-amd64/node_exporter /usr/local/bin/
-<a id="__codelineno-22-14" name="__codelineno-22-14"></a>rm -rf node_exporter-${NODE_EXPORTER_VERSION}.linux-amd64*
-<a id="__codelineno-22-15" name="__codelineno-22-15"></a>
-<a id="__codelineno-22-16" name="__codelineno-22-16"></a># Create user
-<a id="__codelineno-22-17" name="__codelineno-22-17"></a>sudo useradd -rs /bin/false node_exporter || true
-<a id="__codelineno-22-18" name="__codelineno-22-18"></a>
-<a id="__codelineno-22-19" name="__codelineno-22-19"></a># Create systemd service
-<a id="__codelineno-22-20" name="__codelineno-22-20"></a>cat &lt;&lt;EOF | sudo tee /etc/systemd/system/node_exporter.service
-<a id="__codelineno-22-21" name="__codelineno-22-21"></a>[Unit]
-<a id="__codelineno-22-22" name="__codelineno-22-22"></a>Description=Node Exporter
-<a id="__codelineno-22-23" name="__codelineno-22-23"></a>Wants=network-online.target
-<a id="__codelineno-22-24" name="__codelineno-22-24"></a>After=network-online.target
-<a id="__codelineno-22-25" name="__codelineno-22-25"></a>
-<a id="__codelineno-22-26" name="__codelineno-22-26"></a>[Service]
-<a id="__codelineno-22-27" name="__codelineno-22-27"></a>User=node_exporter
-<a id="__codelineno-22-28" name="__codelineno-22-28"></a>Group=node_exporter
-<a id="__codelineno-22-29" name="__codelineno-22-29"></a>Type=simple
-<a id="__codelineno-22-30" name="__codelineno-22-30"></a>ExecStart=/usr/local/bin/node_exporter
-<a id="__codelineno-22-31" name="__codelineno-22-31"></a>
-<a id="__codelineno-22-32" name="__codelineno-22-32"></a>[Install]
-<a id="__codelineno-22-33" name="__codelineno-22-33"></a>WantedBy=default.target
-<a id="__codelineno-22-34" name="__codelineno-22-34"></a>EOF
-<a id="__codelineno-22-35" name="__codelineno-22-35"></a>
-<a id="__codelineno-22-36" name="__codelineno-22-36"></a># Reload and start
-<a id="__codelineno-22-37" name="__codelineno-22-37"></a>sudo systemctl daemon-reload
-<a id="__codelineno-22-38" name="__codelineno-22-38"></a>sudo systemctl enable --now node_exporter
-<a id="__codelineno-22-39" name="__codelineno-22-39"></a>
-<a id="__codelineno-22-40" name="__codelineno-22-40"></a>
-<a id="__codelineno-22-41" name="__codelineno-22-41"></a># Verify
-<a id="__codelineno-22-42" name="__codelineno-22-42"></a>echo &quot;✅ Node Exporter is running!&quot;
-<a id="__codelineno-22-43" name="__codelineno-22-43"></a>curl -s http://localhost:9100/metrics | head -n 5
-</code></pre></div></td></tr></table></div>
-</details>
-<hr />
-<p><br></p>
-<h2 id="scrapping-metrics">Scrapping Metrics<a class="headerlink" href="#scrapping-metrics" title="Copy this link to reference this section">&para;</a></h2>
-<p>To Scrape metrics from a standalone Linux server (our Jenkins server) running node_exporter using a Prometheus instance running inside EKS</p>
-<h3 id="prerequisites">✅ Prerequisites:<a class="headerlink" href="#prerequisites" title="Copy this link to reference this section">&para;</a></h3>
-<p>[ ] Prometheus is installed via Helm chart.
-[ ] Node_exporter is running and accessible on our Jenkins server (default port: <code>9100</code>).
-[ ] The Jenkins server's IP address is publicly accessible or reachable from within the EKS cluster (e.g., via VPC Peering, VPN, or internal networking).
-[ ] Security Groups and firewall rules allow traffic from EKS nodes to port <code>9100</code> on the Jenkins server.</p>
-<h3 id="steps-to-add-standalone-server-to-prometheus-scrape-targets">🚀 Steps to Add Standalone Server to Prometheus Scrape Targets<a class="headerlink" href="#steps-to-add-standalone-server-to-prometheus-scrape-targets" title="Copy this link to reference this section">&para;</a></h3>
-<h4 id="1-create-additional-scrape-config-via-secret">1. Create Additional Scrape Config via Secret<a class="headerlink" href="#1-create-additional-scrape-config-via-secret" title="Copy this link to reference this section">&para;</a></h4>
-<ul>
-<li>Create a file named <code>additional-scrape-configs.yaml</code> with the following content:</li>
-</ul>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-23-1"> 1</a></span>
-<span class="normal"><a href="#__codelineno-23-2"> 2</a></span>
-<span class="normal"><a href="#__codelineno-23-3"> 3</a></span>
-<span class="normal"><a href="#__codelineno-23-4"> 4</a></span>
-<span class="normal"><a href="#__codelineno-23-5"> 5</a></span>
-<span class="normal"><a href="#__codelineno-23-6"> 6</a></span>
-<span class="normal"><a href="#__codelineno-23-7"> 7</a></span>
-<span class="normal"><a href="#__codelineno-23-8"> 8</a></span>
-<span class="normal"><a href="#__codelineno-23-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-23-10">10</a></span>
-<span class="normal"><a href="#__codelineno-23-11">11</a></span>
-<span class="normal"><a href="#__codelineno-23-12">12</a></span>
-<span class="normal"><a href="#__codelineno-23-13">13</a></span>
-<span class="normal"><a href="#__codelineno-23-14">14</a></span>
-<span class="normal"><a href="#__codelineno-23-15">15</a></span>
-<span class="normal"><a href="#__codelineno-23-16">16</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">job_name</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;jenkins-node-exporter&#39;</span>
-<a id="__codelineno-23-2" name="__codelineno-23-2"></a><span class="w">  </span><span class="nt">static_configs</span><span class="p">:</span>
-<a id="__codelineno-23-3" name="__codelineno-23-3"></a><span class="hll"><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">targets</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&#39;&lt;server_ip&gt;:9100&#39;</span><span class="p p-Indicator">]</span>
-</span><a id="__codelineno-23-4" name="__codelineno-23-4"></a><span class="w">      </span><span class="nt">labels</span><span class="p">:</span>
-<a id="__codelineno-23-5" name="__codelineno-23-5"></a><span class="w">        </span><span class="nt">instance</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;&lt;instance_name&gt;&#39;</span>
-<a id="__codelineno-23-6" name="__codelineno-23-6"></a><span class="w">        </span><span class="nt">role</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;node-exporter&#39;</span>
-<a id="__codelineno-23-7" name="__codelineno-23-7"></a><span class="w">        </span><span class="nt">environment</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;dev&#39;</span>
-<a id="__codelineno-23-8" name="__codelineno-23-8"></a>
-<a id="__codelineno-23-9" name="__codelineno-23-9"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">job_name</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;jenkins-prom-plugin&#39;</span>
-<a id="__codelineno-23-10" name="__codelineno-23-10"></a><span class="w">  </span><span class="nt">metrics_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/prometheus</span>
-<a id="__codelineno-23-11" name="__codelineno-23-11"></a><span class="w">  </span><span class="nt">static_configs</span><span class="p">:</span>
-<a id="__codelineno-23-12" name="__codelineno-23-12"></a><span class="hll"><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">targets</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&#39;&lt;server_ip&gt;:8080&#39;</span><span class="p p-Indicator">]</span>
-</span><a id="__codelineno-23-13" name="__codelineno-23-13"></a><span class="w">      </span><span class="nt">labels</span><span class="p">:</span>
-<a id="__codelineno-23-14" name="__codelineno-23-14"></a><span class="w">        </span><span class="nt">instance</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;instance_name&#39;</span>
-<a id="__codelineno-23-15" name="__codelineno-23-15"></a><span class="w">        </span><span class="nt">role</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;jenkins-master&#39;</span>
-<a id="__codelineno-23-16" name="__codelineno-23-16"></a><span class="w">        </span><span class="nt">environment</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;dev&#39;</span>
+<span class="normal"><a href="#__codelineno-22-16">16</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">job_name</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;jenkins-node-exporter&#39;</span>
+<a id="__codelineno-22-2" name="__codelineno-22-2"></a><span class="w">  </span><span class="nt">static_configs</span><span class="p">:</span>
+<a id="__codelineno-22-3" name="__codelineno-22-3"></a><span class="hll"><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">targets</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&#39;&lt;server_ip&gt;:9100&#39;</span><span class="p p-Indicator">]</span>
+</span><a id="__codelineno-22-4" name="__codelineno-22-4"></a><span class="w">      </span><span class="nt">labels</span><span class="p">:</span>
+<a id="__codelineno-22-5" name="__codelineno-22-5"></a><span class="w">        </span><span class="nt">instance</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;&lt;instance_name&gt;&#39;</span>
+<a id="__codelineno-22-6" name="__codelineno-22-6"></a><span class="w">        </span><span class="nt">role</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;node-exporter&#39;</span>
+<a id="__codelineno-22-7" name="__codelineno-22-7"></a><span class="w">        </span><span class="nt">environment</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;dev&#39;</span>
+<a id="__codelineno-22-8" name="__codelineno-22-8"></a>
+<a id="__codelineno-22-9" name="__codelineno-22-9"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">job_name</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;jenkins-prom-plugin&#39;</span>
+<a id="__codelineno-22-10" name="__codelineno-22-10"></a><span class="w">  </span><span class="nt">metrics_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/prometheus</span>
+<a id="__codelineno-22-11" name="__codelineno-22-11"></a><span class="w">  </span><span class="nt">static_configs</span><span class="p">:</span>
+<a id="__codelineno-22-12" name="__codelineno-22-12"></a><span class="hll"><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">targets</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&#39;&lt;server_ip&gt;:8080&#39;</span><span class="p p-Indicator">]</span>
+</span><a id="__codelineno-22-13" name="__codelineno-22-13"></a><span class="w">      </span><span class="nt">labels</span><span class="p">:</span>
+<a id="__codelineno-22-14" name="__codelineno-22-14"></a><span class="w">        </span><span class="nt">instance</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;instance_name&#39;</span>
+<a id="__codelineno-22-15" name="__codelineno-22-15"></a><span class="w">        </span><span class="nt">role</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;jenkins-master&#39;</span>
+<a id="__codelineno-22-16" name="__codelineno-22-16"></a><span class="w">        </span><span class="nt">environment</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;dev&#39;</span>
 </code></pre></div></td></tr></table></div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>Edit the higlighted lines and replace <code>&lt;server-ip&gt;</code> with the IP address or DNS name of your standalone Linux server. In this case, your jenkins server.</p>
 </div>
 <h4 id="2-now-create-a-kubernetes-secret">2. Now create a Kubernetes secret<a class="headerlink" href="#2-now-create-a-kubernetes-secret" title="Copy this link to reference this section">&para;</a></h4>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-24-1">1</a></span>
-<span class="normal"><a href="#__codelineno-24-2">2</a></span>
-<span class="normal"><a href="#__codelineno-24-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1"></a>kubectl create secret generic additional-scrape-configs \
-<a id="__codelineno-24-2" name="__codelineno-24-2"></a>  --from-file=additional-scrape-configs.yaml \
-<a id="__codelineno-24-3" name="__codelineno-24-3"></a>  -n monitoring
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-23-1">1</a></span>
+<span class="normal"><a href="#__codelineno-23-2">2</a></span>
+<span class="normal"><a href="#__codelineno-23-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1"></a>kubectl<span class="w"> </span>create<span class="w"> </span>secret<span class="w"> </span>generic<span class="w"> </span>additional-scrape-configs<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-23-2" name="__codelineno-23-2"></a><span class="w">  </span>--from-file<span class="o">=</span>additional-scrape-configs.yaml<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-23-3" name="__codelineno-23-3"></a><span class="w">  </span>-n<span class="w"> </span>monitoring
 </code></pre></div></td></tr></table></div>
 <h4 id="3-edit-prometheus-custom-resource">3. Edit Prometheus Custom Resource<a class="headerlink" href="#3-edit-prometheus-custom-resource" title="Copy this link to reference this section">&para;</a></h4>
-<ul>
-<li>First get the prometheus resource name</li>
-</ul>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-25-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1"></a>kubectl get prometheus -n monitoring
+<p>First get the prometheus resource name</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-24-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>prometheus<span class="w"> </span>-n<span class="w"> </span>monitoring
 </code></pre></div></td></tr></table></div>
-<ul>
-<li>Then edit the prometheus custom resource</li>
-</ul>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-26-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1"></a>kubectl edit prometheus prometheus-kube-prometheus-prometheus -n monitoring
+<p>Then edit the prometheus custom resource</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-25-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1"></a>kubectl<span class="w"> </span>edit<span class="w"> </span>prometheus<span class="w"> </span>prometheus-kube-prometheus-prometheus<span class="w"> </span>-n<span class="w"> </span>monitoring
 </code></pre></div></td></tr></table></div>
 <p>Under <code>spec</code> add:</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-27-1">1</a></span>
-<span class="normal"><a href="#__codelineno-27-2">2</a></span>
-<span class="normal"><a href="#__codelineno-27-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1"></a>  additionalScrapeConfigs:
-<a id="__codelineno-27-2" name="__codelineno-27-2"></a>    name: additional-scrape-configs
-<a id="__codelineno-27-3" name="__codelineno-27-3"></a>    key: additional-scrape-configs.yaml
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-26-1">1</a></span>
+<span class="normal"><a href="#__codelineno-26-2">2</a></span>
+<span class="normal"><a href="#__codelineno-26-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1"></a><span class="w">  </span><span class="nt">additionalScrapeConfigs</span><span class="p">:</span>
+<a id="__codelineno-26-2" name="__codelineno-26-2"></a><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">additional-scrape-configs</span>
+<a id="__codelineno-26-3" name="__codelineno-26-3"></a><span class="w">    </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">additional-scrape-configs.yaml</span>
 </code></pre></div></td></tr></table></div>
 <p>So the result should look like this:</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-28-1">1</a></span>
-<span class="normal"><a href="#__codelineno-28-2">2</a></span>
-<span class="normal"><a href="#__codelineno-28-3">3</a></span>
-<span class="normal"><a href="#__codelineno-28-4">4</a></span>
-<span class="normal"><a href="#__codelineno-28-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1"></a>spec:
-<a id="__codelineno-28-2" name="__codelineno-28-2"></a>  ...
-<a id="__codelineno-28-3" name="__codelineno-28-3"></a>  additionalScrapeConfigs:
-<a id="__codelineno-28-4" name="__codelineno-28-4"></a>    name: additional-scrape-configs
-<a id="__codelineno-28-5" name="__codelineno-28-5"></a>    key: additional-scrape-configs.yaml
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-27-1">1</a></span>
+<span class="normal"><a href="#__codelineno-27-2">2</a></span>
+<span class="normal"><a href="#__codelineno-27-3">3</a></span>
+<span class="normal"><a href="#__codelineno-27-4">4</a></span>
+<span class="normal"><a href="#__codelineno-27-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1"></a><span class="nt">spec</span><span class="p">:</span>
+<a id="__codelineno-27-2" name="__codelineno-27-2"></a><span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<a id="__codelineno-27-3" name="__codelineno-27-3"></a><span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">additionalScrapeConfigs</span><span class="p p-Indicator">:</span>
+<a id="__codelineno-27-4" name="__codelineno-27-4"></a><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">additional-scrape-configs</span>
+<a id="__codelineno-27-5" name="__codelineno-27-5"></a><span class="w">    </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">additional-scrape-configs.yaml</span>
 </code></pre></div></td></tr></table></div>
 <h4 id="4-apply-and-verify">4. Apply and Verify<a class="headerlink" href="#4-apply-and-verify" title="Copy this link to reference this section">&para;</a></h4>
 <p>Prometheus will reload its config automatically by deafult. Wait a minute, then:</p>
@@ -2792,255 +2426,13 @@ This VPN server is also "disposable", meaning, you can create and delete it anyt
 <li>Look for the job <code>node-exporter-standalone</code>.</li>
 <li>Ensure it’s marked as UP.</li>
 </ul>
-<p><br><br><br></p>
+<p><br><br></p>
 <h3 id="to-uninstall-prometheus-stack-and-delete-namespace">To Uninstall Prometheus-Stack and delete namespace<a class="headerlink" href="#to-uninstall-prometheus-stack-and-delete-namespace" title="Copy this link to reference this section">&para;</a></h3>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-29-1">1</a></span>
-<span class="normal"><a href="#__codelineno-29-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1"></a>helm uninstall prometheus -n monitoring
-<a id="__codelineno-29-2" name="__codelineno-29-2"></a>kubectl delete namespace monitoring
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-28-1">1</a></span>
+<span class="normal"><a href="#__codelineno-28-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1"></a>helm<span class="w"> </span>uninstall<span class="w"> </span>prometheus<span class="w"> </span>-n<span class="w"> </span>monitoring
+<a id="__codelineno-28-2" name="__codelineno-28-2"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>namespace<span class="w"> </span>monitoring
 </code></pre></div></td></tr></table></div>
 <h6 id="_2"><a class="headerlink" href="#_2" title="Copy this link to reference this section">&para;</a></h6>
-<div class="admonition question">
-<p class="admonition-title">Question</p>
-<p>Why do you call EKS Distro a Kubernetes distribution?</p>
-</div>
-<div class="admonition quote">
-<p class="admonition-title">Answer</p>
-<p>EKS Distro is a distro of the same open source Kubernetes and dependencies
-deployed by Amazon EKS. We include binaries and containers of open source 
-Kubernetes, <code>etcd</code>, networking, and storage plugins, all of which are tested
-for compatibility. We provide extended support for Kubernetes versions after
-community support expires by updating builds of previous versions with the 
-latest critical security patches. You can securely access EKS Distro releases
-from GitHub or within AWS via Amazon S3 and ECR for a common source of 
-releases and updates.</p>
-</div>
-<h2 id="is-this-a-fork-of-kubernetes-1">Is this a fork of Kubernetes-1?<a class="headerlink" href="#is-this-a-fork-of-kubernetes-1" title="Copy this link to reference this section">&para;</a></h2>
-<details class="question">
-<summary>Question</summary>
-<p>Why do you call EKS Distro a Kubernetes distribution?</p>
-</details>
-<details class="quote">
-<summary>Answer</summary>
-<p>EKS Distro is a distro of the same open source Kubernetes and dependencies
-deployed by Amazon EKS. We include binaries and containers of open source 
-Kubernetes, <code>etcd</code>, networking, and storage plugins, all of which are tested
-for compatibility. We provide extended support for Kubernetes versions after
-community support expires by updating builds of previous versions with the 
-latest critical security patches. You can securely access EKS Distro releases
-from GitHub or within AWS via Amazon S3 and ECR for a common source of 
-releases and updates.</p>
-</details>
-<h3 id="is-this-a-fork-of-kubernetes-2">Is this a fork of Kubernetes-2?<a class="headerlink" href="#is-this-a-fork-of-kubernetes-2" title="Copy this link to reference this section">&para;</a></h3>
-<div class="admonition question">
-<p class="admonition-title">Question</p>
-<p>Why do you call EKS Distro a Kubernetes distribution?</p>
-</div>
-<details class="quote">
-<summary>Answer</summary>
-<p>EKS Distro is a distro of the same open source Kubernetes and dependencies
-deployed by Amazon EKS. We include binaries and containers of open source 
-Kubernetes, <code>etcd</code>, networking, and storage plugins, all of which are tested
-for compatibility. We provide extended support for Kubernetes versions after
-community support expires by updating builds of previous versions with the 
-latest critical security patches. You can securely access EKS Distro releases
-from GitHub or within AWS via Amazon S3 and ECR for a common source of 
-releases and updates.</p>
-</details>
-<h3 id="is-this-a-fork-of-kubernetes">Is this a fork of Kubernetes?<a class="headerlink" href="#is-this-a-fork-of-kubernetes" title="Copy this link to reference this section">&para;</a></h3>
-<div class="admonition question">
-<p class="admonition-title">Question</p>
-<h2 id="why-do-you-call-eks-distro-a-kubernetes-distribution">Why do you call EKS Distro a Kubernetes distribution?<a class="headerlink" href="#why-do-you-call-eks-distro-a-kubernetes-distribution" title="Copy this link to reference this section">&para;</a></h2>
-</div>
-<details class="quote">
-<summary>Answer</summary>
-<p>EKS Distro is a distro of the same open source Kubernetes and dependencies
-deployed by Amazon EKS. We include binaries and containers of open source 
-Kubernetes, <code>etcd</code>, networking, and storage plugins, all of which are tested
-for compatibility. We provide extended support for Kubernetes versions after
-community support expires by updating builds of previous versions with the 
-latest critical security patches. You can securely access EKS Distro releases
-from GitHub or within AWS via Amazon S3 and ECR for a common source of 
-releases and updates.</p>
-</details>
-<div class="admonition question">
-<p class="admonition-title">## Question-Main</p>
-<h2 id="why-do-you-call-eks-distro-a-kubernetes-distribution-1">Why do you call EKS Distro a Kubernetes distribution-1?<a class="headerlink" href="#why-do-you-call-eks-distro-a-kubernetes-distribution-1" title="Copy this link to reference this section">&para;</a></h2>
-<div class="admonition code-file">
-<p class="admonition-title">Question</p>
-<h2 id="why-do-you-call-eks-distro-a-kubernetes-distribution-2">Why do you call EKS Distro a Kubernetes distribution-2?<a class="headerlink" href="#why-do-you-call-eks-distro-a-kubernetes-distribution-2" title="Copy this link to reference this section">&para;</a></h2>
-</div>
-<details class="code-file">
-<summary>Answer</summary>
-<p>EKS Distro is a distro of the same open source Kubernetes and dependencies
-deployed by Amazon EKS. We include binaries and containers of open source 
-Kubernetes, <code>etcd</code>, networking, and storage plugins, all of which are tested
-for compatibility. We provide extended support for Kubernetes versions after
-community support expires by updating builds of previous versions with the 
-latest critical security patches. You can securely access EKS Distro releases
-from GitHub or within AWS via Amazon S3 and ECR for a common source of 
-releases and updates.</p>
-</details>
-</div>
-<h6 id="_3"><a class="headerlink" href="#_3" title="Copy this link to reference this section">&para;</a></h6>
-<h2 id="running-the-script"><strong>Running the script</strong><a class="headerlink" href="#running-the-script" title="Copy this link to reference this section">&para;</a></h2>
-<p>Follow the <mark><strong>"Quick Start Guide"</strong></mark> below to provision and configure your OpenVPN server and to connect to your new VPN network.</p>
-<h2 id="quick-start-guide"><strong>Quick Start Guide</strong><a class="headerlink" href="#quick-start-guide" title="Copy this link to reference this section">&para;</a></h2>
-<details class="info">
-<summary>Click here for a quick start guide on setting up the OpenVPN Access Server</summary>
-<h3 id="clone-the-repository">Clone the Repository<a class="headerlink" href="#clone-the-repository" title="Copy this link to reference this section">&para;</a></h3>
-<p>Create a folder on your local machine and clone the repository in the folder</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-30-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/opeyemitechpro/OpenVPN-Terraform.git
-</code></pre></div></td></tr></table></div>
-<h3 id="initialize-the-terraform-configuration">Initialize the terraform configuration<a class="headerlink" href="#initialize-the-terraform-configuration" title="Copy this link to reference this section">&para;</a></h3>
-<p>From within the cloned directory, initialize the terraform configuration</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-31-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1"></a>terraform<span class="w"> </span>init
-</code></pre></div></td></tr></table></div>
-<figure>
-<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" data-title="Terraform Initialiaztion Command" data-desc-position="bottom"><img alt="Terraform Initialiaztion Command" src="../../assets/images/ovpn-terraform-init.png" title="Terraform Initialiaztion Command" /></a></p>
-<figcaption>
-<p>Terraform Initialiaztion Command</p>
-</figcaption>
-</figure>
-<h3 id="apply-the-terraform-configuration">Apply the Terraform Configuration<a class="headerlink" href="#apply-the-terraform-configuration" title="Copy this link to reference this section">&para;</a></h3>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-32-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1"></a>terraform<span class="w"> </span>apply<span class="w"> </span>-auto-approve
-</code></pre></div></td></tr></table></div>
-<ul>
-<li>When prompted, enter an AWS region from the list below and press enter.  (e.g. <code>us-west-2</code>)</li>
-<li>This will be the AWS region where the VPN server and all resources will be hosted. </li>
-</ul>
-<figure>
-<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" data-title="Terraform apply command" data-desc-position="bottom"><img alt="Terraform apply command" src="../../assets/images/ovpn-terraform-apply.png" title="Terraform apply command" /></a></p>
-<figcaption>
-<p>Terraform apply command</p>
-</figcaption>
-</figure>
-<h4 id="list-of-accepted-aws-regions"><mark>List of accepted AWS regions</mark><a class="headerlink" href="#list-of-accepted-aws-regions" title="Copy this link to reference this section">&para;</a></h4>
-<ul>
-<li>us-east-1       =  N. Virginia </li>
-<li>us-east-2       =  Ohio </li>
-<li>us-west-1       =  N. California </li>
-<li>us-west-2       =  Oregon </li>
-<li>af-south-1      =  Cape Town </li>
-<li>ap-east-1       =  Hong Kong </li>
-<li>ap-south-1      =  Mumbai </li>
-<li>ap-southeast-1  =  Singapore </li>
-<li>ap-southeast-2  =  Sydney </li>
-<li>ap-southeast-3  =  Jakarta </li>
-<li>ap-northeast-1  =  Tokyo </li>
-<li>ap-northeast-2  =  Seoul </li>
-<li>ap-northeast-3  =  Osaka </li>
-<li>ca-central-1    =  Canada Central </li>
-<li>eu-central-1    =  Frankfurt </li>
-<li>eu-west-1       =  Ireland </li>
-<li>eu-west-2       =  London </li>
-<li>eu-west-3       =  Paris </li>
-<li>eu-north-1      =  Stockholm </li>
-<li>eu-south-1      =  Milan </li>
-<li>eu-south-2      =  Zurich </li>
-<li>me-south-1      =  Bahrain </li>
-<li>me-central-1    =  UAE </li>
-<li>sa-east-1       =  São Paulo </li>
-</ul>
-<h3 id="outputs">Outputs<a class="headerlink" href="#outputs" title="Copy this link to reference this section">&para;</a></h3>
-<p>At the end of the terraform apply command, the script outputs the following details on the screen:</p>
-<ul>
-<li>The Public IP address of the VPN Server</li>
-<li>The instance-ID</li>
-<li>The name of the keypair created</li>
-<li>The path where the private key file was saved on your local machine</li>
-<li>SSH connection string that you can use to the VPN server</li>
-<li>The OpenVPN profile file that you will use to ssh into the VPN server</li>
-<li>Further steps to launch your VPN connection</li>
-</ul>
-<figure>
-<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" data-title="Terraform Output" data-desc-position="bottom"><img alt="Terraform Output" src="../../assets/images/ovpn-terraform-output.png" title="Terraform Output Screen" /></a></p>
-<figcaption>
-<p>Terraform Output Screen</p>
-</figcaption>
-</figure>
-<figure>
-<p><strong>Showing the OpenVPN server on the AWS EC2 Console</strong>
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" data-title="AWS Console Showing the OpenVPN Server details" data-desc-position="bottom"><img alt="AWS Console Showing the OpenVPN Server details" src="../../assets/images/ovpn-terraform-console.png" title="AWS Console Showing the OpenVPN Server details" /></a></p>
-<figcaption>
-<p>AWS Console Showing the OpenVPN Server details</p>
-</figcaption>
-</figure>
-<h3 id="connect-to-your-vpn">Connect to your VPN<a class="headerlink" href="#connect-to-your-vpn" title="Copy this link to reference this section">&para;</a></h3>
-<ul>
-<li>Download and install <a href="https://openvpn.net/client/" target="_blank">OpenVPN Connect client</a> on your local machine</li>
-<li>Import the <code>*.ovpn</code> file into the OpenVPN cient appllication</li>
-<li>Connect to your VPN network</li>
-</ul>
-<figure>
-<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" data-title="OpenVPN Client Connected to the VPN" data-desc-position="bottom"><img alt="OpenVPN Client Connected to the VPN" src="../../assets/images/ovpn-terraform-connect.png" title="OpenVPN Client Connected to the VPN" /></a></p>
-<figcaption>
-<p>OpenVPN Client Connected to the VPN</p>
-</figcaption>
-</figure>
-<h3 id="testing-your-vpn-connection">Testing your VPN Connection<a class="headerlink" href="#testing-your-vpn-connection" title="Copy this link to reference this section">&para;</a></h3>
-<p>One very simple way to check if you are actually connected to your new VPN network is to open your browser and check your public IP address. You can use websites like <a href="hhtps://whatsmyip.com">whatsmyip.com</a> or simply search "what is my ip address" on Google to check your public IP address.  </p>
-<figure>
-<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" data-title="Public IP address showing Canada" data-desc-position="bottom"><img alt="Public IP address showing Canada" src="../../assets/images/ovpn-canada-ip.png" title="Public IP address showing Canada" /></a></p>
-<figcaption>
-<p>Public IP address showing Canada</p>
-</figcaption>
-</figure>
-<p>When you are connected to your VPN server, your internet traffic will be routed through your VPN server and as such, only your VPN server IP address will be seen publicly, your local ISP assigned ip address will be hidden from the internet. </p>
-<h3 id="cleanup">Cleanup<a class="headerlink" href="#cleanup" title="Copy this link to reference this section">&para;</a></h3>
-<p>To delete the server and cleanup all resources that were created.</p>
-<ol>
-<li>
-<p>First disconnect the OpenVPN Connect Client</p>
-</li>
-<li>
-<p>Then enter the command below to delete all locally created files and also delete the server and all other resources from your AWS account.  </p>
-</li>
-</ol>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-33-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1"></a>terraform<span class="w"> </span>destroy<span class="w"> </span>-auto-approve<span class="w"> </span>
-</code></pre></div></td></tr></table></div>
-<ul>
-<li>This will terminate the EC2 instance and delete all resources created and also delete the files that were locally created in the terraform working directory i.e. the *.ovpn user profile and the keypair file that was created earlier </li>
-</ul>
-<figure>
-<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" data-title="Terraform Destroy Command" data-desc-position="bottom"><img alt="Terraform Destroy Command" src="../../assets/images/ovpn-terraform-destroy.png" title="Terraform Destroy Command" /></a></p>
-<figcaption>
-<p>Terraform Destroy Command</p>
-</figcaption>
-</figure>
-</details>
-<h2 id="use-cases"><strong>Use Cases</strong><a class="headerlink" href="#use-cases" title="Copy this link to reference this section">&para;</a></h2>
-<p>This self-hosted OpenVPN solution offers flexibility, control, and enhanced security compared to commercial VPN services. Here are some possible use cases:  </p>
-<p><strong>1. Secure Remote Access</strong>
-- <strong>Corporate Network Access</strong>: Allow employees to securely connect to on-premises resources or internal systems.<br />
-- <strong>Remote Development</strong>: Enable developers to work on private servers or cloud environments without exposing them to the public internet.  </p>
-<p><strong>2. Privacy and Anonymity</strong>
-- <strong>Encrypt Internet Traffic</strong>: Protect personal or organizational internet traffic, especially when using public Wi-Fi.<br />
-- <strong>Location Masking</strong>: Access the internet as if from a specific location to bypass geolocation restrictions.  </p>
-<p><strong>3. Secure Inter-Office Communication</strong>
-- <strong>Branch Office Connectivity</strong>: Connect multiple office locations securely over a shared network.<br />
-- <strong>IoT Devices</strong>: Secure communication for IoT devices spread across different sites.  </p>
-<p><strong>4. Personal Use</strong>
-- <strong>Ad-Free Browsing</strong>: Avoid invasive tracking and ads by routing traffic through your onw self-hosted VPN server.<br />
-- <strong>Bypass ISP Throttling</strong>: Prevent internet service providers from throttling bandwidth for specific services.  </p>
-<p><strong>5. Development and Testing</strong>
-- <strong>Environment Testing</strong>: Simulate network environments for application development and QA testing.<br />
-- <strong>Access Restricted APIs</strong>: Connect securely to APIs or other restricted services during development.  </p>
-<p><strong>6. Secure Cloud Resources</strong>
-- <strong>Private Cloud Access</strong>: Connect securely to AWS resources without exposing them to the public internet.<br />
-- <strong>DevOps Pipelines</strong>: Ensure secure deployment pipelines that require private network connectivity.  </p>
-<p><strong>7. Enhanced Security</strong>
-- <strong>Multi-Layered Security</strong>: Combine a self-hosted VPN with firewalls or IDS/IPS systems to add another layer of protection.<br />
-- <strong>Self-Controlled Data</strong>: Prevent third-party logging or tracking of your internet activity.  </p>
-<p><strong>8. Education and Research</strong>
-- <strong>Bypass Censorship</strong>: Enable access to academic resources or restricted sites in regions with strict censorship.<br />
-- <strong>Research Anonymity</strong>: Conduct secure and private research online.  </p>
-<p><strong>9. Cost Efficiency</strong>
-- <strong>Avoiding Commercial VPN Costs</strong>: Reduce long-term expenses for secure connections, especially for teams or organizations.<br />
-- <strong>No User Limits</strong>: Create a solution tailored to your usage, avoiding per-user or bandwidth fees common with commercial VPNs.  </p>
-<p><strong>10. Gaming and Media</strong>
-- <strong>LAN Gaming</strong>: Create a virtual local area network for multiplayer gaming.<br />
-- <strong>Bypass Regional Blocks</strong>: Access region-restricted content like streaming services.  </p>
-<p>By usign this solution to host your own VPN, you gain complete control over configuration, logs, and data flow, making it an excellent choice for your specific use case.</p>
 <h2 id="conclusion"><strong>Conclusion</strong><a class="headerlink" href="#conclusion" title="Copy this link to reference this section">&para;</a></h2>
 <p>Setting up a self-hosted VPN server using this Terraform configuration script is a straightforward and efficient way to enhance your network security and maintain control over your data. By following this documentation, you can deploy a robust OpenVPN server on AWS, customize it to your needs, and ensure private and secure internet access. This guide aims to empower you with the knowledge and tools to manage your own VPN server effectively. For any troubleshooting or further customization, explore the Terraform and OpenVPN documentation for advanced insights and solutions. </p>
 
@@ -3065,7 +2457,7 @@ releases and updates.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="August 21, 2025 20:37:21 UTC"><span class="timeago" datetime="2025-08-21T20:37:21+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="August 21, 2025 20:37:21 UTC">2025-08-21</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="August 21, 2025 20:51:02 UTC"><span class="timeago" datetime="2025-08-21T20:51:02+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="August 21, 2025 20:51:02 UTC">2025-08-21</span>
   </span>
 
     
