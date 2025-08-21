@@ -1,8 +1,8 @@
 ---
 icon: material/infinity
-title: 10-Microservices CI-CD Deployment
-description: End-to-End CI/CD Deployment to Kubernetes 
-subtitle: End-to-End CI/CD Deployment to Kubernetes
+title: DevSecOps Project - 11-Microservices CI-CD & Monitoring
+description: End-to-End CI/CD & Monitoring Using Kubernetes, Terraform, Jenkins, Grafana & Prometheus
+subtitle: End-to-End CI/CD & Monitoring Using Kubernetes, Terraform, Jenkins, Grafana & Prometheus
 comments: true 
 tags:
   - AWS
@@ -12,13 +12,13 @@ status: new
 pin: true
 ---
 
-# **End-to_End CI/CD Deployment to Kubernetes**
+# **DevSecOps Project - 11-Microservices End-to-End CI/CD & Monitoring Using Kubernetes, Terraform, Jenkins, Grafana & Prometheus**
 
-## **Setup and Host Your Own Free VPN Server on AWS Using Terraform and OpenVPN**
+## **11-Microservices End-to-End CI/CD & Monitoring**
 
 In this mini-project, I will demonstrate how to setup and self-host a VPN server on AWS using terraform and OpenVPN Access Server.
 
-???+ youtube "Watch the Video - How To Create a Free Self-Hosted VPN Server on AWS using Terraform and OpenVPN" 
+??? youtube "Watch the Video - DevSecOps Project - 11-Microservices End-to-End CI/CD & Monitoring Using Kubernetes, Terraform, Jenkins, Grafana & Prometheus" 
     <figure markdown="1">
     [![Create a Free Self-Hosted VPN Server on AWS using Terraform and OpenVPN](../../assets/images/OpenVPN-on-AWS-Using-Terraform.png "Create a Free Self-Hosted VPN Server on AWS using Terraform and OpenVPN")](https://youtu.be/sWBeZ_bx2Ps){: target="_blank" }
     <!-- <figcaption>Create a Free Self-Hosted VPN Server on AWS using Terraform and OpenVPN</figcaption>  -->
@@ -47,23 +47,17 @@ This VPN server is also "disposable", meaning, you can create and delete it anyt
     [11-Microservices-k8s-App Source Code :simple-github: :fontawesome-solid-arrow-up-right-from-square:](https://github.com/opeyemitechpro/11-Microservices-k8s-App){: target="_blank" .md-button .md-button--primary}
     </div>
 
-:fontawesome-solid-arrow-up-right-from-square: <br>
-:fontawesome-solid-up-right-from-square: <br>
-:fontawesome-solid-square-arrow-up-right: <br>
-:fontawesome-solid-arrow-up-right-from-square: <br>
-:fontawesome-solid-arrow-up-right-from-square: <br>
-<i class="fa-solid fa-arrow-up-right-from-square"></i>
 
 
 
 ## *Install Gitleaks**
 
-```
+``` sh
 # Download and install the latest release of Gitleaks
 curl -sSfL https://raw.githubusercontent.com/gitleaks/gitleaks/master/scripts/install.sh | sudo sh -s -- -b /usr/local/bin
 ```
 
-```
+``` sh
 curl -s https://api.github.com/repos/gitleaks/gitleaks/releases/latest \
 | grep "browser_download_url.*linux.*amd64" \
 | cut -d '"' -f 4 \
@@ -75,7 +69,7 @@ gitleaks version
 ```
 
 
-```
+``` sh
 GITLEAKS_VERSION=$(curl -s "https://api.github.com/repos/gitleaks/gitleaks/releases/latest" | grep -Po '"tag_name": "v\K[0-9.]+')
 wget -qO gitleaks.tar.gz https://github.com/gitleaks/gitleaks/releases/latest/download/gitleaks_${GITLEAKS_VERSION}_linux_x64.tar.gz
 sudo tar xf gitleaks.tar.gz -C /usr/local/bin gitleaks
