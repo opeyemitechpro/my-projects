@@ -1856,28 +1856,28 @@ This VPN server is also "disposable", meaning, you can create and delete it anyt
 <span class="normal"><a href="#__codelineno-3-243">243</a></span>
 <span class="normal"><a href="#__codelineno-3-244">244</a></span>
 <span class="normal"><a href="#__codelineno-3-245">245</a></span>
-<span class="normal"><a href="#__codelineno-3-246">246</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="c1">// 11-Microservices-k8s-App Jenkins Pipeline - NO-DRY</span>
+<span class="normal"><a href="#__codelineno-3-246">246</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="c1">// 11-Microservices-k8s-App Jenkins Pipeline Script</span>
 <a id="__codelineno-3-2" name="__codelineno-3-2"></a>
 <a id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="w">    </span><span class="n">pipeline</span><span class="w"> </span><span class="o">{</span>
 <a id="__codelineno-3-4" name="__codelineno-3-4"></a><span class="w">        </span><span class="n">agent</span><span class="w"> </span><span class="n">any</span>
 <a id="__codelineno-3-5" name="__codelineno-3-5"></a>
-<a id="__codelineno-3-6" name="__codelineno-3-6"></a><span class="hll"><span class="w">        </span><span class="n">environment</span><span class="w"> </span><span class="o">{</span>
-</span><a id="__codelineno-3-7" name="__codelineno-3-7"></a><span class="hll"><span class="w">            </span><span class="c1">// ====== CONFIG VARIABLES ======</span>
-</span><a id="__codelineno-3-8" name="__codelineno-3-8"></a><span class="hll"><span class="w">            </span><span class="c1">// Replace values with the values configured in Jenkins server configuration</span>
-</span><a id="__codelineno-3-9" name="__codelineno-3-9"></a><span class="hll"><span class="w">            </span><span class="n">DOCKER_TOOL</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;docker&#39;</span><span class="w"> </span><span class="c1">// Docker tool name configured in Jenkins</span>
-</span><a id="__codelineno-3-10" name="__codelineno-3-10"></a><span class="w">            </span><span class="n">GIT_BRANCH</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;OpeyemiTechPro-v1&#39;</span>
-<a id="__codelineno-3-11" name="__codelineno-3-11"></a><span class="hll"><span class="w">            </span><span class="n">GIT_URL</span><span class="w">           </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;https://github.com/opeyemitechpro/11-Microservices-k8s-App.git&#39;</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6"></a><span class="w">        </span><span class="n">environment</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7"></a><span class="w">            </span><span class="c1">// ====== CONFIG VARIABLES ======</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8"></a><span class="w">            </span><span class="c1">// Replace values with the values configured in Jenkins server configuration</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9"></a><span class="hll"><span class="w">            </span><span class="n">DOCKER_TOOL</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;docker&#39;</span><span class="w"> </span><span class="c1">// Docker tool name configured in Jenkins</span>
+</span><a id="__codelineno-3-10" name="__codelineno-3-10"></a><span class="hll"><span class="w">            </span><span class="n">GIT_BRANCH</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;OpeyemiTechPro-v1&#39;</span>
+</span><a id="__codelineno-3-11" name="__codelineno-3-11"></a><span class="hll"><span class="w">            </span><span class="n">GIT_URL</span><span class="w">           </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;https://github.com/opeyemitechpro/11-Microservices-k8s-App.git&#39;</span>
 </span><a id="__codelineno-3-12" name="__codelineno-3-12"></a><span class="hll"><span class="w">            </span><span class="n">SONAR_SERVER</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;sonar&#39;</span><span class="w"> </span><span class="c1">// SonarQube Server name configured in Jenkins</span>
 </span><a id="__codelineno-3-13" name="__codelineno-3-13"></a><span class="hll"><span class="w">            </span><span class="n">SONAR_SCANNER</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;sonar-scanner&#39;</span><span class="w"> </span><span class="c1">// SonarQube tool name configured in Jenkins</span>
 </span><a id="__codelineno-3-14" name="__codelineno-3-14"></a><span class="hll"><span class="w">            </span><span class="n">SONAR_PROJECT_NAME</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;11-micro-serve&#39;</span>
-</span><a id="__codelineno-3-15" name="__codelineno-3-15"></a><span class="w">            </span><span class="n">DOCKER_CRED_ID</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;my-docker-cred&#39;</span>
-<a id="__codelineno-3-16" name="__codelineno-3-16"></a><span class="hll"><span class="w">            </span><span class="n">DOCKER_HUB_USER</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;opeyemitechpro&#39;</span>
-</span><a id="__codelineno-3-17" name="__codelineno-3-17"></a><span class="w">            </span><span class="n">DEST_EMAIL</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;opeyemitechpro@gmail.com&#39;</span>
-<a id="__codelineno-3-18" name="__codelineno-3-18"></a><span class="w">            </span><span class="n">REPLYTO_EMAIL</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;opeyemitechpro@gmail.com&#39;</span>
-<a id="__codelineno-3-19" name="__codelineno-3-19"></a><span class="w">            </span><span class="n">DOCKER_TAG_PREFIX</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;ver-1.&#39;</span>
-<a id="__codelineno-3-20" name="__codelineno-3-20"></a>
-<a id="__codelineno-3-21" name="__codelineno-3-21"></a><span class="w">            </span><span class="n">SCANNER_HOME</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="n">tool</span><span class="w"> </span><span class="s2">&quot;${SONAR_SCANNER}&quot;</span>
-<a id="__codelineno-3-22" name="__codelineno-3-22"></a><span class="w">        </span><span class="o">}</span>
+</span><a id="__codelineno-3-15" name="__codelineno-3-15"></a><span class="hll"><span class="w">            </span><span class="n">DOCKER_CRED_ID</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;my-docker-cred&#39;</span>
+</span><a id="__codelineno-3-16" name="__codelineno-3-16"></a><span class="hll"><span class="w">            </span><span class="n">DOCKER_HUB_USER</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;opeyemitechpro&#39;</span>
+</span><a id="__codelineno-3-17" name="__codelineno-3-17"></a><span class="hll"><span class="w">            </span><span class="n">DEST_EMAIL</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;opeyemitechpro@gmail.com&#39;</span>
+</span><a id="__codelineno-3-18" name="__codelineno-3-18"></a><span class="hll"><span class="w">            </span><span class="n">REPLYTO_EMAIL</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;opeyemitechpro@gmail.com&#39;</span>
+</span><a id="__codelineno-3-19" name="__codelineno-3-19"></a><span class="hll"><span class="w">            </span><span class="n">DOCKER_TAG_PREFIX</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;ver-1.&#39;</span>
+</span><a id="__codelineno-3-20" name="__codelineno-3-20"></a><span class="hll">
+</span><a id="__codelineno-3-21" name="__codelineno-3-21"></a><span class="hll"><span class="w">            </span><span class="n">SCANNER_HOME</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="n">tool</span><span class="w"> </span><span class="s2">&quot;${SONAR_SCANNER}&quot;</span>
+</span><a id="__codelineno-3-22" name="__codelineno-3-22"></a><span class="w">        </span><span class="o">}</span>
 <a id="__codelineno-3-23" name="__codelineno-3-23"></a>
 <a id="__codelineno-3-24" name="__codelineno-3-24"></a><span class="w">        </span><span class="n">stages</span><span class="w"> </span><span class="o">{</span>
 <a id="__codelineno-3-25" name="__codelineno-3-25"></a><span class="w">            </span><span class="n">stage</span><span class="o">(</span><span class="s1">&#39;Clean Workspace&#39;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
@@ -2104,9 +2104,8 @@ This VPN server is also "disposable", meaning, you can create and delete it anyt
 <a id="__codelineno-3-246" name="__codelineno-3-246"></a><span class="w">    </span><span class="c1">//</span>
 </code></pre></div></td></tr></table></div>
 <ol>
-<li>Lines 6-9 filters the name of the ami "ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server-*"</li>
-<li>Lines 11-14 filters the virtualization type of the ami</li>
-<li>Line 16 filters the AWS account ID of the ami publisher - Canonical</li>
+<li>Lines 9-21 contain environment variables. Replace the values according to your Jenkins server configuration</li>
+<li>Uncomment lines 214 to 225 when you have configured your EKS cluster and set the parameters accordingly in your Jenkins server </li>
 </ol>
 </details>
 </details>
@@ -2457,7 +2456,7 @@ This VPN server is also "disposable", meaning, you can create and delete it anyt
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="August 21, 2025 21:10:13 UTC"><span class="timeago" datetime="2025-08-21T21:10:13+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="August 21, 2025 21:10:13 UTC">2025-08-21</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="August 21, 2025 21:20:21 UTC"><span class="timeago" datetime="2025-08-21T21:20:21+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="August 21, 2025 21:20:21 UTC">2025-08-21</span>
   </span>
 
     
