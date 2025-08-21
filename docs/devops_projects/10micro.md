@@ -773,20 +773,21 @@ kubectl --namespace monitoring get secrets prometheus-grafana -o jsonpath="{.dat
 
 ## Scrapping Metrics
 
-To Scrape metrics from a standalone Linux server running node_exporter using a Prometheus instance running inside EKS
+To Scrape metrics from a standalone Linux server (our Jenkins server) running node_exporter using a Prometheus instance running inside EKS
 
 ### ✅ Prerequisites:
-* Prometheus is installed via Helm chart (likely the kube-prometheus-stack).
-* node_exporter is running and accessible on the Linux server (default port: 9100).
-* The Linux server's IP address is publicly accessible or reachable from within the EKS cluster (e.g., via VPC Peering, VPN, or internal networking).
-* Security Groups and firewall rules allow traffic from EKS nodes to port `9100` on the standalone server.
+[ ] Prometheus is installed via Helm chart.
+[ ] Node_exporter is running and accessible on our Jenkins server (default port: `9100`).
+[ ] The Jenkins server's IP address is publicly accessible or reachable from within the EKS cluster (e.g., via VPC Peering, VPN, or internal networking).
+[ ] Security Groups and firewall rules allow traffic from EKS nodes to port `9100` on the Jenkins server.
 
-### 🚀 Steps to Add Standalone Server to Prometheus Scrape Targets:
+### 🚀 Steps to Add Standalone Server to Prometheus Scrape Targets
 
-1. Create Additional Scrape Config via Secret
-  * Create a file named `additional-scrape-configs.yaml` with the following content:
+#### 1. Create Additional Scrape Config via Secret
 
-```
+* Create a file named `additional-scrape-configs.yaml` with the following content:
+
+``` yaml hl_lines="3 12"
 - job_name: 'jenkins-node-exporter'
   static_configs:
     - targets: ['<server_ip>:9100']
@@ -806,12 +807,12 @@ To Scrape metrics from a standalone Linux server running node_exporter using a P
 
 ```
 
-!!! note ""
+!!! tip "Tip"
 
-    Replace `<server-ip>` with the IP address or DNS name of your standalone Linux server.
+    Edit the higlighted lines and replace `<server-ip>` with the IP address or DNS name of your standalone Linux server. In this case, your jenkins server.
 
 
-2. Now create a Kubernetes secret:
+#### 2. Now create a Kubernetes secret
 
 ```
 kubectl create secret generic additional-scrape-configs \
@@ -820,7 +821,7 @@ kubectl create secret generic additional-scrape-configs \
 
 ```
 
-3. Edit Prometheus Custom Resource
+#### 3. Edit Prometheus Custom Resource
 
 * First get the prometheus resource name
 
@@ -852,7 +853,7 @@ spec:
     key: additional-scrape-configs.yaml
 ```
 
-3. Apply and Verify
+#### 4. Apply and Verify
 
 Prometheus will reload its config automatically by deafult. Wait a minute, then:
 
