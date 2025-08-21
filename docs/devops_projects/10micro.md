@@ -424,110 +424,7 @@ Copy the script below and paste into the job pipeline section:
             2.  Lines 11-14 filters the virtualization type of the ami
             3.  Line 16 filters the AWS account ID of the ami publisher - Canonical
         
-        This `ami.tf` is used to find the latest Ubuntu 22.04 AMI (Amazon Machine Image) from the AWS ami Catalog. 
         
-        - It creates a data source named "ubuntu" that searches for AMIs with these criteria:
-        
-            - Uses most_recent = true to get the latest version
-
-            - Filters for Ubuntu 22.04 (Jammy Jellyfish) images using the name pattern
-
-            - Ensures it's using HVM (Hardware Virtual Machine) virtualization
-
-            - Only looks for images owned by Canonical (Ubuntu's publisher) using their AWS account ID (099720109477)
-
-        This prevents hardcoding a specific AMI ID into the script, which could become outdated. The AMI ID is then referenced elsewhere in the Terraform code using `data.aws_ami.ubuntu.id`
-
-    ??? tip "The `OpenVPN_ec2.tf` file"
-
-        ???+ code-file "OpenVPN_ec2.tf" 
-            
-            ``` tf hl_lines="1-24"
-            resource "aws_instance" "OpenVPN_Server" {
-            ami                     = data.aws_ami.ubuntu.id
-            instance_type           = var.OpenVPN_instance_type
-            vpc_security_group_ids  = [ aws_security_group.openvpn_SG.id ]
-            user_data               = templatefile("./openvpn_userdata.tpl", {openvpn_user = local.openvpn_user})
-            key_name                = aws_key_pair.key_pair.key_name
-
-            root_block_device {
-                volume_size           = 8
-            }
-
-            # Set the metadata service to allow IMDSv2
-            metadata_options {
-                http_tokens                 = "optional"    # Allows IMDSv1 and IMDSv2
-                http_put_response_hop_limit = 1      # Default hop limit for the PUT request
-                http_endpoint               = "enabled"     # Enable metadata service
-            }
-
-            tags = {
-                Name = "${var.project_name}_Server"
-                Region    = var.selected_region
-                KeyPair   = local.key_pair_name
-                Project   = var.project_name
-            }
-
-            }
-
-            locals {
-            # Create key name with OpenVPN-Keypair prefix and region
-            key_pair_name = "OpenVPN-Keypair-${var.selected_region}"
-
-            # Create Profile name for the OpenVPN User
-            openvpn_user = "OpeyemiTechPro-${var.selected_region}"
-
-            # Display formatted region information
-            region_display = join("\n", [for region, location in var.aws_regions : format("%s = %s", region, location)])
-
-            }
-
-
-            # Generate a private key
-            resource "tls_private_key" "key_pair" {
-            algorithm = "RSA"
-            rsa_bits  = 2048
-            }
-
-            # Create key pair in AWS
-            resource "aws_key_pair" "key_pair" {
-            key_name   = local.key_pair_name
-            public_key = tls_private_key.key_pair.public_key_openssh
-
-            # tag the key pair
-            tags = {
-                Name        = local.key_pair_name
-                Region      = var.selected_region
-                Project     = var.project_name
-                CreatedBy   = "Terraform"
-            }
-            }
-
-            # Save private key locally
-            resource "local_file" "private_key" {
-            content         = tls_private_key.key_pair.private_key_pem
-            filename        = "${local.key_pair_name}.pem"
-            file_permission = "0400"
-            }
-
-
-            # Create a null resource to display available regions
-            resource "null_resource" "region_display" {
-            triggers = {
-                always_run = timestamp()
-            }
-
-            provisioner "local-exec" {
-                command = <<-EOT
-                echo "Available AWS Regions:"
-                echo "${local.region_display}"
-                echo "\nSelected Region: ${var.selected_region} (${var.aws_regions[var.selected_region]})"
-                EOT
-            }
-            }
-            ```
-
-
 
 ## Jenkins Plugins to install
 
@@ -594,19 +491,19 @@ The list of acceptable AWS regions are shown [here](https://opeyemitechpro.githu
 
 
 ### Install Helm
-```
+``` sh
 curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
 ```
 
 ### Check Helm version
-```
+``` sh
 helm version
 ```
 
 
 
 ### Add Helm repo
-```
+``` sh
 
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
 
@@ -615,17 +512,17 @@ helm repo update
 ```
 
 > ***(Optionally) Search Available Hem Charts***
-```
+``` sh
 helm search repo prometheus-community
 ```
 
 ### create namespace
-```
+``` sh
 kubectl create namespace monitoring
 ```
 
 ### Install Prometheus Stack into monitoring namespace 
-```
+``` sh
 helm install prometheus prometheus-community/kube-prometheus-stack \
   -n monitoring \
   --set prometheus.prometheusSpec.maximumStartupDurationSeconds=300 \
@@ -635,35 +532,36 @@ helm install prometheus prometheus-community/kube-prometheus-stack \
 
 ### Check running status of pods to verify deployment
 
-```
+``` sh
 kubectl --namespace monitoring get pods -l "release=prometheus"
 ```
 
 OR
-```
+``` sh
 kubectl get pods -n monitoring
 ```
 
 
 ### List all services in the monitoring namespace
-```
+``` sh
 kubectl get svc -n monitoring
 ```
 
 
 ### Display Grafana URL (optional)
-```
+``` sh
 kubectl get svc -n monitoring prometheus-grafana
 ```
 
 ### Display Prometheus URL (optional)
-```
+``` sh
 kubectl get svc -n monitoring prometheus-kube-prometheus-prometheus
 ```
 
 ### Expose Grafana on a LoadBalancer
 Change Grafana Service Type from ClusterIP to LoadBalancer to expose for external access
-```
+
+``` sh
 kubectl patch svc prometheus-grafana \
   -n monitoring \
   -p '{"spec": {"type": "LoadBalancer"}}'
@@ -671,7 +569,8 @@ kubectl patch svc prometheus-grafana \
 
 ### Expose Prometheus on a LoadBalancer
 Change Prometheus Service Type from ClusterIP to LoadBalancer to expose for external access
-```
+
+``` sh
 kubectl patch svc prometheus-kube-prometheus-prometheus \
   -n monitoring \
   -p '{"spec": {"type": "LoadBalancer"}}'
@@ -680,7 +579,7 @@ kubectl patch svc prometheus-kube-prometheus-prometheus \
 
 ### Display LoadBalancer URL for Grafana and Prometheus
 
-```
+``` sh
 kubectl get svc -n monitoring
 ```
 
@@ -689,21 +588,21 @@ You may need to wait a while for the `EXTERNAL-IP` field to be populated, then o
 
 ### Get Grafana password
 
-```
+``` sh
 kubectl --namespace monitoring get secrets prometheus-grafana -o json 
 ```
 
 
 Copy the admin-password from the json output and decode it in base-64 using the command below
 
-```
+``` sh
 echo "<admin-password>" | base64 --decode
 
 ```
 
 OR use this command
 
-```
+``` sh
 kubectl --namespace monitoring get secrets prometheus-grafana -o jsonpath="{.data.admin-password}" | base64 -d ; echo
 ```
 
@@ -721,7 +620,7 @@ kubectl --namespace monitoring get secrets prometheus-grafana -o jsonpath="{.dat
 
     ## Install & Configure Node-Exporter on linux
 
-    ```
+    ``` sh
     #!/bin/bash
 
     set -e
@@ -776,16 +675,16 @@ kubectl --namespace monitoring get secrets prometheus-grafana -o jsonpath="{.dat
 To Scrape metrics from a standalone Linux server (our Jenkins server) running node_exporter using a Prometheus instance running inside EKS
 
 ### ✅ Prerequisites:
-[ ] Prometheus is installed via Helm chart.
-[ ] Node_exporter is running and accessible on our Jenkins server (default port: `9100`).
-[ ] The Jenkins server's IP address is publicly accessible or reachable from within the EKS cluster (e.g., via VPC Peering, VPN, or internal networking).
-[ ] Security Groups and firewall rules allow traffic from EKS nodes to port `9100` on the Jenkins server.
+- [x] Prometheus is installed via Helm chart.
+- [x] Node_exporter is running and accessible on our Jenkins server (default port: `9100`).
+- [x] The Jenkins server's IP address is publicly accessible or reachable from within the EKS cluster (e.g., via VPC Peering, VPN, or internal networking).
+- [x] Security Groups and firewall rules allow traffic from EKS nodes to port `9100` on the Jenkins server.
 
 ### 🚀 Steps to Add Standalone Server to Prometheus Scrape Targets
 
 #### 1. Create Additional Scrape Config via Secret
 
-* Create a file named `additional-scrape-configs.yaml` with the following content:
+Create a file named `additional-scrape-configs.yaml` with the following content:
 
 ``` yaml hl_lines="3 12"
 - job_name: 'jenkins-node-exporter'
@@ -814,7 +713,7 @@ To Scrape metrics from a standalone Linux server (our Jenkins server) running no
 
 #### 2. Now create a Kubernetes secret
 
-```
+``` sh
 kubectl create secret generic additional-scrape-configs \
   --from-file=additional-scrape-configs.yaml \
   -n monitoring
@@ -823,21 +722,21 @@ kubectl create secret generic additional-scrape-configs \
 
 #### 3. Edit Prometheus Custom Resource
 
-* First get the prometheus resource name
+First get the prometheus resource name
 
-```
+``` sh
 kubectl get prometheus -n monitoring
 ```
 
-* Then edit the prometheus custom resource
+Then edit the prometheus custom resource
 
-```
+``` sh
 kubectl edit prometheus prometheus-kube-prometheus-prometheus -n monitoring
 ```
 
 Under `spec` add:
 
-```
+``` yaml
   additionalScrapeConfigs:
     name: additional-scrape-configs
     key: additional-scrape-configs.yaml
@@ -845,7 +744,7 @@ Under `spec` add:
 
 So the result should look like this:
 
-```
+``` yaml
 spec:
   ...
   additionalScrapeConfigs:
@@ -861,12 +760,12 @@ Prometheus will reload its config automatically by deafult. Wait a minute, then:
 * Look for the job `node-exporter-standalone`.
 * Ensure it’s marked as UP.
 
-<br><br><br>
+<br><br>
 
 
 ### To Uninstall Prometheus-Stack and delete namespace
 
-```
+``` sh
 helm uninstall prometheus -n monitoring
 kubectl delete namespace monitoring
 ```
@@ -875,270 +774,6 @@ kubectl delete namespace monitoring
 ########################################################
 
 
-
-
-!!! question "Question"
-    Why do you call EKS Distro a Kubernetes distribution?
-
-!!! quote "Answer"
-    EKS Distro is a distro of the same open source Kubernetes and dependencies
-    deployed by Amazon EKS. We include binaries and containers of open source 
-    Kubernetes, `etcd`, networking, and storage plugins, all of which are tested
-    for compatibility. We provide extended support for Kubernetes versions after
-    community support expires by updating builds of previous versions with the 
-    latest critical security patches. You can securely access EKS Distro releases
-    from GitHub or within AWS via Amazon S3 and ECR for a common source of 
-    releases and updates.
-
-## Is this a fork of Kubernetes-1?
-
-??? question "Question"
-    Why do you call EKS Distro a Kubernetes distribution?
-
-??? quote "Answer"
-    EKS Distro is a distro of the same open source Kubernetes and dependencies
-    deployed by Amazon EKS. We include binaries and containers of open source 
-    Kubernetes, `etcd`, networking, and storage plugins, all of which are tested
-    for compatibility. We provide extended support for Kubernetes versions after
-    community support expires by updating builds of previous versions with the 
-    latest critical security patches. You can securely access EKS Distro releases
-    from GitHub or within AWS via Amazon S3 and ECR for a common source of 
-    releases and updates.
-
-### Is this a fork of Kubernetes-2?
-
-!!! question "Question"
-    Why do you call EKS Distro a Kubernetes distribution?
-
-??? quote "Answer"
-    EKS Distro is a distro of the same open source Kubernetes and dependencies
-    deployed by Amazon EKS. We include binaries and containers of open source 
-    Kubernetes, `etcd`, networking, and storage plugins, all of which are tested
-    for compatibility. We provide extended support for Kubernetes versions after
-    community support expires by updating builds of previous versions with the 
-    latest critical security patches. You can securely access EKS Distro releases
-    from GitHub or within AWS via Amazon S3 and ECR for a common source of 
-    releases and updates.
-
-### Is this a fork of Kubernetes?
-
-!!! question "Question"
-    ## Why do you call EKS Distro a Kubernetes distribution?
-
-??? quote "Answer"
-    EKS Distro is a distro of the same open source Kubernetes and dependencies
-    deployed by Amazon EKS. We include binaries and containers of open source 
-    Kubernetes, `etcd`, networking, and storage plugins, all of which are tested
-    for compatibility. We provide extended support for Kubernetes versions after
-    community support expires by updating builds of previous versions with the 
-    latest critical security patches. You can securely access EKS Distro releases
-    from GitHub or within AWS via Amazon S3 and ECR for a common source of 
-    releases and updates.
-
-!!! question "## Question-Main"
-    ## Why do you call EKS Distro a Kubernetes distribution-1?
-
-    !!! code-file "Question"
-        ## Why do you call EKS Distro a Kubernetes distribution-2?
-
-    ??? code-file "Answer"
-        EKS Distro is a distro of the same open source Kubernetes and dependencies
-        deployed by Amazon EKS. We include binaries and containers of open source 
-        Kubernetes, `etcd`, networking, and storage plugins, all of which are tested
-        for compatibility. We provide extended support for Kubernetes versions after
-        community support expires by updating builds of previous versions with the 
-        latest critical security patches. You can securely access EKS Distro releases
-        from GitHub or within AWS via Amazon S3 and ECR for a common source of 
-        releases and updates.
-
-
-
-
-
-
-
-
-##################################################
-
-
-
-
-
-
-## **Running the script**
-Follow the ==**"Quick Start Guide"**== below to provision and configure your OpenVPN server and to connect to your new VPN network.
-
-## **Quick Start Guide**
-
-??? info "Click here for a quick start guide on setting up the OpenVPN Access Server"
-
-    ### Clone the Repository
-    Create a folder on your local machine and clone the repository in the folder
-
-    ``` sh
-    git clone https://github.com/opeyemitechpro/OpenVPN-Terraform.git
-    ```
-    
-    ### Initialize the terraform configuration
-    From within the cloned directory, initialize the terraform configuration
-
-    ``` sh
-    terraform init
-    ```
-
-    ![Terraform Initialiaztion Command](../../assets/images/ovpn-terraform-init.png "Terraform Initialiaztion Command")
-    /// caption
-    Terraform Initialiaztion Command
-    ///
-
-    ### Apply the Terraform Configuration
-
-    ``` sh
-    terraform apply -auto-approve
-    ```
-    
-    - When prompted, enter an AWS region from the list below and press enter.  (e.g. `us-west-2`)
-    - This will be the AWS region where the VPN server and all resources will be hosted. 
-
-    ![Terraform apply command](../../assets/images/ovpn-terraform-apply.png "Terraform apply command")
-    /// caption
-    Terraform apply command
-    ///
-    
-    
-    #### ==List of accepted AWS regions==
-
-    -  us-east-1       =  N. Virginia 
-    -  us-east-2       =  Ohio 
-    -  us-west-1       =  N. California 
-    -  us-west-2       =  Oregon 
-    -  af-south-1      =  Cape Town 
-    -  ap-east-1       =  Hong Kong 
-    -  ap-south-1      =  Mumbai 
-    -  ap-southeast-1  =  Singapore 
-    -  ap-southeast-2  =  Sydney 
-    -  ap-southeast-3  =  Jakarta 
-    -  ap-northeast-1  =  Tokyo 
-    -  ap-northeast-2  =  Seoul 
-    -  ap-northeast-3  =  Osaka 
-    -  ca-central-1    =  Canada Central 
-    -  eu-central-1    =  Frankfurt 
-    -  eu-west-1       =  Ireland 
-    -  eu-west-2       =  London 
-    -  eu-west-3       =  Paris 
-    -  eu-north-1      =  Stockholm 
-    -  eu-south-1      =  Milan 
-    -  eu-south-2      =  Zurich 
-    -  me-south-1      =  Bahrain 
-    -  me-central-1    =  UAE 
-    -  sa-east-1       =  São Paulo 
-
-    ### Outputs
-    At the end of the terraform apply command, the script outputs the following details on the screen:
-
-    - The Public IP address of the VPN Server
-    - The instance-ID
-    - The name of the keypair created
-    - The path where the private key file was saved on your local machine
-    - SSH connection string that you can use to the VPN server
-    - The OpenVPN profile file that you will use to ssh into the VPN server
-    - Further steps to launch your VPN connection
-
-    ![Terraform Output](../../assets/images/ovpn-terraform-output.png "Terraform Output Screen")
-    /// caption
-    Terraform Output Screen
-    ///
-
-    **Showing the OpenVPN server on the AWS EC2 Console**
-    ![AWS Console Showing the OpenVPN Server details](../../assets/images/ovpn-terraform-console.png "AWS Console Showing the OpenVPN Server details")
-    /// caption
-    AWS Console Showing the OpenVPN Server details
-    ///
-
-    ### Connect to your VPN
-    - Download and install [OpenVPN Connect client](https://openvpn.net/client/){: target="_blank" } on your local machine
-    - Import the `*.ovpn` file into the OpenVPN cient appllication
-    - Connect to your VPN network
-
-    ![OpenVPN Client Connected to the VPN](../../assets/images/ovpn-terraform-connect.png "OpenVPN Client Connected to the VPN")
-    /// caption
-    OpenVPN Client Connected to the VPN
-    ///
-
-    ### Testing your VPN Connection
-    One very simple way to check if you are actually connected to your new VPN network is to open your browser and check your public IP address. You can use websites like [whatsmyip.com](hhtps://whatsmyip.com) or simply search "what is my ip address" on Google to check your public IP address.  
-
-    ![Public IP address showing Canada](../../assets/images/ovpn-canada-ip.png "Public IP address showing Canada")
-    /// caption
-    Public IP address showing Canada
-    ///
-    
-    When you are connected to your VPN server, your internet traffic will be routed through your VPN server and as such, only your VPN server IP address will be seen publicly, your local ISP assigned ip address will be hidden from the internet. 
-
-    ### Cleanup
-
-    To delete the server and cleanup all resources that were created.
-
-    1. First disconnect the OpenVPN Connect Client
-
-    2. Then enter the command below to delete all locally created files and also delete the server and all other resources from your AWS account.  
-    
-    ``` sh
-    terraform destroy -auto-approve 
-    ```
-
-    - This will terminate the EC2 instance and delete all resources created and also delete the files that were locally created in the terraform working directory i.e. the *.ovpn user profile and the keypair file that was created earlier 
-
-    ![Terraform Destroy Command](../../assets/images/ovpn-terraform-destroy.png "Terraform Destroy Command")
-    /// caption
-    Terraform Destroy Command
-    ///
-
-
-## **Use Cases**
-This self-hosted OpenVPN solution offers flexibility, control, and enhanced security compared to commercial VPN services. Here are some possible use cases:  
-
-**1. Secure Remote Access**
-- **Corporate Network Access**: Allow employees to securely connect to on-premises resources or internal systems.  
-- **Remote Development**: Enable developers to work on private servers or cloud environments without exposing them to the public internet.  
-
-**2. Privacy and Anonymity**
-- **Encrypt Internet Traffic**: Protect personal or organizational internet traffic, especially when using public Wi-Fi.  
-- **Location Masking**: Access the internet as if from a specific location to bypass geolocation restrictions.  
-
-**3. Secure Inter-Office Communication**
-- **Branch Office Connectivity**: Connect multiple office locations securely over a shared network.  
-- **IoT Devices**: Secure communication for IoT devices spread across different sites.  
-
-**4. Personal Use**
-- **Ad-Free Browsing**: Avoid invasive tracking and ads by routing traffic through your onw self-hosted VPN server.  
-- **Bypass ISP Throttling**: Prevent internet service providers from throttling bandwidth for specific services.  
-
-**5. Development and Testing**
-- **Environment Testing**: Simulate network environments for application development and QA testing.  
-- **Access Restricted APIs**: Connect securely to APIs or other restricted services during development.  
-
-**6. Secure Cloud Resources**
-- **Private Cloud Access**: Connect securely to AWS resources without exposing them to the public internet.  
-- **DevOps Pipelines**: Ensure secure deployment pipelines that require private network connectivity.  
-
-**7. Enhanced Security**
-- **Multi-Layered Security**: Combine a self-hosted VPN with firewalls or IDS/IPS systems to add another layer of protection.  
-- **Self-Controlled Data**: Prevent third-party logging or tracking of your internet activity.  
-
-**8. Education and Research**
-- **Bypass Censorship**: Enable access to academic resources or restricted sites in regions with strict censorship.  
-- **Research Anonymity**: Conduct secure and private research online.  
-
-**9. Cost Efficiency**
-- **Avoiding Commercial VPN Costs**: Reduce long-term expenses for secure connections, especially for teams or organizations.  
-- **No User Limits**: Create a solution tailored to your usage, avoiding per-user or bandwidth fees common with commercial VPNs.  
-
-**10. Gaming and Media**
-- **LAN Gaming**: Create a virtual local area network for multiplayer gaming.  
-- **Bypass Regional Blocks**: Access region-restricted content like streaming services.  
-
-By usign this solution to host your own VPN, you gain complete control over configuration, logs, and data flow, making it an excellent choice for your specific use case.
 
 ## **Conclusion**
 
