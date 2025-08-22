@@ -84,10 +84,6 @@ html {
 /* Tweak the color of code block elements 
 https://squidfunk.github.io/mkdocs-material/reference/code-blocks/?h=code#custom-syntax-theme
 */
-:root > * {
-  /* clor for code block background */
-  --md-code-bg-color: #040a09; 
-}
 
 
 
