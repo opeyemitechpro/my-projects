@@ -85,10 +85,8 @@ html {
 https://squidfunk.github.io/mkdocs-material/reference/code-blocks/?h=code#custom-syntax-theme
 */
 
-:root > * {
-  /* color for code block background */
-  --md-code-bg-color: #040a09; 
-}
+
+
 
 
 /* Style the advert Banner above the TOC */
