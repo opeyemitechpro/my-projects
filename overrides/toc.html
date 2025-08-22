@@ -1,0 +1,13 @@
+<!-- overrides/partials/toc.html -->
+
+<!-- Your custom banner HTML -->
+<a href="https://your-advert-link.com" target="_blank" rel="noopener" title="Your Ad Title">
+  <img
+    src="{{ 'assets/advert-banner.png' | url }}"
+    alt="Advertisement"
+    class="advert-banner"
+  />
+</a>
+
+<!-- Renders the original Table of Contents -->
+{% include "partials/toc-item.html" with context %}
