@@ -94,7 +94,7 @@ To change the color of "strings"
 https://squidfunk.github.io/mkdocs-material/reference/code-blocks/?h=code#custom-syntax-theme
 */
 :root > * {
-  --md-code-hl-string-color: #f10f0f;
+  /* --md-code-hl-string-color: #f10f0f; */
 }
 
 
@@ -103,7 +103,7 @@ To change the color of code blocks
 https://squidfunk.github.io/mkdocs-material/reference/code-blocks/?h=code#custom-syntax-theme
 */
 :root > * {
-  --md-code-bg-color: #000000;
+  /* --md-code-bg-color: #000000; */
   /* --md-code-fg-color: #ffffff; */
   /* --md-code-hl-color: #ffffff; */
 }
