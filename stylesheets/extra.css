@@ -88,3 +88,30 @@ https://squidfunk.github.io/mkdocs-material/reference/code-blocks/?h=code#custom
 
 
 
+.sidebar-banner {
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.sidebar-banner img {
+  max-width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+.md-banner {
+  display: block;
+  margin-bottom: 1.2rem; /* Adjust as needed */
+}
+
+/* To add space when the banner is below the ToC */
+.md-nav--primary + .md-banner {
+    margin-top: 1.2rem; /* Adjust as needed */
+    margin-bottom: 0;
+}
+
+.md-banner img {
+  width: 100%;
+  border-radius: 0.2rem; /* Optional: for slightly rounded corners */
+  display: block;
+}
