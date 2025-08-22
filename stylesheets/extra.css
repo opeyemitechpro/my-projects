@@ -81,7 +81,25 @@ html {
 }
 
 
-/* Tweak the color of code block element */
+/* Tweak the color of code block elements 
+https://squidfunk.github.io/mkdocs-material/reference/code-blocks/?h=code#custom-syntax-theme
+*/
 :root > * {
-  --md-code-bg-color: #0FF1CE;
+  /* clor for code block background */
+  --md-code-bg-color: #0FF1CE; 
 }
+
+
+
+/* Style the avert Banner above the TOC */
+.sidebar-banner {
+  margin: 20px 0;
+  text-align: center;
+}
+
+.sidebar-banner img {
+  max-width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
