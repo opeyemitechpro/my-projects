@@ -106,6 +106,7 @@ https://squidfunk.github.io/mkdocs-material/reference/code-blocks/?h=code#custom
   --md-code-bg-color: #0f0b0b28;
   /* --md-code-fg-color: #ffffff; */
   /* --md-code-hl-color: #ffffff; */
+  --md-code-hl-string-color: #ffffff;
 }
 
 
