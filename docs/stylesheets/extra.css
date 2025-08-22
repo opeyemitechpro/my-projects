@@ -94,11 +94,11 @@ https://squidfunk.github.io/mkdocs-material/reference/code-blocks/?h=code#custom
 Tweak the color of code blocks elements
 https://squidfunk.github.io/mkdocs-material/reference/code-blocks/?h=code#custom-syntax-theme
 */
-:root > * {
+/* :root > * {
   /* --md-code-bg-color: #00000; */
   /* --md-code-fg-color: #ffffff; */
   /* --md-code-hl-color: #ffffff; */
   /* --md-code-hl-string-color: #ffffff; */
-}
+} */
 
 
