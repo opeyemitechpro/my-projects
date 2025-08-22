@@ -79,3 +79,31 @@
 html {
   font-size: calc(125% * 1.1); /* <- 1.1 equals + 10% – adjust to taste */
 }
+
+
+/* Tweak color of `backticks` strings 
+https://squidfunk.github.io/mkdocs-material/reference/code-blocks/?h=code#custom-syntax-theme 
+*/
+.highlight .sb {
+  color: #0FF1CE;
+}
+
+
+/* 
+To change the color of "strings" 
+https://squidfunk.github.io/mkdocs-material/reference/code-blocks/?h=code#custom-syntax-theme
+*/
+:root > * {
+  --md-code-hl-string-color: #0FF1CE;
+}
+
+
+/* 
+To change the color of code blocks 
+https://squidfunk.github.io/mkdocs-material/reference/code-blocks/?h=code#custom-syntax-theme
+*/
+:root > * {
+  --md-code-bg-color: #0FF1CE;
+}
+
+
