@@ -102,9 +102,13 @@ https://squidfunk.github.io/mkdocs-material/reference/code-blocks/?h=code#custom
 }
 
 
+
+/* overrides/assets/custom.css */
+
 .advert-banner {
-  display: block;
-  margin-bottom: 1em;
-  max-width: 100%;
-  height: auto;
+  display: block;      /* Ensures the image takes its own line */
+  max-width: 100%;     /* Makes the image responsive to the sidebar width */
+  height: auto;        /* Maintains the aspect ratio */
+  margin-bottom: 1.5em; /* Adds some space between the image and the TOC title */
+  border-radius: 4px;  /* Optional: gives the image slightly rounded corners */
 }
