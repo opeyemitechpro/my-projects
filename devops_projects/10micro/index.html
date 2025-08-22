@@ -1156,6 +1156,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#create-eks-cluster" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create EKS Cluster
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#install-and-setup-argocd-on-eks" class="md-nav__link">
     <span class="md-ellipsis">
       Install and Setup ArgoCD on EKS
@@ -1859,255 +1868,255 @@ This VPN server is also "disposable", meaning, you can create and delete it anyt
 <span class="normal"><a href="#__codelineno-3-245">245</a></span>
 <span class="normal"><a href="#__codelineno-3-246">246</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="c1">// 11-Microservices-k8s-App Jenkins Pipeline Script</span>
 <a id="__codelineno-3-2" name="__codelineno-3-2"></a>
-<a id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="w">    </span><span class="n">pipeline</span><span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-3-4" name="__codelineno-3-4"></a><span class="w">        </span><span class="n">agent</span><span class="w"> </span><span class="n">any</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="n">pipeline</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4"></a><span class="w">    </span><span class="n">agent</span><span class="w"> </span><span class="n">any</span>
 <a id="__codelineno-3-5" name="__codelineno-3-5"></a>
-<a id="__codelineno-3-6" name="__codelineno-3-6"></a><span class="w">        </span><span class="n">environment</span><span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-3-7" name="__codelineno-3-7"></a><span class="w">            </span><span class="c1">// ====== CONFIG VARIABLES ======</span>
-<a id="__codelineno-3-8" name="__codelineno-3-8"></a><span class="w">            </span><span class="c1">// Replace values with the values configured in Jenkins server configuration</span>
-<a id="__codelineno-3-9" name="__codelineno-3-9"></a><span class="hll"><span class="w">            </span><span class="n">DOCKER_TOOL</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;docker&#39;</span><span class="w"> </span><span class="c1">// Docker tool name configured in Jenkins</span>
-</span><a id="__codelineno-3-10" name="__codelineno-3-10"></a><span class="hll"><span class="w">            </span><span class="n">GIT_BRANCH</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;OpeyemiTechPro-v1&#39;</span>
-</span><a id="__codelineno-3-11" name="__codelineno-3-11"></a><span class="hll"><span class="w">            </span><span class="n">GIT_URL</span><span class="w">           </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;https://github.com/opeyemitechpro/11-Microservices-k8s-App.git&#39;</span>
-</span><a id="__codelineno-3-12" name="__codelineno-3-12"></a><span class="hll"><span class="w">            </span><span class="n">SONAR_SERVER</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;sonar&#39;</span><span class="w"> </span><span class="c1">// SonarQube Server name configured in Jenkins</span>
-</span><a id="__codelineno-3-13" name="__codelineno-3-13"></a><span class="hll"><span class="w">            </span><span class="n">SONAR_SCANNER</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;sonar-scanner&#39;</span><span class="w"> </span><span class="c1">// SonarQube tool name configured in Jenkins</span>
-</span><a id="__codelineno-3-14" name="__codelineno-3-14"></a><span class="hll"><span class="w">            </span><span class="n">SONAR_PROJECT_NAME</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;11-micro-serve&#39;</span>
-</span><a id="__codelineno-3-15" name="__codelineno-3-15"></a><span class="hll"><span class="w">            </span><span class="n">DOCKER_CRED_ID</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;my-docker-cred&#39;</span>
-</span><a id="__codelineno-3-16" name="__codelineno-3-16"></a><span class="hll"><span class="w">            </span><span class="n">DOCKER_HUB_USER</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;opeyemitechpro&#39;</span>
-</span><a id="__codelineno-3-17" name="__codelineno-3-17"></a><span class="hll"><span class="w">            </span><span class="n">DEST_EMAIL</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;opeyemitechpro@gmail.com&#39;</span>
-</span><a id="__codelineno-3-18" name="__codelineno-3-18"></a><span class="hll"><span class="w">            </span><span class="n">REPLYTO_EMAIL</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;opeyemitechpro@gmail.com&#39;</span>
-</span><a id="__codelineno-3-19" name="__codelineno-3-19"></a><span class="hll"><span class="w">            </span><span class="n">DOCKER_TAG_PREFIX</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;ver-1.&#39;</span>
-</span><a id="__codelineno-3-20" name="__codelineno-3-20"></a><span class="hll">
-</span><a id="__codelineno-3-21" name="__codelineno-3-21"></a><span class="hll"><span class="w">            </span><span class="n">SCANNER_HOME</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="n">tool</span><span class="w"> </span><span class="s2">&quot;${SONAR_SCANNER}&quot;</span>
-</span><a id="__codelineno-3-22" name="__codelineno-3-22"></a><span class="w">        </span><span class="o">}</span>
-<a id="__codelineno-3-23" name="__codelineno-3-23"></a>
-<a id="__codelineno-3-24" name="__codelineno-3-24"></a><span class="w">        </span><span class="n">stages</span><span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-3-25" name="__codelineno-3-25"></a><span class="w">            </span><span class="n">stage</span><span class="o">(</span><span class="s1">&#39;Clean Workspace&#39;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-3-26" name="__codelineno-3-26"></a><span class="w">                </span><span class="n">steps</span><span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-3-27" name="__codelineno-3-27"></a>
-<a id="__codelineno-3-28" name="__codelineno-3-28"></a><span class="w">                    </span><span class="n">cleanWs</span><span class="o">()</span>
-<a id="__codelineno-3-29" name="__codelineno-3-29"></a><span class="w">                </span><span class="o">}</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6"></a><span class="w">    </span><span class="n">environment</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7"></a><span class="w">        </span><span class="c1">// ====== CONFIG VARIABLES ======</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8"></a><span class="w">        </span><span class="c1">// Replace values with the values configured in Jenkins server configuration</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9"></a><span class="hll"><span class="w">        </span><span class="n">DOCKER_TOOL</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;docker&#39;</span><span class="w"> </span><span class="c1">// Docker tool name configured in Jenkins</span>
+</span><a id="__codelineno-3-10" name="__codelineno-3-10"></a><span class="hll"><span class="w">        </span><span class="n">GIT_BRANCH</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;OpeyemiTechPro-v1&#39;</span>
+</span><a id="__codelineno-3-11" name="__codelineno-3-11"></a><span class="hll"><span class="w">        </span><span class="n">GIT_URL</span><span class="w">           </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;https://github.com/opeyemitechpro/11-Microservices-k8s-App.git&#39;</span>
+</span><a id="__codelineno-3-12" name="__codelineno-3-12"></a><span class="hll"><span class="w">        </span><span class="n">SONAR_SERVER</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;sonar&#39;</span><span class="w"> </span><span class="c1">// SonarQube Server name configured in Jenkins</span>
+</span><a id="__codelineno-3-13" name="__codelineno-3-13"></a><span class="hll"><span class="w">        </span><span class="n">SONAR_SCANNER</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;sonar-scanner&#39;</span><span class="w"> </span><span class="c1">// SonarQube tool name configured in Jenkins</span>
+</span><a id="__codelineno-3-14" name="__codelineno-3-14"></a><span class="hll"><span class="w">        </span><span class="n">SONAR_PROJECT_NAME</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;11-micro-serve&#39;</span>
+</span><a id="__codelineno-3-15" name="__codelineno-3-15"></a><span class="hll"><span class="w">        </span><span class="n">DOCKER_CRED_ID</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;my-docker-cred&#39;</span>
+</span><a id="__codelineno-3-16" name="__codelineno-3-16"></a><span class="hll"><span class="w">        </span><span class="n">DOCKER_HUB_USER</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;opeyemitechpro&#39;</span>
+</span><a id="__codelineno-3-17" name="__codelineno-3-17"></a><span class="hll"><span class="w">        </span><span class="n">DEST_EMAIL</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;opeyemitechpro@gmail.com&#39;</span>
+</span><a id="__codelineno-3-18" name="__codelineno-3-18"></a><span class="hll"><span class="w">        </span><span class="n">REPLYTO_EMAIL</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;opeyemitechpro@gmail.com&#39;</span>
+</span><a id="__codelineno-3-19" name="__codelineno-3-19"></a><span class="hll"><span class="w">        </span><span class="n">DOCKER_TAG_PREFIX</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;ver-1&#39;</span>
+</span><a id="__codelineno-3-20" name="__codelineno-3-20"></a><span class="hll"><span class="w">        </span><span class="n">DOCKER_TAG</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;ver-1.$BUILD_NUMBER&#39;</span>
+</span><a id="__codelineno-3-21" name="__codelineno-3-21"></a><span class="hll">
+</span><a id="__codelineno-3-22" name="__codelineno-3-22"></a><span class="w">        </span><span class="n">SCANNER_HOME</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="n">tool</span><span class="w"> </span><span class="s2">&quot;${SONAR_SCANNER}&quot;</span>
+<a id="__codelineno-3-23" name="__codelineno-3-23"></a><span class="w">    </span><span class="o">}</span>
+<a id="__codelineno-3-24" name="__codelineno-3-24"></a>
+<a id="__codelineno-3-25" name="__codelineno-3-25"></a><span class="w">    </span><span class="n">stages</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-3-26" name="__codelineno-3-26"></a><span class="w">        </span><span class="n">stage</span><span class="o">(</span><span class="s1">&#39;Clean Workspace&#39;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-3-27" name="__codelineno-3-27"></a><span class="w">            </span><span class="n">steps</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-3-28" name="__codelineno-3-28"></a>
+<a id="__codelineno-3-29" name="__codelineno-3-29"></a><span class="w">                </span><span class="n">cleanWs</span><span class="o">()</span>
 <a id="__codelineno-3-30" name="__codelineno-3-30"></a><span class="w">            </span><span class="o">}</span>
-<a id="__codelineno-3-31" name="__codelineno-3-31"></a>
-<a id="__codelineno-3-32" name="__codelineno-3-32"></a><span class="w">            </span><span class="n">stage</span><span class="o">(</span><span class="s1">&#39;Git Checkout&#39;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-3-33" name="__codelineno-3-33"></a><span class="w">                </span><span class="n">steps</span><span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-3-34" name="__codelineno-3-34"></a><span class="w">                    </span><span class="n">git</span><span class="w"> </span><span class="nl">branch:</span><span class="w"> </span><span class="s2">&quot;${GIT_BRANCH}&quot;</span><span class="o">,</span><span class="w"> </span><span class="nl">url:</span><span class="w"> </span><span class="s2">&quot;${GIT_URL}&quot;</span>
-<a id="__codelineno-3-35" name="__codelineno-3-35"></a><span class="w">                </span><span class="o">}</span>
+<a id="__codelineno-3-31" name="__codelineno-3-31"></a><span class="w">        </span><span class="o">}</span>
+<a id="__codelineno-3-32" name="__codelineno-3-32"></a>
+<a id="__codelineno-3-33" name="__codelineno-3-33"></a><span class="w">        </span><span class="n">stage</span><span class="o">(</span><span class="s1">&#39;Git Checkout&#39;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-3-34" name="__codelineno-3-34"></a><span class="w">            </span><span class="n">steps</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-3-35" name="__codelineno-3-35"></a><span class="w">                </span><span class="n">git</span><span class="w"> </span><span class="nl">branch:</span><span class="w"> </span><span class="s2">&quot;${GIT_BRANCH}&quot;</span><span class="o">,</span><span class="w"> </span><span class="nl">url:</span><span class="w"> </span><span class="s2">&quot;${GIT_URL}&quot;</span>
 <a id="__codelineno-3-36" name="__codelineno-3-36"></a><span class="w">            </span><span class="o">}</span>
-<a id="__codelineno-3-37" name="__codelineno-3-37"></a>
-<a id="__codelineno-3-38" name="__codelineno-3-38"></a><span class="w">            </span><span class="n">stage</span><span class="o">(</span><span class="s1">&#39;Gitleaks Scan&#39;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-3-39" name="__codelineno-3-39"></a><span class="w">                </span><span class="n">steps</span><span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-3-40" name="__codelineno-3-40"></a><span class="w">                    </span><span class="n">sh</span><span class="w"> </span><span class="s1">&#39;gitleaks detect --source . -r gitleaks_report-$BUILD_NUMBER.json&#39;</span>
-<a id="__codelineno-3-41" name="__codelineno-3-41"></a><span class="w">                </span><span class="o">}</span>
+<a id="__codelineno-3-37" name="__codelineno-3-37"></a><span class="w">        </span><span class="o">}</span>
+<a id="__codelineno-3-38" name="__codelineno-3-38"></a>
+<a id="__codelineno-3-39" name="__codelineno-3-39"></a><span class="w">        </span><span class="n">stage</span><span class="o">(</span><span class="s1">&#39;Gitleaks Scan&#39;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-3-40" name="__codelineno-3-40"></a><span class="w">            </span><span class="n">steps</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-3-41" name="__codelineno-3-41"></a><span class="w">                </span><span class="n">sh</span><span class="w"> </span><span class="s1">&#39;gitleaks detect --source . -r gitleaks_report-$BUILD_NUMBER.json&#39;</span>
 <a id="__codelineno-3-42" name="__codelineno-3-42"></a><span class="w">            </span><span class="o">}</span>
-<a id="__codelineno-3-43" name="__codelineno-3-43"></a>
-<a id="__codelineno-3-44" name="__codelineno-3-44"></a><span class="w">            </span><span class="n">stage</span><span class="o">(</span><span class="s1">&#39;SonarQube Analysis&#39;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-3-45" name="__codelineno-3-45"></a><span class="w">            </span><span class="c1">//   environment {</span>
-<a id="__codelineno-3-46" name="__codelineno-3-46"></a><span class="w">            </span><span class="c1">//       SCANNER_HOME = tool &quot;${SONAR_SCANNER}&quot;</span>
-<a id="__codelineno-3-47" name="__codelineno-3-47"></a><span class="w">            </span><span class="c1">//   }</span>
-<a id="__codelineno-3-48" name="__codelineno-3-48"></a><span class="w">                </span><span class="n">steps</span><span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-3-49" name="__codelineno-3-49"></a><span class="w">                    </span><span class="n">withSonarQubeEnv</span><span class="o">(</span><span class="s2">&quot;${SONAR_SERVER}&quot;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-3-50" name="__codelineno-3-50"></a><span class="w">                        </span><span class="n">sh</span><span class="w"> </span><span class="s1">&#39;&#39;&#39;$SCANNER_HOME/bin/${SONAR_SCANNER} \</span>
-<a id="__codelineno-3-51" name="__codelineno-3-51"></a><span class="s1">                            -Dsonar.projectKey=${SONAR_PROJECT_NAME} \</span>
-<a id="__codelineno-3-52" name="__codelineno-3-52"></a><span class="s1">                            -Dsonar.projectName=${SONAR_PROJECT_NAME} \</span>
-<a id="__codelineno-3-53" name="__codelineno-3-53"></a><span class="s1">                            -Dsonar.java.binaries=.&#39;&#39;&#39;</span>
-<a id="__codelineno-3-54" name="__codelineno-3-54"></a><span class="w">                    </span><span class="o">}</span>
+<a id="__codelineno-3-43" name="__codelineno-3-43"></a><span class="w">        </span><span class="o">}</span>
+<a id="__codelineno-3-44" name="__codelineno-3-44"></a>
+<a id="__codelineno-3-45" name="__codelineno-3-45"></a><span class="w">        </span><span class="n">stage</span><span class="o">(</span><span class="s1">&#39;SonarQube Analysis&#39;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-3-46" name="__codelineno-3-46"></a><span class="w">        </span><span class="c1">//   environment {</span>
+<a id="__codelineno-3-47" name="__codelineno-3-47"></a><span class="w">        </span><span class="c1">//       SCANNER_HOME = tool &quot;${SONAR_SCANNER}&quot;</span>
+<a id="__codelineno-3-48" name="__codelineno-3-48"></a><span class="w">        </span><span class="c1">//   }</span>
+<a id="__codelineno-3-49" name="__codelineno-3-49"></a><span class="w">            </span><span class="n">steps</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-3-50" name="__codelineno-3-50"></a><span class="w">                </span><span class="n">withSonarQubeEnv</span><span class="o">(</span><span class="s2">&quot;${SONAR_SERVER}&quot;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-3-51" name="__codelineno-3-51"></a><span class="w">                    </span><span class="n">sh</span><span class="w"> </span><span class="s1">&#39;&#39;&#39;$SCANNER_HOME/bin/${SONAR_SCANNER} \</span>
+<a id="__codelineno-3-52" name="__codelineno-3-52"></a><span class="s1">                        -Dsonar.projectKey=${SONAR_PROJECT_NAME} \</span>
+<a id="__codelineno-3-53" name="__codelineno-3-53"></a><span class="s1">                        -Dsonar.projectName=${SONAR_PROJECT_NAME} \</span>
+<a id="__codelineno-3-54" name="__codelineno-3-54"></a><span class="s1">                        -Dsonar.java.binaries=.&#39;&#39;&#39;</span>
 <a id="__codelineno-3-55" name="__codelineno-3-55"></a><span class="w">                </span><span class="o">}</span>
 <a id="__codelineno-3-56" name="__codelineno-3-56"></a><span class="w">            </span><span class="o">}</span>
-<a id="__codelineno-3-57" name="__codelineno-3-57"></a>
-<a id="__codelineno-3-58" name="__codelineno-3-58"></a><span class="w">            </span><span class="n">stage</span><span class="o">(</span><span class="s1">&#39;TRIVY FS SCAN&#39;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-3-59" name="__codelineno-3-59"></a><span class="w">                </span><span class="n">steps</span><span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-3-60" name="__codelineno-3-60"></a><span class="w">                    </span><span class="n">sh</span><span class="w"> </span><span class="s1">&#39;trivy fs -o trivy-fs-report_$BUILD_NUMBER.txt .&#39;</span>
-<a id="__codelineno-3-61" name="__codelineno-3-61"></a><span class="w">                </span><span class="o">}</span>
+<a id="__codelineno-3-57" name="__codelineno-3-57"></a><span class="w">        </span><span class="o">}</span>
+<a id="__codelineno-3-58" name="__codelineno-3-58"></a>
+<a id="__codelineno-3-59" name="__codelineno-3-59"></a><span class="w">        </span><span class="n">stage</span><span class="o">(</span><span class="s1">&#39;TRIVY FS SCAN&#39;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-3-60" name="__codelineno-3-60"></a><span class="w">            </span><span class="n">steps</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-3-61" name="__codelineno-3-61"></a><span class="w">                </span><span class="n">sh</span><span class="w"> </span><span class="s1">&#39;trivy fs -o trivy-fs-report_$BUILD_NUMBER.txt .&#39;</span>
 <a id="__codelineno-3-62" name="__codelineno-3-62"></a><span class="w">            </span><span class="o">}</span>
-<a id="__codelineno-3-63" name="__codelineno-3-63"></a>
-<a id="__codelineno-3-64" name="__codelineno-3-64"></a><span class="w">            </span><span class="c1">// DOCKER IMAGE BUILDS</span>
-<a id="__codelineno-3-65" name="__codelineno-3-65"></a>
-<a id="__codelineno-3-66" name="__codelineno-3-66"></a><span class="w">            </span><span class="n">stage</span><span class="o">(</span><span class="s1">&#39;adservice DockerImage&#39;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-3-67" name="__codelineno-3-67"></a><span class="w">                </span><span class="n">steps</span><span class="w"> </span><span class="o">{</span><span class="w"> </span>
-<a id="__codelineno-3-68" name="__codelineno-3-68"></a><span class="w">                    </span><span class="n">script</span><span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-3-69" name="__codelineno-3-69"></a><span class="w">                        </span><span class="n">withDockerRegistry</span><span class="o">(</span><span class="nl">credentialsId:</span><span class="w"> </span><span class="s2">&quot;${DOCKER_CRED_ID}&quot;</span><span class="o">,</span><span class="w"> </span><span class="nl">toolName:</span><span class="w"> </span><span class="s2">&quot;${DOCKER_TOOL}&quot;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-3-70" name="__codelineno-3-70"></a><span class="w">                        </span><span class="n">dir</span><span class="o">(</span><span class="s2">&quot;${env.WORKSPACE}/src/adservice&quot;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-3-71" name="__codelineno-3-71"></a><span class="w">                        </span><span class="n">sh</span><span class="w"> </span><span class="s2">&quot;docker build -t ${DOCKER_HUB_USER}/adservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER .&quot;</span>
-<a id="__codelineno-3-72" name="__codelineno-3-72"></a><span class="w">                        </span><span class="n">sh</span><span class="w"> </span><span class="s2">&quot;docker push ${DOCKER_HUB_USER}/adservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER&quot;</span>
-<a id="__codelineno-3-73" name="__codelineno-3-73"></a><span class="w">                            </span><span class="o">}</span>
+<a id="__codelineno-3-63" name="__codelineno-3-63"></a><span class="w">        </span><span class="o">}</span>
+<a id="__codelineno-3-64" name="__codelineno-3-64"></a>
+<a id="__codelineno-3-65" name="__codelineno-3-65"></a><span class="w">        </span><span class="c1">// DOCKER IMAGE BUILDS</span>
+<a id="__codelineno-3-66" name="__codelineno-3-66"></a>
+<a id="__codelineno-3-67" name="__codelineno-3-67"></a><span class="w">        </span><span class="n">stage</span><span class="o">(</span><span class="s1">&#39;adservice DockerImage&#39;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-3-68" name="__codelineno-3-68"></a><span class="w">            </span><span class="n">steps</span><span class="w"> </span><span class="o">{</span><span class="w"> </span>
+<a id="__codelineno-3-69" name="__codelineno-3-69"></a><span class="w">                </span><span class="n">script</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-3-70" name="__codelineno-3-70"></a><span class="w">                    </span><span class="n">withDockerRegistry</span><span class="o">(</span><span class="nl">credentialsId:</span><span class="w"> </span><span class="s2">&quot;${DOCKER_CRED_ID}&quot;</span><span class="o">,</span><span class="w"> </span><span class="nl">toolName:</span><span class="w"> </span><span class="s2">&quot;${DOCKER_TOOL}&quot;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-3-71" name="__codelineno-3-71"></a><span class="w">                    </span><span class="n">dir</span><span class="o">(</span><span class="s2">&quot;${env.WORKSPACE}/src/adservice&quot;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-3-72" name="__codelineno-3-72"></a><span class="w">                    </span><span class="n">sh</span><span class="w"> </span><span class="s2">&quot;docker build -t ${DOCKER_HUB_USER}/adservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER .&quot;</span>
+<a id="__codelineno-3-73" name="__codelineno-3-73"></a><span class="w">                    </span><span class="n">sh</span><span class="w"> </span><span class="s2">&quot;docker push ${DOCKER_HUB_USER}/adservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER&quot;</span>
 <a id="__codelineno-3-74" name="__codelineno-3-74"></a><span class="w">                        </span><span class="o">}</span>
 <a id="__codelineno-3-75" name="__codelineno-3-75"></a><span class="w">                    </span><span class="o">}</span>
 <a id="__codelineno-3-76" name="__codelineno-3-76"></a><span class="w">                </span><span class="o">}</span>
 <a id="__codelineno-3-77" name="__codelineno-3-77"></a><span class="w">            </span><span class="o">}</span>
-<a id="__codelineno-3-78" name="__codelineno-3-78"></a><span class="w">            </span><span class="n">stage</span><span class="o">(</span><span class="s1">&#39;cartservice DockerImage&#39;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-3-79" name="__codelineno-3-79"></a><span class="w">                </span><span class="n">steps</span><span class="w"> </span><span class="o">{</span><span class="w"> </span>
-<a id="__codelineno-3-80" name="__codelineno-3-80"></a><span class="w">                    </span><span class="n">script</span><span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-3-81" name="__codelineno-3-81"></a><span class="w">                        </span><span class="n">withDockerRegistry</span><span class="o">(</span><span class="nl">credentialsId:</span><span class="w"> </span><span class="s2">&quot;${DOCKER_CRED_ID}&quot;</span><span class="o">,</span><span class="w"> </span><span class="nl">toolName:</span><span class="w"> </span><span class="s2">&quot;${DOCKER_TOOL}&quot;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-3-82" name="__codelineno-3-82"></a><span class="w">                        </span><span class="n">dir</span><span class="o">(</span><span class="s2">&quot;${env.WORKSPACE}/src/cartservice/src&quot;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-3-83" name="__codelineno-3-83"></a><span class="w">                        </span><span class="n">sh</span><span class="w"> </span><span class="s2">&quot;docker build -t ${DOCKER_HUB_USER}/cartservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER .&quot;</span>
-<a id="__codelineno-3-84" name="__codelineno-3-84"></a><span class="w">                        </span><span class="n">sh</span><span class="w"> </span><span class="s2">&quot;docker push ${DOCKER_HUB_USER}/cartservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER&quot;</span>
-<a id="__codelineno-3-85" name="__codelineno-3-85"></a><span class="w">                            </span><span class="o">}</span>
+<a id="__codelineno-3-78" name="__codelineno-3-78"></a><span class="w">        </span><span class="o">}</span>
+<a id="__codelineno-3-79" name="__codelineno-3-79"></a><span class="w">        </span><span class="n">stage</span><span class="o">(</span><span class="s1">&#39;cartservice DockerImage&#39;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-3-80" name="__codelineno-3-80"></a><span class="w">            </span><span class="n">steps</span><span class="w"> </span><span class="o">{</span><span class="w"> </span>
+<a id="__codelineno-3-81" name="__codelineno-3-81"></a><span class="w">                </span><span class="n">script</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-3-82" name="__codelineno-3-82"></a><span class="w">                    </span><span class="n">withDockerRegistry</span><span class="o">(</span><span class="nl">credentialsId:</span><span class="w"> </span><span class="s2">&quot;${DOCKER_CRED_ID}&quot;</span><span class="o">,</span><span class="w"> </span><span class="nl">toolName:</span><span class="w"> </span><span class="s2">&quot;${DOCKER_TOOL}&quot;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-3-83" name="__codelineno-3-83"></a><span class="w">                    </span><span class="n">dir</span><span class="o">(</span><span class="s2">&quot;${env.WORKSPACE}/src/cartservice/src&quot;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-3-84" name="__codelineno-3-84"></a><span class="w">                    </span><span class="n">sh</span><span class="w"> </span><span class="s2">&quot;docker build -t ${DOCKER_HUB_USER}/cartservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER .&quot;</span>
+<a id="__codelineno-3-85" name="__codelineno-3-85"></a><span class="w">                    </span><span class="n">sh</span><span class="w"> </span><span class="s2">&quot;docker push ${DOCKER_HUB_USER}/cartservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER&quot;</span>
 <a id="__codelineno-3-86" name="__codelineno-3-86"></a><span class="w">                        </span><span class="o">}</span>
 <a id="__codelineno-3-87" name="__codelineno-3-87"></a><span class="w">                    </span><span class="o">}</span>
 <a id="__codelineno-3-88" name="__codelineno-3-88"></a><span class="w">                </span><span class="o">}</span>
 <a id="__codelineno-3-89" name="__codelineno-3-89"></a><span class="w">            </span><span class="o">}</span>
-<a id="__codelineno-3-90" name="__codelineno-3-90"></a><span class="w">            </span><span class="n">stage</span><span class="o">(</span><span class="s1">&#39;checkoutservice DockerImage&#39;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-3-91" name="__codelineno-3-91"></a><span class="w">                </span><span class="n">steps</span><span class="w"> </span><span class="o">{</span><span class="w"> </span>
-<a id="__codelineno-3-92" name="__codelineno-3-92"></a><span class="w">                    </span><span class="n">script</span><span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-3-93" name="__codelineno-3-93"></a><span class="w">                        </span><span class="n">withDockerRegistry</span><span class="o">(</span><span class="nl">credentialsId:</span><span class="w"> </span><span class="s2">&quot;${DOCKER_CRED_ID}&quot;</span><span class="o">,</span><span class="w"> </span><span class="nl">toolName:</span><span class="w"> </span><span class="s2">&quot;${DOCKER_TOOL}&quot;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-3-94" name="__codelineno-3-94"></a><span class="w">                        </span><span class="n">dir</span><span class="o">(</span><span class="s2">&quot;${env.WORKSPACE}/src/checkoutservice&quot;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-3-95" name="__codelineno-3-95"></a><span class="w">                        </span><span class="n">sh</span><span class="w"> </span><span class="s2">&quot;docker build -t ${DOCKER_HUB_USER}/checkoutservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER .&quot;</span>
-<a id="__codelineno-3-96" name="__codelineno-3-96"></a><span class="w">                        </span><span class="n">sh</span><span class="w"> </span><span class="s2">&quot;docker push ${DOCKER_HUB_USER}/checkoutservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER&quot;</span>
-<a id="__codelineno-3-97" name="__codelineno-3-97"></a><span class="w">                            </span><span class="o">}</span>
+<a id="__codelineno-3-90" name="__codelineno-3-90"></a><span class="w">        </span><span class="o">}</span>
+<a id="__codelineno-3-91" name="__codelineno-3-91"></a><span class="w">        </span><span class="n">stage</span><span class="o">(</span><span class="s1">&#39;checkoutservice DockerImage&#39;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-3-92" name="__codelineno-3-92"></a><span class="w">            </span><span class="n">steps</span><span class="w"> </span><span class="o">{</span><span class="w"> </span>
+<a id="__codelineno-3-93" name="__codelineno-3-93"></a><span class="w">                </span><span class="n">script</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-3-94" name="__codelineno-3-94"></a><span class="w">                    </span><span class="n">withDockerRegistry</span><span class="o">(</span><span class="nl">credentialsId:</span><span class="w"> </span><span class="s2">&quot;${DOCKER_CRED_ID}&quot;</span><span class="o">,</span><span class="w"> </span><span class="nl">toolName:</span><span class="w"> </span><span class="s2">&quot;${DOCKER_TOOL}&quot;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-3-95" name="__codelineno-3-95"></a><span class="w">                    </span><span class="n">dir</span><span class="o">(</span><span class="s2">&quot;${env.WORKSPACE}/src/checkoutservice&quot;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-3-96" name="__codelineno-3-96"></a><span class="w">                    </span><span class="n">sh</span><span class="w"> </span><span class="s2">&quot;docker build -t ${DOCKER_HUB_USER}/checkoutservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER .&quot;</span>
+<a id="__codelineno-3-97" name="__codelineno-3-97"></a><span class="w">                    </span><span class="n">sh</span><span class="w"> </span><span class="s2">&quot;docker push ${DOCKER_HUB_USER}/checkoutservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER&quot;</span>
 <a id="__codelineno-3-98" name="__codelineno-3-98"></a><span class="w">                        </span><span class="o">}</span>
 <a id="__codelineno-3-99" name="__codelineno-3-99"></a><span class="w">                    </span><span class="o">}</span>
 <a id="__codelineno-3-100" name="__codelineno-3-100"></a><span class="w">                </span><span class="o">}</span>
 <a id="__codelineno-3-101" name="__codelineno-3-101"></a><span class="w">            </span><span class="o">}</span>
-<a id="__codelineno-3-102" name="__codelineno-3-102"></a><span class="w">            </span><span class="n">stage</span><span class="o">(</span><span class="s1">&#39;currencyservice DockerImage&#39;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-3-103" name="__codelineno-3-103"></a><span class="w">                </span><span class="n">steps</span><span class="w"> </span><span class="o">{</span><span class="w"> </span>
-<a id="__codelineno-3-104" name="__codelineno-3-104"></a><span class="w">                    </span><span class="n">script</span><span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-3-105" name="__codelineno-3-105"></a><span class="w">                        </span><span class="n">withDockerRegistry</span><span class="o">(</span><span class="nl">credentialsId:</span><span class="w"> </span><span class="s2">&quot;${DOCKER_CRED_ID}&quot;</span><span class="o">,</span><span class="w"> </span><span class="nl">toolName:</span><span class="w"> </span><span class="s2">&quot;${DOCKER_TOOL}&quot;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-3-106" name="__codelineno-3-106"></a><span class="w">                        </span><span class="n">dir</span><span class="o">(</span><span class="s2">&quot;${env.WORKSPACE}/src/currencyservice&quot;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-3-107" name="__codelineno-3-107"></a><span class="w">                        </span><span class="n">sh</span><span class="w"> </span><span class="s2">&quot;docker build -t ${DOCKER_HUB_USER}/currencyservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER .&quot;</span>
-<a id="__codelineno-3-108" name="__codelineno-3-108"></a><span class="w">                        </span><span class="n">sh</span><span class="w"> </span><span class="s2">&quot;docker push ${DOCKER_HUB_USER}/currencyservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER&quot;</span>
-<a id="__codelineno-3-109" name="__codelineno-3-109"></a><span class="w">                            </span><span class="o">}</span>
+<a id="__codelineno-3-102" name="__codelineno-3-102"></a><span class="w">        </span><span class="o">}</span>
+<a id="__codelineno-3-103" name="__codelineno-3-103"></a><span class="w">        </span><span class="n">stage</span><span class="o">(</span><span class="s1">&#39;currencyservice DockerImage&#39;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-3-104" name="__codelineno-3-104"></a><span class="w">            </span><span class="n">steps</span><span class="w"> </span><span class="o">{</span><span class="w"> </span>
+<a id="__codelineno-3-105" name="__codelineno-3-105"></a><span class="w">                </span><span class="n">script</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-3-106" name="__codelineno-3-106"></a><span class="w">                    </span><span class="n">withDockerRegistry</span><span class="o">(</span><span class="nl">credentialsId:</span><span class="w"> </span><span class="s2">&quot;${DOCKER_CRED_ID}&quot;</span><span class="o">,</span><span class="w"> </span><span class="nl">toolName:</span><span class="w"> </span><span class="s2">&quot;${DOCKER_TOOL}&quot;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-3-107" name="__codelineno-3-107"></a><span class="w">                    </span><span class="n">dir</span><span class="o">(</span><span class="s2">&quot;${env.WORKSPACE}/src/currencyservice&quot;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-3-108" name="__codelineno-3-108"></a><span class="w">                    </span><span class="n">sh</span><span class="w"> </span><span class="s2">&quot;docker build -t ${DOCKER_HUB_USER}/currencyservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER .&quot;</span>
+<a id="__codelineno-3-109" name="__codelineno-3-109"></a><span class="w">                    </span><span class="n">sh</span><span class="w"> </span><span class="s2">&quot;docker push ${DOCKER_HUB_USER}/currencyservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER&quot;</span>
 <a id="__codelineno-3-110" name="__codelineno-3-110"></a><span class="w">                        </span><span class="o">}</span>
 <a id="__codelineno-3-111" name="__codelineno-3-111"></a><span class="w">                    </span><span class="o">}</span>
 <a id="__codelineno-3-112" name="__codelineno-3-112"></a><span class="w">                </span><span class="o">}</span>
 <a id="__codelineno-3-113" name="__codelineno-3-113"></a><span class="w">            </span><span class="o">}</span>
-<a id="__codelineno-3-114" name="__codelineno-3-114"></a><span class="w">            </span><span class="n">stage</span><span class="o">(</span><span class="s1">&#39;emailservice DockerImage&#39;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-3-115" name="__codelineno-3-115"></a><span class="w">                </span><span class="n">steps</span><span class="w"> </span><span class="o">{</span><span class="w"> </span>
-<a id="__codelineno-3-116" name="__codelineno-3-116"></a><span class="w">                    </span><span class="n">script</span><span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-3-117" name="__codelineno-3-117"></a><span class="w">                        </span><span class="n">withDockerRegistry</span><span class="o">(</span><span class="nl">credentialsId:</span><span class="w"> </span><span class="s2">&quot;${DOCKER_CRED_ID}&quot;</span><span class="o">,</span><span class="w"> </span><span class="nl">toolName:</span><span class="w"> </span><span class="s2">&quot;${DOCKER_TOOL}&quot;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-3-118" name="__codelineno-3-118"></a><span class="w">                        </span><span class="n">dir</span><span class="o">(</span><span class="s2">&quot;${env.WORKSPACE}/src/emailservice&quot;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-3-119" name="__codelineno-3-119"></a><span class="w">                        </span><span class="n">sh</span><span class="w"> </span><span class="s2">&quot;docker build -t ${DOCKER_HUB_USER}/emailservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER .&quot;</span>
-<a id="__codelineno-3-120" name="__codelineno-3-120"></a><span class="w">                        </span><span class="n">sh</span><span class="w"> </span><span class="s2">&quot;docker push ${DOCKER_HUB_USER}/emailservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER&quot;</span>
-<a id="__codelineno-3-121" name="__codelineno-3-121"></a><span class="w">                            </span><span class="o">}</span>
+<a id="__codelineno-3-114" name="__codelineno-3-114"></a><span class="w">        </span><span class="o">}</span>
+<a id="__codelineno-3-115" name="__codelineno-3-115"></a><span class="w">        </span><span class="n">stage</span><span class="o">(</span><span class="s1">&#39;emailservice DockerImage&#39;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-3-116" name="__codelineno-3-116"></a><span class="w">            </span><span class="n">steps</span><span class="w"> </span><span class="o">{</span><span class="w"> </span>
+<a id="__codelineno-3-117" name="__codelineno-3-117"></a><span class="w">                </span><span class="n">script</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-3-118" name="__codelineno-3-118"></a><span class="w">                    </span><span class="n">withDockerRegistry</span><span class="o">(</span><span class="nl">credentialsId:</span><span class="w"> </span><span class="s2">&quot;${DOCKER_CRED_ID}&quot;</span><span class="o">,</span><span class="w"> </span><span class="nl">toolName:</span><span class="w"> </span><span class="s2">&quot;${DOCKER_TOOL}&quot;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-3-119" name="__codelineno-3-119"></a><span class="w">                    </span><span class="n">dir</span><span class="o">(</span><span class="s2">&quot;${env.WORKSPACE}/src/emailservice&quot;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-3-120" name="__codelineno-3-120"></a><span class="w">                    </span><span class="n">sh</span><span class="w"> </span><span class="s2">&quot;docker build -t ${DOCKER_HUB_USER}/emailservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER .&quot;</span>
+<a id="__codelineno-3-121" name="__codelineno-3-121"></a><span class="w">                    </span><span class="n">sh</span><span class="w"> </span><span class="s2">&quot;docker push ${DOCKER_HUB_USER}/emailservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER&quot;</span>
 <a id="__codelineno-3-122" name="__codelineno-3-122"></a><span class="w">                        </span><span class="o">}</span>
 <a id="__codelineno-3-123" name="__codelineno-3-123"></a><span class="w">                    </span><span class="o">}</span>
 <a id="__codelineno-3-124" name="__codelineno-3-124"></a><span class="w">                </span><span class="o">}</span>
 <a id="__codelineno-3-125" name="__codelineno-3-125"></a><span class="w">            </span><span class="o">}</span>
-<a id="__codelineno-3-126" name="__codelineno-3-126"></a><span class="w">            </span><span class="n">stage</span><span class="o">(</span><span class="s1">&#39;frontend DockerImage&#39;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-3-127" name="__codelineno-3-127"></a><span class="w">                </span><span class="n">steps</span><span class="w"> </span><span class="o">{</span><span class="w"> </span>
-<a id="__codelineno-3-128" name="__codelineno-3-128"></a><span class="w">                    </span><span class="n">script</span><span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-3-129" name="__codelineno-3-129"></a><span class="w">                        </span><span class="n">withDockerRegistry</span><span class="o">(</span><span class="nl">credentialsId:</span><span class="w"> </span><span class="s2">&quot;${DOCKER_CRED_ID}&quot;</span><span class="o">,</span><span class="w"> </span><span class="nl">toolName:</span><span class="w"> </span><span class="s2">&quot;${DOCKER_TOOL}&quot;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-3-130" name="__codelineno-3-130"></a><span class="w">                        </span><span class="n">dir</span><span class="o">(</span><span class="s2">&quot;${env.WORKSPACE}/src/frontend&quot;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-3-131" name="__codelineno-3-131"></a><span class="w">                        </span><span class="n">sh</span><span class="w"> </span><span class="s2">&quot;docker build -t ${DOCKER_HUB_USER}/frontend:$DOCKER_TAG_PREFIX.$BUILD_NUMBER .&quot;</span>
-<a id="__codelineno-3-132" name="__codelineno-3-132"></a><span class="w">                        </span><span class="n">sh</span><span class="w"> </span><span class="s2">&quot;docker push ${DOCKER_HUB_USER}/frontend:$DOCKER_TAG_PREFIX.$BUILD_NUMBER&quot;</span>
-<a id="__codelineno-3-133" name="__codelineno-3-133"></a><span class="w">                            </span><span class="o">}</span>
+<a id="__codelineno-3-126" name="__codelineno-3-126"></a><span class="w">        </span><span class="o">}</span>
+<a id="__codelineno-3-127" name="__codelineno-3-127"></a><span class="w">        </span><span class="n">stage</span><span class="o">(</span><span class="s1">&#39;frontend DockerImage&#39;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-3-128" name="__codelineno-3-128"></a><span class="w">            </span><span class="n">steps</span><span class="w"> </span><span class="o">{</span><span class="w"> </span>
+<a id="__codelineno-3-129" name="__codelineno-3-129"></a><span class="w">                </span><span class="n">script</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-3-130" name="__codelineno-3-130"></a><span class="w">                    </span><span class="n">withDockerRegistry</span><span class="o">(</span><span class="nl">credentialsId:</span><span class="w"> </span><span class="s2">&quot;${DOCKER_CRED_ID}&quot;</span><span class="o">,</span><span class="w"> </span><span class="nl">toolName:</span><span class="w"> </span><span class="s2">&quot;${DOCKER_TOOL}&quot;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-3-131" name="__codelineno-3-131"></a><span class="w">                    </span><span class="n">dir</span><span class="o">(</span><span class="s2">&quot;${env.WORKSPACE}/src/frontend&quot;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-3-132" name="__codelineno-3-132"></a><span class="w">                    </span><span class="n">sh</span><span class="w"> </span><span class="s2">&quot;docker build -t ${DOCKER_HUB_USER}/frontend:$DOCKER_TAG_PREFIX.$BUILD_NUMBER .&quot;</span>
+<a id="__codelineno-3-133" name="__codelineno-3-133"></a><span class="w">                    </span><span class="n">sh</span><span class="w"> </span><span class="s2">&quot;docker push ${DOCKER_HUB_USER}/frontend:$DOCKER_TAG_PREFIX.$BUILD_NUMBER&quot;</span>
 <a id="__codelineno-3-134" name="__codelineno-3-134"></a><span class="w">                        </span><span class="o">}</span>
 <a id="__codelineno-3-135" name="__codelineno-3-135"></a><span class="w">                    </span><span class="o">}</span>
 <a id="__codelineno-3-136" name="__codelineno-3-136"></a><span class="w">                </span><span class="o">}</span>
 <a id="__codelineno-3-137" name="__codelineno-3-137"></a><span class="w">            </span><span class="o">}</span>
-<a id="__codelineno-3-138" name="__codelineno-3-138"></a><span class="w">            </span><span class="n">stage</span><span class="o">(</span><span class="s1">&#39;loadgenerator DockerImage&#39;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-3-139" name="__codelineno-3-139"></a><span class="w">                </span><span class="n">steps</span><span class="w"> </span><span class="o">{</span><span class="w"> </span>
-<a id="__codelineno-3-140" name="__codelineno-3-140"></a><span class="w">                    </span><span class="n">script</span><span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-3-141" name="__codelineno-3-141"></a><span class="w">                        </span><span class="n">withDockerRegistry</span><span class="o">(</span><span class="nl">credentialsId:</span><span class="w"> </span><span class="s2">&quot;${DOCKER_CRED_ID}&quot;</span><span class="o">,</span><span class="w"> </span><span class="nl">toolName:</span><span class="w"> </span><span class="s2">&quot;${DOCKER_TOOL}&quot;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-3-142" name="__codelineno-3-142"></a><span class="w">                        </span><span class="n">dir</span><span class="o">(</span><span class="s2">&quot;${env.WORKSPACE}/src/loadgenerator&quot;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-3-143" name="__codelineno-3-143"></a><span class="w">                        </span><span class="n">sh</span><span class="w"> </span><span class="s2">&quot;docker build -t ${DOCKER_HUB_USER}/loadgenerator:$DOCKER_TAG_PREFIX.$BUILD_NUMBER .&quot;</span>
-<a id="__codelineno-3-144" name="__codelineno-3-144"></a><span class="w">                        </span><span class="n">sh</span><span class="w"> </span><span class="s2">&quot;docker push ${DOCKER_HUB_USER}/loadgenerator:$DOCKER_TAG_PREFIX.$BUILD_NUMBER&quot;</span>
-<a id="__codelineno-3-145" name="__codelineno-3-145"></a><span class="w">                            </span><span class="o">}</span>
+<a id="__codelineno-3-138" name="__codelineno-3-138"></a><span class="w">        </span><span class="o">}</span>
+<a id="__codelineno-3-139" name="__codelineno-3-139"></a><span class="w">        </span><span class="n">stage</span><span class="o">(</span><span class="s1">&#39;loadgenerator DockerImage&#39;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-3-140" name="__codelineno-3-140"></a><span class="w">            </span><span class="n">steps</span><span class="w"> </span><span class="o">{</span><span class="w"> </span>
+<a id="__codelineno-3-141" name="__codelineno-3-141"></a><span class="w">                </span><span class="n">script</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-3-142" name="__codelineno-3-142"></a><span class="w">                    </span><span class="n">withDockerRegistry</span><span class="o">(</span><span class="nl">credentialsId:</span><span class="w"> </span><span class="s2">&quot;${DOCKER_CRED_ID}&quot;</span><span class="o">,</span><span class="w"> </span><span class="nl">toolName:</span><span class="w"> </span><span class="s2">&quot;${DOCKER_TOOL}&quot;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-3-143" name="__codelineno-3-143"></a><span class="w">                    </span><span class="n">dir</span><span class="o">(</span><span class="s2">&quot;${env.WORKSPACE}/src/loadgenerator&quot;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-3-144" name="__codelineno-3-144"></a><span class="w">                    </span><span class="n">sh</span><span class="w"> </span><span class="s2">&quot;docker build -t ${DOCKER_HUB_USER}/loadgenerator:$DOCKER_TAG_PREFIX.$BUILD_NUMBER .&quot;</span>
+<a id="__codelineno-3-145" name="__codelineno-3-145"></a><span class="w">                    </span><span class="n">sh</span><span class="w"> </span><span class="s2">&quot;docker push ${DOCKER_HUB_USER}/loadgenerator:$DOCKER_TAG_PREFIX.$BUILD_NUMBER&quot;</span>
 <a id="__codelineno-3-146" name="__codelineno-3-146"></a><span class="w">                        </span><span class="o">}</span>
 <a id="__codelineno-3-147" name="__codelineno-3-147"></a><span class="w">                    </span><span class="o">}</span>
 <a id="__codelineno-3-148" name="__codelineno-3-148"></a><span class="w">                </span><span class="o">}</span>
 <a id="__codelineno-3-149" name="__codelineno-3-149"></a><span class="w">            </span><span class="o">}</span>
-<a id="__codelineno-3-150" name="__codelineno-3-150"></a><span class="w">            </span><span class="n">stage</span><span class="o">(</span><span class="s1">&#39;paymentservice DockerImage&#39;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-3-151" name="__codelineno-3-151"></a><span class="w">                </span><span class="n">steps</span><span class="w"> </span><span class="o">{</span><span class="w"> </span>
-<a id="__codelineno-3-152" name="__codelineno-3-152"></a><span class="w">                    </span><span class="n">script</span><span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-3-153" name="__codelineno-3-153"></a><span class="w">                        </span><span class="n">withDockerRegistry</span><span class="o">(</span><span class="nl">credentialsId:</span><span class="w"> </span><span class="s2">&quot;${DOCKER_CRED_ID}&quot;</span><span class="o">,</span><span class="w"> </span><span class="nl">toolName:</span><span class="w"> </span><span class="s2">&quot;${DOCKER_TOOL}&quot;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-3-154" name="__codelineno-3-154"></a><span class="w">                        </span><span class="n">dir</span><span class="o">(</span><span class="s2">&quot;${env.WORKSPACE}/src/paymentservice&quot;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-3-155" name="__codelineno-3-155"></a><span class="w">                        </span><span class="n">sh</span><span class="w"> </span><span class="s2">&quot;docker build -t ${DOCKER_HUB_USER}/paymentservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER .&quot;</span>
-<a id="__codelineno-3-156" name="__codelineno-3-156"></a><span class="w">                        </span><span class="n">sh</span><span class="w"> </span><span class="s2">&quot;docker push ${DOCKER_HUB_USER}/paymentservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER&quot;</span>
-<a id="__codelineno-3-157" name="__codelineno-3-157"></a><span class="w">                            </span><span class="o">}</span>
+<a id="__codelineno-3-150" name="__codelineno-3-150"></a><span class="w">        </span><span class="o">}</span>
+<a id="__codelineno-3-151" name="__codelineno-3-151"></a><span class="w">        </span><span class="n">stage</span><span class="o">(</span><span class="s1">&#39;paymentservice DockerImage&#39;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-3-152" name="__codelineno-3-152"></a><span class="w">            </span><span class="n">steps</span><span class="w"> </span><span class="o">{</span><span class="w"> </span>
+<a id="__codelineno-3-153" name="__codelineno-3-153"></a><span class="w">                </span><span class="n">script</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-3-154" name="__codelineno-3-154"></a><span class="w">                    </span><span class="n">withDockerRegistry</span><span class="o">(</span><span class="nl">credentialsId:</span><span class="w"> </span><span class="s2">&quot;${DOCKER_CRED_ID}&quot;</span><span class="o">,</span><span class="w"> </span><span class="nl">toolName:</span><span class="w"> </span><span class="s2">&quot;${DOCKER_TOOL}&quot;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-3-155" name="__codelineno-3-155"></a><span class="w">                    </span><span class="n">dir</span><span class="o">(</span><span class="s2">&quot;${env.WORKSPACE}/src/paymentservice&quot;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-3-156" name="__codelineno-3-156"></a><span class="w">                    </span><span class="n">sh</span><span class="w"> </span><span class="s2">&quot;docker build -t ${DOCKER_HUB_USER}/paymentservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER .&quot;</span>
+<a id="__codelineno-3-157" name="__codelineno-3-157"></a><span class="w">                    </span><span class="n">sh</span><span class="w"> </span><span class="s2">&quot;docker push ${DOCKER_HUB_USER}/paymentservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER&quot;</span>
 <a id="__codelineno-3-158" name="__codelineno-3-158"></a><span class="w">                        </span><span class="o">}</span>
 <a id="__codelineno-3-159" name="__codelineno-3-159"></a><span class="w">                    </span><span class="o">}</span>
 <a id="__codelineno-3-160" name="__codelineno-3-160"></a><span class="w">                </span><span class="o">}</span>
 <a id="__codelineno-3-161" name="__codelineno-3-161"></a><span class="w">            </span><span class="o">}</span>
-<a id="__codelineno-3-162" name="__codelineno-3-162"></a><span class="w">            </span><span class="n">stage</span><span class="o">(</span><span class="s1">&#39;productcatalogservice DockerImage&#39;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-3-163" name="__codelineno-3-163"></a><span class="w">                </span><span class="n">steps</span><span class="w"> </span><span class="o">{</span><span class="w"> </span>
-<a id="__codelineno-3-164" name="__codelineno-3-164"></a><span class="w">                    </span><span class="n">script</span><span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-3-165" name="__codelineno-3-165"></a><span class="w">                        </span><span class="n">withDockerRegistry</span><span class="o">(</span><span class="nl">credentialsId:</span><span class="w"> </span><span class="s2">&quot;${DOCKER_CRED_ID}&quot;</span><span class="o">,</span><span class="w"> </span><span class="nl">toolName:</span><span class="w"> </span><span class="s2">&quot;${DOCKER_TOOL}&quot;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-3-166" name="__codelineno-3-166"></a><span class="w">                        </span><span class="n">dir</span><span class="o">(</span><span class="s2">&quot;${env.WORKSPACE}/src/productcatalogservice&quot;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-3-167" name="__codelineno-3-167"></a><span class="w">                        </span><span class="n">sh</span><span class="w"> </span><span class="s2">&quot;docker build -t ${DOCKER_HUB_USER}/productcatalogservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER .&quot;</span>
-<a id="__codelineno-3-168" name="__codelineno-3-168"></a><span class="w">                        </span><span class="n">sh</span><span class="w"> </span><span class="s2">&quot;docker push ${DOCKER_HUB_USER}/productcatalogservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER&quot;</span>
-<a id="__codelineno-3-169" name="__codelineno-3-169"></a><span class="w">                            </span><span class="o">}</span>
+<a id="__codelineno-3-162" name="__codelineno-3-162"></a><span class="w">        </span><span class="o">}</span>
+<a id="__codelineno-3-163" name="__codelineno-3-163"></a><span class="w">        </span><span class="n">stage</span><span class="o">(</span><span class="s1">&#39;productcatalogservice DockerImage&#39;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-3-164" name="__codelineno-3-164"></a><span class="w">            </span><span class="n">steps</span><span class="w"> </span><span class="o">{</span><span class="w"> </span>
+<a id="__codelineno-3-165" name="__codelineno-3-165"></a><span class="w">                </span><span class="n">script</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-3-166" name="__codelineno-3-166"></a><span class="w">                    </span><span class="n">withDockerRegistry</span><span class="o">(</span><span class="nl">credentialsId:</span><span class="w"> </span><span class="s2">&quot;${DOCKER_CRED_ID}&quot;</span><span class="o">,</span><span class="w"> </span><span class="nl">toolName:</span><span class="w"> </span><span class="s2">&quot;${DOCKER_TOOL}&quot;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-3-167" name="__codelineno-3-167"></a><span class="w">                    </span><span class="n">dir</span><span class="o">(</span><span class="s2">&quot;${env.WORKSPACE}/src/productcatalogservice&quot;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-3-168" name="__codelineno-3-168"></a><span class="w">                    </span><span class="n">sh</span><span class="w"> </span><span class="s2">&quot;docker build -t ${DOCKER_HUB_USER}/productcatalogservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER .&quot;</span>
+<a id="__codelineno-3-169" name="__codelineno-3-169"></a><span class="w">                    </span><span class="n">sh</span><span class="w"> </span><span class="s2">&quot;docker push ${DOCKER_HUB_USER}/productcatalogservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER&quot;</span>
 <a id="__codelineno-3-170" name="__codelineno-3-170"></a><span class="w">                        </span><span class="o">}</span>
 <a id="__codelineno-3-171" name="__codelineno-3-171"></a><span class="w">                    </span><span class="o">}</span>
 <a id="__codelineno-3-172" name="__codelineno-3-172"></a><span class="w">                </span><span class="o">}</span>
 <a id="__codelineno-3-173" name="__codelineno-3-173"></a><span class="w">            </span><span class="o">}</span>
-<a id="__codelineno-3-174" name="__codelineno-3-174"></a><span class="w">            </span><span class="n">stage</span><span class="o">(</span><span class="s1">&#39;recommendationservice DockerImage&#39;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-3-175" name="__codelineno-3-175"></a><span class="w">                </span><span class="n">steps</span><span class="w"> </span><span class="o">{</span><span class="w"> </span>
-<a id="__codelineno-3-176" name="__codelineno-3-176"></a><span class="w">                    </span><span class="n">script</span><span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-3-177" name="__codelineno-3-177"></a><span class="w">                        </span><span class="n">withDockerRegistry</span><span class="o">(</span><span class="nl">credentialsId:</span><span class="w"> </span><span class="s2">&quot;${DOCKER_CRED_ID}&quot;</span><span class="o">,</span><span class="w"> </span><span class="nl">toolName:</span><span class="w"> </span><span class="s2">&quot;${DOCKER_TOOL}&quot;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-3-178" name="__codelineno-3-178"></a><span class="w">                        </span><span class="n">dir</span><span class="o">(</span><span class="s2">&quot;${env.WORKSPACE}/src/recommendationservice&quot;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-3-179" name="__codelineno-3-179"></a><span class="w">                        </span><span class="n">sh</span><span class="w"> </span><span class="s2">&quot;docker build -t ${DOCKER_HUB_USER}/recommendationservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER .&quot;</span>
-<a id="__codelineno-3-180" name="__codelineno-3-180"></a><span class="w">                        </span><span class="n">sh</span><span class="w"> </span><span class="s2">&quot;docker push ${DOCKER_HUB_USER}/recommendationservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER&quot;</span>
-<a id="__codelineno-3-181" name="__codelineno-3-181"></a><span class="w">                            </span><span class="o">}</span>
+<a id="__codelineno-3-174" name="__codelineno-3-174"></a><span class="w">        </span><span class="o">}</span>
+<a id="__codelineno-3-175" name="__codelineno-3-175"></a><span class="w">        </span><span class="n">stage</span><span class="o">(</span><span class="s1">&#39;recommendationservice DockerImage&#39;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-3-176" name="__codelineno-3-176"></a><span class="w">            </span><span class="n">steps</span><span class="w"> </span><span class="o">{</span><span class="w"> </span>
+<a id="__codelineno-3-177" name="__codelineno-3-177"></a><span class="w">                </span><span class="n">script</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-3-178" name="__codelineno-3-178"></a><span class="w">                    </span><span class="n">withDockerRegistry</span><span class="o">(</span><span class="nl">credentialsId:</span><span class="w"> </span><span class="s2">&quot;${DOCKER_CRED_ID}&quot;</span><span class="o">,</span><span class="w"> </span><span class="nl">toolName:</span><span class="w"> </span><span class="s2">&quot;${DOCKER_TOOL}&quot;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-3-179" name="__codelineno-3-179"></a><span class="w">                    </span><span class="n">dir</span><span class="o">(</span><span class="s2">&quot;${env.WORKSPACE}/src/recommendationservice&quot;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-3-180" name="__codelineno-3-180"></a><span class="w">                    </span><span class="n">sh</span><span class="w"> </span><span class="s2">&quot;docker build -t ${DOCKER_HUB_USER}/recommendationservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER .&quot;</span>
+<a id="__codelineno-3-181" name="__codelineno-3-181"></a><span class="w">                    </span><span class="n">sh</span><span class="w"> </span><span class="s2">&quot;docker push ${DOCKER_HUB_USER}/recommendationservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER&quot;</span>
 <a id="__codelineno-3-182" name="__codelineno-3-182"></a><span class="w">                        </span><span class="o">}</span>
 <a id="__codelineno-3-183" name="__codelineno-3-183"></a><span class="w">                    </span><span class="o">}</span>
 <a id="__codelineno-3-184" name="__codelineno-3-184"></a><span class="w">                </span><span class="o">}</span>
 <a id="__codelineno-3-185" name="__codelineno-3-185"></a><span class="w">            </span><span class="o">}</span>
-<a id="__codelineno-3-186" name="__codelineno-3-186"></a><span class="w">            </span><span class="n">stage</span><span class="o">(</span><span class="s1">&#39;shippingservice DockerImage&#39;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-3-187" name="__codelineno-3-187"></a><span class="w">                </span><span class="n">steps</span><span class="w"> </span><span class="o">{</span><span class="w"> </span>
-<a id="__codelineno-3-188" name="__codelineno-3-188"></a><span class="w">                    </span><span class="n">script</span><span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-3-189" name="__codelineno-3-189"></a><span class="w">                        </span><span class="n">withDockerRegistry</span><span class="o">(</span><span class="nl">credentialsId:</span><span class="w"> </span><span class="s2">&quot;${DOCKER_CRED_ID}&quot;</span><span class="o">,</span><span class="w"> </span><span class="nl">toolName:</span><span class="w"> </span><span class="s2">&quot;${DOCKER_TOOL}&quot;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-3-190" name="__codelineno-3-190"></a><span class="w">                        </span><span class="n">dir</span><span class="o">(</span><span class="s2">&quot;${env.WORKSPACE}/src/shippingservice&quot;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-3-191" name="__codelineno-3-191"></a><span class="w">                        </span><span class="n">sh</span><span class="w"> </span><span class="s2">&quot;docker build -t ${DOCKER_HUB_USER}/shippingservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER .&quot;</span>
-<a id="__codelineno-3-192" name="__codelineno-3-192"></a><span class="w">                        </span><span class="n">sh</span><span class="w"> </span><span class="s2">&quot;docker push ${DOCKER_HUB_USER}/shippingservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER&quot;</span>
-<a id="__codelineno-3-193" name="__codelineno-3-193"></a><span class="w">                            </span><span class="o">}</span>
+<a id="__codelineno-3-186" name="__codelineno-3-186"></a><span class="w">        </span><span class="o">}</span>
+<a id="__codelineno-3-187" name="__codelineno-3-187"></a><span class="w">        </span><span class="n">stage</span><span class="o">(</span><span class="s1">&#39;shippingservice DockerImage&#39;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-3-188" name="__codelineno-3-188"></a><span class="w">            </span><span class="n">steps</span><span class="w"> </span><span class="o">{</span><span class="w"> </span>
+<a id="__codelineno-3-189" name="__codelineno-3-189"></a><span class="w">                </span><span class="n">script</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-3-190" name="__codelineno-3-190"></a><span class="w">                    </span><span class="n">withDockerRegistry</span><span class="o">(</span><span class="nl">credentialsId:</span><span class="w"> </span><span class="s2">&quot;${DOCKER_CRED_ID}&quot;</span><span class="o">,</span><span class="w"> </span><span class="nl">toolName:</span><span class="w"> </span><span class="s2">&quot;${DOCKER_TOOL}&quot;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-3-191" name="__codelineno-3-191"></a><span class="w">                    </span><span class="n">dir</span><span class="o">(</span><span class="s2">&quot;${env.WORKSPACE}/src/shippingservice&quot;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-3-192" name="__codelineno-3-192"></a><span class="w">                    </span><span class="n">sh</span><span class="w"> </span><span class="s2">&quot;docker build -t ${DOCKER_HUB_USER}/shippingservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER .&quot;</span>
+<a id="__codelineno-3-193" name="__codelineno-3-193"></a><span class="w">                    </span><span class="n">sh</span><span class="w"> </span><span class="s2">&quot;docker push ${DOCKER_HUB_USER}/shippingservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER&quot;</span>
 <a id="__codelineno-3-194" name="__codelineno-3-194"></a><span class="w">                        </span><span class="o">}</span>
 <a id="__codelineno-3-195" name="__codelineno-3-195"></a><span class="w">                    </span><span class="o">}</span>
 <a id="__codelineno-3-196" name="__codelineno-3-196"></a><span class="w">                </span><span class="o">}</span>
 <a id="__codelineno-3-197" name="__codelineno-3-197"></a><span class="w">            </span><span class="o">}</span>
-<a id="__codelineno-3-198" name="__codelineno-3-198"></a>
-<a id="__codelineno-3-199" name="__codelineno-3-199"></a><span class="w">            </span><span class="n">stage</span><span class="o">(</span><span class="s1">&#39;DockerImage CleanUp&#39;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-3-200" name="__codelineno-3-200"></a><span class="w">                </span><span class="n">steps</span><span class="w"> </span><span class="o">{</span><span class="w"> </span>
-<a id="__codelineno-3-201" name="__codelineno-3-201"></a><span class="w">                        </span><span class="n">sh</span><span class="w"> </span><span class="s2">&quot;docker rmi ${DOCKER_HUB_USER}/adservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER&quot;</span>
-<a id="__codelineno-3-202" name="__codelineno-3-202"></a><span class="w">                        </span><span class="n">sh</span><span class="w"> </span><span class="s2">&quot;docker rmi ${DOCKER_HUB_USER}/cartservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER&quot;</span>
-<a id="__codelineno-3-203" name="__codelineno-3-203"></a><span class="w">                        </span><span class="n">sh</span><span class="w"> </span><span class="s2">&quot;docker rmi ${DOCKER_HUB_USER}/checkoutservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER&quot;</span>
-<a id="__codelineno-3-204" name="__codelineno-3-204"></a><span class="w">                        </span><span class="n">sh</span><span class="w"> </span><span class="s2">&quot;docker rmi ${DOCKER_HUB_USER}/currencyservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER&quot;</span>
-<a id="__codelineno-3-205" name="__codelineno-3-205"></a><span class="w">                        </span><span class="n">sh</span><span class="w"> </span><span class="s2">&quot;docker rmi ${DOCKER_HUB_USER}/emailservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER&quot;</span>
-<a id="__codelineno-3-206" name="__codelineno-3-206"></a><span class="w">                        </span><span class="n">sh</span><span class="w"> </span><span class="s2">&quot;docker rmi ${DOCKER_HUB_USER}/frontend:$DOCKER_TAG_PREFIX.$BUILD_NUMBER&quot;</span>
-<a id="__codelineno-3-207" name="__codelineno-3-207"></a><span class="w">                        </span><span class="n">sh</span><span class="w"> </span><span class="s2">&quot;docker rmi ${DOCKER_HUB_USER}/loadgenerator:$DOCKER_TAG_PREFIX.$BUILD_NUMBER&quot;</span>
-<a id="__codelineno-3-208" name="__codelineno-3-208"></a><span class="w">                        </span><span class="n">sh</span><span class="w"> </span><span class="s2">&quot;docker rmi ${DOCKER_HUB_USER}/paymentservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER&quot;</span>
-<a id="__codelineno-3-209" name="__codelineno-3-209"></a><span class="w">                        </span><span class="n">sh</span><span class="w"> </span><span class="s2">&quot;docker rmi ${DOCKER_HUB_USER}/productcatalogservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER&quot;</span>
-<a id="__codelineno-3-210" name="__codelineno-3-210"></a><span class="w">                        </span><span class="n">sh</span><span class="w"> </span><span class="s2">&quot;docker rmi ${DOCKER_HUB_USER}/recommendationservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER&quot;</span>
-<a id="__codelineno-3-211" name="__codelineno-3-211"></a><span class="w">                        </span><span class="n">sh</span><span class="w"> </span><span class="s2">&quot;docker rmi ${DOCKER_HUB_USER}/shippingservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER&quot;</span>
-<a id="__codelineno-3-212" name="__codelineno-3-212"></a><span class="w">                </span><span class="o">}</span>
+<a id="__codelineno-3-198" name="__codelineno-3-198"></a><span class="w">        </span><span class="o">}</span>
+<a id="__codelineno-3-199" name="__codelineno-3-199"></a>
+<a id="__codelineno-3-200" name="__codelineno-3-200"></a><span class="w">        </span><span class="n">stage</span><span class="o">(</span><span class="s1">&#39;DockerImage CleanUp&#39;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-3-201" name="__codelineno-3-201"></a><span class="w">            </span><span class="n">steps</span><span class="w"> </span><span class="o">{</span><span class="w"> </span>
+<a id="__codelineno-3-202" name="__codelineno-3-202"></a><span class="w">                    </span><span class="n">sh</span><span class="w"> </span><span class="s2">&quot;docker rmi ${DOCKER_HUB_USER}/adservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER&quot;</span>
+<a id="__codelineno-3-203" name="__codelineno-3-203"></a><span class="w">                    </span><span class="n">sh</span><span class="w"> </span><span class="s2">&quot;docker rmi ${DOCKER_HUB_USER}/cartservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER&quot;</span>
+<a id="__codelineno-3-204" name="__codelineno-3-204"></a><span class="w">                    </span><span class="n">sh</span><span class="w"> </span><span class="s2">&quot;docker rmi ${DOCKER_HUB_USER}/checkoutservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER&quot;</span>
+<a id="__codelineno-3-205" name="__codelineno-3-205"></a><span class="w">                    </span><span class="n">sh</span><span class="w"> </span><span class="s2">&quot;docker rmi ${DOCKER_HUB_USER}/currencyservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER&quot;</span>
+<a id="__codelineno-3-206" name="__codelineno-3-206"></a><span class="w">                    </span><span class="n">sh</span><span class="w"> </span><span class="s2">&quot;docker rmi ${DOCKER_HUB_USER}/emailservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER&quot;</span>
+<a id="__codelineno-3-207" name="__codelineno-3-207"></a><span class="w">                    </span><span class="n">sh</span><span class="w"> </span><span class="s2">&quot;docker rmi ${DOCKER_HUB_USER}/frontend:$DOCKER_TAG_PREFIX.$BUILD_NUMBER&quot;</span>
+<a id="__codelineno-3-208" name="__codelineno-3-208"></a><span class="w">                    </span><span class="n">sh</span><span class="w"> </span><span class="s2">&quot;docker rmi ${DOCKER_HUB_USER}/loadgenerator:$DOCKER_TAG_PREFIX.$BUILD_NUMBER&quot;</span>
+<a id="__codelineno-3-209" name="__codelineno-3-209"></a><span class="w">                    </span><span class="n">sh</span><span class="w"> </span><span class="s2">&quot;docker rmi ${DOCKER_HUB_USER}/paymentservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER&quot;</span>
+<a id="__codelineno-3-210" name="__codelineno-3-210"></a><span class="w">                    </span><span class="n">sh</span><span class="w"> </span><span class="s2">&quot;docker rmi ${DOCKER_HUB_USER}/productcatalogservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER&quot;</span>
+<a id="__codelineno-3-211" name="__codelineno-3-211"></a><span class="w">                    </span><span class="n">sh</span><span class="w"> </span><span class="s2">&quot;docker rmi ${DOCKER_HUB_USER}/recommendationservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER&quot;</span>
+<a id="__codelineno-3-212" name="__codelineno-3-212"></a><span class="w">                    </span><span class="n">sh</span><span class="w"> </span><span class="s2">&quot;docker rmi ${DOCKER_HUB_USER}/shippingservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER&quot;</span>
 <a id="__codelineno-3-213" name="__codelineno-3-213"></a><span class="w">            </span><span class="o">}</span>
-<a id="__codelineno-3-214" name="__codelineno-3-214"></a><span class="hll"><span class="w">        </span><span class="c1">// stage(&quot;Kubernetes deploy&quot;){</span>
-</span><a id="__codelineno-3-215" name="__codelineno-3-215"></a><span class="hll"><span class="w">            </span><span class="c1">// steps {</span>
-</span><a id="__codelineno-3-216" name="__codelineno-3-216"></a><span class="hll"><span class="w">            </span><span class="c1">//     withKubeConfig(caCertificate: &#39;&#39;, clusterName: &#39;&#39;, contextName: &#39;&#39;, credentialsId: &#39;cluster-ID&#39;, namespace: &#39;opeyemi-apps&#39;, restrictKubeConfigAccess: false, serverUrl: &#39;https://FDC152307BF6A5337A2C02C976A8D19F.gr7.us-east-2.eks.amazonaws.com&#39;)</span>
-</span><a id="__codelineno-3-217" name="__codelineno-3-217"></a><span class="hll"><span class="w">                </span><span class="c1">//   {</span>
-</span><a id="__codelineno-3-218" name="__codelineno-3-218"></a><span class="hll"><span class="w">                </span><span class="c1">//       sh &#39; kubectl apply -f buildnow.yml -n opeyemi-apps&#39;</span>
-</span><a id="__codelineno-3-219" name="__codelineno-3-219"></a><span class="hll"><span class="w">                </span><span class="c1">//       sh &#39; kubectl get pods -n opeyemi-apps &#39;</span>
-</span><a id="__codelineno-3-220" name="__codelineno-3-220"></a><span class="hll"><span class="w">                </span><span class="c1">//       sh &#39; kubectl get svc -n opeyemi-apps &#39;</span>
-</span><a id="__codelineno-3-221" name="__codelineno-3-221"></a><span class="hll"><span class="w">                    </span><span class="c1">//  sh &quot; kubectl get service -n opeyemi-apps frontend-external | awk &#39;{print \$4}&#39; &quot;</span>
-</span><a id="__codelineno-3-222" name="__codelineno-3-222"></a><span class="hll"><span class="w">                </span><span class="c1">//   }</span>
-</span><a id="__codelineno-3-223" name="__codelineno-3-223"></a><span class="hll"><span class="w">                </span><span class="c1">//       sh &#39; date&#39;</span>
-</span><a id="__codelineno-3-224" name="__codelineno-3-224"></a><span class="hll"><span class="w">            </span><span class="c1">//    }</span>
+<a id="__codelineno-3-214" name="__codelineno-3-214"></a><span class="hll"><span class="w">        </span><span class="o">}</span>
+</span><a id="__codelineno-3-215" name="__codelineno-3-215"></a><span class="hll"><span class="w">    </span><span class="c1">// stage(&quot;Kubernetes deploy&quot;){</span>
+</span><a id="__codelineno-3-216" name="__codelineno-3-216"></a><span class="hll"><span class="w">        </span><span class="c1">// steps {</span>
+</span><a id="__codelineno-3-217" name="__codelineno-3-217"></a><span class="hll"><span class="w">        </span><span class="c1">//     withKubeConfig(caCertificate: &#39;&#39;, clusterName: &#39;&#39;, contextName: &#39;&#39;, credentialsId: &#39;cluster-ID&#39;, namespace: &#39;opeyemi-apps&#39;, restrictKubeConfigAccess: false, serverUrl: &#39;https://FDC152307BF6A5337A2C02C976A8D19F.gr7.us-east-2.eks.amazonaws.com&#39;)</span>
+</span><a id="__codelineno-3-218" name="__codelineno-3-218"></a><span class="hll"><span class="w">            </span><span class="c1">//   {</span>
+</span><a id="__codelineno-3-219" name="__codelineno-3-219"></a><span class="hll"><span class="w">            </span><span class="c1">//       sh &#39; kubectl apply -f buildnow.yml -n opeyemi-apps&#39;</span>
+</span><a id="__codelineno-3-220" name="__codelineno-3-220"></a><span class="hll"><span class="w">            </span><span class="c1">//       sh &#39; kubectl get pods -n opeyemi-apps &#39;</span>
+</span><a id="__codelineno-3-221" name="__codelineno-3-221"></a><span class="hll"><span class="w">            </span><span class="c1">//       sh &#39; kubectl get svc -n opeyemi-apps &#39;</span>
+</span><a id="__codelineno-3-222" name="__codelineno-3-222"></a><span class="hll"><span class="w">                </span><span class="c1">//  sh &quot; kubectl get service -n opeyemi-apps frontend-external | awk &#39;{print \$4}&#39; &quot;</span>
+</span><a id="__codelineno-3-223" name="__codelineno-3-223"></a><span class="hll"><span class="w">            </span><span class="c1">//   }</span>
+</span><a id="__codelineno-3-224" name="__codelineno-3-224"></a><span class="hll"><span class="w">            </span><span class="c1">//       sh &#39; date&#39;</span>
 </span><a id="__codelineno-3-225" name="__codelineno-3-225"></a><span class="hll"><span class="w">        </span><span class="c1">//    }</span>
-</span><a id="__codelineno-3-226" name="__codelineno-3-226"></a><span class="w">        </span><span class="o">}</span>
-<a id="__codelineno-3-227" name="__codelineno-3-227"></a>
-<a id="__codelineno-3-228" name="__codelineno-3-228"></a><span class="w">        </span><span class="n">post</span><span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-3-229" name="__codelineno-3-229"></a><span class="w">            </span><span class="n">always</span><span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-3-230" name="__codelineno-3-230"></a><span class="w">                </span><span class="n">emailext</span><span class="o">(</span>
-<a id="__codelineno-3-231" name="__codelineno-3-231"></a><span class="w">                    </span><span class="nl">attachLog:</span><span class="w"> </span><span class="kc">true</span><span class="o">,</span>
-<a id="__codelineno-3-232" name="__codelineno-3-232"></a><span class="w">                    </span><span class="nl">attachmentsPattern:</span><span class="w"> </span><span class="s1">&#39;trivy-fs-report_$BUILD_NUMBER.txt, dependency-check-report.html, gitleaks_report-$BUILD_NUMBER.json&#39;</span><span class="o">,</span>
-<a id="__codelineno-3-233" name="__codelineno-3-233"></a><span class="w">                    </span><span class="nl">body:</span><span class="w"> </span><span class="s1">&#39;&#39;&#39;</span>
-<a id="__codelineno-3-234" name="__codelineno-3-234"></a><span class="s1">                    Project &lt;strong&gt;&quot;$PROJECT_NAME&quot;&lt;/strong&gt; has completed.&lt;br&gt;</span>
-<a id="__codelineno-3-235" name="__codelineno-3-235"></a><span class="s1">                    Build Number: $BUILD_NUMBER &lt;br&gt; Build Tag: $BUILD_TAG &lt;br&gt;</span>
-<a id="__codelineno-3-236" name="__codelineno-3-236"></a><span class="s1">                    Job Url: &lt;a href=&quot;$JOB_URL&quot;&gt;Job URL&lt;/a&gt; &lt;br&gt; Build Status: &lt;strong&gt;$BUILD_STATUS&lt;/strong&gt;&lt;br&gt;&lt;br&gt;</span>
-<a id="__codelineno-3-237" name="__codelineno-3-237"></a><span class="s1">                    Check console output at &lt;a href=&quot;${BUILD_URL}console&quot;&gt;Console URL&lt;/a&gt; to view the results.</span>
-<a id="__codelineno-3-238" name="__codelineno-3-238"></a><span class="s1">                    &#39;&#39;&#39;</span><span class="o">,</span>
-<a id="__codelineno-3-239" name="__codelineno-3-239"></a><span class="w">                    </span><span class="nl">subject:</span><span class="w"> </span><span class="s1">&#39;Project: $PROJECT_NAME, Build #: $BUILD_NUMBER - $BUILD_STATUS&#39;</span><span class="o">,</span>
-<a id="__codelineno-3-240" name="__codelineno-3-240"></a><span class="w">                    </span><span class="nl">to:</span><span class="w"> </span><span class="s2">&quot;$DEST_EMAIL&quot;</span><span class="o">,</span>
-<a id="__codelineno-3-241" name="__codelineno-3-241"></a><span class="w">                    </span><span class="nl">replyTo:</span><span class="w"> </span><span class="s2">&quot;$REPLYTO_EMAIL&quot;</span>
-<a id="__codelineno-3-242" name="__codelineno-3-242"></a><span class="w">                </span><span class="o">)</span>
-<a id="__codelineno-3-243" name="__codelineno-3-243"></a><span class="w">            </span><span class="o">}</span>
+</span><a id="__codelineno-3-226" name="__codelineno-3-226"></a><span class="w">    </span><span class="c1">//    }</span>
+<a id="__codelineno-3-227" name="__codelineno-3-227"></a><span class="w">    </span><span class="o">}</span>
+<a id="__codelineno-3-228" name="__codelineno-3-228"></a>
+<a id="__codelineno-3-229" name="__codelineno-3-229"></a><span class="w">    </span><span class="n">post</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-3-230" name="__codelineno-3-230"></a><span class="w">        </span><span class="n">always</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-3-231" name="__codelineno-3-231"></a><span class="w">            </span><span class="n">emailext</span><span class="o">(</span>
+<a id="__codelineno-3-232" name="__codelineno-3-232"></a><span class="w">                </span><span class="nl">attachLog:</span><span class="w"> </span><span class="kc">true</span><span class="o">,</span>
+<a id="__codelineno-3-233" name="__codelineno-3-233"></a><span class="w">                </span><span class="nl">attachmentsPattern:</span><span class="w"> </span><span class="s1">&#39;trivy-fs-report_$BUILD_NUMBER.txt, dependency-check-report.html, gitleaks_report-$BUILD_NUMBER.json&#39;</span><span class="o">,</span>
+<a id="__codelineno-3-234" name="__codelineno-3-234"></a><span class="w">                </span><span class="nl">body:</span><span class="w"> </span><span class="s1">&#39;&#39;&#39;</span>
+<a id="__codelineno-3-235" name="__codelineno-3-235"></a><span class="s1">                Project &lt;strong&gt;&quot;$PROJECT_NAME&quot;&lt;/strong&gt; has completed.&lt;br&gt;</span>
+<a id="__codelineno-3-236" name="__codelineno-3-236"></a><span class="s1">                Build Number: $BUILD_NUMBER &lt;br&gt; Build Tag: $BUILD_TAG &lt;br&gt;</span>
+<a id="__codelineno-3-237" name="__codelineno-3-237"></a><span class="s1">                Job Url: &lt;a href=&quot;$JOB_URL&quot;&gt;Job URL&lt;/a&gt; &lt;br&gt; Build Status: &lt;strong&gt;$BUILD_STATUS&lt;/strong&gt;&lt;br&gt;&lt;br&gt;</span>
+<a id="__codelineno-3-238" name="__codelineno-3-238"></a><span class="s1">                Check console output at &lt;a href=&quot;${BUILD_URL}console&quot;&gt;Console URL&lt;/a&gt; to view the results.</span>
+<a id="__codelineno-3-239" name="__codelineno-3-239"></a><span class="s1">                &#39;&#39;&#39;</span><span class="o">,</span>
+<a id="__codelineno-3-240" name="__codelineno-3-240"></a><span class="w">                </span><span class="nl">subject:</span><span class="w"> </span><span class="s1">&#39;Project: $PROJECT_NAME, Build #: $BUILD_NUMBER - $BUILD_STATUS&#39;</span><span class="o">,</span>
+<a id="__codelineno-3-241" name="__codelineno-3-241"></a><span class="w">                </span><span class="nl">to:</span><span class="w"> </span><span class="s2">&quot;$DEST_EMAIL&quot;</span><span class="o">,</span>
+<a id="__codelineno-3-242" name="__codelineno-3-242"></a><span class="w">                </span><span class="nl">replyTo:</span><span class="w"> </span><span class="s2">&quot;$REPLYTO_EMAIL&quot;</span>
+<a id="__codelineno-3-243" name="__codelineno-3-243"></a><span class="w">            </span><span class="o">)</span>
 <a id="__codelineno-3-244" name="__codelineno-3-244"></a><span class="w">        </span><span class="o">}</span>
 <a id="__codelineno-3-245" name="__codelineno-3-245"></a><span class="w">    </span><span class="o">}</span>
-<a id="__codelineno-3-246" name="__codelineno-3-246"></a><span class="w">    </span><span class="c1">//</span>
+<a id="__codelineno-3-246" name="__codelineno-3-246"></a><span class="o">}</span>
 </code></pre></div></td></tr></table></div>
-<ol>
-<li>Lines 9-21 contain environment variables. Replace the values according to your Jenkins server configuration</li>
-<li>Uncomment lines 214 to 225 when you have configured your EKS cluster and set the parameters accordingly in your Jenkins server </li>
-</ol>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" checked/><span class="task-list-indicator"></span></label> Lines 9-21 contain environment variables. Replace the values according to your Jenkins server configuration</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" checked/><span class="task-list-indicator"></span></label> Uncomment lines 214 to 225 when you have configured your EKS cluster and set the parameters accordingly in your Jenkins server </li>
+</ul>
 </details>
 </details>
 <h2 id="jenkins-plugins-to-install">Jenkins Plugins to install<a class="headerlink" href="#jenkins-plugins-to-install" title="Copy this link to reference this section">&para;</a></h2>
@@ -2160,83 +2169,99 @@ This VPN server is also "disposable", meaning, you can create and delete it anyt
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" checked/><span class="task-list-indicator"></span></label> IAMFullAccess</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" checked/><span class="task-list-indicator"></span></label> IAMUserChangePolicy</li>
 </ul>
+<h2 id="create-eks-cluster">Create EKS Cluster<a class="headerlink" href="#create-eks-cluster" title="Copy this link to reference this section">&para;</a></h2>
+<p>Create your EKS Cluster</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span>
+<span class="normal"><a href="#__codelineno-4-2">2</a></span>
+<span class="normal"><a href="#__codelineno-4-3">3</a></span>
+<span class="normal"><a href="#__codelineno-4-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a>eksctl<span class="w"> </span>create<span class="w"> </span>cluster<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="w">  </span>--name<span class="w"> </span>ope-k8s-cluster<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="w">  </span>--region<span class="w"> </span>us-east-2<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4"></a><span class="w">  </span>--with-oidc<span class="w"> </span>
+</code></pre></div></td></tr></table></div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<ul>
+<li>Replace the clsuter name with your desired name</li>
+</ul>
+</div>
 <h2 id="install-and-setup-argocd-on-eks">Install and Setup ArgoCD on EKS<a class="headerlink" href="#install-and-setup-argocd-on-eks" title="Copy this link to reference this section">&para;</a></h2>
 <h2 id="install-and-setup-prometheus-stack-on-eks-using-helm">Install and setup Prometheus Stack on EKS using Helm<a class="headerlink" href="#install-and-setup-prometheus-stack-on-eks-using-helm" title="Copy this link to reference this section">&para;</a></h2>
 <h3 id="install-helm">Install Helm<a class="headerlink" href="#install-helm" title="Copy this link to reference this section">&para;</a></h3>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a>curl<span class="w"> </span>https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3<span class="w"> </span><span class="p">|</span><span class="w"> </span>bash
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a>curl<span class="w"> </span>https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3<span class="w"> </span><span class="p">|</span><span class="w"> </span>bash
 </code></pre></div></td></tr></table></div>
 <h3 id="check-helm-version">Check Helm version<a class="headerlink" href="#check-helm-version" title="Copy this link to reference this section">&para;</a></h3>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a>helm<span class="w"> </span>version
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a>helm<span class="w"> </span>version
 </code></pre></div></td></tr></table></div>
 <h3 id="add-helm-repo">Add Helm repo<a class="headerlink" href="#add-helm-repo" title="Copy this link to reference this section">&para;</a></h3>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span>
-<span class="normal"><a href="#__codelineno-6-2">2</a></span>
-<span class="normal"><a href="#__codelineno-6-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a>helm<span class="w"> </span>repo<span class="w"> </span>add<span class="w"> </span>prometheus-community<span class="w"> </span>https://prometheus-community.github.io/helm-charts
-<a id="__codelineno-6-2" name="__codelineno-6-2"></a>
-<a id="__codelineno-6-3" name="__codelineno-6-3"></a>helm<span class="w"> </span>repo<span class="w"> </span>update
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1">1</a></span>
+<span class="normal"><a href="#__codelineno-7-2">2</a></span>
+<span class="normal"><a href="#__codelineno-7-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a>helm<span class="w"> </span>repo<span class="w"> </span>add<span class="w"> </span>prometheus-community<span class="w"> </span>https://prometheus-community.github.io/helm-charts
+<a id="__codelineno-7-2" name="__codelineno-7-2"></a>
+<a id="__codelineno-7-3" name="__codelineno-7-3"></a>helm<span class="w"> </span>repo<span class="w"> </span>update
 </code></pre></div></td></tr></table></div>
 <blockquote>
 <p><strong><em>(Optionally) Search Available Hem Charts</em></strong>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a>helm<span class="w"> </span>search<span class="w"> </span>repo<span class="w"> </span>prometheus-community
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a>helm<span class="w"> </span>search<span class="w"> </span>repo<span class="w"> </span>prometheus-community
 </code></pre></div></td></tr></table></div></p>
 </blockquote>
 <h3 id="create-namespace">create namespace<a class="headerlink" href="#create-namespace" title="Copy this link to reference this section">&para;</a></h3>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a>kubectl<span class="w"> </span>create<span class="w"> </span>namespace<span class="w"> </span>monitoring
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1"></a>kubectl<span class="w"> </span>create<span class="w"> </span>namespace<span class="w"> </span>monitoring
 </code></pre></div></td></tr></table></div>
 <h3 id="install-prometheus-stack-into-monitoring-namespace">Install Prometheus Stack into monitoring namespace<a class="headerlink" href="#install-prometheus-stack-into-monitoring-namespace" title="Copy this link to reference this section">&para;</a></h3>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span>
-<span class="normal"><a href="#__codelineno-9-2">2</a></span>
-<span class="normal"><a href="#__codelineno-9-3">3</a></span>
-<span class="normal"><a href="#__codelineno-9-4">4</a></span>
-<span class="normal"><a href="#__codelineno-9-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1"></a>helm<span class="w"> </span>install<span class="w"> </span>prometheus<span class="w"> </span>prometheus-community/kube-prometheus-stack<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-9-2" name="__codelineno-9-2"></a><span class="w">  </span>-n<span class="w"> </span>monitoring<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-9-3" name="__codelineno-9-3"></a><span class="w">  </span>--set<span class="w"> </span>prometheus.prometheusSpec.maximumStartupDurationSeconds<span class="o">=</span><span class="m">300</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-9-4" name="__codelineno-9-4"></a><span class="w">  </span>--set<span class="w"> </span>alertmanager.persistence.storageClass<span class="o">=</span><span class="s2">&quot;gp2&quot;</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-9-5" name="__codelineno-9-5"></a><span class="w">  </span>--set<span class="w"> </span>server.persistentVolume.storageClass<span class="o">=</span><span class="s2">&quot;gp2&quot;</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1">1</a></span>
+<span class="normal"><a href="#__codelineno-10-2">2</a></span>
+<span class="normal"><a href="#__codelineno-10-3">3</a></span>
+<span class="normal"><a href="#__codelineno-10-4">4</a></span>
+<span class="normal"><a href="#__codelineno-10-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1"></a>helm<span class="w"> </span>install<span class="w"> </span>prometheus<span class="w"> </span>prometheus-community/kube-prometheus-stack<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2"></a><span class="w">  </span>-n<span class="w"> </span>monitoring<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3"></a><span class="w">  </span>--set<span class="w"> </span>prometheus.prometheusSpec.maximumStartupDurationSeconds<span class="o">=</span><span class="m">300</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4"></a><span class="w">  </span>--set<span class="w"> </span>alertmanager.persistence.storageClass<span class="o">=</span><span class="s2">&quot;gp2&quot;</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5"></a><span class="w">  </span>--set<span class="w"> </span>server.persistentVolume.storageClass<span class="o">=</span><span class="s2">&quot;gp2&quot;</span>
 </code></pre></div></td></tr></table></div>
 <h3 id="check-running-status-of-pods-to-verify-deployment">Check running status of pods to verify deployment<a class="headerlink" href="#check-running-status-of-pods-to-verify-deployment" title="Copy this link to reference this section">&para;</a></h3>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1"></a>kubectl<span class="w"> </span>--namespace<span class="w"> </span>monitoring<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-l<span class="w"> </span><span class="s2">&quot;release=prometheus&quot;</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1"></a>kubectl<span class="w"> </span>--namespace<span class="w"> </span>monitoring<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-l<span class="w"> </span><span class="s2">&quot;release=prometheus&quot;</span>
 </code></pre></div></td></tr></table></div>
 <p>OR
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>monitoring
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>monitoring
 </code></pre></div></td></tr></table></div></p>
 <h3 id="list-all-services-in-the-monitoring-namespace">List all services in the monitoring namespace<a class="headerlink" href="#list-all-services-in-the-monitoring-namespace" title="Copy this link to reference this section">&para;</a></h3>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>svc<span class="w"> </span>-n<span class="w"> </span>monitoring
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-13-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>svc<span class="w"> </span>-n<span class="w"> </span>monitoring
 </code></pre></div></td></tr></table></div>
 <h3 id="display-grafana-url-optional">Display Grafana URL (optional)<a class="headerlink" href="#display-grafana-url-optional" title="Copy this link to reference this section">&para;</a></h3>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-13-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>svc<span class="w"> </span>-n<span class="w"> </span>monitoring<span class="w"> </span>prometheus-grafana
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-14-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>svc<span class="w"> </span>-n<span class="w"> </span>monitoring<span class="w"> </span>prometheus-grafana
 </code></pre></div></td></tr></table></div>
 <h3 id="display-prometheus-url-optional">Display Prometheus URL (optional)<a class="headerlink" href="#display-prometheus-url-optional" title="Copy this link to reference this section">&para;</a></h3>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-14-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>svc<span class="w"> </span>-n<span class="w"> </span>monitoring<span class="w"> </span>prometheus-kube-prometheus-prometheus
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-15-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>svc<span class="w"> </span>-n<span class="w"> </span>monitoring<span class="w"> </span>prometheus-kube-prometheus-prometheus
 </code></pre></div></td></tr></table></div>
 <h3 id="expose-grafana-on-a-loadbalancer">Expose Grafana on a LoadBalancer<a class="headerlink" href="#expose-grafana-on-a-loadbalancer" title="Copy this link to reference this section">&para;</a></h3>
 <p>Change Grafana Service Type from ClusterIP to LoadBalancer to expose for external access</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-15-1">1</a></span>
-<span class="normal"><a href="#__codelineno-15-2">2</a></span>
-<span class="normal"><a href="#__codelineno-15-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1"></a>kubectl<span class="w"> </span>patch<span class="w"> </span>svc<span class="w"> </span>prometheus-grafana<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-15-2" name="__codelineno-15-2"></a><span class="w">  </span>-n<span class="w"> </span>monitoring<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-15-3" name="__codelineno-15-3"></a><span class="w">  </span>-p<span class="w"> </span><span class="s1">&#39;{&quot;spec&quot;: {&quot;type&quot;: &quot;LoadBalancer&quot;}}&#39;</span>
-</code></pre></div></td></tr></table></div>
-<h3 id="expose-prometheus-on-a-loadbalancer">Expose Prometheus on a LoadBalancer<a class="headerlink" href="#expose-prometheus-on-a-loadbalancer" title="Copy this link to reference this section">&para;</a></h3>
-<p>Change Prometheus Service Type from ClusterIP to LoadBalancer to expose for external access</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-16-1">1</a></span>
 <span class="normal"><a href="#__codelineno-16-2">2</a></span>
-<span class="normal"><a href="#__codelineno-16-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1"></a>kubectl<span class="w"> </span>patch<span class="w"> </span>svc<span class="w"> </span>prometheus-kube-prometheus-prometheus<span class="w"> </span><span class="se">\</span>
+<span class="normal"><a href="#__codelineno-16-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1"></a>kubectl<span class="w"> </span>patch<span class="w"> </span>svc<span class="w"> </span>prometheus-grafana<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-16-2" name="__codelineno-16-2"></a><span class="w">  </span>-n<span class="w"> </span>monitoring<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-16-3" name="__codelineno-16-3"></a><span class="w">  </span>-p<span class="w"> </span><span class="s1">&#39;{&quot;spec&quot;: {&quot;type&quot;: &quot;LoadBalancer&quot;}}&#39;</span>
 </code></pre></div></td></tr></table></div>
+<h3 id="expose-prometheus-on-a-loadbalancer">Expose Prometheus on a LoadBalancer<a class="headerlink" href="#expose-prometheus-on-a-loadbalancer" title="Copy this link to reference this section">&para;</a></h3>
+<p>Change Prometheus Service Type from ClusterIP to LoadBalancer to expose for external access</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-17-1">1</a></span>
+<span class="normal"><a href="#__codelineno-17-2">2</a></span>
+<span class="normal"><a href="#__codelineno-17-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1"></a>kubectl<span class="w"> </span>patch<span class="w"> </span>svc<span class="w"> </span>prometheus-kube-prometheus-prometheus<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2"></a><span class="w">  </span>-n<span class="w"> </span>monitoring<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-17-3" name="__codelineno-17-3"></a><span class="w">  </span>-p<span class="w"> </span><span class="s1">&#39;{&quot;spec&quot;: {&quot;type&quot;: &quot;LoadBalancer&quot;}}&#39;</span>
+</code></pre></div></td></tr></table></div>
 <h3 id="display-loadbalancer-url-for-grafana-and-prometheus">Display LoadBalancer URL for Grafana and Prometheus<a class="headerlink" href="#display-loadbalancer-url-for-grafana-and-prometheus" title="Copy this link to reference this section">&para;</a></h3>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-17-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>svc<span class="w"> </span>-n<span class="w"> </span>monitoring
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-18-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>svc<span class="w"> </span>-n<span class="w"> </span>monitoring
 </code></pre></div></td></tr></table></div>
 <p>You may need to wait a while for the <code>EXTERNAL-IP</code> field to be populated, then open each URL for both Grafana and Prometheus in your browser (Grafana on port 80, Prometheus on port 9090)</p>
 <h3 id="get-grafana-password">Get Grafana password<a class="headerlink" href="#get-grafana-password" title="Copy this link to reference this section">&para;</a></h3>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-18-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1"></a>kubectl<span class="w"> </span>--namespace<span class="w"> </span>monitoring<span class="w"> </span>get<span class="w"> </span>secrets<span class="w"> </span>prometheus-grafana<span class="w"> </span>-o<span class="w"> </span>json<span class="w"> </span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-19-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1"></a>kubectl<span class="w"> </span>--namespace<span class="w"> </span>monitoring<span class="w"> </span>get<span class="w"> </span>secrets<span class="w"> </span>prometheus-grafana<span class="w"> </span>-o<span class="w"> </span>json<span class="w"> </span>
 </code></pre></div></td></tr></table></div>
 <p>Copy the admin-password from the json output and decode it in base-64 using the command below</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-19-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;&lt;admin-password&gt;&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>base64<span class="w"> </span>--decode
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-20-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;&lt;admin-password&gt;&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>base64<span class="w"> </span>--decode
 </code></pre></div></td></tr></table></div>
 <p>OR use this command</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-20-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1"></a>kubectl<span class="w"> </span>--namespace<span class="w"> </span>monitoring<span class="w"> </span>get<span class="w"> </span>secrets<span class="w"> </span>prometheus-grafana<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s2">&quot;{.data.admin-password}&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>base64<span class="w"> </span>-d<span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="nb">echo</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-21-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1"></a>kubectl<span class="w"> </span>--namespace<span class="w"> </span>monitoring<span class="w"> </span>get<span class="w"> </span>secrets<span class="w"> </span>prometheus-grafana<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s2">&quot;{.data.admin-password}&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>base64<span class="w"> </span>-d<span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="nb">echo</span>
 </code></pre></div></td></tr></table></div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
@@ -2250,91 +2275,91 @@ This VPN server is also "disposable", meaning, you can create and delete it anyt
 <details class="code-file">
 <summary>Install &amp; Configure Node-Exporter on linux</summary>
 <h2 id="install-configure-node-exporter-on-linux">Install &amp; Configure Node-Exporter on linux<a class="headerlink" href="#install-configure-node-exporter-on-linux" title="Copy this link to reference this section">&para;</a></h2>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-21-1"> 1</a></span>
-<span class="normal"><a href="#__codelineno-21-2"> 2</a></span>
-<span class="normal"><a href="#__codelineno-21-3"> 3</a></span>
-<span class="normal"><a href="#__codelineno-21-4"> 4</a></span>
-<span class="normal"><a href="#__codelineno-21-5"> 5</a></span>
-<span class="normal"><a href="#__codelineno-21-6"> 6</a></span>
-<span class="normal"><a href="#__codelineno-21-7"> 7</a></span>
-<span class="normal"><a href="#__codelineno-21-8"> 8</a></span>
-<span class="normal"><a href="#__codelineno-21-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-21-10">10</a></span>
-<span class="normal"><a href="#__codelineno-21-11">11</a></span>
-<span class="normal"><a href="#__codelineno-21-12">12</a></span>
-<span class="normal"><a href="#__codelineno-21-13">13</a></span>
-<span class="normal"><a href="#__codelineno-21-14">14</a></span>
-<span class="normal"><a href="#__codelineno-21-15">15</a></span>
-<span class="normal"><a href="#__codelineno-21-16">16</a></span>
-<span class="normal"><a href="#__codelineno-21-17">17</a></span>
-<span class="normal"><a href="#__codelineno-21-18">18</a></span>
-<span class="normal"><a href="#__codelineno-21-19">19</a></span>
-<span class="normal"><a href="#__codelineno-21-20">20</a></span>
-<span class="normal"><a href="#__codelineno-21-21">21</a></span>
-<span class="normal"><a href="#__codelineno-21-22">22</a></span>
-<span class="normal"><a href="#__codelineno-21-23">23</a></span>
-<span class="normal"><a href="#__codelineno-21-24">24</a></span>
-<span class="normal"><a href="#__codelineno-21-25">25</a></span>
-<span class="normal"><a href="#__codelineno-21-26">26</a></span>
-<span class="normal"><a href="#__codelineno-21-27">27</a></span>
-<span class="normal"><a href="#__codelineno-21-28">28</a></span>
-<span class="normal"><a href="#__codelineno-21-29">29</a></span>
-<span class="normal"><a href="#__codelineno-21-30">30</a></span>
-<span class="normal"><a href="#__codelineno-21-31">31</a></span>
-<span class="normal"><a href="#__codelineno-21-32">32</a></span>
-<span class="normal"><a href="#__codelineno-21-33">33</a></span>
-<span class="normal"><a href="#__codelineno-21-34">34</a></span>
-<span class="normal"><a href="#__codelineno-21-35">35</a></span>
-<span class="normal"><a href="#__codelineno-21-36">36</a></span>
-<span class="normal"><a href="#__codelineno-21-37">37</a></span>
-<span class="normal"><a href="#__codelineno-21-38">38</a></span>
-<span class="normal"><a href="#__codelineno-21-39">39</a></span>
-<span class="normal"><a href="#__codelineno-21-40">40</a></span>
-<span class="normal"><a href="#__codelineno-21-41">41</a></span>
-<span class="normal"><a href="#__codelineno-21-42">42</a></span>
-<span class="normal"><a href="#__codelineno-21-43">43</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1"></a><span class="ch">#!/bin/bash</span>
-<a id="__codelineno-21-2" name="__codelineno-21-2"></a>
-<a id="__codelineno-21-3" name="__codelineno-21-3"></a><span class="nb">set</span><span class="w"> </span>-e
-<a id="__codelineno-21-4" name="__codelineno-21-4"></a>
-<a id="__codelineno-21-5" name="__codelineno-21-5"></a><span class="nv">NODE_EXPORTER_VERSION</span><span class="o">=</span><span class="s2">&quot;1.8.1&quot;</span>
-<a id="__codelineno-21-6" name="__codelineno-21-6"></a><span class="nv">DOWNLOAD_URL</span><span class="o">=</span><span class="s2">&quot;https://github.com/prometheus/node_exporter/releases/download/v</span><span class="si">${</span><span class="nv">NODE_EXPORTER_VERSION</span><span class="si">}</span><span class="s2">/node_exporter-</span><span class="si">${</span><span class="nv">NODE_EXPORTER_VERSION</span><span class="si">}</span><span class="s2">.linux-amd64.tar.gz&quot;</span>
-<a id="__codelineno-21-7" name="__codelineno-21-7"></a>
-<a id="__codelineno-21-8" name="__codelineno-21-8"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;🚀 Installing Node Exporter v</span><span class="si">${</span><span class="nv">NODE_EXPORTER_VERSION</span><span class="si">}</span><span class="s2">...&quot;</span>
-<a id="__codelineno-21-9" name="__codelineno-21-9"></a>
-<a id="__codelineno-21-10" name="__codelineno-21-10"></a><span class="c1"># Download and extract</span>
-<a id="__codelineno-21-11" name="__codelineno-21-11"></a>curl<span class="w"> </span>-LO<span class="w"> </span><span class="si">${</span><span class="nv">DOWNLOAD_URL</span><span class="si">}</span>
-<a id="__codelineno-21-12" name="__codelineno-21-12"></a>tar<span class="w"> </span>-xzf<span class="w"> </span>node_exporter-<span class="si">${</span><span class="nv">NODE_EXPORTER_VERSION</span><span class="si">}</span>.linux-amd64.tar.gz
-<a id="__codelineno-21-13" name="__codelineno-21-13"></a>sudo<span class="w"> </span>mv<span class="w"> </span>node_exporter-<span class="si">${</span><span class="nv">NODE_EXPORTER_VERSION</span><span class="si">}</span>.linux-amd64/node_exporter<span class="w"> </span>/usr/local/bin/
-<a id="__codelineno-21-14" name="__codelineno-21-14"></a>rm<span class="w"> </span>-rf<span class="w"> </span>node_exporter-<span class="si">${</span><span class="nv">NODE_EXPORTER_VERSION</span><span class="si">}</span>.linux-amd64*
-<a id="__codelineno-21-15" name="__codelineno-21-15"></a>
-<a id="__codelineno-21-16" name="__codelineno-21-16"></a><span class="c1"># Create user</span>
-<a id="__codelineno-21-17" name="__codelineno-21-17"></a>sudo<span class="w"> </span>useradd<span class="w"> </span>-rs<span class="w"> </span>/bin/false<span class="w"> </span>node_exporter<span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nb">true</span>
-<a id="__codelineno-21-18" name="__codelineno-21-18"></a>
-<a id="__codelineno-21-19" name="__codelineno-21-19"></a><span class="c1"># Create systemd service</span>
-<a id="__codelineno-21-20" name="__codelineno-21-20"></a>cat<span class="w"> </span><span class="s">&lt;&lt;EOF | sudo tee /etc/systemd/system/node_exporter.service</span>
-<a id="__codelineno-21-21" name="__codelineno-21-21"></a><span class="s">[Unit]</span>
-<a id="__codelineno-21-22" name="__codelineno-21-22"></a><span class="s">Description=Node Exporter</span>
-<a id="__codelineno-21-23" name="__codelineno-21-23"></a><span class="s">Wants=network-online.target</span>
-<a id="__codelineno-21-24" name="__codelineno-21-24"></a><span class="s">After=network-online.target</span>
-<a id="__codelineno-21-25" name="__codelineno-21-25"></a>
-<a id="__codelineno-21-26" name="__codelineno-21-26"></a><span class="s">[Service]</span>
-<a id="__codelineno-21-27" name="__codelineno-21-27"></a><span class="s">User=node_exporter</span>
-<a id="__codelineno-21-28" name="__codelineno-21-28"></a><span class="s">Group=node_exporter</span>
-<a id="__codelineno-21-29" name="__codelineno-21-29"></a><span class="s">Type=simple</span>
-<a id="__codelineno-21-30" name="__codelineno-21-30"></a><span class="s">ExecStart=/usr/local/bin/node_exporter</span>
-<a id="__codelineno-21-31" name="__codelineno-21-31"></a>
-<a id="__codelineno-21-32" name="__codelineno-21-32"></a><span class="s">[Install]</span>
-<a id="__codelineno-21-33" name="__codelineno-21-33"></a><span class="s">WantedBy=default.target</span>
-<a id="__codelineno-21-34" name="__codelineno-21-34"></a><span class="s">EOF</span>
-<a id="__codelineno-21-35" name="__codelineno-21-35"></a>
-<a id="__codelineno-21-36" name="__codelineno-21-36"></a><span class="c1"># Reload and start</span>
-<a id="__codelineno-21-37" name="__codelineno-21-37"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>daemon-reload
-<a id="__codelineno-21-38" name="__codelineno-21-38"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>--now<span class="w"> </span>node_exporter
-<a id="__codelineno-21-39" name="__codelineno-21-39"></a>
-<a id="__codelineno-21-40" name="__codelineno-21-40"></a>
-<a id="__codelineno-21-41" name="__codelineno-21-41"></a><span class="c1"># Verify</span>
-<a id="__codelineno-21-42" name="__codelineno-21-42"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;✅ Node Exporter is running!&quot;</span>
-<a id="__codelineno-21-43" name="__codelineno-21-43"></a>curl<span class="w"> </span>-s<span class="w"> </span>http://localhost:9100/metrics<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-n<span class="w"> </span><span class="m">5</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-22-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-22-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-22-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-22-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-22-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-22-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-22-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-22-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-22-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-22-10">10</a></span>
+<span class="normal"><a href="#__codelineno-22-11">11</a></span>
+<span class="normal"><a href="#__codelineno-22-12">12</a></span>
+<span class="normal"><a href="#__codelineno-22-13">13</a></span>
+<span class="normal"><a href="#__codelineno-22-14">14</a></span>
+<span class="normal"><a href="#__codelineno-22-15">15</a></span>
+<span class="normal"><a href="#__codelineno-22-16">16</a></span>
+<span class="normal"><a href="#__codelineno-22-17">17</a></span>
+<span class="normal"><a href="#__codelineno-22-18">18</a></span>
+<span class="normal"><a href="#__codelineno-22-19">19</a></span>
+<span class="normal"><a href="#__codelineno-22-20">20</a></span>
+<span class="normal"><a href="#__codelineno-22-21">21</a></span>
+<span class="normal"><a href="#__codelineno-22-22">22</a></span>
+<span class="normal"><a href="#__codelineno-22-23">23</a></span>
+<span class="normal"><a href="#__codelineno-22-24">24</a></span>
+<span class="normal"><a href="#__codelineno-22-25">25</a></span>
+<span class="normal"><a href="#__codelineno-22-26">26</a></span>
+<span class="normal"><a href="#__codelineno-22-27">27</a></span>
+<span class="normal"><a href="#__codelineno-22-28">28</a></span>
+<span class="normal"><a href="#__codelineno-22-29">29</a></span>
+<span class="normal"><a href="#__codelineno-22-30">30</a></span>
+<span class="normal"><a href="#__codelineno-22-31">31</a></span>
+<span class="normal"><a href="#__codelineno-22-32">32</a></span>
+<span class="normal"><a href="#__codelineno-22-33">33</a></span>
+<span class="normal"><a href="#__codelineno-22-34">34</a></span>
+<span class="normal"><a href="#__codelineno-22-35">35</a></span>
+<span class="normal"><a href="#__codelineno-22-36">36</a></span>
+<span class="normal"><a href="#__codelineno-22-37">37</a></span>
+<span class="normal"><a href="#__codelineno-22-38">38</a></span>
+<span class="normal"><a href="#__codelineno-22-39">39</a></span>
+<span class="normal"><a href="#__codelineno-22-40">40</a></span>
+<span class="normal"><a href="#__codelineno-22-41">41</a></span>
+<span class="normal"><a href="#__codelineno-22-42">42</a></span>
+<span class="normal"><a href="#__codelineno-22-43">43</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1"></a><span class="ch">#!/bin/bash</span>
+<a id="__codelineno-22-2" name="__codelineno-22-2"></a>
+<a id="__codelineno-22-3" name="__codelineno-22-3"></a><span class="nb">set</span><span class="w"> </span>-e
+<a id="__codelineno-22-4" name="__codelineno-22-4"></a>
+<a id="__codelineno-22-5" name="__codelineno-22-5"></a><span class="nv">NODE_EXPORTER_VERSION</span><span class="o">=</span><span class="s2">&quot;1.8.1&quot;</span>
+<a id="__codelineno-22-6" name="__codelineno-22-6"></a><span class="nv">DOWNLOAD_URL</span><span class="o">=</span><span class="s2">&quot;https://github.com/prometheus/node_exporter/releases/download/v</span><span class="si">${</span><span class="nv">NODE_EXPORTER_VERSION</span><span class="si">}</span><span class="s2">/node_exporter-</span><span class="si">${</span><span class="nv">NODE_EXPORTER_VERSION</span><span class="si">}</span><span class="s2">.linux-amd64.tar.gz&quot;</span>
+<a id="__codelineno-22-7" name="__codelineno-22-7"></a>
+<a id="__codelineno-22-8" name="__codelineno-22-8"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;🚀 Installing Node Exporter v</span><span class="si">${</span><span class="nv">NODE_EXPORTER_VERSION</span><span class="si">}</span><span class="s2">...&quot;</span>
+<a id="__codelineno-22-9" name="__codelineno-22-9"></a>
+<a id="__codelineno-22-10" name="__codelineno-22-10"></a><span class="c1"># Download and extract</span>
+<a id="__codelineno-22-11" name="__codelineno-22-11"></a>curl<span class="w"> </span>-LO<span class="w"> </span><span class="si">${</span><span class="nv">DOWNLOAD_URL</span><span class="si">}</span>
+<a id="__codelineno-22-12" name="__codelineno-22-12"></a>tar<span class="w"> </span>-xzf<span class="w"> </span>node_exporter-<span class="si">${</span><span class="nv">NODE_EXPORTER_VERSION</span><span class="si">}</span>.linux-amd64.tar.gz
+<a id="__codelineno-22-13" name="__codelineno-22-13"></a>sudo<span class="w"> </span>mv<span class="w"> </span>node_exporter-<span class="si">${</span><span class="nv">NODE_EXPORTER_VERSION</span><span class="si">}</span>.linux-amd64/node_exporter<span class="w"> </span>/usr/local/bin/
+<a id="__codelineno-22-14" name="__codelineno-22-14"></a>rm<span class="w"> </span>-rf<span class="w"> </span>node_exporter-<span class="si">${</span><span class="nv">NODE_EXPORTER_VERSION</span><span class="si">}</span>.linux-amd64*
+<a id="__codelineno-22-15" name="__codelineno-22-15"></a>
+<a id="__codelineno-22-16" name="__codelineno-22-16"></a><span class="c1"># Create user</span>
+<a id="__codelineno-22-17" name="__codelineno-22-17"></a>sudo<span class="w"> </span>useradd<span class="w"> </span>-rs<span class="w"> </span>/bin/false<span class="w"> </span>node_exporter<span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nb">true</span>
+<a id="__codelineno-22-18" name="__codelineno-22-18"></a>
+<a id="__codelineno-22-19" name="__codelineno-22-19"></a><span class="c1"># Create systemd service</span>
+<a id="__codelineno-22-20" name="__codelineno-22-20"></a>cat<span class="w"> </span><span class="s">&lt;&lt;EOF | sudo tee /etc/systemd/system/node_exporter.service</span>
+<a id="__codelineno-22-21" name="__codelineno-22-21"></a><span class="s">[Unit]</span>
+<a id="__codelineno-22-22" name="__codelineno-22-22"></a><span class="s">Description=Node Exporter</span>
+<a id="__codelineno-22-23" name="__codelineno-22-23"></a><span class="s">Wants=network-online.target</span>
+<a id="__codelineno-22-24" name="__codelineno-22-24"></a><span class="s">After=network-online.target</span>
+<a id="__codelineno-22-25" name="__codelineno-22-25"></a>
+<a id="__codelineno-22-26" name="__codelineno-22-26"></a><span class="s">[Service]</span>
+<a id="__codelineno-22-27" name="__codelineno-22-27"></a><span class="s">User=node_exporter</span>
+<a id="__codelineno-22-28" name="__codelineno-22-28"></a><span class="s">Group=node_exporter</span>
+<a id="__codelineno-22-29" name="__codelineno-22-29"></a><span class="s">Type=simple</span>
+<a id="__codelineno-22-30" name="__codelineno-22-30"></a><span class="s">ExecStart=/usr/local/bin/node_exporter</span>
+<a id="__codelineno-22-31" name="__codelineno-22-31"></a>
+<a id="__codelineno-22-32" name="__codelineno-22-32"></a><span class="s">[Install]</span>
+<a id="__codelineno-22-33" name="__codelineno-22-33"></a><span class="s">WantedBy=default.target</span>
+<a id="__codelineno-22-34" name="__codelineno-22-34"></a><span class="s">EOF</span>
+<a id="__codelineno-22-35" name="__codelineno-22-35"></a>
+<a id="__codelineno-22-36" name="__codelineno-22-36"></a><span class="c1"># Reload and start</span>
+<a id="__codelineno-22-37" name="__codelineno-22-37"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>daemon-reload
+<a id="__codelineno-22-38" name="__codelineno-22-38"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>--now<span class="w"> </span>node_exporter
+<a id="__codelineno-22-39" name="__codelineno-22-39"></a>
+<a id="__codelineno-22-40" name="__codelineno-22-40"></a>
+<a id="__codelineno-22-41" name="__codelineno-22-41"></a><span class="c1"># Verify</span>
+<a id="__codelineno-22-42" name="__codelineno-22-42"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;✅ Node Exporter is running!&quot;</span>
+<a id="__codelineno-22-43" name="__codelineno-22-43"></a>curl<span class="w"> </span>-s<span class="w"> </span>http://localhost:9100/metrics<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-n<span class="w"> </span><span class="m">5</span>
 </code></pre></div></td></tr></table></div>
 </details>
 <hr />
@@ -2351,73 +2376,73 @@ This VPN server is also "disposable", meaning, you can create and delete it anyt
 <h3 id="steps-to-add-standalone-server-to-prometheus-scrape-targets">🚀 Steps to Add Standalone Server to Prometheus Scrape Targets<a class="headerlink" href="#steps-to-add-standalone-server-to-prometheus-scrape-targets" title="Copy this link to reference this section">&para;</a></h3>
 <h4 id="1-create-additional-scrape-config-via-secret">1. Create Additional Scrape Config via Secret<a class="headerlink" href="#1-create-additional-scrape-config-via-secret" title="Copy this link to reference this section">&para;</a></h4>
 <p>Create a file named <code>additional-scrape-configs.yaml</code> with the following content:</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-22-1"> 1</a></span>
-<span class="normal"><a href="#__codelineno-22-2"> 2</a></span>
-<span class="normal"><a href="#__codelineno-22-3"> 3</a></span>
-<span class="normal"><a href="#__codelineno-22-4"> 4</a></span>
-<span class="normal"><a href="#__codelineno-22-5"> 5</a></span>
-<span class="normal"><a href="#__codelineno-22-6"> 6</a></span>
-<span class="normal"><a href="#__codelineno-22-7"> 7</a></span>
-<span class="normal"><a href="#__codelineno-22-8"> 8</a></span>
-<span class="normal"><a href="#__codelineno-22-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-22-10">10</a></span>
-<span class="normal"><a href="#__codelineno-22-11">11</a></span>
-<span class="normal"><a href="#__codelineno-22-12">12</a></span>
-<span class="normal"><a href="#__codelineno-22-13">13</a></span>
-<span class="normal"><a href="#__codelineno-22-14">14</a></span>
-<span class="normal"><a href="#__codelineno-22-15">15</a></span>
-<span class="normal"><a href="#__codelineno-22-16">16</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">job_name</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;jenkins-node-exporter&#39;</span>
-<a id="__codelineno-22-2" name="__codelineno-22-2"></a><span class="w">  </span><span class="nt">static_configs</span><span class="p">:</span>
-<a id="__codelineno-22-3" name="__codelineno-22-3"></a><span class="hll"><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">targets</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&#39;&lt;server_ip&gt;:9100&#39;</span><span class="p p-Indicator">]</span>
-</span><a id="__codelineno-22-4" name="__codelineno-22-4"></a><span class="w">      </span><span class="nt">labels</span><span class="p">:</span>
-<a id="__codelineno-22-5" name="__codelineno-22-5"></a><span class="w">        </span><span class="nt">instance</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;&lt;instance_name&gt;&#39;</span>
-<a id="__codelineno-22-6" name="__codelineno-22-6"></a><span class="w">        </span><span class="nt">role</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;node-exporter&#39;</span>
-<a id="__codelineno-22-7" name="__codelineno-22-7"></a><span class="w">        </span><span class="nt">environment</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;dev&#39;</span>
-<a id="__codelineno-22-8" name="__codelineno-22-8"></a>
-<a id="__codelineno-22-9" name="__codelineno-22-9"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">job_name</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;jenkins-prom-plugin&#39;</span>
-<a id="__codelineno-22-10" name="__codelineno-22-10"></a><span class="w">  </span><span class="nt">metrics_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/prometheus</span>
-<a id="__codelineno-22-11" name="__codelineno-22-11"></a><span class="w">  </span><span class="nt">static_configs</span><span class="p">:</span>
-<a id="__codelineno-22-12" name="__codelineno-22-12"></a><span class="hll"><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">targets</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&#39;&lt;server_ip&gt;:8080&#39;</span><span class="p p-Indicator">]</span>
-</span><a id="__codelineno-22-13" name="__codelineno-22-13"></a><span class="w">      </span><span class="nt">labels</span><span class="p">:</span>
-<a id="__codelineno-22-14" name="__codelineno-22-14"></a><span class="w">        </span><span class="nt">instance</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;instance_name&#39;</span>
-<a id="__codelineno-22-15" name="__codelineno-22-15"></a><span class="w">        </span><span class="nt">role</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;jenkins-master&#39;</span>
-<a id="__codelineno-22-16" name="__codelineno-22-16"></a><span class="w">        </span><span class="nt">environment</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;dev&#39;</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-23-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-23-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-23-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-23-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-23-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-23-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-23-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-23-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-23-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-23-10">10</a></span>
+<span class="normal"><a href="#__codelineno-23-11">11</a></span>
+<span class="normal"><a href="#__codelineno-23-12">12</a></span>
+<span class="normal"><a href="#__codelineno-23-13">13</a></span>
+<span class="normal"><a href="#__codelineno-23-14">14</a></span>
+<span class="normal"><a href="#__codelineno-23-15">15</a></span>
+<span class="normal"><a href="#__codelineno-23-16">16</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">job_name</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;jenkins-node-exporter&#39;</span>
+<a id="__codelineno-23-2" name="__codelineno-23-2"></a><span class="w">  </span><span class="nt">static_configs</span><span class="p">:</span>
+<a id="__codelineno-23-3" name="__codelineno-23-3"></a><span class="hll"><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">targets</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&#39;&lt;server_ip&gt;:9100&#39;</span><span class="p p-Indicator">]</span>
+</span><a id="__codelineno-23-4" name="__codelineno-23-4"></a><span class="w">      </span><span class="nt">labels</span><span class="p">:</span>
+<a id="__codelineno-23-5" name="__codelineno-23-5"></a><span class="w">        </span><span class="nt">instance</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;&lt;instance_name&gt;&#39;</span>
+<a id="__codelineno-23-6" name="__codelineno-23-6"></a><span class="w">        </span><span class="nt">role</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;node-exporter&#39;</span>
+<a id="__codelineno-23-7" name="__codelineno-23-7"></a><span class="w">        </span><span class="nt">environment</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;dev&#39;</span>
+<a id="__codelineno-23-8" name="__codelineno-23-8"></a>
+<a id="__codelineno-23-9" name="__codelineno-23-9"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">job_name</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;jenkins-prom-plugin&#39;</span>
+<a id="__codelineno-23-10" name="__codelineno-23-10"></a><span class="w">  </span><span class="nt">metrics_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/prometheus</span>
+<a id="__codelineno-23-11" name="__codelineno-23-11"></a><span class="w">  </span><span class="nt">static_configs</span><span class="p">:</span>
+<a id="__codelineno-23-12" name="__codelineno-23-12"></a><span class="hll"><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">targets</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&#39;&lt;server_ip&gt;:8080&#39;</span><span class="p p-Indicator">]</span>
+</span><a id="__codelineno-23-13" name="__codelineno-23-13"></a><span class="w">      </span><span class="nt">labels</span><span class="p">:</span>
+<a id="__codelineno-23-14" name="__codelineno-23-14"></a><span class="w">        </span><span class="nt">instance</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;instance_name&#39;</span>
+<a id="__codelineno-23-15" name="__codelineno-23-15"></a><span class="w">        </span><span class="nt">role</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;jenkins-master&#39;</span>
+<a id="__codelineno-23-16" name="__codelineno-23-16"></a><span class="w">        </span><span class="nt">environment</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;dev&#39;</span>
 </code></pre></div></td></tr></table></div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>Edit the higlighted lines and replace <code>&lt;server-ip&gt;</code> with the IP address or DNS name of your standalone Linux server. In this case, your jenkins server.</p>
 </div>
 <h4 id="2-now-create-a-kubernetes-secret">2. Now create a Kubernetes secret<a class="headerlink" href="#2-now-create-a-kubernetes-secret" title="Copy this link to reference this section">&para;</a></h4>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-23-1">1</a></span>
-<span class="normal"><a href="#__codelineno-23-2">2</a></span>
-<span class="normal"><a href="#__codelineno-23-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1"></a>kubectl<span class="w"> </span>create<span class="w"> </span>secret<span class="w"> </span>generic<span class="w"> </span>additional-scrape-configs<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-23-2" name="__codelineno-23-2"></a><span class="w">  </span>--from-file<span class="o">=</span>additional-scrape-configs.yaml<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-23-3" name="__codelineno-23-3"></a><span class="w">  </span>-n<span class="w"> </span>monitoring
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-24-1">1</a></span>
+<span class="normal"><a href="#__codelineno-24-2">2</a></span>
+<span class="normal"><a href="#__codelineno-24-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1"></a>kubectl<span class="w"> </span>create<span class="w"> </span>secret<span class="w"> </span>generic<span class="w"> </span>additional-scrape-configs<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-24-2" name="__codelineno-24-2"></a><span class="w">  </span>--from-file<span class="o">=</span>additional-scrape-configs.yaml<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-24-3" name="__codelineno-24-3"></a><span class="w">  </span>-n<span class="w"> </span>monitoring
 </code></pre></div></td></tr></table></div>
 <h4 id="3-edit-prometheus-custom-resource">3. Edit Prometheus Custom Resource<a class="headerlink" href="#3-edit-prometheus-custom-resource" title="Copy this link to reference this section">&para;</a></h4>
 <p>First get the prometheus resource name</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-24-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>prometheus<span class="w"> </span>-n<span class="w"> </span>monitoring
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-25-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>prometheus<span class="w"> </span>-n<span class="w"> </span>monitoring
 </code></pre></div></td></tr></table></div>
 <p>Then edit the prometheus custom resource</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-25-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1"></a>kubectl<span class="w"> </span>edit<span class="w"> </span>prometheus<span class="w"> </span>prometheus-kube-prometheus-prometheus<span class="w"> </span>-n<span class="w"> </span>monitoring
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-26-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1"></a>kubectl<span class="w"> </span>edit<span class="w"> </span>prometheus<span class="w"> </span>prometheus-kube-prometheus-prometheus<span class="w"> </span>-n<span class="w"> </span>monitoring
 </code></pre></div></td></tr></table></div>
 <p>Under <code>spec</code> add:</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-26-1">1</a></span>
-<span class="normal"><a href="#__codelineno-26-2">2</a></span>
-<span class="normal"><a href="#__codelineno-26-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1"></a><span class="w">  </span><span class="nt">additionalScrapeConfigs</span><span class="p">:</span>
-<a id="__codelineno-26-2" name="__codelineno-26-2"></a><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">additional-scrape-configs</span>
-<a id="__codelineno-26-3" name="__codelineno-26-3"></a><span class="w">    </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">additional-scrape-configs.yaml</span>
-</code></pre></div></td></tr></table></div>
-<p>So the result should look like this:</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-27-1">1</a></span>
 <span class="normal"><a href="#__codelineno-27-2">2</a></span>
-<span class="normal"><a href="#__codelineno-27-3">3</a></span>
-<span class="normal"><a href="#__codelineno-27-4">4</a></span>
-<span class="normal"><a href="#__codelineno-27-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1"></a><span class="nt">spec</span><span class="p">:</span>
-<a id="__codelineno-27-2" name="__codelineno-27-2"></a><span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">...</span>
-<a id="__codelineno-27-3" name="__codelineno-27-3"></a><span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">additionalScrapeConfigs</span><span class="p p-Indicator">:</span>
-<a id="__codelineno-27-4" name="__codelineno-27-4"></a><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">additional-scrape-configs</span>
-<a id="__codelineno-27-5" name="__codelineno-27-5"></a><span class="w">    </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">additional-scrape-configs.yaml</span>
+<span class="normal"><a href="#__codelineno-27-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1"></a><span class="w">  </span><span class="nt">additionalScrapeConfigs</span><span class="p">:</span>
+<a id="__codelineno-27-2" name="__codelineno-27-2"></a><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">additional-scrape-configs</span>
+<a id="__codelineno-27-3" name="__codelineno-27-3"></a><span class="w">    </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">additional-scrape-configs.yaml</span>
+</code></pre></div></td></tr></table></div>
+<p>So the result should look like this:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-28-1">1</a></span>
+<span class="normal"><a href="#__codelineno-28-2">2</a></span>
+<span class="normal"><a href="#__codelineno-28-3">3</a></span>
+<span class="normal"><a href="#__codelineno-28-4">4</a></span>
+<span class="normal"><a href="#__codelineno-28-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1"></a><span class="nt">spec</span><span class="p">:</span>
+<a id="__codelineno-28-2" name="__codelineno-28-2"></a><span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<a id="__codelineno-28-3" name="__codelineno-28-3"></a><span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">additionalScrapeConfigs</span><span class="p p-Indicator">:</span>
+<a id="__codelineno-28-4" name="__codelineno-28-4"></a><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">additional-scrape-configs</span>
+<a id="__codelineno-28-5" name="__codelineno-28-5"></a><span class="w">    </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">additional-scrape-configs.yaml</span>
 </code></pre></div></td></tr></table></div>
 <h4 id="4-apply-and-verify">4. Apply and Verify<a class="headerlink" href="#4-apply-and-verify" title="Copy this link to reference this section">&para;</a></h4>
 <p>Prometheus will reload its config automatically by deafult. Wait a minute, then:</p>
@@ -2428,9 +2453,9 @@ This VPN server is also "disposable", meaning, you can create and delete it anyt
 </ul>
 <p><br><br></p>
 <h3 id="to-uninstall-prometheus-stack-and-delete-namespace">To Uninstall Prometheus-Stack and delete namespace<a class="headerlink" href="#to-uninstall-prometheus-stack-and-delete-namespace" title="Copy this link to reference this section">&para;</a></h3>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-28-1">1</a></span>
-<span class="normal"><a href="#__codelineno-28-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1"></a>helm<span class="w"> </span>uninstall<span class="w"> </span>prometheus<span class="w"> </span>-n<span class="w"> </span>monitoring
-<a id="__codelineno-28-2" name="__codelineno-28-2"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>namespace<span class="w"> </span>monitoring
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-29-1">1</a></span>
+<span class="normal"><a href="#__codelineno-29-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1"></a>helm<span class="w"> </span>uninstall<span class="w"> </span>prometheus<span class="w"> </span>-n<span class="w"> </span>monitoring
+<a id="__codelineno-29-2" name="__codelineno-29-2"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>namespace<span class="w"> </span>monitoring
 </code></pre></div></td></tr></table></div>
 <h6 id="_2"><a class="headerlink" href="#_2" title="Copy this link to reference this section">&para;</a></h6>
 <h2 id="conclusion"><strong>Conclusion</strong><a class="headerlink" href="#conclusion" title="Copy this link to reference this section">&para;</a></h2>
@@ -2457,7 +2482,7 @@ This VPN server is also "disposable", meaning, you can create and delete it anyt
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="August 22, 2025 17:05:20 UTC"><span class="timeago" datetime="2025-08-22T17:05:20+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="August 22, 2025 17:05:20 UTC">2025-08-22</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="August 22, 2025 18:31:28 UTC"><span class="timeago" datetime="2025-08-22T18:31:28+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="August 22, 2025 18:31:28 UTC">2025-08-22</span>
   </span>
 
     
