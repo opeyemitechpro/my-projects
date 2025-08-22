@@ -81,3 +81,7 @@ html {
 }
 
 
+/* Tweak the color of code block element */
+:root > * {
+  --md-code-bg-color: #0FF1CE;
+}
