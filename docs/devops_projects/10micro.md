@@ -161,261 +161,259 @@ Copy the script below and paste into the job pipeline section:
     
     The Jenkins CI/CD pipeline is below:
 
-    ??? tip "The Jenkins Pipeline Script"
-        
-        ???+ code-file "Jenkins Pipeline Script"
+    ???+ code-file "Jenkins Pipeline Script"
             
-            ``` groovy hl_lines="9-21 214-225"
-            // 11-Microservices-k8s-App Jenkins Pipeline Script
+        ``` groovy hl_lines="9-21 214-225"
+        // 11-Microservices-k8s-App Jenkins Pipeline Script
 
-                pipeline {
-                    agent any
+            pipeline {
+                agent any
 
-                    environment {
-                        // ====== CONFIG VARIABLES ======
-                        // Replace values with the values configured in Jenkins server configuration
-                        DOCKER_TOOL       = 'docker' // Docker tool name configured in Jenkins
-                        GIT_BRANCH        = 'OpeyemiTechPro-v1'
-                        GIT_URL           = 'https://github.com/opeyemitechpro/11-Microservices-k8s-App.git'
-                        SONAR_SERVER      = 'sonar' // SonarQube Server name configured in Jenkins
-                        SONAR_SCANNER     = 'sonar-scanner' // SonarQube tool name configured in Jenkins
-                        SONAR_PROJECT_NAME = '11-micro-serve'
-                        DOCKER_CRED_ID    = 'my-docker-cred'
-                        DOCKER_HUB_USER   = 'opeyemitechpro'
-                        DEST_EMAIL        = 'opeyemitechpro@gmail.com'
-                        REPLYTO_EMAIL     = 'opeyemitechpro@gmail.com'
-                        DOCKER_TAG_PREFIX = 'ver-1.'
-                                
-                        SCANNER_HOME 	  = tool "${SONAR_SCANNER}"
+                environment {
+                    // ====== CONFIG VARIABLES ======
+                    // Replace values with the values configured in Jenkins server configuration
+                    DOCKER_TOOL       = 'docker' // Docker tool name configured in Jenkins
+                    GIT_BRANCH        = 'OpeyemiTechPro-v1'
+                    GIT_URL           = 'https://github.com/opeyemitechpro/11-Microservices-k8s-App.git'
+                    SONAR_SERVER      = 'sonar' // SonarQube Server name configured in Jenkins
+                    SONAR_SCANNER     = 'sonar-scanner' // SonarQube tool name configured in Jenkins
+                    SONAR_PROJECT_NAME = '11-micro-serve'
+                    DOCKER_CRED_ID    = 'my-docker-cred'
+                    DOCKER_HUB_USER   = 'opeyemitechpro'
+                    DEST_EMAIL        = 'opeyemitechpro@gmail.com'
+                    REPLYTO_EMAIL     = 'opeyemitechpro@gmail.com'
+                    DOCKER_TAG_PREFIX = 'ver-1.'
+                            
+                    SCANNER_HOME 	  = tool "${SONAR_SCANNER}"
+                }
+
+                stages {
+                    stage('Clean Workspace') {
+                        steps {
+
+                            cleanWs()
+                        }
                     }
 
-                    stages {
-                        stage('Clean Workspace') {
-                            steps {
+                    stage('Git Checkout') {
+                        steps {
+                            git branch: "${GIT_BRANCH}", url: "${GIT_URL}"
+                        }
+                    }
 
-                                cleanWs()
+                    stage('Gitleaks Scan') {
+                        steps {
+                            sh 'gitleaks detect --source . -r gitleaks_report-$BUILD_NUMBER.json'
+                        }
+                    }
+
+                    stage('SonarQube Analysis') {
+                    //   environment {
+                    //       SCANNER_HOME = tool "${SONAR_SCANNER}"
+                    //   }
+                        steps {
+                            withSonarQubeEnv("${SONAR_SERVER}") {
+                                sh '''$SCANNER_HOME/bin/${SONAR_SCANNER} \
+                                    -Dsonar.projectKey=${SONAR_PROJECT_NAME} \
+                                    -Dsonar.projectName=${SONAR_PROJECT_NAME} \
+                                    -Dsonar.java.binaries=.'''
                             }
                         }
+                    }
 
-                        stage('Git Checkout') {
-                            steps {
-                                git branch: "${GIT_BRANCH}", url: "${GIT_URL}"
+                    stage('TRIVY FS SCAN') {
+                        steps {
+                            sh 'trivy fs -o trivy-fs-report_$BUILD_NUMBER.txt .'
+                        }
+                    }
+                    
+                    // DOCKER IMAGE BUILDS
+
+                    stage('adservice DockerImage') {
+                        steps { 
+                            script {
+                                withDockerRegistry(credentialsId: "${DOCKER_CRED_ID}", toolName: "${DOCKER_TOOL}") {
+                                dir("${env.WORKSPACE}/src/adservice") {
+                                sh "docker build -t ${DOCKER_HUB_USER}/adservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER ."
+                                sh "docker push ${DOCKER_HUB_USER}/adservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER"
+                                    }
+                                }
                             }
                         }
-
-                        stage('Gitleaks Scan') {
-                            steps {
-                                sh 'gitleaks detect --source . -r gitleaks_report-$BUILD_NUMBER.json'
+                    }
+                    stage('cartservice DockerImage') {
+                        steps { 
+                            script {
+                                withDockerRegistry(credentialsId: "${DOCKER_CRED_ID}", toolName: "${DOCKER_TOOL}") {
+                                dir("${env.WORKSPACE}/src/cartservice/src") {
+                                sh "docker build -t ${DOCKER_HUB_USER}/cartservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER ."
+                                sh "docker push ${DOCKER_HUB_USER}/cartservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER"
+                                    }
+                                }
                             }
                         }
+                    }
+                    stage('checkoutservice DockerImage') {
+                        steps { 
+                            script {
+                                withDockerRegistry(credentialsId: "${DOCKER_CRED_ID}", toolName: "${DOCKER_TOOL}") {
+                                dir("${env.WORKSPACE}/src/checkoutservice") {
+                                sh "docker build -t ${DOCKER_HUB_USER}/checkoutservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER ."
+                                sh "docker push ${DOCKER_HUB_USER}/checkoutservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    stage('currencyservice DockerImage') {
+                        steps { 
+                            script {
+                                withDockerRegistry(credentialsId: "${DOCKER_CRED_ID}", toolName: "${DOCKER_TOOL}") {
+                                dir("${env.WORKSPACE}/src/currencyservice") {
+                                sh "docker build -t ${DOCKER_HUB_USER}/currencyservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER ."
+                                sh "docker push ${DOCKER_HUB_USER}/currencyservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    stage('emailservice DockerImage') {
+                        steps { 
+                            script {
+                                withDockerRegistry(credentialsId: "${DOCKER_CRED_ID}", toolName: "${DOCKER_TOOL}") {
+                                dir("${env.WORKSPACE}/src/emailservice") {
+                                sh "docker build -t ${DOCKER_HUB_USER}/emailservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER ."
+                                sh "docker push ${DOCKER_HUB_USER}/emailservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    stage('frontend DockerImage') {
+                        steps { 
+                            script {
+                                withDockerRegistry(credentialsId: "${DOCKER_CRED_ID}", toolName: "${DOCKER_TOOL}") {
+                                dir("${env.WORKSPACE}/src/frontend") {
+                                sh "docker build -t ${DOCKER_HUB_USER}/frontend:$DOCKER_TAG_PREFIX.$BUILD_NUMBER ."
+                                sh "docker push ${DOCKER_HUB_USER}/frontend:$DOCKER_TAG_PREFIX.$BUILD_NUMBER"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    stage('loadgenerator DockerImage') {
+                        steps { 
+                            script {
+                                withDockerRegistry(credentialsId: "${DOCKER_CRED_ID}", toolName: "${DOCKER_TOOL}") {
+                                dir("${env.WORKSPACE}/src/loadgenerator") {
+                                sh "docker build -t ${DOCKER_HUB_USER}/loadgenerator:$DOCKER_TAG_PREFIX.$BUILD_NUMBER ."
+                                sh "docker push ${DOCKER_HUB_USER}/loadgenerator:$DOCKER_TAG_PREFIX.$BUILD_NUMBER"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    stage('paymentservice DockerImage') {
+                        steps { 
+                            script {
+                                withDockerRegistry(credentialsId: "${DOCKER_CRED_ID}", toolName: "${DOCKER_TOOL}") {
+                                dir("${env.WORKSPACE}/src/paymentservice") {
+                                sh "docker build -t ${DOCKER_HUB_USER}/paymentservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER ."
+                                sh "docker push ${DOCKER_HUB_USER}/paymentservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    stage('productcatalogservice DockerImage') {
+                        steps { 
+                            script {
+                                withDockerRegistry(credentialsId: "${DOCKER_CRED_ID}", toolName: "${DOCKER_TOOL}") {
+                                dir("${env.WORKSPACE}/src/productcatalogservice") {
+                                sh "docker build -t ${DOCKER_HUB_USER}/productcatalogservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER ."
+                                sh "docker push ${DOCKER_HUB_USER}/productcatalogservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    stage('recommendationservice DockerImage') {
+                        steps { 
+                            script {
+                                withDockerRegistry(credentialsId: "${DOCKER_CRED_ID}", toolName: "${DOCKER_TOOL}") {
+                                dir("${env.WORKSPACE}/src/recommendationservice") {
+                                sh "docker build -t ${DOCKER_HUB_USER}/recommendationservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER ."
+                                sh "docker push ${DOCKER_HUB_USER}/recommendationservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    stage('shippingservice DockerImage') {
+                        steps { 
+                            script {
+                                withDockerRegistry(credentialsId: "${DOCKER_CRED_ID}", toolName: "${DOCKER_TOOL}") {
+                                dir("${env.WORKSPACE}/src/shippingservice") {
+                                sh "docker build -t ${DOCKER_HUB_USER}/shippingservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER ."
+                                sh "docker push ${DOCKER_HUB_USER}/shippingservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER"
+                                    }
+                                }
+                            }
+                        }
+                    }
 
-                        stage('SonarQube Analysis') {
-                        //   environment {
-                        //       SCANNER_HOME = tool "${SONAR_SCANNER}"
+                    stage('DockerImage CleanUp') {
+                        steps { 
+                                sh "docker rmi ${DOCKER_HUB_USER}/adservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER"
+                                sh "docker rmi ${DOCKER_HUB_USER}/cartservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER"
+                                sh "docker rmi ${DOCKER_HUB_USER}/checkoutservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER"
+                                sh "docker rmi ${DOCKER_HUB_USER}/currencyservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER"
+                                sh "docker rmi ${DOCKER_HUB_USER}/emailservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER"
+                                sh "docker rmi ${DOCKER_HUB_USER}/frontend:$DOCKER_TAG_PREFIX.$BUILD_NUMBER"
+                                sh "docker rmi ${DOCKER_HUB_USER}/loadgenerator:$DOCKER_TAG_PREFIX.$BUILD_NUMBER"
+                                sh "docker rmi ${DOCKER_HUB_USER}/paymentservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER"
+                                sh "docker rmi ${DOCKER_HUB_USER}/productcatalogservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER"
+                                sh "docker rmi ${DOCKER_HUB_USER}/recommendationservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER"
+                                sh "docker rmi ${DOCKER_HUB_USER}/shippingservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER"
+                        }
+                    }
+                // stage("Kubernetes deploy"){
+                    // steps {
+                    //     withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'cluster-ID', namespace: 'opeyemi-apps', restrictKubeConfigAccess: false, serverUrl: 'https://FDC152307BF6A5337A2C02C976A8D19F.gr7.us-east-2.eks.amazonaws.com')
+                        //   {
+                        //       sh ' kubectl apply -f buildnow.yml -n opeyemi-apps'
+                        //       sh ' kubectl get pods -n opeyemi-apps '
+                        //       sh ' kubectl get svc -n opeyemi-apps '
+                            //  sh " kubectl get service -n opeyemi-apps frontend-external | awk '{print \$4}' "
                         //   }
-                            steps {
-                                withSonarQubeEnv("${SONAR_SERVER}") {
-                                    sh '''$SCANNER_HOME/bin/${SONAR_SCANNER} \
-                                        -Dsonar.projectKey=${SONAR_PROJECT_NAME} \
-                                        -Dsonar.projectName=${SONAR_PROJECT_NAME} \
-                                        -Dsonar.java.binaries=.'''
-                                }
-                            }
-                        }
-
-                        stage('TRIVY FS SCAN') {
-                            steps {
-                                sh 'trivy fs -o trivy-fs-report_$BUILD_NUMBER.txt .'
-                            }
-                        }
-                        
-                        // DOCKER IMAGE BUILDS
-
-                        stage('adservice DockerImage') {
-                            steps { 
-                                script {
-                                    withDockerRegistry(credentialsId: "${DOCKER_CRED_ID}", toolName: "${DOCKER_TOOL}") {
-                                    dir("${env.WORKSPACE}/src/adservice") {
-                                    sh "docker build -t ${DOCKER_HUB_USER}/adservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER ."
-                                    sh "docker push ${DOCKER_HUB_USER}/adservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER"
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                        stage('cartservice DockerImage') {
-                            steps { 
-                                script {
-                                    withDockerRegistry(credentialsId: "${DOCKER_CRED_ID}", toolName: "${DOCKER_TOOL}") {
-                                    dir("${env.WORKSPACE}/src/cartservice/src") {
-                                    sh "docker build -t ${DOCKER_HUB_USER}/cartservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER ."
-                                    sh "docker push ${DOCKER_HUB_USER}/cartservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER"
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                        stage('checkoutservice DockerImage') {
-                            steps { 
-                                script {
-                                    withDockerRegistry(credentialsId: "${DOCKER_CRED_ID}", toolName: "${DOCKER_TOOL}") {
-                                    dir("${env.WORKSPACE}/src/checkoutservice") {
-                                    sh "docker build -t ${DOCKER_HUB_USER}/checkoutservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER ."
-                                    sh "docker push ${DOCKER_HUB_USER}/checkoutservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER"
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                        stage('currencyservice DockerImage') {
-                            steps { 
-                                script {
-                                    withDockerRegistry(credentialsId: "${DOCKER_CRED_ID}", toolName: "${DOCKER_TOOL}") {
-                                    dir("${env.WORKSPACE}/src/currencyservice") {
-                                    sh "docker build -t ${DOCKER_HUB_USER}/currencyservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER ."
-                                    sh "docker push ${DOCKER_HUB_USER}/currencyservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER"
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                        stage('emailservice DockerImage') {
-                            steps { 
-                                script {
-                                    withDockerRegistry(credentialsId: "${DOCKER_CRED_ID}", toolName: "${DOCKER_TOOL}") {
-                                    dir("${env.WORKSPACE}/src/emailservice") {
-                                    sh "docker build -t ${DOCKER_HUB_USER}/emailservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER ."
-                                    sh "docker push ${DOCKER_HUB_USER}/emailservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER"
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                        stage('frontend DockerImage') {
-                            steps { 
-                                script {
-                                    withDockerRegistry(credentialsId: "${DOCKER_CRED_ID}", toolName: "${DOCKER_TOOL}") {
-                                    dir("${env.WORKSPACE}/src/frontend") {
-                                    sh "docker build -t ${DOCKER_HUB_USER}/frontend:$DOCKER_TAG_PREFIX.$BUILD_NUMBER ."
-                                    sh "docker push ${DOCKER_HUB_USER}/frontend:$DOCKER_TAG_PREFIX.$BUILD_NUMBER"
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                        stage('loadgenerator DockerImage') {
-                            steps { 
-                                script {
-                                    withDockerRegistry(credentialsId: "${DOCKER_CRED_ID}", toolName: "${DOCKER_TOOL}") {
-                                    dir("${env.WORKSPACE}/src/loadgenerator") {
-                                    sh "docker build -t ${DOCKER_HUB_USER}/loadgenerator:$DOCKER_TAG_PREFIX.$BUILD_NUMBER ."
-                                    sh "docker push ${DOCKER_HUB_USER}/loadgenerator:$DOCKER_TAG_PREFIX.$BUILD_NUMBER"
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                        stage('paymentservice DockerImage') {
-                            steps { 
-                                script {
-                                    withDockerRegistry(credentialsId: "${DOCKER_CRED_ID}", toolName: "${DOCKER_TOOL}") {
-                                    dir("${env.WORKSPACE}/src/paymentservice") {
-                                    sh "docker build -t ${DOCKER_HUB_USER}/paymentservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER ."
-                                    sh "docker push ${DOCKER_HUB_USER}/paymentservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER"
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                        stage('productcatalogservice DockerImage') {
-                            steps { 
-                                script {
-                                    withDockerRegistry(credentialsId: "${DOCKER_CRED_ID}", toolName: "${DOCKER_TOOL}") {
-                                    dir("${env.WORKSPACE}/src/productcatalogservice") {
-                                    sh "docker build -t ${DOCKER_HUB_USER}/productcatalogservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER ."
-                                    sh "docker push ${DOCKER_HUB_USER}/productcatalogservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER"
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                        stage('recommendationservice DockerImage') {
-                            steps { 
-                                script {
-                                    withDockerRegistry(credentialsId: "${DOCKER_CRED_ID}", toolName: "${DOCKER_TOOL}") {
-                                    dir("${env.WORKSPACE}/src/recommendationservice") {
-                                    sh "docker build -t ${DOCKER_HUB_USER}/recommendationservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER ."
-                                    sh "docker push ${DOCKER_HUB_USER}/recommendationservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER"
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                        stage('shippingservice DockerImage') {
-                            steps { 
-                                script {
-                                    withDockerRegistry(credentialsId: "${DOCKER_CRED_ID}", toolName: "${DOCKER_TOOL}") {
-                                    dir("${env.WORKSPACE}/src/shippingservice") {
-                                    sh "docker build -t ${DOCKER_HUB_USER}/shippingservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER ."
-                                    sh "docker push ${DOCKER_HUB_USER}/shippingservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER"
-                                        }
-                                    }
-                                }
-                            }
-                        }
-
-                        stage('DockerImage CleanUp') {
-                            steps { 
-                                    sh "docker rmi ${DOCKER_HUB_USER}/adservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER"
-                                    sh "docker rmi ${DOCKER_HUB_USER}/cartservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER"
-                                    sh "docker rmi ${DOCKER_HUB_USER}/checkoutservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER"
-                                    sh "docker rmi ${DOCKER_HUB_USER}/currencyservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER"
-                                    sh "docker rmi ${DOCKER_HUB_USER}/emailservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER"
-                                    sh "docker rmi ${DOCKER_HUB_USER}/frontend:$DOCKER_TAG_PREFIX.$BUILD_NUMBER"
-                                    sh "docker rmi ${DOCKER_HUB_USER}/loadgenerator:$DOCKER_TAG_PREFIX.$BUILD_NUMBER"
-                                    sh "docker rmi ${DOCKER_HUB_USER}/paymentservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER"
-                                    sh "docker rmi ${DOCKER_HUB_USER}/productcatalogservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER"
-                                    sh "docker rmi ${DOCKER_HUB_USER}/recommendationservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER"
-                                    sh "docker rmi ${DOCKER_HUB_USER}/shippingservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER"
-                            }
-                        }
-                    // stage("Kubernetes deploy"){
-                        // steps {
-                        //     withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'cluster-ID', namespace: 'opeyemi-apps', restrictKubeConfigAccess: false, serverUrl: 'https://FDC152307BF6A5337A2C02C976A8D19F.gr7.us-east-2.eks.amazonaws.com')
-                            //   {
-                            //       sh ' kubectl apply -f buildnow.yml -n opeyemi-apps'
-                            //       sh ' kubectl get pods -n opeyemi-apps '
-                            //       sh ' kubectl get svc -n opeyemi-apps '
-                                //  sh " kubectl get service -n opeyemi-apps frontend-external | awk '{print \$4}' "
-                            //   }
-                            //       sh ' date'
-                        //    }
+                        //       sh ' date'
                     //    }
-                    }
+                //    }
+                }
 
-                    post {
-                        always {
-                            emailext(
-                                attachLog: true,
-                                attachmentsPattern: 'trivy-fs-report_$BUILD_NUMBER.txt, dependency-check-report.html, gitleaks_report-$BUILD_NUMBER.json',
-                                body: '''
-                                Project <strong>"$PROJECT_NAME"</strong> has completed.<br>
-                                Build Number: $BUILD_NUMBER <br> Build Tag: $BUILD_TAG <br>
-                                Job Url: <a href="$JOB_URL">Job URL</a> <br> Build Status: <strong>$BUILD_STATUS</strong><br><br>
-                                Check console output at <a href="${BUILD_URL}console">Console URL</a> to view the results.
-                                ''',
-                                subject: 'Project: $PROJECT_NAME, Build #: $BUILD_NUMBER - $BUILD_STATUS',
-                                to: "$DEST_EMAIL",
-                                replyTo: "$REPLYTO_EMAIL"
-                            )
-                        }
+                post {
+                    always {
+                        emailext(
+                            attachLog: true,
+                            attachmentsPattern: 'trivy-fs-report_$BUILD_NUMBER.txt, dependency-check-report.html, gitleaks_report-$BUILD_NUMBER.json',
+                            body: '''
+                            Project <strong>"$PROJECT_NAME"</strong> has completed.<br>
+                            Build Number: $BUILD_NUMBER <br> Build Tag: $BUILD_TAG <br>
+                            Job Url: <a href="$JOB_URL">Job URL</a> <br> Build Status: <strong>$BUILD_STATUS</strong><br><br>
+                            Check console output at <a href="${BUILD_URL}console">Console URL</a> to view the results.
+                            ''',
+                            subject: 'Project: $PROJECT_NAME, Build #: $BUILD_NUMBER - $BUILD_STATUS',
+                            to: "$DEST_EMAIL",
+                            replyTo: "$REPLYTO_EMAIL"
+                        )
                     }
                 }
-                //
-            ```
+            }
+            //
+        ```
 
-            1.  Lines 9-21 contain environment variables. Replace the values according to your Jenkins server configuration
-            2.  Uncomment lines 214 to 225 when you have configured your EKS cluster and set the parameters accordingly in your Jenkins server 
+        1.  Lines 9-21 contain environment variables. Replace the values according to your Jenkins server configuration
+        2.  Uncomment lines 214 to 225 when you have configured your EKS cluster and set the parameters accordingly in your Jenkins server 
         
         
 
@@ -480,6 +478,11 @@ The list of acceptable AWS regions are shown [here](https://opeyemitechpro.githu
 - [x] IAMUserChangePolicy
 
 
+
+## Install and Setup ArgoCD on EKS
+
+
+
 ## Install and setup Prometheus Stack on EKS using Helm
 
 
@@ -493,15 +496,12 @@ curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
 helm version
 ```
 
-
-
 ### Add Helm repo
 ``` sh
 
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
 
 helm repo update
-
 ```
 
 > ***(Optionally) Search Available Hem Charts***
