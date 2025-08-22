@@ -101,3 +101,10 @@ https://squidfunk.github.io/mkdocs-material/reference/code-blocks/?h=code#custom
   box-shadow: 0 2px 6px rgba(0,0,0,0.2);
 }
 
+
+.advert-banner {
+  display: block;
+  margin-bottom: 1em;
+  max-width: 100%;
+  height: auto;
+}
