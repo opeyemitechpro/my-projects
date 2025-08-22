@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 
+<!-- Inject Social Media Icons in the Heafer above the page -->
 {% block announce %}
   <!-- Add announcement here, including arbitrary HTML -->
   <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=66d5a2ea2d491c00194a1d61&product=sticky-share-buttons&source=platform" async="async"></script>
@@ -67,3 +68,20 @@
       
   {% endblock %}
 
+
+
+  <!-- {% extends "base.html" %} -->
+
+
+  <!-- Inject a Banner Image above the TOC -->
+{% block toc %}
+  
+  <div class="sidebar-banner">
+    <a href="https://www.linkedin.com/in/opeyemi-okuboyejo/" target="_blank">
+      <img src="./../docs/assets/images/favicon.png" alt="Advert Banner">
+    </a>
+  </div>
+
+  {{ super() }}
+
+{% endblock %}
