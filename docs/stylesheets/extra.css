@@ -85,5 +85,18 @@ html {
 https://squidfunk.github.io/mkdocs-material/reference/code-blocks/?h=code#custom-syntax-theme
 */
 
+/* Light mode: default scheme */
+[data-md-color-scheme="default"] {
+  --md-code-bg-color: #000000; /* black background */
+  --md-code-fg-color: #ffffff; /* white text */
+  --md-code-hl-color: #ff0000; /* red highlight, high contrast */
+}
+
+/* Dark mode: slate scheme */
+[data-md-color-scheme="slate"] {
+  --md-code-bg-color: #000000; /* keep background black */
+  --md-code-fg-color: #ffffff; /* white text */
+  --md-code-hl-color: #00ff00; /* green highlight—sharp on dark */
+}
 
 

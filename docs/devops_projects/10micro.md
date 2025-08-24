@@ -79,19 +79,21 @@ rm -rf gitleaks.tar.gz
 
 ## **Workflow**
 
-- [x] Run Terraform to setup Jenkins
-- [x] Confiure Jenkins
-    - [x]  install plugins: Go to `Dashboard > Manage Jenkins > Manage Plugins` and install the following plugins:
+- [ ] Run Terraform to setup Jenkins
+- [ ] Confiure Jenkins
+    - [ ] Install plugins: Go to `Dashboard > Manage Jenkins > Manage Plugins` and install the following plugins:
         - SonarQube Scanner
-        - docker
-        - docker pipeline
-        - docker build step
-        - cloudbees docker build and publish
-        - kubernetes
-        - kubernetes CLI
+        - Docker
+        - Docker pipeline
+        - Docker build step
+        - Cloudbees docker build and publish
+        - Kubernetes
+        - Kubernetes CLI
         - Email Extension Template
         - Prometheus Metrics
         - OWASP Dependency Check Plugin
+    - [ ] Configure Jenkins Plugins
+    - [ ] Configure SonarQube Server Token
 
 ## **Configure Plugins**
 
@@ -104,8 +106,7 @@ rm -rf gitleaks.tar.gz
 
 !!! tip "Tip"
     
-    Since our SonarQube server is running as a docker container on port `9000` on the same machine as the Jenkins server, use `http://<server_ip_address>:9000` as the Server URL
-
+    Since our SonarQube server is running as a docker container on port `9000` on the same machine as the Jenkins server, use `http://<server_ip_address>:9000` as the SonarQube Server URL
 
 
 ### **Prometheus**
