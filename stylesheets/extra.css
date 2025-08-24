@@ -85,10 +85,16 @@ html {
 https://squidfunk.github.io/mkdocs-material/reference/code-blocks/?h=code#custom-syntax-theme
 */
 
+
+
 /* docs/stylesheets/extra.css */
 
 /* --- Default (light) theme overrides --- */
 :root {
+  /* Darker background for the light theme page */
+  --md-default-bg-color: #e0e0e0; /* A pleasant, darker gray */
+
+  /* Code block colors for high contrast */
   --md-code-bg-color: #000000; /* Black background for light theme */
   --md-code-fg-color: #ffffff; /* White text for high contrast */
   --md-code-hl-color: rgba(255, 255, 0, 0.3); /* A visible highlight color */
@@ -110,6 +116,7 @@ https://squidfunk.github.io/mkdocs-material/reference/code-blocks/?h=code#custom
 
 /* --- Slate (dark) theme overrides --- */
 [data-md-color-scheme="slate"] {
+  /* Code block colors for high contrast */
   --md-code-bg-color: #000000; /* Black background for dark theme */
   --md-code-fg-color: #ffffff; /* White text for high contrast */
   --md-code-hl-color: rgba(255, 255, 0, 0.3); /* A visible highlight color */
@@ -128,4 +135,3 @@ https://squidfunk.github.io/mkdocs-material/reference/code-blocks/?h=code#custom
   --md-code-hl-generic-color: #ffffff; /* White for generic text */
   --md-code-hl-variable-color: #add8e6; /* Light blue for variables */
 }
-
