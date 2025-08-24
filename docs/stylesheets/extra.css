@@ -85,18 +85,47 @@ html {
 https://squidfunk.github.io/mkdocs-material/reference/code-blocks/?h=code#custom-syntax-theme
 */
 
-/* Light mode: default scheme */
-[data-md-color-scheme="default"] {
-  --md-code-bg-color: #000000; /* black background */
-  --md-code-fg-color: #ffffff; /* white text */
-  --md-code-hl-color: #ff0000; /* red highlight, high contrast */
+/* docs/stylesheets/extra.css */
+
+/* --- Default (light) theme overrides --- */
+:root {
+  --md-code-bg-color: #000000; /* Black background for light theme */
+  --md-code-fg-color: #ffffff; /* White text for high contrast */
+  --md-code-hl-color: rgba(255, 255, 0, 0.3); /* A visible highlight color */
+
+  /* --- Syntax highlighting for light theme with black background --- */
+  --md-code-hl-number-color: #00ff00; /* Green for numbers */
+  --md-code-hl-special-color: #ff00ff; /* Magenta for special characters */
+  --md-code-hl-function-color: #00ffff; /* Cyan for functions */
+  --md-code-hl-constant-color: #ff8c00; /* Dark orange for constants */
+  --md-code-hl-keyword-color: #ff0000; /* Red for keywords */
+  --md-code-hl-string-color: #ffff00; /* Yellow for strings */
+  --md-code-hl-name-color: #ffffff; /* White for names */
+  --md-code-hl-operator-color: #ffffff; /* White for operators */
+  --md-code-hl-punctuation-color: #ffffff; /* White for punctuation */
+  --md-code-hl-comment-color: #808080; /* Grey for comments */
+  --md-code-hl-generic-color: #ffffff; /* White for generic text */
+  --md-code-hl-variable-color: #add8e6; /* Light blue for variables */
 }
 
-/* Dark mode: slate scheme */
+/* --- Slate (dark) theme overrides --- */
 [data-md-color-scheme="slate"] {
-  --md-code-bg-color: #000000; /* keep background black */
-  --md-code-fg-color: #ffffff; /* white text */
-  --md-code-hl-color: #00ff00; /* green highlight—sharp on dark */
-}
+  --md-code-bg-color: #000000; /* Black background for dark theme */
+  --md-code-fg-color: #ffffff; /* White text for high contrast */
+  --md-code-hl-color: rgba(255, 255, 0, 0.3); /* A visible highlight color */
 
+  /* --- Syntax highlighting for dark theme with black background --- */
+  --md-code-hl-number-color: #00ff00; /* Green for numbers */
+  --md-code-hl-special-color: #ff00ff; /* Magenta for special characters */
+  --md-code-hl-function-color: #00ffff; /* Cyan for functions */
+  --md-code-hl-constant-color: #ff8c00; /* Dark orange for constants */
+  --md-code-hl-keyword-color: #ff0000; /* Red for keywords */
+  --md-code-hl-string-color: #ffff00; /* Yellow for strings */
+  --md-code-hl-name-color: #ffffff; /* White for names */
+  --md-code-hl-operator-color: #ffffff; /* White for operators */
+  --md-code-hl-punctuation-color: #ffffff; /* White for punctuation */
+  --md-code-hl-comment-color: #808080; /* Grey for comments */
+  --md-code-hl-generic-color: #ffffff; /* White for generic text */
+  --md-code-hl-variable-color: #add8e6; /* Light blue for variables */
+}
 
