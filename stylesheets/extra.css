@@ -85,14 +85,10 @@ html {
 https://squidfunk.github.io/mkdocs-material/reference/code-blocks/?h=code#custom-syntax-theme
 */
 
-
-
-/* docs/stylesheets/extra.css */
-
 /* --- Default (light) theme overrides --- */
 :root {
   /* Darker background for the light theme page */
-  --md-default-bg-color: #e0e0e0; /* A pleasant, darker gray */
+  --md-default-bg-color: #362c2c; /* A pleasant, darker gray */
 
   /* Code block colors for high contrast */
   --md-code-bg-color: #000000; /* Black background for light theme */
