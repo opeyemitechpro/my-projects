@@ -183,9 +183,13 @@ Copy the script below and paste into the job pipeline section:
                 DOCKER_HUB_USER   = 'opeyemitechpro'
                 DEST_EMAIL        = 'opeyemitechpro@gmail.com'
                 REPLYTO_EMAIL     = 'opeyemitechpro@gmail.com'
+                
+                SCANNER_HOME 	  = tool "${SONAR_SCANNER}"
+
+
+                // Declare values for these variables to suit your environment needs 
                 DOCKER_TAG        = 'ver-2.$BUILD_NUMBER'
                         
-                SCANNER_HOME 	  = tool "${SONAR_SCANNER}"
             }
 
             stages {
@@ -437,16 +441,19 @@ Copy the script below and paste into the job pipeline section:
                 environment {
                     // ====== CONFIG VARIABLES ======
                     // Replace values with the values configured in your Jenkins server configuration
-                    GIT_CRED          = 'github_cred'
-                    GIT_BRANCH        = 'main'
-                    GIT_URL           = 'https://github.com/opeyemitechpro/11-Microservices-k8s-App-ArgoCD.git'
-                    DOCKER_CRED_ID    = 'my-docker-cred'
-                    DOCKER_HUB_USER   = 'opeyemitechpro'
-                    
-                    // DOCKER_TAG        = 'ver-2.$BUILD_NUMBER'
+                    GIT_CRED                = 'github_cred'
+                    GIT_PASSWORD            = 
+                    GIT_USERNAME            = 
 
-                    DEST_EMAIL        = 'opeyemitechpro@gmail.com'
-                    REPLYTO_EMAIL     = 'opeyemitechpro@gmail.com'
+                    // Declare values for these variables to suit your environment needs
+                    GIT_BRANCH              = 'main'
+                    GIT_URL                 = 'https://github.com/opeyemitechpro/11-Microservices-k8s-App-ArgoCD.git'
+                    DOCKER_CRED_ID          = 'my-docker-cred'
+                    DOCKER_HUB_USER         = 'opeyemitechpro'
+                    GIT_COMMIT_USER         = 'Jenkins CI'
+                    GIT_COMMIT_EMAIL        = 'opeyemitechpro@gmail.com'
+                    DEST_EMAIL              = 'opeyemitechpro@gmail.com'
+                    REPLYTO_EMAIL           = 'opeyemitechpro@gmail.com'
                             
                 }
 
@@ -492,11 +499,11 @@ Copy the script below and paste into the job pipeline section:
                             steps {
                                 withCredentials([usernamePassword(credentialsId: 'github_cred', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
                                     sh '''
-                                        git config user.email "opeyemi@opeyemitechpro.com"
-                                        git config user.name "Jenkins CI"
+                                        git config user.email "${GIT_COMMIT_EMAIL}$"
+                                        git config user.name "${GIT_COMMIT_USER}$"
 
                                         git add 11-microservice-ArgoCD-manifest.yaml
-                                        git commit -m "Update images to tag ${DOCKER_TAG} (triggered by Jenkins Job build ${BUILD_NUMBER})" || echo "No changes to commit"
+                                        git commit -m "Update images to tag ${DOCKER_TAG} (triggered by Jenkins Job: ${PROJECT_NAME} - build ${BUILD_NUMBER})"
                                         git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/${GIT_URL} HEAD:main
                                     '''
                                 }
