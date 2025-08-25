@@ -150,10 +150,11 @@ This terraform configuration creates a fully functional, free and ready-to-use s
 - One command tear down that destroys and cleans up the whole infrastructure along with the locally created files (the keypair file and the *.ovpn user profile file)
 
 
-## **Jenkins Pipeline Script**
+## **Jenkins Pipeline Scripts**
 
-Copy the script below and paste into the job pipeline section:
+Below are the Jenkins pipeline scripts for the `Continous Integration` and the `Continous Deployment` jobs.
 
+### Jenkins CI Pipeline Script
 ??? info "Jenkins CI Pipeline script for the Jenkins job"
 
     <div style="text-align: center;">
@@ -437,7 +438,7 @@ Copy the script below and paste into the job pipeline section:
         // 11-Microservices-k8s-App-ArgoCD Manifest Update Jenkins Pipeline Script
         pipeline {
 
-                agent any
+            agent any
             
                 environment {
                     // ====== CONFIG VARIABLES ======
@@ -512,7 +513,7 @@ Copy the script below and paste into the job pipeline section:
                         }
                     }
                 
-                post {
+            post {
                 always {
                     emailext(
                         
@@ -531,7 +532,7 @@ Copy the script below and paste into the job pipeline section:
             }
         ```
 
-        - [x] Lines `9-21` contain environment variables. Replace the values according to your Jenkins server configuration
+        - [x] Lines `7-21` contain environment variables. Replace the values according to your Jenkins server configuration
 
 ---
         
