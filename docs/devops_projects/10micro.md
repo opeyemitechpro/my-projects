@@ -155,6 +155,7 @@ This terraform configuration creates a fully functional, free and ready-to-use s
 Below are the Jenkins pipeline scripts for the `Continous Integration` and the `Continous Deployment` jobs.
 
 ### Jenkins CI Pipeline Script
+
 ??? info "Jenkins CI Pipeline script for the Jenkins job"
 
     <div style="text-align: center;">
@@ -618,8 +619,24 @@ eksctl create cluster \
 
 
 
-## Install and Setup ArgoCD on EKS
+## Install and Setup ArgoCD on EKS using Helm
 
+Add ArgoCD Helm repo
+
+``` sh
+helm repo add argo https://argoproj.github.io/argo-helm
+```
+
+Install Chart
+``` sh
+helm install my-argo-cd argo/argo-cd --version 8.3.0
+```
+
+
+
+!!! tip 
+
+    * _([ArgoCD Helm Chart on Artifact Hub :fontawesome-solid-arrow-up-right-from-square:](https://artifacthub.io/packages/helm/argo/argo-cd){: target="_blank" })_
 
 
 ## Install and setup Prometheus Stack on EKS using Helm
