@@ -121,11 +121,11 @@ rm -rf gitleaks.tar.gz
 
 Goto `Dashboard > Manage Jenkins > System` and configure both the __"Extended E-mail Notification"__ and the __"E-mail Notification"__ sections as below:
 
-- [x] SMTP Server Name: smtp.gmail.com
-- [x] SMTP Port:  465
+- [x] SMTP Server Name: `smtp.gmail.com`
+- [x] SMTP Port:  `465`
 - [x] Username:    `user_email_id@gmail.com`
 - [x] Password: `app_password`
-- [x] Use SSL: checked
+- [x] Use SSL: `checked`
 - [x] System Admin e-mail address: `<Admin_Name> <user_email_id@gmail.com>`
 - [x] Default Content Type: `HTML`
 - [x] Test email delivery
@@ -183,8 +183,7 @@ Copy the script below and paste into the job pipeline section:
                 DOCKER_HUB_USER   = 'opeyemitechpro'
                 DEST_EMAIL        = 'opeyemitechpro@gmail.com'
                 REPLYTO_EMAIL     = 'opeyemitechpro@gmail.com'
-                DOCKER_TAG_PREFIX = 'ver-1'
-                DOCKER_TAG        = 'ver-1.$BUILD_NUMBER'
+                DOCKER_TAG        = 'ver-2.$BUILD_NUMBER'
                         
                 SCANNER_HOME 	  = tool "${SONAR_SCANNER}"
             }
@@ -236,8 +235,8 @@ Copy the script below and paste into the job pipeline section:
                         script {
                             withDockerRegistry(credentialsId: "${DOCKER_CRED_ID}", toolName: "${DOCKER_TOOL}") {
                             dir("${env.WORKSPACE}/src/adservice") {
-                            sh "docker build -t ${DOCKER_HUB_USER}/adservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER ."
-                            sh "docker push ${DOCKER_HUB_USER}/adservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER"
+                            sh "docker build -t ${DOCKER_HUB_USER}/adservice:$DOCKER_TAG ."
+                            sh "docker push ${DOCKER_HUB_USER}/adservice:$DOCKER_TAG"
                                 }
                             }
                         }
@@ -248,8 +247,8 @@ Copy the script below and paste into the job pipeline section:
                         script {
                             withDockerRegistry(credentialsId: "${DOCKER_CRED_ID}", toolName: "${DOCKER_TOOL}") {
                             dir("${env.WORKSPACE}/src/cartservice/src") {
-                            sh "docker build -t ${DOCKER_HUB_USER}/cartservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER ."
-                            sh "docker push ${DOCKER_HUB_USER}/cartservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER"
+                            sh "docker build -t ${DOCKER_HUB_USER}/cartservice:$DOCKER_TAG ."
+                            sh "docker push ${DOCKER_HUB_USER}/cartservice:$DOCKER_TAG"
                                 }
                             }
                         }
@@ -260,8 +259,8 @@ Copy the script below and paste into the job pipeline section:
                         script {
                             withDockerRegistry(credentialsId: "${DOCKER_CRED_ID}", toolName: "${DOCKER_TOOL}") {
                             dir("${env.WORKSPACE}/src/checkoutservice") {
-                            sh "docker build -t ${DOCKER_HUB_USER}/checkoutservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER ."
-                            sh "docker push ${DOCKER_HUB_USER}/checkoutservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER"
+                            sh "docker build -t ${DOCKER_HUB_USER}/checkoutservice:$DOCKER_TAG ."
+                            sh "docker push ${DOCKER_HUB_USER}/checkoutservice:$DOCKER_TAG"
                                 }
                             }
                         }
@@ -272,8 +271,8 @@ Copy the script below and paste into the job pipeline section:
                         script {
                             withDockerRegistry(credentialsId: "${DOCKER_CRED_ID}", toolName: "${DOCKER_TOOL}") {
                             dir("${env.WORKSPACE}/src/currencyservice") {
-                            sh "docker build -t ${DOCKER_HUB_USER}/currencyservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER ."
-                            sh "docker push ${DOCKER_HUB_USER}/currencyservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER"
+                            sh "docker build -t ${DOCKER_HUB_USER}/currencyservice:$DOCKER_TAG ."
+                            sh "docker push ${DOCKER_HUB_USER}/currencyservice:$DOCKER_TAG"
                                 }
                             }
                         }
@@ -284,8 +283,8 @@ Copy the script below and paste into the job pipeline section:
                         script {
                             withDockerRegistry(credentialsId: "${DOCKER_CRED_ID}", toolName: "${DOCKER_TOOL}") {
                             dir("${env.WORKSPACE}/src/emailservice") {
-                            sh "docker build -t ${DOCKER_HUB_USER}/emailservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER ."
-                            sh "docker push ${DOCKER_HUB_USER}/emailservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER"
+                            sh "docker build -t ${DOCKER_HUB_USER}/emailservice:$DOCKER_TAG ."
+                            sh "docker push ${DOCKER_HUB_USER}/emailservice:$DOCKER_TAG"
                                 }
                             }
                         }
@@ -296,8 +295,8 @@ Copy the script below and paste into the job pipeline section:
                         script {
                             withDockerRegistry(credentialsId: "${DOCKER_CRED_ID}", toolName: "${DOCKER_TOOL}") {
                             dir("${env.WORKSPACE}/src/frontend") {
-                            sh "docker build -t ${DOCKER_HUB_USER}/frontend:$DOCKER_TAG_PREFIX.$BUILD_NUMBER ."
-                            sh "docker push ${DOCKER_HUB_USER}/frontend:$DOCKER_TAG_PREFIX.$BUILD_NUMBER"
+                            sh "docker build -t ${DOCKER_HUB_USER}/frontend:$DOCKER_TAG ."
+                            sh "docker push ${DOCKER_HUB_USER}/frontend:$DOCKER_TAG"
                                 }
                             }
                         }
@@ -308,8 +307,8 @@ Copy the script below and paste into the job pipeline section:
                         script {
                             withDockerRegistry(credentialsId: "${DOCKER_CRED_ID}", toolName: "${DOCKER_TOOL}") {
                             dir("${env.WORKSPACE}/src/loadgenerator") {
-                            sh "docker build -t ${DOCKER_HUB_USER}/loadgenerator:$DOCKER_TAG_PREFIX.$BUILD_NUMBER ."
-                            sh "docker push ${DOCKER_HUB_USER}/loadgenerator:$DOCKER_TAG_PREFIX.$BUILD_NUMBER"
+                            sh "docker build -t ${DOCKER_HUB_USER}/loadgenerator:$DOCKER_TAG ."
+                            sh "docker push ${DOCKER_HUB_USER}/loadgenerator:$DOCKER_TAG"
                                 }
                             }
                         }
@@ -320,8 +319,8 @@ Copy the script below and paste into the job pipeline section:
                         script {
                             withDockerRegistry(credentialsId: "${DOCKER_CRED_ID}", toolName: "${DOCKER_TOOL}") {
                             dir("${env.WORKSPACE}/src/paymentservice") {
-                            sh "docker build -t ${DOCKER_HUB_USER}/paymentservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER ."
-                            sh "docker push ${DOCKER_HUB_USER}/paymentservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER"
+                            sh "docker build -t ${DOCKER_HUB_USER}/paymentservice:$DOCKER_TAG ."
+                            sh "docker push ${DOCKER_HUB_USER}/paymentservice:$DOCKER_TAG"
                                 }
                             }
                         }
@@ -332,8 +331,8 @@ Copy the script below and paste into the job pipeline section:
                         script {
                             withDockerRegistry(credentialsId: "${DOCKER_CRED_ID}", toolName: "${DOCKER_TOOL}") {
                             dir("${env.WORKSPACE}/src/productcatalogservice") {
-                            sh "docker build -t ${DOCKER_HUB_USER}/productcatalogservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER ."
-                            sh "docker push ${DOCKER_HUB_USER}/productcatalogservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER"
+                            sh "docker build -t ${DOCKER_HUB_USER}/productcatalogservice:$DOCKER_TAG ."
+                            sh "docker push ${DOCKER_HUB_USER}/productcatalogservice:$DOCKER_TAG"
                                 }
                             }
                         }
@@ -344,8 +343,8 @@ Copy the script below and paste into the job pipeline section:
                         script {
                             withDockerRegistry(credentialsId: "${DOCKER_CRED_ID}", toolName: "${DOCKER_TOOL}") {
                             dir("${env.WORKSPACE}/src/recommendationservice") {
-                            sh "docker build -t ${DOCKER_HUB_USER}/recommendationservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER ."
-                            sh "docker push ${DOCKER_HUB_USER}/recommendationservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER"
+                            sh "docker build -t ${DOCKER_HUB_USER}/recommendationservice:$DOCKER_TAG ."
+                            sh "docker push ${DOCKER_HUB_USER}/recommendationservice:$DOCKER_TAG"
                                 }
                             }
                         }
@@ -356,8 +355,8 @@ Copy the script below and paste into the job pipeline section:
                         script {
                             withDockerRegistry(credentialsId: "${DOCKER_CRED_ID}", toolName: "${DOCKER_TOOL}") {
                             dir("${env.WORKSPACE}/src/shippingservice") {
-                            sh "docker build -t ${DOCKER_HUB_USER}/shippingservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER ."
-                            sh "docker push ${DOCKER_HUB_USER}/shippingservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER"
+                            sh "docker build -t ${DOCKER_HUB_USER}/shippingservice:$DOCKER_TAG ."
+                            sh "docker push ${DOCKER_HUB_USER}/shippingservice:$DOCKER_TAG"
                                 }
                             }
                         }
@@ -366,17 +365,17 @@ Copy the script below and paste into the job pipeline section:
 
                 stage('DockerImage CleanUp') {
                     steps { 
-                            sh "docker rmi ${DOCKER_HUB_USER}/adservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER"
-                            sh "docker rmi ${DOCKER_HUB_USER}/cartservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER"
-                            sh "docker rmi ${DOCKER_HUB_USER}/checkoutservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER"
-                            sh "docker rmi ${DOCKER_HUB_USER}/currencyservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER"
-                            sh "docker rmi ${DOCKER_HUB_USER}/emailservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER"
-                            sh "docker rmi ${DOCKER_HUB_USER}/frontend:$DOCKER_TAG_PREFIX.$BUILD_NUMBER"
-                            sh "docker rmi ${DOCKER_HUB_USER}/loadgenerator:$DOCKER_TAG_PREFIX.$BUILD_NUMBER"
-                            sh "docker rmi ${DOCKER_HUB_USER}/paymentservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER"
-                            sh "docker rmi ${DOCKER_HUB_USER}/productcatalogservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER"
-                            sh "docker rmi ${DOCKER_HUB_USER}/recommendationservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER"
-                            sh "docker rmi ${DOCKER_HUB_USER}/shippingservice:$DOCKER_TAG_PREFIX.$BUILD_NUMBER"
+                            sh "docker rmi ${DOCKER_HUB_USER}/adservice:$DOCKER_TAG"
+                            sh "docker rmi ${DOCKER_HUB_USER}/cartservice:$DOCKER_TAG"
+                            sh "docker rmi ${DOCKER_HUB_USER}/checkoutservice:$DOCKER_TAG"
+                            sh "docker rmi ${DOCKER_HUB_USER}/currencyservice:$DOCKER_TAG"
+                            sh "docker rmi ${DOCKER_HUB_USER}/emailservice:$DOCKER_TAG"
+                            sh "docker rmi ${DOCKER_HUB_USER}/frontend:$DOCKER_TAG"
+                            sh "docker rmi ${DOCKER_HUB_USER}/loadgenerator:$DOCKER_TAG"
+                            sh "docker rmi ${DOCKER_HUB_USER}/paymentservice:$DOCKER_TAG"
+                            sh "docker rmi ${DOCKER_HUB_USER}/productcatalogservice:$DOCKER_TAG"
+                            sh "docker rmi ${DOCKER_HUB_USER}/recommendationservice:$DOCKER_TAG"
+                            sh "docker rmi ${DOCKER_HUB_USER}/shippingservice:$DOCKER_TAG"
                     }
                 }
             // stage("Kubernetes deploy"){
@@ -414,8 +413,96 @@ Copy the script below and paste into the job pipeline section:
         
         ```
 
-        - [x] Lines 9-21 contain environment variables. Replace the values according to your Jenkins server configuration
-        - [x] Uncomment lines 214 to 225 when you have configured your EKS cluster and set the parameters accordingly in your Jenkins server 
+        - [x] Lines `9-21` contain environment variables. Replace the values according to your Jenkins server configuration
+        - [x] Uncomment lines `214 to 225` when you have configured your EKS cluster and set the parameters accordingly in your Jenkins server 
+
+
+### Jenkins CD Pipeline Script
+
+??? info "Jenkins CD Pipeline script for the Jenkins job"
+
+    <div style="text-align: center;">
+    [11-Microservices-k8s-App-ArgoCD Manifest Source Code :simple-github: :fontawesome-solid-arrow-up-right-from-square:](https://github.com/opeyemitechpro/11-Microservices-k8s-App-ArgoCD){: target="_blank" .md-button}
+    </div>
+
+        ???+ code-file "Jenkins CD Pipeline Script"
+
+            ``` groovy
+                pipeline {
+
+                    agent any
+                
+                    environment {
+                        // ====== CONFIG VARIABLES ======
+                        // Replace values with the values configured in your Jenkins server configuration
+                        GIT_CRED          = 'github_cred'
+                        GIT_BRANCH        = 'main'
+                        GIT_URL           = 'https://github.com/opeyemitechpro/11-Microservices-k8s-App-ArgoCD.git'
+                        DOCKER_CRED_ID    = 'my-docker-cred'
+                        DOCKER_HUB_USER   = 'opeyemitechpro'
+                        
+                        // DOCKER_TAG        = 'ver-2.$BUILD_NUMBER'
+
+                        DEST_EMAIL        = 'opeyemitechpro@gmail.com'
+                        REPLYTO_EMAIL     = 'opeyemitechpro@gmail.com'
+                                
+                    }
+
+                        parameters {
+                            string(name: 'DOCKER_TAG', defaultValue: 'latest', description: 'Docker image tag passed from Jenkins CI Job')
+                        }
+
+                        stages {
+                                stage('Clean Workspace') {
+                                steps {
+
+                                    cleanWs()
+                                }
+                            }
+
+                            stage('Git Checkout') {
+                                steps {
+                                    git branch: "${GIT_BRANCH}", url: "${GIT_URL}"
+                                }
+                            }
+
+                            stage('Update Manifest with New Docker Tag') {
+                                steps {
+                                    script {
+                                        // Show manifest file content before tag replacement
+                                        sh "echo '--- BEFORE ---'"
+                                        sh "grep 'image:' 11-microservice-ArgoCD-manifest.yaml || true"
+
+                                        // Replace all image tags in the manifest
+                                        // Using regex to match all lines like: opeyemitechpro/something:oldtag
+                                        sh '''
+                                            sed -i -E "s|(opeyemitechpro/[a-zA-Z0-9_-]+):[a-zA-Z0-9._-]+|\\1:${DOCKER_TAG}|g" 11-microservice-ArgoCD-manifest.yaml
+                                        '''
+
+                                        // Show manifest file content after replacing tags
+                                        sh "echo '--- AFTER ---'"
+                                        sh "grep 'image:' 11-microservice-ArgoCD-manifest.yaml || true"
+                                    }
+                                }
+                            }
+
+                            stage('Commit & Push Changes') {
+                                steps {
+                                    withCredentials([usernamePassword(credentialsId: 'github_cred', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
+                                        sh '''
+                                            git config user.email "opeyemi@opeyemitechpro.com"
+                                            git config user.name "Jenkins CI"
+
+                                            git add 11-microservice-ArgoCD-manifest.yaml
+                                            git commit -m "Update images to tag ${DOCKER_TAG} (triggered by Jenkins Job build ${BUILD_NUMBER})" || echo "No changes to commit"
+                                            git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/${GIT_URL} HEAD:main
+                                        '''
+                                    }
+                                }
+                            }
+                        }
+                }
+            ```
         
         
 
@@ -484,9 +571,9 @@ The list of acceptable AWS regions are shown [here](https://opeyemitechpro.githu
 
 Create your EKS Cluster
 
-``` sh
+``` sh hl_lines="2"
 eksctl create cluster \
-  --name ope-k8s-cluster \
+  --name opeyemi-k8s-cluster \
   --region us-east-2 \
   --with-oidc 
 ```
