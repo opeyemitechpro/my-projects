@@ -154,17 +154,17 @@ This terraform configuration creates a fully functional, free and ready-to-use s
 
 Copy the script below and paste into the job pipeline section:
 
-??? info "Jenkins Pipeline script for the Jenkins job"
+??? info "Jenkins CI Pipeline script for the Jenkins job"
 
     <div style="text-align: center;">
     [11-Microservices-k8s-App Source Code :simple-github: :fontawesome-solid-arrow-up-right-from-square:](https://github.com/opeyemitechpro/11-Microservices-k8s-App){: target="_blank" .md-button}
     </div>    
     
-    The Jenkins CI/CD pipeline is below:
+    The Jenkins CI pipeline is below:
 
     ???+ code-file "Jenkins Pipeline Script"
             
-        ``` groovy hl_lines="9-21 214-225"
+        ``` groovy hl_lines="9-24 214-225"
         // 11-Microservices-k8s-App Jenkins Pipeline Script
 
         pipeline {
@@ -183,7 +183,7 @@ Copy the script below and paste into the job pipeline section:
                 DOCKER_HUB_USER   = 'opeyemitechpro'
                 DEST_EMAIL        = 'opeyemitechpro@gmail.com'
                 REPLYTO_EMAIL     = 'opeyemitechpro@gmail.com'
-                
+
                 SCANNER_HOME 	  = tool "${SONAR_SCANNER}"
 
 
@@ -433,7 +433,8 @@ Copy the script below and paste into the job pipeline section:
 
     ???+ code-file "Jenkins CD Pipeline Script"
 
-        ``` groovy
+        ``` groovy hl_lines="9-21"
+        // 11-Microservices-k8s-App-ArgoCD Manifest Update Jenkins Pipeline Script
         pipeline {
 
                 agent any
@@ -529,6 +530,8 @@ Copy the script below and paste into the job pipeline section:
                 }
             }
         ```
+
+        - [x] Lines `9-21` contain environment variables. Replace the values according to your Jenkins server configuration
 
 ---
         
