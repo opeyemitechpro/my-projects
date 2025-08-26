@@ -11,9 +11,15 @@ tags:
 status: new
 pin: true
 popup:
-  title: "Test Popup"
-  content: "This is a test."
-  type: "tip"
+  content: |
+    ## 🚀 Welcome
+    This is a **Markdown-powered popup**.
+    - Auto adjusts to light/dark
+    - Supports rich text
+    [GitHub](https://github.com)
+  position: bottom-left
+  duration: 10   # seconds
+  closeButton: true
 ---
 
 # **DevSecOps Project - 11-Microservices End-to-End CI/CD & Monitoring Using Kubernetes, Terraform, Jenkins, Grafana & Prometheus**
