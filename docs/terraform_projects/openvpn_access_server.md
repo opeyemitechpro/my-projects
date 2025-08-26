@@ -10,16 +10,6 @@ tags:
   - OpenVPN
 status: new
 pin: true
-popup:
-  title: "Action Required"
-  content: |
-    **Please read the following carefully:**
-    - Item one
-    - Item two
-    [Click Here](https://opeyemitechpro.github.io)
-  type: "danger"
-  closeButton: false
-  timeout: 10000
 ---
 
 # **DIY Project - OpenVPN Access Server Setup Using Terraform**
