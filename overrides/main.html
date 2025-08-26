@@ -72,11 +72,28 @@
 
 
 <!-- Popup Front Matter Settings -->
+
+
 {% block scripts %}
   {{ super() }}
   <script>
     {% if page.meta %}
-      var page_meta = {{ page.meta | tojson }};
+      {# Create a new dictionary to hold JSON-safe values #}
+      {% set safe_meta = {} %}
+
+      {# Iterate over the original meta items #}
+      {% for key, value in page.meta.items() %}
+        {# Check if the value is a date/datetime object and convert it to a string #}
+        {% if value.__class__.__name__ in ['date', 'datetime'] %}
+          {% set _ = safe_meta.update({key: value | string}) %}
+        {% else %}
+          {# Otherwise, add the original value #}
+          {% set _ = safe_meta.update({key: value}) %}
+        {% endif %}
+      {% endfor %}
+
+      var page_meta = {{ safe_meta | tojson }};
+
     {% else %}
       var page_meta = {};
     {% endif %}
