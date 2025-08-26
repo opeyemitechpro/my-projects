@@ -18,6 +18,8 @@ popup:
     - Item two
     [Click Here](https://opeyemitechpro.github.io)
   type: "danger"
+  closeButton: false
+  timeout: 10000
 ---
 
 # **DevSecOps Project - 11-Microservices End-to-End CI/CD & Monitoring Using Kubernetes, Terraform, Jenkins, Grafana & Prometheus**
