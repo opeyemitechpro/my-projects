@@ -10,6 +10,7 @@ tags:
   - Kubernetes
 status: new
 pin: true
+mkdocs-page-popup: welcome
 ---
 
 # **DevSecOps Project - 11-Microservices End-to-End CI/CD & Monitoring Using Kubernetes, Terraform, Jenkins, Grafana & Prometheus**
@@ -765,17 +766,14 @@ kubectl get svc -n monitoring
 
 !!! tip "Tip"
 
-    You may need to wait a while for the `EXTERNAL-IP` field to be populated, then open each URL for both Grafana and Prometheus in your browser (Grafana on port 80, Prometheus on port 9090)
+    You may need to wait a while for the `EXTERNAL-IP` field to be populated, then open each URL for both Grafana and Prometheus in your browser (Grafana on port `80`, Prometheus on port `9090`)
 
 
-Get Grafana password
+To get Grafana password, enter the command below. This will display the contents of the `prometheus-grafana` secret in json format. Copy the `admin-password` from the json output and decode it in base-64 using the next command
 
 ``` sh
 kubectl --namespace monitoring get secrets prometheus-grafana -o json 
 ```
-
-
-Copy the admin-password from the json output and decode it in base-64 using the command below
 
 !!! tip inline end "Tip"
 
@@ -794,7 +792,7 @@ kubectl --namespace monitoring get secrets prometheus-grafana -o jsonpath="{.dat
 
 !!! tip "Tip"
 
-    - Default Username is `admin`
+    - Default Grafana Username is `admin`
     - The decoded password should translate to `prom-operator` which is the default grafana password.
 
 

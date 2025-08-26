@@ -221,7 +221,7 @@ extra:
 extra_css:
   - stylesheets/extra.css
 extra_javascript:
-  - javascript/extra.js 
+  - javascript/popups.js 
 
   
 # Extensions
@@ -244,6 +244,7 @@ markdown_extensions:
   - codehilite:
       linenums: true
   - admonition
+  - meta
   - pymdownx.arithmatex:
       generic: true
   - footnotes
