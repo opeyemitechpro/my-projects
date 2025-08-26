@@ -93,13 +93,55 @@
       
     
     
-   
+  
+  <!-- Google Adsense Code Snipet -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1002864988754361" crossorigin="anonymous"></script>
     
     
-    
-      
-  
+     
+          
+
+  <!-- Popup Notification CSS and JS --> 
+
+  <style>
+    .mkdocs-popup {
+      position: fixed;
+      max-width: 400px;
+      padding: 1em;
+      border-radius: 0.5em;
+      z-index: 9999;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .mkdocs-popup.active {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    .mkdocs-popup .close-btn {
+      float: right;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 1.2em;
+    }
+
+    /* Light/Dark aware */
+    [data-md-color-scheme="default"] .mkdocs-popup {
+      background: var(--md-default-bg-color);
+      color: var(--md-default-fg-color);
+      border-left: 4px solid var(--md-primary-fg-color);
+    }
+    [data-md-color-scheme="slate"] .mkdocs-popup {
+      background: var(--md-default-bg-color);
+      color: var(--md-default-fg-color);
+      border-left: 4px solid var(--md-accent-fg-color);
+    }
+  </style>
+
    <link href="../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
     html.glightbox-open { overflow: initial; height: 100%; }
     .gslide-title { margin-top: 0px; user-select: text; }
@@ -1368,15 +1410,84 @@
       <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.expand", "navigation.instant", "navigation.instant.progress", "navigation.instant.prefetch", "navigation.instant.preview", "navigation.sections", "navigation.tracking", "navigation.top", "navigation.path", "navigation.footer", "navigation.indexes", "toc.follow", "search.suggest", "search.highlight", "content.tabs.link", "content.code.annotation", "content.code.copy", "content.tooltips", "content.code.select", "content.code.annotate", "content.action.view", "content.action.edit"], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": {"AWS": null, "DevOps": null, "Terraform": null}, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
+  
       <script src="../assets/javascripts/bundle.92b07e13.min.js"></script>
       
         <script src="../js/timeago.min.js"></script>
       
         <script src="../js/timeago_mkdocs_material.js"></script>
       
-        <script src="../javascript/extra.js"></script>
+        <script src="../javascript/popups.js"></script>
       
     
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script>
+    (function() {
+      const config = {
+        timeout: 8000, // ms before auto-hide (0 = disabled)
+        position: "bottom-right", // top-left, top-right, bottom-left, bottom-right
+      };
+
+      function createPopup(content) {
+        const popup = document.createElement("div");
+        popup.className = "mkdocs-popup";
+
+        // Close button
+        const closeBtn = document.createElement("span");
+        closeBtn.className = "close-btn";
+        closeBtn.innerHTML = "&times;";
+        closeBtn.onclick = () => popup.remove();
+        popup.appendChild(closeBtn);
+
+        // Content (markdown support via marked.js)
+        const wrapper = document.createElement("div");
+        wrapper.innerHTML = marked.parse(content);
+        popup.appendChild(wrapper);
+
+        // Positioning
+        switch (config.position) {
+          case "top-left":
+            popup.style.top = "1em";
+            popup.style.left = "1em";
+            break;
+          case "top-right":
+            popup.style.top = "1em";
+            popup.style.right = "1em";
+            break;
+          case "bottom-left":
+            popup.style.bottom = "1em";
+            popup.style.left = "1em";
+            break;
+          default:
+            popup.style.bottom = "1em";
+            popup.style.right = "1em";
+        }
+
+        document.body.appendChild(popup);
+
+        // Show animation
+        setTimeout(() => popup.classList.add("active"), 100);
+
+        // Auto timeout
+        if (config.timeout > 0) {
+          setTimeout(() => popup.remove(), config.timeout);
+        }
+      }
+
+      // Fetch popup meta info from front matter
+      document$.subscribe(function() {
+        const meta = document.querySelector("meta[name='mkdocs-page-popup']");
+        if (meta) {
+          const popupId = meta.getAttribute("content");
+          if (popupId && window.popups && window.popups[popupId]) {
+            createPopup(window.popups[popupId]);
+          }
+        }
+      });
+
+    })();
+  </script>
+
   <script id="init-glightbox">document.querySelectorAll('.glightbox').forEach(function(element) {
     try {
         var img = element.querySelector('img');
