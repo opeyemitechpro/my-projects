@@ -11,14 +11,13 @@ tags:
 status: new
 pin: true
 popup:
-  id: welcome
+  title: "Action Required"
   content: |
-    ## 👋 Welcome
-    This popup is styled for **Material for MkDocs**.
-    - Supports **Markdown**
-    - Auto closes after 5s
-  timeout: 5000
-  position: bottom-right
+    **Please read the following carefully:**
+    - Item one
+    - Item two
+    [Click Here](https://opeyemitechpro.github.io)
+  type: "danger"
 ---
 
 # **DevSecOps Project - 11-Microservices End-to-End CI/CD & Monitoring Using Kubernetes, Terraform, Jenkins, Grafana & Prometheus**

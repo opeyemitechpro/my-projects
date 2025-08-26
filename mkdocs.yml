@@ -220,6 +220,10 @@ extra:
 # Extra StyleSheets
 extra_css:
   - stylesheets/extra.css
+  - stylesheets/popup.css
+extra_javascript:
+  - https://cdnjs.cloudflare.com/ajax/libs/showdown/2.1.0/showdown.min.js
+  - javascripts/popup.js
 
   
 # Extensions

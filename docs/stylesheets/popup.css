@@ -1,0 +1,58 @@
+/* docs/stylesheets/popup.css 
+Popup Styling
+*/
+
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup-content {
+  background-color: var(--md-default-bg-color);
+  color: var(--md-default-fg-color);
+  padding: 1.5rem;
+  border-radius: 0.2rem;
+  max-width: 600px;
+  width: 90%;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  border-left: 0.4rem solid var(--md-primary-fg-color);
+}
+
+.popup-content h2 {
+  margin-top: 0;
+  color: var(--md-primary-fg-color);
+}
+
+.popup-content .popup-close {
+  float: right;
+  border: none;
+  background: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--md-default-fg-color--light);
+}
+
+/* Admonition-like styling */
+.popup-content.note {
+  border-left-color: #448aff; /* Blue */
+}
+
+.popup-content.tip {
+  border-left-color: #00e676; /* Green */
+}
+
+.popup-content.warning {
+  border-left-color: #ff9100; /* Orange */
+}
+
+.popup-content.danger {
+  border-left-color: #ff1744; /* Red */
+}
