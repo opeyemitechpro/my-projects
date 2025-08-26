@@ -592,6 +592,10 @@ The list of acceptable AWS regions are shown [here](https://opeyemitechpro.githu
 
 Create your EKS Cluster
 
+!!! tip inline end "Tip"
+
+    - Replace the clsuter name with your desired cluster name
+
 ``` sh hl_lines="2"
 eksctl create cluster \
   --name opeyemi-k8s-cluster \
@@ -599,12 +603,22 @@ eksctl create cluster \
   --with-oidc 
 ```
 
-!!! tip "Tip"
 
-    - Replace the clsuter name with your desired name
+### Install Helm
 
+Check if Helm is istalled on your local machine
 
+``` sh
+helm version
+```
 
+If not, install Helm with this command
+
+``` sh
+curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
+```
+
+---
 
 
 ## ArgoCD Installation and Setup on EKS using Helm
@@ -613,18 +627,26 @@ Add ArgoCD Helm repo
 
 ``` sh
 helm repo add argo https://argoproj.github.io/argo-helm
+
+helm repo update
 ```
+
+!!! tip inline end "Tip"
+
+    This will create the `argocd` namespace and install ArgoCD
 
 Install ArgoCD Helm Chart
+
 ``` sh
-helm install my-argo-cd argo/argo-cd --version 8.3.0
+helm install my-argo-cd argo/argo-cd --version 8.3.0 --namespace argocd --create-namespace
 ```
 
-Change the argocd-server service type to LoadBalancer:
+Expose the `argocd-server` service as a LoadBalancer
 
 ``` sh
 kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'
 ```
+
 After a short wait, AWS will assign a URL to the LoadBalancer service. You can retrieve this URL with:
 
 ``` sh
@@ -633,10 +655,10 @@ kubectl get svc argocd-server -n argocd -o=jsonpath='{.status.loadBalancer.ingre
 
 Use this LoadBalancer URL to access ArgoCD UI from your browser
 
-The initial password for the `admin` account is auto-generated and stored as clear text in the field `password` in a secret named `argocd-initial-admin-secret` in your Argo CD installation namespace. You can simply retrieve this password using kubectl:
+The initial password for the `admin` account is auto-generated and stored in the field `password` in a secret named `argocd-initial-admin-secret` in your Argo CD installation namespace. You can simply retrieve this password using kubectl:
 
 
-??? warning inline end "Note"
+??? warning inline end "Warning"
 
     In Production, You should delete the `argocd-initial-admin-secret` from the Argo CD namespace once you change the password. The secret serves no other purpose than to store the initially generated password in clear and can safely be deleted at any time. It will be re-created on demand by Argo CD if a new admin password must be re-generated.
 
@@ -654,45 +676,41 @@ kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.pas
 
 ## Prometheus Stack Installation and Setup on EKS using Helm
 
+Add the kube-prometheus-stack Helm repo
 
-### Install Helm
 ``` sh
-curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
-```
-
-### Check Helm version
-``` sh
-helm version
-```
-
-### Add Helm repo
-``` sh
-
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
 
 helm repo update
 ```
 
-> ***(Optionally) Search Available Hem Charts***
+<!-- > ***(Optionally) Search Available Hem Charts***
 ``` sh
 helm search repo prometheus-community
-```
+``` -->
 
-### create namespace
+<!-- Create namespace to install the stack
+
 ``` sh
 kubectl create namespace monitoring
-```
+``` -->
 
-### Install Prometheus Stack into monitoring namespace 
+Install Prometheus Stack into `monitoring` namespace 
+
+!!! tip inline end "Tip"
+
+    This will create the `monitoring` namespace and install kube-Prometheus stack
+
 ``` sh
 helm install prometheus prometheus-community/kube-prometheus-stack \
-  -n monitoring \
+  --namespace monitoring \
+  --create-namespace \
   --set prometheus.prometheusSpec.maximumStartupDurationSeconds=300 \
   --set alertmanager.persistence.storageClass="gp2" \
   --set server.persistentVolume.storageClass="gp2"
 ```
 
-### Check running status of pods to verify deployment
+Check running status of pods to verify deployment
 
 ``` sh
 kubectl --namespace monitoring get pods -l "release=prometheus"
