@@ -641,6 +641,18 @@ Install ArgoCD Helm Chart
 helm install my-argo-cd argo/argo-cd --version 8.3.0 --namespace argocd --create-namespace
 ```
 
+Check running status of pods in the `monitoring` namespace to verify deployment
+
+``` sh
+kubectl --namespace argocd get pods -l "release=my-argo-cd"
+```
+
+OR
+
+``` sh
+kubectl get pods -n argocd
+```
+
 Expose the `argocd-server` service as a LoadBalancer
 
 ``` sh
@@ -684,17 +696,6 @@ helm repo add prometheus-community https://prometheus-community.github.io/helm-c
 helm repo update
 ```
 
-<!-- > ***(Optionally) Search Available Hem Charts***
-``` sh
-helm search repo prometheus-community
-``` -->
-
-<!-- Create namespace to install the stack
-
-``` sh
-kubectl create namespace monitoring
-``` -->
-
 Install Prometheus Stack into `monitoring` namespace 
 
 !!! tip inline end "Tip"
@@ -710,7 +711,7 @@ helm install prometheus prometheus-community/kube-prometheus-stack \
   --set server.persistentVolume.storageClass="gp2"
 ```
 
-Check running status of pods to verify deployment
+Check running status of pods in the `monitoring` namespace to verify deployment
 
 ``` sh
 kubectl --namespace monitoring get pods -l "release=prometheus"
@@ -722,24 +723,24 @@ kubectl get pods -n monitoring
 ```
 
 
-### List all services in the monitoring namespace
+List all services in the monitoring namespace
+
 ``` sh
 kubectl get svc -n monitoring
 ```
 
 
-### Display Grafana URL (optional)
+Display Grafana URL (optional)
 ``` sh
 kubectl get svc -n monitoring prometheus-grafana
 ```
 
-### Display Prometheus URL (optional)
+Display Prometheus URL (optional)
 ``` sh
 kubectl get svc -n monitoring prometheus-kube-prometheus-prometheus
 ```
 
-### Expose Grafana on a LoadBalancer
-Change Grafana Service Type from ClusterIP to LoadBalancer to expose for external access
+Expose Grafana on a LoadBalancer for external access
 
 ``` sh
 kubectl patch svc prometheus-grafana \
@@ -747,8 +748,7 @@ kubectl patch svc prometheus-grafana \
   -p '{"spec": {"type": "LoadBalancer"}}'
 ```
 
-### Expose Prometheus on a LoadBalancer
-Change Prometheus Service Type from ClusterIP to LoadBalancer to expose for external access
+Expose Prometheus on a LoadBalancer for external access
 
 ``` sh
 kubectl patch svc prometheus-kube-prometheus-prometheus \
@@ -757,16 +757,18 @@ kubectl patch svc prometheus-kube-prometheus-prometheus \
 ```
 
 
-### Display LoadBalancer URL for Grafana and Prometheus
+Display LoadBalancer URL for Grafana and Prometheus
 
 ``` sh
 kubectl get svc -n monitoring
 ```
 
-You may need to wait a while for the `EXTERNAL-IP` field to be populated, then open each URL for both Grafana and Prometheus in your browser (Grafana on port 80, Prometheus on port 9090)
+!!! tip "Tip"
+
+    You may need to wait a while for the `EXTERNAL-IP` field to be populated, then open each URL for both Grafana and Prometheus in your browser (Grafana on port 80, Prometheus on port 9090)
 
 
-### Get Grafana password
+Get Grafana password
 
 ``` sh
 kubectl --namespace monitoring get secrets prometheus-grafana -o json 
@@ -774,6 +776,10 @@ kubectl --namespace monitoring get secrets prometheus-grafana -o json
 
 
 Copy the admin-password from the json output and decode it in base-64 using the command below
+
+!!! tip inline end "Tip"
+
+    Replace the `<admin-password>` with the password you copied from the json output
 
 ``` sh
 echo "<admin-password>" | base64 --decode

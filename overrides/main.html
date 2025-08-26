@@ -71,3 +71,10 @@
 
 
 
+
+{% block scripts %}
+  {{ super() }}
+  <script>
+    var page_meta = {{ page.meta | tojson }};
+  </script>
+{% endblock %}
