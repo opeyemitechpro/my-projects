@@ -10,9 +10,6 @@ tags:
   - Kubernetes
 status: new
 pin: true
-popup:
-  title: "Welcome!"
-  content: "This is a simple popup that appears on this page."
 ---
 
 # **DevSecOps Project - 11-Microservices End-to-End CI/CD & Monitoring Using Kubernetes, Terraform, Jenkins, Grafana & Prometheus**
