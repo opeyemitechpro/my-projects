@@ -10,16 +10,6 @@ tags:
   - Kubernetes
 status: new
 pin: true
-popup:
-  content: |
-    ## 🚀 Welcome
-    This is a **Markdown-powered popup**.
-    - Auto adjusts to light/dark
-    - Supports rich text
-    [GitHub](https://github.com)
-  position: bottom-left
-  duration: 10   # seconds
-  closeButton: true
 ---
 
 # **DevSecOps Project - 11-Microservices End-to-End CI/CD & Monitoring Using Kubernetes, Terraform, Jenkins, Grafana & Prometheus**
@@ -993,12 +983,3 @@ eksctl delete cluster --name opeyemi-k8s-cluster --region us-east-2
 
 Setting up a self-hosted VPN server using this Terraform configuration script is a straightforward and efficient way to enhance your network security and maintain control over your data. By following this documentation, you can deploy a robust OpenVPN server on AWS, customize it to your needs, and ensure private and secure internet access. This guide aims to empower you with the knowledge and tools to manage your own VPN server effectively. For any troubleshooting or further customization, explore the Terraform and OpenVPN documentation for advanced insights and solutions. 
 
-
-
-
-
-    <!-- Simple popup -->
-    <dialog open>
-      <p>Hello 👋 This is a very basic popup!</p>
-      <button>Close</button>
-    </dialog>

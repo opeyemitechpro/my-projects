@@ -44,8 +44,7 @@ theme:
     - content.code.annotate
     - content.action.view
     - content.action.edit
-    - content.frontmatter
-    - content.footnotes
+
     # - announce.dismiss
    # site logo and favicon
   favicon: assets/images/favicon.png
@@ -222,10 +221,6 @@ extra:
 # Extra StyleSheets
 extra_css:
   - stylesheets/extra.css
-  - stylesheets/popup.css
-extra_javascript:
-  - https://cdnjs.cloudflare.com/ajax/libs/showdown/2.1.0/showdown.min.js
-  - javascripts/popup.js
 
   
 # Extensions
