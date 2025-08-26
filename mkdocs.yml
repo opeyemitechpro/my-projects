@@ -86,7 +86,6 @@ plugins:
         color: white
   - search:
       separator: '[\s\u200b\-_,:!=\[\]()"`/]+|\.(?!\d)|&[lg]t;|(?!\b)(?=[A-Z][a-z])'
-  - popup
   - tags:
       tags_file: tags.md
   #    tags_slugify: !!python/object/apply:pymdownx.slugs.slugify
@@ -221,8 +220,6 @@ extra:
 # Extra StyleSheets
 extra_css:
   - stylesheets/extra.css
-extra_javascript:
-  - javascript/popups.js 
 
   
 # Extensions
