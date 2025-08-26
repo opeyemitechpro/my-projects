@@ -10,7 +10,15 @@ tags:
   - Kubernetes
 status: new
 pin: true
-mkdocs-page-popup: welcome
+popup:
+  id: welcome
+  content: |
+    ## 👋 Welcome
+    This popup is styled for **Material for MkDocs**.
+    - Supports **Markdown**
+    - Auto closes after 5s
+  timeout: 5000
+  position: bottom-right
 ---
 
 # **DevSecOps Project - 11-Microservices End-to-End CI/CD & Monitoring Using Kubernetes, Terraform, Jenkins, Grafana & Prometheus**
