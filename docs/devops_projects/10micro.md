@@ -149,10 +149,11 @@ This terraform configuration creates a fully functional, free and ready-to-use s
 - Generates an OpenVPN User Profile file (*.ovpn) that will be used to authenticate and establish an encrypted VPN connection from your local machine to the VPN server. The OpenPVN User Profile file is also donwloaded and saved to the terraform working directory on your local machine.
 - One command tear down that destroys and cleans up the whole infrastructure along with the locally created files (the keypair file and the *.ovpn user profile file)
 
+---
 
 ## **Jenkins Pipeline Scripts**
 
-Below are the Jenkins pipeline scripts for the `Continous Integration` and the `Continous Deployment` jobs.
+Below are the Jenkins pipeline scripts for the `Continous Integration (CI)` and the `Continous Delivery (CD)` jobs.
 
 ### Jenkins CI Pipeline Script
 
@@ -636,8 +637,9 @@ helm install my-argo-cd argo/argo-cd --version 8.3.0
 
 !!! tip 
 
-    * _([ArgoCD Helm Chart on Artifact Hub :fontawesome-solid-arrow-up-right-from-square:](https://artifacthub.io/packages/helm/argo/argo-cd){: target="_blank" })_
+    * _[ArgoCD Helm Chart on Artifact Hub :fontawesome-solid-arrow-up-right-from-square:](https://artifacthub.io/packages/helm/argo/argo-cd){: target="_blank" }_
 
+---
 
 ## Install and setup Prometheus Stack on EKS using Helm
 
