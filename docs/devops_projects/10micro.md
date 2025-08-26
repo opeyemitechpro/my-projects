@@ -11,15 +11,9 @@ tags:
 status: new
 pin: true
 popup:
-  title: "Action Required"
-  content: |
-    **Please read the following carefully:**
-    - Item one
-    - Item two
-    [Click Here](https://opeyemitechpro.github.io)
-  type: "danger"
-  closeButton: false
-  timeout: 10000
+  title: "Test Popup"
+  content: "This is a test."
+  type: "tip"
 ---
 
 # **DevSecOps Project - 11-Microservices End-to-End CI/CD & Monitoring Using Kubernetes, Terraform, Jenkins, Grafana & Prometheus**
