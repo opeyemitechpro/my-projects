@@ -71,10 +71,14 @@
 
 
 
-
+<!-- Popup Front Matter Settings -->
 {% block scripts %}
   {{ super() }}
   <script>
-    var page_meta = {{ page.meta | tojson }};
+    {% if page.meta %}
+      var page_meta = {{ page.meta | tojson }};
+    {% else %}
+      var page_meta = {};
+    {% endif %}
   </script>
 {% endblock %}
