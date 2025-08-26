@@ -136,19 +136,6 @@ Goto `Dashboard > Manage Jenkins > System` and configure both the __"Extended E-
     - The settings above apply to Gmail address configuration. Confirm SMTP settings from your email service provider.
     - Copy `App password` from your gmail account security settings and use that as the password in the above configuration.
 
-
-
-## **What this Terraform Configuration Script Does**
-
-This terraform configuration creates a fully functional, free and ready-to-use self-hosted OpenVPN Server in any chosen AWS region. The script perfomes the following operations:
-
-- Creates a Ubuntu 22.04 EC2 instance and configures a fully functional OpenVPN Access Server on it
-- Configures the server as a type t2-micro instance so that it can run within the AWS Free-tier plan (Learn more about the AWS free-tier plan [here](https://aws.amazon.com/free){: target="_blank" })
-- Sets up and configures the VPN server with an IP address in the speicified AWS region.
-- Generates an AWS keypair file for optional SSH connection to the EC2 instance, downloads the file and saves it in the terraform working directory on your local machine. The chosen AWS region is appended to the name of the keypair file.
-- Generates an OpenVPN User Profile file (*.ovpn) that will be used to authenticate and establish an encrypted VPN connection from your local machine to the VPN server. The OpenPVN User Profile file is also donwloaded and saved to the terraform working directory on your local machine.
-- One command tear down that destroys and cleans up the whole infrastructure along with the locally created files (the keypair file and the *.ovpn user profile file)
-
 ---
 
 ## **Jenkins Pipeline Scripts**
@@ -620,7 +607,7 @@ eksctl create cluster \
 
 
 
-## Install and Setup ArgoCD on EKS using Helm
+## ArgoCD Installation and Setup on EKS using Helm
 
 Add ArgoCD Helm repo
 
@@ -628,20 +615,44 @@ Add ArgoCD Helm repo
 helm repo add argo https://argoproj.github.io/argo-helm
 ```
 
-Install Chart
+Install ArgoCD Helm Chart
 ``` sh
 helm install my-argo-cd argo/argo-cd --version 8.3.0
 ```
 
+Change the argocd-server service type to LoadBalancer:
+
+``` sh
+kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'
+```
+After a short wait, AWS will assign a URL to the LoadBalancer service. You can retrieve this URL with:
+
+``` sh
+kubectl get svc argocd-server -n argocd -o=jsonpath='{.status.loadBalancer.ingress[0].ip}'
+```
+
+Use this LoadBalancer URL to access ArgoCD UI from your browser
+
+The initial password for the `admin` account is auto-generated and stored as clear text in the field `password` in a secret named `argocd-initial-admin-secret` in your Argo CD installation namespace. You can simply retrieve this password using kubectl:
+
+
+??? warning inline end "Note"
+
+    In Production, You should delete the `argocd-initial-admin-secret` from the Argo CD namespace once you change the password. The secret serves no other purpose than to store the initially generated password in clear and can safely be deleted at any time. It will be re-created on demand by Argo CD if a new admin password must be re-generated.
+
+``` sh
+kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d; echo
+```
 
 
 !!! tip 
 
-    * _[ArgoCD Helm Chart on Artifact Hub :fontawesome-solid-arrow-up-right-from-square:](https://artifacthub.io/packages/helm/argo/argo-cd){: target="_blank" }_
+    * [How to install ArgoCD using Helm Charts :fontawesome-solid-arrow-up-right-from-square:](https://artifacthub.io/packages/helm/argo/argo-cd){: target="_blank" }
+    * You can also follow the ArgoCD installation guide on the [ArgoCD Documentation Website :fontawesome-solid-arrow-up-right-from-square:](https://argo-cd.readthedocs.io/en/stable/getting_started/#1-install-argo-cd){: target="_blank" }
 
 ---
 
-## Install and setup Prometheus Stack on EKS using Helm
+## Prometheus Stack Installation and Setup on EKS using Helm
 
 
 ### Install Helm
@@ -924,6 +935,27 @@ kubectl delete namespace monitoring
 
 ########################################################
 
+## Clean-Up 
+
+To avoid incurring uneccessary costs, it is advisable to clean up (destroy) all the infrastructural resources created during this project.
+
+To destroy the infrastructure created by Terraform, navigate to the directory where your Terraform configuration files are located and run:
+
+``` sh
+terraform destroy --auto-approve
+```
+
+Delete the EKS Cluster
+
+``` sh
+eksctl delete cluster --name opeyemi-k8s-cluster --region us-east-2
+```
+
+!!! tip "Tip"
+
+    * Wait until each of the commands completes 
+    * Check your AWS Console to confirm that all resources have been successfully terminated
+    
 
 
 ## **Conclusion**
