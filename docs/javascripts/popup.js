@@ -1,10 +1,11 @@
 // docs/javascripts/popup.js
 
 document.addEventListener("DOMContentLoaded", () => {
-  // Get popup config from page front matter (Material exposes it as meta)
-  const popupConfig = window?.page?.meta?.popup;
+  // Material for MkDocs exposes page meta via __md_get("__page")
+  const pageData = typeof __md_get === "function" ? __md_get("__page") : null;
+  const popupConfig = pageData && pageData.meta && pageData.meta.popup;
 
-  if (!popupConfig) return; // no popup for this page
+  if (!popupConfig) return; // No popup defined for this page
 
   // Default settings
   const defaults = {
@@ -29,11 +30,14 @@ document.addEventListener("DOMContentLoaded", () => {
     popup.appendChild(closeBtn);
   }
 
-  // Add content (render markdown with Material’s built-in Markdown parser if available)
+  // Add content (Markdown support if Marked.js is available)
   const content = document.createElement("div");
-  content.innerHTML = window.marked
-    ? window.marked.parse(settings.content)
-    : settings.content;
+  if (window.marked) {
+    content.innerHTML = window.marked.parse(settings.content);
+  } else {
+    // fallback: allow basic HTML
+    content.innerHTML = settings.content;
+  }
   popup.appendChild(content);
 
   document.body.appendChild(popup);
@@ -43,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
     popup.classList.remove("hidden");
   });
 
-  // Auto-hide after duration
+  // Auto-hide
   if (settings.duration > 0) {
     setTimeout(() => {
       popup.classList.add("hidden");
