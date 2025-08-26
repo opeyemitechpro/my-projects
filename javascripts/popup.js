@@ -1,47 +1,53 @@
 // docs/javascripts/popup.js
 
+document.addEventListener("DOMContentLoaded", () => {
+  // Get popup config from page front matter (Material exposes it as meta)
+  const popupConfig = window?.page?.meta?.popup;
 
-document.addEventListener("DOMContentLoaded", function() {
-  if (window.showdown) {
-    const converter = new showdown.Converter();
-    const frontMatter = document.body.getAttribute('data-md-front-matter');
+  if (!popupConfig) return; // no popup for this page
 
-    if (frontMatter) {
-      const fm = JSON.parse(frontMatter);
+  // Default settings
+  const defaults = {
+    content: "Hello 👋 This is a popup!",
+    position: "bottom-right",
+    duration: 0, // 0 = stay until closed
+    closeButton: true,
+  };
 
-      if (fm.popup) {
-        const popupConfig = fm.popup;
+  const settings = { ...defaults, ...popupConfig };
 
-        const popupOverlay = document.createElement('div');
-        popupOverlay.className = 'popup-overlay';
+  // Create popup
+  const popup = document.createElement("div");
+  popup.className = `md-popup ${settings.position} hidden`;
 
-        const popupContent = document.createElement('div');
-        popupContent.className = 'popup-content ' + (popupConfig.type || 'note');
+  // Add close button
+  if (settings.closeButton) {
+    const closeBtn = document.createElement("span");
+    closeBtn.innerHTML = "&times;";
+    closeBtn.className = "close-btn";
+    closeBtn.onclick = () => popup.remove();
+    popup.appendChild(closeBtn);
+  }
 
-        let closeButtonHtml = '';
-        if (popupConfig.closeButton !== false) {
-          closeButtonHtml = '<button class="popup-close">&times;</button>';
-        }
+  // Add content (render markdown with Material’s built-in Markdown parser if available)
+  const content = document.createElement("div");
+  content.innerHTML = window.marked
+    ? window.marked.parse(settings.content)
+    : settings.content;
+  popup.appendChild(content);
 
-        const titleHtml = popupConfig.title ? `<h2>${popupConfig.title}</h2>` : '';
-        const contentHtml = converter.makeHtml(popupConfig.content);
+  document.body.appendChild(popup);
 
-        popupContent.innerHTML = closeButtonHtml + titleHtml + contentHtml;
-        popupOverlay.appendChild(popupContent);
-        document.body.appendChild(popupOverlay);
+  // Show popup
+  requestAnimationFrame(() => {
+    popup.classList.remove("hidden");
+  });
 
-        const closePopup = () => {
-          popupOverlay.style.display = 'none';
-        };
-
-        if (popupConfig.closeButton !== false) {
-          popupContent.querySelector('.popup-close').addEventListener('click', closePopup);
-        }
-
-        if (popupConfig.timeout) {
-          setTimeout(closePopup, popupConfig.timeout);
-        }
-      }
-    }
+  // Auto-hide after duration
+  if (settings.duration > 0) {
+    setTimeout(() => {
+      popup.classList.add("hidden");
+      setTimeout(() => popup.remove(), 300);
+    }, settings.duration * 1000);
   }
 });

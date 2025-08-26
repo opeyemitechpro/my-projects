@@ -2,57 +2,48 @@
 Popup Styling
 */
 
-.popup-overlay {
+/* Base popup container */
+.md-popup {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
+  max-width: 400px;
+  z-index: 9999;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: var(--md-shadow-z3);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  font-size: 0.9rem;
 }
 
-.popup-content {
-  background-color: var(--md-default-bg-color);
+/* Theming: Use same palette as Material admonitions */
+[data-md-color-scheme="default"] .md-popup {
+  background: var(--md-default-bg-color);
   color: var(--md-default-fg-color);
-  padding: 1.5rem;
-  border-radius: 0.2rem;
-  max-width: 600px;
-  width: 90%;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-  border-left: 0.4rem solid var(--md-primary-fg-color);
+  border-left: 4px solid var(--md-typeset-color);
 }
 
-.popup-content h2 {
-  margin-top: 0;
-  color: var(--md-primary-fg-color);
+[data-md-color-scheme="slate"] .md-popup {
+  background: var(--md-surface-color);
+  color: var(--md-default-fg-color);
+  border-left: 4px solid var(--md-accent-fg-color);
 }
 
-.popup-content .popup-close {
+/* Positions */
+.md-popup.bottom-right { bottom: 1rem; right: 1rem; }
+.md-popup.bottom-left { bottom: 1rem; left: 1rem; }
+.md-popup.top-right { top: 1rem; right: 1rem; }
+.md-popup.top-left { top: 1rem; left: 1rem; }
+
+/* Hidden state */
+.md-popup.hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(20px);
+}
+
+/* Close button */
+.md-popup .close-btn {
   float: right;
-  border: none;
-  background: none;
-  font-size: 1.5rem;
+  font-weight: bold;
   cursor: pointer;
-  color: var(--md-default-fg-color--light);
-}
-
-/* Admonition-like styling */
-.popup-content.note {
-  border-left-color: #448aff; /* Blue */
-}
-
-.popup-content.tip {
-  border-left-color: #00e676; /* Green */
-}
-
-.popup-content.warning {
-  border-left-color: #ff9100; /* Orange */
-}
-
-.popup-content.danger {
-  border-left-color: #ff1744; /* Red */
+  margin-left: 0.5rem;
 }
