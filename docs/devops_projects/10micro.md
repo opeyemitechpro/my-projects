@@ -48,6 +48,34 @@ This VPN server is also "disposable", meaning, you can create and delete it anyt
     </div>
 
 
+## Setup Jenkins Server
+
+Login to Jenkins Server
+
+<jenkins-server-ip>:8080
+
+Copy Initial admin Password
+
+``` sh
+sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+```
+
+OR 
+
+``` sh
+sudo systemctl status jenkins
+```
+
+Install suggested Jenkins Plugins and login as admin
+Setup new admin password `jenkins :material-arrow-right-thin: admin :material-arrow-right-thin: security`
+
+Install plugins `manage jenkins :material-arrow-right-thin: Plugins :material-arrow-right-thin: Available plugins`
+
+Install the plugins below and restart the server if requested
+
+
+
+
 
 
 ## *Install Gitleaks**
