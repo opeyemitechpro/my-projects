@@ -138,7 +138,7 @@ Goto `Dashboard > Manage Jenkins > System` and configure both the __"Extended E-
 
 ---
 
-## **Jenkins Pipeline Scripts**
+## :simple-jenkins: **Jenkins Pipeline Scripts**
 
 Below are the Jenkins pipeline scripts for the `Continous Integration (CI)` and the `Continous Delivery (CD)` jobs.
 
@@ -604,7 +604,7 @@ eksctl create cluster \
 ```
 
 
-### Install Helm
+### :simple-helm: Install Helm
 
 Check if Helm is istalled on your local machine
 
@@ -621,7 +621,7 @@ curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
 ---
 
 
-## ArgoCD Installation and Setup on EKS using Helm
+## :simple-argo: ArgoCD Installation and Setup on EKS using Helm
 
 Add ArgoCD Helm repo
 
@@ -686,7 +686,7 @@ kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.pas
 
 ---
 
-## Prometheus Stack Installation and Setup on EKS using Helm
+## :simple-prometheus: Prometheus Stack Installation and Setup on EKS using Helm
 
 Add the kube-prometheus-stack Helm repo
 
