@@ -2022,19 +2022,19 @@ Setup new admin password <code>jenkins :material-arrow-right-thin: admin :materi
 <a id="__codelineno-5-211" name="__codelineno-5-211"></a><span class="w">                    </span><span class="n">sh</span><span class="w"> </span><span class="s2">&quot;docker rmi ${DOCKER_HUB_USER}/loadgenerator:$DOCKER_TAG&quot;</span>
 <a id="__codelineno-5-212" name="__codelineno-5-212"></a><span class="w">                    </span><span class="n">sh</span><span class="w"> </span><span class="s2">&quot;docker rmi ${DOCKER_HUB_USER}/paymentservice:$DOCKER_TAG&quot;</span>
 <a id="__codelineno-5-213" name="__codelineno-5-213"></a><span class="w">                    </span><span class="n">sh</span><span class="w"> </span><span class="s2">&quot;docker rmi ${DOCKER_HUB_USER}/productcatalogservice:$DOCKER_TAG&quot;</span>
-<a id="__codelineno-5-214" name="__codelineno-5-214"></a><span class="hll"><span class="w">                    </span><span class="n">sh</span><span class="w"> </span><span class="s2">&quot;docker rmi ${DOCKER_HUB_USER}/recommendationservice:$DOCKER_TAG&quot;</span>
-</span><a id="__codelineno-5-215" name="__codelineno-5-215"></a><span class="hll"><span class="w">                    </span><span class="n">sh</span><span class="w"> </span><span class="s2">&quot;docker rmi ${DOCKER_HUB_USER}/shippingservice:$DOCKER_TAG&quot;</span>
-</span><a id="__codelineno-5-216" name="__codelineno-5-216"></a><span class="hll"><span class="w">            </span><span class="o">}</span>
-</span><a id="__codelineno-5-217" name="__codelineno-5-217"></a><span class="hll"><span class="w">        </span><span class="o">}</span>
-</span><a id="__codelineno-5-218" name="__codelineno-5-218"></a><span class="hll"><span class="w">    </span><span class="c1">// stage(&quot;Kubernetes deploy&quot;){</span>
-</span><a id="__codelineno-5-219" name="__codelineno-5-219"></a><span class="hll"><span class="w">        </span><span class="c1">// steps {</span>
-</span><a id="__codelineno-5-220" name="__codelineno-5-220"></a><span class="hll"><span class="w">        </span><span class="c1">//     withKubeConfig(caCertificate: &#39;&#39;, clusterName: &#39;&#39;, contextName: &#39;&#39;, credentialsId: &#39;cluster-ID&#39;, namespace: &#39;opeyemi-apps&#39;, restrictKubeConfigAccess: false, serverUrl: &#39;https://FDC152307BF6A5337A2C02C976A8D19F.gr7.us-east-2.eks.amazonaws.com&#39;)</span>
-</span><a id="__codelineno-5-221" name="__codelineno-5-221"></a><span class="hll"><span class="w">            </span><span class="c1">//   {</span>
-</span><a id="__codelineno-5-222" name="__codelineno-5-222"></a><span class="hll"><span class="w">            </span><span class="c1">//       sh &#39; kubectl apply -f buildnow.yml -n opeyemi-apps&#39;</span>
-</span><a id="__codelineno-5-223" name="__codelineno-5-223"></a><span class="hll"><span class="w">            </span><span class="c1">//       sh &#39; kubectl get pods -n opeyemi-apps &#39;</span>
-</span><a id="__codelineno-5-224" name="__codelineno-5-224"></a><span class="hll"><span class="w">            </span><span class="c1">//       sh &#39; kubectl get svc -n opeyemi-apps &#39;</span>
-</span><a id="__codelineno-5-225" name="__codelineno-5-225"></a><span class="hll"><span class="w">                </span><span class="c1">//  sh &quot; kubectl get service -n opeyemi-apps frontend-external | awk &#39;{print \$4}&#39; &quot;</span>
-</span><a id="__codelineno-5-226" name="__codelineno-5-226"></a><span class="w">            </span><span class="c1">//   }</span>
+<a id="__codelineno-5-214" name="__codelineno-5-214"></a><span class="w">                    </span><span class="n">sh</span><span class="w"> </span><span class="s2">&quot;docker rmi ${DOCKER_HUB_USER}/recommendationservice:$DOCKER_TAG&quot;</span>
+<a id="__codelineno-5-215" name="__codelineno-5-215"></a><span class="w">                    </span><span class="n">sh</span><span class="w"> </span><span class="s2">&quot;docker rmi ${DOCKER_HUB_USER}/shippingservice:$DOCKER_TAG&quot;</span>
+<a id="__codelineno-5-216" name="__codelineno-5-216"></a><span class="w">            </span><span class="o">}</span>
+<a id="__codelineno-5-217" name="__codelineno-5-217"></a><span class="w">        </span><span class="o">}</span>
+<a id="__codelineno-5-218" name="__codelineno-5-218"></a><span class="w">    </span><span class="c1">// stage(&quot;Kubernetes deploy&quot;){</span>
+<a id="__codelineno-5-219" name="__codelineno-5-219"></a><span class="w">        </span><span class="c1">// steps {</span>
+<a id="__codelineno-5-220" name="__codelineno-5-220"></a><span class="w">        </span><span class="c1">//     withKubeConfig(caCertificate: &#39;&#39;, clusterName: &#39;&#39;, contextName: &#39;&#39;, credentialsId: &#39;cluster-ID&#39;, namespace: &#39;opeyemi-apps&#39;, restrictKubeConfigAccess: false, serverUrl: &#39;https://FDC152307BF6A5337A2C02C976A8D19F.gr7.us-east-2.eks.amazonaws.com&#39;)</span>
+<a id="__codelineno-5-221" name="__codelineno-5-221"></a><span class="w">            </span><span class="c1">//   {</span>
+<a id="__codelineno-5-222" name="__codelineno-5-222"></a><span class="w">            </span><span class="c1">//       sh &#39; kubectl apply -f buildnow.yml -n opeyemi-apps&#39;</span>
+<a id="__codelineno-5-223" name="__codelineno-5-223"></a><span class="w">            </span><span class="c1">//       sh &#39; kubectl get pods -n opeyemi-apps &#39;</span>
+<a id="__codelineno-5-224" name="__codelineno-5-224"></a><span class="w">            </span><span class="c1">//       sh &#39; kubectl get svc -n opeyemi-apps &#39;</span>
+<a id="__codelineno-5-225" name="__codelineno-5-225"></a><span class="w">                </span><span class="c1">//  sh &quot; kubectl get service -n opeyemi-apps frontend-external | awk &#39;{print \$4}&#39; &quot;</span>
+<a id="__codelineno-5-226" name="__codelineno-5-226"></a><span class="w">            </span><span class="c1">//   }</span>
 <a id="__codelineno-5-227" name="__codelineno-5-227"></a><span class="w">            </span><span class="c1">//       sh &#39; date&#39;</span>
 <a id="__codelineno-5-228" name="__codelineno-5-228"></a><span class="w">        </span><span class="c1">//    }</span>
 <a id="__codelineno-5-229" name="__codelineno-5-229"></a><span class="w">    </span><span class="c1">//    }</span>
@@ -2070,7 +2070,6 @@ Setup new admin password <code>jenkins :material-arrow-right-thin: admin :materi
 </code></pre></div></td></tr></table></div>
 <ul class="task-list">
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" checked/><span class="task-list-indicator"></span></label> Lines <code>9-24</code> contain environment variables. Replace the values according to your Jenkins server configuration</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" checked/><span class="task-list-indicator"></span></label> Uncomment lines <code>214 to 225</code> when you have configured your EKS cluster and set the parameters accordingly in your Jenkins server </li>
 </ul>
 </details>
 </details>
@@ -2178,9 +2177,9 @@ Setup new admin password <code>jenkins :material-arrow-right-thin: admin :materi
 <a id="__codelineno-6-4" name="__codelineno-6-4"></a><span class="w">        </span><span class="n">agent</span><span class="w"> </span><span class="n">any</span>
 <a id="__codelineno-6-5" name="__codelineno-6-5"></a><span class="w">            </span><span class="n">environment</span><span class="w"> </span><span class="o">{</span>
 <a id="__codelineno-6-6" name="__codelineno-6-6"></a><span class="w">                </span><span class="c1">// ====== CONFIG VARIABLES ======</span>
-<a id="__codelineno-6-7" name="__codelineno-6-7"></a><span class="w">                </span><span class="c1">// Replace values with the values configured in your Jenkins server configuration</span>
-<a id="__codelineno-6-8" name="__codelineno-6-8"></a><span class="w">                </span><span class="n">GIT_CRED</span><span class="w">                </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;github_cred&#39;</span>
-<a id="__codelineno-6-9" name="__codelineno-6-9"></a><span class="hll">
+<a id="__codelineno-6-7" name="__codelineno-6-7"></a><span class="hll"><span class="w">                </span><span class="c1">// Replace values with the values configured in your Jenkins server configuration</span>
+</span><a id="__codelineno-6-8" name="__codelineno-6-8"></a><span class="hll"><span class="w">                </span><span class="n">GIT_CRED</span><span class="w">                </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;github_cred&#39;</span>
+</span><a id="__codelineno-6-9" name="__codelineno-6-9"></a><span class="hll">
 </span><a id="__codelineno-6-10" name="__codelineno-6-10"></a><span class="hll"><span class="w">                </span><span class="c1">// Declare values for these variables to suit your environment needs</span>
 </span><a id="__codelineno-6-11" name="__codelineno-6-11"></a><span class="hll"><span class="w">                </span><span class="n">GIT_BRANCH</span><span class="w">              </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;main&#39;</span>
 </span><a id="__codelineno-6-12" name="__codelineno-6-12"></a><span class="hll"><span class="w">                </span><span class="n">GIT_URL</span><span class="w">                 </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;https://github.com/opeyemitechpro/11-Microservices-k8s-App-ArgoCD.git&#39;</span>
@@ -2190,10 +2189,10 @@ Setup new admin password <code>jenkins :material-arrow-right-thin: admin :materi
 </span><a id="__codelineno-6-16" name="__codelineno-6-16"></a><span class="hll"><span class="w">                </span><span class="n">GIT_COMMIT_EMAIL</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;opeyemitechpro@gmail.com&#39;</span>
 </span><a id="__codelineno-6-17" name="__codelineno-6-17"></a><span class="hll"><span class="w">                </span><span class="n">DEST_EMAIL</span><span class="w">              </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;opeyemitechpro@gmail.com&#39;</span>
 </span><a id="__codelineno-6-18" name="__codelineno-6-18"></a><span class="hll"><span class="w">                </span><span class="n">REPLYTO_EMAIL</span><span class="w">           </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;opeyemitechpro@gmail.com&#39;</span>
-</span><a id="__codelineno-6-19" name="__codelineno-6-19"></a><span class="hll">
-</span><a id="__codelineno-6-20" name="__codelineno-6-20"></a><span class="hll"><span class="w">            </span><span class="o">}</span>
-</span><a id="__codelineno-6-21" name="__codelineno-6-21"></a><span class="hll">
-</span><a id="__codelineno-6-22" name="__codelineno-6-22"></a><span class="w">            </span><span class="n">parameters</span><span class="w"> </span><span class="o">{</span>
+</span><a id="__codelineno-6-19" name="__codelineno-6-19"></a>
+<a id="__codelineno-6-20" name="__codelineno-6-20"></a><span class="w">            </span><span class="o">}</span>
+<a id="__codelineno-6-21" name="__codelineno-6-21"></a>
+<a id="__codelineno-6-22" name="__codelineno-6-22"></a><span class="w">            </span><span class="n">parameters</span><span class="w"> </span><span class="o">{</span>
 <a id="__codelineno-6-23" name="__codelineno-6-23"></a><span class="w">                    </span><span class="n">string</span><span class="o">(</span><span class="nl">name:</span><span class="w"> </span><span class="s1">&#39;DOCKER_TAG&#39;</span><span class="o">,</span><span class="w"> </span><span class="nl">defaultValue:</span><span class="w"> </span><span class="s1">&#39;latest&#39;</span><span class="o">,</span><span class="w"> </span><span class="nl">description:</span><span class="w"> </span><span class="s1">&#39;Docker image tag passed from Jenkins CI Job&#39;</span><span class="o">)</span>
 <a id="__codelineno-6-24" name="__codelineno-6-24"></a><span class="w">                </span><span class="o">}</span>
 <a id="__codelineno-6-25" name="__codelineno-6-25"></a>
@@ -2265,7 +2264,7 @@ Setup new admin password <code>jenkins :material-arrow-right-thin: admin :materi
 <a id="__codelineno-6-91" name="__codelineno-6-91"></a><span class="w">    </span><span class="o">}</span>
 </code></pre></div></td></tr></table></div>
 <ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" checked/><span class="task-list-indicator"></span></label> Lines <code>7-21</code> contain environment variables. Replace the values according to your Jenkins server configuration</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" checked/><span class="task-list-indicator"></span></label> Lines <code>7-18</code> contain environment variables. Replace the values according to your Jenkins server configuration</li>
 </ul>
 </details>
 </details>
@@ -2694,7 +2693,7 @@ Setup new admin password <code>jenkins :material-arrow-right-thin: admin :materi
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="August 28, 2025 18:27:26 UTC"><span class="timeago" datetime="2025-08-28T18:27:26+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="August 28, 2025 18:27:26 UTC">2025-08-28</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="August 28, 2025 18:33:05 UTC"><span class="timeago" datetime="2025-08-28T18:33:05+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="August 28, 2025 18:33:05 UTC">2025-08-28</span>
   </span>
 
     
