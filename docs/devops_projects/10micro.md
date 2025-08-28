@@ -182,7 +182,7 @@ Below are the Jenkins pipeline scripts for the `Continous Integration (CI)` and 
 
     ???+ code-file "Jenkins Pipeline Script"
             
-        ``` groovy hl_lines="9-24 214-225"
+        ``` groovy hl_lines="9-24"
         // 11-Microservices-k8s-App Jenkins Pipeline Script
 
         pipeline {
@@ -445,7 +445,6 @@ Below are the Jenkins pipeline scripts for the `Continous Integration (CI)` and 
         ```
 
         - [x] Lines `9-24` contain environment variables. Replace the values according to your Jenkins server configuration
-        - [x] Uncomment lines `214 to 225` when you have configured your EKS cluster and set the parameters accordingly in your Jenkins server 
 
 
 ### Jenkins CD Pipeline Script
@@ -460,7 +459,7 @@ Below are the Jenkins pipeline scripts for the `Continous Integration (CI)` and 
 
     ???+ code-file "Jenkins CD Pipeline Script"
 
-        ``` groovy hl_lines="9-21"
+        ``` groovy hl_lines="7-18"
             // 11-Microservices-k8s-App-ArgoCD Manifest Update Jenkins Pipeline Script
 
             pipeline {
@@ -555,7 +554,7 @@ Below are the Jenkins pipeline scripts for the `Continous Integration (CI)` and 
 
         ```
 
-        - [x] Lines `7-21` contain environment variables. Replace the values according to your Jenkins server configuration
+        - [x] Lines `7-18` contain environment variables. Replace the values according to your Jenkins server configuration
 
 ---
         
