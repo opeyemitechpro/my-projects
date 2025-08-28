@@ -444,13 +444,13 @@ Below are the Jenkins pipeline scripts for the `Continous Integration (CI)` and 
         
         ```
 
-        - [x] Lines `9-21` contain environment variables. Replace the values according to your Jenkins server configuration
+        - [x] Lines `9-24` contain environment variables. Replace the values according to your Jenkins server configuration
         - [x] Uncomment lines `214 to 225` when you have configured your EKS cluster and set the parameters accordingly in your Jenkins server 
 
 
 ### Jenkins CD Pipeline Script
 
-??? info "Jenkins CD Pipeline script for the Jenkins job"
+??? info "Jenkins CD Pipeline script for the Manifest Update Jenkins job"
 
     <div style="text-align: center;">
     [11-Microservices-k8s-App-ArgoCD Manifest Source Code :simple-github: :fontawesome-solid-arrow-up-right-from-square:](https://github.com/opeyemitechpro/11-Microservices-k8s-App-ArgoCD){: target="_blank" .md-button}
@@ -461,7 +461,7 @@ Below are the Jenkins pipeline scripts for the `Continous Integration (CI)` and 
     ???+ code-file "Jenkins CD Pipeline Script"
 
         ``` groovy hl_lines="9-21"
-        // 11-Microservices-k8s-App-ArgoCD Manifest Update Jenkins Pipeline Script
+            // 11-Microservices-k8s-App-ArgoCD Manifest Update Jenkins Pipeline Script
 
             pipeline {
                 agent any
@@ -469,9 +469,7 @@ Below are the Jenkins pipeline scripts for the `Continous Integration (CI)` and 
                         // ====== CONFIG VARIABLES ======
                         // Replace values with the values configured in your Jenkins server configuration
                         GIT_CRED                = 'github_cred'
-                        //GIT_PASSWORD            = 
-                        //GIT_USERNAME            = 
-
+                        
                         // Declare values for these variables to suit your environment needs
                         GIT_BRANCH              = 'main'
                         GIT_URL                 = 'https://github.com/opeyemitechpro/11-Microservices-k8s-App-ArgoCD.git'
@@ -540,8 +538,7 @@ Below are the Jenkins pipeline scripts for the `Continous Integration (CI)` and 
                 post {
                     always {
                         emailext(
-                            // attachLog: true,
-                            // attachmentsPattern: 'trivy-fs-report_$BUILD_NUMBER.txt, dependency-check-report.html, gitleaks_report-$BUILD_NUMBER.json',
+                            
                             subject: 'Project: $PROJECT_NAME, Build #: $BUILD_NUMBER - $BUILD_STATUS',
                             to: "$DEST_EMAIL",
                             replyTo: "$REPLYTO_EMAIL",
