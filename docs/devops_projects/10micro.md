@@ -809,14 +809,16 @@ To get Grafana password, enter the command below. This will display the contents
 kubectl --namespace monitoring get secrets prometheus-grafana -o json 
 ```
 
-!!! tip inline end "Tip"
-
-    Replace the `<admin-password>` with the password you copied from the json output
 
 ``` sh
 echo "<admin-password>" | base64 --decode
 
 ```
+
+!!! tip "Tip"
+
+    Replace the `<admin-password>` with the password you copied from the json output
+    
 
 OR use this command
 
