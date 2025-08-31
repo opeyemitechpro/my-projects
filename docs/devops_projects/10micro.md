@@ -444,6 +444,8 @@ Below are the Jenkins pipeline scripts for the `Continous Integration (CI)` and 
         
         ```
 
+        1. Test note
+
         - [x] Lines `9-24` contain environment variables. Replace the values according to your Jenkins server configuration
 
 
