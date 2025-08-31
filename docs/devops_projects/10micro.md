@@ -185,7 +185,7 @@ Below are the Jenkins pipeline scripts for the `Continous Integration (CI)` and 
         ``` groovy hl_lines="9-24"
         // 11-Microservices-k8s-App Jenkins Pipeline Script
 
-        pipeline {
+        pipeline { # (1)!
             agent any
 
             environment {
@@ -818,7 +818,7 @@ echo "<admin-password>" | base64 --decode
 !!! tip "Tip"
 
     Replace the `<admin-password>` with the password you copied from the json output
-    
+
 
 OR use this command
 
