@@ -719,7 +719,11 @@ kubectl patch svc opeyemi-argo-cd-argocd-server -n argocd -p '{"spec": {"type": 
     After a short wait, AWS will assign a URL to the LoadBalancer service. You can retrieve this URL with:
 
 ``` sh
-kubectl get svc opeyemi-argo-cd-argocd-server -n argocd -o=jsonpath='{.status.loadBalancer.ingress[0].ip}'
+kubectl get svc -n argocd
+```
+
+``` sh
+kubectl get svc opeyemi-argo-cd-argocd-server -n argocd -o=jsonpath='{.status.loadBalancer.ingress[0].hostname}'
 ```
 
 Use this LoadBalancer URL to access ArgoCD UI from your browser
@@ -732,6 +736,10 @@ The initial password for the `admin` account is auto-generated and stored in the
     In Production, You should delete the `argocd-initial-admin-secret` from the Argo CD namespace once you change the password. The secret serves no other purpose than to store the initially generated password in clear and can safely be deleted at any time. It will be re-created on demand by Argo CD if a new admin password must be re-generated. 
     
     [Learn more :fontawesome-solid-arrow-up-right-from-square:](https://argo-cd.readthedocs.io/en/stable/getting_started/#4-login-using-the-cli){: target="_blank" }
+
+``` sh
+kubectl get secrets -n argocd
+```
 
 ``` sh
 kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d; echo
