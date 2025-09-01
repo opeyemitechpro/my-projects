@@ -676,7 +676,7 @@ helm repo update
 Install ArgoCD Helm Chart
 
 ``` sh
-helm install opeyemi-argo-cd argo/argo-cd --version 8.3.0 --namespace argocd --create-namespace
+helm install opeyemi-argo-cd argo/argo-cd --namespace argocd --create-namespace
 ```
 
 Check running status of pods in the `monitoring` namespace to verify deployment
