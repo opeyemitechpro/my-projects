@@ -701,17 +701,25 @@ helm install opeyemi-argo-cd argo/argo-cd --namespace argocd --create-namespace
 
 Expose the `argocd-server` service as a LoadBalancer
 
+By default all the pods in the argocd namespace are of `ClusterIP` type. We need to expose the `argocd-server` pod as a LoadBalancer service type to make it accessible from outside the cluster.
+
+First, display list of services running in the argocd namespace
+
 ``` sh
-kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'
+kubectl get svc -n argocd
+```
+
+Next, expose the `opeyemi-argo-cd-argocd-server` service as a LoadBalancer type
+
+``` sh
+kubectl patch svc opeyemi-argo-cd-argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'
 ```
 
 !!! tip "Tip"
-    By default all the pods in the argocd namespace are of `ClusterIP` type. We need to expose the `argocd-server` pod as a LoadBalancer service type to make it accessible from outside the cluster.
-
-After a short wait, AWS will assign a URL to the LoadBalancer service. You can retrieve this URL with:
+    After a short wait, AWS will assign a URL to the LoadBalancer service. You can retrieve this URL with:
 
 ``` sh
-kubectl get svc argocd-server -n argocd -o=jsonpath='{.status.loadBalancer.ingress[0].ip}'
+kubectl get svc opeyemi-argo-cd-argocd-server -n argocd -o=jsonpath='{.status.loadBalancer.ingress[0].ip}'
 ```
 
 Use this LoadBalancer URL to access ArgoCD UI from your browser
