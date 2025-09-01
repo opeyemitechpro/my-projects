@@ -2072,14 +2072,9 @@ Setup new admin password <code>jenkins :material-arrow-right-thin: admin :materi
 <a id="__codelineno-5-259" name="__codelineno-5-259"></a><span class="w">    </span><span class="o">}</span>
 <a id="__codelineno-5-260" name="__codelineno-5-260"></a><span class="o">}</span>
 </code></pre></div></td></tr></table></div>
-<ol class="task-list">
-<li>
-<p>Test note</p>
-</li>
-<li class="task-list-item">
-<p><label class="task-list-control"><input type="checkbox" checked/><span class="task-list-indicator"></span></label> Lines <code>9-24</code> contain environment variables. Replace the values according to your Jenkins server configuration</p>
-</li>
-</ol>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" checked/><span class="task-list-indicator"></span></label> Lines <code>9-24</code> contain environment variables. Replace the values according to your Jenkins server configuration</li>
+</ul>
 </details>
 </details>
 <h3 id="jenkins-cd-pipeline-script">Jenkins CD Pipeline Script<a class="headerlink" href="#jenkins-cd-pipeline-script" title="Copy this link to reference this section">&para;</a></h3>
@@ -2371,10 +2366,10 @@ Setup new admin password <code>jenkins :material-arrow-right-thin: admin :materi
 <p>This will create the <code>argocd</code> namespace and install ArgoCD</p>
 </div>
 <p>Install ArgoCD Helm Chart</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1"></a>helm<span class="w"> </span>install<span class="w"> </span>my-argo-cd<span class="w"> </span>argo/argo-cd<span class="w"> </span>--version<span class="w"> </span><span class="m">8</span>.3.0<span class="w"> </span>--namespace<span class="w"> </span>argocd<span class="w"> </span>--create-namespace
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1"></a>helm<span class="w"> </span>install<span class="w"> </span>opeyemi-argo-cd<span class="w"> </span>argo/argo-cd<span class="w"> </span>--version<span class="w"> </span><span class="m">8</span>.3.0<span class="w"> </span>--namespace<span class="w"> </span>argocd<span class="w"> </span>--create-namespace
 </code></pre></div></td></tr></table></div>
 <p>Check running status of pods in the <code>monitoring</code> namespace to verify deployment</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1"></a>kubectl<span class="w"> </span>--namespace<span class="w"> </span>argocd<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-l<span class="w"> </span><span class="s2">&quot;release=my-argo-cd&quot;</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1"></a>kubectl<span class="w"> </span>--namespace<span class="w"> </span>argocd<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-l<span class="w"> </span><span class="s2">&quot;release=opeyemi-argo-cd&quot;</span>
 </code></pre></div></td></tr></table></div>
 <p>OR</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-13-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>argocd
@@ -2709,7 +2704,7 @@ Setup new admin password <code>jenkins :material-arrow-right-thin: admin :materi
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="September 1, 2025 10:37:55 UTC"><span class="timeago" datetime="2025-09-01T10:37:55+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="September 1, 2025 10:37:55 UTC">2025-09-01</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="September 1, 2025 13:04:02 UTC"><span class="timeago" datetime="2025-09-01T13:04:02+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="September 1, 2025 13:04:02 UTC">2025-09-01</span>
   </span>
 
     
