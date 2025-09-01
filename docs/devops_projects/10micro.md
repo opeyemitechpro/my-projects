@@ -701,7 +701,7 @@ helm install opeyemi-argo-cd argo/argo-cd --namespace argocd --create-namespace
 
 Expose the `argocd-server` service as a LoadBalancer
 
-By default all the pods in the argocd namespace are of `ClusterIP` type. We need to expose the `argocd-server` pod as a LoadBalancer service type to make it accessible from outside the cluster.
+By default all the pods in the `argocd` namespace are of `ClusterIP` type. We need to expose the `argocd-server` service as a LoadBalancer service type to make it accessible from outside the cluster.
 
 First, display list of services running in the argocd namespace
 
@@ -750,6 +750,10 @@ kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.pas
 
     * [How to install ArgoCD using Helm Charts :fontawesome-solid-arrow-up-right-from-square:](https://artifacthub.io/packages/helm/argo/argo-cd){: target="_blank" }
     * You can also follow the ArgoCD installation guide on the [ArgoCD Documentation Website :fontawesome-solid-arrow-up-right-from-square:](https://argo-cd.readthedocs.io/en/stable/getting_started/#1-install-argo-cd){: target="_blank" }
+    * You can access the helm release notes for the argocd by running: 
+    ``` sh
+    helm get notes opeyemi-argo-cd -n argocd
+    ```
 
 ---
 
@@ -765,10 +769,14 @@ helm repo update
 
 Install Prometheus Stack into `monitoring` namespace 
 
-!!! tip inline end "Tip"
 
-    This will create the `monitoring` namespace and install kube-Prometheus stack
+``` sh
+helm install prometheus prometheus-community/kube-prometheus-stack \
+  --namespace monitoring \
+  --create-namespace
+```
 
+==Delete this later==
 ``` sh
 helm install prometheus prometheus-community/kube-prometheus-stack \
   --namespace monitoring \
@@ -777,6 +785,11 @@ helm install prometheus prometheus-community/kube-prometheus-stack \
   --set alertmanager.persistence.storageClass="gp2" \
   --set server.persistentVolume.storageClass="gp2"
 ```
+
+
+!!! tip "Tip"
+
+    This will create the `monitoring` namespace if it doesn't exist and install kube-Prometheus stack
 
 Check running status of pods in the `monitoring` namespace to verify deployment
 
@@ -789,14 +802,22 @@ OR
 kubectl get pods -n monitoring
 ```
 
+??? tip "Optionally you can display information for Prometheus installation"
+    ``` sh
+    helm get notes prometheus -n monitoring
+    ```
 
-List all services in the monitoring namespace
+Expose Prometheus and Grafana as a LoadBalancer type to access
+
+By default all the pods in the `monitoring`  namespace are of `ClusterIP` type. We need to expose Grafana and Prometheus services as LoadBalancer service types to make them accessible from outside the cluster.
+
+First list all services in the monitoring namespace
 
 ``` sh
 kubectl get svc -n monitoring
 ```
 
-
+<!-- 
 Display Grafana URL (optional)
 ``` sh
 kubectl get svc -n monitoring prometheus-grafana
@@ -805,9 +826,9 @@ kubectl get svc -n monitoring prometheus-grafana
 Display Prometheus URL (optional)
 ``` sh
 kubectl get svc -n monitoring prometheus-kube-prometheus-prometheus
-```
+``` -->
 
-Expose Grafana on a LoadBalancer for external access
+Expose Grafana as a LoadBalancer for external access
 
 ``` sh
 kubectl patch svc prometheus-grafana \
@@ -815,7 +836,7 @@ kubectl patch svc prometheus-grafana \
   -p '{"spec": {"type": "LoadBalancer"}}'
 ```
 
-Expose Prometheus on a LoadBalancer for external access
+Expose Prometheus as a LoadBalancer for external access
 
 ``` sh
 kubectl patch svc prometheus-kube-prometheus-prometheus \
@@ -823,8 +844,7 @@ kubectl patch svc prometheus-kube-prometheus-prometheus \
   -p '{"spec": {"type": "LoadBalancer"}}'
 ```
 
-
-Display LoadBalancer URL for Grafana and Prometheus
+Display list of all the services in the `monitoring` namespace again. AWS would create LoadBalancer URLs for each of Grafana and Prometheus
 
 ``` sh
 kubectl get svc -n monitoring
@@ -835,7 +855,11 @@ kubectl get svc -n monitoring
     You may need to wait a while for the `EXTERNAL-IP` field to be populated, then open each URL for both Grafana and Prometheus in your browser (Grafana on port `80`, Prometheus on port `9090`)
 
 
-To get Grafana password, enter the command below. This will display the contents of the `prometheus-grafana` secret in json format. Copy the `admin-password` from the json output and decode it in base-64 using the next command
+To get Grafana password, enter the command below. This will display the contents of the `prometheus-grafana` secret in json format. Copy the `admin-password` from the json output and decode it in base-64
+
+``` sh
+kubectl get secrets -n monitoring
+```
 
 ``` sh
 kubectl --namespace monitoring get secrets prometheus-grafana -o json 
