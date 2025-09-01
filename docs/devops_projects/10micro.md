@@ -184,8 +184,8 @@ Below are the Jenkins pipeline scripts for the `Continous Integration (CI)` and 
             
         ``` groovy hl_lines="9-24"
         // 11-Microservices-k8s-App Jenkins Pipeline Script
-
-        pipeline { # (1)!
+        
+        pipeline {
             agent any
 
             environment {
@@ -202,12 +202,12 @@ Below are the Jenkins pipeline scripts for the `Continous Integration (CI)` and 
                 DEST_EMAIL        = 'opeyemitechpro@gmail.com' // Destination email for post job notification
                 REPLYTO_EMAIL     = 'opeyemitechpro@gmail.com' // Reply-To email for post job notification
 
-                SCANNER_HOME 	  = tool "${SONAR_SCANNER}"
+                SCANNER_HOME      = tool "${SONAR_SCANNER}"
 
 
                 // Declare values for these variables to suit your environment needs 
-                DOCKER_TAG        = 'ver-2.$BUILD_NUMBER' // Docker tag dynamically generated after each build
-                        
+                DOCKER_TAG        = 'ver-4.$BUILD_NUMBER' // Docker tag dynamically generated after each build
+
             }
 
             stages {
@@ -249,7 +249,7 @@ Below are the Jenkins pipeline scripts for the `Continous Integration (CI)` and 
                         sh 'trivy fs -o trivy-fs-report_$BUILD_NUMBER.txt .'
                     }
                 }
-                
+
                 // DOCKER IMAGE BUILDS
 
                 stage('adservice DockerImage') {
@@ -416,8 +416,8 @@ Below are the Jenkins pipeline scripts for the `Continous Integration (CI)` and 
             stage('Update k8s Manifest') {
             steps {
                 echo "Activate Update Manifest Job"
-                build job: 'Update-Manifest', parameters: [string(name: 'DOCKER-TAG', value: "${DOCKER_TAG}")]
-                // Note: The Jenkins Job "Update-Manifest" must be the exact name of the Jenkins job that updates the k8s manifest
+                build job: 'Update-Manifest', parameters: [string(name: 'DOCKER_TAG', value: "${DOCKER_TAG}")]
+                // Note: The build job "Update-Manifest" must be the exact name of the Jenkins job that updates the k8s manifest
                 }
             }
 
@@ -433,9 +433,11 @@ Below are the Jenkins pipeline scripts for the `Continous Integration (CI)` and 
                         replyTo: "$REPLYTO_EMAIL",
                         body: '''
                         Project <strong>"$PROJECT_NAME"</strong> has completed.<br>
-                        Build Number: $BUILD_NUMBER <br> Build Tag: $BUILD_TAG <br>
-                        Job Url: <a href="$JOB_URL">Job URL</a> <br> Build Status: <strong>$BUILD_STATUS</strong><br><br>
-                        Check console output at <a href="${BUILD_URL}console">Console URL</a> or <a href="${BUILD_URL}pipeline-overview">Pipeline Overview URL</a> to view the results.
+                        Build Number: $BUILD_NUMBER <br> 
+                        Build Tag: $BUILD_TAG <br>
+                        Job Url: <a href="$JOB_URL">Job URL</a> <br> 
+                        Build Status: <strong>$BUILD_STATUS</strong><br><br>
+                        Check console output at <a href="${BUILD_URL}console">Console URL</a> OR <a href="${BUILD_URL}pipeline-overview">Pipeline Overview</a> to view the results.
                         '''
                     )
                 }
@@ -462,97 +464,100 @@ Below are the Jenkins pipeline scripts for the `Continous Integration (CI)` and 
     ???+ code-file "Jenkins CD Pipeline Script"
 
         ``` groovy hl_lines="7-18"
-            // 11-Microservices-k8s-App-ArgoCD Manifest Update Jenkins Pipeline Script
+                // 11-Microservices-k8s-App-ArgoCD Manifest Update Jenkins Pipeline Script
+                
+                pipeline {
+                    agent any
+                        environment {
+                            // ====== CONFIG VARIABLES ======
+                            // Replace values with the values configured in your Jenkins server configuration
+                            GIT_CRED                = 'github_cred'
 
-            pipeline {
-                agent any
-                    environment {
-                        // ====== CONFIG VARIABLES ======
-                        // Replace values with the values configured in your Jenkins server configuration
-                        GIT_CRED                = 'github_cred'
-                        
-                        // Declare values for these variables to suit your environment needs
-                        GIT_BRANCH              = 'main'
-                        GIT_URL                 = 'https://github.com/opeyemitechpro/11-Microservices-k8s-App-ArgoCD.git'
-                        DOCKER_CRED_ID          = 'my-docker-cred'
-                        DOCKER_HUB_USER         = 'opeyemitechpro'
-                        GIT_COMMIT_USER         = 'Jenkins CI'
-                        GIT_COMMIT_EMAIL        = 'opeyemitechpro@gmail.com'
-                        DEST_EMAIL              = 'opeyemitechpro@gmail.com'
-                        REPLYTO_EMAIL           = 'opeyemitechpro@gmail.com'
+                            // Declare values for these variables to suit your environment needs
+                            GIT_BRANCH              = 'main'
+                            GIT_URL                 = 'https://github.com/opeyemitechpro/11-Microservices-k8s-App-ArgoCD.git'
+                            DOCKER_CRED_ID          = 'my-docker-cred'
+                            DOCKER_HUB_USER         = 'opeyemitechpro'
+                            GIT_COMMIT_USER         = 'Jenkins CI'
+                            GIT_COMMIT_EMAIL        = 'opeyemitechpro@gmail.com'
+                            DEST_EMAIL              = 'opeyemitechpro@gmail.com'
+                            REPLYTO_EMAIL           = 'opeyemitechpro@gmail.com'
 
-                    }
-                    
-                    parameters {
-                            string(name: 'DOCKER-TAG', defaultValue: 'latest', description: 'Docker image tag passed from Jenkins CI Job')
                         }
 
-                stages {
-                        stage('Git Checkout') {
-                                steps {
-                                    git branch: "${GIT_BRANCH}", url: "${GIT_URL}"
-                                }
+                        parameters {
+                                string(name: 'DOCKER_TAG', defaultValue: 'latest', description: 'Docker image tag passed from Jenkins CI Job')
                             }
 
-                            stage('Update Manifest with New Docker Tag') {
-                                steps {
-                                    script {
-                                        // Show manifest file content before tag replacement
-                                        sh "echo '--- BEFORE ---'"
-                                        sh "grep 'image:' 11-microservice-ArgoCD-manifest.yaml || true"
-
-                                        // Replace all image tags in the manifest
-                                        // Using regex to match all lines like: opeyemitechpro/something:oldtag
-                                        sh '''
-                                            sed -i -E "s|(opeyemitechpro/[a-zA-Z0-9_-]+):[a-zA-Z0-9._-]+|\\1:${DOCKER-TAG}|g" 11-microservice-ArgoCD-manifest.yaml
-                                        '''
-
-                                        // Show manifest file content after replacing tags
-                                        sh "echo '--- AFTER ---'"
-                                        sh "grep 'image:' 11-microservice-ArgoCD-manifest.yaml || true"
+                    stages {
+                            stage('Git Checkout') {
+                                    steps {
+                                        git branch: "${GIT_BRANCH}", url: "${GIT_URL}"
                                     }
                                 }
-                            }
 
-                            stage('Commit & Push Changes') {
-                                steps {
-                                    withCredentials([usernamePassword(credentialsId: 'github_cred', 
-                                                passwordVariable: 'GIT_PASSWORD', 
-                                                usernameVariable: 'GIT_USERNAME')]) {
-                                                
-                                        sh '''
-                                            git config user.email "${GIT_COMMIT_EMAIL}"
-                                            git config user.name "${GIT_COMMIT_USER}"
+                                stage('Update Manifest with New Docker Tag') {
+                                    steps {
+                                        script {
+                                            // Show manifest file content before tag replacement
+                                            sh "echo '--- BEFORE ---'"
+                                            sh "grep 'image:' 11-microservice-ArgoCD-manifest.yaml || true"
 
-                                            git add 11-microservice-ArgoCD-manifest.yaml
-                                            git commit -m "Update images to tag ${DOCKER-TAG} (triggered by Jenkins Job: ${PROJECT_NAME} - build ${BUILD_NUMBER})" || echo "No changes to commit"
+                                            // Replace all image tags in the manifest
+                                            // Using regex to match all lines like: opeyemitechpro/something:oldtag
+                                            sh '''
+                                                sed -i -E "s|(opeyemitechpro/[a-zA-Z0-9_-]+):[a-zA-Z0-9._-]+|\\1:${DOCKER_TAG}|g" 11-microservice-ArgoCD-manifest.yaml
+                                            '''
 
-                                            git remote set-url origin https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/opeyemitechpro/11-Microservices-k8s-App-ArgoCD.git
-                                            git push origin HEAD:main
-                                        '''
+                                            // Show manifest file content after replacing tags
+                                            sh "echo '--- AFTER ---'"
+                                            sh "grep 'image:' 11-microservice-ArgoCD-manifest.yaml || true"
+                                        }
                                     }
                                 }
-                            }
 
-                }
-                
-                post {
-                    always {
-                        emailext(
-                            
-                            subject: 'Project: $PROJECT_NAME, Build #: $BUILD_NUMBER - $BUILD_STATUS',
-                            to: "$DEST_EMAIL",
-                            replyTo: "$REPLYTO_EMAIL",
-                            body: '''
-                            Project <strong>"$PROJECT_NAME"</strong> has completed.<br>
-                            Build Number: $BUILD_NUMBER <br> Build Tag: $BUILD_TAG <br>
-                            Job Url: <a href="$JOB_URL">Job URL</a> <br> Build Status: <strong>$BUILD_STATUS</strong><br><br>
-                            Check console output at <a href="${BUILD_URL}console">Console URL</a> or <a href="${BUILD_URL}pipeline-overview">Pipeline Overview URL</a> to view the results.
-                            '''
-                        )
+                                stage('Commit & Push Changes') {
+                                    steps {
+                                        withCredentials([usernamePassword(credentialsId: 'github_cred', 
+                                                    passwordVariable: 'GIT_PASSWORD', 
+                                                    usernameVariable: 'GIT_USERNAME')]) {
+
+                                            sh '''
+                                                git config user.email "${GIT_COMMIT_EMAIL}"
+                                                git config user.name "${GIT_COMMIT_USER}"
+
+                                                git add 11-microservice-ArgoCD-manifest.yaml
+                                                git commit -m "Update images to tag ${DOCKER_TAG} (triggered by Jenkins Job: $PROJECT_NAME - build ${BUILD_NUMBER})" || echo "No changes to commit"
+
+                                                git remote set-url origin https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/opeyemitechpro/11-Microservices-k8s-App-ArgoCD.git
+                                                git push origin HEAD:main
+                                            '''
+                                        }
+                                    }
+                                }
+
+                    }
+
+                    post {
+                        always {
+                            emailext(
+
+                                subject: 'Project: $PROJECT_NAME, Build #: $BUILD_NUMBER - $BUILD_STATUS',
+                                to: "$DEST_EMAIL",
+                                replyTo: "$REPLYTO_EMAIL",
+                                body: '''
+                                Project <strong>"$PROJECT_NAME"</strong> has completed.<br>
+                                Build Number: $BUILD_NUMBER <br> 
+                                Build Tag: $BUILD_TAG <br>
+                                Job Url: <a href="$JOB_URL">Job URL</a> <br> 
+                                Build Status: <strong>$BUILD_STATUS</strong><br><br>
+                                New Tag: $DOCKER_TAG <br>
+                                Check console output at <a href="${BUILD_URL}console">Console URL</a> or <a href="${BUILD_URL}pipeline-overview">Pipeline Overview URL</a> to view the results.
+                                '''
+                            )
+                        }
                     }
                 }
-            }
 
         ```
 
