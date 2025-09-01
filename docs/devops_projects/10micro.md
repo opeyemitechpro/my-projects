@@ -446,8 +446,6 @@ Below are the Jenkins pipeline scripts for the `Continous Integration (CI)` and 
         
         ```
 
-        1. Test note
-
         - [x] Lines `9-24` contain environment variables. Replace the values according to your Jenkins server configuration
 
 
@@ -678,13 +676,13 @@ helm repo update
 Install ArgoCD Helm Chart
 
 ``` sh
-helm install my-argo-cd argo/argo-cd --version 8.3.0 --namespace argocd --create-namespace
+helm install opeyemi-argo-cd argo/argo-cd --version 8.3.0 --namespace argocd --create-namespace
 ```
 
 Check running status of pods in the `monitoring` namespace to verify deployment
 
 ``` sh
-kubectl --namespace argocd get pods -l "release=my-argo-cd"
+kubectl --namespace argocd get pods -l "release=opeyemi-argo-cd"
 ```
 
 OR
