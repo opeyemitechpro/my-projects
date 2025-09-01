@@ -2368,17 +2368,64 @@ Setup new admin password <code>jenkins :material-arrow-right-thin: admin :materi
 <p>Install ArgoCD Helm Chart</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1"></a>helm<span class="w"> </span>install<span class="w"> </span>opeyemi-argo-cd<span class="w"> </span>argo/argo-cd<span class="w"> </span>--namespace<span class="w"> </span>argocd<span class="w"> </span>--create-namespace
 </code></pre></div></td></tr></table></div>
-<p>Check running status of pods in the <code>monitoring</code> namespace to verify deployment</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1"></a>kubectl<span class="w"> </span>--namespace<span class="w"> </span>argocd<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-l<span class="w"> </span><span class="s2">&quot;release=opeyemi-argo-cd&quot;</span>
+<details class="tip" open="open">
+<summary>Optional Steps to confirm <code>argocd</code> installation</summary>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span></pre></div></td><td class="code"><div><pre><span></span><code>View helm releases in all namespaces (including the `argocd` namespace)
+
+```
+helm list -n argocd
+```
+
+Check running status of pods in the `argocd` namespace to verify deployment
+
+``` sh
+kubectl --namespace argocd get pods -l &quot;release=opeyemi-argo-cd&quot;
+```
+
+OR
+
+``` sh
+kubectl get pods -n argocd
+```
+
+Get Helm release notes for the argocd installtion
+
+``` sh
+helm get notes opeyemi-argo-cd -n argocd
+```
 </code></pre></div></td></tr></table></div>
-<p>OR</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-13-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>argocd
-</code></pre></div></td></tr></table></div>
+</details>
 <p>Expose the <code>argocd-server</code> service as a LoadBalancer</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-14-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1"></a>kubectl<span class="w"> </span>patch<span class="w"> </span>svc<span class="w"> </span>argocd-server<span class="w"> </span>-n<span class="w"> </span>argocd<span class="w"> </span>-p<span class="w"> </span><span class="s1">&#39;{&quot;spec&quot;: {&quot;type&quot;: &quot;LoadBalancer&quot;}}&#39;</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-16-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1"></a>kubectl<span class="w"> </span>patch<span class="w"> </span>svc<span class="w"> </span>argocd-server<span class="w"> </span>-n<span class="w"> </span>argocd<span class="w"> </span>-p<span class="w"> </span><span class="s1">&#39;{&quot;spec&quot;: {&quot;type&quot;: &quot;LoadBalancer&quot;}}&#39;</span>
 </code></pre></div></td></tr></table></div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>By default all the pods in the argocd namespace are of ClusterIP type. We need to expose the <code>argocd-server</code> as a LoadBalancer service type to make it accessible from outside the cluster.</p>
+</div>
 <p>After a short wait, AWS will assign a URL to the LoadBalancer service. You can retrieve this URL with:</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-15-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>svc<span class="w"> </span>argocd-server<span class="w"> </span>-n<span class="w"> </span>argocd<span class="w"> </span>-o<span class="o">=</span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">&#39;{.status.loadBalancer.ingress[0].ip}&#39;</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-17-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>svc<span class="w"> </span>argocd-server<span class="w"> </span>-n<span class="w"> </span>argocd<span class="w"> </span>-o<span class="o">=</span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">&#39;{.status.loadBalancer.ingress[0].ip}&#39;</span>
 </code></pre></div></td></tr></table></div>
 <p>Use this LoadBalancer URL to access ArgoCD UI from your browser</p>
 <p>The initial password for the <code>admin</code> account is auto-generated and stored in the field <code>password</code> in a secret named <code>argocd-initial-admin-secret</code> in your Argo CD installation namespace. You can simply retrieve this password using kubectl:</p>
@@ -2387,7 +2434,7 @@ Setup new admin password <code>jenkins :material-arrow-right-thin: admin :materi
 <p>In Production, You should delete the <code>argocd-initial-admin-secret</code> from the Argo CD namespace once you change the password. The secret serves no other purpose than to store the initially generated password in clear and can safely be deleted at any time. It will be re-created on demand by Argo CD if a new admin password must be re-generated. </p>
 <p><a href="https://argo-cd.readthedocs.io/en/stable/getting_started/#4-login-using-the-cli" target="_blank">Learn more <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M320 0c-17.7 0-32 14.3-32 32s14.3 32 32 32h82.7L201.3 265.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L448 109.3V192c0 17.7 14.3 32 32 32s32-14.3 32-32V32c0-17.7-14.3-32-32-32zM80 96c-44.2 0-80 35.8-80 80v256c0 44.2 35.8 80 80 80h256c44.2 0 80-35.8 80-80v-80c0-17.7-14.3-32-32-32s-32 14.3-32 32v80c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16V176c0-8.8 7.2-16 16-16h80c17.7 0 32-14.3 32-32s-14.3-32-32-32z"/></svg></span></a></p>
 </details>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-16-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1"></a>kubectl<span class="w"> </span>-n<span class="w"> </span>argocd<span class="w"> </span>get<span class="w"> </span>secret<span class="w"> </span>argocd-initial-admin-secret<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s2">&quot;{.data.password}&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>base64<span class="w"> </span>-d<span class="p">;</span><span class="w"> </span><span class="nb">echo</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-18-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1"></a>kubectl<span class="w"> </span>-n<span class="w"> </span>argocd<span class="w"> </span>get<span class="w"> </span>secret<span class="w"> </span>argocd-initial-admin-secret<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s2">&quot;{.data.password}&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>base64<span class="w"> </span>-d<span class="p">;</span><span class="w"> </span><span class="nb">echo</span>
 </code></pre></div></td></tr></table></div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
@@ -2399,76 +2446,76 @@ Setup new admin password <code>jenkins :material-arrow-right-thin: admin :materi
 <hr />
 <h2 id="prometheus-stack-installation-and-setup-on-eks-using-helm"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.372 0 12c0 6.627 5.373 12 12 12s12-5.373 12-12c0-6.628-5.373-12-12-12m0 22.46c-1.885 0-3.414-1.26-3.414-2.814h6.828c0 1.553-1.528 2.813-3.414 2.813zm5.64-3.745H6.36v-2.046h11.28zm-.04-3.098H6.391q-.056-.064-.111-.13c-1.155-1.401-1.427-2.133-1.69-2.879-.005-.025 1.4.287 2.395.511 0 0 .513.119 1.262.255-.72-.843-1.147-1.915-1.147-3.01 0-2.406 1.845-4.508 1.18-6.207.648.053 1.34 1.367 1.387 3.422.689-.951.977-2.69.977-3.755 0-1.103.727-2.385 1.454-2.429-.648 1.069.168 1.984.894 4.256.272.854.237 2.29.447 3.201.07-1.892.395-4.652 1.595-5.605-.529 1.2.079 2.702.494 3.424.671 1.164 1.078 2.047 1.078 3.716a4.64 4.64 0 0 1-1.11 2.996c.792-.149 1.34-.283 1.34-.283l2.573-.502s-.374 1.538-1.81 3.019z"/></svg></span> Prometheus Stack Installation and Setup on EKS using Helm<a class="headerlink" href="#prometheus-stack-installation-and-setup-on-eks-using-helm" title="Copy this link to reference this section">&para;</a></h2>
 <p>Add the kube-prometheus-stack Helm repo</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-17-1">1</a></span>
-<span class="normal"><a href="#__codelineno-17-2">2</a></span>
-<span class="normal"><a href="#__codelineno-17-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1"></a>helm<span class="w"> </span>repo<span class="w"> </span>add<span class="w"> </span>prometheus-community<span class="w"> </span>https://prometheus-community.github.io/helm-charts
-<a id="__codelineno-17-2" name="__codelineno-17-2"></a>
-<a id="__codelineno-17-3" name="__codelineno-17-3"></a>helm<span class="w"> </span>repo<span class="w"> </span>update
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-19-1">1</a></span>
+<span class="normal"><a href="#__codelineno-19-2">2</a></span>
+<span class="normal"><a href="#__codelineno-19-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1"></a>helm<span class="w"> </span>repo<span class="w"> </span>add<span class="w"> </span>prometheus-community<span class="w"> </span>https://prometheus-community.github.io/helm-charts
+<a id="__codelineno-19-2" name="__codelineno-19-2"></a>
+<a id="__codelineno-19-3" name="__codelineno-19-3"></a>helm<span class="w"> </span>repo<span class="w"> </span>update
 </code></pre></div></td></tr></table></div>
 <p>Install Prometheus Stack into <code>monitoring</code> namespace </p>
 <div class="admonition tip inline end">
 <p class="admonition-title">Tip</p>
 <p>This will create the <code>monitoring</code> namespace and install kube-Prometheus stack</p>
 </div>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-18-1">1</a></span>
-<span class="normal"><a href="#__codelineno-18-2">2</a></span>
-<span class="normal"><a href="#__codelineno-18-3">3</a></span>
-<span class="normal"><a href="#__codelineno-18-4">4</a></span>
-<span class="normal"><a href="#__codelineno-18-5">5</a></span>
-<span class="normal"><a href="#__codelineno-18-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1"></a>helm<span class="w"> </span>install<span class="w"> </span>prometheus<span class="w"> </span>prometheus-community/kube-prometheus-stack<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-18-2" name="__codelineno-18-2"></a><span class="w">  </span>--namespace<span class="w"> </span>monitoring<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-18-3" name="__codelineno-18-3"></a><span class="w">  </span>--create-namespace<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-18-4" name="__codelineno-18-4"></a><span class="w">  </span>--set<span class="w"> </span>prometheus.prometheusSpec.maximumStartupDurationSeconds<span class="o">=</span><span class="m">300</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-18-5" name="__codelineno-18-5"></a><span class="w">  </span>--set<span class="w"> </span>alertmanager.persistence.storageClass<span class="o">=</span><span class="s2">&quot;gp2&quot;</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-18-6" name="__codelineno-18-6"></a><span class="w">  </span>--set<span class="w"> </span>server.persistentVolume.storageClass<span class="o">=</span><span class="s2">&quot;gp2&quot;</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-20-1">1</a></span>
+<span class="normal"><a href="#__codelineno-20-2">2</a></span>
+<span class="normal"><a href="#__codelineno-20-3">3</a></span>
+<span class="normal"><a href="#__codelineno-20-4">4</a></span>
+<span class="normal"><a href="#__codelineno-20-5">5</a></span>
+<span class="normal"><a href="#__codelineno-20-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1"></a>helm<span class="w"> </span>install<span class="w"> </span>prometheus<span class="w"> </span>prometheus-community/kube-prometheus-stack<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-20-2" name="__codelineno-20-2"></a><span class="w">  </span>--namespace<span class="w"> </span>monitoring<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-20-3" name="__codelineno-20-3"></a><span class="w">  </span>--create-namespace<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-20-4" name="__codelineno-20-4"></a><span class="w">  </span>--set<span class="w"> </span>prometheus.prometheusSpec.maximumStartupDurationSeconds<span class="o">=</span><span class="m">300</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-20-5" name="__codelineno-20-5"></a><span class="w">  </span>--set<span class="w"> </span>alertmanager.persistence.storageClass<span class="o">=</span><span class="s2">&quot;gp2&quot;</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-20-6" name="__codelineno-20-6"></a><span class="w">  </span>--set<span class="w"> </span>server.persistentVolume.storageClass<span class="o">=</span><span class="s2">&quot;gp2&quot;</span>
 </code></pre></div></td></tr></table></div>
 <p>Check running status of pods in the <code>monitoring</code> namespace to verify deployment</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-19-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1"></a>kubectl<span class="w"> </span>--namespace<span class="w"> </span>monitoring<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-l<span class="w"> </span><span class="s2">&quot;release=prometheus&quot;</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-21-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1"></a>kubectl<span class="w"> </span>--namespace<span class="w"> </span>monitoring<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-l<span class="w"> </span><span class="s2">&quot;release=prometheus&quot;</span>
 </code></pre></div></td></tr></table></div>
 <p>OR
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-20-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>monitoring
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-22-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>monitoring
 </code></pre></div></td></tr></table></div></p>
 <p>List all services in the monitoring namespace</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-21-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>svc<span class="w"> </span>-n<span class="w"> </span>monitoring
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-23-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>svc<span class="w"> </span>-n<span class="w"> </span>monitoring
 </code></pre></div></td></tr></table></div>
 <p>Display Grafana URL (optional)
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-22-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>svc<span class="w"> </span>-n<span class="w"> </span>monitoring<span class="w"> </span>prometheus-grafana
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-24-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>svc<span class="w"> </span>-n<span class="w"> </span>monitoring<span class="w"> </span>prometheus-grafana
 </code></pre></div></td></tr></table></div></p>
 <p>Display Prometheus URL (optional)
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-23-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>svc<span class="w"> </span>-n<span class="w"> </span>monitoring<span class="w"> </span>prometheus-kube-prometheus-prometheus
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-25-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>svc<span class="w"> </span>-n<span class="w"> </span>monitoring<span class="w"> </span>prometheus-kube-prometheus-prometheus
 </code></pre></div></td></tr></table></div></p>
 <p>Expose Grafana on a LoadBalancer for external access</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-24-1">1</a></span>
-<span class="normal"><a href="#__codelineno-24-2">2</a></span>
-<span class="normal"><a href="#__codelineno-24-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1"></a>kubectl<span class="w"> </span>patch<span class="w"> </span>svc<span class="w"> </span>prometheus-grafana<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-24-2" name="__codelineno-24-2"></a><span class="w">  </span>-n<span class="w"> </span>monitoring<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-24-3" name="__codelineno-24-3"></a><span class="w">  </span>-p<span class="w"> </span><span class="s1">&#39;{&quot;spec&quot;: {&quot;type&quot;: &quot;LoadBalancer&quot;}}&#39;</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-26-1">1</a></span>
+<span class="normal"><a href="#__codelineno-26-2">2</a></span>
+<span class="normal"><a href="#__codelineno-26-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1"></a>kubectl<span class="w"> </span>patch<span class="w"> </span>svc<span class="w"> </span>prometheus-grafana<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-26-2" name="__codelineno-26-2"></a><span class="w">  </span>-n<span class="w"> </span>monitoring<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-26-3" name="__codelineno-26-3"></a><span class="w">  </span>-p<span class="w"> </span><span class="s1">&#39;{&quot;spec&quot;: {&quot;type&quot;: &quot;LoadBalancer&quot;}}&#39;</span>
 </code></pre></div></td></tr></table></div>
 <p>Expose Prometheus on a LoadBalancer for external access</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-25-1">1</a></span>
-<span class="normal"><a href="#__codelineno-25-2">2</a></span>
-<span class="normal"><a href="#__codelineno-25-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1"></a>kubectl<span class="w"> </span>patch<span class="w"> </span>svc<span class="w"> </span>prometheus-kube-prometheus-prometheus<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-25-2" name="__codelineno-25-2"></a><span class="w">  </span>-n<span class="w"> </span>monitoring<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-25-3" name="__codelineno-25-3"></a><span class="w">  </span>-p<span class="w"> </span><span class="s1">&#39;{&quot;spec&quot;: {&quot;type&quot;: &quot;LoadBalancer&quot;}}&#39;</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-27-1">1</a></span>
+<span class="normal"><a href="#__codelineno-27-2">2</a></span>
+<span class="normal"><a href="#__codelineno-27-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1"></a>kubectl<span class="w"> </span>patch<span class="w"> </span>svc<span class="w"> </span>prometheus-kube-prometheus-prometheus<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-27-2" name="__codelineno-27-2"></a><span class="w">  </span>-n<span class="w"> </span>monitoring<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-27-3" name="__codelineno-27-3"></a><span class="w">  </span>-p<span class="w"> </span><span class="s1">&#39;{&quot;spec&quot;: {&quot;type&quot;: &quot;LoadBalancer&quot;}}&#39;</span>
 </code></pre></div></td></tr></table></div>
 <p>Display LoadBalancer URL for Grafana and Prometheus</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-26-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>svc<span class="w"> </span>-n<span class="w"> </span>monitoring
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-28-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>svc<span class="w"> </span>-n<span class="w"> </span>monitoring
 </code></pre></div></td></tr></table></div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>You may need to wait a while for the <code>EXTERNAL-IP</code> field to be populated, then open each URL for both Grafana and Prometheus in your browser (Grafana on port <code>80</code>, Prometheus on port <code>9090</code>)</p>
 </div>
 <p>To get Grafana password, enter the command below. This will display the contents of the <code>prometheus-grafana</code> secret in json format. Copy the <code>admin-password</code> from the json output and decode it in base-64 using the next command</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-27-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1"></a>kubectl<span class="w"> </span>--namespace<span class="w"> </span>monitoring<span class="w"> </span>get<span class="w"> </span>secrets<span class="w"> </span>prometheus-grafana<span class="w"> </span>-o<span class="w"> </span>json<span class="w"> </span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-29-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1"></a>kubectl<span class="w"> </span>--namespace<span class="w"> </span>monitoring<span class="w"> </span>get<span class="w"> </span>secrets<span class="w"> </span>prometheus-grafana<span class="w"> </span>-o<span class="w"> </span>json<span class="w"> </span>
 </code></pre></div></td></tr></table></div>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-28-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;&lt;admin-password&gt;&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>base64<span class="w"> </span>--decode
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-30-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;&lt;admin-password&gt;&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>base64<span class="w"> </span>--decode
 </code></pre></div></td></tr></table></div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>Replace the <code>&lt;admin-password&gt;</code> with the password you copied from the json output</p>
 </div>
 <p>OR use this command</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-29-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1"></a>kubectl<span class="w"> </span>--namespace<span class="w"> </span>monitoring<span class="w"> </span>get<span class="w"> </span>secrets<span class="w"> </span>prometheus-grafana<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s2">&quot;{.data.admin-password}&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>base64<span class="w"> </span>-d<span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="nb">echo</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-31-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1"></a>kubectl<span class="w"> </span>--namespace<span class="w"> </span>monitoring<span class="w"> </span>get<span class="w"> </span>secrets<span class="w"> </span>prometheus-grafana<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s2">&quot;{.data.admin-password}&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>base64<span class="w"> </span>-d<span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="nb">echo</span>
 </code></pre></div></td></tr></table></div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
@@ -2482,91 +2529,91 @@ Setup new admin password <code>jenkins :material-arrow-right-thin: admin :materi
 <details class="code-file">
 <summary>Install &amp; Configure Node-Exporter on linux</summary>
 <h2 id="install-configure-node-exporter-on-linux">Install &amp; Configure Node-Exporter on linux<a class="headerlink" href="#install-configure-node-exporter-on-linux" title="Copy this link to reference this section">&para;</a></h2>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-30-1"> 1</a></span>
-<span class="normal"><a href="#__codelineno-30-2"> 2</a></span>
-<span class="normal"><a href="#__codelineno-30-3"> 3</a></span>
-<span class="normal"><a href="#__codelineno-30-4"> 4</a></span>
-<span class="normal"><a href="#__codelineno-30-5"> 5</a></span>
-<span class="normal"><a href="#__codelineno-30-6"> 6</a></span>
-<span class="normal"><a href="#__codelineno-30-7"> 7</a></span>
-<span class="normal"><a href="#__codelineno-30-8"> 8</a></span>
-<span class="normal"><a href="#__codelineno-30-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-30-10">10</a></span>
-<span class="normal"><a href="#__codelineno-30-11">11</a></span>
-<span class="normal"><a href="#__codelineno-30-12">12</a></span>
-<span class="normal"><a href="#__codelineno-30-13">13</a></span>
-<span class="normal"><a href="#__codelineno-30-14">14</a></span>
-<span class="normal"><a href="#__codelineno-30-15">15</a></span>
-<span class="normal"><a href="#__codelineno-30-16">16</a></span>
-<span class="normal"><a href="#__codelineno-30-17">17</a></span>
-<span class="normal"><a href="#__codelineno-30-18">18</a></span>
-<span class="normal"><a href="#__codelineno-30-19">19</a></span>
-<span class="normal"><a href="#__codelineno-30-20">20</a></span>
-<span class="normal"><a href="#__codelineno-30-21">21</a></span>
-<span class="normal"><a href="#__codelineno-30-22">22</a></span>
-<span class="normal"><a href="#__codelineno-30-23">23</a></span>
-<span class="normal"><a href="#__codelineno-30-24">24</a></span>
-<span class="normal"><a href="#__codelineno-30-25">25</a></span>
-<span class="normal"><a href="#__codelineno-30-26">26</a></span>
-<span class="normal"><a href="#__codelineno-30-27">27</a></span>
-<span class="normal"><a href="#__codelineno-30-28">28</a></span>
-<span class="normal"><a href="#__codelineno-30-29">29</a></span>
-<span class="normal"><a href="#__codelineno-30-30">30</a></span>
-<span class="normal"><a href="#__codelineno-30-31">31</a></span>
-<span class="normal"><a href="#__codelineno-30-32">32</a></span>
-<span class="normal"><a href="#__codelineno-30-33">33</a></span>
-<span class="normal"><a href="#__codelineno-30-34">34</a></span>
-<span class="normal"><a href="#__codelineno-30-35">35</a></span>
-<span class="normal"><a href="#__codelineno-30-36">36</a></span>
-<span class="normal"><a href="#__codelineno-30-37">37</a></span>
-<span class="normal"><a href="#__codelineno-30-38">38</a></span>
-<span class="normal"><a href="#__codelineno-30-39">39</a></span>
-<span class="normal"><a href="#__codelineno-30-40">40</a></span>
-<span class="normal"><a href="#__codelineno-30-41">41</a></span>
-<span class="normal"><a href="#__codelineno-30-42">42</a></span>
-<span class="normal"><a href="#__codelineno-30-43">43</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1"></a><span class="ch">#!/bin/bash</span>
-<a id="__codelineno-30-2" name="__codelineno-30-2"></a>
-<a id="__codelineno-30-3" name="__codelineno-30-3"></a><span class="nb">set</span><span class="w"> </span>-e
-<a id="__codelineno-30-4" name="__codelineno-30-4"></a>
-<a id="__codelineno-30-5" name="__codelineno-30-5"></a><span class="nv">NODE_EXPORTER_VERSION</span><span class="o">=</span><span class="s2">&quot;1.8.1&quot;</span>
-<a id="__codelineno-30-6" name="__codelineno-30-6"></a><span class="nv">DOWNLOAD_URL</span><span class="o">=</span><span class="s2">&quot;https://github.com/prometheus/node_exporter/releases/download/v</span><span class="si">${</span><span class="nv">NODE_EXPORTER_VERSION</span><span class="si">}</span><span class="s2">/node_exporter-</span><span class="si">${</span><span class="nv">NODE_EXPORTER_VERSION</span><span class="si">}</span><span class="s2">.linux-amd64.tar.gz&quot;</span>
-<a id="__codelineno-30-7" name="__codelineno-30-7"></a>
-<a id="__codelineno-30-8" name="__codelineno-30-8"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;🚀 Installing Node Exporter v</span><span class="si">${</span><span class="nv">NODE_EXPORTER_VERSION</span><span class="si">}</span><span class="s2">...&quot;</span>
-<a id="__codelineno-30-9" name="__codelineno-30-9"></a>
-<a id="__codelineno-30-10" name="__codelineno-30-10"></a><span class="c1"># Download and extract</span>
-<a id="__codelineno-30-11" name="__codelineno-30-11"></a>curl<span class="w"> </span>-LO<span class="w"> </span><span class="si">${</span><span class="nv">DOWNLOAD_URL</span><span class="si">}</span>
-<a id="__codelineno-30-12" name="__codelineno-30-12"></a>tar<span class="w"> </span>-xzf<span class="w"> </span>node_exporter-<span class="si">${</span><span class="nv">NODE_EXPORTER_VERSION</span><span class="si">}</span>.linux-amd64.tar.gz
-<a id="__codelineno-30-13" name="__codelineno-30-13"></a>sudo<span class="w"> </span>mv<span class="w"> </span>node_exporter-<span class="si">${</span><span class="nv">NODE_EXPORTER_VERSION</span><span class="si">}</span>.linux-amd64/node_exporter<span class="w"> </span>/usr/local/bin/
-<a id="__codelineno-30-14" name="__codelineno-30-14"></a>rm<span class="w"> </span>-rf<span class="w"> </span>node_exporter-<span class="si">${</span><span class="nv">NODE_EXPORTER_VERSION</span><span class="si">}</span>.linux-amd64*
-<a id="__codelineno-30-15" name="__codelineno-30-15"></a>
-<a id="__codelineno-30-16" name="__codelineno-30-16"></a><span class="c1"># Create user</span>
-<a id="__codelineno-30-17" name="__codelineno-30-17"></a>sudo<span class="w"> </span>useradd<span class="w"> </span>-rs<span class="w"> </span>/bin/false<span class="w"> </span>node_exporter<span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nb">true</span>
-<a id="__codelineno-30-18" name="__codelineno-30-18"></a>
-<a id="__codelineno-30-19" name="__codelineno-30-19"></a><span class="c1"># Create systemd service</span>
-<a id="__codelineno-30-20" name="__codelineno-30-20"></a>cat<span class="w"> </span><span class="s">&lt;&lt;EOF | sudo tee /etc/systemd/system/node_exporter.service</span>
-<a id="__codelineno-30-21" name="__codelineno-30-21"></a><span class="s">[Unit]</span>
-<a id="__codelineno-30-22" name="__codelineno-30-22"></a><span class="s">Description=Node Exporter</span>
-<a id="__codelineno-30-23" name="__codelineno-30-23"></a><span class="s">Wants=network-online.target</span>
-<a id="__codelineno-30-24" name="__codelineno-30-24"></a><span class="s">After=network-online.target</span>
-<a id="__codelineno-30-25" name="__codelineno-30-25"></a>
-<a id="__codelineno-30-26" name="__codelineno-30-26"></a><span class="s">[Service]</span>
-<a id="__codelineno-30-27" name="__codelineno-30-27"></a><span class="s">User=node_exporter</span>
-<a id="__codelineno-30-28" name="__codelineno-30-28"></a><span class="s">Group=node_exporter</span>
-<a id="__codelineno-30-29" name="__codelineno-30-29"></a><span class="s">Type=simple</span>
-<a id="__codelineno-30-30" name="__codelineno-30-30"></a><span class="s">ExecStart=/usr/local/bin/node_exporter</span>
-<a id="__codelineno-30-31" name="__codelineno-30-31"></a>
-<a id="__codelineno-30-32" name="__codelineno-30-32"></a><span class="s">[Install]</span>
-<a id="__codelineno-30-33" name="__codelineno-30-33"></a><span class="s">WantedBy=default.target</span>
-<a id="__codelineno-30-34" name="__codelineno-30-34"></a><span class="s">EOF</span>
-<a id="__codelineno-30-35" name="__codelineno-30-35"></a>
-<a id="__codelineno-30-36" name="__codelineno-30-36"></a><span class="c1"># Reload and start</span>
-<a id="__codelineno-30-37" name="__codelineno-30-37"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>daemon-reload
-<a id="__codelineno-30-38" name="__codelineno-30-38"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>--now<span class="w"> </span>node_exporter
-<a id="__codelineno-30-39" name="__codelineno-30-39"></a>
-<a id="__codelineno-30-40" name="__codelineno-30-40"></a>
-<a id="__codelineno-30-41" name="__codelineno-30-41"></a><span class="c1"># Verify</span>
-<a id="__codelineno-30-42" name="__codelineno-30-42"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;✅ Node Exporter is running!&quot;</span>
-<a id="__codelineno-30-43" name="__codelineno-30-43"></a>curl<span class="w"> </span>-s<span class="w"> </span>http://localhost:9100/metrics<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-n<span class="w"> </span><span class="m">5</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-32-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-32-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-32-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-32-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-32-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-32-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-32-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-32-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-32-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-32-10">10</a></span>
+<span class="normal"><a href="#__codelineno-32-11">11</a></span>
+<span class="normal"><a href="#__codelineno-32-12">12</a></span>
+<span class="normal"><a href="#__codelineno-32-13">13</a></span>
+<span class="normal"><a href="#__codelineno-32-14">14</a></span>
+<span class="normal"><a href="#__codelineno-32-15">15</a></span>
+<span class="normal"><a href="#__codelineno-32-16">16</a></span>
+<span class="normal"><a href="#__codelineno-32-17">17</a></span>
+<span class="normal"><a href="#__codelineno-32-18">18</a></span>
+<span class="normal"><a href="#__codelineno-32-19">19</a></span>
+<span class="normal"><a href="#__codelineno-32-20">20</a></span>
+<span class="normal"><a href="#__codelineno-32-21">21</a></span>
+<span class="normal"><a href="#__codelineno-32-22">22</a></span>
+<span class="normal"><a href="#__codelineno-32-23">23</a></span>
+<span class="normal"><a href="#__codelineno-32-24">24</a></span>
+<span class="normal"><a href="#__codelineno-32-25">25</a></span>
+<span class="normal"><a href="#__codelineno-32-26">26</a></span>
+<span class="normal"><a href="#__codelineno-32-27">27</a></span>
+<span class="normal"><a href="#__codelineno-32-28">28</a></span>
+<span class="normal"><a href="#__codelineno-32-29">29</a></span>
+<span class="normal"><a href="#__codelineno-32-30">30</a></span>
+<span class="normal"><a href="#__codelineno-32-31">31</a></span>
+<span class="normal"><a href="#__codelineno-32-32">32</a></span>
+<span class="normal"><a href="#__codelineno-32-33">33</a></span>
+<span class="normal"><a href="#__codelineno-32-34">34</a></span>
+<span class="normal"><a href="#__codelineno-32-35">35</a></span>
+<span class="normal"><a href="#__codelineno-32-36">36</a></span>
+<span class="normal"><a href="#__codelineno-32-37">37</a></span>
+<span class="normal"><a href="#__codelineno-32-38">38</a></span>
+<span class="normal"><a href="#__codelineno-32-39">39</a></span>
+<span class="normal"><a href="#__codelineno-32-40">40</a></span>
+<span class="normal"><a href="#__codelineno-32-41">41</a></span>
+<span class="normal"><a href="#__codelineno-32-42">42</a></span>
+<span class="normal"><a href="#__codelineno-32-43">43</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1"></a><span class="ch">#!/bin/bash</span>
+<a id="__codelineno-32-2" name="__codelineno-32-2"></a>
+<a id="__codelineno-32-3" name="__codelineno-32-3"></a><span class="nb">set</span><span class="w"> </span>-e
+<a id="__codelineno-32-4" name="__codelineno-32-4"></a>
+<a id="__codelineno-32-5" name="__codelineno-32-5"></a><span class="nv">NODE_EXPORTER_VERSION</span><span class="o">=</span><span class="s2">&quot;1.8.1&quot;</span>
+<a id="__codelineno-32-6" name="__codelineno-32-6"></a><span class="nv">DOWNLOAD_URL</span><span class="o">=</span><span class="s2">&quot;https://github.com/prometheus/node_exporter/releases/download/v</span><span class="si">${</span><span class="nv">NODE_EXPORTER_VERSION</span><span class="si">}</span><span class="s2">/node_exporter-</span><span class="si">${</span><span class="nv">NODE_EXPORTER_VERSION</span><span class="si">}</span><span class="s2">.linux-amd64.tar.gz&quot;</span>
+<a id="__codelineno-32-7" name="__codelineno-32-7"></a>
+<a id="__codelineno-32-8" name="__codelineno-32-8"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;🚀 Installing Node Exporter v</span><span class="si">${</span><span class="nv">NODE_EXPORTER_VERSION</span><span class="si">}</span><span class="s2">...&quot;</span>
+<a id="__codelineno-32-9" name="__codelineno-32-9"></a>
+<a id="__codelineno-32-10" name="__codelineno-32-10"></a><span class="c1"># Download and extract</span>
+<a id="__codelineno-32-11" name="__codelineno-32-11"></a>curl<span class="w"> </span>-LO<span class="w"> </span><span class="si">${</span><span class="nv">DOWNLOAD_URL</span><span class="si">}</span>
+<a id="__codelineno-32-12" name="__codelineno-32-12"></a>tar<span class="w"> </span>-xzf<span class="w"> </span>node_exporter-<span class="si">${</span><span class="nv">NODE_EXPORTER_VERSION</span><span class="si">}</span>.linux-amd64.tar.gz
+<a id="__codelineno-32-13" name="__codelineno-32-13"></a>sudo<span class="w"> </span>mv<span class="w"> </span>node_exporter-<span class="si">${</span><span class="nv">NODE_EXPORTER_VERSION</span><span class="si">}</span>.linux-amd64/node_exporter<span class="w"> </span>/usr/local/bin/
+<a id="__codelineno-32-14" name="__codelineno-32-14"></a>rm<span class="w"> </span>-rf<span class="w"> </span>node_exporter-<span class="si">${</span><span class="nv">NODE_EXPORTER_VERSION</span><span class="si">}</span>.linux-amd64*
+<a id="__codelineno-32-15" name="__codelineno-32-15"></a>
+<a id="__codelineno-32-16" name="__codelineno-32-16"></a><span class="c1"># Create user</span>
+<a id="__codelineno-32-17" name="__codelineno-32-17"></a>sudo<span class="w"> </span>useradd<span class="w"> </span>-rs<span class="w"> </span>/bin/false<span class="w"> </span>node_exporter<span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nb">true</span>
+<a id="__codelineno-32-18" name="__codelineno-32-18"></a>
+<a id="__codelineno-32-19" name="__codelineno-32-19"></a><span class="c1"># Create systemd service</span>
+<a id="__codelineno-32-20" name="__codelineno-32-20"></a>cat<span class="w"> </span><span class="s">&lt;&lt;EOF | sudo tee /etc/systemd/system/node_exporter.service</span>
+<a id="__codelineno-32-21" name="__codelineno-32-21"></a><span class="s">[Unit]</span>
+<a id="__codelineno-32-22" name="__codelineno-32-22"></a><span class="s">Description=Node Exporter</span>
+<a id="__codelineno-32-23" name="__codelineno-32-23"></a><span class="s">Wants=network-online.target</span>
+<a id="__codelineno-32-24" name="__codelineno-32-24"></a><span class="s">After=network-online.target</span>
+<a id="__codelineno-32-25" name="__codelineno-32-25"></a>
+<a id="__codelineno-32-26" name="__codelineno-32-26"></a><span class="s">[Service]</span>
+<a id="__codelineno-32-27" name="__codelineno-32-27"></a><span class="s">User=node_exporter</span>
+<a id="__codelineno-32-28" name="__codelineno-32-28"></a><span class="s">Group=node_exporter</span>
+<a id="__codelineno-32-29" name="__codelineno-32-29"></a><span class="s">Type=simple</span>
+<a id="__codelineno-32-30" name="__codelineno-32-30"></a><span class="s">ExecStart=/usr/local/bin/node_exporter</span>
+<a id="__codelineno-32-31" name="__codelineno-32-31"></a>
+<a id="__codelineno-32-32" name="__codelineno-32-32"></a><span class="s">[Install]</span>
+<a id="__codelineno-32-33" name="__codelineno-32-33"></a><span class="s">WantedBy=default.target</span>
+<a id="__codelineno-32-34" name="__codelineno-32-34"></a><span class="s">EOF</span>
+<a id="__codelineno-32-35" name="__codelineno-32-35"></a>
+<a id="__codelineno-32-36" name="__codelineno-32-36"></a><span class="c1"># Reload and start</span>
+<a id="__codelineno-32-37" name="__codelineno-32-37"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>daemon-reload
+<a id="__codelineno-32-38" name="__codelineno-32-38"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>--now<span class="w"> </span>node_exporter
+<a id="__codelineno-32-39" name="__codelineno-32-39"></a>
+<a id="__codelineno-32-40" name="__codelineno-32-40"></a>
+<a id="__codelineno-32-41" name="__codelineno-32-41"></a><span class="c1"># Verify</span>
+<a id="__codelineno-32-42" name="__codelineno-32-42"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;✅ Node Exporter is running!&quot;</span>
+<a id="__codelineno-32-43" name="__codelineno-32-43"></a>curl<span class="w"> </span>-s<span class="w"> </span>http://localhost:9100/metrics<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-n<span class="w"> </span><span class="m">5</span>
 </code></pre></div></td></tr></table></div>
 </details>
 <hr />
@@ -2583,73 +2630,73 @@ Setup new admin password <code>jenkins :material-arrow-right-thin: admin :materi
 <h3 id="steps-to-add-standalone-server-to-prometheus-scrape-targets">🚀 Steps to Add Standalone Server to Prometheus Scrape Targets<a class="headerlink" href="#steps-to-add-standalone-server-to-prometheus-scrape-targets" title="Copy this link to reference this section">&para;</a></h3>
 <h4 id="1-create-additional-scrape-config-via-secret">1. Create Additional Scrape Config via Secret<a class="headerlink" href="#1-create-additional-scrape-config-via-secret" title="Copy this link to reference this section">&para;</a></h4>
 <p>Create a file named <code>additional-scrape-configs.yaml</code> with the following content:</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-31-1"> 1</a></span>
-<span class="normal"><a href="#__codelineno-31-2"> 2</a></span>
-<span class="normal"><a href="#__codelineno-31-3"> 3</a></span>
-<span class="normal"><a href="#__codelineno-31-4"> 4</a></span>
-<span class="normal"><a href="#__codelineno-31-5"> 5</a></span>
-<span class="normal"><a href="#__codelineno-31-6"> 6</a></span>
-<span class="normal"><a href="#__codelineno-31-7"> 7</a></span>
-<span class="normal"><a href="#__codelineno-31-8"> 8</a></span>
-<span class="normal"><a href="#__codelineno-31-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-31-10">10</a></span>
-<span class="normal"><a href="#__codelineno-31-11">11</a></span>
-<span class="normal"><a href="#__codelineno-31-12">12</a></span>
-<span class="normal"><a href="#__codelineno-31-13">13</a></span>
-<span class="normal"><a href="#__codelineno-31-14">14</a></span>
-<span class="normal"><a href="#__codelineno-31-15">15</a></span>
-<span class="normal"><a href="#__codelineno-31-16">16</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">job_name</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;jenkins-node-exporter&#39;</span>
-<a id="__codelineno-31-2" name="__codelineno-31-2"></a><span class="w">  </span><span class="nt">static_configs</span><span class="p">:</span>
-<a id="__codelineno-31-3" name="__codelineno-31-3"></a><span class="hll"><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">targets</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&#39;&lt;server_ip&gt;:9100&#39;</span><span class="p p-Indicator">]</span>
-</span><a id="__codelineno-31-4" name="__codelineno-31-4"></a><span class="w">      </span><span class="nt">labels</span><span class="p">:</span>
-<a id="__codelineno-31-5" name="__codelineno-31-5"></a><span class="w">        </span><span class="nt">instance</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;&lt;instance_name&gt;&#39;</span>
-<a id="__codelineno-31-6" name="__codelineno-31-6"></a><span class="w">        </span><span class="nt">role</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;node-exporter&#39;</span>
-<a id="__codelineno-31-7" name="__codelineno-31-7"></a><span class="w">        </span><span class="nt">environment</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;dev&#39;</span>
-<a id="__codelineno-31-8" name="__codelineno-31-8"></a>
-<a id="__codelineno-31-9" name="__codelineno-31-9"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">job_name</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;jenkins-prom-plugin&#39;</span>
-<a id="__codelineno-31-10" name="__codelineno-31-10"></a><span class="w">  </span><span class="nt">metrics_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/prometheus</span>
-<a id="__codelineno-31-11" name="__codelineno-31-11"></a><span class="w">  </span><span class="nt">static_configs</span><span class="p">:</span>
-<a id="__codelineno-31-12" name="__codelineno-31-12"></a><span class="hll"><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">targets</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&#39;&lt;server_ip&gt;:8080&#39;</span><span class="p p-Indicator">]</span>
-</span><a id="__codelineno-31-13" name="__codelineno-31-13"></a><span class="w">      </span><span class="nt">labels</span><span class="p">:</span>
-<a id="__codelineno-31-14" name="__codelineno-31-14"></a><span class="w">        </span><span class="nt">instance</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;instance_name&#39;</span>
-<a id="__codelineno-31-15" name="__codelineno-31-15"></a><span class="w">        </span><span class="nt">role</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;jenkins-master&#39;</span>
-<a id="__codelineno-31-16" name="__codelineno-31-16"></a><span class="w">        </span><span class="nt">environment</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;dev&#39;</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-33-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-33-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-33-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-33-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-33-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-33-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-33-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-33-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-33-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-33-10">10</a></span>
+<span class="normal"><a href="#__codelineno-33-11">11</a></span>
+<span class="normal"><a href="#__codelineno-33-12">12</a></span>
+<span class="normal"><a href="#__codelineno-33-13">13</a></span>
+<span class="normal"><a href="#__codelineno-33-14">14</a></span>
+<span class="normal"><a href="#__codelineno-33-15">15</a></span>
+<span class="normal"><a href="#__codelineno-33-16">16</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">job_name</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;jenkins-node-exporter&#39;</span>
+<a id="__codelineno-33-2" name="__codelineno-33-2"></a><span class="w">  </span><span class="nt">static_configs</span><span class="p">:</span>
+<a id="__codelineno-33-3" name="__codelineno-33-3"></a><span class="hll"><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">targets</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&#39;&lt;server_ip&gt;:9100&#39;</span><span class="p p-Indicator">]</span>
+</span><a id="__codelineno-33-4" name="__codelineno-33-4"></a><span class="w">      </span><span class="nt">labels</span><span class="p">:</span>
+<a id="__codelineno-33-5" name="__codelineno-33-5"></a><span class="w">        </span><span class="nt">instance</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;&lt;instance_name&gt;&#39;</span>
+<a id="__codelineno-33-6" name="__codelineno-33-6"></a><span class="w">        </span><span class="nt">role</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;node-exporter&#39;</span>
+<a id="__codelineno-33-7" name="__codelineno-33-7"></a><span class="w">        </span><span class="nt">environment</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;dev&#39;</span>
+<a id="__codelineno-33-8" name="__codelineno-33-8"></a>
+<a id="__codelineno-33-9" name="__codelineno-33-9"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">job_name</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;jenkins-prom-plugin&#39;</span>
+<a id="__codelineno-33-10" name="__codelineno-33-10"></a><span class="w">  </span><span class="nt">metrics_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/prometheus</span>
+<a id="__codelineno-33-11" name="__codelineno-33-11"></a><span class="w">  </span><span class="nt">static_configs</span><span class="p">:</span>
+<a id="__codelineno-33-12" name="__codelineno-33-12"></a><span class="hll"><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">targets</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&#39;&lt;server_ip&gt;:8080&#39;</span><span class="p p-Indicator">]</span>
+</span><a id="__codelineno-33-13" name="__codelineno-33-13"></a><span class="w">      </span><span class="nt">labels</span><span class="p">:</span>
+<a id="__codelineno-33-14" name="__codelineno-33-14"></a><span class="w">        </span><span class="nt">instance</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;instance_name&#39;</span>
+<a id="__codelineno-33-15" name="__codelineno-33-15"></a><span class="w">        </span><span class="nt">role</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;jenkins-master&#39;</span>
+<a id="__codelineno-33-16" name="__codelineno-33-16"></a><span class="w">        </span><span class="nt">environment</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;dev&#39;</span>
 </code></pre></div></td></tr></table></div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>Edit the higlighted lines and replace <code>&lt;server-ip&gt;</code> with the IP address or DNS name of your standalone Linux server. In this case, your jenkins server.</p>
 </div>
 <h4 id="2-now-create-a-kubernetes-secret">2. Now create a Kubernetes secret<a class="headerlink" href="#2-now-create-a-kubernetes-secret" title="Copy this link to reference this section">&para;</a></h4>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-32-1">1</a></span>
-<span class="normal"><a href="#__codelineno-32-2">2</a></span>
-<span class="normal"><a href="#__codelineno-32-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1"></a>kubectl<span class="w"> </span>create<span class="w"> </span>secret<span class="w"> </span>generic<span class="w"> </span>additional-scrape-configs<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-32-2" name="__codelineno-32-2"></a><span class="w">  </span>--from-file<span class="o">=</span>additional-scrape-configs.yaml<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-32-3" name="__codelineno-32-3"></a><span class="w">  </span>-n<span class="w"> </span>monitoring
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-34-1">1</a></span>
+<span class="normal"><a href="#__codelineno-34-2">2</a></span>
+<span class="normal"><a href="#__codelineno-34-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1"></a>kubectl<span class="w"> </span>create<span class="w"> </span>secret<span class="w"> </span>generic<span class="w"> </span>additional-scrape-configs<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-34-2" name="__codelineno-34-2"></a><span class="w">  </span>--from-file<span class="o">=</span>additional-scrape-configs.yaml<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-34-3" name="__codelineno-34-3"></a><span class="w">  </span>-n<span class="w"> </span>monitoring
 </code></pre></div></td></tr></table></div>
 <h4 id="3-edit-prometheus-custom-resource">3. Edit Prometheus Custom Resource<a class="headerlink" href="#3-edit-prometheus-custom-resource" title="Copy this link to reference this section">&para;</a></h4>
 <p>First get the prometheus resource name</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-33-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>prometheus<span class="w"> </span>-n<span class="w"> </span>monitoring
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-35-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>prometheus<span class="w"> </span>-n<span class="w"> </span>monitoring
 </code></pre></div></td></tr></table></div>
 <p>Then edit the prometheus custom resource</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-34-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1"></a>kubectl<span class="w"> </span>edit<span class="w"> </span>prometheus<span class="w"> </span>prometheus-kube-prometheus-prometheus<span class="w"> </span>-n<span class="w"> </span>monitoring
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-36-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1"></a>kubectl<span class="w"> </span>edit<span class="w"> </span>prometheus<span class="w"> </span>prometheus-kube-prometheus-prometheus<span class="w"> </span>-n<span class="w"> </span>monitoring
 </code></pre></div></td></tr></table></div>
 <p>Under <code>spec</code> add:</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-35-1">1</a></span>
-<span class="normal"><a href="#__codelineno-35-2">2</a></span>
-<span class="normal"><a href="#__codelineno-35-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1"></a><span class="w">  </span><span class="nt">additionalScrapeConfigs</span><span class="p">:</span>
-<a id="__codelineno-35-2" name="__codelineno-35-2"></a><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">additional-scrape-configs</span>
-<a id="__codelineno-35-3" name="__codelineno-35-3"></a><span class="w">    </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">additional-scrape-configs.yaml</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-37-1">1</a></span>
+<span class="normal"><a href="#__codelineno-37-2">2</a></span>
+<span class="normal"><a href="#__codelineno-37-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1"></a><span class="w">  </span><span class="nt">additionalScrapeConfigs</span><span class="p">:</span>
+<a id="__codelineno-37-2" name="__codelineno-37-2"></a><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">additional-scrape-configs</span>
+<a id="__codelineno-37-3" name="__codelineno-37-3"></a><span class="w">    </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">additional-scrape-configs.yaml</span>
 </code></pre></div></td></tr></table></div>
 <p>So the result should look like this:</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-36-1">1</a></span>
-<span class="normal"><a href="#__codelineno-36-2">2</a></span>
-<span class="normal"><a href="#__codelineno-36-3">3</a></span>
-<span class="normal"><a href="#__codelineno-36-4">4</a></span>
-<span class="normal"><a href="#__codelineno-36-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1"></a><span class="nt">spec</span><span class="p">:</span>
-<a id="__codelineno-36-2" name="__codelineno-36-2"></a><span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">...</span>
-<a id="__codelineno-36-3" name="__codelineno-36-3"></a><span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">additionalScrapeConfigs</span><span class="p p-Indicator">:</span>
-<a id="__codelineno-36-4" name="__codelineno-36-4"></a><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">additional-scrape-configs</span>
-<a id="__codelineno-36-5" name="__codelineno-36-5"></a><span class="w">    </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">additional-scrape-configs.yaml</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-38-1">1</a></span>
+<span class="normal"><a href="#__codelineno-38-2">2</a></span>
+<span class="normal"><a href="#__codelineno-38-3">3</a></span>
+<span class="normal"><a href="#__codelineno-38-4">4</a></span>
+<span class="normal"><a href="#__codelineno-38-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1"></a><span class="nt">spec</span><span class="p">:</span>
+<a id="__codelineno-38-2" name="__codelineno-38-2"></a><span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<a id="__codelineno-38-3" name="__codelineno-38-3"></a><span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">additionalScrapeConfigs</span><span class="p p-Indicator">:</span>
+<a id="__codelineno-38-4" name="__codelineno-38-4"></a><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">additional-scrape-configs</span>
+<a id="__codelineno-38-5" name="__codelineno-38-5"></a><span class="w">    </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">additional-scrape-configs.yaml</span>
 </code></pre></div></td></tr></table></div>
 <h4 id="4-apply-and-verify">4. Apply and Verify<a class="headerlink" href="#4-apply-and-verify" title="Copy this link to reference this section">&para;</a></h4>
 <p>Prometheus will reload its config automatically by deafult. Wait a minute, then:</p>
@@ -2660,18 +2707,18 @@ Setup new admin password <code>jenkins :material-arrow-right-thin: admin :materi
 </ul>
 <p><br><br></p>
 <h3 id="to-uninstall-prometheus-stack-and-delete-namespace">To Uninstall Prometheus-Stack and delete namespace<a class="headerlink" href="#to-uninstall-prometheus-stack-and-delete-namespace" title="Copy this link to reference this section">&para;</a></h3>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-37-1">1</a></span>
-<span class="normal"><a href="#__codelineno-37-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1"></a>helm<span class="w"> </span>uninstall<span class="w"> </span>prometheus<span class="w"> </span>-n<span class="w"> </span>monitoring
-<a id="__codelineno-37-2" name="__codelineno-37-2"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>namespace<span class="w"> </span>monitoring
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-39-1">1</a></span>
+<span class="normal"><a href="#__codelineno-39-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1"></a>helm<span class="w"> </span>uninstall<span class="w"> </span>prometheus<span class="w"> </span>-n<span class="w"> </span>monitoring
+<a id="__codelineno-39-2" name="__codelineno-39-2"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>namespace<span class="w"> </span>monitoring
 </code></pre></div></td></tr></table></div>
 <h6 id="_2"><a class="headerlink" href="#_2" title="Copy this link to reference this section">&para;</a></h6>
 <h2 id="clean-up">Clean-Up<a class="headerlink" href="#clean-up" title="Copy this link to reference this section">&para;</a></h2>
 <p>To avoid incurring uneccessary costs, it is advisable to clean up (destroy) all the infrastructural resources created during this project.</p>
 <p>To destroy the infrastructure created by Terraform, navigate to the directory where your Terraform configuration files are located and run:</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-38-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1"></a>terraform<span class="w"> </span>destroy<span class="w"> </span>--auto-approve
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-40-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1"></a>terraform<span class="w"> </span>destroy<span class="w"> </span>--auto-approve
 </code></pre></div></td></tr></table></div>
 <p>Delete the EKS Cluster</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-39-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1"></a>eksctl<span class="w"> </span>delete<span class="w"> </span>cluster<span class="w"> </span>--name<span class="w"> </span>opeyemi-k8s-cluster<span class="w"> </span>--region<span class="w"> </span>us-east-2
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-41-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1"></a>eksctl<span class="w"> </span>delete<span class="w"> </span>cluster<span class="w"> </span>--name<span class="w"> </span>opeyemi-k8s-cluster<span class="w"> </span>--region<span class="w"> </span>us-east-2
 </code></pre></div></td></tr></table></div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
@@ -2704,7 +2751,7 @@ Setup new admin password <code>jenkins :material-arrow-right-thin: admin :materi
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="September 1, 2025 17:14:05 UTC"><span class="timeago" datetime="2025-09-01T17:14:05+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="September 1, 2025 17:14:05 UTC">2025-09-01</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="September 1, 2025 18:42:38 UTC"><span class="timeago" datetime="2025-09-01T18:42:38+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="September 1, 2025 18:42:38 UTC">2025-09-01</span>
   </span>
 
     
