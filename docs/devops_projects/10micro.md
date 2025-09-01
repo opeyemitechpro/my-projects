@@ -669,17 +669,18 @@ helm repo add argo https://argoproj.github.io/argo-helm
 helm repo update
 ```
 
-!!! tip inline end "Tip"
-
-    This will create the `argocd` namespace and install ArgoCD
-
 Install ArgoCD Helm Chart
 
 ``` sh
 helm install opeyemi-argo-cd argo/argo-cd --namespace argocd --create-namespace
 ```
 
-???+ tip "Optional Steps to confirm `argocd` installation"
+!!! tip "Tip"
+    This will name the release `opeyemi-argo-cd` and create the `argocd` namespace if it doesn't exist then install ArgoCD in the `argocd` namespace.
+
+
+
+???+ tip "Optional Steps to confirm the `argocd` installation"
     View helm releases in all namespaces (including the `argocd` namespace)
     
     ``` sh
@@ -687,12 +688,6 @@ helm install opeyemi-argo-cd argo/argo-cd --namespace argocd --create-namespace
     ```
 
     Check running status of pods in the `argocd` namespace to verify deployment
-
-    ``` sh
-    kubectl --namespace argocd get pods -l "release=opeyemi-argo-cd"
-    ```
-
-    OR 
 
     ``` sh
     kubectl get pods -n argocd
@@ -711,7 +706,7 @@ kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}
 ```
 
 !!! tip "Tip"
-    By default all the pods in the argocd namespace are of `ClusterIP` type. We need to expose the `argocd-server` as a LoadBalancer service type to make it accessible from outside the cluster.
+    By default all the pods in the argocd namespace are of `ClusterIP` type. We need to expose the `argocd-server` pod as a LoadBalancer service type to make it accessible from outside the cluster.
 
 After a short wait, AWS will assign a URL to the LoadBalancer service. You can retrieve this URL with:
 
