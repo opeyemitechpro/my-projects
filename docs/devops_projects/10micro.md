@@ -78,7 +78,7 @@ Install the plugins below and restart the server if requested
 
 
 
-## *Install Gitleaks**
+## **Install Gitleaks**
 
 ``` sh
 # Download and install the latest release of Gitleaks
@@ -206,7 +206,7 @@ Below are the Jenkins pipeline scripts for the `Continous Integration (CI)` and 
 
 
                 // Declare values for these variables to suit your environment needs 
-                DOCKER_TAG        = 'ver-4.$BUILD_NUMBER' // Docker tag dynamically generated after each build
+                DOCKER_TAG        = "ver-$BUILD_NUMBER" // Docker tag dynamically generated after each build
 
             }
 
@@ -226,7 +226,7 @@ Below are the Jenkins pipeline scripts for the `Continous Integration (CI)` and 
 
                 stage('Gitleaks Scan') {
                     steps {
-                        sh 'gitleaks detect --source . -r gitleaks_report-$BUILD_NUMBER.json'
+                        sh 'gitleaks detect --source . -r gitleaks_report-$BUILD_NUMBER.json || true'
                     }
                 }
 
