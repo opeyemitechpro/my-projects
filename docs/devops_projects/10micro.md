@@ -729,17 +729,19 @@ kubectl patch svc opeyemi-argo-cd-argocd-server -n argocd -p '{"spec": {"type": 
 ```
 
 !!! tip "Tip"
-    After a short wait, AWS will assign a URL to the LoadBalancer service. You can retrieve this URL with:
+    You will need to wait a short while for LoadBalancer URL to become ready before you can access it inthe browser.
+
+You can retrieve the LoadBalancer URL with:
 
 ``` sh
 kubectl get svc -n argocd
 ```
-
+OR use 
 ``` sh
 kubectl get svc opeyemi-argo-cd-argocd-server -n argocd -o=jsonpath='{.status.loadBalancer.ingress[0].hostname}'
 ```
 
-Use this LoadBalancer URL to access ArgoCD UI from your browser
+Use this LoadBalancer URL to access ArgoCD UI from your browser.
 
 The initial password for the `admin` account is auto-generated and stored in the field `password` in a secret named `argocd-initial-admin-secret` in your Argo CD installation namespace. You can simply retrieve this password using kubectl:
 
@@ -753,11 +755,23 @@ The initial password for the `admin` account is auto-generated and stored in the
 ``` sh
 kubectl get secrets -n argocd
 ```
+OR use
 
 ``` sh
 kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d; echo
 ```
 
+??? tip "Accessing initial ArgoCD Admin password"
+    Alternatively, you could access the ArgoCD initial Admin password by first displaying the contents of the `argocd-initial-admin-secret` then base64 decode the password field as show below:
+
+    ``` sh
+    kubectl get secrets argocd-initial-admin-secret -n argocd
+    ```
+
+    ``` sh
+    echo "<initial-password-string>" | base64 -d
+    ```
+    * Where `initial-password-string` is the string in the password field of the json output
 
 !!! tip 
 
@@ -801,7 +815,7 @@ helm install prometheus prometheus-community/kube-prometheus-stack \
 
 !!! tip "Tip"
 
-    This will create the `monitoring` namespace if it doesn't exist and install kube-Prometheus stack
+    This will create the `monitoring` namespace if it doesn't exist already and deploy the full Prometheus monitoring stack (Prometheus + Grafana + Alertmanager + exporters) into the `monitoring` namespace
 
 Check running status of pods in the `monitoring` namespace to verify deployment
 
