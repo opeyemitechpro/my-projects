@@ -34,11 +34,23 @@ Setting up a self-hosted VPN server can be a cost-effective and secure solution 
 With this guide, you'll learn how to configure the script, customize it for your requirements, and launch a fully functional VPN server in less than 5-minutes and ensures your internet traffic remains private and encrypted without been locked in a vpn subscription plan.
 This VPN server is also "disposable", meaning, you can create and delete it anytime after use with just one command :smile: 
 
+
+??? tip "Repos used for this project"
+    <div style="text-align: center;">
+    [11-Microservices-k8s-App Source Code :simple-github: :fontawesome-solid-arrow-up-right-from-square:](https://github.com/opeyemitechpro/11-Microservices-k8s-App){: target="_blank" .md-button}
+    </div>
+
+    <div style="text-align: center;">
+    [11-Microservices-k8s-App-ArgoCD Manifest Source Code :simple-github: :fontawesome-solid-arrow-up-right-from-square:](https://github.com/opeyemitechpro/11-Microservices-k8s-App-ArgoCD){: target="_blank" .md-button}
+    </div>
+
+
+
 ## **Pre-requisites**
 
 - [x] AWS account _([free tier account will work :fontawesome-solid-arrow-up-right-from-square:](https://aws.amazon.com/free/){: target="_blank" })_
 - [x] Terraform installed on local machine _([How to Install Terraform :fontawesome-solid-arrow-up-right-from-square:](https://developer.hashicorp.com/terraform/install){: target="_blank" })_
-- [x] OpenVPN Connect Client software installed on local machine _(download from [here:fontawesome-solid-arrow-up-right-from-square:](https://openvpn.net/client/){: target="_blank" })_
+- [x] OpenVPN Connect Client software installed on local machine _(download from [here :fontawesome-solid-arrow-up-right-from-square:](https://openvpn.net/client/){: target="_blank" })_
 - [x] Your AWS access key ID and secret access key _(learn how to get your AWS access keys [here :fontawesome-solid-arrow-up-right-from-square:](https://docs.aws.amazon.com/cli/latest/userguide/cli-authentication-user.html){: target="_blank" })_
 - [x] AWS CLI installed and configured with your AWS access key ID and Secret access keys _(learn more about AWS CLI [here :fontawesome-solid-arrow-up-right-from-square:](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-quickstart.html){: target="_blank" })_ 
 - [x] The OpenVPN-Terraform Setup Script _(click the button below)_
@@ -196,8 +208,8 @@ Below are the Jenkins pipeline scripts for the `Continous Integration (CI)` and 
                 GIT_URL           = 'https://github.com/opeyemitechpro/11-Microservices-k8s-App.git'
                 SONAR_SERVER      = 'sonar' // SonarQube Server name configured in Jenkins
                 SONAR_SCANNER     = 'sonar-scanner' // SonarQube tool name configured in Jenkins
-                SONAR_PROJECT_NAME = '11-micro-serve' // Project Name to appear on SonarQube Server Analysis page
-                DOCKER_CRED_ID    = 'my-docker-cred' // Docker login credentials configure in Jenkins
+                SONAR_PROJECT_NAME = '11-microservice-eCommerce' // Project Name to appear on SonarQube Server Analysis page
+                DOCKER_CRED_ID    = 'my-docker-cred' // Docker login credentials configure in Jenkins credentials
                 DOCKER_HUB_USER   = 'opeyemitechpro' // Docker Hub Repo to hold docker images
                 DEST_EMAIL        = 'opeyemitechpro@gmail.com' // Destination email for post job notification
                 REPLYTO_EMAIL     = 'opeyemitechpro@gmail.com' // Reply-To email for post job notification
@@ -637,14 +649,16 @@ Create your EKS Cluster
 ``` sh hl_lines="2"
 eksctl create cluster \
   --name opeyemi-k8s-cluster \
-  --region us-east-2 \
-  --with-oidc 
+  --region us-east-2  
 ```
+
+!!! tip
+    Replace `opeyemi-k8s-cluster` with a suitable name for your own cluster.
 
 
 ### :simple-helm: Install Helm
 
-Check if Helm is istalled on your local machine
+Check if Helm is installed on your local machine
 
 ``` sh
 helm version
@@ -665,7 +679,6 @@ Add ArgoCD Helm repo
 
 ``` sh
 helm repo add argo https://argoproj.github.io/argo-helm
-
 helm repo update
 ```
 
@@ -693,7 +706,7 @@ helm install opeyemi-argo-cd argo/argo-cd --namespace argocd --create-namespace
     kubectl get pods -n argocd
     ```
 
-    Get Helm release notes for the argocd installtion
+    Get Helm release notes for the argocd installation
 
     ``` sh
     helm get notes opeyemi-argo-cd -n argocd
@@ -763,7 +776,6 @@ Add the kube-prometheus-stack Helm repo
 
 ``` sh
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
-
 helm repo update
 ```
 
@@ -776,15 +788,15 @@ helm install prometheus prometheus-community/kube-prometheus-stack \
   --create-namespace
 ```
 
-==Delete this later==
-``` sh
-helm install prometheus prometheus-community/kube-prometheus-stack \
-  --namespace monitoring \
-  --create-namespace \
-  --set prometheus.prometheusSpec.maximumStartupDurationSeconds=300 \
-  --set alertmanager.persistence.storageClass="gp2" \
-  --set server.persistentVolume.storageClass="gp2"
-```
+!!! code-file "==Delete this later=="
+    ``` sh
+    helm install prometheus prometheus-community/kube-prometheus-stack \
+    --namespace monitoring \
+    --create-namespace \
+    --set prometheus.prometheusSpec.maximumStartupDurationSeconds=300 \
+    --set alertmanager.persistence.storageClass="gp2" \
+    --set server.persistentVolume.storageClass="gp2"
+    ```
 
 
 !!! tip "Tip"
