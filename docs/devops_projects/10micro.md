@@ -797,12 +797,12 @@ Install Prometheus Stack into `monitoring` namespace
 
 
 ``` sh
-helm install prometheus prometheus-community/kube-prometheus-stack \
+helm install opeyemi-prometheus prometheus-community/kube-prometheus-stack \
   --namespace monitoring \
   --create-namespace
 ```
 
-!!! code-file "==Delete this later=="
+??? code-file "==Delete this later=="
     ``` sh
     helm install prometheus prometheus-community/kube-prometheus-stack \
     --namespace monitoring \
@@ -820,7 +820,7 @@ helm install prometheus prometheus-community/kube-prometheus-stack \
 Check running status of pods in the `monitoring` namespace to verify deployment
 
 ``` sh
-kubectl --namespace monitoring get pods -l "release=prometheus"
+kubectl --namespace monitoring get pods -l "release=opeyemi-prometheus"
 ```
 
 OR
@@ -828,9 +828,9 @@ OR
 kubectl get pods -n monitoring
 ```
 
-??? tip "Optionally you can display information for Prometheus installation"
+??? tip "Optionally you can display helm release notes for the Prometheus installation"
     ``` sh
-    helm get notes prometheus -n monitoring
+    helm get notes opeyemi-prometheus -n monitoring
     ```
 
 Expose Prometheus and Grafana as a LoadBalancer type to access
@@ -843,16 +843,17 @@ First list all services in the monitoring namespace
 kubectl get svc -n monitoring
 ```
 
-<!-- 
-Display Grafana URL (optional)
-``` sh
-kubectl get svc -n monitoring prometheus-grafana
-```
+??? code-file "==Delete Later=="
+    Display Grafana URL (optional)
+    ``` sh
+    kubectl get svc -n monitoring prometheus-grafana
+    ```
 
-Display Prometheus URL (optional)
-``` sh
-kubectl get svc -n monitoring prometheus-kube-prometheus-prometheus
-``` -->
+    Display Prometheus URL (optional)
+    ``` sh
+    kubectl get svc -n monitoring prometheus-kube-prometheus-prometheus
+    ``` 
+
 
 Expose Grafana as a LoadBalancer for external access
 
@@ -899,7 +900,7 @@ echo "<admin-password>" | base64 --decode
 
 !!! tip "Tip"
 
-    Replace the `<admin-password>` with the password you copied from the json output
+    Replace the `<admin-password>` with the password string you copied from the json output
 
 
 OR use this command
@@ -1085,7 +1086,16 @@ To destroy the infrastructure created by Terraform, navigate to the directory wh
 terraform destroy --auto-approve
 ```
 
-Delete the EKS Cluster
+Uninstall ArgoCD and the kube-Prometheus stack
+
+``` sh
+helm uninstall opeyemi-argo-cd --n argocd
+kubectl delete namespace argocd
+helm uninstall opeyemi-prometheus --n monitoring 
+kubectl delete namespace monitoring
+```
+
+Delete the EKS Cluster along with all other cluster resources
 
 ``` sh
 eksctl delete cluster --name opeyemi-k8s-cluster --region us-east-2
