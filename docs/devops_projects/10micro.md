@@ -1,38 +1,61 @@
 ---
 icon: material/infinity
-title: DevSecOps Project - 11-Microservices CI-CD & Monitoring
-description: End-to-End CI/CD & Monitoring Using Kubernetes, Terraform, Jenkins, Grafana & Prometheus
+title: Hands-On DevSecOps Project - Automating Provisioning, Deployment and Monitoring of an 11-Microservice e-Commerce App on EKS
+description: Infrastructure Automation, Continuous Integration, GitOps Deployment, and Observability for an E-Commerce Microservices Platform on Amazon EKS
 subtitle: End-to-End CI/CD & Monitoring Using Kubernetes, Terraform, Jenkins, Grafana & Prometheus
 comments: true 
 tags:
   - AWS
   - DevOps
   - Kubernetes
+  - Terraform
+  - Jenkins
+  - Prometheus
+  - Grafana
 status: new
 pin: true
 ---
 
-# **DevSecOps Project - 11-Microservices End-to-End CI/CD & Monitoring Using Kubernetes, Terraform, Jenkins, Grafana & Prometheus**
+## **Deploying and Monitoring a Cloud-Native 11-Microservice e-Commerce Application with Jenkins, ArgoCD GitOps, and Terraform on AWS EKS | DevSecOps Project**
 
-## **11-Microservices End-to-End CI/CD & Monitoring**
+This project demonstrates a complete, production-grade `DevSecOps pipeline` for deploying a cloud-native e-commerce application built on 11-different microservices written in multiple programming languages that communicate with each other over gRPC. The application was originally designed by Google Developers for the GKE but I have adapted it to be deployed on Amazon EKS or on any Kubernetes cluster.
 
-In this mini-project, I will demonstrate how to setup and self-host a VPN server on AWS using terraform and OpenVPN Access Server.
+## Video Walkthrough
 
-??? youtube "Watch the Video - DevSecOps Project - 11-Microservices End-to-End CI/CD & Monitoring Using Kubernetes, Terraform, Jenkins, Grafana & Prometheus" 
+??? youtube "Watch the Video - DevSecOps Project - End-to-end Deployment and Monitoring of 11-Microservice e-Commerce App to AWS EKS with Jenkins, ArgoCD, Terraform, Grafana & Prometheus" 
     <figure markdown="1">
-    [![DevSecOps Project - 11-Microservices End-to-End CI/CD & Monitoring Using Kubernetes, Terraform, Jenkins, Grafana & Prometheus](../../assets/images/Video-Coming-Soon-PlaceHolder.png "DevSecOps Project - 11-Microservices End-to-End CI/CD & Monitoring Using Kubernetes, Terraform, Jenkins, Grafana & Prometheus")](https://youtube.com/@opeyemitechpro){: target="_blank" }
+    [![DevSecOps Project - End-to-end Deployment and Monitoring of 11-Microservice e-Commerce App to AWS EKS with Jenkins, ArgoCD, Terraform, Grafana & Prometheus](../../assets/images/Video-Coming-Soon-PlaceHolder.png "DevSecOps Project - End-to-end Deployment and Monitoring of 11-Microservice e-Commerce App to AWS EKS with Jenkins, ArgoCD, Terraform, Grafana & Prometheus")](https://youtube.com/@opeyemitechpro){: target="_blank" }
     <!-- <figcaption>Create a Free Self-Hosted VPN Server on AWS using Terraform and OpenVPN</figcaption>  -->
     </figure>
     /// caption
-    DevSecOps Project - 11-Microservices End-to-End CI/CD & Monitoring Using Kubernetes, Terraform, Jenkins, Grafana & Prometheus
+    DevSecOps Project - End-to-end Deployment and Monitoring of 11-Microservice e-Commerce App to AWS EKS with Jenkins, ArgoCD, Terraform, Grafana & Prometheus
     ///
 
 
 ## **Introduction**
 
-Setting up a self-hosted VPN server can be a cost-effective and secure solution for personal or organizational needs. This documentation provides a step-by-step guide on using a Terraform configuration script to deploy an OpenVPN Access server on AWS. 
-With this guide, you'll learn how to configure the script, customize it for your requirements, and launch a fully functional VPN server in less than 5-minutes and ensures your internet traffic remains private and encrypted without been locked in a vpn subscription plan.
-This VPN server is also "disposable", meaning, you can create and delete it anytime after use with just one command :smile: 
+This project demonstrates a complete, production-grade `DevSecOps pipeline` for deploying a cloud-native e-commerce application built on 11-different microservices written in multiple programming languages that communicate with each other over gRPC. The application was originally designed by Google Developers for the GKE but I have adapted it to be deployed on Amazon EKS or on any Kubernetes cluster.
+
+The goal of this project was to design and implement an end-to-end DevOps workflow that automates:
+
+* Infrastructure provisioning with Terraform
+* Continuous Integration (CI) using Jenkins for building, testing, scanning, and pushing container images
+* Continuous Delivery (CD) using ArgoCD (GitOps) for seamless deployment to Amazon EKS
+* Security and quality checks with SonarQube, Gitleaks, and Trivy
+* Monitoring and observability with Prometheus and Grafana
+
+All components were carefully integrated to simulate a real-world DevOps environment, covering every stage from source code to production deployment.
+
+The project highlights key modern DevOps practices, including:
+
+* Infrastructure as Code (IaC): Automating cloud resource provisioning with Terraform.
+* GitOps: Managing Kubernetes deployments declaratively with ArgoCD.
+* CI/CD Automation: Orchestrating multi-stage pipelines with Jenkins.
+* Cloud-Native Security: Ensuring code quality, vulnerability management, and secret detection.
+* Observability: Collecting and visualizing system and application metrics with Prometheus and Grafana.
+
+By the end of this documentation, you’ll gain a detailed understanding of how each tool was implemented and how the entire pipeline works together to deliver a scalable, secure, and automated deployment workflow on AWS.
+
 
 
 ??? tip "Repos used for this project"
@@ -64,7 +87,7 @@ This VPN server is also "disposable", meaning, you can create and delete it anyt
 
 Login to Jenkins Server
 
-<jenkins-server-ip>:8080
+`<jenkins-server-ip>:8080`
 
 Copy Initial admin Password
 
@@ -79,9 +102,9 @@ sudo systemctl status jenkins
 ```
 
 Install suggested Jenkins Plugins and login as admin
-Setup new admin password `jenkins :material-arrow-right-thin: admin :material-arrow-right-thin: security`
+Setup new admin password `jenkins > admin > security`
 
-Install plugins `manage jenkins :material-arrow-right-thin: Plugins :material-arrow-right-thin: Available plugins`
+Install plugins `manage jenkins > Plugins > Available plugins`
 
 Install the plugins below and restart the server if requested
 
@@ -90,32 +113,33 @@ Install the plugins below and restart the server if requested
 
 
 
-## **Install Gitleaks**
+??? code-file "==Delete Later=="
+    **Install Gitleaks**
 
-``` sh
-# Download and install the latest release of Gitleaks
-curl -sSfL https://raw.githubusercontent.com/gitleaks/gitleaks/master/scripts/install.sh | sudo sh -s -- -b /usr/local/bin
-```
+    ``` sh
+    # Download and install the latest release of Gitleaks
+    curl -sSfL https://raw.githubusercontent.com/gitleaks/gitleaks/master/scripts/install.sh | sudo sh -s -- -b /usr/local/bin
+    ```
 
-``` sh
-curl -s https://api.github.com/repos/gitleaks/gitleaks/releases/latest \
-| grep "browser_download_url.*linux.*amd64" \
-| cut -d '"' -f 4 \
-| wget -qi -
+    ``` sh
+    curl -s https://api.github.com/repos/gitleaks/gitleaks/releases/latest \
+    | grep "browser_download_url.*linux.*amd64" \
+    | cut -d '"' -f 4 \
+    | wget -qi -
 
-tar -xvf gitleaks_*.tar.gz
-sudo mv gitleaks /usr/local/bin/
-gitleaks version
-```
+    tar -xvf gitleaks_*.tar.gz
+    sudo mv gitleaks /usr/local/bin/
+    gitleaks version
+    ```
 
 
-``` sh
-GITLEAKS_VERSION=$(curl -s "https://api.github.com/repos/gitleaks/gitleaks/releases/latest" | grep -Po '"tag_name": "v\K[0-9.]+')
-wget -qO gitleaks.tar.gz https://github.com/gitleaks/gitleaks/releases/latest/download/gitleaks_${GITLEAKS_VERSION}_linux_x64.tar.gz
-sudo tar xf gitleaks.tar.gz -C /usr/local/bin gitleaks
-# gitleaks version
-rm -rf gitleaks.tar.gz
-```
+    ``` sh
+    GITLEAKS_VERSION=$(curl -s "https://api.github.com/repos/gitleaks/gitleaks/releases/latest" | grep -Po '"tag_name": "v\K[0-9.]+')
+    wget -qO gitleaks.tar.gz https://github.com/gitleaks/gitleaks/releases/latest/download/gitleaks_${GITLEAKS_VERSION}_linux_x64.tar.gz
+    sudo tar xf gitleaks.tar.gz -C /usr/local/bin gitleaks
+    # gitleaks version
+    rm -rf gitleaks.tar.gz
+    ```
 
 ## **Workflow**
 
