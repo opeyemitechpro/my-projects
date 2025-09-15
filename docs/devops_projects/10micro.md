@@ -16,13 +16,11 @@ status: new
 pin: true
 ---
 
-## **Deploying and Monitoring a Cloud-Native 11-Microservice e-Commerce Application with Jenkins, ArgoCD GitOps, and Terraform on AWS EKS | DevSecOps Project**
+## Introduction
 
-This project demonstrates a complete, production-grade `DevSecOps pipeline` for deploying a cloud-native e-commerce application built on 11-different microservices written in multiple programming languages that communicate with each other over gRPC. The application was originally designed by Google Developers for the GKE but I have adapted it to be deployed on Amazon EKS or on any Kubernetes cluster.
+This project demonstrates a complete, production-grade DevSecOps pipeline for deploying a cloud-native e-commerce application built on 11 different microservices written in multiple programming languages that communicate with each other over gRPC. The application was originally designed by Google Developers for the GKE but I have adapted it to be deployed on Amazon EKS or on any Kubernetes cluster.
 
-## Video Walkthrough
-
-??? youtube "Watch the Video - DevSecOps Project - End-to-end Deployment and Monitoring of 11-Microservice e-Commerce App to AWS EKS with Jenkins, ArgoCD, Terraform, Grafana & Prometheus" 
+??? youtube "Watch the Video Walkthrough here - DevSecOps Project - End-to-end Deployment and Monitoring of 11-Microservice e-Commerce App to AWS EKS with Jenkins, ArgoCD, Terraform, Grafana & Prometheus" 
     <figure markdown="1">
     [![DevSecOps Project - End-to-end Deployment and Monitoring of 11-Microservice e-Commerce App to AWS EKS with Jenkins, ArgoCD, Terraform, Grafana & Prometheus](../../assets/images/Video-Coming-Soon-PlaceHolder.png "DevSecOps Project - End-to-end Deployment and Monitoring of 11-Microservice e-Commerce App to AWS EKS with Jenkins, ArgoCD, Terraform, Grafana & Prometheus")](https://youtube.com/@opeyemitechpro){: target="_blank" }
     <!-- <figcaption>Create a Free Self-Hosted VPN Server on AWS using Terraform and OpenVPN</figcaption>  -->
@@ -31,10 +29,6 @@ This project demonstrates a complete, production-grade `DevSecOps pipeline` for 
     DevSecOps Project - End-to-end Deployment and Monitoring of 11-Microservice e-Commerce App to AWS EKS with Jenkins, ArgoCD, Terraform, Grafana & Prometheus
     ///
 
-
-## **Introduction**
-
-This project demonstrates a complete, production-grade `DevSecOps pipeline` for deploying a cloud-native e-commerce application built on 11-different microservices written in multiple programming languages that communicate with each other over gRPC. The application was originally designed by Google Developers for the GKE but I have adapted it to be deployed on Amazon EKS or on any Kubernetes cluster.
 
 The goal of this project was to design and implement an end-to-end DevOps workflow that automates:
 
@@ -54,7 +48,7 @@ The project highlights key modern DevOps practices, including:
 * Cloud-Native Security: Ensuring code quality, vulnerability management, and secret detection.
 * Observability: Collecting and visualizing system and application metrics with Prometheus and Grafana.
 
-By the end of this documentation, you’ll gain a detailed understanding of how each tool was implemented and how the entire pipeline works together to deliver a scalable, secure, and automated deployment workflow on AWS.
+By the end of this project, you’ll gain a detailed understanding of how each tool was implemented and how the entire pipeline works together to deliver a scalable, secure, and automated deployment workflow on AWS.
 
 
 
@@ -67,6 +61,12 @@ By the end of this documentation, you’ll gain a detailed understanding of how 
     [11-Microservices-k8s-App-ArgoCD Manifest Source Code :simple-github: :fontawesome-solid-arrow-up-right-from-square:](https://github.com/opeyemitechpro/11-Microservices-k8s-App-ArgoCD){: target="_blank" .md-button}
     </div>
 
+    [11-Microservices-k8s-App Source Code :simple-github: :fontawesome-solid-arrow-up-right-from-square:](https://github.com/opeyemitechpro/11-Microservices-k8s-App){: target="_blank" .md-button}
+    
+    [11-Microservices-k8s-App-ArgoCD Manifest Source Code :simple-github: :fontawesome-solid-arrow-up-right-from-square:](https://github.com/opeyemitechpro/11-Microservices-k8s-App-ArgoCD){: target="_blank" .md-button}
+
+
+## Architecture Overview
 
 
 ## **Pre-requisites**
