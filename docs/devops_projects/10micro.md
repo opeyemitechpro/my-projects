@@ -70,7 +70,9 @@ By the end of this project, you’ll gain a detailed understanding of how each t
 
 ### Jenkins Server Setup
 
-For the purpose of this project, we will be creating our Jenkins Server on an ec2 instance using Terraform as our IaC tool. I have included the link to my Github repo for the Terraform script below.  
+For the purpose of this project, we will be creating our Jenkins Server on an ec2 instance using Terraform as our IaC tool. The Jenkins server will also serve as out base server from where we will mange other infrastructures liek the EKS cluster.
+
+I have included the link to my Github repo containing the Jenkins server Terraform script below.  
 
 ??? tip "What does this terraform script do?"
     The Terrafom script will do the following:
@@ -105,6 +107,14 @@ git clone
 terraform init
 terraform apply
 ```
+
+When the terraform script executes, it displays the `Public IP Address` and the `SSH Connection string` of the Jenkins Server.
+
+Use the `Public IP address` to access the Jenkins server UI from the browser on port `8080`.
+
+`<server_public_ip>:8080`
+
+Also, open the terraform working folder from a terminal and use the `SSH connection string` to access the jenkins server.
 
 
 
