@@ -75,11 +75,11 @@
   <!-- AI Buttons Row -->
   <div style="display: flex; justify-content: flex-end; gap: 0.5rem; margin-bottom: 1rem;">
     <a 
-      href="https://chat.openai.com/?q={{ page.title | urlencode }}%20{{ page.url | urlencode }}" 
+      href="https://chat.openai.com/?q={Read from { page.title | urlencode }}%20{{ page.url | urlencode } So I can ask questions about it}" 
       target="_blank" 
-      class="md-button md-button--primary"
+      class="md-button md-button--secondary"
     >
-      💬 Open in ChatGPT
+      Ask ChatGPT :simple-openai: :fontawesome-solid-arrow-up-right-from-square:
     </a>
 
     <a 
@@ -87,7 +87,7 @@
       target="_blank" 
       class="md-button md-button--secondary"
     >
-      🤖 Open in Claude
+      Ask Claude :simple-claude: :fontawesome-solid-arrow-up-right-from-square:
     </a>
   </div>
 
