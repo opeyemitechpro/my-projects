@@ -22,7 +22,7 @@ This project demonstrates a complete, production-grade DevSecOps pipeline for de
 
 ??? youtube "Watch the Video Walkthrough here - DevSecOps Project - End-to-end Deployment and Monitoring of 11-Microservice e-Commerce App to AWS EKS with Jenkins, ArgoCD, Terraform, Grafana & Prometheus" 
     <figure markdown="1">
-    [![DevSecOps Project - End-to-end Deployment and Monitoring of 11-Microservice e-Commerce App to AWS EKS with Jenkins, ArgoCD, Terraform, Grafana & Prometheus](../../assets/images/Video-Coming-Soon-PlaceHolder.png "DevSecOps Project - End-to-end Deployment and Monitoring of 11-Microservice e-Commerce App to AWS EKS with Jenkins, ArgoCD, Terraform, Grafana & Prometheus")](https://youtube.com/@opeyemitechpro){: target="_blank" }
+    [![DevSecOps Project - End-to-end Deployment and Monitoring of 11-Microservice e-Commerce App on AWS EKS using Jenkins, ArgoCD, Terraform, Grafana & Prometheus](../../assets/images/Video-Coming-Soon-PlaceHolder.png "DevSecOps Project - End-to-end Deployment and Monitoring of 11-Microservice e-Commerce App on AWS EKS using Jenkins, ArgoCD, Terraform, Grafana & Prometheus")](https://youtube.com/@opeyemitechpro){: target="_blank" }
     <!-- <figcaption>Create a Free Self-Hosted VPN Server on AWS using Terraform and OpenVPN</figcaption>  -->
     </figure>
     /// caption
@@ -42,11 +42,11 @@ All components were carefully integrated to simulate a real-world DevOps environ
 
 The project highlights key modern DevOps practices, including:
 
-* Infrastructure as Code (IaC): Automating cloud resource provisioning with Terraform.
-* GitOps: Managing Kubernetes deployments declaratively with ArgoCD.
-* CI/CD Automation: Orchestrating multi-stage pipelines with Jenkins.
-* Cloud-Native Security: Ensuring code quality, vulnerability management, and secret detection.
-* Observability: Collecting and visualizing system and application metrics with Prometheus and Grafana.
+* **Infrastructure as Code (IaC):** Automating cloud resource provisioning with Terraform.
+* **GitOps:** Managing Kubernetes deployments declaratively with ArgoCD.
+* **CI/CD Automation:** Orchestrating multi-stage pipelines with Jenkins.
+* **Cloud-Native Security:** Ensuring code quality, vulnerability management, and secret detection.
+* **Observability:** Collecting and visualizing system and application metrics with Prometheus and Grafana.
 
 By the end of this project, you’ll gain a detailed understanding of how each tool was implemented and how the entire pipeline works together to deliver a scalable, secure, and automated deployment workflow on AWS.
 
@@ -61,10 +61,72 @@ By the end of this project, you’ll gain a detailed understanding of how each t
     [11-Microservices-k8s-App-ArgoCD Manifest Source Code :simple-github: :fontawesome-solid-arrow-up-right-from-square:](https://github.com/opeyemitechpro/11-Microservices-k8s-App-ArgoCD){: target="_blank" .md-button}
     </div>
 
-    [11-Microservices-k8s-App Source Code :simple-github: :fontawesome-solid-arrow-up-right-from-square:](https://github.com/opeyemitechpro/11-Microservices-k8s-App){: target="_blank" .md-button} [11-Microservices-k8s-App-ArgoCD Manifest Source Code :simple-github: :fontawesome-solid-arrow-up-right-from-square:](https://github.com/opeyemitechpro/11-Microservices-k8s-App-ArgoCD){: target="_blank" .md-button}
-
 
 ## Architecture Overview
+
+
+## Infrastructure Setup
+
+
+### Jenkins Server Setup
+
+For the purpose of this project, we will be creating our Jenkins Server on an ec2 instance using Terraform as our IaC tool. I have included the link to my Github repo for the Terraform script below.  
+
+??? tip "What does this terraform script do?"
+    The Terrafom script will do the following:
+    - [x] Provision an ec2 instance of type `t2.large` (You can easily set a different instance type in the `terraform.tfvars` file)
+    - [x] Provision the ec2 instance in the default VPC
+    - [x] Confiure the security group to expose [^1] all the required ports for this project. The required ports are: 22, 25, 80, 443, 465, 8080, 9000 and 9100. (The ports and their descriptions are listed in the `terraform.tfvars` file)
+    - [x] Create an AWS Key-Pair file and download the file unto your terraform working directory on your local machine (the folder from where you inintiated the terraform apply command)
+    - [x] Using the included Bash script (in the user_data field), it will bootstrap and install the following:
+        * Ubuntu 24.04 (the latest version)
+        * Jenkins
+        * Docker
+        * SonarQube Docker Container
+        * eksctl
+        * aws CLI
+        * kubectl
+        * node_exporter
+        * trivy scanner
+        * gitleaks
+    - [x] Output the `Public IP address` and the `SSH connection string` for the newly provisioned Jenkins server  
+
+    - [x] The terraform script will also be used to `destroy` the server and its resources during the clean-up stage of this project.
+
+        [^1]: Since this is just a demo project, the ports are accessible on the internet for the duration of the project demonstration. ==This is not a good security practice in production environments and should be avoided:smile:==
+
+Clone the Repo on your local machine and apply the terraform config:
+
+``` sh
+git clone 
+```
+
+``` sh
+terraform init
+terraform apply
+```
+
+
+
+
+
+### Kubernetes Setup 
+
+
+
+
+
+## CI Pipeline setup with Jenkins
+
+
+
+## CCD Pipeline with ArgoCD (GitOps)
+
+
+
+## Monitoring & Observability
+
+
 
 
 ## **Pre-requisites**
