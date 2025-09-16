@@ -65,7 +65,28 @@ By the end of this project, you’ll gain a detailed understanding of how each t
 ## Architecture Overview
 
 
+
+## Project Workflow
+
+- [ ] Run Terraform to setup Jenkins
+- [ ] Confiure Jenkins
+    - [ ] Install plugins: Go to `Dashboard > Manage Jenkins > Manage Plugins` and install the following plugins:
+        - SonarQube Scanner
+        - Docker
+        - Docker pipeline
+        - Docker build step
+        - Cloudbees docker build and publish
+        - Kubernetes
+        - Kubernetes CLI
+        - Email Extension Template
+        - Prometheus Metrics
+        - OWASP Dependency Check Plugin
+    - [ ] Configure Jenkins Plugins
+    - [ ] Configure SonarQube Server Token
+
+
 ## Infrastructure Setup
+
 
 
 ### Jenkins Server Setup
@@ -73,6 +94,15 @@ By the end of this project, you’ll gain a detailed understanding of how each t
 For the purpose of this project, we will be creating our Jenkins Server on an ec2 instance using Terraform as our IaC tool. The Jenkins server will also serve as out base server from where we will mange other infrastructures liek the EKS cluster.
 
 I have included the link to my Github repo containing the Jenkins server Terraform script below.  
+
+??? tip "Pre-requisites for the terraform script"
+
+    You will need the following pre-requisites to run the terraform script on your local machine:
+
+    - [x] An AWS account _([Get one here :fontawesome-solid-arrow-up-right-from-square:](https://aws.amazon.com/free/){: target="_blank" })_
+    - [x] Terraform CLI installed on your local machine _([How to Install Terraform :fontawesome-solid-arrow-up-right-from-square:](https://developer.hashicorp.com/terraform/install){: target="_blank" })_
+    - [x] Your AWS access key ID and secret access key _(learn how to get your AWS access keys [here :fontawesome-solid-arrow-up-right-from-square:](https://docs.aws.amazon.com/cli/latest/userguide/cli-authentication-user.html){: target="_blank" })_
+    - [x] AWS CLI installed and configured with your AWS access key ID and Secret access keys _(learn more about AWS CLI [here :fontawesome-solid-arrow-up-right-from-square:](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-quickstart.html){: target="_blank" })_ 
 
 ??? tip "What does this terraform script do?"
     The Terrafom script will do the following:
@@ -124,44 +154,20 @@ Also, open the terraform working folder from a terminal and use the `SSH connect
 ssh -i `key_pair_filename` ubuntu@`<server_public_ip>`
 ```
 
+#### Jenkins Server Configuration
 
+Get the Jenkins initial Admin password
 
-### Kubernetes Cluster Setup 
+From the jenkins terminal, enter the command:
+``` sh
+sudo cat 
+```
 
+??? tip
 
+to From the Jenkins Initial UI setup page,  
 
-
-
-
-
-## CI Pipeline setup with Jenkins
-
-
-
-## CCD Pipeline with ArgoCD (GitOps)
-
-
-
-## Monitoring & Observability
-
-
-
-
-## **Pre-requisites**
-
-- [x] AWS account _([free tier account will work :fontawesome-solid-arrow-up-right-from-square:](https://aws.amazon.com/free/){: target="_blank" })_
-- [x] Terraform installed on local machine _([How to Install Terraform :fontawesome-solid-arrow-up-right-from-square:](https://developer.hashicorp.com/terraform/install){: target="_blank" })_
-- [x] OpenVPN Connect Client software installed on local machine _(download from [here :fontawesome-solid-arrow-up-right-from-square:](https://openvpn.net/client/){: target="_blank" })_
-- [x] Your AWS access key ID and secret access key _(learn how to get your AWS access keys [here :fontawesome-solid-arrow-up-right-from-square:](https://docs.aws.amazon.com/cli/latest/userguide/cli-authentication-user.html){: target="_blank" })_
-- [x] AWS CLI installed and configured with your AWS access key ID and Secret access keys _(learn more about AWS CLI [here :fontawesome-solid-arrow-up-right-from-square:](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-quickstart.html){: target="_blank" })_ 
-- [x] The OpenVPN-Terraform Setup Script _(click the button below)_
-
-    <div style="text-align: center;">
-    [11-Microservices-k8s-App Source Code :simple-github: :fontawesome-solid-arrow-up-right-from-square:](https://github.com/opeyemitechpro/11-Microservices-k8s-App){: target="_blank" .md-button .md-button--primary}
-    </div>
-
-
-## Setup Jenkins Server
+Setup Jenkins Server
 
 Login to Jenkins Server
 
@@ -219,23 +225,7 @@ Install the plugins below and restart the server if requested
     rm -rf gitleaks.tar.gz
     ```
 
-## **Workflow**
 
-- [ ] Run Terraform to setup Jenkins
-- [ ] Confiure Jenkins
-    - [ ] Install plugins: Go to `Dashboard > Manage Jenkins > Manage Plugins` and install the following plugins:
-        - SonarQube Scanner
-        - Docker
-        - Docker pipeline
-        - Docker build step
-        - Cloudbees docker build and publish
-        - Kubernetes
-        - Kubernetes CLI
-        - Email Extension Template
-        - Prometheus Metrics
-        - OWASP Dependency Check Plugin
-    - [ ] Configure Jenkins Plugins
-    - [ ] Configure SonarQube Server Token
 
 ## **Configure Plugins**
 
@@ -701,6 +691,38 @@ Below are the Jenkins pipeline scripts for the `Continous Integration (CI)` and 
 - Password: app_password
 - Use SSL: checked
 - SMTP Port:  465
+
+
+### Kubernetes Cluster Setup 
+
+
+
+
+
+
+
+## CI Pipeline setup with Jenkins
+
+
+
+## CCD Pipeline with ArgoCD (GitOps)
+
+
+
+## Monitoring & Observability
+
+
+
+
+
+
+
+    <div style="text-align: center;">
+    [11-Microservices-k8s-App Source Code :simple-github: :fontawesome-solid-arrow-up-right-from-square:](https://github.com/opeyemitechpro/11-Microservices-k8s-App){: target="_blank" .md-button .md-button--primary}
+    </div>
+
+
+
 
 
 
