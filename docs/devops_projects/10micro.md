@@ -109,7 +109,7 @@ I have included the link to my Github repo containing the Jenkins server Terrafo
 
     - [x] Provision an ec2 instance of type `t2.large` (You can easily set a different instance type in the `terraform.tfvars` file)
     - [x] Provision the ec2 instance in the default VPC
-    - [x] Confiure the security group to expose [^note] all the required ports for this project. The required ports are: 22, 25, 80, 443, 465, 8080, 9000 and 9100. (The ports and their descriptions are listed in the `terraform.tfvars` file)
+    - [x] Confiure the security group to expose (1) all the required ports for this project. The required ports are: 22, 25, 80, 443, 465, 8080, 9000 and 9100. (The ports and their descriptions are listed in the `terraform.tfvars` file) { .annotate }
     - [x] Create an AWS Key-Pair file and download the file unto your terraform working directory on your local machine (the folder from where you inintiated the terraform apply command)
     - [x] Using the included Bash script (in the user_data field), it will bootstrap and install the following:
 
@@ -127,7 +127,7 @@ I have included the link to my Github repo containing the Jenkins server Terrafo
     - [x] Output the `Public IP address` and the `SSH connection string` for the newly provisioned Jenkins server  
     - [x] The terraform script will also be used to `destroy` the server and its resources during the clean-up stage of this project.
 
-    [^note]: Since this is just a demo project, the ports are accessible on the internet for the duration of the project demonstration. ==This is not a good security practice in production environments and should be avoided :smile:==
+    1. Since this is just a demo project, the ports are accessible on the internet for the duration of the project demonstration. ==This is not a good security practice in production environments and should be avoided :smile:==
 
 Clone the Repo on your local machine and apply the terraform config:
 
