@@ -110,9 +110,11 @@ terraform init
 terraform apply
 ```
 
-When the terraform script executes, it displays the `Public IP Address` and the `SSH Connection string` of the Jenkins Server.
+Ater the terraform script executes, it displays the `Public IP Address` and the `SSH Connection string` of the Jenkins Server in the format below:
 
-Use the `Public IP address` to access the Jenkins server UI from the browser on port `8080`.
+`ssh -i <Key-pair_filename> ubuntu@<Jenkins_Master_public_ip>`
+
+Use the `Public IP address` to access the Jenkins server UI from your browser on port `8080`.
 
 `<server_public_ip>:8080`
 
