@@ -76,6 +76,7 @@ I have included the link to my Github repo containing the Jenkins server Terrafo
 
 ??? tip "What does this terraform script do?"
     The Terrafom script will do the following:
+
         - [x] Provision an ec2 instance of type `t2.large` (You can easily set a different instance type in the `terraform.tfvars` file)
         - [x] Provision the ec2 instance in the default VPC
         - [x] Confiure the security group to expose [^1] all the required ports for this project. The required ports are: 22, 25, 80, 443, 465, 8080, 9000 and 9100. (The ports and their descriptions are listed in the `terraform.tfvars` file)
@@ -92,7 +93,6 @@ I have included the link to my Github repo containing the Jenkins server Terrafo
             * trivy scanner
             * gitleaks
         - [x] Output the `Public IP address` and the `SSH connection string` for the newly provisioned Jenkins server  
-
         - [x] The terraform script will also be used to `destroy` the server and its resources during the clean-up stage of this project.
 
         [^1]: Since this is just a demo project, the ports are accessible on the internet for the duration of the project demonstration. ==This is not a good security practice in production environments and should be avoided:smile:==
@@ -116,11 +116,15 @@ Use the `Public IP address` to access the Jenkins server UI from the browser on 
 
 Also, open the terraform working folder from a terminal and use the `SSH connection string` to access the jenkins server.
 
+``` sh 
+ssh -i `key_pair_filename` ubuntu@`<server_public_ip>`
+```
 
 
 
+### Kubernetes Cluster Setup 
 
-### Kubernetes Setup 
+
 
 
 
