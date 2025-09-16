@@ -163,7 +163,9 @@ From the jenkins terminal, enter the command:
 sudo cat 
 ```
 
-??? tip
+??? tip ""
+
+
 
 to From the Jenkins Initial UI setup page,  
 
