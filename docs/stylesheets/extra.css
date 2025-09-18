@@ -139,27 +139,3 @@ https://squidfunk.github.io/mkdocs-material/reference/code-blocks/?h=code#custom
 
 
 /* ChatGPT & Calude Button Styling */
-.md-button {
-  border-radius: 6px;
-  font-weight: 600;
-  padding: 0.5em 1em;
-}
-
-.md-button--primary {
-  background-color: #10a37f; /* ChatGPT green */
-  color: white;
-}
-
-.md-button--primary:hover {
-  background-color: #0e8f6e;
-}
-
-.md-button--secondary {
-  background-color: #5534a5; /* Claude purple */
-  color: white;
-}
-
-.md-button--secondary:hover {
-  background-color: #452a85;
-}
-
