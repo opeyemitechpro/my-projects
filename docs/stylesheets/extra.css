@@ -139,51 +139,27 @@ https://squidfunk.github.io/mkdocs-material/reference/code-blocks/?h=code#custom
 
 
 /* ChatGPT & Calude Button Styling */
-/* Container for AI buttons */
-.ai-buttons {
-  display: flex;
-  justify-content: flex-end;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
-  flex-wrap: wrap; /* allow wrapping on small screens */
+.md-button {
+  border-radius: 6px;
+  font-weight: 600;
+  padding: 0.5em 1em;
 }
 
-/* Button content layout */
-.ai-button .ai-button-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
+.md-button--primary {
+  background-color: #10a37f; /* ChatGPT green */
+  color: white;
 }
 
-/* Left side (label + logo) */
-.ai-button .ai-label {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35em;
+.md-button--primary:hover {
+  background-color: #0e8f6e;
 }
 
-/* Right side (external link icon) - hidden by default */
-.ai-button .ai-icon {
-  margin-left: auto;
-  opacity: 0;
-  transition: opacity 0.2s ease-in-out;
+.md-button--secondary {
+  background-color: #5534a5; /* Claude purple */
+  color: white;
 }
 
-/* Show the external link icon on hover */
-.ai-button:hover .ai-icon {
-  opacity: 0.85;
+.md-button--secondary:hover {
+  background-color: #452a85;
 }
 
-/* Make buttons stack on small screens */
-@media (max-width: 600px) {
-  .ai-buttons {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .ai-buttons .md-button {
-    width: 100%;
-    text-align: center;
-  }
-}
