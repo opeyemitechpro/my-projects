@@ -14,6 +14,8 @@ tags:
   - Grafana
 status: new
 pin: true
+show_ai_buttons: true
+
 ---
 
 ## Introduction
