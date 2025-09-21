@@ -217,10 +217,28 @@ extra:
       - accept
       - reject
       - manage
+  
+  # This is where we'll add our custom banner
+  # The key is important for Material for MkDocs to know where to inject it
+  # In this case, 'toc' refers to the table of contents block
+  toc: |
+    <div class="custom-sidebar-banner">
+      <a href="https://google.com" target="_blank">
+        <img src="{{ config.base_url }}/assets/images/favicon.png" alt="Advert Banner" style="width: 100%; height: auto; display: block; margin-bottom: 10px;">
+      </a>
+      <p style="text-align: center; font-size: 0.8em; color: #777;">
+        Proudly brought to you by OpeyemiTechPro
+      </p>
+    </div>
 
 # Extra StyleSheets
 extra_css:
   - stylesheets/extra.css
+
+
+# Extra Javascript
+# extra_javascript:
+#   - javascripts/extra.js
 
   
 # Extensions
