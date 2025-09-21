@@ -140,23 +140,3 @@ https://squidfunk.github.io/mkdocs-material/reference/code-blocks/?h=code#custom
 
 /* ChatGPT & Calude Button Styling */
 
-
-
-
-
-
-
-
-
-/* This targets the banner within the TOC sidebar */
-.md-sidebar--secondary .custom-sidebar-banner {
-  margin-top: 15px; /* Add some space above the banner */
-  padding-bottom: 15px; /* Add some space below the banner */
-  border-bottom: 1px solid var(--md-code-bg-color); /* Optional: A subtle separator */
-  /* You might want to remove default Material padding/margins */
-}
-
-.md-sidebar--secondary .custom-sidebar-banner img {
-  border: 1px solid var(--md-code-bg-color); /* Optional: A subtle border around the image */
-  border-radius: 4px; /* Optional: Slightly rounded corners */
-}

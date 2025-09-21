@@ -5,8 +5,8 @@ description: This is the Documentation Home Page
 subtitle: Start your navigation of my Project Documentation from here
 comments: false
 hide:
-  - navigation
-  - toc
+  # - navigation
+  # - toc
 ---
 
 <figure markdown="1">
