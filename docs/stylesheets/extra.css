@@ -140,3 +140,7 @@ https://squidfunk.github.io/mkdocs-material/reference/code-blocks/?h=code#custom
 
 /* ChatGPT & Calude Button Styling */
 
+/* Change color of the H1 texts */
+h1 {
+  color: red;
+}
