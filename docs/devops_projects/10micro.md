@@ -146,7 +146,7 @@ Ater the terraform script executes, it displays the `Public IP Address` and the 
 
 `ssh -i <Key-pair_filename> ubuntu@<Jenkins_Master_public_ip>`
 
-Use the `Public IP address` to access the Jenkins server UI from your browser on port `8080`.
+Use the `Public IP address` to access the Jenkins server initial setup UI from your browser on port `8080`.
 
 `<server_public_ip>:8080`
 
@@ -158,47 +158,29 @@ ssh -i `key_pair_filename` ubuntu@`<server_public_ip>`
 
 #### Jenkins Server Configuration
 
-Get the Jenkins initial Admin password
+Go back to the Jenkins server terminal to copy the initial Admin password
 
-From the jenkins terminal, enter the command:
-``` sh
-sudo cat 
-```
-
-??? tip ""
-
-
-
-to From the Jenkins Initial UI setup page,  
-
-Setup Jenkins Server
-
-Login to Jenkins Server
-
-`<jenkins-server-ip>:8080`
-
-Copy Initial admin Password
-
+From the jenkins server terminal, enter the command and copy the password displayed
 ``` sh
 sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 ```
 
-OR 
+??? tip "Jenkins initial Admin Password - alternative method"
+    You can also find the initial Jenkins Admin Password by checking the running status of jenkins using the command below:
+    ``` sh
+    sudo systemctl status jenkins
+    ```
 
-``` sh
-sudo systemctl status jenkins
-```
+
+From the Jenkins server initial setup UI page in your browser, enter the jenkins initial admin password you copied to proceed with jenkins server setup.
+
+Install the `Suggested Plugins` and login to the Jenkins Server as Admin
 
 Install suggested Jenkins Plugins and login as admin
-Setup new admin password `jenkins > admin > security`
 
-Install plugins `manage jenkins > Plugins > Available plugins`
+Optionally, Setup a new admin password `jenkins > admin > security`
 
-Install the plugins below and restart the server if requested
-
-
-
-
+Install and cofigure the follwing jenkins plugins from the plugin page -  `Manage Jenkins > Plugins > Available Plugins`
 
 
 ??? code-file "==Delete Later=="
