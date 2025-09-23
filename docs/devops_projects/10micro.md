@@ -89,7 +89,23 @@ By the end of this project, you’ll gain a detailed understanding of how each t
 
 ## Infrastructure Setup
 
+---
+#### Configure SonarQube Server
 
+From your browser, login to your **SonarQube server** using the  server ip and port `9000` 
+
+Server URL: `<sonar_server_ip>:9000`
+
+!!! tip "Tip"
+    
+    Since our SonarQube server is running as a docker container on port `9000` on the same machine as the Jenkins server, use `<jenkins_server_ip>:9000` as the SonarQube Server URL.
+
+Create a User token by going to `Administration > Security > Users` and save it somewhere for later
+
+This token will be used to authenticate Jenkins to access the SonarQube server.
+
+
+---
 
 ### Jenkins Server Setup
 
@@ -156,7 +172,7 @@ Also, open the terraform working folder from a terminal and use the `SSH connect
 ssh -i `key_pair_filename` ubuntu@`<server_public_ip>`
 ```
 
-#### Jenkins Server Configuration
+#### Login to Jenkins Server 
 
 Go back to the Jenkins server terminal to copy the initial Admin password
 
@@ -178,10 +194,21 @@ Install the `Suggested Plugins` and login to the Jenkins Server as Admin
 
 Install suggested Jenkins Plugins and login as admin
 
-Optionally, Setup a new admin password `jenkins > admin > security`
+Optionally, Setup a new admin password - `jenkins > admin > security`
 
-Install and cofigure the follwing jenkins plugins from the plugin page -  `Manage Jenkins > Plugins > Available Plugins`
+#### Install Additional Plugins
 
+Go to `Manage Jenkins > Plugins > Available Plugins`, search for and install the following jenkins plugins from the plugin page then restart Jenkins:
+
+- SonarQube Scanner _(Scans your code and communicates with the SonarQube server)_
+- Docker _(Enables Jenkins to use docker commands)_
+- Docker pipeline _(Enables Jenkins to use docker commands in pipeline jobs)_
+- Docker build step 
+- Cloudbees docker build and publish
+- Email Extension Template _(Used to send job email notifications)_
+- Prometheus Metrics _(Exposes Jenkins internal metrics so we can scrape and display them through Grafana dashboards)_
+
+---
 
 ??? code-file "==Delete Later=="
     **Install Gitleaks**
@@ -211,31 +238,98 @@ Install and cofigure the follwing jenkins plugins from the plugin page -  `Manag
     rm -rf gitleaks.tar.gz
     ```
 
+---
+
+#### Add Credentials
+
+Go to `Manage Jenkins > Credentials > (Global) > Add Credentials` and add the following credentials:
 
 
-## **Configure Plugins**
+- [x] Add SonarQube Credentials
+    - Choose Secret Text as the kind
+    - Set the ID and description as `sonar-token`
+    - Click Add
 
-### **SonarQube**
+- [x] Add Docker Hub Credentials:
+    - Choose Username with password as the kind.
+    - Set the ID and description as `my-docker-cred`
+    - Enter your Docker Hub username and password.
+    - Click Add.
 
-- [x] Server Name: sonar
-(Or use a suitable name)
+- [x] Add GitHub Credentials:
+    - Choose Secret text as the kind.
+    - Set the ID and description as `github-cred`
+    - Enter your GitHub Personal Access Token as the secret.
+    - Click Add.
+
+- [x] Create e-mail Credentials:
+    - Choose Username and Password as the kind
+    - Set ID and description as `email-ID`
+    - Enter your email username
+    - Enter the `App password` generated from Gmail as the password
+    - Click Add.
+
+- 
+
+
+---
+
+
+#### Configure Plugins
+
+Go to `Manage Jenkins > Tools` and configure each of the plugins tools as explained below: 
+
+**SonarQube Scanner Installations**
+
+- [x] SonarQube Scanner: `sonar-scanner` (Or use a suitable name)
+
+!!! tip "Tip"
+    This name will be used later in our CI pipeline to reference the sonar tool installation so ensure you choose a unique name.
+
+- [x] Leave the default SonarQube version as it is
+
+
+Go and set the SonarQube server URL `Manage Jenkins > System > SonarQube Installations`
+Server Name: `sonar` _(This name will be used later in the job pipeline)_
+Server URL: `http://<sonar_server_ip>:9000` _(URL of the SonarQube server on port 9000)_
+Server authentication token: Select the sonar token ID saved earlier in the credentials tab
+
+`Apply` and `Save`
+
+
+
+
+**Docker**
+Docker Name: `docker`
+`Install Automatically from docker.com`
+
+Click `Apply` and `Save`
+
+---
+
+
+
+Go to `Manage Jenkins > System` and configure the following settings:
+
+System Admin e-mail address - `Jenkins Admin <your-email@email.com>`
+
+
+
 
 - [x] Server URL: `<sonar_server_ip:9000>`
 
-!!! tip "Tip"
-    
-    Since our SonarQube server is running as a docker container on port `9000` on the same machine as the Jenkins server, use `http://<server_ip_address>:9000` as the SonarQube Server URL
 
+---
 
-### **Prometheus**
+### Prometheus
 - [x] No further configuration needed
 - [x] By default, the Prometheus metrics will be scrapped from `http://<jenkins_server_ip:8080>/prometheus`
 
-### **Docker Hub Credentials**
+### Docker Hub Credentials
 
 - [x] Configure Docker Credentials to enable pushing docker images to Docker Hub
 
-### **Jenkins Email Notifications**
+### Jenkins Email Notifications
 
 Goto `Dashboard > Manage Jenkins > System` and configure both the __"Extended E-mail Notification"__ and the __"E-mail Notification"__ sections as below:
 
