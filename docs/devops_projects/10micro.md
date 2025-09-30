@@ -32,12 +32,12 @@ This project demonstrates a complete, production-grade DevSecOps pipeline for de
     ///
 
 
-The goal of this project was to design and implement an end-to-end DevOps workflow that automates:
+The goal of this project is to design and implement an end-to-end DevOps workflow that automates:
 
 * Infrastructure provisioning with Terraform
 * Continuous Integration (CI) using Jenkins for building, testing, scanning, and pushing container images
 * Continuous Delivery (CD) using ArgoCD (GitOps) for seamless deployment to Amazon EKS
-* Security and quality checks with SonarQube, Gitleaks, and Trivy
+* Security and code quality checks with SonarQube, Gitleaks, and Trivy
 * Monitoring and observability with Prometheus and Grafana
 
 All components were carefully integrated to simulate a real-world DevOps environment, covering every stage from source code to production deployment.
@@ -47,7 +47,7 @@ The project highlights key modern DevOps practices, including:
 * **Infrastructure as Code (IaC):** Automating cloud resource provisioning with Terraform.
 * **GitOps:** Managing Kubernetes deployments declaratively with ArgoCD.
 * **CI/CD Automation:** Orchestrating multi-stage pipelines with Jenkins.
-* **Cloud-Native Security:** Ensuring code quality, vulnerability management, and secret detection.
+* **Cloud-Native Security:** Ensuring code quality, vulnerability management, and secrets detection.
 * **Observability:** Collecting and visualizing system and application metrics with Prometheus and Grafana.
 
 By the end of this project, you’ll gain a detailed understanding of how each tool was implemented and how the entire pipeline works together to deliver a scalable, secure, and automated deployment workflow on AWS.
@@ -70,9 +70,11 @@ By the end of this project, you’ll gain a detailed understanding of how each t
 
 ## Project Workflow
 
-- [ ] Run Terraform to setup Jenkins
-- [ ] Confiure Jenkins
-    - [ ] Install plugins: Go to `Dashboard > Manage Jenkins > Manage Plugins` and install the following plugins:
+- [x] Infrstructure Setup
+    - Setup Jenkins Using Terraform
+    - Create Kubernetes Cluster on EKS
+- [x] Configure Jenkins
+    - [x] Install plugins: Go to `Dashboard > Manage Jenkins > Manage Plugins` and install the following plugins:
         - SonarQube Scanner
         - Docker
         - Docker pipeline
@@ -83,8 +85,14 @@ By the end of this project, you’ll gain a detailed understanding of how each t
         - Email Extension Template
         - Prometheus Metrics
         - OWASP Dependency Check Plugin
-    - [ ] Configure Jenkins Plugins
-    - [ ] Configure SonarQube Server Token
+    - [x] Configure Jenkins Plugins
+    - [x] Configure SonarQube Server Token
+    - [x] Setup Jenkins CI/CD Pipelines
+- [x] Install and Setup Grafana and Prometheus Monitoring
+- [x] Install ArgoCD for GitOps
+- [x] Deploy Application to EKS Using GitOps
+- [x] CleanUp Resources
+
 
 
 ## Infrastructure Setup
@@ -109,7 +117,7 @@ This token will be used to authenticate Jenkins to access the SonarQube server.
 
 ### Jenkins Server Setup
 
-For the purpose of this project, we will be creating our Jenkins Server on an ec2 instance using Terraform as our IaC tool. The Jenkins server will also serve as out base server from where we will mange other infrastructures liek the EKS cluster.
+For the purpose of this project, we will be creating our Jenkins Server on an ec2 instance using Terraform as our IaC tool. The Jenkins server will also serve as out base server from where we will manage other infrastructures like  the EKS cluster.
 
 I have included the link to my Github repo containing the Jenkins server Terraform script below.  
 
@@ -262,7 +270,7 @@ Go to `Manage Jenkins > Credentials > (Global) > Add Credentials` and add the fo
     - Enter your GitHub Personal Access Token as the secret.
     - Click Add.
 
-- [x] Create e-mail Credentials:
+- [x] Add e-mail Credentials:
     - Choose Username and Password as the kind
     - Set ID and description as `email-ID`
     - Enter your email username
@@ -277,9 +285,11 @@ Go to `Manage Jenkins > Credentials > (Global) > Add Credentials` and add the fo
 
 #### Configure Plugins
 
-Go to `Manage Jenkins > Tools` and configure each of the plugins tools as explained below: 
+Go to `Manage Jenkins > Tools` and configure each of the plugin tools as explained below: 
 
 **SonarQube Scanner Installations**
+
+Go to `Manage Jenkins > Tools > SonarQube Scanner installations` and add a new SonarQube Scanner installation
 
 - [x] SonarQube Scanner: `sonar-scanner` (Or use a suitable name)
 
@@ -297,9 +307,12 @@ Server authentication token: Select the sonar token ID saved earlier in the cred
 `Apply` and `Save`
 
 
-
+---
 
 **Docker**
+
+Go to `Manage Jenkins > Tools > Docker installations` and add a new docker installation
+
 Docker Name: `docker`
 `Install Automatically from docker.com`
 
@@ -311,7 +324,7 @@ Click `Apply` and `Save`
 
 Go to `Manage Jenkins > System` and configure the following settings:
 
-System Admin e-mail address - `Jenkins Admin <your-email@email.com>`
+System Admin e-mail address: `Jenkins Admin <your-email@email.com>`
 
 
 
