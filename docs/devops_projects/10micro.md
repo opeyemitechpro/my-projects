@@ -326,7 +326,8 @@ Click `Apply` and `Save`
 
 Go to `Manage Jenkins > System` and configure the following settings:
 
-System Admin e-mail address: `Jenkins Admin <your-email@email.com>` _(Enter the Jenkins Admin email here, this will appear in the email sender field of your inbox)_
+System Admin e-mail address: `Jenkins Admin <your-email@email.com>` 
+_(Enter the Jenkins Admin email here, this will appear in the email sender field of your inbox)_
 
 
 ---
@@ -345,8 +346,6 @@ Server Authentication token: `sonar-token`
 **Declarative Pipeline (Docker)**
 
 Docker Label: `docker`
-
-Registry Credentials: 
 
 ---
 
@@ -392,24 +391,28 @@ Click `Save` to close the configurations page
 
 ## :simple-jenkins: **Setting Up the Jenkins Pipeline Jobs**
 
-For this project we will set up 2 different pipelines.
+For this project we will set up 2 separate pipelines.
 
 1. **Continuous Integration (CI) Pipeline** - This pipeline will be responsible for building, testing, scanning and pushing the docker images to Docker Hub
 2. **Continuous Delivery (CD) Pipeline** - This pipeline will be responsible for updating the k8s manifest file in the GitHub repo with the new docker image tags pushed by the CI pipeline
 
 **Continuous Integration (CI) Pipeline**
 
-Go to `Jenkins > Create a Job` and give the new job item a name
+- Go to `Jenkins > Create a Job` and give the new job item a name
 
-Select `Pipeline` and click `OK`
+- Select `Pipeline` and click `OK`
 
+Go to `<job_name> > Configuration > Pipeline` an select `Pipeline script`
 
+Copy and paste the CI pipeline script below in the script template box.
 
-Below are the Jenkins pipeline scripts for the `Continous Integration (CI)` and the `Continous Delivery (CD)` jobs.
+Click `Save`
 
-### Jenkins CI Pipeline Script
+Below is the Jenkins pipeline scripts for the `Continous Integration (CI)`. 
 
-??? info "Jenkins CI Pipeline script for the Jenkins job"
+I have include details on how this pipeline script works in the annotation box below.
+
+??? info "Jenkins Continuous Integration (CI) Pipeline script for the Jenkins CI job"
 
     <div style="text-align: center;">
     [11-Microservices-k8s-App Source Code :simple-github: :fontawesome-solid-arrow-up-right-from-square:](https://github.com/opeyemitechpro/11-Microservices-k8s-App){: target="_blank" .md-button}
