@@ -93,12 +93,12 @@ By the end of this project, you’ll gain a detailed understanding of how each t
 - [x] Deploy Application to EKS Using GitOps
 - [x] CleanUp Resources
 
-
+---
 
 ## Infrastructure Setup
 
 ---
-#### Configure SonarQube Server
+### :simple-sonarqubeserver: Configure SonarQube Server
 
 From your browser, login to your **SonarQube server** using the  server ip and port `9000` 
 
@@ -180,7 +180,7 @@ Also, open the terraform working folder from a terminal and use the `SSH connect
 ssh -i `key_pair_filename` ubuntu@`<server_public_ip>`
 ```
 
-#### Login to Jenkins Server 
+#### Login to Jenkins Server
 
 Go back to the Jenkins server terminal to copy the initial Admin password
 
@@ -389,14 +389,14 @@ Click `Save` to close the configurations page
 ---
 
 
-## :simple-jenkins: **Setting Up the Jenkins Pipeline Jobs**
+### :simple-jenkins: **Setting Up the Jenkins Pipelines**
 
 For this project we will set up 2 separate pipelines.
 
 1. **Continuous Integration (CI) Pipeline** - This pipeline will be responsible for building, testing, scanning and pushing the docker images to Docker Hub
 2. **Continuous Delivery (CD) Pipeline** - This pipeline will be responsible for updating the k8s manifest file in the GitHub repo with the new docker image tags pushed by the CI pipeline
 
-**Continuous Integration (CI) Pipeline**
+#### Continuous Integration (CI) Pipeline
 
 - Go to `Jenkins > Create a Job` and give the new job item a name
 
@@ -408,9 +408,9 @@ Copy and paste the CI pipeline script below in the script template box.
 
 Click `Save`
 
-Below is the Jenkins pipeline scripts for the `Continous Integration (CI)`. 
+Below is the Jenkins pipeline script for the `Continous Integration (CI)`.
 
-I have include details on how this pipeline script works in the annotation box below.
+I have include details on how this pipeline script works into the annotation box below.
 
 ??? info "Jenkins Continuous Integration (CI) Pipeline script for the Jenkins CI job"
 
@@ -689,7 +689,30 @@ I have include details on how this pipeline script works in the annotation box b
         - [x] Lines `9-24` contain environment variables. Replace the values according to your Jenkins server configuration
 
 
-### Jenkins CD Pipeline Script
+
+---
+
+#### **Continuous Delivery (CD) Pipeline**
+
+- Go again to `Jenkins > Create a Job` and create a second job item
+
+- Name the job `Update-Manifest`
+
+!!! tip "Tip"
+    It is important that the pipeline must be named `Update-Manifest` because this will be referenced by the CI pipeline script we created earlier. If you choose to use a different name, ensure you modify your CI pipeline script to reflect that.
+
+
+- Select `Pipeline` and click `OK`
+
+Go to `<job_name> > Configuration > Pipeline` an select `Pipeline script`
+
+Copy and paste the CD pipeline script below into the script template box.
+
+Click `Save`
+
+Below is the Jenkins pipeline script for the `Continous Deployment (CD)`.
+
+I have include details on how this pipeline script works in the annotation box below.
 
 ??? info "Jenkins CD Pipeline script for the Manifest Update Jenkins job"
 
