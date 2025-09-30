@@ -274,7 +274,7 @@ Go to `Manage Jenkins > Credentials > (Global) > Add Credentials` and add the fo
     - Choose Username and Password as the kind
     - Set ID and description as `email-ID`
     - Enter your email username
-    - Enter the `App password` generated from Gmail as the password (_ :red_circle: Do not use your real Gmail password here_)
+    - Enter the `App password` generated from Gmail as the password _(:red_circle: Do not use your real Gmail password here)_
     - Click Add.
 
 
