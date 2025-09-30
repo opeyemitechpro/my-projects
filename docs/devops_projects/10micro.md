@@ -274,10 +274,10 @@ Go to `Manage Jenkins > Credentials > (Global) > Add Credentials` and add the fo
     - Choose Username and Password as the kind
     - Set ID and description as `email-ID`
     - Enter your email username
-    - Enter the `App password` generated from Gmail as the password
+    - Enter the `App password` generated from Gmail as the password (_ :red_circle: Do not use your real Gmail password here_)
     - Click Add.
 
-- 
+
 
 
 ---
@@ -289,7 +289,7 @@ Go to `Manage Jenkins > Tools` and configure each of the plugin tools as explain
 
 **SonarQube Scanner Installations**
 
-Go to `Manage Jenkins > Tools > SonarQube Scanner installations` and add a new SonarQube Scanner installation
+Go to `Manage Jenkins > Tools > SonarQube Scanner installations` and add a new SonarQube Scanner installation as below:
 
 - [x] SonarQube Scanner: `sonar-scanner` (Or use a suitable name)
 
@@ -299,10 +299,13 @@ Go to `Manage Jenkins > Tools > SonarQube Scanner installations` and add a new S
 - [x] Leave the default SonarQube version as it is
 
 
-Go and set the SonarQube server URL `Manage Jenkins > System > SonarQube Installations`
+Set the SonarQube server URL under `Manage Jenkins > System > SonarQube Installations`
+
 Server Name: `sonar` _(This name will be used later in the job pipeline)_
+
 Server URL: `http://<sonar_server_ip>:9000` _(URL of the SonarQube server on port 9000)_
-Server authentication token: Select the sonar token ID saved earlier in the credentials tab
+
+Server authentication token: Select the `sonar token ID` saved earlier in the credentials tab
 
 `Apply` and `Save`
 
@@ -314,35 +317,48 @@ Server authentication token: Select the sonar token ID saved earlier in the cred
 Go to `Manage Jenkins > Tools > Docker installations` and add a new docker installation
 
 Docker Name: `docker`
-`Install Automatically from docker.com`
+
+Set to `Install Automatically from docker.com`
 
 Click `Apply` and `Save`
 
 ---
 
-
-
 Go to `Manage Jenkins > System` and configure the following settings:
 
-System Admin e-mail address: `Jenkins Admin <your-email@email.com>`
-
-
-
-
-- [x] Server URL: `<sonar_server_ip:9000>`
+System Admin e-mail address: `Jenkins Admin <your-email@email.com>` _(Enter the Jenkins Admin email here, this will appear in the email sender field of your inbox)_
 
 
 ---
 
-### Prometheus
-- [x] No further configuration needed
-- [x] By default, the Prometheus metrics will be scrapped from `http://<jenkins_server_ip:8080>/prometheus`
+**SonarQube servers**
 
-### Docker Hub Credentials
+Name: `sonar` _(This name will be used later in the pipeline)_
 
-- [x] Configure Docker Credentials to enable pushing docker images to Docker Hub
+Server URL: `<sonar_server_ip:9000>` _(This should be the ip address of the SonarQube server on port `9000` which in our case, is also the same as our Jenkins server ip address)_
 
-### Jenkins Email Notifications
+Server Authentication token: `sonar-token`
+
+
+---
+
+**Declarative Pipeline (Docker)**
+
+Docker Label: `docker`
+
+Registry Credentials: 
+
+---
+
+**Prometheus**
+
+No further configuration needed
+
+By default, the Prometheus metrics will be scrapped from `http://<jenkins_server_ip:8080>/prometheus`
+
+---
+
+**Jenkins Email Notifications**
 
 Goto `Dashboard > Manage Jenkins > System` and configure both the __"Extended E-mail Notification"__ and the __"E-mail Notification"__ sections as below:
 
@@ -358,12 +374,36 @@ Goto `Dashboard > Manage Jenkins > System` and configure both the __"Extended E-
 
 !!! tip "Tip"
 
-    - The settings above apply to Gmail address configuration. Confirm SMTP settings from your email service provider.
-    - Copy `App password` from your gmail account security settings and use that as the password in the above configuration.
+    - The settings above apply to Gmail address configuration. Confirm SMTP settings from your email service provider if different from Gmail.
+    - Copy `App password` from your Gmail account security settings and use that as the password in the above configuration.
 
 ---
 
-## :simple-jenkins: **Jenkins Pipeline Scripts**
+**Default Content Type**
+
+Set to `HTML (text/html)`
+
+---
+
+Click `Save` to close the configurations page
+
+---
+
+
+## :simple-jenkins: **Setting Up the Jenkins Pipeline Jobs**
+
+For this project we will set up 2 different pipelines.
+
+1. **Continuous Integration (CI) Pipeline** - This pipeline will be responsible for building, testing, scanning and pushing the docker images to Docker Hub
+2. **Continuous Delivery (CD) Pipeline** - This pipeline will be responsible for updating the k8s manifest file in the GitHub repo with the new docker image tags pushed by the CI pipeline
+
+**Continuous Integration (CI) Pipeline**
+
+Go to `Jenkins > Create a Job` and give the new job item a name
+
+Select `Pipeline` and click `OK`
+
+
 
 Below are the Jenkins pipeline scripts for the `Continous Integration (CI)` and the `Continous Delivery (CD)` jobs.
 
