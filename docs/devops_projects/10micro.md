@@ -130,14 +130,14 @@ I have included the link to my Github repo containing the Jenkins server Terrafo
     - [x] Your AWS access key ID and secret access key _(learn how to get your AWS access keys [here :fontawesome-solid-arrow-up-right-from-square:](https://docs.aws.amazon.com/cli/latest/userguide/cli-authentication-user.html){: target="_blank" })_
     - [x] AWS CLI installed and configured with your AWS access key ID and Secret access keys _(learn more about AWS CLI [here :fontawesome-solid-arrow-up-right-from-square:](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-quickstart.html){: target="_blank" })_ 
 
-??? tip "What does this terraform script do?"
+??? info "What does this terraform script do?"
     The Terrafom script will do the following:
 
     - [x] Provision an ec2 instance of type `t2.large` (You can easily set a different instance type in the `terraform.tfvars` file)
     - [x] Provision the ec2 instance in the default VPC
-    - [x] Confiure the security group to expose (1) all the required ports for this project. The required ports are: 22, 25, 80, 443, 465, 8080, 9000 and 9100. (The ports and their descriptions are listed in the `terraform.tfvars` file) { .annotate }
-    - [x] Create an AWS Key-Pair file and download the file unto your terraform working directory on your local machine (the folder from where you inintiated the terraform apply command)
-    - [x] Using the included Bash script (in the user_data field), it will bootstrap and install the following:
+    - [x] Configure the security group to expose (1) all the required ports for this project. The required ports are: 22, 25, 80, 443, 465, 8080, 9000 and 9100. (The ports and their descriptions are listed in the `terraform.tfvars` file) { .annotate }
+    - [x] Create an AWS Key-Pair file and download the file unto your terraform working directory on your local machine _(the folder from where you initiated the terraform apply command)_
+    - [x] Using the included Bash script _(in the user_data field)_, it will bootstrap and install the following:
 
         * Ubuntu 24.04 (the latest version)
         * Jenkins
@@ -153,7 +153,8 @@ I have included the link to my Github repo containing the Jenkins server Terrafo
     - [x] Output the `Public IP address` and the `SSH connection string` for the newly provisioned Jenkins server  
     - [x] The terraform script will also be used to `destroy` the server and its resources during the clean-up stage of this project.
 
-    1. Since this is just a demo project, the ports are accessible on the internet for the duration of the project demonstration. ==This is not a good security practice in production environments and should be avoided :smile:==
+    !!! warning "Important Security Note"
+        Since this is just a demo project, the ports are deliberately exposed and may be accessible over the internet for the duration of the project demonstration. ==This is not a good security practice in production environments and should be avoided :smile:==
 
 Clone the Repo on your local machine and apply the terraform config:
 
@@ -402,15 +403,15 @@ For this project we will set up 2 separate pipelines.
 
 - Select `Pipeline` and click `OK`
 
-Go to `<job_name> > Configuration > Pipeline` an select `Pipeline script`
+Go to `the_job_name > Configuration > Pipeline` and select `Pipeline script`
 
-Copy and paste the CI pipeline script below in the script template box.
+Copy and paste the CI pipeline script below into the script template box.
 
 Click `Save`
 
 Below is the Jenkins pipeline script for the `Continous Integration (CI)`.
 
-I have include details on how this pipeline script works into the annotation box below.
+I have include details on how this pipeline script works in the annotation box below.
 
 ??? info "Jenkins Continuous Integration (CI) Pipeline script for the Jenkins CI job"
 
@@ -420,7 +421,7 @@ I have include details on how this pipeline script works into the annotation box
     
     The Jenkins CI pipeline is below:
 
-    ???+ code-file "Jenkins Pipeline Script"
+    ??? code-file "Jenkins Pipeline Script - Click here"
             
         ``` groovy hl_lines="9-24"
         // 11-Microservices-k8s-App Jenkins Pipeline Script
@@ -430,7 +431,7 @@ I have include details on how this pipeline script works into the annotation box
 
             environment {
                 // ====== CONFIG VARIABLES ======
-                // Replace values with the values configured in Jenkins server configuration
+                // Replace values with the values configured in your Jenkins server configuration
                 DOCKER_TOOL       = 'docker' // Docker tool name configured in Jenkins
                 GIT_BRANCH        = 'OpeyemiTechPro-v1' // Git Branch name where code resides 
                 GIT_URL           = 'https://github.com/opeyemitechpro/11-Microservices-k8s-App.git'
@@ -687,6 +688,174 @@ I have include details on how this pipeline script works into the annotation box
         ```
 
         - [x] Lines `9-24` contain environment variables. Replace the values according to your Jenkins server configuration
+    
+    ??? tip "How This Jenkins Pipeline Script Works"
+
+        Below is a breif description of how this jenkins pipeline script works
+
+        This Jenkins pipeline automates the entire CI/CD workflow for an 11-microservices Kubernetes application. It takes care of pulling the source code, scanning for security issues, analyzing code quality, building Docker images for each microservice, pushing them to Docker Hub, and finally updating the Kubernetes manifests with the new image tags. Here’s how it works step by step:
+        
+        Environment Setup
+        The pipeline defines environment variables for Git, Docker, SonarQube, Trivy, Gitleaks, and email notifications. These variables let Jenkins know where to pull code from, where to push images, and how to connect with external tools like SonarQube or Docker Hub. The Docker image tag is dynamically generated from the Jenkins build number (e.g., ver-23).
+
+        Workspace Preparation
+        The pipeline starts with Clean Workspace, which clears out any old files or artifacts from previous builds. This ensures that every run starts fresh and avoids conflicts.
+
+        Source Code Checkout
+        Jenkins pulls the application code from the configured GitHub branch (OpeyemiTechPro-v1) to the workspace, making it ready for scanning and builds.
+
+        Security & Quality Scans
+
+        Gitleaks Scan: Detects any hardcoded secrets (API keys, passwords, tokens) in the repository.
+
+        SonarQube Analysis: Runs static code analysis for code quality, bugs, and maintainability issues.
+
+        Trivy FS Scan: Scans the project’s filesystem for known vulnerabilities before building the Docker images.
+
+        Docker Image Build & Push
+        Each microservice (adservice, cartservice, checkoutservice, etc.) has its own build stage. Jenkins:
+
+        Switches into the microservice directory.
+
+        Builds a Docker image tagged with the current build version.
+
+        Pushes the image to Docker Hub using stored credentials.
+        This process is repeated for all 11 microservices, ensuring they are all containerized and versioned consistently.
+
+        Docker Image Cleanup
+        Once the images are pushed to Docker Hub, Jenkins cleans up local images to free up space on the build server.
+
+        Update Kubernetes Manifest
+        Instead of deploying directly, the pipeline triggers a separate Jenkins job called Update-Manifest. This job updates the Kubernetes deployment manifests with the newly built Docker tags, ensuring that the cluster always runs the latest version of the services.
+
+        Post-Build Notifications
+        Regardless of success or failure, Jenkins sends an email notification with build details, logs, and scan reports (Trivy, Gitleaks, dependency-check). This gives visibility into what happened during the pipeline run.
+
+
+        How the Jenkins Pipeline Script Works
+
+        This Jenkins pipeline automates the build, scan, and deployment process of a Kubernetes-based microservices application. It follows a CI/CD workflow that ensures code quality, security, and containerization before updating the Kubernetes manifests. Below is a detailed explanation of each block.
+
+        Pipeline Configuration
+
+        agent any → The pipeline can run on any available Jenkins agent.
+
+        environment block → Stores key configuration values such as:
+
+        Git repo and branch (where the source code is stored).
+
+        SonarQube scanner and server (for code quality analysis).
+
+        Docker credentials and registry details (to build and push images).
+
+        Email settings (for notifications).
+
+        Dynamic Docker tag (auto-generated for each build using Jenkins build number).
+
+        This block centralizes configuration, making the script portable and easier to maintain.
+
+        Stages
+        1. Clean Workspace
+
+        Ensures the build starts fresh by deleting all previous files from the Jenkins workspace.
+
+        Prevents conflicts with leftover artifacts from older builds.
+
+        2. Git Checkout
+
+        Clones the specified branch (OpeyemiTechPro-v1) from the GitHub repository into Jenkins.
+
+        This fetches the latest version of the microservices code.
+
+        3. Gitleaks Scan
+
+        Runs Gitleaks to detect secrets (passwords, API keys, tokens) accidentally committed to the repo.
+
+        Saves the report as gitleaks_report-BUILD_NUMBER.json.
+
+        4. SonarQube Analysis
+
+        Uses the SonarQube scanner to analyze code quality, bugs, vulnerabilities, and maintainability issues.
+
+        Results are uploaded to the configured SonarQube server under the project name 11-microservice-eCommerce.
+
+        5. Trivy File System (FS) Scan
+
+        Runs Trivy to scan the source code files for security vulnerabilities and misconfigurations.
+
+        Outputs results into a file named trivy-fs-report_BUILD_NUMBER.txt.
+
+        Docker Image Build & Push (for each microservice)
+
+        Each microservice has its own stage where:
+
+        Jenkins navigates into the microservice directory.
+
+        Builds a Docker image tagged with the unique build version (ver-BUILD_NUMBER).
+
+        Pushes the image to Docker Hub (opeyemitechpro repository).
+
+        The services include:
+
+        adservice
+
+        cartservice
+
+        checkoutservice
+
+        currencyservice
+
+        emailservice
+
+        frontend
+
+        loadgenerator
+
+        paymentservice
+
+        productcatalogservice
+
+        recommendationservice
+
+        shippingservice
+
+        This ensures every microservice gets its own independently versioned container image.
+
+        6. Docker Image CleanUp
+
+        Removes all locally built Docker images after pushing them to Docker Hub.
+
+        Saves disk space on the Jenkins agent.
+
+        7. Update Kubernetes Manifest
+
+        Triggers another Jenkins job called Update-Manifest.
+
+        Passes the new Docker image tag as a parameter.
+
+        The downstream job updates Kubernetes YAML manifests with the latest image tags and deploys them to the cluster.
+
+        (Optional) – The script has a commented-out Kubernetes deploy stage that could directly apply manifests via kubectl. Instead, the current approach delegates deployment to a separate pipeline for better modularity.
+
+        Post-Build Actions
+
+        Regardless of success or failure:
+
+        An email notification is sent to the configured address.
+
+        The email includes:
+
+        Build details (number, status, job URL).
+
+        Attachments: security scan reports (Trivy, Gitleaks, Dependency Check).
+
+        Links to console logs and pipeline overview.
+
+        This ensures full visibility and traceability for every pipeline run.
+
+        ✅ In summary:
+        This pipeline performs code checkout → security scans → code quality analysis → Docker builds → image push → Kubernetes manifest update → notifications.
+        It enforces DevSecOps practices while automating the entire CI/CD workflow for a microservices app on Kubernetes.
 
 
 
@@ -694,7 +863,7 @@ I have include details on how this pipeline script works into the annotation box
 
 #### **Continuous Delivery (CD) Pipeline**
 
-- Go again to `Jenkins > Create a Job` and create a second job item
+- Go to `Jenkins > Create a Job` and create a second job item
 
 - Name the job `Update-Manifest`
 
@@ -704,7 +873,7 @@ I have include details on how this pipeline script works into the annotation box
 
 - Select `Pipeline` and click `OK`
 
-Go to `<job_name> > Configuration > Pipeline` an select `Pipeline script`
+Go to `Update-Manifest > Configuration > Pipeline` and select `Pipeline script`
 
 Copy and paste the CD pipeline script below into the script template box.
 
@@ -712,9 +881,9 @@ Click `Save`
 
 Below is the Jenkins pipeline script for the `Continous Deployment (CD)`.
 
-I have include details on how this pipeline script works in the annotation box below.
+I have also included details on how this pipeline script works in the annotation box below.
 
-??? info "Jenkins CD Pipeline script for the Manifest Update Jenkins job"
+??? info "Jenkins CD Pipeline script for the `Update-Manifest` Jenkins job"
 
     <div style="text-align: center;">
     [11-Microservices-k8s-App-ArgoCD Manifest Source Code :simple-github: :fontawesome-solid-arrow-up-right-from-square:](https://github.com/opeyemitechpro/11-Microservices-k8s-App-ArgoCD){: target="_blank" .md-button}
@@ -722,7 +891,7 @@ I have include details on how this pipeline script works in the annotation box b
 
 
 
-    ???+ code-file "Jenkins CD Pipeline Script"
+    ??? code-file "Jenkins CD Pipeline Script - Click here"
 
         ``` groovy hl_lines="7-18"
                 // 11-Microservices-k8s-App-ArgoCD Manifest Update Jenkins Pipeline Script
