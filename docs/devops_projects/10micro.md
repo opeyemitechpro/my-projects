@@ -421,7 +421,7 @@ I have include details on how this pipeline script works in the annotation box b
     
     The Jenkins CI pipeline is below:
 
-    ??? code-file "Jenkins Pipeline Script - Click here"
+    ??? code-file "Jenkins CI Pipeline Script - Click here"
             
         ``` groovy hl_lines="9-24"
         // 11-Microservices-k8s-App Jenkins Pipeline Script
@@ -472,9 +472,7 @@ I have include details on how this pipeline script works in the annotation box b
                 }
 
                 stage('SonarQube Analysis') {
-                //   environment {
-                //       SCANNER_HOME = tool "${SONAR_SCANNER}"
-                //   }
+                
                     steps {
                         withSonarQubeEnv("${SONAR_SERVER}") {
                             sh '''$SCANNER_HOME/bin/${SONAR_SCANNER} \
@@ -641,19 +639,7 @@ I have include details on how this pipeline script works in the annotation box b
                             sh "docker rmi ${DOCKER_HUB_USER}/shippingservice:$DOCKER_TAG"
                     }
                 }
-            // stage("Kubernetes deploy"){
-                // steps {
-                //     withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'cluster-ID', namespace: 'opeyemi-apps', restrictKubeConfigAccess: false, serverUrl: 'https://FDC152307BF6A5337A2C02C976A8D19F.gr7.us-east-2.eks.amazonaws.com')
-                    //   {
-                    //       sh ' kubectl apply -f buildnow.yml -n opeyemi-apps'
-                    //       sh ' kubectl get pods -n opeyemi-apps '
-                    //       sh ' kubectl get svc -n opeyemi-apps '
-                        //  sh " kubectl get service -n opeyemi-apps frontend-external | awk '{print \$4}' "
-                    //   }
-                    //       sh ' date'
-                //    }
-            //    }
-
+            
             stage('Update k8s Manifest') {
             steps {
                 echo "Activate Update Manifest Job"
@@ -689,173 +675,36 @@ I have include details on how this pipeline script works in the annotation box b
 
         - [x] Lines `9-24` contain environment variables. Replace the values according to your Jenkins server configuration
     
-    ??? tip "How This Jenkins Pipeline Script Works"
+    ??? info "How This Jenkins Pipeline Script Works"
 
-        Below is a breif description of how this jenkins pipeline script works
+        Below is a breif description of how this jenkins CI pipeline script works
 
-        This Jenkins pipeline automates the entire CI/CD workflow for an 11-microservices Kubernetes application. It takes care of pulling the source code, scanning for security issues, analyzing code quality, building Docker images for each microservice, pushing them to Docker Hub, and finally updating the Kubernetes manifests with the new image tags. Here’s how it works step by step:
+        This Jenkins pipeline automates the entire CI workflow for the 11-microservices Kubernetes application. It takes care of pulling the source code, scanning for security issues, analyzing code quality, building Docker images for each microservice, pushing them to Docker Hub, and finally updating the Kubernetes manifests with the new image tags. Here’s how it works step by step:
         
-        Environment Setup
-        The pipeline defines environment variables for Git, Docker, SonarQube, Trivy, Gitleaks, and email notifications. These variables let Jenkins know where to pull code from, where to push images, and how to connect with external tools like SonarQube or Docker Hub. The Docker image tag is dynamically generated from the Jenkins build number (e.g., ver-23).
+        * Environment Setup - The pipeline defines environment variables for Git, Docker, SonarQube, Trivy, Gitleaks, and email notifications. These variables let Jenkins know where to pull code from, where to push images, and how to connect with external tools like SonarQube or Docker Hub. The Docker image tag is dynamically generated from the Jenkins build number (e.g. ver-23).
 
-        Workspace Preparation
-        The pipeline starts with Clean Workspace, which clears out any old files or artifacts from previous builds. This ensures that every run starts fresh and avoids conflicts.
+        * Workspace Preparation - The pipeline starts with Clean Workspace, which clears out any old files or artifacts from previous builds. This ensures that every run starts fresh and avoids conflicts.
 
-        Source Code Checkout
-        Jenkins pulls the application code from the configured GitHub branch (OpeyemiTechPro-v1) to the workspace, making it ready for scanning and builds.
+        * Source Code Checkout - Jenkins pulls the application code from the configured GitHub branch (OpeyemiTechPro-v1) to the workspace, making it ready for scanning and builds.
 
-        Security & Quality Scans
+        * Security & Quality Scans
 
-        Gitleaks Scan: Detects any hardcoded secrets (API keys, passwords, tokens) in the repository.
+            * Gitleaks Scan: Detects any hardcoded secrets (API keys, passwords, tokens) in the repository.
 
-        SonarQube Analysis: Runs static code analysis for code quality, bugs, and maintainability issues.
+            * SonarQube Analysis: Runs static code analysis for code quality, bugs, and maintainability issues.
 
-        Trivy FS Scan: Scans the project’s filesystem for known vulnerabilities before building the Docker images.
+            * Trivy FS Scan: Scans the project’s filesystem for known vulnerabilities before building the Docker images.
 
-        Docker Image Build & Push
-        Each microservice (adservice, cartservice, checkoutservice, etc.) has its own build stage. Jenkins:
+        * Docker Image Build & Push - Each microservice (adservice, cartservice, checkoutservice, etc.) has its own build stage. Jenkins Switches into each of the microservice directory, builds a Docker image tagged with the current build version, pushes the image to Docker Hub using stored credentials and this process is repeated for all 11 microservices, ensuring they are all containerized and versioned consistently.
 
-        Switches into the microservice directory.
+        * Docker Image Cleanup - Once the images are pushed to Docker Hub, Jenkins cleans up local images to free up space on the build server to avoid taking up unneccessary space on the Jenkins server
 
-        Builds a Docker image tagged with the current build version.
+        * Update Kubernetes Manifest - Instead of deploying directly, the pipeline triggers a separate Jenkins job called `Update-Manifest`. The `Update-Manifest` job updates the Kubernetes deployment manifests with the newly built Docker tags, ensuring that the cluster always runs the latest version of the services.
 
-        Pushes the image to Docker Hub using stored credentials.
-        This process is repeated for all 11 microservices, ensuring they are all containerized and versioned consistently.
+        * Post-Build Notifications - Regardless of success or failure, Jenkins sends an email notification with build details, logs, and scan reports (Trivy, Gitleaks, dependency-check). This gives visibility into what happened during the pipeline run.
 
-        Docker Image Cleanup
-        Once the images are pushed to Docker Hub, Jenkins cleans up local images to free up space on the build server.
-
-        Update Kubernetes Manifest
-        Instead of deploying directly, the pipeline triggers a separate Jenkins job called Update-Manifest. This job updates the Kubernetes deployment manifests with the newly built Docker tags, ensuring that the cluster always runs the latest version of the services.
-
-        Post-Build Notifications
-        Regardless of success or failure, Jenkins sends an email notification with build details, logs, and scan reports (Trivy, Gitleaks, dependency-check). This gives visibility into what happened during the pipeline run.
-
-
-        How the Jenkins Pipeline Script Works
-
-        This Jenkins pipeline automates the build, scan, and deployment process of a Kubernetes-based microservices application. It follows a CI/CD workflow that ensures code quality, security, and containerization before updating the Kubernetes manifests. Below is a detailed explanation of each block.
-
-        Pipeline Configuration
-
-        agent any → The pipeline can run on any available Jenkins agent.
-
-        environment block → Stores key configuration values such as:
-
-        Git repo and branch (where the source code is stored).
-
-        SonarQube scanner and server (for code quality analysis).
-
-        Docker credentials and registry details (to build and push images).
-
-        Email settings (for notifications).
-
-        Dynamic Docker tag (auto-generated for each build using Jenkins build number).
-
-        This block centralizes configuration, making the script portable and easier to maintain.
-
-        Stages
-        1. Clean Workspace
-
-        Ensures the build starts fresh by deleting all previous files from the Jenkins workspace.
-
-        Prevents conflicts with leftover artifacts from older builds.
-
-        2. Git Checkout
-
-        Clones the specified branch (OpeyemiTechPro-v1) from the GitHub repository into Jenkins.
-
-        This fetches the latest version of the microservices code.
-
-        3. Gitleaks Scan
-
-        Runs Gitleaks to detect secrets (passwords, API keys, tokens) accidentally committed to the repo.
-
-        Saves the report as gitleaks_report-BUILD_NUMBER.json.
-
-        4. SonarQube Analysis
-
-        Uses the SonarQube scanner to analyze code quality, bugs, vulnerabilities, and maintainability issues.
-
-        Results are uploaded to the configured SonarQube server under the project name 11-microservice-eCommerce.
-
-        5. Trivy File System (FS) Scan
-
-        Runs Trivy to scan the source code files for security vulnerabilities and misconfigurations.
-
-        Outputs results into a file named trivy-fs-report_BUILD_NUMBER.txt.
-
-        Docker Image Build & Push (for each microservice)
-
-        Each microservice has its own stage where:
-
-        Jenkins navigates into the microservice directory.
-
-        Builds a Docker image tagged with the unique build version (ver-BUILD_NUMBER).
-
-        Pushes the image to Docker Hub (opeyemitechpro repository).
-
-        The services include:
-
-        adservice
-
-        cartservice
-
-        checkoutservice
-
-        currencyservice
-
-        emailservice
-
-        frontend
-
-        loadgenerator
-
-        paymentservice
-
-        productcatalogservice
-
-        recommendationservice
-
-        shippingservice
-
-        This ensures every microservice gets its own independently versioned container image.
-
-        6. Docker Image CleanUp
-
-        Removes all locally built Docker images after pushing them to Docker Hub.
-
-        Saves disk space on the Jenkins agent.
-
-        7. Update Kubernetes Manifest
-
-        Triggers another Jenkins job called Update-Manifest.
-
-        Passes the new Docker image tag as a parameter.
-
-        The downstream job updates Kubernetes YAML manifests with the latest image tags and deploys them to the cluster.
-
-        (Optional) – The script has a commented-out Kubernetes deploy stage that could directly apply manifests via kubectl. Instead, the current approach delegates deployment to a separate pipeline for better modularity.
-
-        Post-Build Actions
-
-        Regardless of success or failure:
-
-        An email notification is sent to the configured address.
-
-        The email includes:
-
-        Build details (number, status, job URL).
-
-        Attachments: security scan reports (Trivy, Gitleaks, Dependency Check).
-
-        Links to console logs and pipeline overview.
-
-        This ensures full visibility and traceability for every pipeline run.
-
-        ✅ In summary:
-        This pipeline performs code checkout → security scans → code quality analysis → Docker builds → image push → Kubernetes manifest update → notifications.
-        It enforces DevSecOps practices while automating the entire CI/CD workflow for a microservices app on Kubernetes.
+        ✅ In summary: This pipeline performs code checkout → security scans → code quality analysis → Docker builds → image push → Kubernetes manifest update → notifications.
+        It enforces DevSecOps practices while automating the entire CI/CD workflow for the microservices app on Kubernetes.
 
 
 
