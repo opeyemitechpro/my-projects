@@ -742,7 +742,8 @@ I have also included details on how this pipeline script works in the annotation
 
     ??? code-file "Jenkins CD Pipeline Script - Click here"
 
-        ``` groovy hl_lines="7-18"
+        ``` groovy hl_lines="8-19"
+                // Jenkins Job Name = "Update-Manifest"
                 // 11-Microservices-k8s-App-ArgoCD Manifest Update Jenkins Pipeline Script
                 
                 pipeline {
@@ -841,6 +842,27 @@ I have also included details on how this pipeline script works in the annotation
         ```
 
         - [x] Lines `7-18` contain environment variables. Replace the values according to your Jenkins server configuration
+    
+    ??? info "How This Jenkins CD Pipeline Script Works"
+        
+        This Jenkins pipeline is responsible for automatically updating the Kubernetes ArgoCD manifest whenever new Docker images are built and pushed by the main CI pipeline. Instead of manually editing YAML files to change image tags, this job updates the manifest with the latest Docker tag and pushes the change back to GitHub so ArgoCD can sync and deploy it.
+
+        Here’s how it works:
+
+        - Pipeline Setup - The pipeline defines key environment variables like GitHub credentials, Docker Hub username, commit author details, and email addresses for notifications.
+        It also accepts a parameter (DOCKER_TAG) from the upstream build job (the CI pipeline) so that the manifest is updated with the exact version of the new Docker images.
+
+        - Git Checkout - Jenkins checks out the ArgoCD manifest repository (11-Microservices-k8s-App-ArgoCD) from GitHub on the specified branch (main). This repo contains the Kubernetes deployment YAML that ArgoCD watches.
+
+        - Update Manifest with New Docker Tag - Before making changes, the script prints out the current image: lines from the manifest file for visibility. It then uses a `sed` command with regex to find all Docker image references (e.g., opeyemitechpro/service:oldtag) and replace the old tag with the new tag (DOCKER_TAG). After replacement, it prints the updated image: lines so you can verify the changes directly in the Jenkins logs.
+
+        - Commit & Push Changes - The pipeline configures Git with the commit author and email set in the environment variables. It stages and commits the updated manifest file with a message showing which build triggered the update. Using the stored GitHub credentials, it pushes the updated manifest back to the main branch of the repository.
+
+        - If no changes were required (for example, if the manifest already had the latest tag), the commit step is skipped gracefully.
+
+        - Post-Build Notification - Once finished, Jenkins sends an email notification with details of the build (status, job URL, build number, and the new Docker tag). This ensures visibility of every manifest update.
+
+        ✅ In summary: This pipeline takes the Docker tag produced by the CI job, updates all microservice image tags in the ArgoCD manifest, commits the changes to GitHub, and lets ArgoCD handle the deployment. It removes the need for manual edits, keeps deployments consistent, and fully automates the CD process for your Kubernetes microservices.
 
 ---
         
