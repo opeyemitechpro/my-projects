@@ -75,27 +75,39 @@
 
 
 
+
 {% block content %}
   {% if page.meta.show_ai_buttons %}
     <!-- AI Buttons Row -->
     <div style="display: flex; justify-content: flex-end; gap: 0.5rem; margin-bottom: 1rem;">
-      <a 
-        href="https://chat.openai.com/?q={{ 'Read the documentation page titled ' ~ page.title ~ ' available at ' ~ page.url ~ '. Summarize the key points and be ready to answer follow-up questions.' | urlencode }}" 
-        target="_blank" 
-        class="md-button"
-      >
-        💬 Ask ChatGPT
-      </a>
-
-      <a 
-        href="https://claude.ai/new?q={{ 'Review this documentation page titled ' ~ page.title ~ ' at ' ~ page.url ~ '. Provide a step-by-step breakdown, and then help answer my questions about it.' | urlencode }}" 
-        target="_blank" 
-        class="md-button"
-      >
-        🤖 Ask Claude
-      </a>
+      <a id="ask-chatgpt" class="md-button" target="_blank" rel="noopener noreferrer">💬 Ask ChatGPT</a>
+      <a id="ask-claude" class="md-button" target="_blank" rel="noopener noreferrer">🤖 Ask Claude</a>
     </div>
+
+    <script>
+      (function () {
+        // page.title is rendered server-side into a safe JS string
+        const title = {{ page.title|tojson }};
+        // runtime: get the absolute URL for the current doc page
+        const fullUrl = window.location.href;
+
+        // Tailored pre-prompts (you can tweak wording)
+        const chatPrompt = `Read the documentation page titled "${title}" available at ${fullUrl}. Summarize the key points and be ready to answer follow-up questions.`;
+        const claudePrompt = `Review this documentation page titled "${title}" at ${fullUrl}. Provide a step-by-step breakdown, and then help answer my questions about it.`;
+
+        const chatEl = document.getElementById('ask-chatgpt');
+        const claudeEl = document.getElementById('ask-claude');
+
+        if (chatEl) {
+          chatEl.href = 'https://chat.openai.com/?q=' + encodeURIComponent(chatPrompt);
+        }
+        if (claudeEl) {
+          claudeEl.href = 'https://claude.ai/new?q=' + encodeURIComponent(claudePrompt);
+        }
+      })();
+    </script>
   {% endif %}
 
   {{ super() }}
 {% endblock %}
+
