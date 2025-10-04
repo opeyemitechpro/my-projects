@@ -89,11 +89,11 @@
 }
 .md-typeset .image > .admonition-title,
 .md-typeset .image > summary {
-  background-color: rgba(5, 255, 47, 0.1);
+  background-color: rgba(22, 5, 255, 0.1);
 }
 .md-typeset .image > .admonition-title::before,
 .md-typeset .image > summary::before {
-  background-color: rgb(5, 255, 47);
+  background-color: rgb(22, 5, 255);
   -webkit-mask-image: var(--md-admonition-icon--image);
           mask-image: var(--md-admonition-icon--image);
 }
