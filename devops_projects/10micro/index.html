@@ -1117,6 +1117,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#configure-github-webhook" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configure GithUb Webhook
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#continuous-delivery-cd-pipeline" class="md-nav__link">
     <span class="md-ellipsis">
       Continuous Delivery (CD) Pipeline
@@ -1136,42 +1145,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#jenkins-plugins-to-install" class="md-nav__link">
-    <span class="md-ellipsis">
-      Jenkins Plugins to install
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#jenkins-email-configuration" class="md-nav__link">
-    <span class="md-ellipsis">
-      Jenkins Email Configuration
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Jenkins Email Configuration">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
   <a href="#kubernetes-cluster-setup" class="md-nav__link">
     <span class="md-ellipsis">
       Kubernetes Cluster Setup
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#ci-pipeline-setup-with-jenkins" class="md-nav__link">
-    <span class="md-ellipsis">
-      CI Pipeline setup with Jenkins
     </span>
   </a>
   
@@ -1190,15 +1166,6 @@
   <a href="#monitoring-observability" class="md-nav__link">
     <span class="md-ellipsis">
       Monitoring &amp; Observability
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#setting-the-script-options" class="md-nav__link">
-    <span class="md-ellipsis">
-      Setting the script options
     </span>
   </a>
   
@@ -2390,6 +2357,17 @@
 It enforces DevSecOps practices while automating the entire CI/CD workflow for the microservices app on Kubernetes.</p>
 </details>
 </details>
+<h4 id="configure-github-webhook">Configure GithUb Webhook<a class="headerlink" href="#configure-github-webhook" title="Copy this link to reference this section">¶</a></h4>
+<p>To enable Github to autimatically trigger the Jenkins CI pipeline anytime a change is pushed to this GitHub repo, we need to configure a webhook in GitHub. The webhook sends a signal to this Jenkins job whenever the repo is updated. This causes the Jenkins CI pipeline to run without human intervention.</p>
+<ul>
+<li>On the Github repo for this application, go to <code>Settings &gt; Webhooks &gt; Add webhook</code></li>
+<li>Payload URL: <code>http://&lt;jenkins_server_ip&gt;:8080/github-webhook/</code> <em>(Replace <code>&lt;jenkins_server_ip&gt;</code> with the actual IP address of your Jenkins server)</em></li>
+<li>Content type: <code>application/json</code></li>
+<li>Secret: Leave blank</li>
+<li>Which events would you like to trigger this webhook? <code>Just the push event</code></li>
+<li>Active: <code>Checked</code></li>
+<li>Click <code>Add webhook</code></li>
+</ul>
 <hr>
 <h4 id="continuous-delivery-cd-pipeline"><strong>Continuous Delivery (CD) Pipeline</strong><a class="headerlink" href="#continuous-delivery-cd-pipeline" title="Copy this link to reference this section">¶</a></h4>
 <ul>
@@ -2519,8 +2497,8 @@ It enforces DevSecOps practices while automating the entire CI/CD workflow for t
 <a id="__codelineno-9-4" name="__codelineno-9-4"></a><span class="w">        </span><span class="n">pipeline</span><span class="w"> </span><span class="o">{</span>
 <a id="__codelineno-9-5" name="__codelineno-9-5"></a><span class="w">            </span><span class="n">agent</span><span class="w"> </span><span class="n">any</span>
 <a id="__codelineno-9-6" name="__codelineno-9-6"></a><span class="w">                </span><span class="n">environment</span><span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-9-7" name="__codelineno-9-7"></a><span class="w">                    </span><span class="c1">// ====== CONFIG VARIABLES ======</span>
-<a id="__codelineno-9-8" name="__codelineno-9-8"></a><span class="hll"><span class="w">                    </span><span class="c1">// Replace values with the values configured in your Jenkins server configuration</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7"></a><span class="hll"><span class="w">                    </span><span class="c1">// ====== CONFIG VARIABLES ======</span>
+</span><a id="__codelineno-9-8" name="__codelineno-9-8"></a><span class="hll"><span class="w">                    </span><span class="c1">// Replace values with the values configured in your Jenkins server configuration</span>
 </span><a id="__codelineno-9-9" name="__codelineno-9-9"></a><span class="hll"><span class="w">                    </span><span class="n">GIT_CRED</span><span class="w">                </span><span class="o">=</span><span class="w"> </span><span class="s1">'github_cred'</span>
 </span><a id="__codelineno-9-10" name="__codelineno-9-10"></a><span class="hll">
 </span><a id="__codelineno-9-11" name="__codelineno-9-11"></a><span class="hll"><span class="w">                    </span><span class="c1">// Declare values for these variables to suit your environment needs</span>
@@ -2610,7 +2588,7 @@ It enforces DevSecOps practices while automating the entire CI/CD workflow for t
 <a id="__codelineno-9-95" name="__codelineno-9-95"></a><span class="w">        </span><span class="o">}</span>
 </code></pre></div></td></tr></tbody></table></div>
 <ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" checked><span class="task-list-indicator"></span></label> Lines <code>7-18</code> contain environment variables. Replace the values according to your Jenkins server configuration</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" checked><span class="task-list-indicator"></span></label> Lines <code>7-19</code> contain environment variables. Replace the values according to your Jenkins server configuration</li>
 </ul>
 </details>
 <details class="info">
@@ -2642,54 +2620,12 @@ It also accepts a parameter (DOCKER_TAG) from the upstream build job (the CI pip
 </details>
 </details>
 <hr>
-<h2 id="jenkins-plugins-to-install">Jenkins Plugins to install<a class="headerlink" href="#jenkins-plugins-to-install" title="Copy this link to reference this section">¶</a></h2>
-<ul>
-<li>sonar</li>
-<li>SonarQube Scanner</li>
-<li>docker</li>
-<li>docker pipeline</li>
-<li>docker build step</li>
-<li>cloudbees docker build and publish</li>
-<li>kubernetes</li>
-<li>kubernetes CLI</li>
-<li>Email Notifications</li>
-<li>Extended Email Notifications</li>
-<li>Prometheus Metrics</li>
-<li></li>
-</ul>
-<h2 id="jenkins-email-configuration">Jenkins Email Configuration<a class="headerlink" href="#jenkins-email-configuration" title="Copy this link to reference this section">¶</a></h2>
-<ul>
-<li>SMTP Server Name: smtp.gmail.com</li>
-<li>Username:    user_email_id@gmail.com</li>
-<li>Password: app_password</li>
-<li>Use SSL: checked</li>
-<li>SMTP Port:  465</li>
-</ul>
-<h3 id="kubernetes-cluster-setup">Kubernetes Cluster Setup<a class="headerlink" href="#kubernetes-cluster-setup" title="Copy this link to reference this section">¶</a></h3>
-<h2 id="ci-pipeline-setup-with-jenkins">CI Pipeline setup with Jenkins<a class="headerlink" href="#ci-pipeline-setup-with-jenkins" title="Copy this link to reference this section">¶</a></h2>
+<h2 id="kubernetes-cluster-setup">Kubernetes Cluster Setup<a class="headerlink" href="#kubernetes-cluster-setup" title="Copy this link to reference this section">¶</a></h2>
+<p>For this project, we will be using a basic Kubernetes cluster on Amazon EKS. Our application will be deployed on the EKS cluster using ArgoCD. Also, we will deploy Prometheus and Grafana on the EKS cluster to monitor our application and infrastructure. Will use Helm to deploy ArgoCD and Prometheus stack on our cluster.</p>
+<p>For simplicity, we will use our Jenkins server as our "base" server from where we will manage our EKS Cluster.</p>
+<p>For this, we create an IAM policy and attach it to our Jenkins server. This would allow our Jenkins server to manage our Amazon EKS cluster. </p>
 <h2 id="ccd-pipeline-with-argocd-gitops">CCD Pipeline with ArgoCD (GitOps)<a class="headerlink" href="#ccd-pipeline-with-argocd-gitops" title="Copy this link to reference this section">¶</a></h2>
 <h2 id="monitoring-observability">Monitoring &amp; Observability<a class="headerlink" href="#monitoring-observability" title="Copy this link to reference this section">¶</a></h2>
-<div class="highlight"><table class="highlighttable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>&lt;div style="text-align: center;"&gt;
-[11-Microservices-k8s-App Source Code :simple-github: :fontawesome-solid-arrow-up-right-from-square:](https://github.com/opeyemitechpro/11-Microservices-k8s-App){: target="_blank" .md-button .md-button--primary}
-&lt;/div&gt;
-</code></pre></div></td></tr></tbody></table></div>
-<h2 id="setting-the-script-options"><strong>Setting the script options</strong><a class="headerlink" href="#setting-the-script-options" title="Copy this link to reference this section">¶</a></h2>
-<p>The script allows you to set some options based on your use case. These are the available options you can set:</p>
-<ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" checked><span class="task-list-indicator"></span></label> <mark>project_name</mark> - This is used for labelling purposes only. It is appended to the resource tags</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" checked><span class="task-list-indicator"></span></label> <mark>OpenVPN_instance_type</mark> - This has been set to <code>t2-micro</code> so the setup remains within the AWS free-tier plan.  You can change this to any suitable instance type but a t2-micro will server in most situations</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" checked><span class="task-list-indicator"></span></label> <mark>openvpn_user</mark> - This is the username used to create the <code>*.ovpn</code> profile file on the VPN server. The profile name is displayed when you connect through the OpenVPN client. It is currently set to append the selected AWS region so you can easily know which region you are connected to.</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" checked><span class="task-list-indicator"></span></label> <mark>selected_region</mark> - this option is set at runtime and it is required for the script to run. Here you select the AWS region where you want your server to be hosted.  The region you select will determine where your VPN traffic is routed through. For example, if you select <code>ca-central-1</code>, your VPN traffic will be routed through the AWS Canada Central IP address and as such your public IP address will read "Quebec, Montreal, Canada" </li>
-</ul>
-<figure>
-<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" data-title="Public IP address showing Canada" data-desc-position="bottom"><img alt="Public IP address showing Canada" src="../../assets/images/ovpn-canada-ip.png" title="Public IP address showing Canada"></a></p>
-<figcaption>
-<p>Public IP address showing Canada</p>
-</figcaption>
-</figure>
-<p>The list of acceptable AWS regions are shown <a href="https://opeyemitechpro.github.io/my-projects/terraform_projects/openvpn_access_server/#list-of-accepted-aws-regions">here</a></p>
 <h6 id="_1"><a class="headerlink" href="#_1" title="Copy this link to reference this section">¶</a></h6>
 <h2 id="aws-iam-policies-required-for-eks-cluster-creation">AWS IAM Policies required for EKS Cluster Creation<a class="headerlink" href="#aws-iam-policies-required-for-eks-cluster-creation" title="Copy this link to reference this section">¶</a></h2>
 <ul class="task-list">
@@ -2700,7 +2636,6 @@ It also accepts a parameter (DOCKER_TAG) from the upstream build job (the CI pip
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" checked><span class="task-list-indicator"></span></label> AmazonPCIFullAccess</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" checked><span class="task-list-indicator"></span></label> AWSCloudFormationFullAccess</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" checked><span class="task-list-indicator"></span></label> IAMFullAccess</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" checked><span class="task-list-indicator"></span></label> IAMUserChangePolicy</li>
 </ul>
 <h2 id="create-eks-cluster">Create EKS Cluster<a class="headerlink" href="#create-eks-cluster" title="Copy this link to reference this section">¶</a></h2>
 <p>Create your EKS Cluster</p>
@@ -3138,7 +3073,7 @@ OR use<p></p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="October 3, 2025 13:35:49 UTC"><span class="timeago" datetime="2025-10-03T13:35:49+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="October 3, 2025 13:35:49 UTC">2025-10-03</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="October 4, 2025 00:35:24 UTC"><span class="timeago" datetime="2025-10-04T00:35:24+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="October 4, 2025 00:35:24 UTC">2025-10-04</span>
   </span>
 
     
