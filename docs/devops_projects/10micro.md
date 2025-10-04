@@ -279,8 +279,6 @@ Go to `Manage Jenkins > Credentials > (Global) > Add Credentials` and add the fo
     - Click Add.
 
 
-
-
 ---
 
 
@@ -707,6 +705,17 @@ I have include details on how this pipeline script works in the annotation box b
         It enforces DevSecOps practices while automating the entire CI/CD workflow for the microservices app on Kubernetes.
 
 
+#### Configure GithUb Webhook
+
+To enable Github to autimatically trigger the Jenkins CI pipeline anytime a change is pushed to this GitHub repo, we need to configure a webhook in GitHub. The webhook sends a signal to this Jenkins job whenever the repo is updated. This causes the Jenkins CI pipeline to run without human intervention.
+
+- On the Github repo for this application, go to `Settings > Webhooks > Add webhook`
+- Payload URL: `http://<jenkins_server_ip>:8080/github-webhook/` _(Replace `<jenkins_server_ip>` with the actual IP address of your Jenkins server)_
+- Content type: `application/json`
+- Secret: Leave blank
+- Which events would you like to trigger this webhook? `Just the push event`
+- Active: `Checked`
+- Click `Add webhook`
 
 ---
 
@@ -742,7 +751,7 @@ I have also included details on how this pipeline script works in the annotation
 
     ??? code-file "Jenkins CD Pipeline Script - Click here"
 
-        ``` groovy hl_lines="8-19"
+        ``` groovy hl_lines="7-19"
                 // Jenkins Job Name = "Update-Manifest"
                 // 11-Microservices-k8s-App-ArgoCD Manifest Update Jenkins Pipeline Script
                 
@@ -841,7 +850,7 @@ I have also included details on how this pipeline script works in the annotation
 
         ```
 
-        - [x] Lines `7-18` contain environment variables. Replace the values according to your Jenkins server configuration
+        - [x] Lines `7-19` contain environment variables. Replace the values according to your Jenkins server configuration
     
     ??? info "How This Jenkins CD Pipeline Script Works"
         
@@ -866,41 +875,14 @@ I have also included details on how this pipeline script works in the annotation
 
 ---
         
-        
 
-## Jenkins Plugins to install
+## Kubernetes Cluster Setup 
 
-- sonar
-- SonarQube Scanner
-- docker
-- docker pipeline
-- docker build step
-- cloudbees docker build and publish
-- kubernetes
-- kubernetes CLI
-- Email Notifications
-- Extended Email Notifications
-- Prometheus Metrics
-- 
+For this project, we will be using a basic Kubernetes cluster on Amazon EKS. Our application will be deployed on the EKS cluster using ArgoCD. Also, we will deploy Prometheus and Grafana on the EKS cluster to monitor our application and infrastructure. Will use Helm to deploy ArgoCD and Prometheus stack on our cluster.
 
-## Jenkins Email Configuration
+For simplicity, we will use our Jenkins server as our "base" server from where we will manage our EKS Cluster.
 
-- SMTP Server Name: smtp.gmail.com
-- Username:    user_email_id@gmail.com
-- Password: app_password
-- Use SSL: checked
-- SMTP Port:  465
-
-
-### Kubernetes Cluster Setup 
-
-
-
-
-
-
-
-## CI Pipeline setup with Jenkins
+For this, we create an IAM policy and attach it to our Jenkins server. This would allow our Jenkins server to manage our Amazon EKS cluster. 
 
 
 
@@ -909,39 +891,6 @@ I have also included details on how this pipeline script works in the annotation
 
 
 ## Monitoring & Observability
-
-
-
-
-
-
-
-    <div style="text-align: center;">
-    [11-Microservices-k8s-App Source Code :simple-github: :fontawesome-solid-arrow-up-right-from-square:](https://github.com/opeyemitechpro/11-Microservices-k8s-App){: target="_blank" .md-button .md-button--primary}
-    </div>
-
-
-
-
-
-
-
-## **Setting the script options**
-
-The script allows you to set some options based on your use case. These are the available options you can set:
-
-- [x] ==project_name== - This is used for labelling purposes only. It is appended to the resource tags
-- [x]  ==OpenVPN_instance_type== - This has been set to `t2-micro` so the setup remains within the AWS free-tier plan.  You can change this to any suitable instance type but a t2-micro will server in most situations
-- [x] ==openvpn_user== - This is the username used to create the `*.ovpn` profile file on the VPN server. The profile name is displayed when you connect through the OpenVPN client. It is currently set to append the selected AWS region so you can easily know which region you are connected to.
-- [x] ==selected_region== - this option is set at runtime and it is required for the script to run. Here you select the AWS region where you want your server to be hosted.  The region you select will determine where your VPN traffic is routed through. For example, if you select `ca-central-1`, your VPN traffic will be routed through the AWS Canada Central IP address and as such your public IP address will read "Quebec, Montreal, Canada" 
-
-![Public IP address showing Canada](../../assets/images/ovpn-canada-ip.png "Public IP address showing Canada")
-/// caption
-Public IP address showing Canada
-///
-
-The list of acceptable AWS regions are shown [here](https://opeyemitechpro.github.io/my-projects/terraform_projects/openvpn_access_server/#list-of-accepted-aws-regions)
-
 
 
 
@@ -958,7 +907,7 @@ The list of acceptable AWS regions are shown [here](https://opeyemitechpro.githu
 - [x] AmazonPCIFullAccess
 - [x] AWSCloudFormationFullAccess
 - [x] IAMFullAccess
-- [x] IAMUserChangePolicy
+
 
 
 ## Create EKS Cluster

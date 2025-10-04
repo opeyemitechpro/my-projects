@@ -1599,6 +1599,30 @@ the default type, and thus fallback for unknown type qualifiers, is `note`[^1]:
         euismod nulla. Curabitur feugiat, tortor non consequat finibus, justo
         purus auctor massa, nec semper lorem quam in massa.
 
+:   !!! youtube
+
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et
+        euismod nulla. Curabitur feugiat, tortor non consequat finibus, justo
+        purus auctor massa, nec semper lorem quam in massa.
+
+:   !!! code-block
+
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et
+        euismod nulla. Curabitur feugiat, tortor non consequat finibus, justo
+        purus auctor massa, nec semper lorem quam in massa.
+
+:   !!! code-file
+
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et
+        euismod nulla. Curabitur feugiat, tortor non consequat finibus, justo
+        purus auctor massa, nec semper lorem quam in massa.
+
+:   !!! location-search
+
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et
+        euismod nulla. Curabitur feugiat, tortor non consequat finibus, justo
+        purus auctor massa, nec semper lorem quam in massa.
+
 ## Customization
 
 ### Classic admonitions
