@@ -10,6 +10,8 @@ tags:
   - OpenVPN
 status: new
 pin: true
+show_ai_buttons: true
+
 ---
 
 # **DIY Project - OpenVPN Access Server Setup Using Terraform**

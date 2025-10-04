@@ -54,7 +54,7 @@ By the end of this project, you’ll gain a detailed understanding of how each t
 
 
 
-??? tip "Repos used for this project"
+??? info "Repos used for this project"
     <div style="text-align: center;">
     [11-Microservices-k8s-App Source Code :simple-github: :fontawesome-solid-arrow-up-right-from-square:](https://github.com/opeyemitechpro/11-Microservices-k8s-App){: target="_blank" .md-button}
     </div>
@@ -66,6 +66,7 @@ By the end of this project, you’ll gain a detailed understanding of how each t
 
 ## Architecture Overview
 
+??? image "Architectural Diagram of the Project"
 
 
 ## Project Workflow
