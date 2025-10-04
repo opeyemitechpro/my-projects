@@ -85,15 +85,15 @@
 }
 .md-typeset .admonition.image,
 .md-typeset details.image {
-  border-color: rgb(22, 5, 255);
+  border-color: rgb(255, 118, 5);
 }
 .md-typeset .image > .admonition-title,
 .md-typeset .image > summary {
-  background-color: rgba(22, 5, 255, 0.1);
+  background-color: rgba(255, 118, 5, 0.1);
 }
 .md-typeset .image > .admonition-title::before,
 .md-typeset .image > summary::before {
-  background-color: rgb(22, 5, 255);
+  background-color: rgb(255, 118, 5);
   -webkit-mask-image: var(--md-admonition-icon--image);
           mask-image: var(--md-admonition-icon--image);
 }
