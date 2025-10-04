@@ -1623,7 +1623,7 @@ the default type, and thus fallback for unknown type qualifiers, is `note`[^1]:
         euismod nulla. Curabitur feugiat, tortor non consequat finibus, justo
         purus auctor massa, nec semper lorem quam in massa.
 
-:   !!! tester
+:   !!! image
 
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et
         euismod nulla. Curabitur feugiat, tortor non consequat finibus, justo
@@ -1634,6 +1634,31 @@ the default type, and thus fallback for unknown type qualifiers, is `note`[^1]:
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et
         euismod nulla. Curabitur feugiat, tortor non consequat finibus, justo
         purus auctor massa, nec semper lorem quam in massa.
+  
+!!! image
+
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et
+  euismod nulla. Curabitur feugiat, tortor non consequat finibus, justo
+  purus auctor massa, nec semper lorem quam in massa.
+
+??? image 
+
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et
+  euismod nulla. Curabitur feugiat, tortor non consequat finibus, justo
+  purus auctor massa, nec semper lorem quam in massa.
+
+??? image ""
+
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et
+  euismod nulla. Curabitur feugiat, tortor non consequat finibus, justo
+  purus auctor massa, nec semper lorem quam in massa.
+
+!!! image ""
+
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et
+  euismod nulla. Curabitur feugiat, tortor non consequat finibus, justo
+  purus auctor massa, nec semper lorem quam in massa.
+
 
 ## Customization
 
