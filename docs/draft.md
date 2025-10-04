@@ -1636,28 +1636,26 @@ the default type, and thus fallback for unknown type qualifiers, is `note`[^1]:
         purus auctor massa, nec semper lorem quam in massa.
   
 !!! image
+    
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et
+    euismod nulla. Curabitur feugiat, tortor non consequat finibus, justo
+    purus auctor massa, nec semper lorem quam in massa.
 
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et
-  euismod nulla. Curabitur feugiat, tortor non consequat finibus, justo
-  purus auctor massa, nec semper lorem quam in massa.
-
-??? image 
-
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et
-  euismod nulla. Curabitur feugiat, tortor non consequat finibus, justo
-  purus auctor massa, nec semper lorem quam in massa.
+??? image
+  
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et
+    euismod nulla. Curabitur feugiat, tortor non consequat finibus, justo
+    purus auctor massa, nec semper lorem quam in massa.
 
 ??? image ""
-
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et
-  euismod nulla. Curabitur feugiat, tortor non consequat finibus, justo
-  purus auctor massa, nec semper lorem quam in massa.
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et
+    euismod nulla. Curabitur feugiat, tortor non consequat finibus, justo
+    purus auctor massa, nec semper lorem quam in massa.
 
 !!! image ""
-
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et
-  euismod nulla. Curabitur feugiat, tortor non consequat finibus, justo
-  purus auctor massa, nec semper lorem quam in massa.
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et
+    euismod nulla. Curabitur feugiat, tortor non consequat finibus, justo
+    purus auctor massa, nec semper lorem quam in massa.
 
 
 ## Customization
