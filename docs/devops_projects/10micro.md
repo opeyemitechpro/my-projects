@@ -212,7 +212,7 @@ Install the `Suggested Plugins` and login to the Jenkins Server as Admin
 
 Install suggested Jenkins Plugins and login as admin
 
-Optionally, Setup a new admin password - `jenkins > admin > security`
+Optionally, Setup a new admin password - `Jenkins > Admin > Security`
 
 #### Install Additional Plugins
 
@@ -297,7 +297,7 @@ Go to `Manage Jenkins > Tools` and configure each of the plugin tools as explain
 
 **SonarQube Scanner Installations**
 
-Go to `Manage Jenkins > Tools > SonarQube Scanner installations` and add a new SonarQube Scanner installation as below:
+Go to `Manage Jenkins :material-arrow-right: Tools :material-arrow-right: SonarQube Scanner installations` and add a new SonarQube Scanner installation as below:
 
 - [x] SonarQube Scanner: `sonar-scanner` (Or use a suitable name)
 
@@ -309,13 +309,13 @@ Go to `Manage Jenkins > Tools > SonarQube Scanner installations` and add a new S
 
 Set the SonarQube server URL under `Manage Jenkins > System > SonarQube Installations`
 
-Server Name: `sonar` _(This name will be used later in the job pipeline)_
+- Server Name: `sonar` _(This name will be used later in the job pipeline)_
 
-Server URL: `http://<sonar_server_ip>:9000` _(URL of the SonarQube server on port 9000)_
+- Server URL: `http://<sonar_server_ip>:9000` _(URL of the SonarQube server on port 9000)_
 
-Server authentication token: Select the `sonar token ID` saved earlier in the credentials tab
+- Server authentication token: Select the `sonar token ID` saved earlier in the credentials tab
 
-`Apply` and `Save`
+- `Apply` and `Save`
 
 
 ---
