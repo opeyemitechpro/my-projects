@@ -284,7 +284,7 @@ Go to `Manage Jenkins > Credentials > (Global) > Add Credentials` and add the fo
     - Choose Username and Password as the kind
     - Set ID and description as `email-ID`
     - Enter your email username
-    - Enter the `App password` generated from Gmail as the password _(:red_circle: Do not use your real Gmail password here)_
+    - Enter the `App password` generated from Gmail as the password _(:red_circle: Do not use your real Gmail password here :red_circle:)_
     - Click Add.
 
 
@@ -297,7 +297,7 @@ Go to `Manage Jenkins > Tools` and configure each of the plugin tools as explain
 
 **SonarQube Scanner Installations**
 
-Go to `Manage Jenkins :material-arrow-right: Tools :material-arrow-right: SonarQube Scanner installations` and add a new SonarQube Scanner installation as below:
+Go to `Manage Jenkins` :material-arrow-right: `Tools` :material-arrow-right: `SonarQube Scanner installations` and add a new SonarQube Scanner installation as below:
 
 - [x] SonarQube Scanner: `sonar-scanner` (Or use a suitable name)
 
