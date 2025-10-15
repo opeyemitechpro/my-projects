@@ -64,14 +64,14 @@ By the end of this project, you’ll gain a detailed understanding of how each t
     </div>
 
 
-## Architecture Overview
+## Architectural Overview
 
 ??? image "Architectural Diagram of the Project"
 
 
 ## Project Workflow
 
-- [x] Infrstructure Setup
+- [x] Infrastructure Setup
     - Setup Jenkins Using Terraform
     - Create Kubernetes Cluster on EKS
 - [x] Configure Jenkins
@@ -116,11 +116,15 @@ This token will be used to authenticate Jenkins to access the SonarQube server.
 
 ---
 
-### Jenkins Server Setup
+### :simple-jenkins: Jenkins Server Setup
 
-For the purpose of this project, we will be creating our Jenkins Server on an ec2 instance using Terraform as our IaC tool. The Jenkins server will also serve as out base server from where we will manage other infrastructures like  the EKS cluster.
+For the purpose of this project, we will be creating our Jenkins Server on an ec2 instance using Terraform as our IaC tool. The Jenkins server will also serve as our base server from where we will manage other infrastructures like  the EKS cluster.
 
 I have included the link to my Github repo containing the Jenkins server Terraform script below.  
+
+<div style="text-align: center;">
+    [Jenkins server Terraform script  :simple-github: :fontawesome-solid-arrow-up-right-from-square:](https://github.com/opeyemitechpro/11-Microservices-k8s-App){: target="_blank" .md-button}
+    </div>
 
 ??? tip "Pre-requisites for the terraform script"
 
@@ -182,6 +186,9 @@ Also, open the terraform working folder from a terminal and use the `SSH connect
 ssh -i `key_pair_filename` ubuntu@`<server_public_ip>`
 ```
 
+!!! tip "Tip"
+    Replace the `key_pair_filename` and the `server_public_ip` as appropriate
+
 #### Login to Jenkins Server
 
 Go back to the Jenkins server terminal to copy the initial Admin password
@@ -191,12 +198,13 @@ From the jenkins server terminal, enter the command and copy the password displa
 sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 ```
 
-??? tip "Jenkins initial Admin Password - alternative method"
+??? tip "Jenkins initial Admin Password - alternative method
+
     You can also find the initial Jenkins Admin Password by checking the running status of jenkins using the command below:
-    ``` sh
+
+    ```
     sudo systemctl status jenkins
     ```
-
 
 From the Jenkins server initial setup UI page in your browser, enter the jenkins initial admin password you copied to proceed with jenkins server setup.
 
@@ -388,6 +396,22 @@ Click `Save` to close the configurations page
 
 ---
 
+### :simple-sonarqubeserver: Configure SonarQube Server
+
+From your browser, login to your **SonarQube server** using the  server ip and port `9000` 
+
+Server URL: `<sonar_server_ip>:9000`
+
+!!! tip "Tip"
+    
+    Since our SonarQube server is running as a docker container on port `9000` on the same machine as the Jenkins server, use `<jenkins_server_ip>:9000` as the SonarQube Server URL.
+
+Create a User token by going to `Administration > Security > Users` and save it somewhere for later
+
+This token will be used to authenticate Jenkins to access the SonarQube server.
+
+
+---
 
 ### :simple-jenkins: **Setting Up the Jenkins Pipelines**
 
@@ -706,9 +730,9 @@ I have include details on how this pipeline script works in the annotation box b
         It enforces DevSecOps practices while automating the entire CI/CD workflow for the microservices app on Kubernetes.
 
 
-#### Configure GithUb Webhook
+#### Configure GitHub Webhook
 
-To enable Github to autimatically trigger the Jenkins CI pipeline anytime a change is pushed to this GitHub repo, we need to configure a webhook in GitHub. The webhook sends a signal to this Jenkins job whenever the repo is updated. This causes the Jenkins CI pipeline to run without human intervention.
+To enable Github to automatically trigger the Jenkins CI pipeline anytime a change is pushed to this GitHub repo, we need to configure a webhook in GitHub. The webhook sends a signal to this Jenkins job whenever the repo is updated. This causes the Jenkins CI pipeline to run without human intervention.
 
 - On the Github repo for this application, go to `Settings > Webhooks > Add webhook`
 - Payload URL: `http://<jenkins_server_ip>:8080/github-webhook/` _(Replace `<jenkins_server_ip>` with the actual IP address of your Jenkins server)_
