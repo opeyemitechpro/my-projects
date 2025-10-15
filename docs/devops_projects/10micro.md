@@ -198,7 +198,7 @@ From the jenkins server terminal, enter the command and copy the password displa
 sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 ```
 
-??? tip "Jenkins initial Admin Password - alternative method
+??? tip "Jenkins initial Admin Password - alternative method"
 
     You can also find the initial Jenkins Admin Password by checking the running status of jenkins using the command below:
 
