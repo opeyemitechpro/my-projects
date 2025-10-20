@@ -103,22 +103,6 @@ By the end of this project, you’ll gain a detailed understanding of how each t
 ## Infrastructure Setup
 
 ---
-### :simple-sonarqubeserver: Configure SonarQube Server
-
-From your browser, login to your **SonarQube server** using the  server ip and port `9000` 
-
-Server URL: `<sonar_server_ip>:9000`
-
-!!! tip "Tip"
-    
-    Since our SonarQube server is running as a docker container on port `9000` on the same machine as the Jenkins server, use `<jenkins_server_ip>:9000` as the SonarQube Server URL.
-
-Create a User token by going to `Administration > Security > Users` and save it somewhere for later
-
-This token will be used to authenticate Jenkins to access the SonarQube server.
-
-
----
 
 ### :simple-jenkins: Jenkins Server Setup
 
@@ -143,7 +127,7 @@ I have included the link to my Github repo containing the Jenkins server Terrafo
 
     - [x] Provision an ec2 instance of type `t2.large` (You can easily set a different instance type in the `terraform.tfvars` file)
     - [x] Provision the ec2 instance in the default VPC
-    - [x] Configure the security group to expose (1) all the required ports for this project. The required ports are: 22, 25, 80, 443, 465, 8080, 9000 and 9100. (The ports and their descriptions are listed in the `terraform.tfvars` file) 
+    - [x] Configure the security group to expose all the required ports for this project. The required ports are: `22, 25, 80, 443, 465, 8080, 9000 and 9100`. (The ports and their descriptions are listed in the `terraform.tfvars` file) 
     - [x] Create an AWS Key-Pair file and download the file unto your terraform working directory on your local machine _(the folder from where you initiated the terraform apply command)_
     - [x] Using the included Bash script _(in the user_data field)_, it will bootstrap and install the following:
 
@@ -181,7 +165,7 @@ Ater the terraform script executes, it displays the `Public IP Address` and the 
 
 ??? image "Image - Output of Terraform apply command"
     <figure markdown="1">
-    [![DevSecOps Project - End-to-end Deployment and Monitoring of 11-Microservice e-Commerce App on AWS EKS using Jenkins, ArgoCD, Terraform, Grafana & Prometheus](../../assets/images/Video-Coming-Soon-PlaceHolder.png "DevSecOps Project - End-to-end Deployment and Monitoring of 11-Microservice e-Commerce App on AWS EKS using Jenkins, ArgoCD, Terraform, Grafana & Prometheus")](https://youtube.com/@opeyemitechpro){: target="_blank" }
+    [![Output of terraform apply command](../../assets/images/Video-Coming-Soon-PlaceHolder.png "DevSecOps Project - End-to-end Deployment and Monitoring of 11-Microservice e-Commerce App on AWS EKS using Jenkins, ArgoCD, Terraform, Grafana & Prometheus")](https://youtube.com/@opeyemitechpro){: target="_blank" }
     <!-- <figcaption>Create a Free Self-Hosted VPN Server on AWS using Terraform and OpenVPN</figcaption>  -->
     </figure>
     /// caption
@@ -246,6 +230,7 @@ Go to `Manage Jenkins > Credentials > (Global) > Add Credentials` and add the fo
 - [x] Add SonarQube Credentials
     - Choose Secret Text as the kind
     - Set the ID and description as `sonar-token`
+    - Copy and paste the token you copied from the SonarQube server [_(refer to SonarQube server section)_](:simple-sonarqubeserver: Configure SonarQube Server)
     - Click Add
 
 - [x] Add Docker Hub Credentials:
@@ -274,7 +259,27 @@ Go to `Manage Jenkins > Credentials > (Global) > Add Credentials` and add the fo
 
 #### Configure Plugins
 
-Go to `Manage Jenkins > Tools` and configure each of the plugin tools as explained below: 
+### :simple-sonarqubeserver: Configure SonarQube Server
+
+Next, let us setup our SonarQube server.  For this project, our SonarQube server is installed as a docker container running on the same server as our Jenkins server.
+
+From your browser, login to your **SonarQube server** using the  server ip and port `9000` 
+
+Server URL: `<sonar_server_ip>:9000`
+
+!!! tip "Tip"
+    
+    Since our SonarQube server is running as a docker container on port `9000` on the same machine as the Jenkins server, use `<jenkins_server_ip>:9000` as the SonarQube Server URL.
+
+Create a User token by going to `Administration > Security > Users` and save it somewhere for later
+
+This token will be used to authenticate Jenkins to access the SonarQube server.
+
+??? image "Image - Generate SonarQube token on the SonarQube server"
+
+---
+
+Then, on your Jenkins server, go to `Manage Jenkins > Tools` and configure each of the plugin tools as explained below: 
 
 **SonarQube Scanner Installations**
 
@@ -288,7 +293,7 @@ Go to `Manage Jenkins` :material-arrow-right: `Tools` :material-arrow-right: `So
 - [x] Leave the default SonarQube version as it is
 
 
-Set the SonarQube server URL under `Manage Jenkins` :material-arrow-right: `System` :material-arrow-right: `SonarQube Installations`
+Set the SonarQube server URL under `Manage Jenkins > System > SonarQube Installations`
 
 - Server Name: `sonar` _(This name will be used later in the job pipeline)_
 
