@@ -669,7 +669,7 @@ I have include details on how this pipeline script works in the annotation box b
 
         - [x] Lines `9-24` contain environment variables. Replace the values according to your Jenkins server configuration
     
-    ??? info "How This Jenkins Pipeline Script Works"
+    ??? note "How This Jenkins Pipeline Script Works"
 
         Below is a breif description of how this jenkins CI pipeline script works
 
@@ -740,7 +740,7 @@ Below is the Jenkins pipeline script for the `Continous Deployment (CD)`.
 
 I have also included details on how this pipeline script works in the annotation box below.
 
-??? note "Jenkins CD Pipeline script for the `Update-Manifest` Jenkins job"
+??? info "Jenkins CD Pipeline script for the `Update-Manifest` Jenkins job"
 
     ??? code-file "Jenkins CD Pipeline Script - Click here"
 
@@ -845,7 +845,7 @@ I have also included details on how this pipeline script works in the annotation
 
         - [x] Lines `7-19` contain environment variables. Replace the values according to your Jenkins server configuration
     
-    ??? info "How This Jenkins CD Pipeline Script Works"
+    ??? note "How This Jenkins CD Pipeline Script Works"
         
         This Jenkins pipeline is responsible for automatically updating the Kubernetes ArgoCD manifest whenever new Docker images are built and pushed by the main CI pipeline. Instead of manually editing YAML files to change image tags, this job updates the manifest with the latest Docker tag and pushes the change back to GitHub so ArgoCD can sync and deploy it.
 
@@ -864,22 +864,24 @@ I have also included details on how this pipeline script works in the annotation
 
         - Post-Build Notification - Once finished, Jenkins sends an email notification with details of the build (status, job URL, build number, and the new Docker tag). This ensures visibility of every manifest update.
 
-        ✅ In summary: This pipeline takes the Docker tag produced by the CI job, updates all microservice image tags in the ArgoCD manifest, commits the changes to GitHub, and lets ArgoCD handle the deployment. It removes the need for manual edits, keeps deployments consistent, and fully automates the CD process for your Kubernetes microservices.
+        ✅ In summary: This pipeline takes the Docker tag produced by the CI job, updates all microservice image tags in the ArgoCD manifest, commits the changes to GitHub, and lets ArgoCD handle the deployment. It removes the need for manual edits, keeps deployments consistent, and fully automates the CD process for Kubernetes microservices.
 
 ---
         
 
 ## Kubernetes Cluster Setup 
 
-For this project, we will be using a basic Kubernetes cluster on Amazon EKS. Our application will be deployed on the EKS cluster using ArgoCD. Also, we will deploy Prometheus and Grafana on the EKS cluster to monitor our application and infrastructure. Will use Helm to deploy ArgoCD and Prometheus stack on our cluster.
+For this project, we will use a basic Kubernetes cluster hosted on Amazon EKS. Our application will be deployed to the EKS cluster using ArgoCD. Additionally, we will deploy Prometheus and Grafana on the same cluster to monitor both our application and underlying infrastructure. We will use Helm to install ArgoCD and the Prometheus stack on the cluster.
 
-For simplicity, we will use our Jenkins server as our "base" server from where we will manage our EKS Cluster.
+For simplicity, we will use our Jenkins server as the base server to manage the EKS cluster.
 
-For this, we create an IAM policy and attach it to our Jenkins server. This would allow our Jenkins server to manage our Amazon EKS cluster. 
+To enable this, we will create an IAM policy and attach it to the Jenkins instance, granting it the necessary permissions to manage our Amazon EKS cluster. 
+
+See [_(AWS Documentation - How to create IAM Policies)_](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_create-console.html)
 
 
 
-## CCD Pipeline with ArgoCD (GitOps)
+## CD Pipeline with ArgoCD (GitOps)
 
 
 
