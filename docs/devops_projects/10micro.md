@@ -124,6 +124,7 @@ I have included the link to my Github repo containing the Jenkins server Terrafo
 
 <div style="text-align: center;">
     [Jenkins server Terraform script  :simple-github: :fontawesome-solid-arrow-up-right-from-square:](https://github.com/opeyemitechpro/11-Microservices-k8s-App){: target="_blank" .md-button}
+    [11-Microservices-k8s-App-ArgoCD Manifest Source Code :simple-github: :fontawesome-solid-arrow-up-right-from-square:](https://github.com/opeyemitechpro/11-Microservices-k8s-App-ArgoCD){: target="_blank" .md-button}
     </div>
 
 ??? tip "Pre-requisites for the terraform script"
@@ -307,7 +308,7 @@ Go to `Manage Jenkins` :material-arrow-right: `Tools` :material-arrow-right: `So
 - [x] Leave the default SonarQube version as it is
 
 
-Set the SonarQube server URL under `Manage Jenkins > System > SonarQube Installations`
+Set the SonarQube server URL under `Manage Jenkins` :material-arrow-right: `System` :material-arrow-right: `SonarQube Installations`
 
 - Server Name: `sonar` _(This name will be used later in the job pipeline)_
 
