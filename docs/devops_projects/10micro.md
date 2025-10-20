@@ -230,7 +230,7 @@ Go to `Manage Jenkins > Credentials > (Global) > Add Credentials` and add the fo
 - [x] Add SonarQube Credentials
     - Choose Secret Text as the kind
     - Set the ID and description as `sonar-token`
-    - Copy and paste the token you copied from the SonarQube server [_(refer to SonarQube server section)_](:simple-sonarqubeserver: Configure SonarQube Server)
+    - Copy and paste the token you copied from the SonarQube server [_(refer to the SonarQube server section)_](:simple-sonarqubeserver: Configure SonarQube Server)
     - Click Add
 
 - [x] Add Docker Hub Credentials:
@@ -259,7 +259,7 @@ Go to `Manage Jenkins > Credentials > (Global) > Add Credentials` and add the fo
 
 #### Configure Plugins
 
-### :simple-sonarqubeserver: Configure SonarQube Server
+### :simple-sonarqubeserver: Configure SonarQube Server-1
 
 Next, let us setup our SonarQube server.  For this project, our SonarQube server is installed as a docker container running on the same server as our Jenkins server.
 
