@@ -877,7 +877,7 @@ For simplicity, we will use our Jenkins server as the base server to manage the 
 
 To enable this, we will create an IAM policy and attach it to the Jenkins instance, granting it the necessary permissions to manage our Amazon EKS cluster. 
 
-See [_(AWS Documentation - How to create IAM Policies)_](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_create-console.html)
+See [_(AWS Documentation - How to create IAM Policies)_](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_create-console.html){: target="_blank" }
 
 
 
