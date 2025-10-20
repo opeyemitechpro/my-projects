@@ -122,14 +122,8 @@ For the purpose of this project, we will be creating our Jenkins Server on an ec
 
 I have included the link to my Github repo containing the Jenkins server Terraform script below.  
 
-!!! tip
-    <div style="text-align: center;">
-    [Jenkins server Terraform script :simple-github: :fontawesome-solid-arrow-up-right-from-square:](https://github.com/opeyemitechpro/11-Microservices-k8s-App){: target="_blank" .md-button}
-    </div>
-
-    <div style="text-align: center;">
-    [11-Microservices-k8s-App Source Code :simple-github: :fontawesome-solid-arrow-up-right-from-square:](https://github.com/opeyemitechpro/11-Microservices-k8s-App){: target="_blank" .md-button}
-    </div>
+[Jenkins server Terraform script :simple-github: :fontawesome-solid-arrow-up-right-from-square:](https://github.com/opeyemitechpro/11-Microservices-k8s-App){: target="_blank" .md-button}
+ 
 
 ??? tip "Pre-requisites for the terraform script"
 
