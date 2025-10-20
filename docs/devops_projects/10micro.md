@@ -879,21 +879,9 @@ To enable this, we will create an IAM policy and attach it to the Jenkins instan
 
 See [_(AWS Documentation - How to create IAM Policies)_](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_create-console.html){: target="_blank" }
 
+#### AWS IAM Policies required for EKS Cluster Creation
 
-
-## CD Pipeline with ArgoCD (GitOps)
-
-
-
-## Monitoring & Observability
-
-
-
-
-
-######################################################
-
-## AWS IAM Policies required for EKS Cluster Creation
+The following AWS IAM policies are required to create and manage an EKS cluster. Ensure that the IAM role or user associated with your Jenkins server has these policies attached:
 
 - [x] AmazonEC2FullAccess
 - [x] AmazonEKS_CNI_Policy
@@ -904,14 +892,16 @@ See [_(AWS Documentation - How to create IAM Policies)_](https://docs.aws.amazon
 - [x] IAMFullAccess
 
 
+######################################################
+---
 
-## Create EKS Cluster
+### Create EKS Cluster
 
 Create your EKS Cluster
 
 !!! tip inline end "Tip"
 
-    - Replace the clsuter name with your desired cluster name
+    - Replace the cluster name and region in the command with your desired values
 
 ``` sh hl_lines="2"
 eksctl create cluster \
@@ -919,13 +909,13 @@ eksctl create cluster \
   --region us-east-2  
 ```
 
-!!! tip
-    Replace `opeyemi-k8s-cluster` with a suitable name for your own cluster.
+??? image "Image - EKS Cluster Creation"
+---
 
 
 ### :simple-helm: Install Helm
 
-Check if Helm is installed on your local machine
+Check if Helm is installed on your base server
 
 ``` sh
 helm version
@@ -940,7 +930,7 @@ curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
 ---
 
 
-## :simple-argo: ArgoCD Installation and Setup on EKS using Helm
+### :simple-argo: ArgoCD Installation
 
 Add ArgoCD Helm repo
 
@@ -960,7 +950,7 @@ helm install opeyemi-argo-cd argo/argo-cd --namespace argocd --create-namespace
 
 
 
-???+ tip "Optional Steps to confirm the `argocd` installation"
+??? tip "Optional Steps to confirm the `argocd` installation"
     View helm releases in all namespaces (including the `argocd` namespace)
     
     ``` sh
@@ -996,7 +986,7 @@ kubectl patch svc opeyemi-argo-cd-argocd-server -n argocd -p '{"spec": {"type": 
 ```
 
 !!! tip "Tip"
-    You will need to wait a short while for LoadBalancer URL to become ready before you can access it inthe browser.
+    You will need to wait a short while for LoadBalancer URL to become ready before you can access it in the browser.
 
 You can retrieve the LoadBalancer URL with:
 
@@ -1042,7 +1032,7 @@ kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.pas
 
 !!! tip 
 
-    * [How to install ArgoCD using Helm Charts :fontawesome-solid-arrow-up-right-from-square:](https://artifacthub.io/packages/helm/argo/argo-cd){: target="_blank" }
+    * How to [install ArgoCD using Helm Charts :fontawesome-solid-arrow-up-right-from-square:](https://artifacthub.io/packages/helm/argo/argo-cd){: target="_blank" }
     * You can also follow the ArgoCD installation guide on the [ArgoCD Documentation Website :fontawesome-solid-arrow-up-right-from-square:](https://argo-cd.readthedocs.io/en/stable/getting_started/#1-install-argo-cd){: target="_blank" }
     * You can access the helm release notes for the argocd by running: 
     ``` sh
