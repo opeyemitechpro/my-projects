@@ -230,7 +230,7 @@ Go to `Manage Jenkins > Credentials > (Global) > Add Credentials` and add the fo
 - [x] Add SonarQube Credentials
     - Choose Secret Text as the kind
     - Set the ID and description as `sonar-token`
-    - Copy and paste the token you copied from the SonarQube server [_(refer to the SonarQube server section)_](#configure-sonarqube-server)
+    - Copy and paste the token you copied from the SonarQube server [_(refer to the SonarQube server configuration section)_](#configure-sonarqube-server)
     - Click Add
 
 - [x] Add Docker Hub Credentials:
@@ -310,7 +310,7 @@ Set the SonarQube server URL under `Manage Jenkins > System > SonarQube Installa
 
 **Docker**
 
-Go to `Manage Jenkins > Tools > Docker installations` and add a new docker installation
+On your Jenkins server, go to `Manage Jenkins > Tools > Docker installations` and add a new docker installation
 
 Docker Name: `docker`
 
@@ -397,9 +397,13 @@ For this project we will set up 2 separate pipelines.
 
 - Select `Pipeline` and click `OK`
 
+??? image "Image - Create a New Jenkins Pipeline Job"
+
+
+
 Go to `the_job_name > Configuration > Pipeline` and select `Pipeline script`
 
-Copy and paste the CI pipeline script below into the script template box.
+Copy and paste the CI pipeline script in the annotation box below into the Jenkins pipeline script template box.
 
 Click `Save`
 
@@ -408,10 +412,6 @@ Below is the Jenkins pipeline script for the `Continous Integration (CI)`.
 I have include details on how this pipeline script works in the annotation box below.
 
 ??? info "Jenkins Continuous Integration (CI) Pipeline script for the Jenkins CI job"
-
-    <div style="text-align: center;">
-    [11-Microservices-k8s-App Source Code :simple-github: :fontawesome-solid-arrow-up-right-from-square:](https://github.com/opeyemitechpro/11-Microservices-k8s-App){: target="_blank" .md-button}
-    </div>    
     
     The Jenkins CI pipeline is below:
 
@@ -697,8 +697,9 @@ I have include details on how this pipeline script works in the annotation box b
 
         * Post-Build Notifications - Regardless of success or failure, Jenkins sends an email notification with build details, logs, and scan reports (Trivy, Gitleaks, dependency-check). This gives visibility into what happened during the pipeline run.
 
-        ✅ In summary: This pipeline performs code checkout → security scans → code quality analysis → Docker builds → image push → Kubernetes manifest update → notifications.
-        It enforces DevSecOps practices while automating the entire CI/CD workflow for the microservices app on Kubernetes.
+        ✅ In summary: This pipeline performs code checkout → security scans → code quality analysis → Docker builds → image push → Kubernetes manifest update → email notifications.
+
+        It enforces DevSecOps best practices while automating the entire CI/CD workflow for the microservices app on Kubernetes.
 
 
 #### Configure GitHub Webhook
@@ -712,6 +713,8 @@ To enable Github to automatically trigger the Jenkins CI pipeline anytime a chan
 - Which events would you like to trigger this webhook? `Just the push event`
 - Active: `Checked`
 - Click `Add webhook`
+
+??? image "Image - Configure GitHub WebHook"
 
 ---
 
@@ -737,13 +740,7 @@ Below is the Jenkins pipeline script for the `Continous Deployment (CD)`.
 
 I have also included details on how this pipeline script works in the annotation box below.
 
-??? info "Jenkins CD Pipeline script for the `Update-Manifest` Jenkins job"
-
-    <div style="text-align: center;">
-    [11-Microservices-k8s-App-ArgoCD Manifest Source Code :simple-github: :fontawesome-solid-arrow-up-right-from-square:](https://github.com/opeyemitechpro/11-Microservices-k8s-App-ArgoCD){: target="_blank" .md-button}
-    </div>
-
-
+??? note "Jenkins CD Pipeline script for the `Update-Manifest` Jenkins job"
 
     ??? code-file "Jenkins CD Pipeline Script - Click here"
 
