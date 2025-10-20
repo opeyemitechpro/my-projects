@@ -122,11 +122,12 @@ For the purpose of this project, we will be creating our Jenkins Server on an ec
 
 I have included the link to my Github repo containing the Jenkins server Terraform script below.  
 
-    <div style="text-align: center;">
+<div style="text-align: center;">
     [Jenkins server Terraform script  :simple-github: :fontawesome-solid-arrow-up-right-from-square:](https://github.com/opeyemitechpro/11-Microservices-k8s-App){: target="_blank" .md-button}
+    
 
     [11-Microservices-k8s-App-ArgoCD Manifest Source Code :simple-github: :fontawesome-solid-arrow-up-right-from-square:](https://github.com/opeyemitechpro/11-Microservices-k8s-App-ArgoCD){: target="_blank" .md-button}
-    </div>
+</div>
 
 ??? tip "Pre-requisites for the terraform script"
 
@@ -142,7 +143,7 @@ I have included the link to my Github repo containing the Jenkins server Terrafo
 
     - [x] Provision an ec2 instance of type `t2.large` (You can easily set a different instance type in the `terraform.tfvars` file)
     - [x] Provision the ec2 instance in the default VPC
-    - [x] Configure the security group to expose (1) all the required ports for this project. The required ports are: 22, 25, 80, 443, 465, 8080, 9000 and 9100. (The ports and their descriptions are listed in the `terraform.tfvars` file) { .annotate }
+    - [x] Configure the security group to expose (1) all the required ports for this project. The required ports are: 22, 25, 80, 443, 465, 8080, 9000 and 9100. (The ports and their descriptions are listed in the `terraform.tfvars` file) 
     - [x] Create an AWS Key-Pair file and download the file unto your terraform working directory on your local machine _(the folder from where you initiated the terraform apply command)_
     - [x] Using the included Bash script _(in the user_data field)_, it will bootstrap and install the following:
 
