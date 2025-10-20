@@ -179,7 +179,7 @@ Ater the terraform script executes, it displays the `Public IP Address` and the 
 
 `ssh -i <Key-pair_filename> ubuntu@<Jenkins_Master_public_ip>`
 
-??? image "Output of Terraform apply command"
+??? image "Image - Output of Terraform apply command"
     <figure markdown="1">
     [![DevSecOps Project - End-to-end Deployment and Monitoring of 11-Microservice e-Commerce App on AWS EKS using Jenkins, ArgoCD, Terraform, Grafana & Prometheus](../../assets/images/Video-Coming-Soon-PlaceHolder.png "DevSecOps Project - End-to-end Deployment and Monitoring of 11-Microservice e-Commerce App on AWS EKS using Jenkins, ArgoCD, Terraform, Grafana & Prometheus")](https://youtube.com/@opeyemitechpro){: target="_blank" }
     <!-- <figcaption>Create a Free Self-Hosted VPN Server on AWS using Terraform and OpenVPN</figcaption>  -->
@@ -211,19 +211,14 @@ From the jenkins server terminal, enter the command and copy the password displa
 sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 ```
 
-??? tip "Jenkins initial Admin Password - alternative method"
-
-    You can also find the initial Jenkins Admin Password by checking the running status of jenkins using the command below:
-
-    ```
-    sudo systemctl status jenkins
-    ```
-
 From the Jenkins server initial setup UI page in your browser, enter the jenkins initial admin password you copied to proceed with jenkins server setup.
 
 Install the `Suggested Plugins` and login to the Jenkins Server as Admin
 
 Install suggested Jenkins Plugins and login as admin
+
+??? image "Image - Install Sugested Jenkins Plugins"
+
 
 Optionally, Setup a new admin password - `Jenkins > Admin > Security`
 
@@ -239,35 +234,7 @@ Go to `Manage Jenkins > Plugins > Available Plugins`, search for and install the
 - Email Extension Template _(Used to send job email notifications)_
 - Prometheus Metrics _(Exposes Jenkins internal metrics so we can scrape and display them through Grafana dashboards)_
 
----
-
-??? code-file "==Delete Later=="
-    **Install Gitleaks**
-
-    ``` sh
-    # Download and install the latest release of Gitleaks
-    curl -sSfL https://raw.githubusercontent.com/gitleaks/gitleaks/master/scripts/install.sh | sudo sh -s -- -b /usr/local/bin
-    ```
-
-    ``` sh
-    curl -s https://api.github.com/repos/gitleaks/gitleaks/releases/latest \
-    | grep "browser_download_url.*linux.*amd64" \
-    | cut -d '"' -f 4 \
-    | wget -qi -
-
-    tar -xvf gitleaks_*.tar.gz
-    sudo mv gitleaks /usr/local/bin/
-    gitleaks version
-    ```
-
-
-    ``` sh
-    GITLEAKS_VERSION=$(curl -s "https://api.github.com/repos/gitleaks/gitleaks/releases/latest" | grep -Po '"tag_name": "v\K[0-9.]+')
-    wget -qO gitleaks.tar.gz https://github.com/gitleaks/gitleaks/releases/latest/download/gitleaks_${GITLEAKS_VERSION}_linux_x64.tar.gz
-    sudo tar xf gitleaks.tar.gz -C /usr/local/bin gitleaks
-    # gitleaks version
-    rm -rf gitleaks.tar.gz
-    ```
+??? image "Image - Install additional Jenkins plugins"
 
 ---
 
@@ -300,6 +267,7 @@ Go to `Manage Jenkins > Credentials > (Global) > Add Credentials` and add the fo
     - Enter the `App password` generated from Gmail as the password _(:red_circle: Do not use your real Gmail password here :red_circle:)_
     - Click Add.
 
+??? image "Image - Add Credentials"
 
 ---
 
@@ -329,6 +297,8 @@ Set the SonarQube server URL under `Manage Jenkins` :material-arrow-right: `Syst
 - Server authentication token: Select the `sonar token ID` saved earlier in the credentials tab
 
 - `Apply` and `Save`
+
+??? image "Image - SonarQube Scanner Tool Installation"
 
 
 ---
