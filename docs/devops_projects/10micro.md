@@ -63,6 +63,10 @@ By the end of this project, you’ll gain a detailed understanding of how each t
     [11-Microservices-k8s-App-ArgoCD Manifest Source Code :simple-github: :fontawesome-solid-arrow-up-right-from-square:](https://github.com/opeyemitechpro/11-Microservices-k8s-App-ArgoCD){: target="_blank" .md-button}
     </div>
 
+    <div style="text-align: center;">
+    [Deploy a Jenkins Server on AWS using Terraform :simple-github: :fontawesome-solid-arrow-up-right-from-square:](https://github.com/opeyemitechpro/Terraform-Jenkins-CICD){: target="_blank" .md-button}
+    </div>
+
 
 ## Architectural Overview
 
@@ -122,7 +126,7 @@ For the purpose of this project, we will be creating our Jenkins Server on an ec
 
 I have included the link to my Github repo containing the Jenkins server Terraform script below.  
 
-[Jenkins server Terraform script :simple-github: :fontawesome-solid-arrow-up-right-from-square:](https://github.com/opeyemitechpro/11-Microservices-k8s-App){: target="_blank" .md-button}
+[Deploy a Jenkins Server on AWS using Terraform :simple-github: :fontawesome-solid-arrow-up-right-from-square:](https://github.com/opeyemitechpro/Terraform-Jenkins-CICD){: target="_blank" .md-button}
  
 
 ??? tip "Pre-requisites for the terraform script"
@@ -174,6 +178,16 @@ terraform apply
 Ater the terraform script executes, it displays the `Public IP Address` and the `SSH Connection string` of the Jenkins Server in the format below:
 
 `ssh -i <Key-pair_filename> ubuntu@<Jenkins_Master_public_ip>`
+
+??? image "Output of Terraform apply command"
+    <figure markdown="1">
+    [![DevSecOps Project - End-to-end Deployment and Monitoring of 11-Microservice e-Commerce App on AWS EKS using Jenkins, ArgoCD, Terraform, Grafana & Prometheus](../../assets/images/Video-Coming-Soon-PlaceHolder.png "DevSecOps Project - End-to-end Deployment and Monitoring of 11-Microservice e-Commerce App on AWS EKS using Jenkins, ArgoCD, Terraform, Grafana & Prometheus")](https://youtube.com/@opeyemitechpro){: target="_blank" }
+    <!-- <figcaption>Create a Free Self-Hosted VPN Server on AWS using Terraform and OpenVPN</figcaption>  -->
+    </figure>
+    /// caption
+    DevSecOps Project - End-to-end Deployment and Monitoring of 11-Microservice e-Commerce App to AWS EKS with Jenkins, ArgoCD, Terraform, Grafana & Prometheus
+    ///
+
 
 Use the `Public IP address` to access the Jenkins server initial setup UI from your browser on port `8080`.
 
