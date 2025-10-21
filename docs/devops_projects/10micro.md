@@ -56,11 +56,11 @@ By the end of this project, you’ll gain a detailed understanding of how each t
 
 ??? info "Repos used for this project"
     <div style="text-align: center;">
-    [11-Microservices-k8s-App Source Code :simple-github: :fontawesome-solid-arrow-up-right-from-square:](https://github.com/opeyemitechpro/11-Microservices-k8s-App){: target="_blank" .md-button}
+    [11 Microservices k8s App Source Code :simple-github: :fontawesome-solid-arrow-up-right-from-square:](https://github.com/opeyemitechpro/11-Microservices-k8s-App){: target="_blank" .md-button}
     </div>
 
     <div style="text-align: center;">
-    [11-Microservices-k8s-App-ArgoCD Manifest Source Code :simple-github: :fontawesome-solid-arrow-up-right-from-square:](https://github.com/opeyemitechpro/11-Microservices-k8s-App-ArgoCD){: target="_blank" .md-button}
+    [11 Microservices k8s App ArgoCD Manifest :simple-github: :fontawesome-solid-arrow-up-right-from-square:](https://github.com/opeyemitechpro/11-Microservices-k8s-App-ArgoCD){: target="_blank" .md-button}
     </div>
 
     <div style="text-align: center;">
@@ -875,7 +875,7 @@ For this project, we will use a basic Kubernetes cluster hosted on Amazon EKS. O
 
 For simplicity, we will use our Jenkins server as the base server to manage the EKS cluster.
 
-To enable this, we will create an IAM policy and attach it to the Jenkins instance, granting it the necessary permissions to manage our Amazon EKS cluster. 
+To enable this, we will create IAM policies and attach it to the Jenkins instance, granting it the necessary permissions to manage our Amazon EKS cluster. 
 
 See [_(AWS Documentation - How to create IAM Policies)_](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_create-console.html){: target="_blank" }
 
@@ -891,8 +891,9 @@ The following AWS IAM policies are required to create and manage an EKS cluster.
 - [x] AWSCloudFormationFullAccess
 - [x] IAMFullAccess
 
+See [_(AWS Docmentation - Minimum IAM Policies for EKS)_](https://docs.aws.amazon.com/eks/latest/eksctl/minimum-iam-policies.html){: target="_blank" }
 
-######################################################
+
 ---
 
 ### Create EKS Cluster
@@ -909,7 +910,11 @@ eksctl create cluster \
   --region us-east-2  
 ```
 
+    - [x] This command will create an EKS cluster named `opeyemi-k8s-cluster` in the `us-east-2` region. You can change these values as needed.
+    - [x] The command will also create a default node group with t3.medium instances. You can customize the node group settings by adding additional flags to the command. See [_(eksctl documentation - create cluster)_](https://eksctl.io/usage/creating-and-managing-clusters/#creating-a-cluster){: target="_blank" }
+
 ??? image "Image - EKS Cluster Creation"
+
 ---
 
 
@@ -1039,7 +1044,25 @@ kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.pas
     helm get notes opeyemi-argo-cd -n argocd
     ```
 
+??? image "Image - ArgoCD UI"
+
+### Deploying the Application to Kubernetes using ArgoCD
+
+- Open your browser and navigate to the ArgoCD LoadBalancer URL you exposed earlier
+- Login with username `admin` and the initial password you retrieved earlier
+- Once logged in, click on `New App` to create a new application deployment
+- Fill in the application details as follows:
+
+    - Application Name: `11-microservices-app`
+    - Project: `default`
+    - Sync Policy: `Automatic`
+    - Repository URL: `https://github.com/opeyemitechpro/11-Microservices-k8s-App-ArgoCD`
+    - Revision: `HEAD` (or specify a branch/tag/commit)
+    
+
 ---
+
+## Set Up Monitoring Using Prometheus and Grafana
 
 ## :simple-prometheus: Prometheus Stack Installation and Setup on EKS using Helm
 
@@ -1050,7 +1073,7 @@ helm repo add prometheus-community https://prometheus-community.github.io/helm-c
 helm repo update
 ```
 
-Install Prometheus Stack into `monitoring` namespace 
+Install Prometheus Stack into `monitoring` namespace
 
 
 ``` sh
@@ -1171,14 +1194,14 @@ kubectl --namespace monitoring get secrets prometheus-grafana -o jsonpath="{.dat
     - Default Grafana Username is `admin`
     - The decoded password should translate to `prom-operator` which is the default grafana password.
 
-??? image "Image - Prometheus page and Grafana Dashboard"
+??? image "Image - Prometheus UI and Grafana Dashboard"
 
 
 ---
 <br><br><br>
 
 
-??? code-file "Install & Configure Node-Exporter on linux"
+??? code-file "Dele-Later - Install & Configure Node-Exporter on linux"
 
     ## Install & Configure Node-Exporter on linux
 
@@ -1327,14 +1350,6 @@ Prometheus will reload its config automatically by deafult. Wait a minute, then:
 <br><br>
 
 
-### To Uninstall Prometheus-Stack and delete namespace
-
-``` sh
-helm uninstall prometheus -n monitoring
-kubectl delete namespace monitoring
-```
-
-
 ########################################################
 
 ## Clean-Up 
@@ -1367,7 +1382,7 @@ terraform destroy
 ```
 
 
-!!! tip "Tip"
+!!! warning "Important Note"
 
     * Wait until each of the commands completes 
     * Check your AWS Console to confirm that all resources have been successfully terminated
@@ -1375,3 +1390,7 @@ terraform destroy
 
 
 ## **Conclusion**
+
+This hands-on DevSecOps project demonstrates the complete lifecycle of a modern cloud-native application — from automated provisioning to deployment, security, and monitoring — all powered by open-source tooling and AWS infrastructure. By integrating Terraform, Jenkins, SonarQube, Trivy, Gitleaks, ArgoCD, Prometheus, and Grafana, the project showcases how DevOps and security principles can be unified to deliver a production-ready, observable, and continuously improving system. 
+
+The end result is not just an 11-microservice e-commerce application running on EKS, but a replicable blueprint for building secure, automated, and scalable DevSecOps pipelines in any enterprise environment. This project underscores one key truth: **automation, visibility, and security are not optional in modern software delivery — they are the foundation of resilience and innovation.**
