@@ -90,6 +90,15 @@ By the end of this project, you’ll gain a detailed understanding of how each t
     Click to enlarge image
     ///
 
+    --- 
+
+    <figure markdown="1">
+    ![Architectural Diagram of the project](../../assets/images/Video-Coming-Soon-PlaceHolder.png "Architectural Diagram of the project-1")
+    </figure>
+    /// caption
+    Click to enlarge image
+    ///
+
 
 ## Project Workflow
 
