@@ -78,7 +78,7 @@ By the end of this project, you’ll gain a detailed understanding of how each t
 
 ??? code-block "Code Block"
 
-??? code-file "Coe File"
+??? code-file "Code File"
 
 ## Architectural Overview
 
@@ -892,9 +892,8 @@ I have also included details on how this pipeline script works in the annotation
         - Post-Build Notification - Once finished, Jenkins sends an email notification with details of the build (status, job URL, build number, and the new Docker tag). This ensures visibility of every manifest update.
 
         ✅ In summary: This pipeline takes the Docker tag produced by the CI job, updates all microservice image tags in the ArgoCD manifest, commits the changes to GitHub, and lets ArgoCD handle the deployment. It removes the need for manual edits, keeps deployments consistent, and fully automates the CD process for Kubernetes microservices.
-
+    
 ---
-        
 
 ## Kubernetes Cluster Setup 
 
@@ -919,6 +918,19 @@ The following AWS IAM policies are required to create and manage an EKS cluster.
 - [x] IAMFullAccess
 
 See [_(AWS Docmentation - Minimum IAM Policies for EKS)_](https://docs.aws.amazon.com/eks/latest/eksctl/minimum-iam-policies.html){: target="_blank" }
+
+Create the IAM user and attach the required policies to the user. Under the user's `Security Credentials` tab,  `create access key` for the user and enable `CLI Use Case`. Copy both the `Access Key` and `Secret Access Key` and store it somewhere for the next step.
+
+From your jenkins terminal, configure your AWS credentials using the command below:
+
+``` sh
+aws configure  
+```
+Enter the `Access Key` and `Secret Access Key` you copied earlier and set the default region (in my case its `us-east-2`)
+
+Now, our Jenkins server now has the neccesary permissions to create our EKS cluster.
+
+??? image "Image - IAM User Policy and Access keys"
 
 
 ---
@@ -1051,7 +1063,7 @@ kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.pas
 ```
 
 ??? tip "Accessing initial ArgoCD Admin password"
-    Alternatively, you could access the ArgoCD initial Admin password by first displaying the contents of the `argocd-initial-admin-secret` then base64 decode the password field as show below:
+    Alternatively, you could access the ArgoCD initial Admin password by first displaying the contents of the `argocd-initial-admin-secret` then base64 decode the password field as shown below:
 
     ``` sh
     kubectl get secrets argocd-initial-admin-secret -n argocd
@@ -1085,6 +1097,8 @@ kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.pas
     - Sync Policy: `Automatic`
     - Repository URL: `https://github.com/opeyemitechpro/11-Microservices-k8s-App-ArgoCD`
     - Revision: `HEAD` (or specify a branch/tag/commit)
+
+
     
 
 ---
@@ -1222,13 +1236,38 @@ kubectl --namespace monitoring get secrets prometheus-grafana -o jsonpath="{.dat
     - The decoded password should translate to `prom-operator` which is the default grafana password.
 
 ??? image "Image - Prometheus UI and Grafana Dashboard"
+    
+    <figure markdown="1">
+    ![Extract Grafana Password](../../assets/images/grafana-password.png "Extract Grafana Password")
+    </figure>
+    /// caption
+    Click to enlarge image
+    ///
+
+    --- 
+
+    <figure markdown="1">
+    ![Kube-Prometheus Helm Notes](../../assets/images/kube-prometheus-helm-notes.png "Kube-Prometheus Helm Notes")
+    </figure>
+    /// caption
+    Click to enlarge image
+    ///
+
+    --- 
+
+    <figure markdown="1">
+    ![Installing Kube-Promethues using Helm Charts](../../assets/images/helm-prometheus-installation.png "Installing Kube-Promethues using Helm Charts")
+    </figure>
+    /// caption
+    Click to enlarge image
+    ///
 
 
 ---
 <br><br><br>
 
 
-??? code-file "Dele-Later - Install & Configure Node-Exporter on linux"
+??? code-file "Delete-Later - Install & Configure Node-Exporter on linux"
 
     ## Install & Configure Node-Exporter on linux
 
@@ -1298,23 +1337,25 @@ In order to monitor our Jenkins Server on the Grafana Dashboard, we need to expo
 
 Create a file named `additional-scrape-configs.yaml` with the following content:
 
-``` yaml hl_lines="3 12"
-- job_name: 'jenkins-node-exporter'
-  static_configs:
-    - targets: ['<server_ip>:9100']
-      labels:
-        instance: 'instance_name'
-        role: 'node-exporter'
-        environment: 'dev'
+!!! code-file "additional-scrape-configs.yaml"
 
-- job_name: 'jenkins-prom-plugin'
-  metrics_path: /prometheus
-  static_configs:
-    - targets: ['<server_ip>:8080']
-      labels:
-        instance: 'instance_name'
-        role: 'jenkins-master'
-        environment: 'dev'
+    ``` yaml hl_lines="3 12"
+    - job_name: 'jenkins-node-exporter'
+    static_configs:
+        - targets: ['<server_ip>:9100']
+        labels:
+            instance: 'instance_name'
+            role: 'node-exporter'
+            environment: 'dev'
+
+    - job_name: 'jenkins-prom-plugin'
+    metrics_path: /prometheus
+    static_configs:
+        - targets: ['<server_ip>:8080']
+        labels:
+            instance: 'instance_name'
+            role: 'jenkins-master'
+            environment: 'dev'
 
 ```
 
