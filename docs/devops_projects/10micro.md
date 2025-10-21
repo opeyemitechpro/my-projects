@@ -76,16 +76,18 @@ By the end of this project, you’ll gain a detailed understanding of how each t
     | [Deploy a Jenkins Server on AWS using Terraform :simple-github: :fontawesome-solid-arrow-up-right-from-square:](https://github.com/opeyemitechpro/Terraform-Jenkins-CICD){: target="_blank" .md-button} | Contains Terraform Script to deploy the Jenkins server | 
 
 
+??? code-block "Code Block"
 
+??? code-file "Coe File"
 
 ## Architectural Overview
 
 ??? image "Architectural Diagram of the Project"
     <figure markdown="1">
-    ![Architectural Diagram for the project](../../assets/images/Video-Coming-Soon-PlaceHolder.png "Architectural Diagram for the project-1")
+    ![Architectural Diagram of the project](../../assets/images/Video-Coming-Soon-PlaceHolder.png "Architectural Diagram of the project-1")
     </figure>
     /// caption
-    Architectural Diagram for the project-2
+    Click to enlarge image
     ///
 
 
