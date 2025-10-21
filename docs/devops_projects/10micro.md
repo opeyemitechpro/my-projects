@@ -1083,7 +1083,34 @@ kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.pas
     helm get notes opeyemi-argo-cd -n argocd
     ```
 
-??? image "Image - ArgoCD UI"
+??? image "Images - ArgoCD Password UI"
+    
+    <figure markdown="1">
+    ![Extract ArgoCD Password](../../assets/images/argocd-password.png "Extract ArgoCD Password")
+    </figure>
+    /// caption
+    Click to enlarge image
+    ///
+
+    --- 
+
+    <figure markdown="1">
+    ![ArgoCD LoadBalancer URL](../../assets/images/argocd-load-balancer.png "ArgoCD LoadBalancer URL")
+    </figure>
+    /// caption
+    Click to enlarge image
+    ///
+
+    --- 
+
+    <figure markdown="1">
+    ![ArgoCD UI](../../assets/images/argocd-ui.png "ArgoCD UI")
+    </figure>
+    /// caption
+    Click to enlarge image
+    ///
+
+    --- 
 
 ### Deploying the Application to Kubernetes using ArgoCD
 
@@ -1235,7 +1262,7 @@ kubectl --namespace monitoring get secrets prometheus-grafana -o jsonpath="{.dat
     - Default Grafana Username is `admin`
     - The decoded password should translate to `prom-operator` which is the default grafana password.
 
-??? image "Image - Prometheus UI and Grafana Dashboard"
+??? image "Images - Prometheus UI and Grafana Dashboard"
     
     <figure markdown="1">
     ![Extract Grafana Password](../../assets/images/grafana-password.png "Extract Grafana Password")
@@ -1357,7 +1384,7 @@ Create a file named `additional-scrape-configs.yaml` with the following content:
             role: 'jenkins-master'
             environment: 'dev'
 
-```
+    ```
 
 !!! tip "Tip"
 
@@ -1414,8 +1441,6 @@ Prometheus will reload its config automatically by deafult. Wait a minute, then:
 * Ensure it’s marked as UP.
 
 ??? image "Image - Prometheus UI page showing newly added Jenkins target"
-
-<br><br>
 
 
 ########################################################
