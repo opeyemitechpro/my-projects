@@ -54,7 +54,7 @@ By the end of this project, you’ll gain a detailed understanding of how each t
 
 
 
-??? info "Repos used for this project"
+??? info "GitHub Repos used for this project"
     <div style="text-align: center;">
     [11 Microservices k8s App Source Code :simple-github: :fontawesome-solid-arrow-up-right-from-square:](https://github.com/opeyemitechpro/11-Microservices-k8s-App){: target="_blank" .md-button}
     </div>
@@ -67,25 +67,26 @@ By the end of this project, you’ll gain a detailed understanding of how each t
     [Deploy a Jenkins Server on AWS using Terraform :simple-github: :fontawesome-solid-arrow-up-right-from-square:](https://github.com/opeyemitechpro/Terraform-Jenkins-CICD){: target="_blank" .md-button}
     </div>
 
-??? info "Repos used for this project"
+??? info "GitHub Repos used for this project"
 
-    | Repo Link | Description |
+    | GitHub Repo Link | Description |
     | -------------- | ------------- |
-    | [11 Microservices k8s App Source Code :simple-github: :fontawesome-solid-arrow-up-right-from-square:](https://github.com/opeyemitechpro/11-Microservices-k8s-App){: target="_blank" .md-button} | Repo containing the application source code |
-    | [11 Microservices k8s App ArgoCD Manifest :simple-github: :fontawesome-solid-arrow-up-right-from-square:](https://github.com/opeyemitechpro/11-Microservices-k8s-App-ArgoCD){: target="_blank" .md-button} | Repo containing the ArgoCD manifest |
-    | [Deploy a Jenkins Server on AWS using Terraform :simple-github: :fontawesome-solid-arrow-up-right-from-square:](https://github.com/opeyemitechpro/Terraform-Jenkins-CICD){: target="_blank" .md-button} | Repo containing the Jenkins server Terraform Script | 
-    
+    | [11 Microservices k8s App Source Code :simple-github: :fontawesome-solid-arrow-up-right-from-square:](https://github.com/opeyemitechpro/11-Microservices-k8s-App){: target="_blank" .md-button} | Contains the application source code |
+    | [11 Microservices k8s App ArgoCD Manifest :simple-github: :fontawesome-solid-arrow-up-right-from-square:](https://github.com/opeyemitechpro/11-Microservices-k8s-App-ArgoCD){: target="_blank" .md-button} | Contains the ArgoCD manifest |
+    | [Deploy a Jenkins Server on AWS using Terraform :simple-github: :fontawesome-solid-arrow-up-right-from-square:](https://github.com/opeyemitechpro/Terraform-Jenkins-CICD){: target="_blank" .md-button} | Contains Terraform Script to deploy the Jenkins server | 
 
-| Repo Link | Description |
-| -------------- | ------------- |
-| [11 Microservices k8s App Source Code :simple-github: :fontawesome-solid-arrow-up-right-from-square:](https://github.com/opeyemitechpro/11-Microservices-k8s-App){: target="_blank" .md-button} | Repo containing the application source code |
-| [11 Microservices k8s App ArgoCD Manifest :simple-github: :fontawesome-solid-arrow-up-right-from-square:](https://github.com/opeyemitechpro/11-Microservices-k8s-App-ArgoCD){: target="_blank" .md-button} | Repo containing the ArgoCD manifest |
-| [Deploy a Jenkins Server on AWS using Terraform :simple-github: :fontawesome-solid-arrow-up-right-from-square:](https://github.com/opeyemitechpro/Terraform-Jenkins-CICD){: target="_blank" .md-button} | Repo containing the Jenkins server Terraform Script | 
+
 
 
 ## Architectural Overview
 
 ??? image "Architectural Diagram of the Project"
+    <figure markdown="1">
+    ![Architectural Diagram for the project](../../assets/images/Video-Coming-Soon-PlaceHolder.png "Architectural Diagram for the project-1")
+    </figure>
+    /// caption
+    Architectural Diagram for the project-2
+    ///
 
 
 ## Project Workflow
