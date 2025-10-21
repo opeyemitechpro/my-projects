@@ -1085,7 +1085,7 @@ OR
 kubectl get pods -n monitoring
 ```
 
-??? tip "Optionally you can display helm release notes for the Prometheus installation"
+??? note "Optionally you can display helm release notes for the Prometheus installation"
     ``` sh
     helm get notes opeyemi-prometheus -n monitoring
     ```
@@ -1171,6 +1171,8 @@ kubectl --namespace monitoring get secrets prometheus-grafana -o jsonpath="{.dat
     - Default Grafana Username is `admin`
     - The decoded password should translate to `prom-operator` which is the default grafana password.
 
+??? image "Image - Prometheus page and Grafana Dashboard"
+
 
 ---
 <br><br><br>
@@ -1230,17 +1232,17 @@ kubectl --namespace monitoring get secrets prometheus-grafana -o jsonpath="{.dat
 ---
 <br>
 
-## Scrapping Metrics
+## Scrapping Additional Metrics
 
-To Scrape metrics from a standalone Linux server (our Jenkins server) running node_exporter using a Prometheus instance running inside EKS
+In order to monitor our Jenkins Server on the Grafana Dashboard, we need to expose the metrics to prometheus using `node_exporter` and `prometheus plugin`. Earlier, we had installed `node_exporter` on our Jenkins server using the bash script and we have also installed the `prometheus plugin` on Jenkins. The `node_exporter` will expose the server metrics while the `prometheus plugin` will expose metrics from Jenkins itself.
 
-### ✅ Prerequisites:
-- [x] Prometheus is installed via Helm chart.
+✅ **Prerequisites:**
+- [x] Prometheus is installed on kubernetes cluster via Helm chart.
 - [x] Node_exporter is running and accessible on our Jenkins server (default port: `9100`).
 - [x] The Jenkins server's IP address is publicly accessible or reachable from within the EKS cluster (e.g., via VPC Peering, VPN, or internal networking).
 - [x] Security Groups and firewall rules allow traffic from EKS nodes to port `9100` on the Jenkins server.
 
-### 🚀 Steps to Add Standalone Server to Prometheus Scrape Targets
+### 🚀 Steps to Add Jenkins Server to Prometheus Scrape Targets
 
 #### 1. Create Additional Scrape Config via Secret
 
@@ -1251,7 +1253,7 @@ Create a file named `additional-scrape-configs.yaml` with the following content:
   static_configs:
     - targets: ['<server_ip>:9100']
       labels:
-        instance: '<instance_name>'
+        instance: 'instance_name'
         role: 'node-exporter'
         environment: 'dev'
 
@@ -1268,7 +1270,7 @@ Create a file named `additional-scrape-configs.yaml` with the following content:
 
 !!! tip "Tip"
 
-    Edit the higlighted lines and replace `<server-ip>` with the IP address or DNS name of your standalone Linux server. In this case, your jenkins server.
+    Edit the higlighted lines above and replace `<server-ip>` with the IP address of the Jenkins server. 
 
 
 #### 2. Now create a Kubernetes secret
@@ -1320,6 +1322,8 @@ Prometheus will reload its config automatically by deafult. Wait a minute, then:
 * Look for the job `node-exporter-standalone`.
 * Ensure it’s marked as UP.
 
+??? image "Image - Prometheus Targets UI page showing Jenkins as target"
+
 <br><br>
 
 
@@ -1337,11 +1341,7 @@ kubectl delete namespace monitoring
 
 To avoid incurring uneccessary costs, it is advisable to clean up (destroy) all the infrastructural resources created during this project.
 
-To destroy the infrastructure created by Terraform, navigate to the directory where your Terraform configuration files are located and run:
-
-``` sh
-terraform destroy --auto-approve
-```
+First, from the Jenkins server terminal, lets uninstall the Helm releases:
 
 Uninstall ArgoCD and the kube-Prometheus stack
 
@@ -1358,6 +1358,15 @@ Delete the EKS Cluster along with all other cluster resources
 eksctl delete cluster --name opeyemi-k8s-cluster --region us-east-2
 ```
 
+Then delete the Jenkins server from your local machine which we created using terraform.
+
+From your local machine, navigate to the directory where your Terraform working folder and run this command:
+
+``` sh
+terraform destroy 
+```
+
+
 !!! tip "Tip"
 
     * Wait until each of the commands completes 
@@ -1366,6 +1375,4 @@ eksctl delete cluster --name opeyemi-k8s-cluster --region us-east-2
 
 
 ## **Conclusion**
-
-Setting up a self-hosted VPN server using this Terraform configuration script is a straightforward and efficient way to enhance your network security and maintain control over your data. By following this documentation, you can deploy a robust OpenVPN server on AWS, customize it to your needs, and ensure private and secure internet access. This guide aims to empower you with the knowledge and tools to manage your own VPN server effectively. For any troubleshooting or further customization, explore the Terraform and OpenVPN documentation for advanced insights and solutions. 
 
