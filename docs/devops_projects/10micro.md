@@ -1322,7 +1322,7 @@ Prometheus will reload its config automatically by deafult. Wait a minute, then:
 * Look for the job `node-exporter-standalone`.
 * Ensure it’s marked as UP.
 
-??? image "Image - Prometheus Targets UI page showing Jenkins as target"
+??? image "Image - Prometheus UI page showing newly added Jenkins target"
 
 <br><br>
 
@@ -1375,4 +1375,3 @@ terraform destroy
 
 
 ## **Conclusion**
-
