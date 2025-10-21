@@ -1214,32 +1214,23 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#scrapping-metrics" class="md-nav__link">
+  <a href="#scrapping-additional-metrics" class="md-nav__link">
     <span class="md-ellipsis">
-      Scrapping Metrics
+      Scrapping Additional Metrics
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Scrapping Metrics">
+    <nav class="md-nav" aria-label="Scrapping Additional Metrics">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#prerequisites" class="md-nav__link">
+  <a href="#steps-to-add-jenkins-server-to-prometheus-scrape-targets" class="md-nav__link">
     <span class="md-ellipsis">
-      ✅ Prerequisites:
+      🚀 Steps to Add Jenkins Server to Prometheus Scrape Targets
     </span>
   </a>
   
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#steps-to-add-standalone-server-to-prometheus-scrape-targets" class="md-nav__link">
-    <span class="md-ellipsis">
-      🚀 Steps to Add Standalone Server to Prometheus Scrape Targets
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="🚀 Steps to Add Standalone Server to Prometheus Scrape Targets">
+    <nav class="md-nav" aria-label="🚀 Steps to Add Jenkins Server to Prometheus Scrape Targets">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -2768,7 +2759,7 @@ OR use<p></p>
 <p>OR
 </p><div class="highlight"><table class="highlighttable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-27-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>monitoring
 </code></pre></div></td></tr></tbody></table></div><p></p>
-<details class="tip">
+<details class="note">
 <summary>Optionally you can display helm release notes for the Prometheus installation</summary>
 <div class="highlight"><table class="highlighttable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-28-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1"></a>helm<span class="w"> </span>get<span class="w"> </span>notes<span class="w"> </span>opeyemi-prometheus<span class="w"> </span>-n<span class="w"> </span>monitoring
 </code></pre></div></td></tr></tbody></table></div>
@@ -2829,6 +2820,9 @@ OR use<p></p>
 <li>The decoded password should translate to <code>prom-operator</code> which is the default grafana password.</li>
 </ul>
 </div>
+<details class="image">
+<summary>Image - Prometheus page and Grafana Dashboard</summary>
+</details>
 <hr>
 <p><br><br><br></p>
 <details class="code-file">
@@ -2923,16 +2917,14 @@ OR use<p></p>
 </details>
 <hr>
 <p><br></p>
-<h2 id="scrapping-metrics">Scrapping Metrics<a class="headerlink" href="#scrapping-metrics" title="Copy this link to reference this section">¶</a></h2>
-<p>To Scrape metrics from a standalone Linux server (our Jenkins server) running node_exporter using a Prometheus instance running inside EKS</p>
-<h3 id="prerequisites">✅ Prerequisites:<a class="headerlink" href="#prerequisites" title="Copy this link to reference this section">¶</a></h3>
-<ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" checked><span class="task-list-indicator"></span></label> Prometheus is installed via Helm chart.</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" checked><span class="task-list-indicator"></span></label> Node_exporter is running and accessible on our Jenkins server (default port: <code>9100</code>).</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" checked><span class="task-list-indicator"></span></label> The Jenkins server's IP address is publicly accessible or reachable from within the EKS cluster (e.g., via VPC Peering, VPN, or internal networking).</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" checked><span class="task-list-indicator"></span></label> Security Groups and firewall rules allow traffic from EKS nodes to port <code>9100</code> on the Jenkins server.</li>
-</ul>
-<h3 id="steps-to-add-standalone-server-to-prometheus-scrape-targets">🚀 Steps to Add Standalone Server to Prometheus Scrape Targets<a class="headerlink" href="#steps-to-add-standalone-server-to-prometheus-scrape-targets" title="Copy this link to reference this section">¶</a></h3>
+<h2 id="scrapping-additional-metrics">Scrapping Additional Metrics<a class="headerlink" href="#scrapping-additional-metrics" title="Copy this link to reference this section">¶</a></h2>
+<p>In order to monitor our Jenkins Server on the Grafana Dashboard, we need to expose the metrics to prometheus using <code>node_exporter</code> and <code>prometheus plugin</code>. Earlier, we had installed <code>node_exporter</code> on our Jenkins server using the bash script and we have also installed the <code>prometheus plugin</code> on Jenkins. The <code>node_exporter</code> will expose the server metrics while the <code>prometheus plugin</code> will expose metrics from Jenkins itself.</p>
+<p>✅ <strong>Prerequisites:</strong>
+- [x] Prometheus is installed on kubernetes cluster via Helm chart.
+- [x] Node_exporter is running and accessible on our Jenkins server (default port: <code>9100</code>).
+- [x] The Jenkins server's IP address is publicly accessible or reachable from within the EKS cluster (e.g., via VPC Peering, VPN, or internal networking).
+- [x] Security Groups and firewall rules allow traffic from EKS nodes to port <code>9100</code> on the Jenkins server.</p>
+<h3 id="steps-to-add-jenkins-server-to-prometheus-scrape-targets">🚀 Steps to Add Jenkins Server to Prometheus Scrape Targets<a class="headerlink" href="#steps-to-add-jenkins-server-to-prometheus-scrape-targets" title="Copy this link to reference this section">¶</a></h3>
 <h4 id="1-create-additional-scrape-config-via-secret">1. Create Additional Scrape Config via Secret<a class="headerlink" href="#1-create-additional-scrape-config-via-secret" title="Copy this link to reference this section">¶</a></h4>
 <p>Create a file named <code>additional-scrape-configs.yaml</code> with the following content:</p>
 <div class="highlight"><table class="highlighttable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-40-1"> 1</a></span>
@@ -2954,7 +2946,7 @@ OR use<p></p>
 <a id="__codelineno-40-2" name="__codelineno-40-2"></a><span class="w">  </span><span class="nt">static_configs</span><span class="p">:</span>
 <a id="__codelineno-40-3" name="__codelineno-40-3"></a><span class="hll"><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">targets</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">'&lt;server_ip&gt;:9100'</span><span class="p p-Indicator">]</span>
 </span><a id="__codelineno-40-4" name="__codelineno-40-4"></a><span class="w">      </span><span class="nt">labels</span><span class="p">:</span>
-<a id="__codelineno-40-5" name="__codelineno-40-5"></a><span class="w">        </span><span class="nt">instance</span><span class="p">:</span><span class="w"> </span><span class="s">'&lt;instance_name&gt;'</span>
+<a id="__codelineno-40-5" name="__codelineno-40-5"></a><span class="w">        </span><span class="nt">instance</span><span class="p">:</span><span class="w"> </span><span class="s">'instance_name'</span>
 <a id="__codelineno-40-6" name="__codelineno-40-6"></a><span class="w">        </span><span class="nt">role</span><span class="p">:</span><span class="w"> </span><span class="s">'node-exporter'</span>
 <a id="__codelineno-40-7" name="__codelineno-40-7"></a><span class="w">        </span><span class="nt">environment</span><span class="p">:</span><span class="w"> </span><span class="s">'dev'</span>
 <a id="__codelineno-40-8" name="__codelineno-40-8"></a>
@@ -2969,7 +2961,7 @@ OR use<p></p>
 </code></pre></div></td></tr></tbody></table></div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>Edit the higlighted lines and replace <code>&lt;server-ip&gt;</code> with the IP address or DNS name of your standalone Linux server. In this case, your jenkins server.</p>
+<p>Edit the higlighted lines above and replace <code>&lt;server-ip&gt;</code> with the IP address of the Jenkins server. </p>
 </div>
 <h4 id="2-now-create-a-kubernetes-secret">2. Now create a Kubernetes secret<a class="headerlink" href="#2-now-create-a-kubernetes-secret" title="Copy this link to reference this section">¶</a></h4>
 <div class="highlight"><table class="highlighttable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-41-1">1</a></span>
@@ -3010,6 +3002,9 @@ OR use<p></p>
 <li>Look for the job <code>node-exporter-standalone</code>.</li>
 <li>Ensure it’s marked as UP.</li>
 </ul>
+<details class="image">
+<summary>Image - Prometheus Targets UI page showing Jenkins as target</summary>
+</details>
 <p><br><br></p>
 <h3 id="to-uninstall-prometheus-stack-and-delete-namespace">To Uninstall Prometheus-Stack and delete namespace<a class="headerlink" href="#to-uninstall-prometheus-stack-and-delete-namespace" title="Copy this link to reference this section">¶</a></h3>
 <div class="highlight"><table class="highlighttable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-46-1">1</a></span>
@@ -3019,20 +3014,22 @@ OR use<p></p>
 <h6 id="_2"><a class="headerlink" href="#_2" title="Copy this link to reference this section">¶</a></h6>
 <h2 id="clean-up">Clean-Up<a class="headerlink" href="#clean-up" title="Copy this link to reference this section">¶</a></h2>
 <p>To avoid incurring uneccessary costs, it is advisable to clean up (destroy) all the infrastructural resources created during this project.</p>
-<p>To destroy the infrastructure created by Terraform, navigate to the directory where your Terraform configuration files are located and run:</p>
-<div class="highlight"><table class="highlighttable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-47-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-47-1" name="__codelineno-47-1"></a>terraform<span class="w"> </span>destroy<span class="w"> </span>--auto-approve
-</code></pre></div></td></tr></tbody></table></div>
+<p>First, from the Jenkins server terminal, lets uninstall the Helm releases:</p>
 <p>Uninstall ArgoCD and the kube-Prometheus stack</p>
-<div class="highlight"><table class="highlighttable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-48-1">1</a></span>
-<span class="normal"><a href="#__codelineno-48-2">2</a></span>
-<span class="normal"><a href="#__codelineno-48-3">3</a></span>
-<span class="normal"><a href="#__codelineno-48-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-48-1" name="__codelineno-48-1"></a>helm<span class="w"> </span>uninstall<span class="w"> </span>opeyemi-argo-cd<span class="w"> </span>--n<span class="w"> </span>argocd
-<a id="__codelineno-48-2" name="__codelineno-48-2"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>namespace<span class="w"> </span>argocd
-<a id="__codelineno-48-3" name="__codelineno-48-3"></a>helm<span class="w"> </span>uninstall<span class="w"> </span>opeyemi-prometheus<span class="w"> </span>--n<span class="w"> </span>monitoring<span class="w"> </span>
-<a id="__codelineno-48-4" name="__codelineno-48-4"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>namespace<span class="w"> </span>monitoring
+<div class="highlight"><table class="highlighttable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-47-1">1</a></span>
+<span class="normal"><a href="#__codelineno-47-2">2</a></span>
+<span class="normal"><a href="#__codelineno-47-3">3</a></span>
+<span class="normal"><a href="#__codelineno-47-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-47-1" name="__codelineno-47-1"></a>helm<span class="w"> </span>uninstall<span class="w"> </span>opeyemi-argo-cd<span class="w"> </span>--n<span class="w"> </span>argocd
+<a id="__codelineno-47-2" name="__codelineno-47-2"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>namespace<span class="w"> </span>argocd
+<a id="__codelineno-47-3" name="__codelineno-47-3"></a>helm<span class="w"> </span>uninstall<span class="w"> </span>opeyemi-prometheus<span class="w"> </span>--n<span class="w"> </span>monitoring<span class="w"> </span>
+<a id="__codelineno-47-4" name="__codelineno-47-4"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>namespace<span class="w"> </span>monitoring
 </code></pre></div></td></tr></tbody></table></div>
 <p>Delete the EKS Cluster along with all other cluster resources</p>
-<div class="highlight"><table class="highlighttable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-49-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-49-1" name="__codelineno-49-1"></a>eksctl<span class="w"> </span>delete<span class="w"> </span>cluster<span class="w"> </span>--name<span class="w"> </span>opeyemi-k8s-cluster<span class="w"> </span>--region<span class="w"> </span>us-east-2
+<div class="highlight"><table class="highlighttable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-48-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-48-1" name="__codelineno-48-1"></a>eksctl<span class="w"> </span>delete<span class="w"> </span>cluster<span class="w"> </span>--name<span class="w"> </span>opeyemi-k8s-cluster<span class="w"> </span>--region<span class="w"> </span>us-east-2
+</code></pre></div></td></tr></tbody></table></div>
+<p>Then delete the Jenkins server from your local machine which we created using terraform.</p>
+<p>From your local machine, navigate to the directory where your Terraform working folder and run this command:</p>
+<div class="highlight"><table class="highlighttable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-49-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-49-1" name="__codelineno-49-1"></a>terraform<span class="w"> </span>destroy<span class="w"> </span>
 </code></pre></div></td></tr></tbody></table></div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
@@ -3042,7 +3039,6 @@ OR use<p></p>
 </ul>
 </div>
 <h2 id="conclusion"><strong>Conclusion</strong><a class="headerlink" href="#conclusion" title="Copy this link to reference this section">¶</a></h2>
-<p>Setting up a self-hosted VPN server using this Terraform configuration script is a straightforward and efficient way to enhance your network security and maintain control over your data. By following this documentation, you can deploy a robust OpenVPN server on AWS, customize it to your needs, and ensure private and secure internet access. This guide aims to empower you with the knowledge and tools to manage your own VPN server effectively. For any troubleshooting or further customization, explore the Terraform and OpenVPN documentation for advanced insights and solutions. </p>
 
 
 
@@ -3065,7 +3061,7 @@ OR use<p></p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="October 20, 2025 23:03:00 UTC"><span class="timeago" datetime="2025-10-20T23:03:00+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="October 20, 2025 23:03:00 UTC">2025-10-20</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="October 21, 2025 11:21:17 UTC"><span class="timeago" datetime="2025-10-21T11:21:17+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="October 21, 2025 11:21:17 UTC">2025-10-21</span>
   </span>
 
     
