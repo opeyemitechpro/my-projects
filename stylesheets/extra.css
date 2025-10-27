@@ -168,3 +168,47 @@ h1 {
 
 
 
+/* ===== AI BUTTON CONTAINER ===== */
+.ai-buttons-container {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 1rem;
+}
+
+/* ===== AI BUTTON STYLING ===== */
+.ai-button {
+  font-weight: 600;
+  padding: 0.5em 1em;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  line-height: 1.2;
+}
+
+#ask-chatgpt {
+  background-color: var(--md-primary-fg-color);
+  color: var(--md-primary-bg-color);
+}
+#ask-chatgpt:hover {
+  background-color: var(--md-accent-fg-color);
+}
+
+#ask-claude {
+  background-color: var(--md-accent-fg-color);
+  color: var(--md-primary-bg-color);
+}
+#ask-claude:hover {
+  background-color: var(--md-primary-fg-color);
+}
+
+/* ===== HIDE AI BUTTONS ON SMALL SCREENS ===== */
+@media screen and (max-width: 767px) {
+  .ai-buttons-container {
+    display: none !important;
+  }
+}
