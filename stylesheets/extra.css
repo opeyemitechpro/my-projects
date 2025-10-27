@@ -164,3 +164,68 @@ https://squidfunk.github.io/mkdocs-material/reference/code-blocks/?h=code#custom
 h1 {
   color: red;
 }
+
+
+
+
+
+
+.ai-buttons-container {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.ai-button {
+  font-weight: 600;
+  padding: 0.4em 0.9em;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+/* Color styles */
+#ask-chatgpt {
+  background-color: #10a37f; /* ChatGPT green */
+  color: #fff;
+}
+#ask-chatgpt:hover {
+  background-color: #0e8f6e;
+}
+
+#ask-claude {
+  background-color: #5534a5; /* Claude purple */
+  color: #fff;
+}
+#ask-claude:hover {
+  background-color: #452a85;
+}
+
+/* ✅ Responsive behavior for smaller screens */
+@media (max-width: 768px) {
+  .ai-buttons-container {
+    justify-content: center;
+  }
+
+  .ai-button {
+    font-size: 0.8rem;
+    padding: 0.3em 0.6em;
+  }
+}
+
+@media (max-width: 480px) {
+  .ai-buttons-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .ai-button {
+    width: 80%;
+    text-align: center;
+    font-size: 0.75rem;
+    padding: 0.35em 0.5em;
+  }
+}
