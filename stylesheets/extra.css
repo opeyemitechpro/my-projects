@@ -171,72 +171,70 @@ h1 {
 
 
 
-
+/* ===== AI BUTTON CONTAINER ===== */
 .ai-buttons-container {
   display: flex;
   justify-content: flex-end;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
   flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 1rem;
 }
 
-/* Base button design */
+/* ===== AI BUTTON BASE STYLES ===== */
 .ai-button {
   font-weight: 600;
-  padding: 0.45em 0.9em;
+  padding: 0.5em 1em;
   border-radius: 6px;
   text-decoration: none;
-  transition: all 0.25s ease;
-  font-size: 0.95rem;
+  transition: all 0.2s ease-in-out;
   border: none;
   cursor: pointer;
+  font-size: 0.95rem;
+  line-height: 1.2;
 }
 
-/* --- Color themes --- */
+/* ===== CHATGPT BUTTON ===== */
 #ask-chatgpt {
   background-color: var(--md-primary-fg-color);
   color: var(--md-primary-bg-color);
 }
 #ask-chatgpt:hover {
   background-color: var(--md-accent-fg-color);
-  color: var(--md-primary-bg-color);
 }
 
+/* ===== CLAUDE BUTTON ===== */
 #ask-claude {
   background-color: var(--md-accent-fg-color);
   color: var(--md-primary-bg-color);
 }
 #ask-claude:hover {
   background-color: var(--md-primary-fg-color);
-  color: var(--md-primary-bg-color);
 }
 
-/* --- Tablet optimization --- */
-@media (max-width: 768px) {
+/* ===== TABLET VIEW ===== */
+@media screen and (max-width: 768px) {
   .ai-buttons-container {
     justify-content: center;
   }
-
   .ai-button {
-    font-size: 0.75rem;
-    padding: 0.3em 0.6em;
-    border-radius: 4px;
+    font-size: 0.8rem !important;
+    padding: 0.35em 0.7em !important;
+    border-radius: 4px !important;
   }
 }
 
-/* --- Mobile compact layout --- */
-@media (max-width: 480px) {
+/* ===== MOBILE VIEW ===== */
+@media screen and (max-width: 480px) {
   .ai-buttons-container {
-    flex-direction: row;
     justify-content: center;
+    flex-wrap: wrap;
     gap: 0.4rem;
     margin-bottom: 0.7rem;
   }
-
   .ai-button {
-    font-size: 0.7rem;
-    padding: 0.25em 0.45em;
-    border-radius: 3px;
-    min-width: auto;
+    font-size: 0.7rem !important;
+    padding: 0.25em 0.45em !important;
+    border-radius: 3px !important;
+    min-width: 80px !important;
   }
 }
