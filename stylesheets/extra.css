@@ -199,11 +199,11 @@ h1 {
 }
 
 #ask-claude {
-  background-color: var(--md-accent-fg-color);
+  background-color: var(--md-primary-fg-color);
   color: var(--md-primary-bg-color);
 }
 #ask-claude:hover {
-  background-color: var(--md-primary-fg-color);
+  background-color: var(--md-accent-fg-color);
 }
 
 /* ===== HIDE AI BUTTONS ON SMALL SCREENS ===== */
