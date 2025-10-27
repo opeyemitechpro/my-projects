@@ -120,9 +120,9 @@ By the end of this project, you’ll gain a detailed understanding of how each t
     - [x] Configure Jenkins Plugins
     - [x] Configure SonarQube Server Token
     - [x] Setup Jenkins CI/CD Pipelines
-- [x] Install and Setup Grafana and Prometheus Monitoring
 - [x] Install ArgoCD for GitOps
 - [x] Deploy Application to EKS Using GitOps
+- [x] Install and Setup Grafana and Prometheus for Monitoring
 - [x] CleanUp Resources
 
 ---
@@ -178,7 +178,7 @@ I have included the link to my Github repo containing the Jenkins server Terrafo
 Clone the Repo on your local machine and apply the terraform config:
 
 ``` sh
-git clone 
+git clone https://github.com/opeyemitechpro/Terraform-Jenkins-CICD.git
 ```
 
 ``` sh
@@ -913,9 +913,27 @@ The following AWS IAM policies are required to create and manage an EKS cluster.
 - [x] AmazonEKS_CNI_Policy
 - [x] AmazonEKSClusterPolicy
 - [x] AmazonEKSWorkerNodePolicy
-- [x] AmazonPCIFullAccess
 - [x] AWSCloudFormationFullAccess
 - [x] IAMFullAccess
+- [x] Custom-EKS_Full_Access _(create an additional custom policy as shown below)_
+
+```
+{
+	"Version": "2012-10-17",
+	"Statement": [
+		{
+			"Sid": "Statement1",
+			"Effect": "Allow",
+			"Action": [
+				"eks:*"
+			],
+			"Resource": [
+				"*"
+			]
+		}
+	]
+}
+```
 
 See [_(AWS Docmentation - Minimum IAM Policies for EKS)_](https://docs.aws.amazon.com/eks/latest/eksctl/minimum-iam-policies.html){: target="_blank" }
 
@@ -949,8 +967,10 @@ eksctl create cluster \
   --region us-east-2  
 ```
 
+!!! tip "Tip"
     - [x] This command will create an EKS cluster named `opeyemi-k8s-cluster` in the `us-east-2` region. You can change these values as needed.
     - [x] The command will also create a default node group with t3.medium instances. You can customize the node group settings by adding additional flags to the command. See [_(eksctl documentation - create cluster)_](https://eksctl.io/usage/creating-and-managing-clusters/#creating-a-cluster){: target="_blank" }
+
 
 ??? image "Image - EKS Cluster Creation"
 
