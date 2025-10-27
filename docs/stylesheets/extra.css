@@ -170,6 +170,8 @@ h1 {
 
 
 
+
+
 .ai-buttons-container {
   display: flex;
   justify-content: flex-end;
@@ -178,54 +180,63 @@ h1 {
   flex-wrap: wrap;
 }
 
+/* Base button design */
 .ai-button {
   font-weight: 600;
-  padding: 0.4em 0.9em;
+  padding: 0.45em 0.9em;
   border-radius: 6px;
   text-decoration: none;
-  transition: all 0.2s ease;
+  transition: all 0.25s ease;
+  font-size: 0.95rem;
+  border: none;
+  cursor: pointer;
 }
 
-/* Color styles */
+/* --- Color themes --- */
 #ask-chatgpt {
-  background-color: #10a37f; /* ChatGPT green */
-  color: #fff;
+  background-color: var(--md-primary-fg-color);
+  color: var(--md-primary-bg-color);
 }
 #ask-chatgpt:hover {
-  background-color: #0e8f6e;
+  background-color: var(--md-accent-fg-color);
+  color: var(--md-primary-bg-color);
 }
 
 #ask-claude {
-  background-color: #5534a5; /* Claude purple */
-  color: #fff;
+  background-color: var(--md-accent-fg-color);
+  color: var(--md-primary-bg-color);
 }
 #ask-claude:hover {
-  background-color: #452a85;
+  background-color: var(--md-primary-fg-color);
+  color: var(--md-primary-bg-color);
 }
 
-/* ✅ Responsive behavior for smaller screens */
+/* --- Tablet optimization --- */
 @media (max-width: 768px) {
   .ai-buttons-container {
     justify-content: center;
   }
 
   .ai-button {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     padding: 0.3em 0.6em;
+    border-radius: 4px;
   }
 }
 
+/* --- Mobile compact layout --- */
 @media (max-width: 480px) {
   .ai-buttons-container {
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
+    justify-content: center;
     gap: 0.4rem;
+    margin-bottom: 0.7rem;
   }
 
   .ai-button {
-    width: 80%;
-    text-align: center;
-    font-size: 0.75rem;
-    padding: 0.35em 0.5em;
+    font-size: 0.7rem;
+    padding: 0.25em 0.45em;
+    border-radius: 3px;
+    min-width: auto;
   }
 }
