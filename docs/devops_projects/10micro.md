@@ -52,8 +52,10 @@ The project highlights key modern DevOps practices, including:
 
 By the end of this project, you’ll gain a detailed understanding of how each tool was implemented and how the entire pipeline works together to deliver a scalable, secure, and automated deployment workflow on AWS.
 
-This is <span class="text-success">Success text</span>.
-This is <span class="text-danger">Danger text</span>.
+This is <span class="text-success">Success text</span>.<br>
+This is <span class="text-danger">Danger text</span>.<br>
+This is <span class="text-warning">Warning text</span>.<br>
+
 
 
 
