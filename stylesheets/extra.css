@@ -212,3 +212,11 @@ h1 {
     display: none !important;
   }
 }
+
+
+
+
+/* Change Text Color */
+.text-success { color: #00b300; }
+.text-warning { color: #ffcc00; }
+.text-danger  { color: #ff4d4d; }
