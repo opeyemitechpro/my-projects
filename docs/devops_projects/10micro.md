@@ -187,7 +187,7 @@ Ater the terraform script executes, it displays the `Public IP Address` and the 
 
 `ssh -i <Key-pair_filename> ubuntu@<Jenkins_Master_public_ip>`
 
-??? image "Image - Output of Terraform apply command"
+??? image "Images - Output of Terraform apply command"
     <figure markdown="1">
     [![Output of terraform apply command](../../assets/images/Video-Coming-Soon-PlaceHolder.png "DevSecOps Project - End-to-end Deployment and Monitoring of 11-Microservice e-Commerce App on AWS EKS using Jenkins, ArgoCD, Terraform, Grafana & Prometheus")](https://youtube.com/@opeyemitechpro){: target="_blank" }
     <!-- <figcaption>Create a Free Self-Hosted VPN Server on AWS using Terraform and OpenVPN</figcaption>  -->
@@ -225,7 +225,7 @@ Install the `Suggested Plugins` and login to the Jenkins Server as Admin
 
 Install suggested Jenkins Plugins and login as admin
 
-??? image "Image - Install Sugested Jenkins Plugins"
+??? image "Images - Install Sugested Jenkins Plugins"
 
 
 Optionally, Setup a new admin password - `Jenkins > Admin > Security`
@@ -242,7 +242,7 @@ Go to `Manage Jenkins > Plugins > Available Plugins`, search for and install the
 - Email Extension Template _(Used to send job email notifications)_
 - Prometheus Metrics _(Exposes Jenkins internal metrics so we can scrape and display them through Grafana dashboards)_
 
-??? image "Image - Install additional Jenkins plugins"
+??? image "Images - Install additional Jenkins plugins"
 
 ---
 
@@ -276,7 +276,7 @@ Go to `Manage Jenkins > Credentials > (Global) > Add Credentials` and add the fo
     - Enter the `App password` generated from Gmail as the password _(:red_circle: Do not use your real Gmail password here :red_circle:)_
     - Click Add.
 
-??? image "Image - Add Credentials"
+??? image "Images - Add Credentials"
     <figure markdown="1">
     ![Jenkins Credentials](../../assets/images/jenkins_credentials.png "Jenkins Credentials")
     </figure>
@@ -314,7 +314,7 @@ Create a User token by going to `Administration > Security > Users` and save it 
 
 This token will be used to authenticate Jenkins to access the SonarQube server.
 
-??? image "Image - Generate SonarQube token on the SonarQube server"
+??? image "Images - Generate SonarQube token on the SonarQube server"
 
 ---
 
@@ -342,7 +342,7 @@ Set the SonarQube server URL under `Manage Jenkins > System > SonarQube Installa
 
 - `Apply` and `Save`
 
-??? image "Image - SonarQube Scanner Tool Installation"
+??? image "Images - SonarQube Scanner Tool Installation"
 
 
 ---
@@ -375,7 +375,7 @@ Server URL: `<sonar_server_ip:9000>` _(This should be the ip address of the Sona
 
 Server Authentication token: `sonar-token`
 
-??? image "Image - SonarQube Servers"
+??? image "Images - SonarQube Servers"
     <figure markdown="1">
     ![SonarQube Installations Settings](../../assets/images/sonar-installations.png "SonarQube Installations Settings")
     </figure>
@@ -398,9 +398,10 @@ Server Authentication token: `sonar-token`
 **Declarative Pipeline (Docker)**
 
 Docker Label: `docker`
+
 Registry Credentials: `my-docker-cred`
 
-??? image "Image - Declarative Pipeline (Docker)"
+??? image "Imagess - Declarative Pipeline (Docker)"
     <figure markdown="1">
     ![Declarative Pipeline (Docker) Settings](../../assets/images/docker-declarative.png "Declarative Pipeline (Docker) Settings")
     </figure>
@@ -446,7 +447,7 @@ Goto `Dashboard > Manage Jenkins > System` and configure both the __"Extended E-
     - The settings above apply to Gmail address configuration. Confirm SMTP settings from your email service provider if different from Gmail.
     - Copy `App password` from your Gmail account security settings and use that as the password in the above configuration.
 
-??? image "Image - Jenkins email Notifications"
+??? image "Imagess - Jenkins email Notifications"
     <figure markdown="1">
     ![Extended E-mail Notifications Settings](../../assets/images/jenkins-email-settings-1.png "Extended E-mail Notifications Settings")
     </figure>
@@ -505,7 +506,7 @@ For this project we will set up 2 separate pipelines.
 
 - Select `Pipeline` and click `OK`
 
-??? image "Image - Create a New Jenkins Pipeline Job"
+??? image "Imagess - Create a New Jenkins Pipeline Job"
 
 
 
@@ -822,7 +823,7 @@ To enable Github to automatically trigger the Jenkins CI pipeline anytime a chan
 - Active: `Checked`
 - Click `Add webhook`
 
-??? image "Image - Configure GitHub WebHook"
+??? image "Images - Configure GitHub WebHook"
 
 ---
 
@@ -1029,7 +1030,7 @@ Enter the `Access Key` and `Secret Access Key` you copied earlier and set the de
 
 Now, our Jenkins server now has the neccesary permissions to create our EKS cluster.
 
-??? image "Image - IAM User Policy and Access keys"
+??? image "Images - IAM User Policy and Access keys"
 
 
 ---
@@ -1053,7 +1054,7 @@ eksctl create cluster \
     - [x] The command will also create a default node group with t3.medium instances. You can customize the node group settings by adding additional flags to the command. See [_(eksctl documentation - create cluster)_](https://eksctl.io/usage/creating-and-managing-clusters/#creating-a-cluster){: target="_blank" }
 
 
-??? image "Image - EKS Cluster Creation"
+??? image "Images - EKS Cluster Creation"
 
 ---
 
@@ -1184,7 +1185,7 @@ kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.pas
     helm get notes opeyemi-argo-cd -n argocd
     ```
 
-??? image "Images - ArgoCD Password UI"
+??? image "Imagess - ArgoCD Password UI"
     
     <figure markdown="1">
     ![Extract ArgoCD Password](../../assets/images/argocd-password.png "Extract ArgoCD Password")
@@ -1363,7 +1364,7 @@ kubectl --namespace monitoring get secrets prometheus-grafana -o jsonpath="{.dat
     - Default Grafana Username is `admin`
     - The decoded password should translate to `prom-operator` which is the default grafana password.
 
-??? image "Images - Prometheus UI and Grafana Dashboard"
+??? image "Imagess - Prometheus UI and Grafana Dashboard"
     
     <figure markdown="1">
     ![Extract Grafana Password](../../assets/images/grafana-password.png "Extract Grafana Password")
@@ -1541,7 +1542,7 @@ Prometheus will reload its config automatically by deafult. Wait a minute, then:
 * Look for the job `node-exporter-standalone`.
 * Ensure it’s marked as UP.
 
-??? image "Image - Prometheus UI page showing newly added Jenkins target"
+??? image "Images - Prometheus UI page showing newly added Jenkins target"
 
 
 ########################################################
