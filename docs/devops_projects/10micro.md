@@ -52,12 +52,6 @@ The project highlights key modern DevOps practices, including:
 
 By the end of this project, you’ll gain a detailed understanding of how each tool was implemented and how the entire pipeline works together to deliver a scalable, secure, and automated deployment workflow on AWS.
 
-This is <span class="text-success">Success text</span>.<br>
-This is <span class="text-danger">Danger text</span>.<br>
-This is <span class="text-warning">Warning text</span>.<br>
-This is <span class="text-white">White text</span>.<br>
-
-
 
 
 ??? info "GitHub Repos used for this project"
@@ -381,12 +375,47 @@ Server URL: `<sonar_server_ip:9000>` _(This should be the ip address of the Sona
 
 Server Authentication token: `sonar-token`
 
+??? image "Image - SonarQube Servers"
+    <figure markdown="1">
+    ![SonarQube Installations Settings](../../assets/images/sonar-installations.png "SonarQube Installations Settings")
+    </figure>
+    /// caption
+    Click to enlarge image
+    ///
+
+    --- 
+
+    <figure markdown="1">
+    ![Architectural Diagram of the project](../../assets/images/Video-Coming-Soon-PlaceHolder.png "Architectural Diagram of the project-1")
+    </figure>
+    /// caption
+    Click to enlarge image
+    ///
+
 
 ---
 
 **Declarative Pipeline (Docker)**
 
 Docker Label: `docker`
+Registry Credentials: `my-docker-cred`
+
+??? image "Image - Declarative Pipeline (Docker)"
+    <figure markdown="1">
+    ![Declarative Pipeline (Docker) Settings](../../assets/images/docker-declarative.png "Declarative Pipeline (Docker) Settings")
+    </figure>
+    /// caption
+    Click to enlarge image
+    ///
+
+    --- 
+
+    <figure markdown="1">
+    ![Architectural Diagram of the project](../../assets/images/Video-Coming-Soon-PlaceHolder.png "Architectural Diagram of the project-1")
+    </figure>
+    /// caption
+    Click to enlarge image
+    ///
 
 ---
 
@@ -416,6 +445,40 @@ Goto `Dashboard > Manage Jenkins > System` and configure both the __"Extended E-
 
     - The settings above apply to Gmail address configuration. Confirm SMTP settings from your email service provider if different from Gmail.
     - Copy `App password` from your Gmail account security settings and use that as the password in the above configuration.
+
+??? image "Image - Jenkins email Notifications"
+    <figure markdown="1">
+    ![Extended E-mail Notifications Settings](../../assets/images/jenkins-email-settings-1.png "Extended E-mail Notifications Settings")
+    </figure>
+    /// caption
+    Click to enlarge image
+    ///
+
+    --- 
+
+    <figure markdown="1">
+    ![E-mail Notifications Settings](../../assets/images/jenkins-email-settings-2.png "E-mail Notifications Settings")
+    </figure>
+    /// caption
+    Click to enlarge image
+    ///
+    
+    --- 
+
+    <figure markdown="1">
+    ![Test email configuration](../../assets/images/jenkins-email-settings-3.png "Test email configuration")
+    </figure>
+    /// caption
+    Click to enlarge image
+    ///
+    --- 
+
+    <figure markdown="1">
+    ![Gmail Test Delivery](../../assets/images/gmail-sample-1.png "Gmail Test Delivery")
+    </figure>
+    /// caption
+    Click to enlarge image
+    ///
 
 ---
 

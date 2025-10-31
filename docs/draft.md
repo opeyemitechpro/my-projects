@@ -68,6 +68,14 @@ Hello, I'm Opeyemi Okuboyejo
 
 
 
+This is <span class="text-success">Success text</span>.<br>
+This is <span class="text-danger">Danger text</span>.<br>
+This is <span class="text-warning">Warning text</span>.<br>
+This is <span class="text-white">White text</span>.<br>
+
+
+
+
 ## Image Handling
 
 ??? youtube "Watch this YouTube Video"
