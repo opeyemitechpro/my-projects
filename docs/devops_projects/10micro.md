@@ -55,6 +55,7 @@ By the end of this project, you’ll gain a detailed understanding of how each t
 This is <span class="text-success">Success text</span>.<br>
 This is <span class="text-danger">Danger text</span>.<br>
 This is <span class="text-warning">Warning text</span>.<br>
+This is <span class="text-white">White text</span>.<br>
 
 
 
