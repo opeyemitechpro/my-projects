@@ -1635,7 +1635,7 @@
 <p>Ater the terraform script executes, it displays the <code>Public IP Address</code> and the <code>SSH Connection string</code> of the Jenkins Server in the format below:</p>
 <p><code>ssh -i &lt;Key-pair_filename&gt; ubuntu@&lt;Jenkins_Master_public_ip&gt;</code></p>
 <details class="image">
-<summary>Image - Output of Terraform apply command</summary>
+<summary>Images - Output of Terraform apply command</summary>
 <figure>
 <p></p><figure markdown="1">
 <a href="https://youtube.com/@opeyemitechpro" target="_blank"><img alt="Output of terraform apply command" src="../../assets/images/Video-Coming-Soon-PlaceHolder.png" title="DevSecOps Project - End-to-end Deployment and Monitoring of 11-Microservice e-Commerce App on AWS EKS using Jenkins, ArgoCD, Terraform, Grafana &amp; Prometheus"></a>
@@ -1664,7 +1664,7 @@
 <p>Install the <code>Suggested Plugins</code> and login to the Jenkins Server as Admin</p>
 <p>Install suggested Jenkins Plugins and login as admin</p>
 <details class="image">
-<summary>Image - Install Sugested Jenkins Plugins</summary>
+<summary>Images - Install Sugested Jenkins Plugins</summary>
 </details>
 <p>Optionally, Setup a new admin password - <code>Jenkins &gt; Admin &gt; Security</code></p>
 <h4 id="install-additional-plugins">Install Additional Plugins<a class="headerlink" href="#install-additional-plugins" title="Copy this link to reference this section">¶</a></h4>
@@ -1679,7 +1679,7 @@
 <li>Prometheus Metrics <em>(Exposes Jenkins internal metrics so we can scrape and display them through Grafana dashboards)</em></li>
 </ul>
 <details class="image">
-<summary>Image - Install additional Jenkins plugins</summary>
+<summary>Images - Install additional Jenkins plugins</summary>
 </details>
 <hr>
 <h4 id="add-credentials">Add Credentials<a class="headerlink" href="#add-credentials" title="Copy this link to reference this section">¶</a></h4>
@@ -1724,7 +1724,7 @@
 </li>
 </ul>
 <details class="image">
-<summary>Image - Add Credentials</summary>
+<summary>Images - Add Credentials</summary>
 <figure>
 <p></p><figure markdown="1">
 <a class="glightbox" data-type="image" data-width="100%" data-height="auto" data-title="Jenkins Credentials" data-desc-position="bottom"><img alt="Jenkins Credentials" src="../../assets/images/jenkins_credentials.png" title="Jenkins Credentials"></a>
@@ -1756,7 +1756,7 @@
 <p>Create a User token by going to <code>Administration &gt; Security &gt; Users</code> and save it somewhere for later</p>
 <p>This token will be used to authenticate Jenkins to access the SonarQube server.</p>
 <details class="image">
-<summary>Image - Generate SonarQube token on the SonarQube server</summary>
+<summary>Images - Generate SonarQube token on the SonarQube server</summary>
 </details>
 <hr>
 <p>Then, on your Jenkins server, go to <code>Manage Jenkins &gt; Tools</code> and configure each of the plugin tools as explained below: </p>
@@ -1788,7 +1788,7 @@
 </li>
 </ul>
 <details class="image">
-<summary>Image - SonarQube Scanner Tool Installation</summary>
+<summary>Images - SonarQube Scanner Tool Installation</summary>
 </details>
 <hr>
 <p><strong>Docker</strong></p>
@@ -1806,7 +1806,7 @@
 <p>Server URL: <code>&lt;sonar_server_ip:9000&gt;</code> <em>(This should be the ip address of the SonarQube server on port <code>9000</code> which in our case, is also the same as our Jenkins server ip address)</em></p>
 <p>Server Authentication token: <code>sonar-token</code></p>
 <details class="image">
-<summary>Image - SonarQube Servers</summary>
+<summary>Images - SonarQube Servers</summary>
 <figure>
 <p></p><figure markdown="1">
 <a class="glightbox" data-type="image" data-width="100%" data-height="auto" data-title="SonarQube Installations Settings" data-desc-position="bottom"><img alt="SonarQube Installations Settings" src="../../assets/images/sonar-installations.png" title="SonarQube Installations Settings"></a>
@@ -1827,10 +1827,10 @@
 </details>
 <hr>
 <p><strong>Declarative Pipeline (Docker)</strong></p>
-<p>Docker Label: <code>docker</code>
-Registry Credentials: <code>my-docker-cred</code></p>
+<p>Docker Label: <code>docker</code></p>
+<p>Registry Credentials: <code>my-docker-cred</code></p>
 <details class="image">
-<summary>Image - Declarative Pipeline (Docker)</summary>
+<summary>Imagess - Declarative Pipeline (Docker)</summary>
 <figure>
 <p></p><figure markdown="1">
 <a class="glightbox" data-type="image" data-width="100%" data-height="auto" data-title="Declarative Pipeline (Docker) Settings" data-desc-position="bottom"><img alt="Declarative Pipeline (Docker) Settings" src="../../assets/images/docker-declarative.png" title="Declarative Pipeline (Docker) Settings"></a>
@@ -1874,7 +1874,7 @@ Registry Credentials: <code>my-docker-cred</code></p>
 </ul>
 </div>
 <details class="image">
-<summary>Image - Jenkins email Notifications</summary>
+<summary>Imagess - Jenkins email Notifications</summary>
 <figure>
 <p></p><figure markdown="1">
 <a class="glightbox" data-type="image" data-width="100%" data-height="auto" data-title="Extended E-mail Notifications Settings" data-desc-position="bottom"><img alt="Extended E-mail Notifications Settings" src="../../assets/images/jenkins-email-settings-1.png" title="Extended E-mail Notifications Settings"></a>
@@ -1933,7 +1933,7 @@ Registry Credentials: <code>my-docker-cred</code></p>
 </li>
 </ul>
 <details class="image">
-<summary>Image - Create a New Jenkins Pipeline Job</summary>
+<summary>Imagess - Create a New Jenkins Pipeline Job</summary>
 </details>
 <p>Go to <code>the_job_name &gt; Configuration &gt; Pipeline</code> and select <code>Pipeline script</code></p>
 <p>Copy and paste the CI pipeline script in the annotation box below into the Jenkins pipeline script template box.</p>
@@ -2498,7 +2498,7 @@ Registry Credentials: <code>my-docker-cred</code></p>
 <li>Click <code>Add webhook</code></li>
 </ul>
 <details class="image">
-<summary>Image - Configure GitHub WebHook</summary>
+<summary>Images - Configure GitHub WebHook</summary>
 </details>
 <hr>
 <h4 id="continuous-delivery-cd-pipeline"><strong>Continuous Delivery (CD) Pipeline</strong><a class="headerlink" href="#continuous-delivery-cd-pipeline" title="Copy this link to reference this section">¶</a></h4>
@@ -2803,7 +2803,7 @@ It also accepts a parameter (DOCKER_TAG) from the upstream build job (the CI pip
 Enter the <code>Access Key</code> and <code>Secret Access Key</code> you copied earlier and set the default region (in my case its <code>us-east-2</code>)<p></p>
 <p>Now, our Jenkins server now has the neccesary permissions to create our EKS cluster.</p>
 <details class="image">
-<summary>Image - IAM User Policy and Access keys</summary>
+<summary>Images - IAM User Policy and Access keys</summary>
 </details>
 <hr>
 <h3 id="create-eks-cluster">Create EKS Cluster<a class="headerlink" href="#create-eks-cluster" title="Copy this link to reference this section">¶</a></h3>
@@ -2828,7 +2828,7 @@ Enter the <code>Access Key</code> and <code>Secret Access Key</code> you copied 
 </ul>
 </div>
 <details class="image">
-<summary>Image - EKS Cluster Creation</summary>
+<summary>Images - EKS Cluster Creation</summary>
 </details>
 <hr>
 <h3 id="install-helm"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12.337 0c-.475 0-.861 1.016-.861 2.269 0 .527.069 1.011.183 1.396a8.5 8.5 0 0 0-3.961 1.22 5.2 5.2 0 0 0-.595-1.093c-.606-.866-1.34-1.436-1.79-1.43a.4.4 0 0 0-.217.066c-.39.273-.123 1.326.596 2.353.267.381.559.705.84.948a8.7 8.7 0 0 0-1.528 1.716h1.734a7.18 7.18 0 0 1 5.381-2.421 7.18 7.18 0 0 1 5.382 2.42h1.733a8.7 8.7 0 0 0-1.32-1.53c.35-.249.735-.643 1.078-1.133.719-1.027.986-2.08.596-2.353a.4.4 0 0 0-.217-.065c-.45-.007-1.184.563-1.79 1.43a4.9 4.9 0 0 0-.676 1.325 8.5 8.5 0 0 0-3.899-1.42c.12-.39.193-.887.193-1.429 0-1.253-.386-2.269-.862-2.269M1.624 9.443v5.162h1.358v-1.968h1.64v1.968h1.357V9.443H4.62v1.838H2.98V9.443zm5.912 0v5.162h3.21v-1.108H8.893v-.95h1.64v-1.142h-1.64v-.84h1.853V9.443zm4.698 0v5.162h3.218v-1.362h-1.86v-3.8zm4.706 0v5.162h1.364v-2.643l1.357 1.225 1.35-1.232v2.65h1.365V9.443h-.614l-2.1 1.914-2.109-1.914zm-11.82 7.28a8.7 8.7 0 0 0 1.412 1.548 5.2 5.2 0 0 0-.841.948c-.719 1.027-.985 2.08-.596 2.353.39.273 1.289-.338 2.007-1.364a5.2 5.2 0 0 0 .595-1.092 8.5 8.5 0 0 0 3.961 1.219 5 5 0 0 0-.183 1.396c0 1.253.386 2.269.861 2.269.476 0 .862-1.016.862-2.269 0-.542-.072-1.04-.193-1.43a8.5 8.5 0 0 0 3.9-1.42c.121.4.352.865.675 1.327.719 1.026 1.617 1.637 2.007 1.364s.123-1.326-.596-2.353c-.343-.49-.727-.885-1.077-1.135a8.7 8.7 0 0 0 1.202-1.36h-1.771a7.17 7.17 0 0 1-5.227 2.252 7.17 7.17 0 0 1-5.226-2.252z"></path></svg></span> Install Helm<a class="headerlink" href="#install-helm" title="Copy this link to reference this section">¶</a></h3>
@@ -2914,7 +2914,7 @@ OR use<p></p>
 </ul>
 </div>
 <details class="image">
-<summary>Images - ArgoCD Password UI</summary>
+<summary>Imagess - ArgoCD Password UI</summary>
 <figure>
 <p></p><figure markdown="1">
 <a class="glightbox" data-type="image" data-width="100%" data-height="auto" data-title="Extract ArgoCD Password" data-desc-position="bottom"><img alt="Extract ArgoCD Password" src="../../assets/images/argocd-password.png" title="Extract ArgoCD Password"></a>
@@ -3061,7 +3061,7 @@ OR use<p></p>
 </ul>
 </div>
 <details class="image">
-<summary>Images - Prometheus UI and Grafana Dashboard</summary>
+<summary>Imagess - Prometheus UI and Grafana Dashboard</summary>
 <figure>
 <p></p><figure markdown="1">
 <a class="glightbox" data-type="image" data-width="100%" data-height="auto" data-title="Extract Grafana Password" data-desc-position="bottom"><img alt="Extract Grafana Password" src="../../assets/images/grafana-password.png" title="Extract Grafana Password"></a>
@@ -3272,7 +3272,7 @@ OR use<p></p>
 <li>Ensure it’s marked as UP.</li>
 </ul>
 <details class="image">
-<summary>Image - Prometheus UI page showing newly added Jenkins target</summary>
+<summary>Images - Prometheus UI page showing newly added Jenkins target</summary>
 </details>
 <h6 id="_1"><a class="headerlink" href="#_1" title="Copy this link to reference this section">¶</a></h6>
 <h2 id="clean-up">Clean-Up<a class="headerlink" href="#clean-up" title="Copy this link to reference this section">¶</a></h2>
@@ -3326,7 +3326,7 @@ OR use<p></p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="October 31, 2025 13:10:09 UTC"><span class="timeago" datetime="2025-10-31T13:10:09+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="October 31, 2025 13:10:09 UTC">2025-10-31</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="October 31, 2025 13:18:10 UTC"><span class="timeago" datetime="2025-10-31T13:18:10+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="October 31, 2025 13:18:10 UTC">2025-10-31</span>
   </span>
 
     
