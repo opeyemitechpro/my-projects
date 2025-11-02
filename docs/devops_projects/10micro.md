@@ -273,7 +273,7 @@ Go to `Manage Jenkins > Credentials > (Global) > Add Credentials` and add the fo
     - Choose Username and Password as the kind
     - Set ID and description as `email-ID`
     - Enter your email username
-    - Enter the `App password` generated from Gmail as the password _(:red_circle: Do not use your real Gmail password here :red_circle:)_
+    - Enter the `App password` generated from Gmail as the password _(:red_circle: <span class="text-red">Do not use your real Gmail password here!</span> :red_circle:)_
     - Click Add.
 
 ??? image "Images - Add Credentials"
@@ -401,7 +401,7 @@ Docker Label: `docker`
 
 Registry Credentials: `my-docker-cred`
 
-??? image "Imagess - Declarative Pipeline (Docker)"
+??? image "Images - Declarative Pipeline (Docker)"
     <figure markdown="1">
     ![Declarative Pipeline (Docker) Settings](../../assets/images/docker-declarative.png "Declarative Pipeline (Docker) Settings")
     </figure>
@@ -447,7 +447,7 @@ Goto `Dashboard > Manage Jenkins > System` and configure both the __"Extended E-
     - The settings above apply to Gmail address configuration. Confirm SMTP settings from your email service provider if different from Gmail.
     - Copy `App password` from your Gmail account security settings and use that as the password in the above configuration.
 
-??? image "Imagess - Jenkins email Notifications"
+??? image "Images - Jenkins email Notifications"
     <figure markdown="1">
     ![Extended E-mail Notifications Settings](../../assets/images/jenkins-email-settings-1.png "Extended E-mail Notifications Settings")
     </figure>
@@ -506,7 +506,7 @@ For this project we will set up 2 separate pipelines.
 
 - Select `Pipeline` and click `OK`
 
-??? image "Imagess - Create a New Jenkins Pipeline Job"
+??? image "Images - Create a New Jenkins Pipeline Job"
 
 
 
@@ -1185,7 +1185,7 @@ kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.pas
     helm get notes opeyemi-argo-cd -n argocd
     ```
 
-??? image "Imagess - ArgoCD Password UI"
+??? image "Images - ArgoCD Password UI"
     
     <figure markdown="1">
     ![Extract ArgoCD Password](../../assets/images/argocd-password.png "Extract ArgoCD Password")
@@ -1364,7 +1364,7 @@ kubectl --namespace monitoring get secrets prometheus-grafana -o jsonpath="{.dat
     - Default Grafana Username is `admin`
     - The decoded password should translate to `prom-operator` which is the default grafana password.
 
-??? image "Imagess - Prometheus UI and Grafana Dashboard"
+??? image "Images - Prometheus UI and Grafana Dashboard"
     
     <figure markdown="1">
     ![Extract Grafana Password](../../assets/images/grafana-password.png "Extract Grafana Password")

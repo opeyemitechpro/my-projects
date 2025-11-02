@@ -68,10 +68,12 @@ Hello, I'm Opeyemi Okuboyejo
 
 
 
-This is <span class="text-success">Success text</span>.<br>
-This is <span class="text-danger">Danger text</span>.<br>
-This is <span class="text-warning">Warning text</span>.<br>
+This is <span class="text-green">Success text</span>.<br>
+This is <span class="text-red">Danger text</span>.<br>
+This is <span class="text-yellow">Warning text</span>.<br>
 This is <span class="text-white">White text</span>.<br>
+This is <span class="text-blue">Blue text</span>.<br>
+This is <span class="text-orange">Orange text</span>.<br>
 
 
 
