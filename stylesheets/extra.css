@@ -217,7 +217,9 @@ h1 {
 
 
 /* Change Text Color */
-.text-success { color: #00b300; }
-.text-warning { color: #ffcc00; }
-.text-danger  { color: #ff4d4d; }
+.text-green { color: green; }
+.text-yellow { color: yellow; }
+.text-red  { color: red; }
 .text-white { color: #ffffff; }
+.text-blue { color: blue; }
+.text-orange { color: orange; }
