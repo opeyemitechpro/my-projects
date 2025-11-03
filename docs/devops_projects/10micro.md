@@ -864,7 +864,7 @@ I have also included details on how this pipeline script works in the annotation
 
 ???+ info "Jenkins CD Pipeline script for the `Update-Manifest` Jenkins job"
     
-    The Jenkins CI pipeline is below:
+    The Jenkins CD pipeline is below:
     
     ??? code-file "Jenkins CD Pipeline Script - Click here"
 
@@ -1006,6 +1006,7 @@ Each time any of the pipelines run, it sends an email notification to the config
     ![CI Pipeline Job](../../assets/images/ci-pipeline-job1.png "CI Pipeline Job")
     </figure>
     /// caption
+    CI Pipeline Job
     Click to enlarge image
     ///
     
@@ -1015,6 +1016,7 @@ Each time any of the pipelines run, it sends an email notification to the config
     ![CD Pipeline Job](../../assets/images/cd-pipeline-job1.png "CD Pipeline Job")
     </figure>
     /// caption
+    CD Pipeline Job
     Click to enlarge image
     ///
 
