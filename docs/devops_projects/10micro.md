@@ -1026,6 +1026,7 @@ Each time any of the pipelines run, it sends an email notification to the config
     ![Email Notifications](../../assets/images/email1.png "Email Notifications")
     </figure>
     /// caption
+    Email Notification <br>
     Click to enlarge image
     ///
     
@@ -1035,6 +1036,27 @@ Each time any of the pipelines run, it sends an email notification to the config
     ![Email Notification](../../assets/images/email2.png "Email Notification")
     </figure>
     /// caption
+    Email Notification<br>
+    Click to enlarge image
+    ///
+
+    --- 
+
+    <figure markdown="1">
+    ![SonarQube Analysis](../../assets/images/sonar1.png "SonarQube Analyis")
+    </figure>
+    /// caption
+    SonarQube Analysis<br>
+    Click to enlarge image
+    ///
+    
+    --- 
+
+    <figure markdown="1">
+    ![SonarQube Analysis](../../assets/images/sonar2.png "SonarQube Analysis")
+    </figure>
+    /// caption
+    SonarQube Analysis<br>
     Click to enlarge image
     ///
 
