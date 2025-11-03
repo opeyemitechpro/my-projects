@@ -264,10 +264,16 @@ Go to `Manage Jenkins > Credentials > (Global) > Add Credentials` and add the fo
     - Click Add.
 
 - [x] Add GitHub Credentials:
-    - Choose Secret text as the kind.
+    - Choose `Username with password` as the kind.
+    - Set Username as your Github Username _(Not your github login email)_
+    - Generate a `personal access token` from your github account
+        - Go to your github account `profile > settings > developer settings > personal access token`
+        - Set a note and select `repo`, `admin:repo_hook`, `notifications`
+        - Click `Generate token`
+        - Copy the generated token
+    - Back at your jenkins server UI, paste  the github token as the password for the github credentials _(:red_circle: <span class="text-red">Do not use your real GitHub password here!</span> :red_circle:)_
     - Set the ID and description as `github-cred`
-    - Enter your GitHub Personal Access Token as the secret.
-    - Click Add.
+    - Click OK.
 
 - [x] Add e-mail Credentials:
     - Choose Username and Password as the kind
@@ -813,9 +819,9 @@ I have include details on how this pipeline script works in the annotation box b
 
 #### Configure GitHub Webhook
 
-To enable Github to automatically trigger the Jenkins CI pipeline anytime a change is pushed to this GitHub repo, we need to configure a webhook in GitHub. The webhook sends a signal to this Jenkins job whenever the repo is updated. This causes the Jenkins CI pipeline to run without human intervention.
+To enable Github to automatically trigger the Jenkins CI pipeline anytime a change is pushed to this Application source code GitHub repo, we need to configure a webhook in GitHub. The webhook sends a signal to this Jenkins job whenever the repo is updated. This causes the Jenkins CI pipeline to run without human intervention.
 
-- On the Github repo for this application, go to `Settings > Webhooks > Add webhook`
+- On the Github repo for the application source code, go to `Settings > Webhooks > Add webhook`
 - Payload URL: `http://<jenkins_server_ip>:8080/github-webhook/` _(Replace `<jenkins_server_ip>` with the actual IP address of your Jenkins server)_
 - Content type: `application/json`
 - Secret: Leave blank
@@ -1039,10 +1045,7 @@ Now, our Jenkins server now has the neccesary permissions to create our EKS clus
 
 Create your EKS Cluster
 
-!!! tip inline end "Tip"
-
-    - Replace the cluster name and region in the command with your desired values
-
+    
 ``` sh hl_lines="2"
 eksctl create cluster \
   --name opeyemi-k8s-cluster \
@@ -1050,6 +1053,7 @@ eksctl create cluster \
 ```
 
 !!! tip "Tip"
+    - [x] Replace the cluster name and region in the command with your desired values
     - [x] This command will create an EKS cluster named `opeyemi-k8s-cluster` in the `us-east-2` region. You can change these values as needed.
     - [x] The command will also create a default node group with t3.medium instances. You can customize the node group settings by adding additional flags to the command. See [_(eksctl documentation - create cluster)_](https://eksctl.io/usage/creating-and-managing-clusters/#creating-a-cluster){: target="_blank" }
 
