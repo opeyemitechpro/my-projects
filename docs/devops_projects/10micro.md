@@ -273,7 +273,7 @@ Go to `Manage Jenkins > Credentials > (Global) > Add Credentials` and add the fo
         - Copy the generated token
     - Back at your jenkins server UI, paste  the github token as the password for the github credentials _(:red_circle: <span class="text-red">Do not use your real GitHub password here!</span> :red_circle:)_
     - Set the ID and description as `github-cred`
-    - Click OK
+    - Click OK.
 
 - [x] Add e-mail Credentials:
     - Choose Username and Password as the kind
@@ -526,7 +526,7 @@ Below is the Jenkins pipeline script for the `Continous Integration (CI)`.
 
 I have include details on how this pipeline script works in the annotation box below.
 
-??? info "Jenkins Continuous Integration (CI) Pipeline script for the Jenkins CI job"
+???+ info "Jenkins Continuous Integration (CI) Pipeline script for the Jenkins CI job"
     
     The Jenkins CI pipeline is below:
 
@@ -855,7 +855,7 @@ Below is the Jenkins pipeline script for the `Continous Deployment (CD)`.
 
 I have also included details on how this pipeline script works in the annotation box below.
 
-??? info "Jenkins CD Pipeline script for the `Update-Manifest` Jenkins job"
+???+ info "Jenkins CD Pipeline script for the `Update-Manifest` Jenkins job"
 
     ??? code-file "Jenkins CD Pipeline Script - Click here"
 
