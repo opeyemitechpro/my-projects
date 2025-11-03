@@ -1006,7 +1006,7 @@ Each time any of the pipelines run, it sends an email notification to the config
     ![CI Pipeline Job](../../assets/images/ci-pipeline-job1.png "CI Pipeline Job")
     </figure>
     /// caption
-    CI Pipeline Job
+    CI Pipeline Job<br>
     Click to enlarge image
     ///
     
@@ -1016,7 +1016,7 @@ Each time any of the pipelines run, it sends an email notification to the config
     ![CD Pipeline Job](../../assets/images/cd-pipeline-job1.png "CD Pipeline Job")
     </figure>
     /// caption
-    CD Pipeline Job
+    CD Pipeline Job<br>
     Click to enlarge image
     ///
 
