@@ -53,21 +53,7 @@ The project highlights key modern DevOps practices, including:
 By the end of this project, you’ll gain a detailed understanding of how each tool was implemented and how the entire pipeline works together to deliver a scalable, secure, and automated deployment workflow on AWS.
 
 
-
-??? info "GitHub Repos used for this project"
-    <div style="text-align: center;">
-    [11 Microservices k8s App Source Code :simple-github: :fontawesome-solid-arrow-up-right-from-square:](https://github.com/opeyemitechpro/11-Microservices-k8s-App){: target="_blank" .md-button}
-    </div>
-
-    <div style="text-align: center;">
-    [11 Microservices k8s App ArgoCD Manifest :simple-github: :fontawesome-solid-arrow-up-right-from-square:](https://github.com/opeyemitechpro/11-Microservices-k8s-App-ArgoCD){: target="_blank" .md-button}
-    </div>
-
-    <div style="text-align: center;">
-    [Deploy a Jenkins Server on AWS using Terraform :simple-github: :fontawesome-solid-arrow-up-right-from-square:](https://github.com/opeyemitechpro/Terraform-Jenkins-CICD){: target="_blank" .md-button}
-    </div>
-
-??? info "GitHub Repos used for this project"
+???+ info "GitHub Repos used for this project"
 
     | GitHub Repo Link | Description |
     | -------------- | ------------- |
@@ -821,7 +807,7 @@ I have include details on how this pipeline script works in the annotation box b
 
 To enable Github to automatically trigger the Jenkins CI pipeline anytime a change is pushed to this Application source code GitHub repo, we need to configure a webhook in GitHub. The webhook sends a signal to this Jenkins job whenever the repo is updated. This causes the Jenkins CI pipeline to run without human intervention.
 
-- On the Github repo for the application source code, go to `Settings > Webhooks > Add webhook`
+On the Github repo for the application source code, go to `Settings > Webhooks > Add webhook`
 - Payload URL: `http://<jenkins_server_ip>:8080/github-webhook/` _(Replace `<jenkins_server_ip>` with the actual IP address of your Jenkins server)_
 - Content type: `application/json`
 - Secret: Leave blank
@@ -829,7 +815,28 @@ To enable Github to automatically trigger the Jenkins CI pipeline anytime a chan
 - Active: `Checked`
 - Click `Add webhook`
 
+Now go back to the Jenkins CI Pipeline job configuration
+- Activate the `GitHub hook trigger for GITScm polling`
+- Click `Save`
+
 ??? image "Images - Configure GitHub WebHook"
+    <figure markdown="1">
+    ![GitHub Webhook Settings](../../assets/images/github-webhook-settings.png "GitHub Webhook Settings")
+    </figure>
+    /// caption
+    Click to enlarge image
+    ///
+    
+    --- 
+
+    <figure markdown="1">
+    ![Test email configuration](../../assets/images/jenkins-email-settings-3.png "Test email configuration")
+    </figure>
+    /// caption
+    Click to enlarge image
+    ///
+
+    --- 
 
 ---
 
@@ -839,7 +846,7 @@ To enable Github to automatically trigger the Jenkins CI pipeline anytime a chan
 
 - Name the job `Update-Manifest`
 
-!!! tip "Tip"
+!!! note "Note"
     It is important that the pipeline must be named `Update-Manifest` because this will be referenced by the CI pipeline script we created earlier. If you choose to use a different name, ensure you modify your CI pipeline script to reflect that.
 
 
@@ -856,7 +863,9 @@ Below is the Jenkins pipeline script for the `Continous Deployment (CD)`.
 I have also included details on how this pipeline script works in the annotation box below.
 
 ???+ info "Jenkins CD Pipeline script for the `Update-Manifest` Jenkins job"
-
+    
+    The Jenkins CI pipeline is below:
+    
     ??? code-file "Jenkins CD Pipeline Script - Click here"
 
         ``` groovy hl_lines="7-19"
@@ -868,7 +877,7 @@ I have also included details on how this pipeline script works in the annotation
                         environment {
                             // ====== CONFIG VARIABLES ======
                             // Replace values with the values configured in your Jenkins server configuration
-                            GIT_CRED                = 'github_cred'
+                            GIT_CRED                = 'github-cred'
 
                             // Declare values for these variables to suit your environment needs
                             GIT_BRANCH              = 'main'
@@ -915,7 +924,7 @@ I have also included details on how this pipeline script works in the annotation
 
                                 stage('Commit & Push Changes') {
                                     steps {
-                                        withCredentials([usernamePassword(credentialsId: 'github_cred', 
+                                        withCredentials([usernamePassword(credentialsId: 'github-cred', 
                                                     passwordVariable: 'GIT_PASSWORD', 
                                                     usernameVariable: 'GIT_USERNAME')]) {
 
@@ -981,6 +990,55 @@ I have also included details on how this pipeline script works in the annotation
 
         ✅ In summary: This pipeline takes the Docker tag produced by the CI job, updates all microservice image tags in the ArgoCD manifest, commits the changes to GitHub, and lets ArgoCD handle the deployment. It removes the need for manual edits, keeps deployments consistent, and fully automates the CD process for Kubernetes microservices.
     
+---
+
+## Running the CI-CD Pipelines
+
+Once we have configured our CI-CD pipelines on Jenkins, our entire pipeline can now be triggerd automatically.
+
+Whenever changes are pushed to our source code repository, the github webhook will trigger the CI pipeline. The CI pipeline runs security and code quality checks through SonarQube and Trivy then builds new docker images for each microservice and pushes it to our dokcer hub. Simultaneaously, it triggers the CD pipeline which updates our manifest repo with the new docker tag.
+
+Each time any of the pipelines run, it sends an email notification to the configured email address to indicate a "SUCCESS" or "FAILURE" of the piepline job.
+
+
+??? image "Images - CI-CD Pipelines View and Email Notifications"
+    <figure markdown="1">
+    ![CI Pipeline Job](../../assets/images/ci-pipeline-job1.png "CI Pipeline Job")
+    </figure>
+    /// caption
+    Click to enlarge image
+    ///
+    
+    --- 
+
+    <figure markdown="1">
+    ![CD Pipeline Job](../../assets/images/cd-pipeline-job1.png "CD Pipeline Job")
+    </figure>
+    /// caption
+    Click to enlarge image
+    ///
+
+    --- 
+
+    <figure markdown="1">
+    ![Email Notifications](../../assets/images/email1.png "Email Notifications")
+    </figure>
+    /// caption
+    Click to enlarge image
+    ///
+    
+    --- 
+
+    <figure markdown="1">
+    ![Email Notification](../../assets/images/email2.png "Email Notification")
+    </figure>
+    /// caption
+    Click to enlarge image
+    ///
+
+    --- 
+
+
 ---
 
 ## Kubernetes Cluster Setup 
