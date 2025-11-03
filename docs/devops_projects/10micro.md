@@ -439,7 +439,7 @@ Goto `Dashboard > Manage Jenkins > System` and configure both the __"Extended E-
     - The settings above apply to Gmail address configuration. Confirm SMTP settings from your email service provider if different from Gmail.
     - Copy `App password` from your Gmail account security settings and use that as the password in the above configuration.
 
-??? image "Images - Jenkins email Notifications"
+??? image "**Images:**Jenkins email Notifications Settings"
     <figure markdown="1">
     ![Extended E-mail Notifications Settings](../../assets/images/jenkins-email-settings-1.png "Extended E-mail Notifications Settings")
     </figure>
@@ -1001,7 +1001,7 @@ Whenever changes are pushed to our source code repository, the github webhook wi
 Each time any of the pipelines run, it sends an email notification to the configured email address to indicate a "SUCCESS" or "FAILURE" of the piepline job.
 
 
-??? image "Images - CI-CD Pipelines View and Email Notifications"
+??? image "**Images:** CI-CD Pipelines View and Email Notifications"
     <figure markdown="1">
     ![CI Pipeline Job](../../assets/images/ci-pipeline-job1.png "CI Pipeline Job")
     </figure>
