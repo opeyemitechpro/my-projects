@@ -1706,10 +1706,18 @@
 <li class="task-list-item">
 <p><label class="task-list-control"><input type="checkbox" checked><span class="task-list-indicator"></span></label> Add GitHub Credentials:</p>
 <ul>
-<li>Choose Secret text as the kind.</li>
+<li>Choose <code>Username with password</code> as the kind.</li>
+<li>Set Username as your Github Username <em>(Not your github login email)</em></li>
+<li>Generate a <code>personal access token</code> from your github account<ul>
+<li>Go to your github account <code>profile &gt; settings &gt; developer settings &gt; personal access token</code></li>
+<li>Set a note and select <code>repo</code>, <code>admin:repo_hook</code>, <code>notifications</code></li>
+<li>Click <code>Generate token</code></li>
+<li>Copy the generated token</li>
+</ul>
+</li>
+<li>Back at your jenkins server UI, paste  the github token as the password for the github credentials <em>(<img alt="🔴" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f534.svg" title=":red_circle:"> <span class="text-red">Do not use your real GitHub password here!</span> <img alt="🔴" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f534.svg" title=":red_circle:">)</em></li>
 <li>Set the ID and description as <code>github-cred</code></li>
-<li>Enter your GitHub Personal Access Token as the secret.</li>
-<li>Click Add.</li>
+<li>Click OK.</li>
 </ul>
 </li>
 <li class="task-list-item">
@@ -2487,9 +2495,9 @@
 </details>
 </details>
 <h4 id="configure-github-webhook">Configure GitHub Webhook<a class="headerlink" href="#configure-github-webhook" title="Copy this link to reference this section">¶</a></h4>
-<p>To enable Github to automatically trigger the Jenkins CI pipeline anytime a change is pushed to this GitHub repo, we need to configure a webhook in GitHub. The webhook sends a signal to this Jenkins job whenever the repo is updated. This causes the Jenkins CI pipeline to run without human intervention.</p>
+<p>To enable Github to automatically trigger the Jenkins CI pipeline anytime a change is pushed to this Application source code GitHub repo, we need to configure a webhook in GitHub. The webhook sends a signal to this Jenkins job whenever the repo is updated. This causes the Jenkins CI pipeline to run without human intervention.</p>
 <ul>
-<li>On the Github repo for this application, go to <code>Settings &gt; Webhooks &gt; Add webhook</code></li>
+<li>On the Github repo for the application source code, go to <code>Settings &gt; Webhooks &gt; Add webhook</code></li>
 <li>Payload URL: <code>http://&lt;jenkins_server_ip&gt;:8080/github-webhook/</code> <em>(Replace <code>&lt;jenkins_server_ip&gt;</code> with the actual IP address of your Jenkins server)</em></li>
 <li>Content type: <code>application/json</code></li>
 <li>Secret: Leave blank</li>
@@ -2808,12 +2816,6 @@ Enter the <code>Access Key</code> and <code>Secret Access Key</code> you copied 
 <hr>
 <h3 id="create-eks-cluster">Create EKS Cluster<a class="headerlink" href="#create-eks-cluster" title="Copy this link to reference this section">¶</a></h3>
 <p>Create your EKS Cluster</p>
-<div class="admonition tip inline end">
-<p class="admonition-title">Tip</p>
-<ul>
-<li>Replace the cluster name and region in the command with your desired values</li>
-</ul>
-</div>
 <div class="highlight"><table class="highlighttable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span>
 <span class="normal"><a href="#__codelineno-8-2">2</a></span>
 <span class="normal"><a href="#__codelineno-8-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a>eksctl<span class="w"> </span>create<span class="w"> </span>cluster<span class="w"> </span><span class="se">\</span>
@@ -2823,6 +2825,7 @@ Enter the <code>Access Key</code> and <code>Secret Access Key</code> you copied 
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" checked><span class="task-list-indicator"></span></label> Replace the cluster name and region in the command with your desired values</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" checked><span class="task-list-indicator"></span></label> This command will create an EKS cluster named <code>opeyemi-k8s-cluster</code> in the <code>us-east-2</code> region. You can change these values as needed.</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" checked><span class="task-list-indicator"></span></label> The command will also create a default node group with t3.medium instances. You can customize the node group settings by adding additional flags to the command. See <a href="https://eksctl.io/usage/creating-and-managing-clusters/#creating-a-cluster" target="_blank"><em>(eksctl documentation - create cluster)</em></a></li>
 </ul>
@@ -3326,7 +3329,7 @@ OR use<p></p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="November 2, 2025 13:44:32 UTC"><span class="timeago" datetime="2025-11-02T13:44:32+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="November 2, 2025 13:44:32 UTC">2025-11-02</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="November 3, 2025 14:22:36 UTC"><span class="timeago" datetime="2025-11-03T14:22:36+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="November 3, 2025 14:22:36 UTC">2025-11-03</span>
   </span>
 
     
