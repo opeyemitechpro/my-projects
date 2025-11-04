@@ -992,13 +992,13 @@ I have also included details on how this pipeline script works in the annotation
     
 ---
 
-## Running the CI-CD Pipelines
+### Running the CI-CD Pipelines
 
 Once we have configured our CI-CD pipelines on Jenkins, our entire pipeline can now be triggerd automatically.
 
 Whenever changes are pushed to our source code repository, the github webhook will trigger the CI pipeline. The CI pipeline runs security and code quality checks through SonarQube and Trivy then builds new docker images for each microservice and pushes it to our dokcer hub. Simultaneaously, it triggers the CD pipeline which updates our manifest repo with the new docker tag.
 
-Each time any of the pipelines run, it sends an email notification to the configured email address to indicate a "SUCCESS" or "FAILURE" of the piepline job.
+Each time any of the pipelines run, it sends an email notification to the configured email address to indicate a "SUCCESS", "FAILURE" or otherwise of the piepline job.
 
 
 ??? image "**Images:** CI-CD Pipelines View and Email Notifications"
@@ -1109,6 +1109,8 @@ See [_(AWS Docmentation - Minimum IAM Policies for EKS)_](https://docs.aws.amazo
 
 Create the IAM user and attach the required policies to the user. Under the user's `Security Credentials` tab,  `create access key` for the user and enable `CLI Use Case`. Copy both the `Access Key` and `Secret Access Key` and store it somewhere for the next step.
 
+**Attach IAM Policy to the Jenkins ec2 Machine**
+
 From your jenkins terminal, configure your AWS credentials using the command below:
 
 ``` sh
@@ -1116,7 +1118,7 @@ aws configure
 ```
 Enter the `Access Key` and `Secret Access Key` you copied earlier and set the default region (in my case its `us-east-2`)
 
-Now, our Jenkins server now has the neccesary permissions to create our EKS cluster.
+Now, our Jenkins server has the neccesary permissions to create and manage our EKS cluster.
 
 ??? image "Images - IAM User Policy and Access keys"
 
