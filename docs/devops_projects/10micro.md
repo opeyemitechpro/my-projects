@@ -1235,18 +1235,11 @@ kubectl get svc opeyemi-argo-cd-argocd-server -n argocd -o=jsonpath='{.status.lo
 Use this LoadBalancer URL to access ArgoCD UI from your browser.
 
 
-
-??? warning inline end "Warning"
-
-    In Production, You should delete the `argocd-initial-admin-secret` from the Argo CD namespace once you change the password. The secret serves no other purpose than to store the initially generated password in clear and can safely be deleted at any time. It will be re-created on demand by Argo CD if a new admin password must be re-generated. 
-    
-    [Learn more :fontawesome-solid-arrow-up-right-from-square:](https://argo-cd.readthedocs.io/en/stable/getting_started/#4-login-using-the-cli){: target="_blank" }
-
 **Accessing initial ArgoCD Admin password**
 
 The initial password for the `admin` account is auto-generated and stored in the `password` field in a secret named `argocd-initial-admin-secret` in your Argo CD installation namespace. You can retrieve this password using kubectl:
 
-You could access the ArgoCD initial Admin password by first displaying the contents of the `argocd-initial-admin-secret` then base64 decode the password field as shown below:
+You can access the ArgoCD initial Admin password by first displaying the contents of the `argocd-initial-admin-secret` then base64 decode the password field as shown below:
 
 
 ``` sh
@@ -1258,6 +1251,7 @@ _(This will list all the secrets in the argocd namespace)_
 ``` sh
 kubectl get secrets argocd-initial-admin-secret -n argocd -o json
 ```
+_(This will display the contents of the secret)_
 
 ``` sh
 echo "<initial-password-string>" | base64 -d
@@ -1265,13 +1259,6 @@ echo "<initial-password-string>" | base64 -d
 * Where `initial-password-string` is the string in the password field of the json output
     
 
-Alternatively, you can retrieve the initial ArgoCD admin password directly with this command:
-
-
-
-``` sh
-kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d; echo
-```
 
 ??? tip "Accessing initial ArgoCD Admin password"
     Alternatively, you could access the ArgoCD initial Admin password by first displaying the contents of the `argocd-initial-admin-secret` then base64 decode the password field as shown below:
@@ -1279,6 +1266,13 @@ kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.pas
     ``` sh
     kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d; echo
     ```
+
+??? warning "Warning"
+
+    In Production, You should delete the `argocd-initial-admin-secret` from the Argo CD namespace once you change the password. The secret serves no other purpose than to store the initially generated password in clear and can safely be deleted at any time. It will be re-created on demand by Argo CD if a new admin password must be re-generated. 
+    
+    [Learn more :fontawesome-solid-arrow-up-right-from-square:](https://argo-cd.readthedocs.io/en/stable/getting_started/#4-login-using-the-cli){: target="_blank" }
+
 
 ??? tip "Further reading"
 
