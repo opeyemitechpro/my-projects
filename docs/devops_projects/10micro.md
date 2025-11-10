@@ -1234,7 +1234,6 @@ kubectl get svc opeyemi-argo-cd-argocd-server -n argocd -o=jsonpath='{.status.lo
 
 Use this LoadBalancer URL to access ArgoCD UI from your browser.
 
-The initial password for the `admin` account is auto-generated and stored in the field `password` in a secret named `argocd-initial-admin-secret` in your Argo CD installation namespace. You can simply retrieve this password using kubectl:
 
 
 ??? warning inline end "Warning"
@@ -1243,10 +1242,32 @@ The initial password for the `admin` account is auto-generated and stored in the
     
     [Learn more :fontawesome-solid-arrow-up-right-from-square:](https://argo-cd.readthedocs.io/en/stable/getting_started/#4-login-using-the-cli){: target="_blank" }
 
+**Accessing initial ArgoCD Admin password**
+
+The initial password for the `admin` account is auto-generated and stored in the `password` field in a secret named `argocd-initial-admin-secret` in your Argo CD installation namespace. You can retrieve this password using kubectl:
+
+You could access the ArgoCD initial Admin password by first displaying the contents of the `argocd-initial-admin-secret` then base64 decode the password field as shown below:
+
+
 ``` sh
 kubectl get secrets -n argocd
 ```
-OR use
+_(This will list all the secrets in the argocd namespace)_
+
+
+``` sh
+kubectl get secrets argocd-initial-admin-secret -n argocd -o json
+```
+
+``` sh
+echo "<initial-password-string>" | base64 -d
+```
+* Where `initial-password-string` is the string in the password field of the json output
+    
+
+Alternatively, you can retrieve the initial ArgoCD admin password directly with this command:
+
+
 
 ``` sh
 kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d; echo
@@ -1254,17 +1275,12 @@ kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.pas
 
 ??? tip "Accessing initial ArgoCD Admin password"
     Alternatively, you could access the ArgoCD initial Admin password by first displaying the contents of the `argocd-initial-admin-secret` then base64 decode the password field as shown below:
-
+    
     ``` sh
-    kubectl get secrets argocd-initial-admin-secret -n argocd
+    kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d; echo
     ```
 
-    ``` sh
-    echo "<initial-password-string>" | base64 -d
-    ```
-    * Where `initial-password-string` is the string in the password field of the json output
-
-!!! tip 
+??? tip "Further reading"
 
     * How to [install ArgoCD using Helm Charts :fontawesome-solid-arrow-up-right-from-square:](https://artifacthub.io/packages/helm/argo/argo-cd){: target="_blank" }
     * You can also follow the ArgoCD installation guide on the [ArgoCD Documentation Website :fontawesome-solid-arrow-up-right-from-square:](https://argo-cd.readthedocs.io/en/stable/getting_started/#1-install-argo-cd){: target="_blank" }
@@ -1283,8 +1299,10 @@ kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.pas
     Click to enlarge image
     ///
 
-    --- <figure markdown="1">
-    ![Confirm ArgoCD Instalaltion and running pods in argocd namespace](../../assets/images/helm-install-argo2.png "Confirm ArgoCD Instalaltion and running pods in argocd namespace")
+    --- 
+    
+    <figure markdown="1">
+    ![Confirm ArgoCD Installation and running pods in argocd namespace](../../assets/images/helm-install-argo2.png "Confirm ArgoCD Installation and running pods in argocd namespace")
     </figure>
     /// caption
     Confirm ArgoCD Instalaltion and running pods in argocd namespace<br>
@@ -1313,7 +1331,7 @@ kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.pas
 
     --- 
 
-    <figure markdown="1">
+    <figure markdown="1">0
     ![ArgoCD UI](../../assets/images/argocd-ui.png "ArgoCD UI")
     </figure>
     /// caption
