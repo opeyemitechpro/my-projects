@@ -1351,7 +1351,7 @@ echo "<initial-password-string>" | base64 -d
     - Revision: `HEAD` (or specify a branch/tag/commit)
     - Source Path: `./`
     - Cluster URL: `https://kubernetes.default.svc`
-    - Namespace: `opeyemi-app` _( <span class="text-green">The name space needs to be created prior</span>.<br> )_
+    - Namespace: `opeyemi-app` _(<span class="text-green">The name space needs to be created prior</span>)_
     - 
 
 
