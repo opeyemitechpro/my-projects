@@ -1256,6 +1256,7 @@ _(This will display the contents of the secret)_
 ``` sh
 echo "<initial-password-string>" | base64 -d
 ```
+
 * Where `initial-password-string` is the string in the password field of the json output
     
 
@@ -1274,7 +1275,7 @@ echo "<initial-password-string>" | base64 -d
     [Learn more :fontawesome-solid-arrow-up-right-from-square:](https://argo-cd.readthedocs.io/en/stable/getting_started/#4-login-using-the-cli){: target="_blank" }
 
 
-??? tip "Further reading"
+??? note "Further reading"
 
     * How to [install ArgoCD using Helm Charts :fontawesome-solid-arrow-up-right-from-square:](https://artifacthub.io/packages/helm/argo/argo-cd){: target="_blank" }
     * You can also follow the ArgoCD installation guide on the [ArgoCD Documentation Website :fontawesome-solid-arrow-up-right-from-square:](https://argo-cd.readthedocs.io/en/stable/getting_started/#1-install-argo-cd){: target="_blank" }
@@ -1345,8 +1346,14 @@ echo "<initial-password-string>" | base64 -d
     - Application Name: `11-microservices-app`
     - Project: `default`
     - Sync Policy: `Automatic`
+    - Enable Sync Policy: `enabled`
     - Repository URL: `https://github.com/opeyemitechpro/11-Microservices-k8s-App-ArgoCD`
     - Revision: `HEAD` (or specify a branch/tag/commit)
+    - Source Path: `./`
+    - Cluster URL: `https://kubernetes.default.svc`
+    - Namespace: `opeyemi-app` _( <span class="text-green">The name space needs to be created prior</span>.<br> )_
+    - 
+
 
 
     
