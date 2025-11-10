@@ -485,7 +485,7 @@ Click `Save` to close the configurations page
 
 ---
 
-### :simple-jenkins: **Setting Up the Jenkins Pipelines**
+### :simple-jenkins: **Setting Up the Jenkins CI/CD Pipelines**
 
 For this project we will set up 2 separate pipelines.
 
@@ -1276,9 +1276,28 @@ kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.pas
 ??? image "Images - ArgoCD Password UI"
     
     <figure markdown="1">
+    ![Install ArgoCD using Helm](../../assets/images/helm-install-argo.png "Install ArgoCD using Helm")
+    </figure>
+    /// caption
+    Install ArgoCD using Helm<br>
+    Click to enlarge image
+    ///
+
+    --- <figure markdown="1">
+    ![Confirm ArgoCD Instalaltion and running pods in argocd namespace](../../assets/images/helm-install-argo2.png "Confirm ArgoCD Instalaltion and running pods in argocd namespace")
+    </figure>
+    /// caption
+    Confirm ArgoCD Instalaltion and running pods in argocd namespace<br>
+    Click to enlarge image
+    ///
+
+    --- 
+    
+    <figure markdown="1">
     ![Extract ArgoCD Password](../../assets/images/argocd-password.png "Extract ArgoCD Password")
     </figure>
     /// caption
+    Extract ArgoCD Password<br>
     Click to enlarge image
     ///
 
@@ -1288,6 +1307,7 @@ kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.pas
     ![ArgoCD LoadBalancer URL](../../assets/images/argocd-load-balancer.png "ArgoCD LoadBalancer URL")
     </figure>
     /// caption
+    ArgoCD LoadBalancer URL<br>
     Click to enlarge image
     ///
 
@@ -1297,6 +1317,7 @@ kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.pas
     ![ArgoCD UI](../../assets/images/argocd-ui.png "ArgoCD UI")
     </figure>
     /// caption
+    ArgoCD UI<br>
     Click to enlarge image
     ///
 
