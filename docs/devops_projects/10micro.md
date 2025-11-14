@@ -1355,7 +1355,27 @@ echo "<initial-password-string>" | base64 -d
     - 
 
 
+??? image "Images - Application Deployed to Kubernetes Cluster Using ArgoCD"
+    
+    <figure markdown="1">
+    ![App Deployment Details](../../assets/images/argocd-app-deployed.png "App Deployment Details")
+    </figure>
+    /// caption
+    App Deployment Details<br>
+    Click to enlarge image
+    ///
 
+    --- 
+    
+    <figure markdown="1">
+    ![Confirm ArgoCD Installation and running pods in argocd namespace](../../assets/images/helm-install-argo2.png "Confirm ArgoCD Installation and running pods in argocd namespace")
+    </figure>
+    /// caption
+    Confirm ArgoCD Instalaltion and running pods in argocd namespace<br>
+    Click to enlarge image
+    ///
+
+    --- 
     
 
 ---
@@ -1380,16 +1400,6 @@ helm install opeyemi-prometheus prometheus-community/kube-prometheus-stack \
   --create-namespace
 ```
 
-??? code-file "==Delete this later=="
-    ``` sh
-    helm install prometheus prometheus-community/kube-prometheus-stack \
-    --namespace monitoring \
-    --create-namespace \
-    --set prometheus.prometheusSpec.maximumStartupDurationSeconds=300 \
-    --set alertmanager.persistence.storageClass="gp2" \
-    --set server.persistentVolume.storageClass="gp2"
-    ```
-
 
 !!! tip "Tip"
 
@@ -1411,7 +1421,7 @@ kubectl get pods -n monitoring
     helm get notes opeyemi-prometheus -n monitoring
     ```
 
-Expose Prometheus and Grafana as a LoadBalancer type to access
+**Expose Prometheus and Grafana as a LoadBalancer type to access**
 
 By default all the pods in the `monitoring`  namespace are of `ClusterIP` type. We need to expose Grafana and Prometheus services as LoadBalancer service types to make them accessible from outside the cluster.
 
@@ -1421,19 +1431,7 @@ First list all services in the monitoring namespace
 kubectl get svc -n monitoring
 ```
 
-??? code-file "==Delete Later=="
-    Display Grafana URL (optional)
-    ``` sh
-    kubectl get svc -n monitoring prometheus-grafana
-    ```
-
-    Display Prometheus URL (optional)
-    ``` sh
-    kubectl get svc -n monitoring prometheus-kube-prometheus-prometheus
-    ``` 
-
-
-Expose Grafana as a LoadBalancer for external access
+**Expose Grafana as a LoadBalancer for external access**
 
 ``` sh
 kubectl patch svc prometheus-grafana \
@@ -1441,10 +1439,10 @@ kubectl patch svc prometheus-grafana \
   -p '{"spec": {"type": "LoadBalancer"}}'
 ```
 
-Expose Prometheus as a LoadBalancer for external access
+**Expose Prometheus as a LoadBalancer for external access**
 
 ``` sh
-kubectl patch svc prometheus-kube-prometheus-prometheus \
+kubectl patch svc opeyemi-prometheus-kube-pr-prometheus \
   -n monitoring \
   -p '{"spec": {"type": "LoadBalancer"}}'
 ```
@@ -1454,6 +1452,17 @@ Display list of all the services in the `monitoring` namespace again. AWS would 
 ``` sh
 kubectl get svc -n monitoring
 ```
+
+??? note "Optionally - Display only Grafana and Prometheus URLs"
+    Display Grafana URL (optional)
+    ``` sh
+    kubectl get svc -n monitoring opeyemi-prometheus-grafana
+    ```
+
+    Display Prometheus URL (optional)
+    ``` sh
+    kubectl get svc -n monitoring opeyemi-prometheus-kube-pr-prometheus
+    ``` 
 
 !!! tip "Tip"
 
@@ -1490,7 +1499,6 @@ kubectl --namespace monitoring get secrets prometheus-grafana -o jsonpath="{.dat
 !!! tip "Tip"
 
     - Default Grafana Username is `admin`
-    - The decoded password should translate to `prom-operator` which is the default grafana password.
 
 ??? image "Images - Prometheus UI and Grafana Dashboard"
     
@@ -1583,6 +1591,7 @@ kubectl --namespace monitoring get secrets prometheus-grafana -o jsonpath="{.dat
 In order to monitor our Jenkins Server on the Grafana Dashboard, we need to expose the metrics to prometheus using `node_exporter` and `prometheus plugin`. Earlier, we had installed `node_exporter` on our Jenkins server using the bash script and we have also installed the `prometheus plugin` on Jenkins. The `node_exporter` will expose the server metrics while the `prometheus plugin` will expose metrics from Jenkins itself.
 
 ✅ **Prerequisites:**
+
 - [x] Prometheus is installed on kubernetes cluster via Helm chart.
 - [x] Node_exporter is running and accessible on our Jenkins server (default port: `9100`).
 - [x] The Jenkins server's IP address is publicly accessible or reachable from within the EKS cluster (e.g., via VPC Peering, VPN, or internal networking).
@@ -1598,7 +1607,7 @@ Create a file named `additional-scrape-configs.yaml` with the following content:
 
     ``` yaml hl_lines="3 12"
     - job_name: 'jenkins-node-exporter'
-    static_configs:
+      static_configs:
         - targets: ['<server_ip>:9100']
         labels:
             instance: 'instance_name'
@@ -1606,8 +1615,8 @@ Create a file named `additional-scrape-configs.yaml` with the following content:
             environment: 'dev'
 
     - job_name: 'jenkins-prom-plugin'
-    metrics_path: /prometheus
-    static_configs:
+      metrics_path: /prometheus
+      static_configs:
         - targets: ['<server_ip>:8080']
         labels:
             instance: 'instance_name'
@@ -1618,7 +1627,7 @@ Create a file named `additional-scrape-configs.yaml` with the following content:
 
 !!! tip "Tip"
 
-    Edit the higlighted lines above and replace `<server-ip>` with the IP address of the Jenkins server. 
+    Edit the higlighted lines in the code above and replace `<server-ip>` with the IP address of the Jenkins server. 
 
 
 #### 2. Now create a Kubernetes secret
@@ -1641,7 +1650,7 @@ kubectl get prometheus -n monitoring
 Then edit the prometheus custom resource
 
 ``` sh
-kubectl edit prometheus prometheus-kube-prometheus-prometheus -n monitoring
+kubectl edit prometheus opeyemi-prometheus-kube-pr-prometheus -n monitoring
 ```
 
 Under `spec` add:
