@@ -290,8 +290,9 @@ nav:
   - Start Here: index.md
   # - AWS Projects:
   #   - aws_projects/index.md
-  # - DevOps Projects:
-  #   - devops_projects/index.md
+  - DevOps Projects:
+    - devops_projects/index.md
+    - devops_projects/11micro.md
   - Terraform Projects: 
     - terraform_projects/index.md
     - terraform_projects/openvpn_access_server.md

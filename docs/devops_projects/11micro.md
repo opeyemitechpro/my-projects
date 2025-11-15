@@ -1089,19 +1089,19 @@ The following AWS IAM policies are required to create and manage an EKS cluster.
 
 ```
 {
-	"Version": "2012-10-17",
-	"Statement": [
-		{
-			"Sid": "Statement1",
-			"Effect": "Allow",
-			"Action": [
-				"eks:*"
-			],
-			"Resource": [
-				"*"
-			]
-		}
-	]
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "Statement1",
+            "Effect": "Allow",
+            "Action": [
+                "eks:*"
+            ],
+            "Resource": [
+                "*"
+            ]
+        }
+    ]
 }
 ```
 
@@ -1531,57 +1531,6 @@ kubectl --namespace monitoring get secrets prometheus-grafana -o jsonpath="{.dat
 ---
 <br><br><br>
 
-
-??? code-file "Delete-Later - Install & Configure Node-Exporter on linux"
-
-    ## Install & Configure Node-Exporter on linux
-
-    ``` sh
-    #!/bin/bash
-
-    set -e
-
-    NODE_EXPORTER_VERSION="1.8.1"
-    DOWNLOAD_URL="https://github.com/prometheus/node_exporter/releases/download/v${NODE_EXPORTER_VERSION}/node_exporter-${NODE_EXPORTER_VERSION}.linux-amd64.tar.gz"
-
-    echo "🚀 Installing Node Exporter v${NODE_EXPORTER_VERSION}..."
-
-    # Download and extract
-    curl -LO ${DOWNLOAD_URL}
-    tar -xzf node_exporter-${NODE_EXPORTER_VERSION}.linux-amd64.tar.gz
-    sudo mv node_exporter-${NODE_EXPORTER_VERSION}.linux-amd64/node_exporter /usr/local/bin/
-    rm -rf node_exporter-${NODE_EXPORTER_VERSION}.linux-amd64*
-
-    # Create user
-    sudo useradd -rs /bin/false node_exporter || true
-
-    # Create systemd service
-    cat <<EOF | sudo tee /etc/systemd/system/node_exporter.service
-    [Unit]
-    Description=Node Exporter
-    Wants=network-online.target
-    After=network-online.target
-
-    [Service]
-    User=node_exporter
-    Group=node_exporter
-    Type=simple
-    ExecStart=/usr/local/bin/node_exporter
-
-    [Install]
-    WantedBy=default.target
-    EOF
-
-    # Reload and start
-    sudo systemctl daemon-reload
-    sudo systemctl enable --now node_exporter
-
-
-    # Verify
-    echo "✅ Node Exporter is running!"
-    curl -s http://localhost:9100/metrics | head -n 5
-
-    ```
 
 ---
 <br>
