@@ -24,7 +24,7 @@ Use this page as your **Command Center** for everything DevOps.
 
 <div class="grid cards" markdown>
 
--   :simple-gitlab:{ .lg .middle } **CI/CD Pipeline with GitHub Actions for Multi-Environment Deployments**
+-   :material/infinity:{ .lg .middle } **End-to-End CI/CD & Monitoring Using Kubernetes, Terraform, Jenkins, Grafana & Prometheus**
 
     ---
 
@@ -32,7 +32,7 @@ Use this page as your **Command Center** for everything DevOps.
 
     [:octicons-arrow-right-24: View Project](./11micro.md)
 
--   :simple-gitlab:{ .lg .middle } **CI/CD Pipeline with GitHub Actions for Multi-Environment Deployments**
+-   :material/infinity:{ .lg .middle } **End-to-End CI/CD & Monitoring Using Kubernetes, Terraform, Jenkins, Grafana & Prometheus**
 
     ---
 
