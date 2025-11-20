@@ -1,5 +1,5 @@
 ---
-icon: simple/devops
+icon: simple/infinty
 title: DevOps Projects
 description: A curated index of DevOps automation, CI/CD pipelines, observability stacks, and infrastructure engineering projects.
 subtitle: DevOps, Automation, CI/CD, Infrastructure Engineering
