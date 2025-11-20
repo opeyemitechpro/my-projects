@@ -93,10 +93,10 @@ Use this page as a **Table of Contents** for everything Terraform on this site.
 
 ## 📌 **Quick Navigation**
 
-- [Home](../index.md)
-- [DevOps Projects](../devops_projects/index.md)
-- [Kubernetes Projects](../kubernetes_projects/index.md)
-- [Cloud Engineering Projects](../cloud_projects/index.md)
+* [Home](../index.md)
+* [All Projects](../index.md)
+* [Kubernetes Projects](../k8s_projects/index.md)
+* [DevOps Projects](../devops_projects/index.md)
 
 ---
 

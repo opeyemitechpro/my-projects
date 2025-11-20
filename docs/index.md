@@ -131,7 +131,7 @@ Use these to explore high-impact work.
 
 ---  -->
 
----
+
 
 <figure markdown="1">
 ![Opeyemi Okuboyejo  |  Certified Cloud Solutions Architect | Cloud Engineer | DevOps Engineer](assets/images/favicon.png "Opeyemi Okuboyejo")

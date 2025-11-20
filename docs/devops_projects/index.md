@@ -1,17 +1,14 @@
 ---
-
 icon: simple/devops
 title: DevOps Projects
 description: A curated index of DevOps automation, CI/CD pipelines, observability stacks, and infrastructure engineering projects.
 subtitle: DevOps, Automation, CI/CD, Infrastructure Engineering
 comments: false
 tags:
-
-* DevOps
-* CI/CD
-* Automation
-* Infrastructure
-
+  - DevOps
+  - CI/CD
+  - Automation
+  - Infrastructure
 ---
 
 # **DevOps Projects**
@@ -27,21 +24,21 @@ Use this page as your **Command Center** for everything DevOps.
 
 <div class="grid cards" markdown>
 
-* :simple-gitlab:{ .lg .middle } **CI/CD Pipeline with GitHub Actions for Multi-Environment Deployments**
+-   :simple-gitlab:{ .lg .middle } **CI/CD Pipeline with GitHub Actions for Multi-Environment Deployments**
 
-  ---
+    ---
 
-  Hands-On End-to-End DevSecOps Project - Automating Provisioning, Deployment and Monitoring of an 11-Microservice e-Commerce App on kubernetes (EKS)
+    Hands-On End-to-End DevSecOps Project - Automating Provisioning, Deployment and Monitoring of an 11-Microservice e-Commerce App on kubernetes (EKS)
 
-  [:octicons-arrow-right-24: View Project](./11micro.md)
+    [:octicons-arrow-right-24: View Project](./11micro.md)
 
-* :simple-gitlab:{ .lg .middle } **CI/CD Pipeline with GitHub Actions for Multi-Environment Deployments**
+-   :simple-gitlab:{ .lg .middle } **CI/CD Pipeline with GitHub Actions for Multi-Environment Deployments**
 
-  ---
+    ---
 
-  Hands-On End-to-End DevSecOps Project - Automating Provisioning, Deployment and Monitoring of an 11-Microservice e-Commerce App on kubernetes (EKS)
+    Hands-On End-to-End DevSecOps Project - Automating Provisioning, Deployment and Monitoring of an 11-Microservice e-Commerce App on kubernetes (EKS)
 
-  [:octicons-arrow-right-24: View Project](./11micro.md)
+    [:octicons-arrow-right-24: View Project](./11micro.md)
 <!-- 
 * :simple-jenkins:{ .lg .middle } **Automated Jenkins Pipeline for Docker & Kubernetes Deployments**
 
