@@ -58,7 +58,7 @@ By the end of this project, you’ll gain a detailed understanding of how each t
     | GitHub Repo Link | Description |
     | -------------- | ------------- |
     | [11 Microservices k8s App Source Code :simple-github: :fontawesome-solid-arrow-up-right-from-square:](https://github.com/opeyemitechpro/11-Microservices-k8s-App){: target="_blank" .md-button} | Contains the application source code |
-    | [11 Microservices k8s App ArgoCD Manifest :simple-github: :fontawesome-solid-arrow-up-right-from-square:](https://github.com/opeyemitechpro/11-Microservices-k8s-App-ArgoCD){: target="_blank" .md-button} | Contains the ArgoCD manifest |
+    | [11 Microservices k8s App ArgoCD Manifest :simple-github: :fontawesome-solid-arrow-up-right-from-square:](https://github.com/opeyemitechpro/11-Microservices-k8s-App-ArgoCD){: target="_blank" .md-button} | Contains the ArgoCD GitOps manifest |
     | [Deploy a Jenkins Server on AWS using Terraform :simple-github: :fontawesome-solid-arrow-up-right-from-square:](https://github.com/opeyemitechpro/Terraform-Jenkins-CICD){: target="_blank" .md-button} | Contains Terraform Script to deploy the Jenkins server | 
 
 
@@ -103,6 +103,7 @@ By the end of this project, you’ll gain a detailed understanding of how each t
     - [x] Configure Jenkins Plugins
     - [x] Configure SonarQube Server Token
     - [x] Setup Jenkins CI/CD Pipelines
+- [x] Setup Kubernetes Cluster (Amazon EKS)
 - [x] Install ArgoCD for GitOps
 - [x] Deploy Application to EKS Using GitOps
 - [x] Install and Setup Grafana and Prometheus for Monitoring
@@ -1642,9 +1643,9 @@ First, from the Jenkins server terminal, lets uninstall the Helm releases:
 Uninstall ArgoCD and the kube-Prometheus stack
 
 ``` sh
-helm uninstall opeyemi-argo-cd --n argocd
+helm uninstall opeyemi-argo-cd -n argocd
 kubectl delete namespace argocd
-helm uninstall opeyemi-prometheus --n monitoring 
+helm uninstall opeyemi-prometheus -n monitoring 
 kubectl delete namespace monitoring
 ```
 

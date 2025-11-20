@@ -4,14 +4,14 @@ title: Hands-On End-to-End DevSecOps Project - Automating Provisioning, Deployme
 description: Infrastructure Automation, Continuous Integration, GitOps Deployment, and Observability for an E-Commerce Microservices Platform on Amazon EKS
 subtitle: End-to-End CI/CD & Monitoring Using Kubernetes, Terraform, Jenkins, Grafana & Prometheus
 comments: true 
-tags:
-  - AWS
-  - DevOps
-  - Kubernetes
-  - Terraform
-  - Jenkins
-  - Prometheus
-  - Grafana
+# tags:
+#   - AWS
+#   - DevOps
+#   - Kubernetes
+#   - Terraform
+#   - Jenkins
+#   - Prometheus
+#   - Grafana
 status: new
 pin: true
 show_ai_buttons: true
