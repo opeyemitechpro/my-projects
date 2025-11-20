@@ -33,6 +33,15 @@ Use this page as a **Table of Contents** for everything Terraform on this site.
 
     [:octicons-arrow-right-24: View Project](./openvpn_access_server.md)
 
+-   :simple-openvpn:{ .lg .middle } **OpenVPN Access Server on AWS**
+
+    ---
+
+    Provision a self-hosted VPN server on AWS using Terraform & OpenVPN Access Server.  
+    Includes EC2 provisioning, automated AMI selection, security groups, ALB/NLB options, and full user_data automation.
+
+    [:octicons-arrow-right-24: View Project](./openvpn_access_server.md)
+<!-- 
 -   :simple-aws:{ .lg .middle } **EKS Cluster Deployment Using Terraform**
 
     ---
@@ -66,7 +75,7 @@ Use this page as a **Table of Contents** for everything Terraform on this site.
     Collection of reusable Terraform modules for AWS (VPC, EC2, EKS, RDS, S3, IAM).  
     Built for modular deployments and enterprise-ready IaC patterns.
 
-    [:octicons-arrow-right-24: View Modules](./modules_overview.md)
+    [:octicons-arrow-right-24: View Modules](./modules_overview.md) -->
 
 </div>
 
@@ -85,7 +94,7 @@ Use this page as a **Table of Contents** for everything Terraform on this site.
 ## 📌 **Quick Navigation**
 
 - [Home](../index.md)
-- [All Projects](../my-projects.md)
+- [DevOps Projects](../devops_projects/index.md)
 - [Kubernetes Projects](../kubernetes_projects/index.md)
 - [Cloud Engineering Projects](../cloud_projects/index.md)
 

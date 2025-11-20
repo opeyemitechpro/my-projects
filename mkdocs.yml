@@ -288,11 +288,11 @@ copyright: |
 nav:
   - About Me: profile.md
   - Start Here: index.md
-  # - AWS Projects:
-  #   - aws_projects/index.md
   - DevOps Projects:
     - devops_projects/index.md
     - devops_projects/11micro.md
+  - Kubernetes Projects:
+    - k8s_projects/index.md
   - Terraform Projects: 
     - terraform_projects/index.md
     - terraform_projects/openvpn_access_server.md
