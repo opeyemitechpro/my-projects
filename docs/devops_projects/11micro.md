@@ -1342,7 +1342,7 @@ echo "<initial-password-string>" | base64 -d
     --- 
     
     <figure markdown="1">
-    ![ArgoCD LoadBalancer URL](../../assets/images/argocd-app-sync1.png "ArgoCD App Synchronizing")
+    ![ArgoCD App Synchronizing](../../assets/images/argocd-app-sync1.png "ArgoCD App Synchronizing")
     </figure>
     /// caption
     ArgoCD App Synchronizing<br>
@@ -1352,7 +1352,7 @@ echo "<initial-password-string>" | base64 -d
     --- 
 
     <figure markdown="1">
-    ![ArgoCD UI](../../assets/images/argocd-app-sync2.png "ArgoCD App Synchronizing")
+    ![ArgoCD App Synchronizing](../../assets/images/argocd-app-sync2.png "ArgoCD App Synchronizing")
     </figure>
     /// caption
     ArgoCD App Synchronizing<br>
