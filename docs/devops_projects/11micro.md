@@ -23,7 +23,9 @@ show_ai_buttons: true
 This project demonstrates a complete, production-grade DevSecOps pipeline for deploying a cloud-native e-commerce application built on 11 different microservices written in multiple programming languages that communicate with each other over gRPC. The application was originally designed by Google Developers for the GKE but I have adapted it to be deployed on Amazon EKS or on any Kubernetes cluster.
 
 ??? youtube "Watch the Video Walkthrough here" 
-    ## **DevSecOps Project - End-to-end Deployment and Monitoring of 11-Microservice e-Commerce App to AWS EKS with Jenkins, ArgoCD, Terraform, Grafana & Prometheus**
+    ## Video Walkthrough
+    
+    **DevSecOps Project - End-to-end Deployment and Monitoring of 11-Microservice e-Commerce App to AWS EKS with Jenkins, ArgoCD, Terraform, Grafana & Prometheus**
 
     <figure markdown="1">
     [![DevSecOps Project - End-to-end Deployment and Monitoring of 11-Microservice e-Commerce App on AWS EKS using Jenkins, ArgoCD, Terraform, Grafana & Prometheus](../../assets/images/Video-Coming-Soon-PlaceHolder.png "DevSecOps Project - End-to-end Deployment and Monitoring of 11-Microservice e-Commerce App on AWS EKS using Jenkins, ArgoCD, Terraform, Grafana & Prometheus")](https://youtube.com/@opeyemitechpro){: target="_blank" }
@@ -1329,11 +1331,31 @@ echo "<initial-password-string>" | base64 -d
 
     --- 
 
-    <figure markdown="1">0
+    <figure markdown="1">
     ![ArgoCD UI](../../assets/images/argocd-ui.png "ArgoCD UI")
     </figure>
     /// caption
     ArgoCD UI<br>
+    Click to enlarge image
+    ///
+
+    --- 
+    
+    <figure markdown="1">
+    ![ArgoCD LoadBalancer URL](../../assets/images/argocd-app-sync1.png "ArgoCD App Synchronizing")
+    </figure>
+    /// caption
+    ArgoCD App Synchronizing<br>
+    Click to enlarge image
+    ///
+
+    --- 
+
+    <figure markdown="1">
+    ![ArgoCD UI](../../assets/images/argocd-app-sync2.png "ArgoCD App Synchronizing")
+    </figure>
+    /// caption
+    ArgoCD App Synchronizing<br>
     Click to enlarge image
     ///
 
@@ -1503,13 +1525,13 @@ kubectl --namespace monitoring get secrets prometheus-grafana -o jsonpath="{.dat
 
     - Default Grafana Username is `admin`
 
-??? image "Images - Prometheus UI and Grafana Dashboard"
+??? image "Images - Prometheus and Grafana Images"
     
     <figure markdown="1">
     ![Extract Grafana Password](../../assets/images/grafana-password.png "Extract Grafana Password")
     </figure>
     /// caption
-    Click to enlarge image
+    Extract Grafana Password
     ///
 
     --- 
@@ -1518,7 +1540,7 @@ kubectl --namespace monitoring get secrets prometheus-grafana -o jsonpath="{.dat
     ![Kube-Prometheus Helm Notes](../../assets/images/kube-prometheus-helm-notes.png "Kube-Prometheus Helm Notes")
     </figure>
     /// caption
-    Click to enlarge image
+    Kube-Prometheus Helm Notes
     ///
 
     --- 
@@ -1527,8 +1549,46 @@ kubectl --namespace monitoring get secrets prometheus-grafana -o jsonpath="{.dat
     ![Installing Kube-Promethues using Helm Charts](../../assets/images/helm-prometheus-installation.png "Installing Kube-Promethues using Helm Charts")
     </figure>
     /// caption
-    Click to enlarge image
+    Installing Kube-Promethues using Helm Charts
     ///
+
+    ---
+    
+    <figure markdown="1">
+    ![Prometheus Dashboard](../../assets/images/prometheus-dashboard.png "Prometheus Dashboard")
+    </figure>
+    /// caption
+    Prometheus Dashboard
+    ///
+
+    --- 
+
+    <figure markdown="1">
+    ![Grafana Dashboard Views](../../assets/images/grafana-dashboard1.png "Grafana Dashboard Views")
+    </figure>
+    /// caption
+    Grafana Dashboard Views
+    ///
+
+    ---
+    
+    <figure markdown="1">
+    ![Grafana Dashboard Views](../../assets/images/grafana-dashboard2.png "Grafana Dashboard Views")
+    </figure>
+    /// caption
+    Grafana Dashboard Views
+    ///
+
+    ---
+    
+    <figure markdown="1">
+    ![Grafana Dashboard Views](../../assets/images/grafana-dashboard3.png "Grafana Dashboard Views")
+    </figure>
+    /// caption
+    Grafana Dashboard Views
+    ///
+
+    ---
 
 
 ---
