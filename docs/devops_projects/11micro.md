@@ -1177,11 +1177,11 @@ helm repo update
 Install ArgoCD Helm Chart
 
 ``` sh
-helm install opeyemi-argo-cd argo/argo-cd --namespace argocd --create-namespace
+helm install argo-cd argo/argo-cd --namespace argocd --create-namespace
 ```
 
 !!! tip "Tip"
-    This will name the release `opeyemi-argo-cd` and create the `argocd` namespace if it doesn't exist then install ArgoCD in the `argocd` namespace.
+    This will name the release `argo-cd` and create the `argocd` namespace if it doesn't exist then install ArgoCD in the `argocd` namespace.
 
 
 
@@ -1201,7 +1201,7 @@ helm install opeyemi-argo-cd argo/argo-cd --namespace argocd --create-namespace
     Get Helm release notes for the argocd installation
 
     ``` sh
-    helm get notes opeyemi-argo-cd -n argocd
+    helm get notes argo-cd -n argocd
     ```
 
 Expose the `argocd-server` service as a LoadBalancer
@@ -1214,10 +1214,10 @@ First, display list of services running in the argocd namespace
 kubectl get svc -n argocd
 ```
 
-Next, expose the `opeyemi-argo-cd-argocd-server` service as a LoadBalancer type
+Next, expose the `argo-cd-argocd-server` service as a LoadBalancer type
 
 ``` sh
-kubectl patch svc opeyemi-argo-cd-argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'
+kubectl patch svc argo-cd-argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'
 ```
 
 !!! tip "Tip"
@@ -1230,7 +1230,7 @@ kubectl get svc -n argocd
 ```
 OR use 
 ``` sh
-kubectl get svc opeyemi-argo-cd-argocd-server -n argocd -o=jsonpath='{.status.loadBalancer.ingress[0].hostname}'
+kubectl get svc argo-cd-argocd-server -n argocd -o=jsonpath='{.status.loadBalancer.ingress[0].hostname}'
 ```
 
 Use this LoadBalancer URL to access ArgoCD UI from your browser.
@@ -1282,7 +1282,7 @@ echo "<initial-password-string>" | base64 -d
     * You can also follow the ArgoCD installation guide on the [ArgoCD Documentation Website :fontawesome-solid-arrow-up-right-from-square:](https://argo-cd.readthedocs.io/en/stable/getting_started/#1-install-argo-cd){: target="_blank" }
     * You can access the helm release notes for the argocd by running: 
     ``` sh
-    helm get notes opeyemi-argo-cd -n argocd
+    helm get notes argo-cd -n argocd
     ```
 
 ??? image "Images - ArgoCD Password UI"
@@ -1396,7 +1396,7 @@ Install Prometheus Stack into `monitoring` namespace
 
 
 ``` sh
-helm install opeyemi-prometheus prometheus-community/kube-prometheus-stack \
+helm install prometheus prometheus-community/kube-prometheus-stack \
   --namespace monitoring \
   --create-namespace
 ```
@@ -1409,7 +1409,7 @@ helm install opeyemi-prometheus prometheus-community/kube-prometheus-stack \
 Check running status of pods in the `monitoring` namespace to verify deployment
 
 ``` sh
-kubectl --namespace monitoring get pods -l "release=opeyemi-prometheus"
+kubectl --namespace monitoring get pods -l "release=prometheus"
 ```
 
 OR
@@ -1419,7 +1419,7 @@ kubectl get pods -n monitoring
 
 ??? note "Optionally you can display helm release notes for the Prometheus installation"
     ``` sh
-    helm get notes opeyemi-prometheus -n monitoring
+    helm get notes prometheus -n monitoring
     ```
 
 **Expose Prometheus and Grafana as a LoadBalancer type to access**
@@ -1435,7 +1435,7 @@ kubectl get svc -n monitoring
 **Expose Grafana as a LoadBalancer for external access**
 
 ``` sh
-kubectl patch svc opeyemi-prometheus-grafana \
+kubectl patch svc prometheus-grafana \
   -n monitoring \
   -p '{"spec": {"type": "LoadBalancer"}}'
 ```
@@ -1443,7 +1443,7 @@ kubectl patch svc opeyemi-prometheus-grafana \
 **Expose Prometheus as a LoadBalancer for external access**
 
 ``` sh
-kubectl patch svc opeyemi-prometheus-kube-pr-prometheus \
+kubectl patch svc prometheus-kube-prometheus-prometheus \
   -n monitoring \
   -p '{"spec": {"type": "LoadBalancer"}}'
 ```
@@ -1457,12 +1457,12 @@ kubectl get svc -n monitoring
 ??? note "Optionally - Display only Grafana and Prometheus URLs"
     Display Grafana URL (optional)
     ``` sh
-    kubectl get svc -n monitoring opeyemi-prometheus-grafana
+    kubectl get svc -n monitoring prometheus-grafana
     ```
 
     Display Prometheus URL (optional)
     ``` sh
-    kubectl get svc -n monitoring opeyemi-prometheus-kube-pr-prometheus
+    kubectl get svc -n monitoring prometheus-kube-prometheus-prometheus
     ``` 
 
 !!! tip "Tip"
@@ -1600,7 +1600,7 @@ kubectl get prometheus -n monitoring
 Then edit the prometheus custom resource
 
 ``` sh
-kubectl edit prometheus opeyemi-prometheus-kube-pr-prometheus -n monitoring
+kubectl edit prometheus prometheus-kube-prometheus-prometheus -n monitoring
 ```
 
 Under `spec` add:
@@ -1643,9 +1643,9 @@ First, from the Jenkins server terminal, lets uninstall the Helm releases:
 Uninstall ArgoCD and the kube-Prometheus stack
 
 ``` sh
-helm uninstall opeyemi-argo-cd -n argocd
+helm uninstall argo-cd -n argocd
 kubectl delete namespace argocd
-helm uninstall opeyemi-prometheus -n monitoring 
+helm uninstall prometheus -n monitoring 
 kubectl delete namespace monitoring
 ```
 
