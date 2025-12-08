@@ -79,12 +79,6 @@ By the end of this project, you’ll gain a detailed understanding of how each t
 
     --- 
 
-    <figure markdown="1">
-    ![Architectural Diagram of the project](../../assets/images/Video-Coming-Soon-PlaceHolder.png "Architectural Diagram of the project-1")
-    </figure>
-    /// caption
-    Click to enlarge image
-    ///
 
 
 ## Project Workflow
@@ -177,15 +171,6 @@ terraform apply
 Ater the terraform script executes, it displays the `Public IP Address` and the `SSH Connection string` of the Jenkins Server in the format below:
 
 `ssh -i <Key-pair_filename> ubuntu@<Jenkins_Master_public_ip>`
-
-??? image "Images - Output of Terraform apply command"
-    <figure markdown="1">
-    [![Output of terraform apply command](../../assets/images/Video-Coming-Soon-PlaceHolder.png "DevSecOps Project - End-to-end Deployment and Monitoring of 11-Microservice e-Commerce App on AWS EKS using Jenkins, ArgoCD, Terraform, Grafana & Prometheus")](https://youtube.com/@opeyemitechpro){: target="_blank" }
-    <!-- <figcaption>Create a Free Self-Hosted VPN Server on AWS using Terraform and OpenVPN</figcaption>  -->
-    </figure>
-    /// caption
-    DevSecOps Project - End-to-end Deployment and Monitoring of 11-Microservice e-Commerce App to AWS EKS with Jenkins, ArgoCD, Terraform, Grafana & Prometheus
-    ///
 
 
 Use the `Public IP address` to access the Jenkins server initial setup UI from your browser on port `8080`.
@@ -281,14 +266,7 @@ Go to `Manage Jenkins > Credentials > (Global) > Add Credentials` and add the fo
     Click to enlarge image
     ///
 
-    --- 
-
-    <figure markdown="1">
-    ![Architectural Diagram of the project](../../assets/images/Video-Coming-Soon-PlaceHolder.png "Architectural Diagram of the project-1")
-    </figure>
-    /// caption
-    Click to enlarge image
-    ///
+    ---    
 
 ---
 
@@ -382,13 +360,6 @@ Server Authentication token: `sonar-token`
 
     --- 
 
-    <figure markdown="1">
-    ![Architectural Diagram of the project](../../assets/images/Video-Coming-Soon-PlaceHolder.png "Architectural Diagram of the project-1")
-    </figure>
-    /// caption
-    Click to enlarge image
-    ///
-
 
 ---
 
@@ -407,13 +378,6 @@ Registry Credentials: `my-docker-cred`
     ///
 
     --- 
-
-    <figure markdown="1">
-    ![Architectural Diagram of the project](../../assets/images/Video-Coming-Soon-PlaceHolder.png "Architectural Diagram of the project-1")
-    </figure>
-    /// caption
-    Click to enlarge image
-    ///
 
 ---
 
