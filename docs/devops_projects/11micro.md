@@ -28,8 +28,8 @@ This project demonstrates a complete, production-grade DevSecOps pipeline for de
     **DevSecOps Project - End-to-end Deployment and Monitoring of 11-Microservice e-Commerce App to AWS EKS with Jenkins, ArgoCD, Terraform, Grafana & Prometheus**
 
     <figure markdown="1">
-    [![DevSecOps Project - End-to-end Deployment and Monitoring of 11-Microservice e-Commerce App on AWS EKS using Jenkins, ArgoCD, Terraform, Grafana & Prometheus](../../assets/images/Video-Coming-Soon-PlaceHolder.png "DevSecOps Project - End-to-end Deployment and Monitoring of 11-Microservice e-Commerce App on AWS EKS using Jenkins, ArgoCD, Terraform, Grafana & Prometheus")](https://youtube.com/@opeyemitechpro){: target="_blank" }
-    <!-- <figcaption>Create a Free Self-Hosted VPN Server on AWS using Terraform and OpenVPN</figcaption>  -->
+    [![DevSecOps Project - End-to-end Deployment and Monitoring of multi-Microservice e-Commerce App on AWS EKS using Jenkins, ArgoCD, Terraform, Grafana & Prometheus](../../assets/images/Video-Coming-Soon-PlaceHolder.png "DevSecOps Project - End-to-end Deployment and Monitoring of multi-Microservice e-Commerce App on AWS EKS using Jenkins, ArgoCD, Terraform, Grafana & Prometheus")](https://youtube.com/@opeyemitechpro){: target="_blank" }
+    <!-- <figcaption>DevSecOps Project</figcaption>  -->
     </figure>
     /// caption
     DevSecOps Project - End-to-end Deployment and Monitoring of 11-Microservice e-Commerce App to AWS EKS with Jenkins, ArgoCD, Terraform, Grafana & Prometheus
@@ -201,8 +201,6 @@ Install the `Suggested Plugins` and login to the Jenkins Server as Admin
 
 Install suggested Jenkins Plugins and login as admin
 
-??? image "Images - Install Sugested Jenkins Plugins"
-
 
 Optionally, Setup a new admin password - `Jenkins > Admin > Security`
 
@@ -218,7 +216,6 @@ Go to `Manage Jenkins > Plugins > Available Plugins`, search for and install the
 - Email Extension Template _(Used to send job email notifications)_
 - Prometheus Metrics _(Exposes Jenkins internal metrics so we can scrape and display them through Grafana dashboards)_
 
-??? image "Images - Install additional Jenkins plugins"
 
 ---
 
@@ -290,6 +287,14 @@ Create a User token by going to `Administration > Security > Users` and save it 
 This token will be used to authenticate Jenkins to access the SonarQube server.
 
 ??? image "Images - Generate SonarQube token on the SonarQube server"
+    <figure markdown="1">
+    ![SonarQube Token](../../assets/images/sonar-token.png "SonarQube Token")
+    </figure>
+    /// caption
+    SonarQube Token
+    ///
+
+    --- 
 
 ---
 
@@ -318,6 +323,14 @@ Set the SonarQube server URL under `Manage Jenkins > System > SonarQube Installa
 - `Apply` and `Save`
 
 ??? image "Images - SonarQube Scanner Tool Installation"
+    <figure markdown="1">
+    ![SonarQube Tool Installation](../../assets/images/sonar-tool.png "SonarQube Tool Installation")
+    </figure>
+    /// caption
+    SonarQube Tool Installation
+    ///
+
+    --- 
 
 
 ---
@@ -466,8 +479,6 @@ For this project we will set up 2 separate pipelines.
 - Go to `Jenkins > Create a Job` and give the new job item a name
 
 - Select `Pipeline` and click `OK`
-
-??? image "Images - Create a New Jenkins Pipeline Job"
 
 
 
@@ -1089,8 +1100,6 @@ Enter the `Access Key` and `Secret Access Key` you copied earlier and set the de
 
 Now, our Jenkins server has the neccesary permissions to create and manage our EKS cluster.
 
-??? image "Images - IAM User Policy and Access keys"
-
 
 ---
 
@@ -1111,7 +1120,6 @@ eksctl create cluster \
     - [x] The command will also create a default node group with t3.medium instances. You can customize the node group settings by adding additional flags to the command. See [_(eksctl documentation - create cluster)_](https://eksctl.io/usage/creating-and-managing-clusters/#creating-a-cluster){: target="_blank" }
 
 
-??? image "Images - EKS Cluster Creation"
 
 ---
 
@@ -1655,7 +1663,6 @@ Prometheus will reload its config automatically by deafult. Wait a minute, then:
 * Look for the job `node-exporter-standalone`.
 * Ensure it’s marked as UP.
 
-??? image "Images - Prometheus UI page showing newly added Jenkins target"
 
 
 ########################################################
