@@ -28,7 +28,7 @@ This project demonstrates a complete, production-grade DevSecOps pipeline for de
     **DevSecOps Project - End-to-end Deployment and Monitoring of 11-Microservice e-Commerce App to AWS EKS with Jenkins, ArgoCD, Terraform, Grafana & Prometheus**
 
     <figure markdown="1">
-    [![DevSecOps Project - End-to-end Deployment and Monitoring of multi-Microservice e-Commerce App on AWS EKS using Jenkins, ArgoCD, Terraform, Grafana & Prometheus](../../assets/images/Video-Coming-Soon-PlaceHolder.png "DevSecOps Project - End-to-end Deployment and Monitoring of multi-Microservice e-Commerce App on AWS EKS using Jenkins, ArgoCD, Terraform, Grafana & Prometheus")](https://youtube.com/@opeyemitechpro){: target="_blank" }
+    [![DevSecOps Project - End-to-end Deployment and Monitoring of multi-Microservice e-Commerce App on AWS EKS using Jenkins, ArgoCD, Terraform, Grafana & Prometheus](../../assets/images/video-image.png "DevSecOps Project - End-to-end Deployment and Monitoring of multi-Microservice e-Commerce App on AWS EKS using Jenkins, ArgoCD, Terraform, Grafana & Prometheus")](https://youtube.com/@opeyemitechpro){: target="_blank" }
     <!-- <figcaption>DevSecOps Project</figcaption>  -->
     </figure>
     /// caption
@@ -71,7 +71,7 @@ By the end of this project, you’ll gain a detailed understanding of how each t
 
 ??? image "Architectural Diagram of the Project"
     <figure markdown="1">
-    ![Architectural Diagram of the project](../../assets/images/Video-Coming-Soon-PlaceHolder.png "Architectural Diagram of the project-1")
+    ![Architectural Diagram of the project](../../assets/images/arch-diag.png "Architectural Diagram of the project")
     </figure>
     /// caption
     Click to enlarge image
