@@ -2359,8 +2359,8 @@
 <p><strong>DevSecOps Project - End-to-end Deployment and Monitoring of 11-Microservice e-Commerce App to AWS EKS with Jenkins, ArgoCD, Terraform, Grafana &amp; Prometheus</strong></p>
 <figure>
 <p></p><figure markdown="1">
-<a href="https://youtube.com/@opeyemitechpro" target="_blank" rel="noopener"><img alt="DevSecOps Project - End-to-end Deployment and Monitoring of 11-Microservice e-Commerce App on AWS EKS using Jenkins, ArgoCD, Terraform, Grafana &amp; Prometheus" src="../../assets/images/Video-Coming-Soon-PlaceHolder.png" title="DevSecOps Project - End-to-end Deployment and Monitoring of 11-Microservice e-Commerce App on AWS EKS using Jenkins, ArgoCD, Terraform, Grafana &amp; Prometheus"></a>
-<!-- <figcaption>Create a Free Self-Hosted VPN Server on AWS using Terraform and OpenVPN</figcaption>  -->
+<a href="https://youtube.com/@opeyemitechpro" target="_blank" rel="noopener"><img alt="DevSecOps Project - End-to-end Deployment and Monitoring of multi-Microservice e-Commerce App on AWS EKS using Jenkins, ArgoCD, Terraform, Grafana &amp; Prometheus" src="../../assets/images/Video-Coming-Soon-PlaceHolder.png" title="DevSecOps Project - End-to-end Deployment and Monitoring of multi-Microservice e-Commerce App on AWS EKS using Jenkins, ArgoCD, Terraform, Grafana &amp; Prometheus"></a>
+<!-- <figcaption>DevSecOps Project</figcaption>  -->
 </figure><p></p>
 <figcaption>
 <p>DevSecOps Project - End-to-end Deployment and Monitoring of 11-Microservice e-Commerce App to AWS EKS with Jenkins, ArgoCD, Terraform, Grafana &amp; Prometheus</p>
@@ -2531,9 +2531,6 @@
 <p>From the Jenkins server initial setup UI page in your browser, enter the jenkins initial admin password you copied to proceed with jenkins server setup.</p>
 <p>Install the <code>Suggested Plugins</code> and login to the Jenkins Server as Admin</p>
 <p>Install suggested Jenkins Plugins and login as admin</p>
-<details class="image">
-<summary>Images - Install Sugested Jenkins Plugins</summary>
-</details>
 <p>Optionally, Setup a new admin password - <code>Jenkins &gt; Admin &gt; Security</code></p>
 <h4 id="install-additional-plugins">Install Additional Plugins<a class="headerlink" href="#install-additional-plugins" title="Copy this link to reference this section">¶</a></h4>
 <p>Go to <code>Manage Jenkins &gt; Plugins &gt; Available Plugins</code>, search for and install the following jenkins plugins from the plugin page then restart Jenkins:</p>
@@ -2546,9 +2543,6 @@
 <li>Email Extension Template <em>(Used to send job email notifications)</em></li>
 <li>Prometheus Metrics <em>(Exposes Jenkins internal metrics so we can scrape and display them through Grafana dashboards)</em></li>
 </ul>
-<details class="image">
-<summary>Images - Install additional Jenkins plugins</summary>
-</details>
 <hr>
 <h4 id="add-credentials">Add Credentials<a class="headerlink" href="#add-credentials" title="Copy this link to reference this section">¶</a></h4>
 <p>Go to <code>Manage Jenkins &gt; Credentials &gt; (Global) &gt; Add Credentials</code> and add the following credentials:</p>
@@ -2625,6 +2619,15 @@
 <p>This token will be used to authenticate Jenkins to access the SonarQube server.</p>
 <details class="image">
 <summary>Images - Generate SonarQube token on the SonarQube server</summary>
+<figure>
+<p></p><figure markdown="1">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" data-title="SonarQube Token" data-desc-position="bottom"><img alt="SonarQube Token" src="../../assets/images/sonar-token.png" title="SonarQube Token"></a>
+</figure><p></p>
+<figcaption>
+<p>SonarQube Token</p>
+</figcaption>
+</figure>
+<hr>
 </details>
 <hr>
 <p>Then, on your Jenkins server, go to <code>Manage Jenkins &gt; Tools</code> and configure each of the plugin tools as explained below: </p>
@@ -2657,6 +2660,15 @@
 </ul>
 <details class="image">
 <summary>Images - SonarQube Scanner Tool Installation</summary>
+<figure>
+<p></p><figure markdown="1">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" data-title="SonarQube Tool Installation" data-desc-position="bottom"><img alt="SonarQube Tool Installation" src="../../assets/images/sonar-tool.png" title="SonarQube Tool Installation"></a>
+</figure><p></p>
+<figcaption>
+<p>SonarQube Tool Installation</p>
+</figcaption>
+</figure>
+<hr>
 </details>
 <hr>
 <p><strong>Docker</strong></p>
@@ -2784,9 +2796,6 @@
 <p>Select <code>Pipeline</code> and click <code>OK</code></p>
 </li>
 </ul>
-<details class="image">
-<summary>Images - Create a New Jenkins Pipeline Job</summary>
-</details>
 <p>Go to <code>the_job_name &gt; Configuration &gt; Pipeline</code> and select <code>Pipeline script</code></p>
 <p>Copy and paste the CI pipeline script in the annotation box below into the Jenkins pipeline script template box.</p>
 <p>Click <code>Save</code></p>
@@ -3743,9 +3752,6 @@ Click to enlarge image</p>
 </code></pre></div></td></tr></tbody></table></div>
 Enter the <code>Access Key</code> and <code>Secret Access Key</code> you copied earlier and set the default region (in my case its <code>us-east-2</code>)<p></p>
 <p>Now, our Jenkins server has the neccesary permissions to create and manage our EKS cluster.</p>
-<details class="image">
-<summary>Images - IAM User Policy and Access keys</summary>
-</details>
 <hr>
 <h3 id="create-eks-cluster">Create EKS Cluster<a class="headerlink" href="#create-eks-cluster" title="Copy this link to reference this section">¶</a></h3>
 <p>Create your EKS Cluster</p>
@@ -3763,9 +3769,6 @@ Enter the <code>Access Key</code> and <code>Secret Access Key</code> you copied 
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" checked><span class="task-list-indicator"></span></label> The command will also create a default node group with t3.medium instances. You can customize the node group settings by adding additional flags to the command. See <a href="https://eksctl.io/usage/creating-and-managing-clusters/#creating-a-cluster" target="_blank" rel="noopener"><em>(eksctl documentation - create cluster)</em></a></li>
 </ul>
 </div>
-<details class="image">
-<summary>Images - EKS Cluster Creation</summary>
-</details>
 <hr>
 <h3 id="install-helm"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12.337 0c-.475 0-.861 1.016-.861 2.269 0 .527.069 1.011.183 1.396a8.5 8.5 0 0 0-3.961 1.22 5.2 5.2 0 0 0-.595-1.093c-.606-.866-1.34-1.436-1.79-1.43a.4.4 0 0 0-.217.066c-.39.273-.123 1.326.596 2.353.267.381.559.705.84.948a8.7 8.7 0 0 0-1.528 1.716h1.734a7.18 7.18 0 0 1 5.381-2.421 7.18 7.18 0 0 1 5.382 2.42h1.733a8.7 8.7 0 0 0-1.32-1.53c.35-.249.735-.643 1.078-1.133.719-1.027.986-2.08.596-2.353a.4.4 0 0 0-.217-.065c-.45-.007-1.184.563-1.79 1.43a4.9 4.9 0 0 0-.676 1.325 8.5 8.5 0 0 0-3.899-1.42c.12-.39.193-.887.193-1.429 0-1.253-.386-2.269-.862-2.269M1.624 9.443v5.162h1.358v-1.968h1.64v1.968h1.357V9.443H4.62v1.838H2.98V9.443zm5.912 0v5.162h3.21v-1.108H8.893v-.95h1.64v-1.142h-1.64v-.84h1.853V9.443zm4.698 0v5.162h3.218v-1.362h-1.86v-3.8zm4.706 0v5.162h1.364v-2.643l1.357 1.225 1.35-1.232v2.65h1.365V9.443h-.614l-2.1 1.914-2.109-1.914zm-11.82 7.28a8.7 8.7 0 0 0 1.412 1.548 5.2 5.2 0 0 0-.841.948c-.719 1.027-.985 2.08-.596 2.353.39.273 1.289-.338 2.007-1.364a5.2 5.2 0 0 0 .595-1.092 8.5 8.5 0 0 0 3.961 1.219 5 5 0 0 0-.183 1.396c0 1.253.386 2.269.861 2.269.476 0 .862-1.016.862-2.269 0-.542-.072-1.04-.193-1.43a8.5 8.5 0 0 0 3.9-1.42c.121.4.352.865.675 1.327.719 1.026 1.617 1.637 2.007 1.364s.123-1.326-.596-2.353c-.343-.49-.727-.885-1.077-1.135a8.7 8.7 0 0 0 1.202-1.36h-1.771a7.17 7.17 0 0 1-5.227 2.252 7.17 7.17 0 0 1-5.226-2.252z"></path></svg></span> Install Helm<a class="headerlink" href="#install-helm" title="Copy this link to reference this section">¶</a></h3>
 <p>Check if Helm is installed on your base server</p>
@@ -4216,9 +4219,6 @@ Click to enlarge image</p>
 <li>Look for the job <code>node-exporter-standalone</code>.</li>
 <li>Ensure it’s marked as UP.</li>
 </ul>
-<details class="image">
-<summary>Images - Prometheus UI page showing newly added Jenkins target</summary>
-</details>
 <h6 id="_1"><a class="headerlink" href="#_1" title="Copy this link to reference this section">¶</a></h6>
 <h2 id="clean-up">Clean-Up<a class="headerlink" href="#clean-up" title="Copy this link to reference this section">¶</a></h2>
 <p>To avoid incurring uneccessary costs, it is advisable to clean up (destroy) all the infrastructural resources created during this project.</p>
@@ -4271,7 +4271,7 @@ Click to enlarge image</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="December 8, 2025 18:04:12 UTC"><span class="timeago" datetime="2025-12-08T18:04:12+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="December 8, 2025 18:04:12 UTC">2025-12-08</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="December 9, 2025 09:31:39 UTC"><span class="timeago" datetime="2025-12-09T09:31:39+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="December 9, 2025 09:31:39 UTC">2025-12-09</span>
   </span>
 
     
