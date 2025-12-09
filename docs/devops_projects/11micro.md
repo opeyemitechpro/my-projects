@@ -28,7 +28,7 @@ This project demonstrates a complete, production-grade DevSecOps pipeline for de
     **DevSecOps Project - End-to-end Deployment and Monitoring of 11-Microservice e-Commerce App to AWS EKS with Jenkins, ArgoCD, Terraform, Grafana & Prometheus**
 
     <figure markdown="1">
-    [![DevSecOps Project - End-to-end Deployment and Monitoring of multi-Microservice e-Commerce App on AWS EKS using Jenkins, ArgoCD, Terraform, Grafana & Prometheus](../assets/images/video-image.png "DevSecOps Project - End-to-end Deployment and Monitoring of multi-Microservice e-Commerce App on AWS EKS using Jenkins, ArgoCD, Terraform, Grafana & Prometheus")](https://youtube.com/@opeyemitechpro){: target="_blank" }
+    [![DevSecOps Project - End-to-end Deployment and Monitoring of multi-Microservice e-Commerce App on AWS EKS using Jenkins, ArgoCD, Terraform, Grafana & Prometheus](../assets/images/video-image.png "DevSecOps Project - End-to-end Deployment and Monitoring of multi-Microservice e-Commerce App on AWS EKS using Jenkins, ArgoCD, Terraform, Grafana & Prometheus")](https://youtu.be/HvJT6xRjwa4){: target="_blank" }
     <!-- <figcaption>DevSecOps Project</figcaption>  -->
     </figure>
     /// caption
